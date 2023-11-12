@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>/api*</pattern>
+    </excludes>
+
+    <!-- apply Sitemesh default template -->
+    <decorator name="admin" page="admin.jsp">
+        <pattern>/admin*</pattern>
+    </decorator>
+
+    <decorator name="web" page="web.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="loginWeb" page="loginWeb.jsp">
+        <pattern>/login</pattern>
+    </decorator>
+
+    <decorator name="loginWeb" page="loginWeb.jsp">
+        <pattern>/register</pattern>
+    </decorator>
+
+    <decorator name="loginAdmin" page="loginAdmin.jsp">
+        <pattern>/admin/login</pattern>
+    </decorator>
+
+    <decorator name="loginAdmin" page="loginAdmin.jsp">
+        <pattern>/admin/forgotpassword</pattern>
+    </decorator>
+
+    <decorator name="loginAdmin" page="loginAdmin.jsp">
+        <pattern>/admin/changePassword</pattern>
+    </decorator>
+
+    <decorator name="loginWeb" page="loginWeb.jsp">
+        <pattern>/forgotpassword</pattern>
+    </decorator>
+
+    <decorator name="web403" page="web403.jsp">
+        <pattern>/403</pattern>
+    </decorator>
+
+    <decorator name="admin403" page="admin403.jsp">
+        <pattern>/admin/403</pattern>
+    </decorator>
+
+    <decorator name="thongtinWeb" page="thongtinWeb.jsp">
+        <pattern>/web*</pattern>
+    </decorator>
+
+</decorators>
