@@ -24,7 +24,7 @@
 
         <div class="card card-body hstack gap-3 mt-3">
             <div class="p-2">
-                <a href="/admin/sanpham/createSP" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/san-pham/create" class="btn btn-primary">Thêm mới</a>
             </div>
             <div class="p-2 ms-auto">
                 <select class="form-control">
@@ -79,7 +79,7 @@
                 <td>Danh muc</td>
                 <td>Thương hiệu</td>
                 <td>
-                    <a href="/admin/sanpham/updateSP" class="btn btn-warning">Sửa</a>
+                    <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
                     <button class="btn btn-danger">Xóa</button>
                 </td>
             </tr>

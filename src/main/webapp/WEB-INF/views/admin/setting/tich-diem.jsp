@@ -96,5 +96,18 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $("#selectCheckbox").on("click", function() {
+            if ($(this).is(":checked")) {
+                $("#paymentOptions").show();
+                $("#addPaymentOptions").show();
+            } else {
+                $("#paymentOptions").hide();
+                $("#addPaymentOptions").hide();
+            }
+        });
+    });
+</script>
 </body>
 </html>

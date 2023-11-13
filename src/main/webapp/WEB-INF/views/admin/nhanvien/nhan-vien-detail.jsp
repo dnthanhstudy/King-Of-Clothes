@@ -112,7 +112,7 @@
 
             <div class="row mt-3">
                 <div class="col">
-                    <a href="/admin/nhanvien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
+                    <a href="/admin/nhan-vien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
                 </div>
             </div>
         </div>

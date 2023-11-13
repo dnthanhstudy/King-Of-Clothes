@@ -88,7 +88,7 @@
             <div class="row mt-3">
                 <div class="col">
                     <button class="btn" id="them" style="background-color: #A6edab; color: #00852d" onclick="kiemTraDuLieu()">Add</button>
-                    <a href="/admin/khachhang" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
+                    <a href="/admin/khach-hang" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
                 </div>
             </div>
         </div>

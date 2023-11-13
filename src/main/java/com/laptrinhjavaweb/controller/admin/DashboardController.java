@@ -18,7 +18,7 @@ public class DashboardController {
         return "admin/setting/profile";
     }
 
-    @GetMapping("/setting/tichdiem")
+    @GetMapping("/setting/tich-diem")
     public String tichdiem() {
         return "admin/setting/tich-diem";
     }

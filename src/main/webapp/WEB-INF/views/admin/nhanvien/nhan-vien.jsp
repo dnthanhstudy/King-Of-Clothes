@@ -23,7 +23,7 @@
                 <div class="card ">
                     <div class=" card-body d-flex mb-3 ">
                         <div class="p-2">
-                            <a href="/admin/createNV" type="button" class="btn"
+                            <a href="/admin/nhan-vien/create" type="button" class="btn"
                                style="background-color: #9df99d;color: #003c00">
                                 Add
                             </a>

@@ -17,19 +17,19 @@
             <a class="nav-link " href="/web/all">Tất cả</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link " href="/web/chothanhtoan">Chờ thanh toán</a>
+            <a class="nav-link " href="/web/cho-thanh-toan">Chờ thanh toán</a>
         </li>
         <li class="nav-item  ms-5">
-            <a class="nav-link" href="/web/vanchuyen">Vận chuyển</a>
+            <a class="nav-link" href="/web/van-chuyen">Vận chuyển</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link " href="/web/danggiao">Đang giao</a>
+            <a class="nav-link " href="/web/dang-giao">Đang giao</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link" href="/web/hoanthanh">Hoàn thành</a>
+            <a class="nav-link" href="/web/hoan-thanh">Hoàn thành</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link active" href="/web/dahuy">Đã hủy</a>
+            <a class="nav-link active" href="/web/da-huy">Đã hủy</a>
         </li>
     </ul>
 </div>
