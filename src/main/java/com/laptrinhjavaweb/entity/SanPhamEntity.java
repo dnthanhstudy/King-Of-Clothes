@@ -14,7 +14,17 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "slug", unique = true)
 	private String slug;
-	
+	@Column(name = "ten", unique = true)
+	private String ten;
+
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
+	}
+
 	@Column(name = "gia")
 	private Double gia;
 	

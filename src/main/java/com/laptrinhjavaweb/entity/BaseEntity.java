@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.laptrinhjavaweb.model.enumentity.TrangThaiTTMHEnum;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -86,4 +87,5 @@ public abstract class BaseEntity {
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
+
 }
