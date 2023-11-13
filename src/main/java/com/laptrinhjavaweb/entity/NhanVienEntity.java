@@ -46,7 +46,7 @@ public class NhanVienEntity extends BaseEntity{
 	@Column(name = "cancuoccongdan", columnDefinition = "char(12)")
 	private String canCuocCongDan;
 	
-	@Column(name = "ngaycap", columnDefinition = "TIMESTAMP")
+	@Column(name = "ngaycap", columnDefinition = "DATETIME")
 	private Date ngayCap;
 	
 	@Column(name = "resttoken")

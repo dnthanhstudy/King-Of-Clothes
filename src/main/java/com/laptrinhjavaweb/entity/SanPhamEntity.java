@@ -11,6 +11,9 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "ma", unique = true, columnDefinition = "char(10)")
 	private String ma;
+
+	@Column(name = "ten", columnDefinition = "char(10)")
+	private String ten;
 	
 	@Column(name = "slug", unique = true)
 	private String slug;
