@@ -283,7 +283,6 @@
                             `;
                         tbody.append(html);
                     })
-                setCheckBox();
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
@@ -293,7 +292,7 @@
 
     function tongTien(){
         $.ajax({
-            url: '/api/user/ghct/subtotal/'+idkh,
+            url: '/api/user/giohang/subtotal/'+idkh,
             method: 'GET',
             success: function(req) {
                 var data = req.data;
@@ -310,7 +309,7 @@
 
     function thayDoiSoLuong(idghct,sl){
         $.ajax({
-            url: '/api/user/ghct/thaydoisoluong',
+            url: '/api/user/giohang/thaydoisoluong',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -318,11 +317,11 @@
                 soLuong:sl
             }),
             success: async function (req) {
-                //        await ghct();
+                       await ghct();
                 var data = req.data;
                 $("#soluong-"+data.idGhct).val(data.soLuong);
                 $("#tongtien-"+data.idGhct).html(data.tongTien);
-                tongTienTheoGhct(dsCheckbox);
+                 tongTienTheoGhct(dsCheckbox);
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
@@ -357,14 +356,12 @@
     }
     // Đặt sự kiện delegating cho phần tử body để bắt sự kiện click của checkbox
 
-    function setCheckBox(){
-        $('input[name="idghct"]').click(function() {
-            loadDataCheckbox();
-        });
-    }
+    $(document).on('click', 'input[name="idghct"]', function() {
+        // Xử lý sự kiện tại đây
+        loadDataCheckbox()
+    });
     function loadDataCheckbox(){
         var listCheckbox = getValByCheckbox();
-
         dsCheckbox = listCheckbox;
         tongTienTheoGhct(dsCheckbox)
     }
@@ -384,7 +381,7 @@
             collection:listCheckbox
         });
         $.ajax({
-            url: '/api/user/ghct/subtotaltheoghct/'+idkh,
+            url: '/api/user/giohang/subtotaltheoghct/'+idkh,
             method: 'POST',
             contentType: 'application/json',
             data:data ,

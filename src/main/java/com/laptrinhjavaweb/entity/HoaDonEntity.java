@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
+
 import javax.persistence.*;
 
 import java.sql.Date;
@@ -66,6 +68,12 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
 	private List<LichSuTichDiemEntity> lichSuTichDiemEntities = new ArrayList<>();
+
+	public void setTrangThai(TrangThaiHoaDonEnum trangThai){
+		if (trangThai == TrangThaiHoaDonEnum.HOADONCHO){
+
+		}
+	}
 
 	public String getMa() {
 		return ma;

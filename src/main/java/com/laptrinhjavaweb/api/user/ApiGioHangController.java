@@ -29,23 +29,30 @@ public class ApiGioHangController {
         return gioHangService.dsGioHangChiTietByIdKh(idkh);
     }
 
-//    @PostMapping("/subtotaltheoghct/{idkh}")
-//    public ResponseObject totalGioHangByKhachHangAndGioHangChiTiet(
-//            @PathVariable(name = "idkh")Long idkh,
-//            @RequestBody Map<String, List<Long>> requestBody
-//    ){
-//        return  new ResponseObject(gioHangService.tongTienTheoGioHangChiTiet(idkh, requestBody.get("collection")));
-//    }
+    @PostMapping("/subtotaltheoghct/{idkh}")
+    public ResponseObject totalGioHangByKhachHangAndGioHangChiTiet(
+            @PathVariable(name = "idkh")Long idkh,
+            @RequestBody Map<String, List<Long>> requestBody
+    ){
+        return  new ResponseObject(gioHangService.tongTienTheoGioHangChiTiet(idkh, requestBody.get("collection")));
+    }
+    @PostMapping("/thaydoisoluong")
+    public ResponseObject totalGioHangByKhachHang(@RequestBody ThayDoiSoLuongGioHangRequest request){
+        return new ResponseObject(gioHangService.thayDoiSoLuong(request));
+    }
+    @PostMapping("/{idkh}")
+    public ResponseObject datHang(@PathVariable(name = "idkh") Long idkh
+            ,@RequestBody Map<String, Object> requestBody){
+        List<Integer> dsghct = (List<Integer>) requestBody.get("dsghct");
+        return gioHangService.datHang(idkh,dsghct);
+    }
 //
 //    @GetMapping("/subtotal/{id}")
 //    public ResponseObject totalGioHangByKhachHang(@PathVariable(name = "id")Long idkh){
 //        return new ResponseObject(gioHangService.tongTien(idkh));
 //    }
 //
-//    @PostMapping("/thaydoisoluong")
-//    public ResponseObject totalGioHangByKhachHang(@RequestBody ThayDoiSoLuongGioHangRequest request){
-//        return new ResponseObject(gioHangService.thayDoiSoLuong(request));
-//    }
+
 //    @GetMapping("/dsspttchiatheosp/{id}")
 //    public ResponseObject dsSpttChiaTheoSanPhamByIdKh(@PathVariable(name = "id")Long idkh){
 //        return new ResponseObject(gioHangService.dsGioHangChiaTheoSanPham(idkh));

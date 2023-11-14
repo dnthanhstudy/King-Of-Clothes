@@ -1,5 +1,8 @@
 package com.laptrinhjavaweb.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +27,7 @@ public class GioHangChiTietEntity extends BaseEntity{
 	@Column(name = "soluong")
 	private Integer soLuong;
 
+	@JsonProperty("getTongTien")
 	public Double getTongTien(){
 		if (bienThe.getGia()==null){
 			return sanPham.getGia()*soLuong;
