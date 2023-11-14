@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>--%>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@include file="/common/taglib.jsp" %>
 <!doctype html>
 <html lang="en">
@@ -21,27 +21,22 @@
                 <img src="<c:url value='/template/admin/images/Untitled-1.jpg'/>" alt="">
                 <a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
             </div>
-            <h5 class="name"><span class="font-w400">Hello,</span> Marquez</h5>
-            <p class="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95f8f4e7e4e0f0efefefefd5f8f4fcf9bbf6faf8">[email&#160;protected]</a></p>
+            <h5 class="name"><span class="font-w400">Hello,</span><%=SecurityUtils.getPrincipal().getTen()%></h5>
         </div>
         <ul class="metismenu" id="menu">
             <li class="nav-label first">Main Menu</li>
 
             <li>
-<%--                <security:authorize access="hasRole('ADMIN')">--%>
                     <a class="has-arrow ai-icon" href="/admin/dashboards" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Dashboard</span>
                     </a>
-<%--                </security:authorize>--%>
             </li>
             <li>
-<%--                <security:authorize access="hasRole('MANAGER')">--%>
                     <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                         <i class="flaticon-061-puzzle"></i>
                         <span class="nav-text">Quản lý</span>
                     </a>
-<%--                </security:authorize>--%>
                 <ul aria-expanded="false">
                     <li><a href="/admin/nhanvien">Nhân viên</a></li>
                     <li><a href="/admin/khachhang">Khách hàng</a></li>
@@ -90,5 +85,42 @@
 <!--**********************************
     Sidebar end
 ***********************************-->
+<input class="ma-chuc-vu" type="hidden" value="<%=SecurityUtils.getPrincipal().getMaChucVu()%>">
+<script>
+    const role = $('.ma-chuc-vu').val();
+    if(role === "STAFF"){
+        const html = `<li class="nav-label first">Main Menu</li>
+                        <li class="mm-active"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <i class="flaticon-381-network"></i>
+                            <span class="nav-text">Giao ca</span>
+                            </a>
+                            <ul aria-expanded="false" class="mm-collapse mm-show" style="">
+                                <li><a href="/admin/giaoca/dongca">Đóng ca</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                <i class="flaticon-044-file"></i>
+                                <span class="nav-text">Giao dịch</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/admin/giaodich/hoadon">Hóa đơn</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                <i class="flaticon-381-settings-2"></i>
+                                <span class="nav-text">Setting</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/admin/profile">Profile</a></li>
+                                <li><a href="/admin/tichdiem">Tích điểm</a></li>
+                            </ul>
+                        </li>`;
+        $('#menu').html(html);
+    }
+</script>
 </body>
 </html>

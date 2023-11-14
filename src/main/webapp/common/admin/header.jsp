@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ include file="/common/taglib.jsp" %>
 <!doctype html>
 <html lang="en">
@@ -723,8 +724,8 @@
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
                                 <img src="<c:url value='/template/admin/images/profile/pic1.jpg'/>" width="20" alt="">
                                 <div class="header-info">
-                                    <span>Johndoe</span>
-                                    <small>Super Admin</small>
+                                    <span><%=SecurityUtils.getPrincipal().getTen()%></span>
+                                    <small><%=SecurityUtils.getPrincipal().getMa()%></small>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
