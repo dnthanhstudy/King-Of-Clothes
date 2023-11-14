@@ -1,19 +1,17 @@
 package com.laptrinhjavaweb.entity;
 
-import java.sql.Date;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.Date;
 
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity {
 
 	@Id
@@ -25,7 +23,7 @@ public abstract class BaseEntity {
 	private Date ngayTao;
 
 	@CreatedBy
-	@Column(name = "nguoitao")
+	@Column(name = "nguoitao", columnDefinition = "nvarchar(255)")
 	private String nguoiTao;
 
 	@LastModifiedDate
@@ -33,7 +31,7 @@ public abstract class BaseEntity {
 	private Date ngaySua;
 
 	@LastModifiedBy
-	@Column(name = "nguoisua")
+	@Column(name = "nguoisua", columnDefinition = "nvarchar(255)")
 	private String nguoiSua;
 
 	@Column(name = "trangthai", columnDefinition = "NVARCHAR(255) default 'ACTIVE'")
