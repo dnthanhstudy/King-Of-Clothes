@@ -9,7 +9,7 @@ public class GenerateStringUtils {
 
     public static String generate()
     {
-        int len = 10;
+        int len = 6;
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";

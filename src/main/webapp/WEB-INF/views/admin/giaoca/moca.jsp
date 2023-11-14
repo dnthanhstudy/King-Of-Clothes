@@ -73,8 +73,12 @@
             </div>
             <div class="col-12 col-md-3 col-lg-3 col-xl-6"></div>
         </div>
-
     </div>
 </div>
+<script>
+    if(role === "STAFF"){
+        $('#menu').html('');
+    }
+</script>
 </body>
 </html>
