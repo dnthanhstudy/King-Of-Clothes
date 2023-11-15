@@ -46,6 +46,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if(khacHangResponse != null){
             authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
             myUserResponse = new MyUserResponse(username, khacHangResponse.getMatKhau(), true, true, true, true, authorities);
+            myUserResponse.setMaChucVu("CUSTOMER");
             BeanUtils.copyProperties(khacHangResponse, myUserResponse);
         }
         if(myUserResponse == null){

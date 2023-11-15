@@ -7,17 +7,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "danhmuc")
-public class DanhMucEntity extends BaseEntity{
-	
+public class DanhMucEntity extends BaseEntity {
+
 	@Column(name = "slug", unique = true)
 	private String slug;
-	
-	@Column(name = "ten")
+
+	@Column(name = "ten", columnDefinition = "nvarchar(255)")
 	private String ten;
-	
+
 	@Column(name = "hienthi")
 	private Integer hienThi;
-	
+
 	@OneToMany(mappedBy = "danhMuc", fetch = FetchType.LAZY)
 	private List<SanPhamEntity> sanPhamEntities = new ArrayList<>();
 
