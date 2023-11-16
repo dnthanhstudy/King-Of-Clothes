@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "chucvu")
 public class ChucVuEntity extends BaseEntity {
-	@Column(name = "ma" , unique = true, nullable = false)
+	@Column(name = "ma" , nullable = false)
 	private String ma;
 	
 	@Column(name = "ten", columnDefinition = "nvarchar(255)")

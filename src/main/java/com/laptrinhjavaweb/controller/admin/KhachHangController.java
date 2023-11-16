@@ -18,7 +18,7 @@ public class KhachHangController {
         return "admin/khachhang/khach-hang-create";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{ma}")
     public String updateKH() {
         return "admin/khachhang/khach-hang-edit";
     }

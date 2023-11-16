@@ -35,7 +35,6 @@
                 <div class="card card-lg mb-5">
                     <div class="card-body">
                         <!-- Form -->
-                        <form class="js-validate">
                             <div class="text-center">
                                 <div class="mb-5">
                                     <h1 class="display-4">Forgot password?</h1>
@@ -45,20 +44,23 @@
 
                             <!-- Form Group -->
                             <div class="js-form-message form-group">
-                                <label class="input-label" for="resetPasswordSrEmail" tabindex="0">Your email</label>
+                                <label class="input-label" for="email">Your email</label>
 
-                                <input type="email" class="form-control form-control-lg" name="email" id="resetPasswordSrEmail" tabindex="1" placeholder="Enter your email address" aria-label="Enter your email address" required="" data-msg="Please enter a valid email address.">
+                                <input required
+                                       type="email"
+                                       id="email"
+                                       name="email"
+                                       placeholder="Enter your email address" class="form-control form-control-lg">
                             </div>
                             <!-- End Form Group -->
 
-                            <button type="submit" class="btn btn-lg btn-block btn-primary">Submit</button>
+                            <button  onclick="quenMatKhau()" class="btn btn-lg btn-block btn-primary">Submit</button>
 
                             <div class="text-center mt-2">
                                 <a class="btn btn-link" href="/login">
                                     <i class="tio-chevron-left"></i> Back to Sign in
                                 </a>
                             </div>
-                        </form>
                         <!-- End Form -->
                     </div>
                 </div>
@@ -91,5 +93,22 @@
     </div>
     <!-- End Content -->
 </main>
+
+<script>
+    function quenMatKhau() {
+        var email = $("#email").val();
+        $.ajax({
+            type: "POST",
+            url: "/api/quenmatkhau",
+            data: { email: email },
+            success: function(response) {
+                showSuccess("Mật khẩu tạm thời đã được gửi đến email của bạn.")
+            },
+            error: function(xhr) {
+                showError("Không tìm thấy nhân viên với địa chỉ email này.");
+            }
+        });
+    }
+</script>
 </body>
 </html>

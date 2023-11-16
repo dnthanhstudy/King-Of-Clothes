@@ -18,12 +18,12 @@ public class NhanVienController {
         return "admin/nhanvien/nhan-vien-create";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{ma}")
     public String updateNV() {
         return "admin/nhanvien/nhan-vien-edit";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/detail/{ma}")
     public String detailNV() {
         return "admin/nhanvien/nhan-vien-detail";
     }
