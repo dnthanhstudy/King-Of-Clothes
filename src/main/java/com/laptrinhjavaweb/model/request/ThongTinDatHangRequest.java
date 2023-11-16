@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.model.request;
 
+import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.support.supportgiaohang.SanPhamGhnApi;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -76,6 +77,15 @@ public class ThongTinDatHangRequest {
 
 
     private Long cod_amount;         // Số tiền thu hộ
+    public void setTienThuHo(HoaDonEntity hoaDon){
+        if (hoaDon.getPhuongThucThanhToan().equals("CHUYENKHOAN")){
+            cod_amount = 0L;
+            payment_type_id=1L;
+        }else {
+            cod_amount = Long.valueOf(hoaDon.getTongTienHang().toString());
+            payment_type_id=2L;
+        }
+    }
     public void setSoTienThuHo(Long soTienThuHo){
         cod_amount = soTienThuHo;
     };

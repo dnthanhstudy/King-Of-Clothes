@@ -17,7 +17,7 @@ public class DiaChiGiaoHangRequest {
     private String soDienThoai;
     private Integer idThanhPho;
     private Integer idHuyen;
-    private String idXa;
+    private Integer idXa;
     private String soNha;
     private String diaChi;
     private Boolean macDinh;

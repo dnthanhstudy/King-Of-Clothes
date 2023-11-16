@@ -27,6 +27,13 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
 
+	public Double getTongTien(){
+		if (bienThe.getGia()==null){
+			return bienThe.getSanPham().getGia()*soLuong;
+		}
+		return bienThe.getGia()*soLuong;
+	}
+
 	public Integer getSoLuong() {
 		return soLuong;
 	}

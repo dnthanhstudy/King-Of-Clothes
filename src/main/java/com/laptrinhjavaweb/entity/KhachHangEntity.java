@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -47,9 +48,10 @@ public class KhachHangEntity extends BaseEntity{
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<DanhGiaSanPhamEntity> danhGiaSanPhamEntities = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
-	private List<GioHangEntity> gioHangEntities = new ArrayList<>();
-	
+	@OneToOne(mappedBy = "khachHang", fetch = FetchType.LAZY)
+	private GioHangEntity gioHangEntities ;
+
+
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<KhachHangYeuThichSanPhamEntity> khachHangYeuThichSanPhamEntities = new ArrayList<>();
 	
@@ -64,6 +66,14 @@ public class KhachHangEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<ViDienTuEntity> viDienTuEntities = new ArrayList<>();
+
+	public GioHangEntity getGioHangEntities() {
+		return gioHangEntities;
+	}
+
+	public void setGioHangEntities(GioHangEntity gioHangEntities) {
+		this.gioHangEntities = gioHangEntities;
+	}
 
 	public String getMa() {
 		return ma;
@@ -153,13 +163,6 @@ public class KhachHangEntity extends BaseEntity{
 		this.danhGiaSanPhamEntities = danhGiaSanPhamEntities;
 	}
 
-	public List<GioHangEntity> getGioHangEntities() {
-		return gioHangEntities;
-	}
-
-	public void setGioHangEntities(List<GioHangEntity> gioHangEntities) {
-		this.gioHangEntities = gioHangEntities;
-	}
 
 	public List<KhachHangYeuThichSanPhamEntity> getKhachHangYeuThichSanPhamEntities() {
 		return khachHangYeuThichSanPhamEntities;

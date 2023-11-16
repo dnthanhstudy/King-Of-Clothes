@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEntity,Long> {
 
-    @Query("select ghct from GioHangChiTietEntity ghct where ghct.gioHang.khachHang.id=:idkh")
+    @Query("select ghct from GioHangChiTietEntity ghct where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai<>'DELETE'")
     List<GioHangResponse> dsGioHangChiTietByIdKh(@Param("idkh")Long idkh);
 
     @Query("SELECT SUM(ghct.bienThe.gia*ghct.soLuong) FROM GioHangChiTietEntity ghct" +

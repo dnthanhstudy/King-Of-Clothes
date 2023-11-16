@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: asus
-  Date: 10/19/2023
-  Time: 10:42 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@include file="/common/taglib.jsp" %>
@@ -44,7 +37,7 @@
                                 <h6>Tên nhân viên:</h6>
                             </div>
                             <div class="col-8">
-                                <span><%=SecurityUtils.getPrincipal().getFullName()%></span>
+                                <span><%=SecurityUtils.getPrincipal().getTen()%></span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -80,8 +73,12 @@
             </div>
             <div class="col-12 col-md-3 col-lg-3 col-xl-6"></div>
         </div>
-
     </div>
 </div>
+<script>
+    if(role === "STAFF"){
+        $('#menu').html('');
+    }
+</script>
 </body>
 </html>

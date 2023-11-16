@@ -40,10 +40,10 @@ public class ApiGioHangController {
     public ResponseObject totalGioHangByKhachHang(@RequestBody ThayDoiSoLuongGioHangRequest request){
         return new ResponseObject(gioHangService.thayDoiSoLuong(request));
     }
-    @PostMapping("/{idkh}")
+    @PostMapping("/dathang/{idkh}")
     public ResponseObject datHang(@PathVariable(name = "idkh") Long idkh
             ,@RequestBody Map<String, Object> requestBody){
-        List<Integer> dsghct = (List<Integer>) requestBody.get("dsghct");
+        List<Long> dsghct = (List<Long>) requestBody.get("dsghct");
         return gioHangService.datHang(idkh,dsghct);
     }
 //

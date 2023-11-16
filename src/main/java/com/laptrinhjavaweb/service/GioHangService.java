@@ -16,7 +16,7 @@ public interface GioHangService {
 //    BigDecimal tongTien(Long idKH);
     BigDecimal tongTienTheoGioHangChiTiet(Long idKH,List<Long> lstGhct);
 
-    ResponseObject datHang(Long idkh, List<Integer> dsghct);
+    ResponseObject datHang(Long idkh, List<Long> dsghct);
 //
 //    List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh);
 //

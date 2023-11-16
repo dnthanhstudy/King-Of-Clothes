@@ -29,8 +29,8 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.bienThe.ten}")
     String getTenBienThe();
 
-//    @Value("#{target.tongTien}")
-//    BigDecimal getTongTien();
+    @Value("#{target.tongTien}")
+    Double getTongTien();
     @Value("#{target.bienThe.sanPham.ten}")
     String getTenSanPham();
 

@@ -12,18 +12,13 @@ public class SanPhamEntity extends BaseEntity{
 	@Column(name = "ma", unique = true, columnDefinition = "char(10)")
 	private String ma;
 	
+	@Column(name = "ten", columnDefinition = "nvarchar(255)")
+	private String ten;
+	
 	@Column(name = "slug", unique = true)
 	private String slug;
-	@Column(name = "ten", unique = true)
-	private String ten;
 
-	public String getTen() {
-		return ten;
-	}
 
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
 
 	@Column(name = "gia")
 	private Double gia;
@@ -81,6 +76,14 @@ public class SanPhamEntity extends BaseEntity{
 
 	public void setMa(String ma) {
 		this.ma = ma;
+	}
+	
+	public String getTen() {
+		return ten;
+	}
+
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
 
 	public String getSlug() {

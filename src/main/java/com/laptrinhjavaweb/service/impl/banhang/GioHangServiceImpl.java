@@ -1,12 +1,15 @@
 package com.laptrinhjavaweb.service.impl.banhang;
 
+import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
+import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.service.GioHangService;
@@ -29,6 +32,9 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Autowired
     KhachHangRepository khachHangRepository;
+
+    @Autowired
+    HoaDonChiTietRepository hoaDonChiTietRepository;
     @Override
     @Transactional
     public ResponseObject thayDoiSoLuong(ThayDoiSoLuongGioHangRequest request) {
@@ -64,7 +70,7 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     @Transactional
-    public ResponseObject datHang(Long idkh, List<Integer> dsghct) {
+    public ResponseObject datHang(Long idkh, List<Long> dsghct) {
 //        HoaDonChiTietEntity hoaDon = hoaDonRepository.getHoaDonMoiTaoByIdkh(idkh);
 //        if (hoaDon!=null){
 //            return new ResponseObject("Đang có hoá đơn trạng thái chưa giao hàng,vui lòng xem lại");
@@ -72,28 +78,22 @@ public class GioHangServiceImpl implements GioHangService {
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         HoaDonEntity hoaDon = new HoaDonEntity();
         hoaDon.setKhachHang(khachHang);
-        hoaDon.setTrangThai(10);
-        hoaDon.setNgayDat(new Date());
+        hoaDon.setTrangThai(TrangThaiHoaDonEnum.CHUANBIDATHANNG);
         hoaDon = hoaDonRepository.save(hoaDon);
-        List<Long> dsghct = new ArrayList<>();
-        for (Integer integer :idghct
-        ) {
-            dsghct.add(Long.valueOf(integer));
-        }
         assert khachHang != null;
 //        GioHang gioHang = gioHangRepository.findGioHangByIdkh(khachHang.getGioHang().getId());
-        List<GioHangChiTiet> dsGioHangChiTiet = gioHangChiTietRepo.dsGioHangChiTietByIdGioHang(khachHang.getGioHang().getId(),dsghct);
-        for (GioHangChiTiet gioHangChiTiet:dsGioHangChiTiet) {
+//        List<GioHangChiTietEntity> dsGioHangChiTiet = gioHangChiTietRepository.dsGioHangChiTietByIdKh(khachHang.getId());
+        for (GioHangChiTietEntity gioHangChiTiet:khachHang.getGioHangEntities().getGioHangChiTietEntities()) {
             // GioHangChiTiet gioHangChiTiet = gioHangChiTietRepo.findById(Long.valueOf(idghct)).orElse(null);
-            BienThe bienThe = gioHangChiTiet.getBienThe();
-            HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
+            BienTheEntity bienThe = gioHangChiTiet.getBienThe();
+            HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();
             hoaDonChiTiet.setBienThe(bienThe);
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
-            hoaDonChiTiet.setDonGia(bienThe.getGia());
+            hoaDonChiTiet.setGia(bienThe.getGia());
+            hoaDonChiTiet.setHoaDon(hoaDon);
+            gioHangChiTiet.setTrangThai("DELETE");
             hoaDonChiTietRepository.save(hoaDonChiTiet);
-            gioHangChiTiet.setTrangThai(0);
-            gioHangChiTietRepo.save(gioHangChiTiet);
         }
         return new ResponseObject("Tạo hoá đơn thành công");
     }

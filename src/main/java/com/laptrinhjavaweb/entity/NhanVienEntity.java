@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public class NhanVienEntity extends BaseEntity{
 	@Column(name = "gioitinh", columnDefinition = "nvarchar(20)")
 	private String gioiTinh;
 	
-	@Column(name = "ngaysinh", columnDefinition = "DATETIME")
+	@Column(name = "ngaysinh", columnDefinition = "DATE")
 	private Date ngaySinh;
 	
 	@Column(name = "anh")
@@ -46,7 +46,7 @@ public class NhanVienEntity extends BaseEntity{
 	@Column(name = "cancuoccongdan", columnDefinition = "char(12)")
 	private String canCuocCongDan;
 	
-	@Column(name = "ngaycap", columnDefinition = "TIMESTAMP")
+	@Column(name = "ngaycap", columnDefinition = "DATE")
 	private Date ngayCap;
 	
 	@Column(name = "resttoken")

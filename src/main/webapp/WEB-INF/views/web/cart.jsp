@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
-
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
@@ -207,7 +207,7 @@
 
 
 <script>
-    var idkh = 1;
+    var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
     var dsCheckbox = [];
 
     $("#allchecked").click(function (){
@@ -225,7 +225,6 @@
             url: '/api/user/giohang/'+idkh,
             method: 'GET',
             success: function(data) {
-                console.log(data)
                 var tbody =$("#cart");
                 tbody.empty();
                 data.forEach(function (sp){
@@ -330,15 +329,16 @@
     }
     function muahang() {
         var listsp = getValByCheckbox();
-        var listspAsNumbers = listsp.map(str => parseInt(str, 10));
         if (listsp.length == 0) {
             showError("Bạn chưa chọn sản phẩm để mua")
         }
+        var listspAsNumbers = listsp.map(str => Number(str));
+
         var data = JSON.stringify({
             dsghct: listspAsNumbers,
         });
         $.ajax({
-            url: '/api/user/dathang/' + idkh,
+            url: '/api/user/giohang/dathang/' + idkh,
             method: 'POST',
             contentType: 'application/json',
             data: data,
