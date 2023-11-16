@@ -43,11 +43,11 @@ public class SanPhamService implements ISanPhamService{
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
 			if(param != null) {
 				List<SanPhamEntity> listSanPhamEntity = sanPhamRepository.seachs(param);
-				int sizeOfListSanPhamEntityt = listSanPhamEntity.size();
+				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();
-				int end = Math.min((start + pageable.getPageSize()), sizeOfListSanPhamEntityt);
+				int end = Math.min((start + pageable.getPageSize()), sizeOfListSanPhamEntity);
 				List<SanPhamEntity> pageContent = listSanPhamEntity.subList(start, end);
-				page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntityt);
+				page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntity);
 
 			}else {
 				page = sanPhamRepository.findAll(pageable);

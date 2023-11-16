@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop</title>
+    <title>Tìm kiếm sản phẩm</title>
 </head>
 <body>
 
@@ -103,7 +103,7 @@
                     </div>
                 </div>
 
-                <form action="<c:url value='/shop'/>" method="GET" id="form-submit-product">
+                <form action="" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:forEach var="item" items="${mapProduct.data}">
                             <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
@@ -133,6 +133,7 @@
                     </div>
                     <div class="col-12 pb-1">
                         <ul class="pagination" id="pagination"></ul>
+                        <input type="hidden" value="" id="search-product" name="q"/>
                         <input type="hidden" value="" id="page-product" name="page"/>
                     </div>
                 </form>
@@ -144,6 +145,10 @@
 <!-- Shop End -->
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
 <script>
+    const urlString = window.location.href;
+    let paramString = urlString.split('?')[1];
+    let queryString = new URLSearchParams(paramString);
+    let param = queryString.get('q');
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
@@ -154,7 +159,8 @@
         onPageClick: function (event, page) {
             if (currentPage != page) {
                 $('#page-product').val(page);
-                $('#form-submit-product').submit();
+                $('#search-product').val(param);
+                $('#form-submit-product').attr('action', '/search?q='+ param + '&page='+page).submit();
             }
         }
     });

@@ -17,6 +17,15 @@
 </div>
 
 <div class="container-fluid py-5">
+    <div class="row">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/danh-muc/${product.danhMuc.slug}">${product.danhMuc.ten}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">${product.ten}</li>
+            </ol>
+        </nav>
+    </div>
     <div class="row px-xl-5">
         <div class="col-lg-5 col-md-5 col-sm-12">
             <div class="row">

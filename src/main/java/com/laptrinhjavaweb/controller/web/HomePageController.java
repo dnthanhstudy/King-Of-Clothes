@@ -1,8 +1,10 @@
 
 package com.laptrinhjavaweb.controller.web;
 
+import com.laptrinhjavaweb.response.FilterResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.service.ISanPhamService;
+import com.laptrinhjavaweb.service.IThuocTinhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,6 +20,9 @@ public class HomePageController {
 
     @Autowired
     private ISanPhamService sanPhamService;
+
+    @Autowired
+    private IThuocTinhService thuocTinhService;
 
     @GetMapping("/trang-chu")
     public String homePage(){
@@ -30,11 +36,27 @@ public class HomePageController {
     ){
         ModelAndView mav = new ModelAndView("web/shop");
         Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(null, page, limit);
+        List<FilterResponse> filterResponses = thuocTinhService.filter();
         mav.addObject("mapProduct", results);
+        mav.addObject("filterProduct", filterResponses);
         return mav;
     }
 
-    @GetMapping("/sanpham/{slug}")
+    @GetMapping("/search")
+    public ModelAndView search(
+            @RequestParam(name = "q") String param,
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+    ){
+        ModelAndView mav = new ModelAndView("web/search");
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(param, page, limit);
+        List<FilterResponse> filterResponses = thuocTinhService.filter();
+        mav.addObject("mapProduct", results);
+        mav.addObject("filterProduct", filterResponses);
+        return mav;
+    }
+
+    @GetMapping("/san-pham/{slug}")
     public ModelAndView detail(@PathVariable("slug") String slug){
         ModelAndView mav = new ModelAndView("web/detail");
         SanPhamResponse result = sanPhamService.findBySlug(slug);

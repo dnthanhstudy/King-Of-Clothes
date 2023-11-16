@@ -8,16 +8,14 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
-            <form action="">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
-                    <div class="input-group-append">
+                    <input type="text" class="form-control" placeholder="Search for products" id="input-search-product">
+                    <div class="input-group-append" id="icon-search-product">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
                     </div>
                 </div>
-            </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
             <a href="?lang=vi" class="btn border" >Việt</a>
@@ -45,6 +43,20 @@
                 }
             });
             return false;
+        })
+
+        $('#input-search-product').on('keypress', (e) => {
+            if(e.which === 13){
+                e.preventDefault();
+                const search = $(e.target).val();
+                window.location = 'search?q='+search;
+            }
+        })
+
+        $('#icon-search-product').on('click', (e) => {
+            e.preventDefault();
+            const search = $('#input-search-product').val();
+            window.location = 'search?q='+search;
         })
     })
 </script>

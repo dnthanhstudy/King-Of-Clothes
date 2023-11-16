@@ -8,15 +8,13 @@ public class NhanVienResponse {
 
     private String matKhau;
 
-    private String maChucVu;
-
     private String soDienThoai;
 
     private String anh;
 
     private String email;
-
-    private ChucVuResponse chucVuResponse;
+        
+    private ChucVuResponse chucVu;
 
     public String getTen() {
         return ten;
@@ -40,14 +38,6 @@ public class NhanVienResponse {
 
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
-    }
-
-    public String getMaChucVu() {
-        return maChucVu;
-    }
-
-    public void setMaChucVu(String maChucVu) {
-        this.maChucVu = maChucVu;
     }
 
     public String getSoDienThoai() {
@@ -74,11 +64,11 @@ public class NhanVienResponse {
         this.email = email;
     }
 
-    public ChucVuResponse getChucVuResponse() {
-        return chucVuResponse;
-    }
+	public ChucVuResponse getChucVu() {
+		return chucVu;
+	}
 
-    public void setChucVuResponse(ChucVuResponse chucVuResponse) {
-        this.chucVuResponse = chucVuResponse;
-    }
+	public void setChucVu(ChucVuResponse chucVu) {
+		this.chucVu = chucVu;
+	}
 }
