@@ -8,10 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "sanpham")
 public class SanPhamEntity extends BaseEntity{
-	
-	@Column(name = "ma", unique = true, columnDefinition = "char(10)")
-	private String ma;
-	
 	@Column(name = "ten", columnDefinition = "nvarchar(255)")
 	private String ten;
 	
@@ -22,6 +18,9 @@ public class SanPhamEntity extends BaseEntity{
 
 	@Column(name = "gia")
 	private Double gia;
+
+	@Column(name = "soluong")
+	private Integer soLuong;
 	
 	@Column(name = "mota", columnDefinition = "TEXT")
 	private String moTa;
@@ -69,14 +68,6 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<ThuocTinhEntity> thuocTinhEntities = new ArrayList<>();
-
-	public String getMa() {
-		return ma;
-	}
-
-	public void setMa(String ma) {
-		this.ma = ma;
-	}
 	
 	public String getTen() {
 		return ten;
@@ -100,6 +91,14 @@ public class SanPhamEntity extends BaseEntity{
 
 	public void setGia(Double gia) {
 		this.gia = gia;
+	}
+
+	public Integer getSoLuong() {
+		return soLuong;
+	}
+
+	public void setSoLuong(Integer soLuong) {
+		this.soLuong = soLuong;
 	}
 
 	public String getMoTa() {

@@ -7,6 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "bienthe")
 public class BienTheEntity extends BaseEntity{
+	
+	@Column(name = "ma", unique = true, columnDefinition = "char(30)")
+	private String ma;
 
 	@Column(name = "ten", columnDefinition = "nvarchar(255)")
 	private String ten;
@@ -32,6 +35,14 @@ public class BienTheEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
+	
+	public String getMa() {
+		return ma;
+	}
+
+	public void setMa(String ma) {
+		this.ma = ma;
+	}
 
 	public String getTen() {
 		return ten;

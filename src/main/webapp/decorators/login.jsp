@@ -26,17 +26,17 @@
     <link href="<c:url value='/template/login/css/vendor.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/template/login/vendor/icon-set/style.css'/>" rel="stylesheet">
     <link href="<c:url value='/template/login/css/theme.min.css'/>" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
 <dec:body/>
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-
 
 <script src="<c:url value='/template/login/js/vendor.min.js'/>"></script>
 <script src="<c:url value='/template/login/js/theme.min.js'/>"></script>
