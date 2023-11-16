@@ -203,7 +203,9 @@
 </div>
 
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
-
+<script src="<c:url value='/assets/js/toastify.js'/>"></script>
+<script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
 <script>
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");

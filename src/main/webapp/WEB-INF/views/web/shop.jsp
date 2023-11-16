@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop</title>
+    <title>Danh sách sản phẩm</title>
 </head>
 <body>
 
@@ -56,20 +56,20 @@
                 </form>
             </div>
 
-            <div class="border-bottom mb-4 pb-4">
-                <c:forEach items="${filterProduct}" var="filter">
-                    <h5 class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
-                    <form>
-                        <c:forEach items="${filter.giaTri}" var="giaTri">
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input">
-                                <label class="custom-control-label">${giaTri}</label>
-                            </div>
-                        </c:forEach>
+            <c:forEach items="${filterProduct}" var="filter">
+                <div class="border-bottom mb-4 pb-4">
+                        <h5 id="${filter.ma}" class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
+                        <form>
+                            <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                    <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                </div>
+                            </c:forEach>
 
-                    </form>
-                </c:forEach>
-            </div>
+                        </form>
+                </div>
+            </c:forEach>
         </div>
         <!-- Shop Sidebar End -->
 
