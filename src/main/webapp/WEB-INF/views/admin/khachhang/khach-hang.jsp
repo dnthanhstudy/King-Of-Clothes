@@ -36,39 +36,23 @@
                             <span class="button__icon"><svg class="svgExport" data-name="Layer 2" id="bdd05811-e15d-428c-bb53-8661459f9307" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
                         </button>
                     </div>
+                    <div class="p-2 ms-auto">
+                        <div class="InputContainer">
+                            <input type="text" id="searchAll"  name="text" class="input"  placeholder="Search">
+
+                            <div class="border"></div>
+
+                            <button id="searchButton" class="micButton">
+                                <svg viewBox="0 0 512 512" class="searchIcon"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
 
         <div class="card">
-            <div class="card-header ">
-
-                <div class="filterEntries">
-                    <div class="entries">
-                        Show <select  name="" id="table_size">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select> entries
-                    </div>
-                </div>
-
-                <%--search--%>
-                <div class="p-2 ms-auto">
-                    <div class="InputContainer">
-                        <input type="text" id="searchAll"  name="text" class="input"  placeholder="Search">
-
-                        <div class="border"></div>
-
-                        <button id="searchButton" class="micButton">
-                            <svg viewBox="0 0 512 512" class="searchIcon"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
             <div class="card-body">
                 <div class="">
                     <table class="table table-hover" id="tblKhachHang">
@@ -91,8 +75,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer d-flex justify-content-between">
-                <h6 class="mt-3">Showing 1 to 10 of 50 entries</h6>
+            <div class="card-footer d-flex justify-content-center">
                 <nav class="mt-2">
                     <ul class="pagination pagination-gutter pagination-primary  no-bg">
                         <li class="page-item page-indicator">
@@ -161,6 +144,7 @@
             }
         });
     }
+
     loadKhachHang('/api/khach-hang')
 
     $('#searchButton').on('click', (e) =>{
@@ -176,7 +160,6 @@
                     loadKhachHang('/api/khach-hang')
                 }else{
                     loadKhachHang('/api/khach-hang/search?search=' + param);
-                    showSuccess("Search success")
                 }
             },
             error: function (error){
@@ -207,4 +190,6 @@
                     })
         }
     })
+
+
 </script>

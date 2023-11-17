@@ -37,7 +37,7 @@ public class CustomUserDetailService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         NhanVienResponse nhanVienResponse = nhanVienService.findByMaAndTrangThai(username, SystemConstant.IN_ACTICE);
         if(nhanVienResponse != null){
-            authorities.add(new SimpleGrantedAuthority("ROLE_"+nhanVienResponse.getMaChucVu()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+nhanVienResponse.getChucVu().getMa()));
             myUserResponse = new MyUserResponse(username, nhanVienResponse.getMatKhau(), true, true, true, true, authorities);
             BeanUtils.copyProperties(nhanVienResponse, myUserResponse);
         }
@@ -46,6 +46,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if(khacHangResponse != null){
             authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
             myUserResponse = new MyUserResponse(username, khacHangResponse.getMatKhau(), true, true, true, true, authorities);
+            myUserResponse.setMaChucVu("CUSTOMER");
             BeanUtils.copyProperties(khacHangResponse, myUserResponse);
         }
         if(myUserResponse == null){

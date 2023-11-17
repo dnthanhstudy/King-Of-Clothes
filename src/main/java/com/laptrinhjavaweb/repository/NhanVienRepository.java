@@ -1,13 +1,15 @@
 package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.NhanVienEntity;
+import com.laptrinhjavaweb.repository.custom.NhanVienRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long> {
+public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>, NhanVienRepositoryCustom {
+
 
     Page<NhanVienEntity> findAllByTrangThai(String trangThai, Pageable pageable);
 
@@ -15,9 +17,9 @@ public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long> 
 
     NhanVienEntity findBySoDienThoaiOrEmailOrCanCuocCongDan(String soDienThoai, String email, String canCuocCongDan);
 
-    List<NhanVienEntity> findAllByTenContainingOrSoDienThoaiContainingOrEmailContainingOrMaContainingOrChucVu_TenContaining(
-            String ten, String soDienThoai, String  email, String ma, String tenChucVu
-    );
+//    List<NhanVienEntity> findAllByTenContainingOrSoDienThoaiContainingOrEmailContainingOrMaContainingOrChucVu_TenContaining(
+//            String ten, String soDienThoai, String  email, String ma, String tenChucVu
+//    );
 
     NhanVienEntity findByMa(String ma);
 

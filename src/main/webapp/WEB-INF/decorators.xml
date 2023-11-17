@@ -42,4 +42,13 @@
         <pattern>/web*</pattern>
     </decorator>
 
+    <decorator name="vidientu" page="thongtinWeb.jsp">
+        <pattern>/vi-dien-tu</pattern>
+    </decorator>
+
+    <decorator name="naptien" page="thongtinWeb.jsp">
+        <pattern>/vi-dien-tu/nap-tien</pattern>
+    </decorator>
+
+
 </decorators>

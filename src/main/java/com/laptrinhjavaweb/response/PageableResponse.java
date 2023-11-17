@@ -2,33 +2,23 @@ package com.laptrinhjavaweb.response;
 
 public class PageableResponse {
 
-    private Integer pagecurrent;
+	private Integer pageCurrent;
 
-    private Integer totalpage;
+	private Integer totalPage;
 
-    private Integer pagefirst;
+	public Integer getPageCurrent() {
+		return pageCurrent;
+	}
 
-    public Integer getPagecurrent() {
-        return pagecurrent;
-    }
+	public void setPageCurrent(Integer pageCurrent) {
+		this.pageCurrent = pageCurrent;
+	}
 
-    public void setPagecurrent(Integer pagecurrent) {
-        this.pagecurrent = pagecurrent;
-    }
+	public Integer getTotalPage() {
+		return totalPage;
+	}
 
-    public Integer getTotalpage() {
-        return totalpage;
-    }
-
-    public void setTotalpage(Integer totalpage) {
-        this.totalpage = totalpage;
-    }
-
-    public Integer getPagefirst() {
-        return pagefirst;
-    }
-
-    public void setPagefirst(Integer pagefirst) {
-        this.pagefirst = pagefirst;
-    }
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
 }

@@ -1,10 +1,8 @@
 package com.laptrinhjavaweb.service;
 
-import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
-import org.apache.poi.ss.usermodel.Workbook;
-import java.io.InputStream;
+
 import java.util.List;
 
 public interface IKhachHangService {
@@ -23,7 +21,4 @@ public interface IKhachHangService {
 
     List<KhacHangResponse> findAllAndTrangThai(String ma, String ten, String email, String soDienThoai, String trangThai);
 
-//    void importCustomersFromExcel(InputStream inputStream);
-//
-//    Workbook exportCustomersToExcel(List<KhachHangEntity> customers);
 }

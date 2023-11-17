@@ -1,24 +1,9 @@
-const confirmRemove = "Bạn muốn xóa phần tử này phải không. Bạn muốn xóa click vào OK. Ngược lại click vào Cancel";
+const confirmRemove =
+    "Bạn muốn xóa phần tử này phải không. Bạn muốn xóa click vào OK. Ngược lại click vào Cancel";
 
-/********************************* MESSGAE ATTRIBUTE *************************************************/
-
-const errorMoreAttributes = "Bạn chỉ thêm được tối đa 3 thuộc tính. Xin lỗi vì sự bất tiện này";
 const isEmpty = "Không được để trống. Vui lòng kiểm tra lại";
 const attributeExsits = "Thuộc tính này đã tồn tại. Xin vui lòng kiểm tra lại";
 const valueExsits = "Phần tử bạn thêm đã tồn tại. Xin vui lòng kiểm tra lại";
-const isNumber = "Giá trị bạn nhập không hợp lệ. Xin kiểm tra lại";
-
-/*******************************************************************************************/
-
-/********************************* MESSGAE PRODUCTS *************************************************/
-
-const createdProductSuccess = "Thêm mới sản phẩm thành công";
-const createdProductError = "Thêm mới sản phẩm thất bại. Xin kiểm tra lại";
-
-/*******************************************************************************************/
-
-
-let valueAttributes = [];
 
 function messageNotication(text, bg) {
     Toastify({

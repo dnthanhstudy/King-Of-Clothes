@@ -41,11 +41,11 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label class="form-label">Ngày sinh:</label>
-                        <input type="date" name="ngaySinh" id="ngaysinh" class="form-control" >
+                        <input type="date" name="ngaySinh" id="ngaySinh" class="form-control" >
                     </div>
                     <div class="col">
                         <label>Giới tính:</label>
-                        <select class="form-select" id="gioitinh" name="gioiTinh">
+                        <select class="form-select" id="gioiTinh" name="gioiTinh">
                             <option value="Nam" selected>Nam</option>
                             <option value="Nữ">Nữ</option>
                         </select>
@@ -54,7 +54,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <div class="form-floating">
-                            <textarea class="form-control" name="moTa" id="mota" placeholder="Leave a comment here" ></textarea>
+                            <textarea class="form-control" name="moTa" id="moTa" placeholder="Leave a comment here" ></textarea>
                             <label >Mô tả</label>
                         </div>
                     </div>
@@ -73,10 +73,53 @@
 
 
 <script>
+    function isValidPhoneNumber(soDienThoai) {
+        return /^[0-9]{10}$/.test(soDienThoai);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateForm() {
+        let isValid = true;
+
+        let soDienThoai = $("#soDienThoai").val();
+        let email = $("#email").val();
+
+        if ($("#moTa").val() === "") {
+            showError("Mô tả không được để trống");
+            isValid = false;
+        }
+        if ($("#ngaySinh").val() === "") {
+            showError("Ngày sinh không được để trống");
+            isValid = false;
+        }
+        if (email === "") {
+            showError("Địa chỉ email không được để trống");
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            showError("Địa chỉ email không hợp lệ");
+            isValid = false;
+        }
+        if (soDienThoai === "") {
+            showError("Số điện thoại không được để trống");
+            isValid = false;
+        } else if (!isValidPhoneNumber(soDienThoai)) {
+            showError("Số điện thoại không hợp lệ");
+            isValid = false;
+        }
+        if ($("#ten").val() === "") {
+            showError("Họ và tên không được để trống");
+            isValid = false;
+        }
+        return isValid;
+    }
     $('#them').on('click', (e) => {
         e.preventDefault();
-        let data = getDataFromForm();
-        $.ajax({
+        if (validateForm()) {
+            let data = getDataFromForm();
+            $.ajax({
             url: "/api/khach-hang",
             method: "POST",
             contentType: "application/json; charset=utf-8",
@@ -89,8 +132,9 @@
             error: (error) => {
                 showError("fail")
             }
-        });
-    })
+            });
+        }
+    });
 
     function getDataFromForm() {
         let dataFromForm = $("#form-submit-khach-hang").serializeArray();

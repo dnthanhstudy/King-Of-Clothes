@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.config;
 
+import com.laptrinhjavaweb.security.CustomAccessDeniedHandler;
 import com.laptrinhjavaweb.security.CustomSuccessHandler;
 import com.laptrinhjavaweb.service.impl.CustomUserDetailService;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
@@ -45,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http.csrf().disable()
                 .authorizeRequests()
                         .antMatchers("/admin/dashboards").hasRole("ADMIN")
-                        .antMatchers("/trang-chu").hasAnyRole("ADMIN","STAFF", "CUSTOMER")
+                        .antMatchers("/cart").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
+                        .antMatchers("/trang-chu").permitAll()
                         .antMatchers("/login").permitAll()
                 .and()
                 .formLogin().loginPage("/login").usernameParameter("j_username").passwordParameter("j_password").permitAll()
@@ -53,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/login?incorrectAccount").and()
                 .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
-                .and().exceptionHandling().accessDeniedPage("/access-denied").and()
+                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
                 .sessionManagement().maximumSessions(1).expiredUrl("/login?sessionTimeout");
     }
 
@@ -61,4 +64,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
         return new CustomSuccessHandler();
     }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
+    }
+
 }

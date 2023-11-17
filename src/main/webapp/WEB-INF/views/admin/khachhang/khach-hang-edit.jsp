@@ -75,6 +75,51 @@
 </div>
 
 <script>
+
+    function isValidPhoneNumber(soDienThoai) {
+        return /^[0-9]{10}$/.test(soDienThoai);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateForm() {
+        let isValid = true;
+
+        let soDienThoai = $("#soDienThoai").val();
+        let email = $("#email").val();
+
+        if ($("#moTa").val() === "") {
+            showError("Mô tả không được để trống");
+            isValid = false;
+        }
+        if ($("#ngaySinh").val() === "") {
+            showError("Ngày sinh không được để trống");
+            isValid = false;
+        }
+        if (email === "") {
+            showError("Địa chỉ email không được để trống");
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            showError("Địa chỉ email không hợp lệ");
+            isValid = false;
+        }
+        if (soDienThoai === "") {
+            showError("Số điện thoại không được để trống");
+            isValid = false;
+        } else if (!isValidPhoneNumber(soDienThoai)) {
+            showError("Số điện thoại không hợp lệ");
+            isValid = false;
+        }
+        if ($("#ten").val() === "") {
+            showError("Họ và tên không được để trống");
+            isValid = false;
+        }
+        return isValid;
+    }
+
+
     function getKHDetail() {
         var url = window.location.pathname.split("/");
         var ma = url[url.length - 1];
@@ -106,10 +151,11 @@
 
     $('#updateButton').on('click', (e) => {
         e.preventDefault();
-        let data = getDataFromForm();
         var url = window.location.pathname.split("/");
         var ma = url[url.length - 1];
-        $.ajax({
+        if (validateForm()) {
+            let data = getDataFromForm();
+            $.ajax({
             url: "/api/khach-hang/" + ma,
             method: "PUT",
             contentType: "application/json; charset=utf-8",
@@ -122,8 +168,9 @@
             error: (error) => {
                 showError("fail")
             }
-        });
-    })
+            });
+        }
+    });
 
     function getDataFromForm() {
         let dataFromForm = $("#form-submit-khach-hang").serializeArray();

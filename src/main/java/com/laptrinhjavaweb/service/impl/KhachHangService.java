@@ -3,16 +3,22 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.convert.KhachHangConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
-import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -112,5 +118,6 @@ public class KhachHangService implements IKhachHangService {
         ).collect(Collectors.toList());
         return result;
     }
+
 
 }

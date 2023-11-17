@@ -1,5 +1,8 @@
 package com.laptrinhjavaweb.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "thuoctinh")
@@ -14,6 +17,9 @@ public class ThuocTinhEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
+	
+	@OneToMany(mappedBy = "thuocTinh")
+	private List<GiaTriThuocTinhEntity> giaTriThuocTinhEntities = new ArrayList<>();
 
 	public String getSlug() {
 		return slug;
@@ -38,4 +44,12 @@ public class ThuocTinhEntity extends BaseEntity{
 	public void setSanPham(SanPhamEntity sanPham) {
 		this.sanPham = sanPham;
 	}
+
+	public List<GiaTriThuocTinhEntity> getGiaTriThuocTinhEntities() {
+		return giaTriThuocTinhEntities;
+	}
+
+	public void setGiaTriThuocTinhEntities(List<GiaTriThuocTinhEntity> giaTriThuocTinhEntities) {
+		this.giaTriThuocTinhEntities = giaTriThuocTinhEntities;
+	}	
 }

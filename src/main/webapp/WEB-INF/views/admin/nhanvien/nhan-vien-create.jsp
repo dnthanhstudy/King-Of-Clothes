@@ -22,35 +22,6 @@
     color: black;">
                 Tạo mới nhân viên
             </h4>
-
-            <div>
-                <button class="btn"  data-bs-toggle="modal" data-bs-target="#addcv" style="background-color: #eb8153;color: white" >
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                        <path d="M184 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H96c-35.3 0-64 28.7-64 64v16 48V448c0 35.3 28.7 64 64 64H416c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H376V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H184V24zM80 192H432V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V192zm176 40c-13.3 0-24 10.7-24 24v48H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h48v48c0 13.3 10.7 24 24 24s24-10.7 24-24V352h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V256c0-13.3-10.7-24-24-24z"/>
-                    </svg> Tạo mới chức vụ
-                </button>
-                <form action="" id="form-submit-chuc-vu">
-
-                <div class="modal" id="addcv" tabindex="-1" aria-labelledby="addcv" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="addcv">Tạo chức vụ mới</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label>Nhập tên chức vụ mới:</label>
-                                <input type="text" name="ten" id="ten" class="form-control" >
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" id="themcv" class="btn btn-outline-primary">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <hr>
             <form action="" id="form-submit-nhan-vien">
                 <div class="row">
                     <div class="col">
@@ -152,37 +123,6 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
-    }
-
-    $('#themcv').on('click', (e) => {
-        e.preventDefault();
-        let data = getDataFormChucVu();
-        console.log(data);
-        $.ajax({
-            url: "/api/chuc-vu",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                updateChucVuSelect();
-                showSuccess("Success")
-            },
-            error: (error) => {
-                showError("fail")
-            }
-        });
-    })
-
-    function getDataFormChucVu() {
-        let dataFromForm = $("#form-submit-chuc-vu").serializeArray();
-        let data = {};
-        $.each(dataFromForm, (index, value) => {
-            let propertyName = value.name;
-            let propertyValue = value.value;
-            data[propertyName] = propertyValue;
-        });
-        return data;
     }
 
     $('#them').on('click', (e) => {

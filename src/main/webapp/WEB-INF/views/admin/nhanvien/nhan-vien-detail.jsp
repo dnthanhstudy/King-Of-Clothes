@@ -102,7 +102,7 @@
                 $("#ngaySinh").val(formatDateInput(req.ngaySinh));
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
-                $("#tenChucVu").val(req.tenChucVu);
+                $("#tenChucVu").val(req.chucVu.ten);
             },
             error: function (xhr, status, error) {
                 console.log(error);

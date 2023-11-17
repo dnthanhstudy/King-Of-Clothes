@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.convert.NhanVienConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
@@ -78,28 +79,22 @@ public class NhanVienService implements INhanVienService {
     @Override
     public NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
-        if (nhanVienEntity == null) {
-            return null;
-        }
-        nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
-        nhanVienRepository.save(nhanVienEntity);
-        NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
-        return result;
-    }
 
-    public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images/nhanvien/" + nhanVienRequest.getAnh();
-        if (nhanVienRequest.getBase64() != null) {
-            byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
-            uploadFileUtils.writeOrUpdate(path, bytes);
-        }
-    }
+        if (nhanVienEntity != null) {
+            nhanVienEntity.setTen(nhanVienRequest.getTen());
+            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
+            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
+            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
+            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
+            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
+            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
+            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
 
-    @Override
-    public void delete(String ma) {
-        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
-        nhanVienEntity.setTrangThai("ACTIVE");
-        nhanVienRepository.save(nhanVienEntity);
+            nhanVienRepository.save(nhanVienEntity);
+            NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
+            return result;
+        }
+        return null;
     }
 
     @Override
@@ -115,12 +110,12 @@ public class NhanVienService implements INhanVienService {
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
-                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.findAllByTenContainingOrSoDienThoaiContainingOrEmailContainingOrMaContainingOrChucVu_TenContaining(param, param, param,param,param);
-                int sizeOfListNhanVienEntity = listNhanVienEntity.size();
+                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.searchs(param);
+                int sizeOflistNhanVienEntity = listNhanVienEntity.size();
                 int start = (int) pageable.getOffset();
-                int end = Math.min((start + pageable.getPageSize()), sizeOfListNhanVienEntity);
+                int end = Math.min((start + pageable.getPageSize()), sizeOflistNhanVienEntity);
                 List<NhanVienEntity> pageContent = listNhanVienEntity.subList(start, end);
-                page = new PageImpl<>(pageContent, pageable, sizeOfListNhanVienEntity);
+                page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
                 page = nhanVienRepository.findAll(pageable);
@@ -136,11 +131,26 @@ public class NhanVienService implements INhanVienService {
         results.put("data", listNhanVienResponse);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();
-            pageableResponse.setPagecurrent(pageCurrent);
-            pageableResponse.setTotalpage(page.getTotalPages());
+            pageableResponse.setPageCurrent(pageCurrent);
+            pageableResponse.setTotalPage(page.getTotalPages());
             results.put("meta", pageableResponse);
         }
         return results;
+    }
+
+    public void saveImage(NhanVienRequest nhanVienRequest) {
+        String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images/nhanvien/" + nhanVienRequest.getAnh();
+        if (nhanVienRequest.getBase64() != null) {
+            byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
+            uploadFileUtils.writeOrUpdate(path, bytes);
+        }
+    }
+
+    @Override
+    public void delete(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        nhanVienEntity.setTrangThai("DELETE");
+        nhanVienRepository.save(nhanVienEntity);
     }
 
     @Override
@@ -165,11 +175,4 @@ public class NhanVienService implements INhanVienService {
         return nhanVienRepository.save(nhanVienEntity);
     }
 
-    @Override
-    public String edit(NhanVienEntity nhanVienEntity) {
-        if(nhanVienRepository.findById(nhanVienEntity.getId()).orElse(null)==null){
-            return "Không có mã nhân viên này";
-        }
-        return nhanVienRepository.save(nhanVienEntity)!=null?"Sửa thành công":"Thêm thất bại";
-    }
 }

@@ -12,6 +12,11 @@ public class LoginController {
         return "login/login";
     }
 
+    @GetMapping("/access-denied")
+    public String accessDeniedWeb(){
+        return "redirect:/login?is_login=false";
+    }
+
     @GetMapping("/register")
     public String register(){
         return "login/register";

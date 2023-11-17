@@ -1,8 +1,11 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.entity.NhanVienEntity;
+import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
+
 import java.util.Map;
 
 public interface INhanVienService {
@@ -11,13 +14,13 @@ public interface INhanVienService {
 
     NhanVienResponse save(NhanVienRequest nhanVienRequest);
 
+    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
+
     NhanVienResponse getDetail(String ma);
 
-    NhanVienResponse update(String ma, NhanVienRequest request);
+    NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest);
 
     void delete(String ma);
-
-    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
 
     NhanVienEntity findByEmail(String email);
 
@@ -27,5 +30,4 @@ public interface INhanVienService {
 
     NhanVienEntity insert(NhanVienEntity nhanVienEntity);
 
-    String edit(NhanVienEntity nhanVienEntity);
 }

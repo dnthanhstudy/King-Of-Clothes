@@ -1,7 +1,9 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.exception.ClientError;
+import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
 import com.laptrinhjavaweb.service.INhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,32 @@ public class NhanVienAPI {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> searchs(
+            @RequestParam(name = "q") String param,
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
+        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(param, page, limit);
+    	if(results == null){
+            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                        @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+    ){
+        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, page, limit);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findAll(){
+        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, null, null);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
     @GetMapping("/{ma}")
     public ResponseEntity<?> findByMa(@PathVariable String ma) {
         NhanVienResponse result = nhanVienService.getDetail(ma);
@@ -39,10 +67,11 @@ public class NhanVienAPI {
     @PutMapping("/{ma}")
     public ResponseEntity<?> update(@PathVariable String ma, @RequestBody NhanVienRequest nhanVienRequest) {
         NhanVienResponse result = nhanVienService.update(ma, nhanVienRequest);
-        if (result == null) {
-            return new ResponseEntity<>("Nhân viên không tồn tại", HttpStatus.NOT_FOUND);
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy nhân viên với mã " + ma);
         }
-        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @DeleteMapping("/{ma}")
@@ -51,30 +80,6 @@ public class NhanVienAPI {
         return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
-    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                        @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit
-    ){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, page, limit);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
 
-    @GetMapping
-    public ResponseEntity<?> findAll(){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, null, null);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
-
-    @GetMapping("/search")
-    public ResponseEntity<?> search(
-            @RequestParam(name = "search") String param,
-            @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(param, page, limit);
-        if(results == null) {
-            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-        }
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
 
 }

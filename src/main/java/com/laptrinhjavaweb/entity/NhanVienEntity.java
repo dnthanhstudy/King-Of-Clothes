@@ -50,7 +50,7 @@ public class NhanVienEntity extends BaseEntity{
 	@Column(name = "ngaycap", columnDefinition = "DATE")
 	private Date ngayCap;
 	
-	@Column(name = "expiretime ")
+	@Column(name = "expiretime")
 	private LocalDateTime expireTime ;
 
 	@Column(name = "resttoken")
