@@ -98,7 +98,6 @@
         </div>
     </div>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var lichSuButton = document.getElementById("lichSuButton");
