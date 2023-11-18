@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tìm kiếm sản phẩm</title>
+    <title>Lọc sản phẩm</title>
 </head>
 <body>
 
@@ -58,7 +58,7 @@
                     <form>
                         <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                <input type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
                                 <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
                             </div>
                         </c:forEach>
@@ -140,26 +140,27 @@
 <!-- Shop End -->
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
 <script>
-    const urlString = window.location.href;
-    let paramString = urlString.split('?')[1];
-    let queryString = new URLSearchParams(paramString);
-    let param = queryString.get('q');
-    $('#input-search-product').val(param);
-    let currentPage = ${mapProduct.meta.pageCurrent};
-    let totalPages = ${mapProduct.meta.totalPage};
 
-    $('#pagination').twbsPagination({
-        totalPages: totalPages,
-        visiblePages: 5,
-        startPage: currentPage,
-        onPageClick: function (event, page) {
-            if (currentPage != page) {
-                $('#page-product').val(page);
-                $('#search-product').val(param);
-                $('#form-submit-product').attr('action', '/search?q='+ param + '&page='+page).submit();
-            }
-        }
-    });
+    <%--const urlString = window.location.href;--%>
+    <%--let paramString = urlString.split('?')[1];--%>
+    <%--let queryString = new URLSearchParams(paramString);--%>
+    <%--console.log(queryString);--%>
+    <%--$('#input-search-product').val(param);--%>
+    <%--let currentPage = ${mapProduct.meta.pageCurrent};--%>
+    <%--let totalPages = ${mapProduct.meta.totalPage};--%>
+
+    // $('#pagination').twbsPagination({
+    //     totalPages: totalPages,
+    //     visiblePages: 5,
+    //     startPage: currentPage,
+    //     onPageClick: function (event, page) {
+    //         if (currentPage != page) {
+    //             $('#page-product').val(page);
+    //             $('#search-product').val(param);
+    //             //$('#form-submit-product').attr('action', '/search?q='+ param + '&page='+page).submit();
+    //         }
+    //     }
+    // });
 </script>
 </body>
 </html>

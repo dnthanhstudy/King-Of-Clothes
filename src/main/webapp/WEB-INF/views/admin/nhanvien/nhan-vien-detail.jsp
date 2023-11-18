@@ -74,6 +74,14 @@
                 </div>
             </div>
 
+            <div class="row mt-3">
+                <label>Ảnh nhân viên:</label>
+                <div class="form-group col-md-12">
+                    <div id="thumbbox">
+                        <img height="300" width="300" alt="Thumb image" id="anh"/>
+                    </div>
+                </div>
+            </div>
 
             <div class="row mt-3">
                 <div class="col">
@@ -103,6 +111,7 @@
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
                 $("#tenChucVu").val(req.chucVu.ten);
+                $("#anh").attr('src', "/assets/images/nhanvien/" + req.anh);
             },
             error: function (xhr, status, error) {
                 console.log(error);

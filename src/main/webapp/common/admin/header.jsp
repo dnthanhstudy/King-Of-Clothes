@@ -722,10 +722,10 @@
                         </li>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="<c:url value='/template/admin/images/profile/pic1.jpg'/>" width="20" alt="">
+                                <img src="/assets/images/nhanvien/<%=SecurityUtils.getPrincipal().getAnh()%>" width="20" alt="">
                                 <div class="header-info">
                                     <span><%=SecurityUtils.getPrincipal().getTen()%></span>
-                                    <small><%=SecurityUtils.getPrincipal().getMa()%></small>
+                                    <small class="user-name-login"><%=SecurityUtils.getPrincipal().getMa()%></small>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -746,16 +746,7 @@
                     </ul>
                 </div>
             </nav>
-            <div class="sub-header">
-                <div class="d-flex align-items-center flex-wrap mr-auto">
-                    <h5 class="dashboard_bar">Dashboard</h5>
-                </div>
-                <div class="d-flex align-items-center">
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Today</a>
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Month</a>
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light">Year</a>
-                </div>
-            </div>
+
         </div>
     </div>
     <!--**********************************

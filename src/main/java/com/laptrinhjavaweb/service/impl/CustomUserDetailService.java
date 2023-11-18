@@ -39,6 +39,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if(nhanVienResponse != null){
             authorities.add(new SimpleGrantedAuthority("ROLE_"+nhanVienResponse.getChucVu().getMa()));
             myUserResponse = new MyUserResponse(username, nhanVienResponse.getMatKhau(), true, true, true, true, authorities);
+            myUserResponse.setMaChucVu(nhanVienResponse.getChucVu().getMa());
             BeanUtils.copyProperties(nhanVienResponse, myUserResponse);
         }
 
