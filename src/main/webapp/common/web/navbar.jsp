@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@include file="/common/taglib.jsp" %>
 <!-- Navbar Start -->
 <div class="container-fluid">
     <div class="row border-top px-xl-5">
@@ -42,7 +44,6 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/trang-chu" class="nav-item nav-link active"><s:message code="web.navbar.home"/></a>
                         <a href="/shop_us" class="nav-item nav-link"><s:message code="web.navbar.shopus"/></a>
-
                         <a href="/shop" class="nav-item nav-link">Product</a>
                         <a href="/detail" class="nav-item nav-link">Product Detail</a>
                         <div class="nav-item dropdown">
@@ -56,8 +57,22 @@
                         <a href="/contact" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="/login" class="nav-item nav-link">Login</a>
-                        <a href="/register" class="nav-item nav-link">Register</a>
+                        <security:authorize access="hasAnyRole('ADMIN', 'STAFF', 'CUSTOMER')">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <%=SecurityUtils.getPrincipal().getTen()%>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a href="/logout" class="dropdown-item" >Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                        </security:authorize>
+                        <security:authorize access="hasRole('ANONYMOUS')">
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                            <a href="/register" class="nav-item nav-link">Register</a>
+                        </security:authorize>
                     </div>
                 </div>
             </nav>

@@ -6,42 +6,37 @@ $(".input-name-atrribute").on("keypress", function (e) {
         if (!nameAttribute) {
             messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
         } else {
-            $(".card-text-none-attribute").remove();
+            $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
             if (findBySlug(slugAttribute) !== undefined) {
                 messageNotication(attributeExsits, "rgba(255, 99, 71, 1)");
             } else {
-                valueAttributes.push({
-                    slug: slugAttribute,
-                    ten: nameAttribute,
-                    giatris: [],
-                });
-
                 const eleDivProductsHasAtributes = $(
-                    `<div class="product-has-attribute mb-3" data-code="${slugAttribute}"></div>`
+                    `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
                 );
                 const eleNameAttribute = `<div class="name-attribute">
-                                      <button type="button" class="btn btn-success position-relative btn-remove-parent">
-                                          ${nameAttribute}
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            <i class="btn-remove-parent fa-solid fa-trash"></i>
-                                        </span>
-                                      </button>
-                                  </div>
-
-                                  <div class="input-group mt-3">
-                                      <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
-                                  </div>`;
+                                                  <button type="button" class="btn btn-success position-relative">
+                                                      ${nameAttribute}
+                                                    <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <i class="btn-remove-parent-trash fa-solid fa-trash"></i>
+                                                    </span>
+                                                  </button>
+                                              </div>
+            
+                                              <div class="input-group mt-3">
+                                                  <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
+                                              </div>`;
                 eleDivProductsHasAtributes.html(eleNameAttribute);
-                $(".card-body:first").append(eleDivProductsHasAtributes);
+                $("#card-attribute .card-body").append(eleDivProductsHasAtributes);
             }
+
             $(e.target).val("");
         }
     }
 });
 
 // Add value attribute
-$(".card-body:first").on("click", function (e) {
+$("#card-attribute .card-body").on("click", function (e) {
     const eleClick = $(e.target);
     if (eleClick.hasClass("input-value-attribute")) {
         if (!eleClick.parent().prev().hasClass("list-value-attribute")) {
@@ -50,146 +45,77 @@ $(".card-body:first").on("click", function (e) {
             );
             eleListValueAtributes.insertBefore(eleClick.parent());
         }
+        eleClick.off("keypress");
         eleClick.on("keypress", function (e) {
             if (e.which === 13) {
                 e.preventDefault();
                 const valueAttr = eleClick.val();
-                const slugCurrent = eleClick.parent().parent().data("code");
-                if (checkValuExsits(slugCurrent, valueAttr) !== undefined) {
-                    messageNotication(valueExsits, "rgba(255, 99, 71, 1)");
-                } else {
-                    if (valueAttr) {
-                        const eleValueAttr = `<button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr btn-remove-children">
-                                          ${valueAttr}
-                                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            <i class="btn-remove-children fa-solid fa-trash"></i>
-                                          </span>
-                                    </button>`;
-                        const res = findBySlug(slugCurrent);
+                const slugCurrent = eleClick.parent().parent().data("slug");
+                if (valueAttr) {
+                    if (checkValuExsits(slugCurrent, valueAttr) !== undefined) {
+                        messageNotication(valueExsits, "rgba(255, 99, 71, 1)");
+                    } else {
+                        const eleValueAttr = `<button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
+                ${valueAttr}
+                <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <i class="btn-remove-children-trash fa-solid fa-trash"></i>
+                </span>
+          </button>`;
                         eleClick.parent().prev().append(eleValueAttr);
-
-                        res.giatris.push(valueAttr);
-                        generateValueAttr();
+                        generateVariant();
                     }
+                } else {
+                    messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
                 }
+
                 eleClick.val("");
             }
         });
     }
 });
 
-// Remove attribute
-$(".card-body:first").on("click", function (e) {
+// Delete attribute
+$("#card-attribute").on("click", (e) => {
+    if ($(e.target).hasClass("btn-remove-children")) {
+        $(e.target).parent().remove();
+    } else if ($(e.target).hasClass("btn-remove-children-trash")) {
+        $(e.target).parent().parent().remove();
+    } else if ($(e.target).hasClass("btn-remove-parent")) {
+        $(e.target).parent().parent().parent().remove();
+    } else if ($(e.target).hasClass("btn-remove-parent-trash")) {
+        $(e.target).parent().parent().parent().parent().remove();
+    }
+    if ($("#card-attribute .card-body").children().length === 1) {
+        $(".card-text-none-attribute").show();
+    }
+    generateVariant();
+});
+
+// Display image
+$(".table-variant").on("click", function (e) {
     const eleClick = $(e.target);
-    const isClickParent = eleClick.hasClass("btn-remove-parent");
-    const isClickChildren = eleClick.hasClass("btn-remove-children");
-    if (isClickParent || isClickChildren) {
-        if (confirm(confirmRemove)) {
-            let slug = eleClick.parent().parent().data("code");
-            if (slug === undefined) {
-                slug = eleClick.parent().parent().parent().parent().data("code");
-            }
-            const ele = findBySlug(slug);
-            if (isClickParent) {
-                valueAttributes = valueAttributes.filter(
-                    (valueAttribute) => valueAttribute !== ele
-                );
-                removeAllProducHasAttribute(slug);
-            } else {
-                let valueRemove = eleClick.text().trim();
-                if (
-                    valueRemove === undefined ||
-                    valueRemove === null ||
-                    valueRemove === ""
-                ) {
-                    valueRemove = eleClick.parent().parent().text().trim();
-                    console.log(valueRemove);
-                    eleClick.parent().parent().remove();
-                } else {
-                    eleClick.remove();
-                }
-                let giatrithuoctinh = ele.giatris;
-                giatrithuoctinh = giatrithuoctinh.filter((val) => val !== valueRemove);
-                ele.giatris = giatrithuoctinh;
-            }
-            generateValueAttr();
-            messageNotication("Xóa thành công", "rgb(3, 138, 255)");
-        }
+    if (eleClick.hasClass("image-variant")) {
+        $(eleClick).change(function (event) {
+            var reader = new FileReader();
+            var file = $(this)[0].files[0];
+            reader.onload = function (e) {};
+            reader.readAsDataURL(file);
+            const className = eleClick.attr("class");
+            const lastClass = className.substr(className.lastIndexOf(" ") + 1);
+            openImageVariant(this, lastClass, eleClick.parent());
+        });
     }
 });
 
-// Function find element of valueAttributes using slug
-function findBySlug(slug) {
-    return valueAttributes.find((ele) => {
-        return ele.slug === slug;
-    });
-}
+$("#uploadImage").change(function (event) {
+    var reader = new FileReader();
+    var file = $(this)[0].files[0];
+    reader.onload = function (e) {};
+    reader.readAsDataURL(file);
+    openImage(this);
+});
 
-// Function check value inside element attributes exsits
-function checkValuExsits(slug, value) {
-    const ele = findBySlug(slug);
-    return ele.giatris.find((val) => {
-        return val.toLowerCase() === value.toLowerCase();
-    });
-}
-
-// Remove AlL
-function removeAllProducHasAttribute(slug) {
-    $(".product-has-attribute").each(function () {
-        const dataCode = $(this).data("code");
-        if (dataCode === slug) {
-            $(this).remove();
-        }
-    });
-}
-
-// Generate product variants
-function generateValueAttr() {
-    let attributenames = [];
-    let attributes = {};
-    valueAttributes.forEach((ele) => {
-        let attributename = ele.ten;
-        attributenames.push(attributename);
-        let attributevalue = [];
-        ele.giatris.forEach((val) => {
-            attributevalue.push(val);
-        });
-        attributes[attributename] = attributevalue;
-    });
-    let attrs = [];
-
-    for (const [attr, values] of Object.entries(attributes)){
-        if (values.length > 0) {
-            attrs.push(values.map(v => ({ [attr]: v })));
-        }
-    }
-
-    attrs = attrs.reduce((a, b) =>
-        a.flatMap((d) => b.map((e) => ({ ...d, ...e })))
-    );
-    $(".table-variant-body").html("");
-    for (const attr of attrs) {
-        let row = [];
-        for (const attrname of attributenames) {
-            if (attr[attrname] !== undefined) {
-                row.push(attr[attrname]);
-            }
-        }
-        row = row.join(",");
-
-        const trcontent = `<tr>
-                              <td class="text-center ten">${row}</td>
-                              <td>
-                                <input type="text" class="form-control btn-input-price gia" />
-                              </td>
-                              <td>                     
-                                <input class="form-control variant-image hinhanh" type="file">
-                              </td>
-                          </tr> `;
-        $(".table-variant-body").append(trcontent);
-    }
-}
-
+// Genertae auto slug
 $("#ten").keyup(function () {
     const name = $(this).val();
     const slug = customNameToSlug(name);
@@ -197,4 +123,165 @@ $("#ten").keyup(function () {
 });
 
 
+function generateVariant() {
+    let arrayAttributes = getAttributeValues();
 
+    let attributes = {};
+    arrayAttributes.forEach((ele) => {
+        let giaTris = ele.giaTris;
+        attributes[ele.ten] = giaTris;
+    });
+
+    let attrs = [];
+    for (const [attr, values] of Object.entries(attributes)) {
+        if (values.length > 0) {
+            attrs.push(values.map((v) => ({ [attr]: v })));
+        }
+    }
+
+    attrs = attrs.reduce((a, b) =>
+        a.flatMap((d) => b.map((e) => ({ ...d, ...e })))
+    );
+
+    displayVarinatsOnTable(attrs);
+}
+
+function displayVarinatsOnTable(attrs) {
+    $("#variants").html("");
+    for (const attr of attrs) {
+        let row = Object.values(attr).join("|");
+        const trcontent = `<tr>
+                          <td class="text-center name-variant">${row}</td>
+                          <td>
+                            <input type="text" class="form-control price-variant" />
+                          </td>
+                          <td>
+                            <input type="text" class="form-control quantity-variant"/>
+                          </td>
+                          <td>                     
+                            <input class="form-control image-variant" type="file">
+                          </td>
+                      </tr> `;
+        $(".table-variant-body").append(trcontent);
+    }
+}
+
+function findBySlug(slug) {
+    const arrayAttributes = getAttributeValues();
+    return arrayAttributes.find((ele) => {
+        return ele.slug === slug;
+    });
+}
+
+function checkValuExsits(slug, value) {
+    const ele = findBySlug(slug);
+    return ele.giaTris.find((val) => {
+        return val.toLowerCase() === value.toLowerCase();
+    });
+}
+
+function openImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            let img = $(
+                '<img class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;">'
+            );
+            img.attr("src", reader.result);
+            img.appendTo(".list-images");
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function openImageVariant(input, imageView, eleClick) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            let img = $(
+                `<img class="${imageView} mt-2 hinhanhbase64" style="width: 150px;">`
+            );
+            img.attr("src", reader.result);
+            eleClick.append(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function getImageOfProduct() {
+    let attrImages = [];
+    $(".list-images img").each(function () {
+        let base64 = $(this).attr("src");
+        let hinhAnh = null;
+        let image = {hinhAnh, base64};
+        attrImages.push(image);
+    });
+    return attrImages;
+}
+
+function getAttributeValues() {
+    let arrayAttributes = [];
+    $(".product-has-attribute").each(function () {
+        var slug = $(this).data("slug");
+        var ten = $(this).find(".name-attribute button").text().trim();
+
+        var giaTris = [];
+        $(this)
+            .find(".list-value-attribute .btn-value-attr")
+            .each(function () {
+                giaTris.push($(this).text().trim());
+            });
+
+        arrayAttributes.push({
+            slug: slug,
+            ten: ten,
+            giaTris: giaTris,
+        });
+    });
+    return arrayAttributes;
+}
+
+function getVariants() {
+    let variants = [];
+    $(".table-variant-body tr").each((index, item) => {
+        const ten = item.querySelector(".name-variant").textContent;
+        let soLuong = null;
+        if (item.querySelector(".quantity-variant").value !== null) {
+            soLuong = item.querySelector(".quantity-variant").value;
+        }
+        let gia = null;
+        if (item.querySelector(".price-variant").value !== null) {
+            gia = item.querySelector(".price-variant").value;
+        }
+        let hinhanhbase64 = null;
+        if (item.querySelector(".hinhanhbase64") !== null) {
+            hinhanhbase64 = item.querySelector(".hinhanhbase64").src;
+        }
+        let variant = {};
+        variant["ten"] = ten;
+        variant["gia"] = gia;
+        variant["soluong"] = soLuong;
+        variant["base64"] = hinhanhbase64;
+        variant["hinhAnh"] = null;
+        variants.push(variant);
+    });
+    return variants;
+}
+
+function getDataFromForm() {
+    let dataFromForm = $(".form-submit-product").serializeArray();
+    let data = {};
+    $.each(dataFromForm, (index, value) => {
+        let propertyName = value.name;
+        let propertyValue = value.value;
+        if (propertyName === "thongTinChiTiet") {
+            propertyValue = CKEDITOR.instances.chitietsanpham.getData();
+        }
+
+        if (propertyName === "moTa") {
+            propertyValue = CKEDITOR.instances.motasanpham.getData();
+        }
+        data[propertyName] = propertyValue;
+    });
+    return data;
+}

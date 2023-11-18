@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${product.ten}</title>
 </head>
 <body>
 <div class="container-fluid bg-secondary mb-5">
@@ -18,14 +18,29 @@
 
 <div class="container-fluid py-5">
     <div class="row px-xl-5">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-0">
+                <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/danh-muc/${product.danhMuc.slug}">${product.danhMuc.ten}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">${product.ten}</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row px-xl-5">
         <div class="col-lg-5 col-md-5 col-sm-12">
             <div class="row">
-                <img class="product-image-primary" src="<c:url value='/template/web/img/anh2.png'/>" alt="Image">
+                <img class="product-image-primary" src="/assets/images/sanpham/${product.anh[0].hinhAnh}" alt="Image">
             </div>
             <div class="row mt-3">
                 <div class="col">
                     <div class="owl-carousel related-carousel product-list-images">
-
+                        <c:forEach var="item" items="${product.anh}">
+                            <div class="card product-item border-0">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img alt="Ảnh sản phẩm" class="img-fluid w-100" src="/assets/images/sanpham/${item.hinhAnh}"/>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -33,7 +48,7 @@
 
         <div class="col-lg-7 col-md-7 col-sm-12">
             <div class="khung">
-                <h3 class="font-weight-semi-bold product-name">Áo polo nam aelimited</h3>
+                <h3 class="font-weight-semi-bold product-name">${product.ten}</h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -44,10 +59,20 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <div class="product-attribute">
-
-                </div>
+                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia}</h3>
+                <c:forEach var="item" items="${product.thuocTinh}">
+                    <div class="d-flex mb-3">
+                        <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>
+                        <form>
+                            <c:forEach var="itemGiaTri" items="${item.giaTriThuocTinh}">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" value="${itemGiaTri.id}">
+                                    <label class="custom-control-label">${itemGiaTri.giaTri}</label>
+                                </div>
+                            </c:forEach>
+                        </form>
+                    </div>
+                </c:forEach>
 
                 <div class="d-flex align-items-center pt-2 mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p><div class="input-group quantity mr-3" style="width: 130px;">
@@ -63,7 +88,7 @@
                         </button>
                     </div>
                 </div>
-                    <p class="text-dark mb-0 mr-3">751 sản phẩm có sẵn</p>
+                    <p class="text-dark mb-0 mr-3">${product.soLuong} sản phẩm có sẵn</p>
                 </div>
                 <div class="d-flex align-items-center pt-2">
                     <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
@@ -117,9 +142,6 @@
                     </div>
 
                 </div>
-
-
-
             </div>
             <div class="tab-pane fade" id="tab-pane-3">
                 <div class="row">

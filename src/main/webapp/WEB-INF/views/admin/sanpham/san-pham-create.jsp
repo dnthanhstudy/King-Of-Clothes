@@ -25,69 +25,59 @@
 
         <div class="container mt-3">
             <form action="" method="POST" class="form-submit-product">
-                <div class="row">
+                <div class="row mb-4">
                     <label class="form-label">Chọn hình ảnh</label>
                     <input type="file" id="uploadImage"/>
                     <div class="list-images mt-4">
 
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-4">
+
+                <div class="row">
+                    <div class="col-3">
                         <label for="slug" class="form-label">Slug</label>
                         <input name="slug" type="text" class="form-control" id="slug" readonly/>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="ten" class="form-label">Tên</label>
                         <input name="ten" type="text" class="form-control" id="ten"/>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-3">
                         <label for="gia" class="form-label">Giá</label>
                         <input name="gia" type="text" class="form-control" id="gia"/>
                     </div>
 
-                    <div class="col-6 mt-4 mb-4">
-                        <label for="chitietsanpham" class="form-label"
-                        >Chi tiết sản phẩm</label
-                        >
-                        <textarea
-                                class="form-control"
-                                id="chitietsanpham"
-                                name="chitietsanpham"
-                        ></textarea>
+                    <div class="col-3">
+                        <label for="so-luong" class="form-label">Số lượng</label>
+                        <input name="soLuong" type="text" class="form-control" id="so-luong"/>
                     </div>
 
-                    <div class="col-6 mt-4 mb-4">
-                        <label for="motasanpham" class="form-label">Mô tả sản phẩm</label>
-                        <textarea
-                                class="form-control"
-                                id="motasanpham"
-                                name="motasanpham"
-                        ></textarea>
-                    </div>
-
-                    <div class="col-6">
-                        <select class="form-select" name="danhmucslug">
+                    <div class="col-6 mt-4">
+                        <select class="form-select" name="danhMucSlug">
                             <option selected>Vui lòng chọn danh mục</option>
-                            <option value="thoi-trang-tre-em">Thời trang trẻ em</option>
-                            <option value="thoi-trang-nam">Thời trang nam</option>
+                            <option value="ao-thun">Áo thun</option>
+                            <option value="ao-polo">Áo polo</option>
+                            <option value="the-theo-du-lich">Thể Thao & Du Lịch</option>
+                            <option value="ao-hoodie-ao-len-ao-ni">Áo Hoodie, Áo len & Áo Nỉ</option>
                         </select>
                     </div>
 
-                    <div class="col-6">
-                        <select class="form-select" name="thuonghieuslug">
+                    <div class="col-6 mt-4">
+                        <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
-                            <option value="adidas">Adidas</option>
-                            <option value="nike">Nike</option>
+                            <option value="levents">LEVENTS</option>
+                            <option value="paradox">PARADOX</option>
+                            <option value="odin-club">ODIN CLUB</option>
+                            <option value="by-unispace">By Unispace</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row mt-4 mb-4">
                     <div class="col-6">
-                        <div class="card">
+                        <div class="card" id="card-attribute">
                             <div
                                     class="d-flex justify-content-between align-items-center card-header"
                             >
@@ -111,7 +101,7 @@
                     </div>
 
                     <div class="col-6">
-                        <div class="card">
+                        <div class="card" id="card-variant">
                             <div
                                     class="d-flex justify-content-between align-items-center card-header"
                             >
@@ -165,37 +155,71 @@
                                     <tr>
                                         <th class="text-center" scope="col">Tên biến thể</th>
                                         <th class="text-center" scope="col">Giá</th>
+                                        <th class="text-center" scope="col">Số lượng</th>
                                         <th class="text-center" scope="col">Chọn hình ảnh</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="table-variant-body"></tbody>
+                                    <tbody class="table-variant-body" id="variants"></tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="sanphambanchay" value="1" name="isbestseller">
-                    <label class="form-check-label" for="sanphambanchay">Sản phẩm bán cháy</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="sanphamnhieuluotxem" value="1" name="ismostviewed">
-                    <label class="form-check-label" for="sanphamnhieuluotxem">Sản phẩm nhiều lượt xem</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="sanphammoi" value="1" name="isnew">
-                    <label class="form-check-label" for="sanphammoi">Sản phẩm mới</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="sanphamnhieuphobien" value="1" name="ispopular">
-                    <label class="form-check-label" for="sanphamnhieuphobien">Sản phẩm phổ biến</label>
+                <div class="row mb-4">
+                    <div class="col-6">
+                        <label for="chitietsanpham" class="form-label"
+                        >Thông tin chi tiết</label
+                        >
+                        <textarea
+                                class="form-control"
+                                id="chitietsanpham"
+                                name="thongTinChiTiet"
+                        ></textarea>
+                    </div>
+
+                    <div class="col-6">
+                        <label for="motasanpham" class="form-label">Mô tả sản phẩm</label>
+                        <textarea
+                                class="form-control"
+                                id="motasanpham"
+                                name="moTa"
+                        ></textarea>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <button type="button" class="btn btn-success mt-4 mb-4 btn-add-product">Submit</button>
+                <div class="row d-flex">
+                    <div class="form-check">
+                        <input name="sanPhamMoi" class="form-check-input" type="checkbox" value="1"
+                               id="san-pham-moi">
+                        <label class="form-check-label" for="san-pham-moi">
+                            Sản phẩm mới
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input name="sanPhamNoiBat" class="form-check-input" type="checkbox" value="1"
+                               id="san-pham-noi-bat">
+                        <label class="form-check-label" for="san-pham-noi-bat">
+                            Sản phẩm nổi bật
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input name="sanPhamNhieuLuotXem" class="form-check-input" type="checkbox" value="1"
+                               id="san-pham-nhieu-luot-xem">
+                        <label class="form-check-label" for="san-pham-nhieu-luot-xem">
+                            Sản phẩm nhiều lượt xem
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input name="sanPhamPhoBien" class="form-check-input" type="checkbox" value="1"
+                               id="san-pham-pho-bien">
+                        <label class="form-check-label" for="san-pham-pho-bien">
+                            Sản phẩm phổ biến
+                        </label>
+                    </div>
                 </div>
 
+                <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
         </div>
 
@@ -203,10 +227,13 @@
 </div>
 
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
-
 <script>
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
 </script>
+<script src="<c:url value='/assets/js/toastify.js'/>"></script>
+<script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
+<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>
 </html>
