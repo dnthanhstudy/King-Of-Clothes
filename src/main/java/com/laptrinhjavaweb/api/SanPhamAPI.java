@@ -1,15 +1,14 @@
 package com.laptrinhjavaweb.api;
 
+import java.util.List;
 import java.util.Map;
 
+import com.laptrinhjavaweb.exception.ClientError;
+import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.response.SanPhamResponse;
@@ -56,4 +55,23 @@ public class SanPhamAPI {
 		}
 		return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
+	@GetMapping("/filter")
+	public ResponseEntity<?> filter(
+			@RequestParam Map<String, Object> params){
+		List<SanPhamResponse> results = sanPhamService.filters(params);
+		if(results == null) {
+			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
+		}
+		return new ResponseEntity<>(results, HttpStatus.OK);
+	}
+
+	@PostMapping
+	public ResponseEntity<?> createdSanPham(@RequestBody SanPhamRequest request){
+		SanPhamResponse result = sanPhamService.save(request);
+		if(result == null){
+			throw new ClientError("Slug này đã tồn tại. Xin kiểm tra lại!");
+		}
+		return new ResponseEntity<>(result, HttpStatus.CREATED);
+	}
 }

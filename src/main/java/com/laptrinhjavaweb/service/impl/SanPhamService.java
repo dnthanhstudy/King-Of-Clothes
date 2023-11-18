@@ -6,6 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.laptrinhjavaweb.convert.AnhSanPhamConverter;
+import com.laptrinhjavaweb.convert.GiaTriThuocTinhConverter;
+import com.laptrinhjavaweb.convert.ThuocTinhConverter;
+import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
+import com.laptrinhjavaweb.entity.ThuocTinhEntity;
+import com.laptrinhjavaweb.response.AnhSanPhamResponse;
+import com.laptrinhjavaweb.response.ThuocTinhResponse;
+import com.laptrinhjavaweb.resquest.*;
+import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,7 +27,7 @@ import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.SanPhamRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
-import com.laptrinhjavaweb.service.ISanPhamService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SanPhamService implements ISanPhamService{
@@ -28,6 +37,18 @@ public class SanPhamService implements ISanPhamService{
 	
 	@Autowired
 	private SanPhamConverter sanPhamConvert;
+
+	@Autowired
+	private IAnhSanPhamService anhSanPhamService;
+
+	@Autowired
+	private IThuocTinhService thuocTinhService;
+
+	@Autowired
+	private IGiaTriThuocTinhService giaTriThuocTinhService;
+
+	@Autowired
+	private IBienTheService bienTheService;
 
 	@Override
 	public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
@@ -77,6 +98,68 @@ public class SanPhamService implements ISanPhamService{
 			return null;
 		}
 		return sanPhamConvert.convertToResponse(sanPhamEntity);
+	}
+
+	@Override
+	public List<SanPhamResponse> filters(Map<String, Object> params) {
+		List<Long> ids = sanPhamRepository.filters(params);
+		if(ids.isEmpty()) {
+			return null;
+		}
+		List<SanPhamResponse> results = new ArrayList<>();
+		for (Long id : ids) {
+			SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
+			SanPhamResponse sanPhamResponse = sanPhamConvert.convertToResponse(sanPhamEntity);
+			results.add(sanPhamResponse);
+		}
+		return results;
+	}
+
+	@SuppressWarnings("unused")
+	@Transactional
+	@Override
+	public SanPhamResponse save(SanPhamRequest sanPhamRequest) {
+		try {
+			SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(sanPhamRequest.getSlug());
+			if(sanPhamEntity != null){
+				return null;
+			}
+			sanPhamEntity = sanPhamConvert.convertToEntity(sanPhamRequest);
+			sanPhamRepository.save(sanPhamEntity);
+			SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
+			final Long idSanPham = sanPhamEntity.getId();
+			List<AnhSanPhamRequest> listAnh = sanPhamRequest.getAnh().stream().map(
+					item -> {
+						item.setIdSanPham(idSanPham);
+						anhSanPhamService.save(item);
+						return item;
+					}
+			).collect(Collectors.toList());
+
+			List<ThuocTinhRequest> listThuocTinh = sanPhamRequest.getThuocTinh().stream().map(
+					item -> {
+						item.setIdSanPham(idSanPham);
+						ThuocTinhResponse thuocTinhResponse = thuocTinhService.save(item);
+						Long idThuocTinh = thuocTinhResponse.getId();
+						for(String giaTri: item.getGiaTris()){
+							GiaTriThuocTinhRequest giaTriThuocTinhRequest = new GiaTriThuocTinhRequest(idThuocTinh, idSanPham, giaTri);
+							giaTriThuocTinhService.save(giaTriThuocTinhRequest);
+						}
+						return item;
+					}
+			).collect(Collectors.toList());
+
+			List<BienTheRequest> listBienThe = sanPhamRequest.getBienThe().stream().map(
+					item -> {
+						item.setIdSanPham(idSanPham);
+						bienTheService.save(item);
+						return item;
+					}
+			).collect(Collectors.toList());
+			return result;
+		}catch(Exception ex) {
+			throw new RuntimeException("Error");
+		}
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.convert.NhanVienConverter;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
@@ -54,8 +55,8 @@ public class NhanVienService implements INhanVienService {
         if(nhanVienEntity != null){
             return null;
         }
-        if(nhanVienRequest.getAnh() != null){
-            nhanVienRequest.setAnh(GenerateStringUtils.generate() + ".png");
+        if(nhanVienRequest.getBase64() != null){
+            nhanVienRequest.setAnh(GenerateStringUtils.generate(6) + ".png");
             saveImage(nhanVienRequest);
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
@@ -108,7 +109,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images/nhanvien/" + nhanVienRequest.getAnh();
+        String path = SystemConstant.path + nhanVienRequest.getAnh();
         if (nhanVienRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

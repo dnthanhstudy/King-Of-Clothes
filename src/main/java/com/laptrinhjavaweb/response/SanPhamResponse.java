@@ -3,7 +3,6 @@ package com.laptrinhjavaweb.response;
 import java.util.List;
 
 public class SanPhamResponse {
-
 	private String slug;
 	
 	private String ma;
@@ -25,7 +24,7 @@ public class SanPhamResponse {
 	private List<ThuocTinhResponse> thuocTinh;
 
 	private List<AnhSanPhamResponse> anh;
-	
+
 	public String getSlug() {
 		return slug;
 	}

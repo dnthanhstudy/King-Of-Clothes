@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.config;
 import com.laptrinhjavaweb.security.CustomAccessDeniedHandler;
 import com.laptrinhjavaweb.security.CustomSuccessHandler;
 import com.laptrinhjavaweb.service.impl.CustomUserDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -18,6 +19,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -46,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
                 http.csrf().disable()
                 .authorizeRequests()
+                        .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
                         .antMatchers("/admin/dashboards").hasRole("ADMIN")
                         .antMatchers("/cart").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
                         .antMatchers("/trang-chu").permitAll()
@@ -56,7 +61,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/login?incorrectAccount").and()
                 .logout().logoutUrl("/logout").deleteCookies("JSESSIONID")
-                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler()).and()
+                .and().exceptionHandling()
+                        .accessDeniedHandler(accessDeniedHandler())
+                        .authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().maximumSessions(1).expiredUrl("/login?sessionTimeout");
     }
 

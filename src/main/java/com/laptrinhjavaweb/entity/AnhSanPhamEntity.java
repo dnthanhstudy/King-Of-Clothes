@@ -5,19 +5,19 @@ import javax.persistence.*;
 @Table(name = "anhsanpham")
 public class AnhSanPhamEntity extends BaseEntity{
 
-	@Column(name = "ma", columnDefinition = "char(10)")
-	private String ma;
+	@Column(name = "hinhanh", columnDefinition = "char(10)")
+	private String hinhAnh;
 	
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
 
-	public String getMa() {
-		return ma;
+	public String getHinhAnh() {
+		return hinhAnh;
 	}
 
-	public void setMa(String ma) {
-		this.ma = ma;
+	public void setHinhAnh(String ma) {
+		this.hinhAnh = ma;
 	}
 
 	public SanPhamEntity getSanPham() {
