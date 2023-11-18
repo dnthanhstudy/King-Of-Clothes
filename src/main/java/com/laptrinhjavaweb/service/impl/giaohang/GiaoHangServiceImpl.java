@@ -103,7 +103,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         ThongTinMuaHangResponse thongTinMuaHang = thongTinMuaHangService.findThongTinMuaHangById(idttdathang);
         List<SanPhamGhnApi> sanPhamGhnApiList = getListSanPhamGhn(dsHdct);
         //  request.setTo_phone("0325808823");
-        return getThongTinDatHangRequest(sanPhamGhnApiList, hoaDonRepository.getOne(dsHdct.get(0).getIdHoaDon()));
+        return getThongTinDatHangRequest(sanPhamGhnApiList, thongTinMuaHang.getDiaChi(),thongTinMuaHang.getSdt(),thongTinMuaHang.getTenNguoiNhan());
     }
 
 

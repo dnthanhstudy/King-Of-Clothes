@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-5">
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="allchecked">
+                        <input class="form-check-input allchecked" type="checkbox" >
                         <label class="form-check-label">
                             Sản phẩm
                         </label>
@@ -175,9 +175,11 @@
             </div>
             <div class="row mt-4">
                 <div class="col-2 mt-2">
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all1">
-                        <label class="custom-control-label" for="price-all1">Chọn tất cả (3)</label>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input allchecked" type="checkbox" >
+                        <label class="form-check-label">
+                            Sản phẩm
+                        </label>
                     </div>
                 </div>
                 <div class="col-1 mt-2">
@@ -192,7 +194,7 @@
                             Tổng thanh toán (<span id="totalproduct">0</span> sản phẩm): <span class="text-danger" style="font-size: 25px" id="tongthanhtoan">0₫</span>
                         </div>
                         <div class="col-6 text-right">
-                            <button class="btn text-light w-75" onclick=" muahang()" style="background-color: #C3817B">Mua hàng</button>
+                            <button class="btn text-light w-75" onclick="muahang()" style="background-color: #C3817B">Mua hàng</button>
                         </div>
                     </div>
                 </div>
@@ -210,11 +212,13 @@
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
     var dsCheckbox = [];
 
-    $("#allchecked").click(function (){
+    $(".allchecked").click(function (){
         var isChecked = $(this).is(":checked");
         if (isChecked){
+            $(".allchecked").prop( "checked", true );
             $("input[name='idghct']").prop('checked',true)
         }else{
+            $(".allchecked").prop( "checked", false );
             $("input[name='idghct']").prop('checked',false)
         }
         loadDataCheckbox();
@@ -256,7 +260,7 @@
                 </div>
                 <div class="col-2">
                     <span>
-                        <div class="input-group quantity" style="width: 100px;">
+                        <div class="input-group " style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
                                             <i class="fa fa-minus"></i>
@@ -291,7 +295,7 @@
 
     function tongTien(){
         $.ajax({
-            url: '/api/user/giohang/subtotal/'+idkh,
+            url: '/api/user/giohang/tongtienghct?dsghct=',
             method: 'GET',
             success: function(req) {
                 var data = req.data;
@@ -307,6 +311,12 @@
     }
 
     function thayDoiSoLuong(idghct,sl){
+        let soLuongHienTai = parseInt($("#soluong-"+idghct).val()) + sl;
+        console.log(soLuongHienTai)
+        if (soLuongHienTai == 0) {
+            showError("Số lượng hiện tại không thể nhỏ hơn 0");
+            return;
+        }
         $.ajax({
             url: '/api/user/giohang/thaydoisoluong',
             method: 'POST',
@@ -316,10 +326,11 @@
                 soLuong:sl
             }),
             success: async function (req) {
-                       await ghct();
+                    //   await ghct();
                 var data = req.data;
-                $("#soluong-"+data.idGhct).val(data.soLuong);
-                $("#tongtien-"+data.idGhct).html(data.tongTien);
+                console.log(data)
+                $("#soluong-"+idghct).val(data.soLuong);
+                $("#tongtien-"+data.idGhct).text(data.tongTien);
                  tongTienTheoGhct(dsCheckbox);
             },
             error: function(xhr, status, error) {
@@ -377,14 +388,10 @@
             $("#totalproduct").html(0);
             return;
         }
-        var data = JSON.stringify({
-            collection:listCheckbox
-        });
         $.ajax({
-            url: '/api/user/giohang/subtotaltheoghct/'+idkh,
-            method: 'POST',
+            url: '/api/user/giohang/tongtienghct?dsghct='+listCheckbox.join(","),
+            method: 'GET',
             contentType: 'application/json',
-            data:data ,
             success: function (req) {
                 var data = req.data;
                 $("#thanhtien").html(data+"₫");

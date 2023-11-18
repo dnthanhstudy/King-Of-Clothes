@@ -14,4 +14,6 @@ public class ThayDoiSoLuongGioHangRequest {
     private Long idGhct;
 
     private Integer soLuong;
+
+    private Double tongTien;
 }

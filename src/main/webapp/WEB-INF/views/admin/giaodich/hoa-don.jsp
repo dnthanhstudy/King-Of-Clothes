@@ -6,11 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
     <title>Hóa Đơn</title>
 </head>
-<body>
 <section>
     <div class="content-body" >
         <div class="container-fluid">
@@ -65,9 +63,8 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Mã Hóa đơn</th>
-                                    <th scope="col">Nhân viên</th>
                                     <th scope="col">Khách hàng</th>
-                                    <th scope="col">Thời gian</th>
+                                    <th scope="col">Ngày đặt</th>
                                     <th scope="col">Tổng tiền hàng</th>
                                     <th scope="col">Phương thức</th>
                                     <th scope="col">Trạng thái</th>
@@ -75,6 +72,16 @@
                                 </tr>
                                 </thead>
                                 <tbody >
+                                    <tr>
+                                        <th scope="col">Mã Hóa đơn</th>
+                                        <th scope="col">Khách hàng</th>
+                                        <th scope="col">Ngày đặt</th>
+                                        <th scope="col">Tổng tiền hàng</th>
+                                        <th scope="col">Phương thức</th>
+                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">Thao tác</th>
+                                        <th scope="col">Thao tác</th>
+                                    </tr>
 
                                 </tbody>
                             </table>
@@ -102,5 +109,54 @@
         </div>
     </div>
 </section>
-</body>
-</html>
+
+<script>
+    // $.ajax({
+    //     url: '/api/hoadon/dshoadon',
+    //     method: 'GET',
+    //     success: function (req) {
+    //
+    //         console.log(req)
+    //         let dataTable = $("#tblHoaDon").DataTable({
+    //             destroy: true,
+    //             data: req.data,
+    //             responsive:true,
+    //             pagingType: $(window).width() < 768 ? "simple" : "simple_numbers",
+    //             searching: false,
+    //             columns: [
+    //                 {
+    //                     data: null,
+    //                     render: function (data, type, row, meta) {
+    //                         return meta.row + 1; // Số thứ tự bắt đầu từ 1
+    //                     },
+    //                     orderData: null, // Không sắp xếp cột số thứ tự
+    //                 },
+    //                 { data: 'ma' },
+    //                 { data: 'tenNguoiNhan' },
+    //                 { data: 'thoiGianDat', render: function (data) { return getFormattedDate(data) } },
+    //                 { data: 'tongTien'},
+    //                 { data: 'phuongThucThanhToan'},
+    //                 { data: 'trangThai'},
+    //                 {
+    //                     data: 'id',
+    //                     render: function (data, type, row) {
+    //                         return `<button type="button" class="btn btn-success">Sửa</button>`;
+    //                     }
+    //                 },
+    //             ],
+    //             order: [[3, 'desc']], // Sắp xếp theo cột Ngày tạo lập
+    //             pageLength: 10,
+    //             columnDefs: [
+    //                 { orderable: false, targets: 0 }, // Không sắp xếp cột số thứ tự
+    //             ]
+    //         });
+    //
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.log("Có lỗi xảy ra")
+    //     }
+    // });
+    // function formatDate(date) {
+    //     return moment(date).format('DD/MM/yyyy');
+    // }
+</script>

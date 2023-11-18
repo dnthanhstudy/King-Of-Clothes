@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
+import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
@@ -13,13 +14,8 @@ import com.laptrinhjavaweb.service.HoaDonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class HoaDonServiceImpl implements HoaDonService {
@@ -48,8 +44,8 @@ public class HoaDonServiceImpl implements HoaDonService {
 //    HoaDonConverter hoaDonConverter;
 
     @Override
-    public HoaDonEntity saveHoaDon(HoaDonEntity hoaDon) {
-        return hoaDonRepository.save(hoaDon);
+    public void saveHoaDon(HoaDonEntity hoaDon) {
+        hoaDonRepository.save(hoaDon);
     }
 
     @Override
@@ -72,6 +68,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public BigDecimal tongTienTheoHoaDon(Long idhd) {
         return hoaDonRepository.tongTienByHoaDon(idhd);
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonOnline() {
+        return hoaDonRepository.dsHoaDonOnline();
     }
 
 

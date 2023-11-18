@@ -10,9 +10,16 @@ import java.util.List;
 public class SecurityUtils {
 
     public static MyUserResponse getPrincipal() {
-        return (MyUserResponse) (SecurityContextHolder
-                .getContext()).getAuthentication().getPrincipal();
+        try {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof MyUserResponse) {
+                return (MyUserResponse) principal;
+            }
+        } catch (Exception e) {
+        }
+        return new MyUserResponse();
     }
+
 
     public static List<String> getAuthorities() {
         List<String> results = new ArrayList<>();

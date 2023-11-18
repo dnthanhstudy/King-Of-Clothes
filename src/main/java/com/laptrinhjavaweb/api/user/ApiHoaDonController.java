@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user/hoadon")
+@RequestMapping("/api/hoadon")
 public class ApiHoaDonController {
 
     @Autowired
@@ -18,5 +18,10 @@ public class ApiHoaDonController {
     @GetMapping("/hdct/{idkh}")
     public ResponseObject getHoaDonChiTiet(@PathVariable(name = "idkh")Long idkh){
         return new ResponseObject(hoaDonService.findHoaDonMoiDat(idkh));
+    }
+
+    @GetMapping("/dshoadon")
+    public ResponseObject dsHoaDonOnline(){
+        return new ResponseObject(hoaDonService.dsHoaDonOnline());
     }
 }

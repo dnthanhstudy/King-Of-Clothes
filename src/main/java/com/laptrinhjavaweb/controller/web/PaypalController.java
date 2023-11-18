@@ -94,7 +94,7 @@ public class PaypalController {
                 if (hoaDon==null){
                     return "web/403";
                 }
-                taoHangGiaoHangNhanh(hoaDon);
+      //          taoHangGiaoHangNhanh(hoaDon);
                 return "paypal/success";
             }
         } catch (PayPalRESTException e) {
@@ -102,7 +102,16 @@ public class PaypalController {
         }
         return "redirect:/pay";
     }
-
+    @GetMapping(value = "/cancel")
+    public String cancel(
+    ) {
+        return "paypal/cancel";
+    }
+    @GetMapping(value = "/success")
+    public String successPayData(
+    ) {
+        return "paypal/success";
+    }
     private void taoHangGiaoHangNhanh(HoaDonEntity hoaDon){
         String url = "http://localhost:8080/api/user/giaohang/datHang/"+hoaDon.getId();
         PreviewGiaoHang responseEntity = ConvertJson.convert(restTemplate, url

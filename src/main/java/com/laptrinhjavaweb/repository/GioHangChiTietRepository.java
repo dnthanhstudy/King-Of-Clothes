@@ -16,8 +16,14 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     @Query("select ghct from GioHangChiTietEntity ghct where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai<>'DELETE'")
     List<GioHangResponse> dsGioHangChiTietByIdKh(@Param("idkh")Long idkh);
 
-    @Query("SELECT SUM(ghct.bienThe.gia*ghct.soLuong) FROM GioHangChiTietEntity ghct" +
-            " WHERE ghct.gioHang.khachHang.id = :idkh AND ghct.id IN (:lstghct)")
-    BigDecimal tongTienTheoGioHangChiTiet(@Param("idkh") Long idkh, @Param("lstghct") List<Long> lstghct);
+    GioHangChiTietEntity findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(Long bienTheId,Long khachHangId,String trangThai);
 
+    @Query(value = "SELECT SUM(sp.gia*ghct.soluong) FROM dbo.giohangchitiet ghct \n" +
+            "JOIN ( SELECT bt.id AS id,CASE WHEN bt.gia IS NULL THEN sp.gia ELSE bt.gia END AS gia\n" +
+            "FROM dbo.bienthe bt JOIN dbo.sanpham sp ON sp.id = bt.idsanpham) sp ON sp.id = ghct.idbienthe\n" +
+            "WHERE ghct.id in (:lstghct)",nativeQuery = true)
+    BigDecimal tongTienTheoGioHangChiTiet(@Param("lstghct") List<Long> lstghct);
+
+    @Query(value = "SELECT * FROM dbo.giohangchitiet WHERE id IN (:dsghct)",nativeQuery = true)
+    List<GioHangChiTietEntity> dsGioHangChiTiet(@Param("dsghct") List<Long> dsghct);
 }
