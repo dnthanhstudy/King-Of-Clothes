@@ -1,22 +1,17 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.exception.ClientError;
+import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
 import com.laptrinhjavaweb.service.INhanVienService;
-
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/nhan-vien")
@@ -33,7 +28,7 @@ public class NhanVienAPI {
         }
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-    
+
     @GetMapping("/search")
     public ResponseEntity<?> searchs(
             @RequestParam(name = "q") String param,
@@ -59,4 +54,32 @@ public class NhanVienAPI {
         Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, null, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
+    @GetMapping("/{ma}")
+    public ResponseEntity<?> findByMa(@PathVariable String ma) {
+        NhanVienResponse result = nhanVienService.getDetail(ma);
+        if (result == null) {
+            return new ResponseEntity<>("Nhân viên không tồn tại", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PutMapping("/{ma}")
+    public ResponseEntity<?> update(@PathVariable String ma, @RequestBody NhanVienRequest nhanVienRequest) {
+        NhanVienResponse result = nhanVienService.update(ma, nhanVienRequest);
+        if (result != null) {
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy nhân viên với mã " + ma);
+        }
+    }
+
+    @DeleteMapping("/{ma}")
+    public ResponseEntity<?> delete(@PathVariable(name = "ma") String ma){
+        nhanVienService.delete(ma);
+        return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+    }
+
+
+
 }

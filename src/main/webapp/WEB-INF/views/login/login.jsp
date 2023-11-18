@@ -27,9 +27,14 @@
             showError(" Phiên làm việc hết hạn, yêu cầu đăng nhập lại!")
         </script>
     </c:if>
-    <c:if test="${param.is_login == false}">
+    <c:if test="${param.is_not_login != null}">
         <script>
-            showError("Vui lòng đăng nhập")
+            showError("Vui lòng đăng nhập tài khoản của bạn")
+        </script>
+    </c:if>
+    <c:if test="${param.is_logout != null}">
+        <script>
+            showError("Đăng xuất thành công")
         </script>
     </c:if>
     <div class="container py-5 py-sm-7">

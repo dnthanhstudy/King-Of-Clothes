@@ -23,47 +23,60 @@
         </h4>
 
         <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;padding: 20px;">
-            <div class="row">
-                <div class="col-lg-3">
-                    <span>Tỉ lệ quy đổi điểm thưởng</span>
-                </div>
-                <div class="col-lg-3">
-                    <div class="input-wrapper1">
-                        <input class="input-box1" type="text" >
-                        <span class="underline1"></span>
+            <form action="" id="tien-quy-ra-diem">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span>Tỉ lệ quy đổi điểm thưởng</span>
                     </div>
+                        <div class="col-lg-2">
+                            <div class="input-wrapper1">
+                                <input class="input-box1" type="text" name="tien">
+                                <span class="underline1"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span> =
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="input-wrapper1">
+                                <input class="input-box1" type="text" name="diem">
+                                <span class="underline1"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span>
+                        </div>
                 </div>
-                <div class="col-lg-1">
-                    <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span> =
-                </div>
-                <div class="col-lg-2">1 điểm thưởng </div>
-            </div>
+            </form>
+
             <div class="row mt-4">
                 <div class="col-lg-3">
                     <input type="checkbox" id="selectCheckbox">
                     <span class="ms-2">Cho phép thanh toán bằng điểm</span>
                 </div>
                 <div class="col-lg-9" style="display: none;" id="paymentOptions">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <div class="input-wrapper1">
-                                <input class="input-box1" type="text">
-                                <span class="underline1"></span>
+                    <form id="diem-quy-ra-tien">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="input-wrapper1">
+                                    <input class="input-box1" type="text" name="diem">
+                                    <span class="underline1"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span> =
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="input-wrapper1">
+                                    <input class="input-box1" type="text" name="tien">
+                                    <span class="underline1"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span> =
-                        </div>
-                        <div class="col-lg-2">
-                            <div class="input-wrapper1">
-                                <input class="input-box1" type="text">
-                                <span class="underline1"></span>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="row mt-4" id="addPaymentOptions" style="display: none;">
@@ -90,11 +103,60 @@
 
             <div class="row mt-4">
                 <div>
-                    <button class="btn btn-success"><i class="bi bi-floppy"></i> Lưu</button>
+                    <button id="submit" class="btn btn-success"><i class="bi bi-floppy"></i> Lưu</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+
+    $("#submit").on("click", function(e) {
+        e.preventDefault();
+
+        var formData = $("#tien-quy-ra-diem").serializeArray();
+        formData.push({ name: "loai", value: "Tiền quy ra điểm" });
+
+        var formData2 = $("#diem-quy-ra-tien").serializeArray();
+        formData2.push({ name: "loai", value: "Điểm quy ra tiền" });
+
+        formData = formData.concat(formData2);
+
+        if (formData && formData.length > 0) {
+            $.ajax({
+                url: '/api/quy-doi-diem',
+                type: "POST",
+                data: formData,
+                success: function(response) {
+                    showSuccess("Quy đổi thành công");
+                },
+                error: function(error) {
+                    showError("Quy đổi thất bại");
+                }
+            });
+        } else {
+            showError("Dữ liệu không hợp lệ");
+        }
+    });
+
+
+
+
+
+
+
+
+    $(document).ready(function() {
+        $("#selectCheckbox").on("click", function() {
+            if ($(this).is(":checked")) {
+                $("#paymentOptions").show();
+                $("#addPaymentOptions").show();
+            } else {
+                $("#paymentOptions").hide();
+                $("#addPaymentOptions").hide();
+            }
+        });
+    });
+</script>
 </body>
 </html>

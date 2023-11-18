@@ -122,15 +122,6 @@ $("#ten").keyup(function () {
     $("#slug").val(slug);
 });
 
-// Submit form
-$(".btn-add-product").on("click", function (event) {
-    event.preventDefault();
-    let data = getDataFromForm();
-    data["thuoctinh"] = getAttributeValues();
-    data["bienthe"] = getVariants();
-    data["anh"] = getImageOfProduct();
-    console.log(data);
-});
 
 function generateVariant() {
     let arrayAttributes = getAttributeValues();
@@ -221,7 +212,9 @@ function getImageOfProduct() {
     let attrImages = [];
     $(".list-images img").each(function () {
         let base64 = $(this).attr("src");
-        attrImages.push(base64);
+        let hinhAnh = null;
+        let image = {hinhAnh, base64};
+        attrImages.push(image);
     });
     return attrImages;
 }
@@ -269,6 +262,7 @@ function getVariants() {
         variant["gia"] = gia;
         variant["soluong"] = soLuong;
         variant["base64"] = hinhanhbase64;
+        variant["hinhAnh"] = null;
         variants.push(variant);
     });
     return variants;
@@ -280,11 +274,11 @@ function getDataFromForm() {
     $.each(dataFromForm, (index, value) => {
         let propertyName = value.name;
         let propertyValue = value.value;
-        if (propertyName === "chitietsanpham") {
+        if (propertyName === "thongTinChiTiet") {
             propertyValue = CKEDITOR.instances.chitietsanpham.getData();
         }
 
-        if (propertyName === "motasanpham") {
+        if (propertyName === "moTa") {
             propertyValue = CKEDITOR.instances.motasanpham.getData();
         }
         data[propertyName] = propertyValue;

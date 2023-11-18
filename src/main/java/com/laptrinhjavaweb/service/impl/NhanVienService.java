@@ -1,8 +1,11 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.convert.NhanVienConverter;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
@@ -18,10 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,8 +54,8 @@ public class NhanVienService implements INhanVienService {
         if(nhanVienEntity != null){
             return null;
         }
-        if(nhanVienRequest.getAnh() != null){
-            nhanVienRequest.setAnh(GenerateStringUtils.generate() + ".png");
+        if(nhanVienRequest.getBase64() != null){
+            nhanVienRequest.setAnh(GenerateStringUtils.generate(6) + ".png");
             saveImage(nhanVienRequest);
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
@@ -64,6 +64,37 @@ public class NhanVienService implements INhanVienService {
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
+    }
+
+
+    @Override
+    public NhanVienResponse getDetail(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        if (nhanVienEntity == null) {
+            return null;
+        }
+        return nhanVienConverter.convertToResponse(nhanVienEntity);
+    }
+
+    @Override
+    public NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+
+        if (nhanVienEntity != null) {
+            nhanVienEntity.setTen(nhanVienRequest.getTen());
+            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
+            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
+            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
+            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
+            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
+            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
+            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
+
+            nhanVienRepository.save(nhanVienEntity);
+            NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
+            return result;
+        }
+        return null;
     }
 
     @Override
@@ -75,7 +106,7 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAll(wholePage);
+            page = nhanVienRepository.findAllByTrangThai(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -108,10 +139,40 @@ public class NhanVienService implements INhanVienService {
     }
 
     public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images/nhanvien/" + nhanVienRequest.getAnh();
+        String path = SystemConstant.path + nhanVienRequest.getAnh();
         if (nhanVienRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);
         }
     }
+
+    @Override
+    public void delete(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        nhanVienEntity.setTrangThai("DELETE");
+        nhanVienRepository.save(nhanVienEntity);
+    }
+
+    @Override
+    public NhanVienEntity findByEmail(String email) {
+        return nhanVienRepository.findByEmail(email);
+    }
+
+    @Override
+    public String generateRandomPassword() {
+        java.util.Random random = new Random();
+        int password = 100000 + random.nextInt(900000);
+        return String.valueOf(password);
+    }
+
+    @Override
+    public NhanVienEntity findByRestToken(String restToken) {
+        return nhanVienRepository.findByRestToken(restToken);
+    }
+
+    @Override
+    public NhanVienEntity insert(NhanVienEntity nhanVienEntity) {
+        return nhanVienRepository.save(nhanVienEntity);
+    }
+
 }

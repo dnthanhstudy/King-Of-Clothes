@@ -13,12 +13,12 @@ public class SanPhamController {
         return "admin/sanpham/san-pham";
     }
 
-    @GetMapping("/san-pham-create")
+    @GetMapping("/create")
     public String createSP() {
         return "admin/sanpham/san-pham-create";
     }
 
-    @GetMapping("/san-pham-edit/{id}")
+    @GetMapping("/edit/{id}")
     public String updateSP() {
         return "admin/sanpham/san-pham-edit";
     }

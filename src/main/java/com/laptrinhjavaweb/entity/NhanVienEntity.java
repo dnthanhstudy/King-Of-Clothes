@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +50,9 @@ public class NhanVienEntity extends BaseEntity{
 	@Column(name = "ngaycap", columnDefinition = "DATE")
 	private Date ngayCap;
 	
+	@Column(name = "expiretime")
+	private LocalDateTime expireTime ;
+
 	@Column(name = "resttoken")
 	private String restToken;
 	
@@ -61,6 +65,14 @@ public class NhanVienEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "nhanVien", fetch = FetchType.LAZY)
 	private List<HoaDonEntity> hoaDonEntities  = new ArrayList<>();
+
+	public LocalDateTime getExpireTime() {
+		return expireTime;
+	}
+
+	public void setExpireTime(LocalDateTime expireTime) {
+		this.expireTime = expireTime;
+	}
 
 	public String getMa() {
 		return ma;
@@ -181,4 +193,5 @@ public class NhanVienEntity extends BaseEntity{
 	public void setHoaDonEntities(List<HoaDonEntity> hoaDonEntities) {
 		this.hoaDonEntities = hoaDonEntities;
 	}
+
 }

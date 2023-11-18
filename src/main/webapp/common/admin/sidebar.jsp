@@ -38,11 +38,11 @@
                         <span class="nav-text">Quản lý</span>
                     </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/nhanvien">Nhân viên</a></li>
-                    <li><a href="/admin/khachhang">Khách hàng</a></li>
+                    <li><a href="/admin/nhan-vien">Nhân viên</a></li>
+                    <li><a href="/admin/khach-hang">Khách hàng</a></li>
+                    <li><a href="/admin/san-pham">Sản phẩm</a></li>
                     <li><a href="/admin/khuyen-mai">Khuyến mại</a></li>
-                    <li><a href="/admin/giaoca/calamviec">Ca làm việc</a></li>
-                    <li><a href="/admin/giaoca/thongke">Thống kê giao ca</a></li>
+                    <li><a href="/admin/giao-ca/thong-ke-giao-ca">Thống kê giao ca</a></li>
                 </ul>
             </li>
 
@@ -51,8 +51,8 @@
                 <span class="nav-text">Giao ca</span>
             </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/giaoca/moca">Mở ca</a></li>
-                    <li><a href="/admin/giaoca/dongca">Đóng ca</a></li>
+                    <li><a href="/admin/giao-ca/moca">Mở ca</a></li>
+                    <li><a href="/admin/giao-ca/dongca">Đóng ca</a></li>
                 </ul>
             </li>
             <li>
@@ -61,7 +61,7 @@
                         <span class="nav-text">Giao dịch</span>
                     </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/giaodich/hoadon">Hóa đơn</a></li>
+                    <li><a href="/admin/giao-dich/hoa-don">Hóa đơn</a></li>
                 </ul>
             </li>
             <li>
@@ -70,9 +70,8 @@
                     <span class="nav-text">Setting</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/profile">Profile</a></li>
-                    <li><a href="/admin/tichdiem">Tích điểm</a></li>
-                    <li><a href="/admin/setting_banner">Dynamic Interface </a></li>
+                    <li><a href="/admin/setting/profile">Profile</a></li>
+                    <li><a href="/admin/setting/tich-diem">Tích điểm</a></li>
                 </ul>
             </li>
         </ul>
@@ -95,7 +94,7 @@
                             <span class="nav-text">Giao ca</span>
                             </a>
                             <ul aria-expanded="false" class="mm-collapse mm-show" style="">
-                                <li><a href="/admin/giaoca/dongca">Đóng ca</a></li>
+                                <li><a href="/admin/giao-ca/dongca">Đóng ca</a></li>
                             </ul>
                         </li>
 
@@ -105,7 +104,7 @@
                                 <span class="nav-text">Giao dịch</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="/admin/giaodich/hoadon">Hóa đơn</a></li>
+                                <li><a href="/admin/giao-dich/hoa-don">Hóa đơn</a></li>
                             </ul>
                         </li>
 
@@ -115,8 +114,8 @@
                                 <span class="nav-text">Setting</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="/admin/profile">Profile</a></li>
-                                <li><a href="/admin/tichdiem">Tích điểm</a></li>
+                                <li><a href="/admin/setting/profile">Profile</a></li>
+                                <li><a href="/admin/setting/tich-diem">Tích điểm</a></li>
                             </ul>
                         </li>`;
         $('#menu').html(html);

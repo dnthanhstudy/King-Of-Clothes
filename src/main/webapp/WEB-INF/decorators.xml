@@ -14,28 +14,20 @@
         <pattern>/*</pattern>
     </decorator>
 
-    <decorator name="loginWeb" page="login.jsp">
+    <decorator name="login" page="login.jsp">
         <pattern>/login</pattern>
     </decorator>
 
-    <decorator name="loginWeb" page="login.jsp">
+    <decorator name="login" page="login.jsp">
         <pattern>/register</pattern>
     </decorator>
 
-    <decorator name="loginAdmin" page="loginAdmin.jsp">
-        <pattern>/admin/login</pattern>
-    </decorator>
-
-    <decorator name="loginAdmin" page="loginAdmin.jsp">
-        <pattern>/admin/forgotpassword</pattern>
-    </decorator>
-
-    <decorator name="loginAdmin" page="loginAdmin.jsp">
-        <pattern>/admin/changePassword</pattern>
-    </decorator>
-
-    <decorator name="loginWeb" page="login.jsp">
+    <decorator name="login" page="login.jsp">
         <pattern>/forgotpassword</pattern>
+    </decorator>
+
+    <decorator name="login" page="login.jsp">
+        <pattern>/changePassword</pattern>
     </decorator>
 
     <decorator name="web403" page="web403.jsp">
@@ -49,5 +41,14 @@
     <decorator name="thongtinWeb" page="thongtinWeb.jsp">
         <pattern>/web*</pattern>
     </decorator>
+
+    <decorator name="vidientu" page="thongtinWeb.jsp">
+        <pattern>/vi-dien-tu</pattern>
+    </decorator>
+
+    <decorator name="naptien" page="thongtinWeb.jsp">
+        <pattern>/vi-dien-tu/nap-tien</pattern>
+    </decorator>
+
 
 </decorators>

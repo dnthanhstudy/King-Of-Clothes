@@ -13,8 +13,11 @@ public class LichSuTichDiemEntity extends BaseEntity{
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
 	
-	@Column(name = "sodiem")
-	private Integer soDiem;
+	@Column(name = "sodiemdung")
+	private Integer soDiemDung;
+
+	@Column(name = "sodiemtichduoc")
+	private Integer soDiemTichDuoc;
 
 	public TichDiemEntity getTichDiem() {
 		return tichDiem;
@@ -32,11 +35,19 @@ public class LichSuTichDiemEntity extends BaseEntity{
 		this.hoaDon = hoaDon;
 	}
 
-	public Integer getSoDiem() {
-		return soDiem;
+	public Integer getSoDiemDung() {
+		return soDiemDung;
 	}
 
-	public void setSoDiem(Integer soDiem) {
-		this.soDiem = soDiem;
+	public void setSoDiemDung(Integer soDiemDung) {
+		this.soDiemDung = soDiemDung;
+	}
+
+	public Integer getSoDiemTichDuoc() {
+		return soDiemTichDuoc;
+	}
+
+	public void setSoDiemTichDuoc(Integer soDiemTichDuoc) {
+		this.soDiemTichDuoc = soDiemTichDuoc;
 	}
 }

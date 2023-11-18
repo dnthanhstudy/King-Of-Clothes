@@ -3,6 +3,8 @@ package com.laptrinhjavaweb.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.laptrinhjavaweb.response.ThuocTinhResponse;
+import com.laptrinhjavaweb.resquest.ThuocTinhRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.laptrinhjavaweb.entity.ThuocTinhEntity;
 import com.laptrinhjavaweb.repository.ThuocTinhRepository;
 import com.laptrinhjavaweb.response.FilterResponse;
 import com.laptrinhjavaweb.service.IThuocTinhService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ThuocTinhService implements IThuocTinhService{
@@ -31,6 +34,16 @@ public class ThuocTinhService implements IThuocTinhService{
 			results.add(filterResponse);
 		}
 		return results;
+	}
+
+	@Override
+	@Transactional
+	public ThuocTinhResponse save(ThuocTinhRequest request) {
+		ThuocTinhEntity entity = thuocTinhConvert.convertToEntity(request);
+		thuocTinhRepository.save(entity);
+		ThuocTinhResponse result = thuocTinhConvert.convertToResponse(entity);
+		result.setId(entity.getId());
+		return result;
 	}
 
 }

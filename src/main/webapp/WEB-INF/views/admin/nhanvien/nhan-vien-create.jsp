@@ -22,37 +22,6 @@
     color: black;">
                 Tạo mới nhân viên
             </h4>
-
-            <div>
-                <button class="btn"  data-bs-toggle="modal" data-bs-target="#addcv" style="background-color: #eb8153;color: white" >
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                        <path d="M184 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H96c-35.3 0-64 28.7-64 64v16 48V448c0 35.3 28.7 64 64 64H416c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H376V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H184V24zM80 192H432V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V192zm176 40c-13.3 0-24 10.7-24 24v48H184c-13.3 0-24 10.7-24 24s10.7 24 24 24h48v48c0 13.3 10.7 24 24 24s24-10.7 24-24V352h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H280V256c0-13.3-10.7-24-24-24z"/>
-                    </svg> Tạo mới chức vụ
-                </button>
-
-                <div class="modal" id="addcv" tabindex="-1" aria-labelledby="addcv" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="addcv">Tạo chức vụ mới</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label>Nhập tên chức vụ mới:</label>
-                                <input type="text" id="tencv" class="form-control" >
-                                <div class="mt-3">
-                                    <input type="checkbox" class="btn-check"  value="STAFF" autocomplete="off" id="staffCheckbox">
-                                    <label class="btn" for="staffCheckbox">STAFF</label>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" id="themcv" class="btn btn-outline-primary">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
             <form action="" id="form-submit-nhan-vien">
                 <div class="row">
                     <div class="col">
@@ -75,31 +44,28 @@
                         <input type="text" id="sdt" name="soDienThoai" class="form-control" >
                     </div>
                     <div class="col">
-                        <label  class="form-label">Ngày sinh:</label>
-                        <input type="date" name="ngaySinh" class="form-control" id="ngaysinh" >
+                        <label>Số CCCD:</label>
+                        <input type="text" name="canCuocCongDan" id="cccd" class="form-control" >
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col">
-                        <label>Số CCCD:</label>
-                        <input type="text" name="canCuocCongDan" id="cccd" class="form-control" >
+                        <label  class="form-label">Ngày sinh:</label>
+                        <input type="date" name="ngaySinh" class="form-control" id="ngaysinh" >
                     </div>
                     <div class="col">
                         <label class="form-label">Ngày cấp:</label>
                         <input type="date" name="ngayCap" class="form-control" id="ngaycap">
                     </div>
-                    <div class="col">
-                        <label>Nơi cấp:</label>
-                        <input type="text" id="noicap" class="form-control" >
-                    </div>
+
                 </div>
 
                 <div class="row mt-3">
                     <div class="col">
                         <label>Chức vụ:</label>
                         <select class="form-select" id="selectChucVu" name="maChucVu">
-                            <option value="STAFF" selected>Nhân viên</option>
+
                         </select>
                     </div>
                     <div class="col">
@@ -112,6 +78,7 @@
                 </div>
 
                 <div class="row mt-3">
+                    <label>Ảnh nhân viên:</label>
                     <div class="form-group col-md-12">
                         <input type="file" id="upload-image" name="ImageUpload">
                         <div id="thumbbox">
@@ -123,7 +90,7 @@
                 <div class="row mt-3">
                     <div class="col">
                         <button type="submit" class="btn" id="them" style="background-color: #A6edab; color: #00852d">Add</button>
-                        <a href="/admin/nhanvien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
+                        <a href="/admin/nhan-vien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
                     </div>
                 </div>
             </form>
@@ -169,10 +136,11 @@
             dataType: "json",
             data: JSON.stringify(data),
             success: (response) => {
+                window.location.href = '/admin/nhan-vien';
                 console.log("success");
             },
             error: (error) => {
-                console.log(error);
+                showError("fail")
             }
         });
     })
@@ -189,6 +157,29 @@
         data['base64'] = image.base64;
         return data;
     }
+
+    function updateChucVuSelect() {
+        $.ajax({
+            url: '/api/chuc-vu',
+            method: 'GET',
+            success: function (req) {
+                var select = $("#selectChucVu");
+                select.html('');
+                let html = '';
+                $.each(req, (index, value)=>{
+                    const ten = value.ten;
+                    const ma = value.ma;
+                    html += '<option value="'+ ma +'">' + ten + '</option>';
+                })
+                select.append(html);
+            },
+            error: function (xhr, status, error) {
+                showError("Lỗi khi cập nhật select chức vụ");
+            }
+        });
+    }
+    updateChucVuSelect();
+
 
 </script>
 </body>

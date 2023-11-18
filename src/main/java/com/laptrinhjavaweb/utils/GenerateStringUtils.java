@@ -7,9 +7,8 @@ import java.util.regex.Pattern;
 
 public class GenerateStringUtils {
 
-    public static String generate()
+    public static String generate(int len)
     {
-        int len = 6;
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"
                 + "abcdefghijklmnopqrstuvxyz";
