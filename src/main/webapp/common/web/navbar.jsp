@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@include file="/common/taglib.jsp" %>
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -57,8 +58,16 @@
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         <security:authorize access="hasAnyRole('ADMIN', 'STAFF', 'CUSTOMER')">
-                            <a href="/login" class="nav-item nav-link"><%=SecurityUtils.getPrincipal().getTen()%></a>
-                            <a href="/register" class="nav-item nav-link">Đăng xuất</a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <%=SecurityUtils.getPrincipal().getTen()%>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a href="/logout" class="dropdown-item" >Đăng xuất</a></li>
+                                </ul>
+                            </div>
                         </security:authorize>
                         <security:authorize access="hasRole('ANONYMOUS')">
                             <a href="/login" class="nav-item nav-link">Login</a>
