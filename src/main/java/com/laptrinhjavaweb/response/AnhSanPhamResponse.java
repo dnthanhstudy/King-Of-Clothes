@@ -2,13 +2,13 @@ package com.laptrinhjavaweb.response;
 
 public class AnhSanPhamResponse {
 
-	private String ma;
+	private String hinhAnh;
 
-	public String getMa() {
-		return ma;
+	public String getHinhAnh() {
+		return hinhAnh;
 	}
 
-	public void setMa(String ma) {
-		this.ma = ma;
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
 	}
 }

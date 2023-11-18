@@ -18,15 +18,11 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth == null){
-            response.sendRedirect(request.getContextPath() + "/access-denied");
-        }else{
-            MyUserResponse myUserResponse = (MyUserResponse) auth.getPrincipal();
-            if(myUserResponse.getMaChucVu().equals("STAFF")){
-                response.sendRedirect(request.getContextPath() + "/admin/403");
-            }else if(myUserResponse.getMaChucVu().equals("CUSTOMER")){
-                response.sendRedirect(request.getContextPath() + "/403");
-            }
+        MyUserResponse myUserResponse = (MyUserResponse) auth.getPrincipal();
+        if (myUserResponse.getMaChucVu().equals("STAFF")) {
+            response.sendRedirect(request.getContextPath() + "/admin/403");
+        } else if (myUserResponse.getMaChucVu().equals("CUSTOMER")) {
+            response.sendRedirect(request.getContextPath() + "/403");
         }
     }
 }

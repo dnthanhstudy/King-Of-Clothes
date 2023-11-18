@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.repository.SanPhamRepository;
+import com.laptrinhjavaweb.resquest.ThuocTinhRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +26,10 @@ public class ThuocTinhConverter {
 	
 	@Autowired
 	private GiaTriThuocTinhConverter giaTriThuocTinhConverter;
-	
+
+	@Autowired
+	private SanPhamRepository sanPhamRepository;
+
 	public ThuocTinhResponse convertToResponse(ThuocTinhEntity entity) {
 		ThuocTinhResponse response = modelMapper.map(entity, ThuocTinhResponse.class);
 		List<GiaTriThuocTinhResponse> giaTriThuocTinhResponses = entity.getGiaTriThuocTinhEntities().stream().map(
@@ -32,7 +38,14 @@ public class ThuocTinhConverter {
 		response.setGiaTriThuocTinh(giaTriThuocTinhResponses);
 		return response;
 	}
-	
+
+	public ThuocTinhEntity convertToEntity(ThuocTinhRequest resquest){
+		ThuocTinhEntity entity = modelMapper.map(resquest, ThuocTinhEntity.class);
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findById(resquest.getIdSanPham()).get();
+		entity.setSanPham(sanPhamEntity);
+		return entity;
+	}
+
 	public FilterResponse convertToFilterResponse(List<ThuocTinhEntity> entities) {
 		FilterResponse filterResponse = new FilterResponse();
 		filterResponse.setMa(entities.get(0).getSlug());

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@include file="/common/taglib.jsp" %>
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -43,26 +44,26 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/trang-chu" class="nav-item nav-link active"><s:message code="web.navbar.home"/></a>
                         <a href="/shop_us" class="nav-item nav-link"><s:message code="web.navbar.shopus"/></a>
-                        <a href="/shop" class="nav-item nav-link">Product</a>
-                        <a href="/detail" class="nav-item nav-link">Product Detail</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="/cart" class="dropdown-item">Shopping Cart</a>
-                                <a href="/checkout" class="dropdown-item">Checkout</a>
-                            </div>
-                        </div>
-                        <a href="/faqs" class="nav-item nav-link">FAQs</a>
-                        <a href="/contact" class="nav-item nav-link">Contact</a>
+                        <a href="/shop" class="nav-item nav-link"><s:message code="web.navbar.product"/></a>
+                        <a href="/faqs" class="nav-item nav-link"><s:message code="web.navbar.FAQs"/></a>
+                        <a href="/contact" class="nav-item nav-link"><s:message code="web.navbar.Contact"/></a>
                     </div>
                     <div class="navbar-nav ml-auto py-0">
                         <security:authorize access="hasAnyRole('ADMIN', 'STAFF', 'CUSTOMER')">
-                            <a href="/login" class="nav-item nav-link"><%=SecurityUtils.getPrincipal().getTen()%></a>
-                            <a href="/register" class="nav-item nav-link">Đăng xuất</a>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <%=SecurityUtils.getPrincipal().getTen()%>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/web/account">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="/logout" ><s:message code="web.navbar.logout"/></a></li>
+                                </ul>
+                            </div>
                         </security:authorize>
                         <security:authorize access="hasRole('ANONYMOUS')">
-                            <a href="/login" class="nav-item nav-link">Login</a>
-                            <a href="/register" class="nav-item nav-link">Register</a>
+                            <a href="/login" class="nav-item nav-link"><s:message code="web.navbar.login"/></a>
+                            <a href="/register" class="nav-item nav-link"><s:message code="web.navbar.register"/></a>
                         </security:authorize>
                     </div>
                 </div>

@@ -35,14 +35,6 @@ public class LichSuTichDiemEntity extends BaseEntity{
 		this.hoaDon = hoaDon;
 	}
 
-	public Integer getSoDiem() {
-		return soDiem;
-	}
-
-	public void setSoDiem(Integer soDiem) {
-		this.soDiem = soDiem;
-	}
-
 	public Integer getSoDiemDung() {
 		return soDiemDung;
 	}

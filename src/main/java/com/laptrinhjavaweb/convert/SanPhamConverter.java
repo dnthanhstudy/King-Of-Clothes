@@ -3,6 +3,11 @@ package com.laptrinhjavaweb.convert;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.laptrinhjavaweb.entity.DanhMucEntity;
+import com.laptrinhjavaweb.entity.ThuongHieuEntity;
+import com.laptrinhjavaweb.repository.DanhMucRepository;
+import com.laptrinhjavaweb.repository.ThuongHieuRepository;
+import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,6 +34,12 @@ public class SanPhamConverter {
 	
 	@Autowired
 	private ThuongHieuConverter thuongHieuConverter;
+
+	@Autowired
+	private DanhMucRepository danhMucRepository;
+
+	@Autowired
+	private ThuongHieuRepository thuongHieuRepository;
 	
 	public SanPhamResponse convertToResponse(SanPhamEntity entity) {
 		SanPhamResponse response = modelMapper.map(entity, SanPhamResponse.class);
@@ -41,5 +52,14 @@ public class SanPhamConverter {
 		response.setThuocTinh(thuocTinhResponses);
 		response.setAnh(anhSanPhamResponses);
 		return response;
+	}
+
+	public SanPhamEntity convertToEntity(SanPhamRequest request){
+		SanPhamEntity entity = modelMapper.map(request, SanPhamEntity.class);
+		DanhMucEntity danhMucEntity = danhMucRepository.findBySlug(request.getDanhMucSlug());
+		ThuongHieuEntity thuongHieuEntity = thuongHieuRepository.findBySlug(request.getThuongHieuSlug());
+		entity.setDanhMuc(danhMucEntity);
+		entity.setThuongHieu(thuongHieuEntity);
+		return entity;
 	}
 }
