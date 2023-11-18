@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.response;
 
+import java.util.Date;
+
 public class KhacHangResponse {
 
     private Long id;
@@ -19,6 +21,8 @@ public class KhacHangResponse {
     private Date ngaySinh;
 
     private String moTa;
+
+
     public Long getId() {
         return id;
     }
