@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp" %>
 
 <div class="content-body">
     <div class="container-fluid">
@@ -113,31 +114,12 @@
         <div class="row" id="cardNhanVien">
 
         </div>
-
-
-
-        <nav>
-            <ul class="pagination pagination-gutter pagination-primary no-bg d-flex justify-content-center">
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-left"></i></a>
-                </li>
-                <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-right"></i></a>
-                </li>
-            </ul>
-        </nav>
     </div>
+    <ul id="pagination"></ul>
 </div>
-
-
+<script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script>
+    let pageCurrent = 1;
     function loadNhanVien(url) {
         $.ajax({
             url: url,
@@ -189,14 +171,31 @@
                          </div>
                             `;
                     nhanVien.append(card);
+
                 })
+                $('#pagination').twbsPagination({
+                    first: "First",
+                    prev: "Previous",
+                    next: "Next",
+                    last: "Last",
+                    visiblePages: 5,
+                    totalPages: data.meta.totalPage,
+                    startPage: data.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent)
+                        }
+                    },
+                });
             },
             error: function (xhr, status, error) {
                 alert('Lỗi khi lấy danh sách nhân viên: ' + error);
             }
         });
     }
-    loadNhanVien('/api/nhan-vien')
+    loadNhanVien('/api/nhan-vien/pagination?page=' + 1)
 
     $('#cardNhanVien').on('click', (e) => {
         if($(e.target).hasClass('btn-delete-nhan-vien')){
@@ -227,14 +226,14 @@
         const param = $('#searchAll').val();
         console.log(param);
         $.ajax({
-            url: '/api/nhan-vien/search?search=' + param,
+            url: '/api/nhan-vien/search?q=' + param,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
                 if(param === ''){
                     loadNhanVien('/api/nhan-vien')
                 }else{
-                    loadNhanVien('/api/nhan-vien/search?search=' + param);
+                    loadNhanVien('/api/nhan-vien/search?q=' + param);
                 }
             },
             error: function (error){
