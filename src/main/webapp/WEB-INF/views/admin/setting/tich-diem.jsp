@@ -46,6 +46,7 @@
                         <div class="col-lg-2">
                             <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span>
                         </div>
+                    <input type="hidden" value="Tiền quy ra điểm" name="loai">
                 </div>
             </form>
 
@@ -76,6 +77,7 @@
                                 <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span>
                             </div>
                         </div>
+                        <input type="hidden" value="Điểm quy ra tiền" name="loai">
                     </form>
                 </div>
             </div>
@@ -111,43 +113,53 @@
 </div>
 <script>
 
-    $("#submit").on("click", function(e) {
-        e.preventDefault();
+    $(document).ready(function () {
+        $("#submit").on("click", function (e) {
+            e.preventDefault();
 
-        var formData = $("#tien-quy-ra-diem").serializeArray();
-        formData.push({ name: "loai", value: "Tiền quy ra điểm" });
+            var tienQuyDiem = {
+                tien: $("form#tien-quy-ra-diem input[name='tien']").val(),
+                diem: $("form#tien-quy-ra-diem input[name='diem']").val(),
+                loai: $("form#tien-quy-ra-diem input[name='loai']").val()
+            };
 
-        var formData2 = $("#diem-quy-ra-tien").serializeArray();
-        formData2.push({ name: "loai", value: "Điểm quy ra tiền" });
+            var diemQuyTien = {
+                tien: $("form#diem-quy-ra-tien input[name='tien']").val(),
+                diem: $("form#diem-quy-ra-tien input[name='diem']").val(),
+                loai: $("form#diem-quy-ra-tien input[name='loai']").val()
+            };
 
-        formData = formData.concat(formData2);
+            var formData = {
+                tienQuyDiem: tienQuyDiem,
+                diemQuyTien: diemQuyTien
+            };
 
-        if (formData && formData.length > 0) {
             $.ajax({
                 url: '/api/quy-doi-diem',
                 type: "POST",
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     showSuccess("Quy đổi thành công");
                 },
-                error: function(error) {
-                    showError("Quy đổi thất bại");
+                error: function (error) {
+                    showError("Quy đổi thất bại" + error);
                 }
             });
-        } else {
-            showError("Dữ liệu không hợp lệ");
-        }
-    });
 
+            $.ajax({
+                url: '/api/quy-doi-diem',
+                type: "POST",
+                data: diemQuyTien,
+                success: function (response) {
+                    showSuccess("Quy đổi thành công");
+                },
+                error: function (error) {
+                    showError("Quy đổi thất bại" + error);
+                }
+            });
+        });
 
-
-
-
-
-
-
-    $(document).ready(function() {
-        $("#selectCheckbox").on("click", function() {
+        $("#selectCheckbox").on("click", function () {
             if ($(this).is(":checked")) {
                 $("#paymentOptions").show();
                 $("#addPaymentOptions").show();
