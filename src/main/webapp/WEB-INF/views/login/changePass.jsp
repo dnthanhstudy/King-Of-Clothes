@@ -24,10 +24,6 @@
 
     <!-- Content -->
     <div class="container py-5 py-sm-7">
-        <a class="d-flex justify-content-center mb-5" href="#">
-            <img class="z-index-2" src="/template/login/svg/logos/logo.svg" alt="Image Description" style="width: 8rem;">
-        </a>
-
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-5">
                 <!-- Card -->

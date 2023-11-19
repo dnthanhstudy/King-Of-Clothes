@@ -88,6 +88,10 @@ public class HoaDonEntity extends BaseEntity{
 			super.setTrangThai("DANHANHANG");
 		}
 	}
+	@Override
+	public String getTrangThai() {
+		return super.getTrangThai().equals("CHONHANDON")?"Chờ nhận đơn":"Đã nhận đơn";
+	}
 
 	public void setThongTinDatHang(ThongTinMuaHangEntity thongTinMuaHang){
 		diaChi = thongTinMuaHang.getDiaChi();
@@ -107,7 +111,7 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public String getMa() {
-		return ma;
+		return ma.trim();
 	}
 
 	public void setMa(String ma) {
@@ -123,6 +127,9 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public Double getTongTienHang() {
+		return tienShip==null?tongTienHang:tienShip+tongTienHang;
+	}
+	public Double getTienKhachTraOnline() {
 		if (phuongThucThanhToan.equals("CHUYENKHOAN")){
 			return 0D;
 		}
@@ -142,7 +149,7 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan;
+		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Chuyển khoản":"Tiền mặt";
 	}
 
 	public void setPhuongThucThanhToan(String phuongThucThanhToan) {

@@ -78,7 +78,7 @@ public class ThongTinDatHangRequest {
 
     private Long cod_amount;         // Số tiền thu hộ
     public void setTienThuHo(HoaDonEntity hoaDon){
-        if (hoaDon.getPhuongThucThanhToan().equals("CHUYENKHOAN")){
+        if (hoaDon.getPhuongThucThanhToan()==null||hoaDon.getPhuongThucThanhToan().equals("CHUYENKHOAN")){
             cod_amount = 0L;
             payment_type_id=1L;
         }else {

@@ -553,6 +553,13 @@
         await findXa(value);
 
     });
+    function setShipNull(){
+        $("#tennguoinhan").text("");
+        $("#diachi").text("Vui lòng thêm địa chỉ");
+        $("#defaultdc").text("");
+        $(".sotiengiaohang").text("");
+        $("#tongthanhtoan").text("");
+    }
     //Hiển thị thông tin mua hàng mặc định
     function getAddressDefault(){
         $.ajax({
@@ -561,7 +568,9 @@
             success: async function (req) {
 
                 var data = req.data;
-                if (!req){
+                dsthongtinmuahang();
+                if (!data){
+                    setShipNull();
                     return;
                 }
                 $("#idttmuahang").val(data.id);
@@ -573,8 +582,6 @@
                 // $("#sdt").html(data.sdt);
                 $("#diachi").html(data.diaChi);
                 getSoTienVanChuyen(data.id);
-                await dsthongtinmuahang();
-                $(`input:radio[name=diaChiNhanHang]:first`).prop('checked', true);
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
@@ -667,6 +674,8 @@
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
+                $(".sotiengiaohang").text("");
+                $("#tongthanhtoan").text("");
             }
         });
     }
@@ -678,6 +687,10 @@
                 var diachi = $("#alldiachi");
                 diachi.empty();
                 var data=  req.data;
+                if (!data){
+                    console.log("Hi")
+                    return;
+                }
                 $("#tongsanpham").html(data.length);
                 data.forEach(function (data){
                     var html= `
@@ -704,6 +717,7 @@
            `;
                     diachi.append(html);
                 })
+                $(`input:radio[name=diaChiNhanHang]:first`).prop('checked', true);
             },
             error: function(xhr, status, error) {
                 alert('Có lỗi xảy ra: ' + error);
@@ -712,7 +726,7 @@
     }
     function ghct(){
         $.ajax({
-            url: '/api/user/hoadon/hdct/'+idkh,
+            url: '/api/hoadon/hdct/'+idkh,
             method: 'GET',
             success: function(req) {
                 var data = req.data;

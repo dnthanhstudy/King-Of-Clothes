@@ -115,7 +115,7 @@
 
         </div>
     </div>
-    <ul id="pagination"></ul>
+    <ul id="pagination" class="d-flex justify-content-center"></ul>
 </div>
 <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script>
@@ -185,7 +185,8 @@
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent)
+                            console.log(pageCurrent)
+                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
                         }
                     },
                 });
@@ -195,7 +196,8 @@
             }
         });
     }
-    loadNhanVien('/api/nhan-vien/pagination?page=' + 1)
+    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+
 
     $('#cardNhanVien').on('click', (e) => {
         if($(e.target).hasClass('btn-delete-nhan-vien')){

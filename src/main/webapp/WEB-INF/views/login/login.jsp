@@ -38,10 +38,6 @@
         </script>
     </c:if>
     <div class="container py-5 py-sm-7">
-        <a class="d-flex justify-content-center mb-5" href="#">
-            <img class="z-index-2" src="/template/login/svg/logos/logo.svg" alt="Image Description" style="width: 8rem;">
-        </a>
-
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-5">
                 <!-- Card -->
@@ -55,13 +51,6 @@
                                     <p>Don't have an account yet? <a href="/register">Sign up here</a></p>
                                 </div>
 
-                                <a class="btn btn-lg btn-block btn-white mb-4" href="#">
-                        <span class="d-flex justify-content-center align-items-center">
-                          <img class="avatar avatar-xss mr-2" src="/template/login/svg/brands/google.svg" alt="Image Description">
-                          Sign in with Google
-                        </span>
-                                </a>
-
                                 <span class="divider text-muted mb-4">OR</span>
                             </div>
 
@@ -70,7 +59,7 @@
                                 <label class="input-label" for="signinSrEmail">Your email</label>
 
                                 <input type="text" class="form-control form-control-lg" value="0987654322"
-                                       name="j_username" id="signinSrEmail" tabindex="1" placeholder="Mã khách hàng" aria-label="Mã khách hàng" required="" data-msg="Please enter a valid email address.">
+                                       name="j_username" id="signinSrEmail" tabindex="1" placeholder="Enter Username" aria-label="Enter Username" required="" >
                             </div>
                             <!-- End Form Group -->
 

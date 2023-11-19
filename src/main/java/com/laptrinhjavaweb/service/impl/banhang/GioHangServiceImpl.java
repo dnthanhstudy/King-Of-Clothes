@@ -2,13 +2,16 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
+import com.laptrinhjavaweb.entity.GioHangEntity;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
+import com.laptrinhjavaweb.repository.BienTheRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
+import com.laptrinhjavaweb.repository.GioHangRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
@@ -35,6 +38,14 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Autowired
     HoaDonChiTietRepository hoaDonChiTietRepository;
+
+    @Autowired
+    BienTheRepository bienTheRepository;
+
+    @Autowired
+    GioHangRepository gioHangRepository;
+
+
     @Override
     @Transactional
     public ResponseObject thayDoiSoLuong(ThayDoiSoLuongGioHangRequest request) {
@@ -44,9 +55,10 @@ public class GioHangServiceImpl implements GioHangService {
                 return new ResponseObject("Không có giỏ hàng chi tiết này");
             }
             gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong() + request.getSoLuong());
-              gioHangChiTietRepository.save(gioHangChiTiet);
-
-            return new ResponseObject("Thay đổi số lượng thành công");
+            gioHangChiTiet = gioHangChiTietRepository.save(gioHangChiTiet);
+            request.setSoLuong(gioHangChiTiet.getSoLuong());
+            request.setTongTien(gioHangChiTiet.getTongTien());
+            return new ResponseObject(request);
         } catch (Exception e) {
             return null;
         }
@@ -64,8 +76,8 @@ public class GioHangServiceImpl implements GioHangService {
 //    }
 
     @Override
-    public BigDecimal tongTienTheoGioHangChiTiet(Long idKH, List<Long> lstGhct) {
-        return gioHangChiTietRepository.tongTienTheoGioHangChiTiet(idKH, lstGhct);
+    public BigDecimal tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
+        return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
     }
 
     @Override
@@ -80,11 +92,11 @@ public class GioHangServiceImpl implements GioHangService {
         hoaDon.setKhachHang(khachHang);
         hoaDon.setTrangThai(TrangThaiHoaDonEnum.CHUANBIDATHANNG);
         hoaDon = hoaDonRepository.save(hoaDon);
-        assert khachHang != null;
+        hoaDon.setMa("HD"+hoaDon.getId());
+        hoaDonRepository.save(hoaDon);
 //        GioHang gioHang = gioHangRepository.findGioHangByIdkh(khachHang.getGioHang().getId());
 //        List<GioHangChiTietEntity> dsGioHangChiTiet = gioHangChiTietRepository.dsGioHangChiTietByIdKh(khachHang.getId());
-        for (GioHangChiTietEntity gioHangChiTiet:khachHang.getGioHangEntities().getGioHangChiTietEntities()) {
-            // GioHangChiTiet gioHangChiTiet = gioHangChiTietRepo.findById(Long.valueOf(idghct)).orElse(null);
+        for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();
             HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();
             hoaDonChiTiet.setBienThe(bienThe);
@@ -109,35 +121,30 @@ public class GioHangServiceImpl implements GioHangService {
 //        return dsGioHangChiaTheoSanPham;
 //    }
 //
-//    @Override
-//    @Transactional
-//    public ResponseObject themVaoGioHang(Long idkh, List<Long> dsgtttid) {
-//        BienThe bienThe = getBienTheByDsThuocTinhChiTiet(dsgtttid);
-//        GioHang gioHang = gioHangRepository.findGioHangByIdkh(idkh);
-////        for (GioHangChiTiet ghct:gioHang.getDsGioHangChiTiet()
-////             ) {
-////            if (ghct.getBienThe().getId()==bienThe.getId()){
-////                return new ResponseObject("Đã có")
-////            }
-////        }
-//        ResponseObject responseObject =  new ResponseObject(gioHangChiTietRepository.themVaoGioHang(gioHang.getId(),bienThe.getId()));
-//        return responseObject;
-////       // KhachHang khachHang = khachHangRepository.findById(idkh).orElse(null);
-////        if (gioHang==null){
-////            gioHang = new GioHang();
-////            gioHang.setKhachHang(khachHangRepository.findById(idkh).orElse(null));
-////            gioHang = gioHangRepository.save(gioHang);
-////        }
-////        GioHangChiTiet gioHangChiTiet = gioHangChiTietRepository.findGioHangChiTietByBienTheAndGioHang(bienThe,gioHang);
-////        if (gioHangChiTiet==null){
-////            gioHangChiTiet = new GioHangChiTiet(gioHang,bienThe,1,1);
-////            gioHangChiTietRepository.save(gioHangChiTiet);
-////            return new ResponseObject("Đã thêm vào giỏ hàng");
-////        }else{
-////            return new ResponseObject("Đã có sản phẩm này trong giỏ hàng");
-////        }
-//    }
-//
+    @Override
+    @Transactional
+    public String themVaoGioHang(Long idkh, Long idBienThe) {
+        BienTheEntity bienThe = bienTheRepository.findById(idBienThe).orElse(null);
+        KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
+        assert khachHang != null;
+        if (khachHang.getGioHangEntities()==null){
+            GioHangEntity gioHang = new GioHangEntity();
+            gioHang.setKhachHang(khachHang);
+            gioHang.setTrangThai("ACTIVE");
+            khachHang.setGioHangEntities(gioHangRepository.save(gioHang));
+        }
+        GioHangChiTietEntity gioHangChiTiet = gioHangChiTietRepository.findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(idBienThe,idkh,"ACTIVE");
+        if (gioHangChiTiet==null){
+            gioHangChiTiet = new GioHangChiTietEntity();
+            gioHangChiTiet.setBienThe(bienThe);
+            gioHangChiTiet.setGioHang(khachHang.getGioHangEntities());
+            gioHangChiTiet.setSoLuong(1);
+            gioHangChiTiet.setTrangThai("ACTIVE");
+            gioHangChiTietRepository.save(gioHangChiTiet);
+        }
+        return "Đã thêm vào giỏ";
+    }
+
 //
 //    private BienThe getBienTheByDsThuocTinhChiTiet(List<Long> dsgtttid){
 //        Long bienTheId = giaTriThuocTinhBienTheRepository.getIdBienTheByDsttbt(dsgtttid,dsgtttid.size());

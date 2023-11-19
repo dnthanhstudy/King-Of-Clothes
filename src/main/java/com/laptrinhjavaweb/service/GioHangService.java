@@ -14,12 +14,12 @@ public interface GioHangService {
     List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH);
 
 //    BigDecimal tongTien(Long idKH);
-    BigDecimal tongTienTheoGioHangChiTiet(Long idKH,List<Long> lstGhct);
+    BigDecimal tongTienTheoGioHangChiTiet(List<Long> lstGhct);
 
     ResponseObject datHang(Long idkh, List<Long> dsghct);
 //
 //    List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh);
 //
-//    ResponseObject themVaoGioHang(Long idkh, List<Long> dsgtttid);
+    String themVaoGioHang(Long idkh, Long bienTheId);
 
 }
