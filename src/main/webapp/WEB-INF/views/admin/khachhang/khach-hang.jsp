@@ -179,7 +179,7 @@
                                 method: 'DELETE',
                                 success: function (req) {
                                     console.log(req);
-                                    loadKhachHang();
+                                    loadKhachHang('/api/khach-hang')
                                     showSuccess("Delete success");
                                 },
                                 error: function (xhr, status, error) {
