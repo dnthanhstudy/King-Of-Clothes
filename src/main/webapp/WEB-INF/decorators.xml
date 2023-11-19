@@ -50,5 +50,8 @@
         <pattern>/vi-dien-tu/nap-tien</pattern>
     </decorator>
 
+    <decorator name="doi-mat-khau" page="thongtinWeb.jsp">
+        <pattern>/doi-mat-khau</pattern>
+    </decorator>
 
 </decorators>

@@ -53,7 +53,8 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 				query = "thuonghieu.slug" + "=" + v;
 			}
 			else if(k.equals("gia-tu")) {
-				query = "sanpham.gia >=" + v;
+				List<String> gias = Arrays.asList(v.toString().split(","));
+				query = "sanpham.gia >= " + Double.parseDouble(gias.get(0)) + " and sanpham.gia <= " + Double.parseDouble(gias.get(1));
 			}
 			else if(k.equals("gia-den")) {
 				query = "sanpham.gia <=" + v;
@@ -84,6 +85,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			whereSQL.add(sqlInGiaTri);
 		}
 		queryFinal = queryFinal + " WHERE " + String.join(" AND ", whereSQL);
+		System.out.println(queryFinal);
 		return queryFinal;
 	}
 }

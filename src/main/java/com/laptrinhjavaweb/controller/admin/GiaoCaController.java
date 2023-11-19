@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/giao-ca")
 public class GiaoCaController {
 
-    @GetMapping("/moca")
+    @GetMapping("/mo-ca")
     public String moca(){
         return "admin/giaoca/moca";
     }
 
-    @GetMapping("/dongca")
+    @GetMapping("/dong-ca")
     public String dongca(){
         return "admin/giaoca/dongca";
     }

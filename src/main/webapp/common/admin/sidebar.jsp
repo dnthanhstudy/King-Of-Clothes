@@ -18,7 +18,7 @@
     <div class="deznav-scroll">
         <div class="main-profile">
             <div class="image-bx">
-                <img src="<c:url value='/template/admin/images/Untitled-1.jpg'/>" alt="">
+                <img src="/assets/images/nhanvien/<%=SecurityUtils.getPrincipal().getAnh()%>" alt="">
                 <a href="javascript:void(0);"><i class="fa fa-cog" aria-hidden="true"></i></a>
             </div>
             <h5 class="name"><span class="font-w400">Hello,</span><%=SecurityUtils.getPrincipal().getTen()%></h5>
@@ -94,7 +94,7 @@
                             <span class="nav-text">Giao ca</span>
                             </a>
                             <ul aria-expanded="false" class="mm-collapse mm-show" style="">
-                                <li><a href="/admin/giao-ca/dongca">Đóng ca</a></li>
+                                <li><a href="/admin/giao-ca/dong-ca">Đóng ca</a></li>
                             </ul>
                         </li>
 

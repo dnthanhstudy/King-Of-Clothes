@@ -17,10 +17,6 @@ public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>,
 
     NhanVienEntity findBySoDienThoaiOrEmailOrCanCuocCongDan(String soDienThoai, String email, String canCuocCongDan);
 
-//    List<NhanVienEntity> findAllByTenContainingOrSoDienThoaiContainingOrEmailContainingOrMaContainingOrChucVu_TenContaining(
-//            String ten, String soDienThoai, String  email, String ma, String tenChucVu
-//    );
-
     NhanVienEntity findByMa(String ma);
 
     NhanVienEntity findByEmail(String email);

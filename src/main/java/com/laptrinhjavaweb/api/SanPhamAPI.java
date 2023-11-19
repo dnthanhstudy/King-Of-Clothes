@@ -29,37 +29,39 @@ public class SanPhamAPI {
 		}
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/pagination")
 	public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
 										@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
-										){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(null, page, limit);
+	){
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<?> findAll(){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(null, null, null);
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(null, null, null, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/search")
-    public ResponseEntity<?> search(
-           @RequestParam(name = "q") String param,
-           @RequestParam(name = "page", defaultValue = "1") Integer page,
-           @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(param, page, limit);
+	public ResponseEntity<?> search(
+			@RequestParam(name = "q") String param,
+			@RequestParam(name = "page", defaultValue = "1") Integer page,
+			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, param, null);
 		if(results == null) {
 			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
 		}
 		return new ResponseEntity<>(results, HttpStatus.OK);
-    }
+	}
 
 	@GetMapping("/filter")
 	public ResponseEntity<?> filter(
-			@RequestParam Map<String, Object> params){
-		List<SanPhamResponse> results = sanPhamService.filters(params);
+			@RequestParam Map<String, Object> params,
+			@RequestParam(name = "page", defaultValue = "1") Integer page,
+			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, params);
 		if(results == null) {
 			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
 		}

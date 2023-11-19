@@ -25,6 +25,8 @@ public class MyUserResponse extends User {
 
     private String maChucVu;
 
+    private String anh;
+
     public Long getId() {
         return id;
     }
@@ -55,5 +57,13 @@ public class MyUserResponse extends User {
 
     public void setMaChucVu(String maChucVu) {
         this.maChucVu = maChucVu;
+    }
+
+    public String getAnh() {
+        return anh;
+    }
+
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
 }
