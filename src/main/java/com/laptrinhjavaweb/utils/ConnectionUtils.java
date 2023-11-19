@@ -11,7 +11,7 @@ public class ConnectionUtils {
 
     public static final String USER = "sa";
 
-    public static final String PASS = "123456";
+    public static final String PASS = "123";
 
     public static final Connection getConection() {
         Connection con = null;

@@ -77,7 +77,7 @@
                 <div class="form-group col-md-12">
                     <input type="file" id="upload-image" name="ImageUpload">
                     <div id="thumbbox">
-                        <img height="300" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
+                        <img height="300" width="300" alt="Thumb image" id="thumbimage"/>
                     </div>
                 </div>
             </div>
@@ -116,6 +116,7 @@
                 $("#ngaySinh").val(formatDateInput(req.ngaySinh));
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
+                $("#thumbimage").attr('src', "/assets/images/nhanvien/" + req.anh);
             },
             error: function (xhr, status, error) {
                 console.log(error);

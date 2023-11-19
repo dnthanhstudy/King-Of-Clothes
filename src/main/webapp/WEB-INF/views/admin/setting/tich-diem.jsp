@@ -129,6 +129,10 @@
 
     $(document).ready(function () {
 
+        if(role === "STAFF"){
+            $('#submit').remove();
+        }
+
         $("#submit").on("click", function (e) {
             e.preventDefault();
 
