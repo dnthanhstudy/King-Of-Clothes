@@ -1,14 +1,23 @@
 package com.laptrinhjavaweb.response;
 
+import lombok.Builder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class MyUserResponse extends User {
     public MyUserResponse(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
     }
+
+    public MyUserResponse() {
+        super(" "," ",new HashSet<>());
+        this.id = -1L;
+    }
+
+    private Long id;
 
     private String ten;
 
@@ -17,6 +26,14 @@ public class MyUserResponse extends User {
     private String maChucVu;
 
     private String anh;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTen() {
         return ten;

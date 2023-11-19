@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "giohang")
 public class GioHangEntity extends BaseEntity{
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "idkhachhang")
 	private KhachHangEntity khachHang;
 	

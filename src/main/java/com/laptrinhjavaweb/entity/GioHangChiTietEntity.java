@@ -1,5 +1,8 @@
 package com.laptrinhjavaweb.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,11 +21,19 @@ public class GioHangChiTietEntity extends BaseEntity{
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
 	
-	@Column(name = "gia")
-	private Double gia;
+//	@Column(name = "gia")
+//	private Double gia;
 	
 	@Column(name = "soluong")
 	private Integer soLuong;
+
+	@JsonProperty("getTongTien")
+	public Double getTongTien(){
+		if (bienThe.getGia()==null){
+			return sanPham.getGia()*soLuong;
+		}
+		return bienThe.getGia()*soLuong;
+	}
 
 	public BienTheEntity getBienThe() {
 		return bienThe;
@@ -48,13 +59,13 @@ public class GioHangChiTietEntity extends BaseEntity{
 		this.sanPham = sanPham;
 	}
 
-	public Double getGia() {
-		return gia;
-	}
-
-	public void setGia(Double gia) {
-		this.gia = gia;
-	}
+//	public Double getGia() {
+//		return gia;
+//	}
+//
+//	public void setGia(Double gia) {
+//		this.gia = gia;
+//	}
 
 	public Integer getSoLuong() {
 		return soLuong;

@@ -53,6 +53,9 @@ public class BienTheEntity extends BaseEntity{
 	}
 
 	public Double getGia() {
+		if (gia==null){
+			return sanPham.getGia();
+		}
 		return gia;
 	}
 

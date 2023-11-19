@@ -21,6 +21,8 @@ public class QuyDoiDiemService implements IQuyDoiDiemService {
     @Autowired
     private QuyDoiDiemConverter quyDoiDiemConverter;
 
+
+    @Override
     public QuyDoiDiemResponse quyDoiDiem(QuyDoiDiemRequest request) {
         QuyDoiDiemEntity quyDoiDiem = new QuyDoiDiemEntity();
         quyDoiDiem.setTien(request.getTien());

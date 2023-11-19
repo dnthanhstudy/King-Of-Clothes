@@ -40,6 +40,7 @@ public class CustomUserDetailService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_"+nhanVienResponse.getChucVu().getMa()));
             myUserResponse = new MyUserResponse(username, nhanVienResponse.getMatKhau(), true, true, true, true, authorities);
             myUserResponse.setMaChucVu(nhanVienResponse.getChucVu().getMa());
+            myUserResponse.setId(nhanVienResponse.getId());
             BeanUtils.copyProperties(nhanVienResponse, myUserResponse);
         }
 
@@ -48,6 +49,7 @@ public class CustomUserDetailService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority("ROLE_CUSTOMER"));
             myUserResponse = new MyUserResponse(username, khacHangResponse.getMatKhau(), true, true, true, true, authorities);
             myUserResponse.setMaChucVu("CUSTOMER");
+            myUserResponse.setId(khacHangResponse.getId());
             BeanUtils.copyProperties(khacHangResponse, myUserResponse);
         }
         if(myUserResponse == null){

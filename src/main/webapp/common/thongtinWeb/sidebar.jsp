@@ -16,7 +16,9 @@
         <div class="nav flex-column ">
             <a href="/web/account" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="bi bi-person-circle"></i> Tài khoản của tôi</a>
             <a href="/web/all" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="bi bi-card-checklist"></i> Đơn mua</a>
-            <a href="/vi-dien-tu" class="text-decoration-none a " style="font-size: 18px"><i class="bi bi-wallet2"></i> Ví điện tử</a>
+            <a href="/vi-dien-tu" class="text-decoration-none a mb-3 " style="font-size: 18px"><i class="bi bi-wallet2"></i> Ví điện tử</a>
+            <a href="/doi-mat-khau" class="text-decoration-none a " style="font-size: 18px"><i class="fas fa-key"></i> Đổi mật khẩu</a>
+
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%--
   Created by IntelliJ IDEA.
   User: asus
@@ -62,42 +63,42 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label  class="form-label">Tên người nhận</label>
-                            <input type="text" class="form-control" id="tennguoinhanform">
+                            <input type="text" class="form-control" name="tenNguoiNhan" id="tennguoinhanform">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">Số điện thoại</label>
-                            <input type="text" id="sdtform" class="form-control" >
+                            <input type="text" id="sdtform" name="soDienThoai" class="form-control" >
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Thành phố</label>
-                            <select style="width: 100%" class="form-control" id="thanhpho"></select>
+                            <select style="width: 100%" class="form-control" name="idThanhPho" id="thanhpho"></select>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">Quận/Huyện</label>
-                            <select class="form-control " style="width: 100%" id="quanhuyen"></select>
+                            <select class="form-control " style="width: 100%" name="idHuyen" id="quanhuyen"></select>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">Xã</label>
-                            <select class="form-control" style="width: 100%" id="xa"></select>
+                            <select class="form-control" style="width: 100%" name="idXa" id="xa"></select>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Số nhà</label>
-                            <textarea class="form-control" id="sonha" rows="3"></textarea>
+                            <textarea class="form-control" name="soNha" id="sonha" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="true"  id="defaultform">
+                            <input class="form-check-input" type="checkbox" name="macDinh" value="true"  id="defaultform">
                             <label class="form-check-label" >
                                 Đặt làm địa chỉ mặc định
                             </label>
@@ -381,7 +382,448 @@
     <input type="hidden" name="currency" value="USD">
     <input type="hidden" name="description" value="Product Description">
     <input type="hidden" name="price"  value="10.00">
-    <input type="hidden" name="idkh"  value="1">
+    <input type="hidden" name="idkh"  value="<%=SecurityUtils.getPrincipal().getId()%>">
     <input type="hidden" name="idttmuahang" value="" id="idttmuahang">
     <button id="submidpaypal" type="submit">Pay with PayPal</button>
 </form>
+<script>
+    var loaiDatHang = 1;
+    let idkh =  <%=SecurityUtils.getPrincipal().getId()%>;
+    // Ẩn thanh toán khi nhận hàng khi load lại trang
+    document.querySelector(".thanhtoan").style.display = "none";
+
+    //click Ví PalPay
+    document.getElementById("paypalButton").addEventListener("click", function() {
+        // Ẩn Thanh toán khi nhận hàng
+        document.querySelector(".thanhtoan").style.display = "none";
+        // Hiển thị radio của MB Bank và VP Bank
+        document.getElementById("mbBankRadio").style.display = "block";
+        document.getElementById("vpBankRadio").style.display = "block";
+        loaiDatHang = 1;
+    });
+    //click thanh toán khi nhaanh hàng
+    document.getElementById("codButton").addEventListener("click", function() {
+        // Hiển thị thanh toán khi nhận hàng
+        document.querySelector(".thanhtoan").style.display = "block";
+        // Ẩn radio MB Bank và VP Bank
+        document.getElementById("mbBankRadio").style.display = "none";
+        document.getElementById("vpBankRadio").style.display = "none";
+        loaiDatHang = 2;
+    });
+
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+    var idtt = -1;
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+    function themDiaChi(){
+        idtt = -1;
+        $("#tennguoinhanform").val('');
+        $("#sdtform").val('')
+            $("#thanhpho").val(1).trigger('change.select2')
+            $("#quanhuyen").val(1).trigger('change.select2')
+            $("#xa").val(1).trigger('change.select2')
+            $("#sonha").val('')
+            $("#defaultform").prop('checked', true);
+    }
+    function hoanThanh(){
+        if (idtt==-1){
+            themDiaChiForm();
+        }else{
+            capNhatDiaChiForm()
+        }
+    }
+
+    function capNhatDiaChiForm(){
+        var idttmuahang  = idtt;
+        var diaChi = $("#sonha").val()+getText($("#xa :selected"))+getText($("#quanhuyen :selected"))+getText($("#thanhpho :selected"));
+        var data = diaChiForm();
+        $.ajax({
+            url: '/api/user/ttgh/update/'+idttmuahang,
+            method: 'POST',
+            contentType: 'application/json',
+            data: data,
+            success: function(response) {
+                dsthongtinmuahang()
+                getAddressDefault()
+                showSuccess(response.data);
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+    function getText(val){
+        var data = val.text();
+        return ", "+ data;
+    }
+    function diaChiForm(){
+        var diaChi = $("#sonha").val()+getText($("#xa :selected"))+getText($("#quanhuyen :selected"))+getText($("#thanhpho :selected"))+", Vietnam";
+        return JSON.stringify({
+            tenNguoiNhan: $("#tennguoinhanform").val(),
+            soDienThoai : $("#sdtform").val(),
+            idThanhPho : $("#thanhpho").val(),
+            idHuyen : $("#quanhuyen").val(),
+            idXa : $("#xa").val(),
+            soNha : $("#sonha").val(),
+            diaChi:diaChi,
+            macDinh : $("#defaultform").val()
+        });
+    }
+    function themDiaChiForm(){
+        var data = diaChiForm();
+        $.ajax({
+            url: '/api/user/ttgh/insert/'+idkh,
+            method: 'POST',
+            contentType: 'application/json',
+            data: data,
+            success: function(response) {
+                dsthongtinmuahang()
+                getAddressDefault()
+                showSuccess(response.data);
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+
+    }
+
+    async function findHuyen(idThanhPho) {
+        await $.ajax({
+            url: '/api/user/ttgh/huyen/'+idThanhPho,
+            method: 'GET',
+            success: function(req) {
+                var data = req.data;
+                var huyen =  $("#quanhuyen")
+                huyen.empty();
+                data.forEach(function (param) {
+                    huyen.append($('<option>', {
+                        value: param.DistrictID,
+                        text: param.DistrictName
+                    }));
+                })
+                huyen.select2({
+                    dropdownParent: $('#formdiachi')
+                });
+                findXa(data[0].DistrictID);
+
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    async function findXa(idHuyen) {
+        await  $.ajax({
+            url: '/api/user/ttgh/xa/'+idHuyen,
+            method: 'GET',
+            success: function(req) {
+                var data = req.data;
+                var xa =  $("#xa")
+                xa.empty();
+                // data = data.sort((a,b)=> (order.indexOf(a.ProvinceName) - order.indexOf(b.ProvinceName)))
+                data.forEach(function (param) {
+                    xa.append($('<option>', {
+                        value: param.WardCode,
+                        text: param.WardName
+                    }));
+                })
+                xa.select2({
+                    dropdownParent: $('#formdiachi')
+                });
+                xa.trigger("change")
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    $('#thanhpho').on('change', async function () {
+        var value = $(this).val()
+        await findHuyen(value);
+
+    });
+    $('#quanhuyen').on('change',async function() {
+        var value = $(this).val()
+        await findXa(value);
+
+    });
+    function setShipNull(){
+        $("#tennguoinhan").text("");
+        $("#diachi").text("Vui lòng thêm địa chỉ");
+        $("#defaultdc").text("");
+        $(".sotiengiaohang").text("");
+        $("#tongthanhtoan").text("");
+    }
+    //Hiển thị thông tin mua hàng mặc định
+    function getAddressDefault(){
+        $.ajax({
+            url: '/api/user/ttgh/default/'+idkh,
+            method: 'GET',
+            success: async function (req) {
+
+                var data = req.data;
+                dsthongtinmuahang();
+                if (!data){
+                    setShipNull();
+                    return;
+                }
+                $("#idttmuahang").val(data.id);
+                $("#tennguoinhan").html(
+                    `
+                   \${data.tenNguoiNhan}(\${data.sdt})
+                   `
+                );
+                // $("#sdt").html(data.sdt);
+                $("#diachi").html(data.diaChi);
+                getSoTienVanChuyen(data.id);
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    function xacNhanDiaChi() {
+        var value = $('input[name=diaChiNhanHang]:checked').val();
+        $.ajax({
+            url: '/api/user/ttgh/findThongTinMuaHangById/'+value,
+            method: 'GET',
+            success: async function (req) {
+                var data = req.data;
+                $("#idttmuahang").val(data.id);
+                $("#tennguoinhan").html(
+                    `
+                   \${data.tenNguoiNhan}(\${data.sdt})
+                   `
+                );
+                $("#defaultdc").html(data.trangThai);
+                getSoTienVanChuyen(data.id)
+
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+
+    getAddressDefault()
+    //Thành phố
+    $.ajax({
+        url: '/api/user/ttgh/thanhpho',
+        method: 'GET',
+        success: function(req) {
+            var data = req.data;
+            var thanhpho =  $("#thanhpho")
+            thanhpho.empty();
+            // data = data.sort((a,b)=> (order.indexOf(a.ProvinceName) - order.indexOf(b.ProvinceName)))
+            data.forEach(function (param) {
+                thanhpho.append($('<option>', {
+                    value: param.ProvinceID,
+                    text: param.ProvinceName
+                }));
+            })
+            $('#thanhpho').select2({
+                dropdownParent: $('#formdiachi')
+            });
+        },
+        error: function(xhr, status, error) {
+            console.log("Có lỗi xảy ra")
+        }
+    });
+
+
+    function findThongTin(idttmh){
+        idtt = idttmh;
+        $.ajax({
+            url: '/api/user/ttgh/findThongTinMuaHangById/'+idtt,
+            method: 'GET',
+            success: async function (req) {
+                var data = req.data;
+                $("#tennguoinhanform").val(data.tenNguoiNhan);
+                $("#sdtform").val(data.sdt),
+                    $("#thanhpho").val(data.idThanhPho).change()
+                await findHuyen(data.idThanhPho);
+                $("#quanhuyen").val(data.idHuyen).change()
+                await findXa(data.idHuyen);
+                $("#xa").val(data.idXa).change()
+                $("#sonha").val(data.soNha)
+                $("#defaultform").prop( "checked", data.macDinh )
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    function convertMilisToDate(milis){
+        var date =  new Date(milis);
+        return date.getDay()+ " Th"+date.getMonth()
+    }
+    function getSoTienVanChuyen(idtt) {
+        $.ajax({
+            url: 'api/user/giaohang/phiship?idttgh='+idtt+'&idkh='+idkh,
+            method: 'GET',
+            success: async function (data) {
+                $("#thoigiandukien").text(convertMilisToDate(data.expected_delivery_time))
+                $(".sotiengiaohang").text(data.total_fee+"₫");
+                tongThanhToan();
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+                $(".sotiengiaohang").text("");
+                $("#tongthanhtoan").text("");
+            }
+        });
+    }
+    async function  dsthongtinmuahang (){
+        await $.ajax({
+            url: '/api/user/ttgh/dsthongtingiaohang/'+idkh,
+            method: 'GET',
+            success: function(req) {
+                var diachi = $("#alldiachi");
+                diachi.empty();
+                var data=  req.data;
+                if (!data){
+                    console.log("Hi")
+                    return;
+                }
+                $("#tongsanpham").html(data.length);
+                data.forEach(function (data){
+                    var html= `
+           <div class="col-10">
+                        <div class="ms-3" style="border-bottom: #6C757D">
+                            <input class="form-check-input" type="radio" name="diaChiNhanHang" value="\${data.id}" aria-label="...">
+                            <div class="hstack gap-3 ms-3">
+                                <div>
+                                    <span class="text-dark">\${data.tenNguoiNhan}</span>
+                                </div>
+                                <div class="vr" style="height: 30px"></div>
+                                <div >
+                                    <span class="">\${data.sdt}</span>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <p class="">\${data.diaChi}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button class="text-decoration-none" style="color: #00aced" onclick="findThongTin(\${data.id})" data-bs-target="#formdiachi" data-bs-toggle="modal">Cập nhật</button>
+                    </div>
+           `;
+                    diachi.append(html);
+                })
+                $(`input:radio[name=diaChiNhanHang]:first`).prop('checked', true);
+            },
+            error: function(xhr, status, error) {
+                alert('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+    function ghct(){
+        $.ajax({
+            url: '/api/hoadon/hdct/'+idkh,
+            method: 'GET',
+            success: function(req) {
+                var data = req.data;
+                console.log(data);
+                var tbody =$("#hdct");
+                tbody.empty();
+                tongTienTheoHoaDon(data[0].idhd);
+                data.forEach(function (custom){
+                    var html = `
+                        <div class="row mt-3" style="border-bottom: 1px solid #dedede">
+                    <div class="col-5">
+                        <div class="mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-2">
+                                    <img src="/template/web/img/anh2.png" class="img-fluid rounded-start " alt="...">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h6 class="card-title">\${custom.tenSanPham}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mt-3">
+                        <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: \${custom.tenBienThe}</h6>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <h6 class="card-title">\${custom.giaTien}</h6>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <h6 class="card-title">\${custom.soLuong}</h6>
+                    </div>
+                    <div class="col-1 mt-3">
+                        <h6 class="card-title">\${custom.tongTien}</h6>
+                    </div>
+                </div>
+                    `;
+                    tbody.append(html);
+                })
+
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+
+    function tongTienTheoHoaDon(idhd){
+        console.log(idhd)
+        $.ajax({
+            url: 'api/user/giaohang/tongtienhd/'+idhd,
+            method: 'GET',
+            success: function (req) {
+                $(".tongtienghct").html(req.data+"₫");
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    ghct()
+    function tongThanhToan() {
+        var tongtien = $(".tongtienghct:first").text(); // Lấy giá trị từ phần tử đầu tiên
+        var tienship = $(".sotiengiaohang:first").text(); // Lấy giá trị từ phần tử đầu tiên
+
+        // Lấy chuỗi từ đầu đến length - 1
+        var tongtienSubstring = Number(tongtien.slice(0, tongtien.length - 1));
+        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
+
+        console.log(tongtienSubstring);
+        console.log(tienshipSubstring);
+
+        $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
+    }
+    tongThanhToan();
+    function datHang(){
+        if (loaiDatHang === 1){
+            var payment = $('input[name="payment"]:checked').val();
+            if (payment==="paypal"){
+                callPayPal();
+            }
+        }
+    }
+    function callPayPal(){
+        // var order = {
+        //     method: 'paypal',
+        //     intent: 'sale',
+        //     currency: 'USD',
+        //     description: 'Product Description',
+        //     price: '10.00'
+        // };
+        var tien = $("#tongthanhtoan").text();
+        var tienshipSubstring = Number(tien.slice(0, tien.length - 1));
+
+        $("input[name='price']").val(tienshipSubstring/23000);
+
+        $("#submidpaypal").click();
+    }
+</script>
