@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -13,8 +14,6 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "slug", unique = true)
 	private String slug;
-
-
 
 	@Column(name = "gia")
 	private Double gia;
@@ -220,4 +219,15 @@ public class SanPhamEntity extends BaseEntity{
 	public void setThuocTinhEntities(List<ThuocTinhEntity> thuocTinhEntities) {
 		this.thuocTinhEntities = thuocTinhEntities;
 	}
+
+//	public Object getDsThuocTinhSanPham(){
+//		List<String>
+//		Map<String,>
+//
+//		for (BienTheEntity bienThe :bienTheEntities){
+//			for (GiaTriThuocTinhBienTheEntity giaTriThuocTinhBienThe : bienThe.getGiaTriThuocTinhBienTheEntities()){
+//				giaTriThuocTinhBienThe.
+//			}
+//		}
+//	}
 }

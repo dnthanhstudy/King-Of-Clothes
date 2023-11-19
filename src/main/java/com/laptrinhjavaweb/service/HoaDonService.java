@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 
@@ -17,4 +18,5 @@ public interface HoaDonService {
 
     List<HoaDonResponse> dsHoaDonOnline();
 
+    String thayDoiTrangThaiHoaDon(Long idhd, String trangThai);
 }

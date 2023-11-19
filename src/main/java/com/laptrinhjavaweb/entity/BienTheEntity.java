@@ -110,4 +110,5 @@ public class BienTheEntity extends BaseEntity{
 	public void setHoaDonChiTietEntities(List<HoaDonChiTietEntity> hoaDonChiTietEntities) {
 		this.hoaDonChiTietEntities = hoaDonChiTietEntities;
 	}
+
 }

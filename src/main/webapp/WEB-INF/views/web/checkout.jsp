@@ -819,7 +819,7 @@
             url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}`,
             method: 'GET',
             success: function (req) {
-                console.log(req)
+                showSuccess("Thanh toán thành công");
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")

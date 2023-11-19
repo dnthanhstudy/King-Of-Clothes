@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
@@ -73,6 +74,20 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public List<HoaDonResponse> dsHoaDonOnline() {
         return hoaDonRepository.dsHoaDonOnline();
+    }
+
+    @Override
+    public String thayDoiTrangThaiHoaDon(Long idhd, String trangThai) {
+        try{
+            HoaDonEntity hoaDon = hoaDonRepository.findById(idhd).orElse(null);
+            assert hoaDon != null;
+            // TrangThaiHoaDonEnum
+            hoaDon.setTrangThai(trangThai);
+            hoaDonRepository.save(hoaDon);
+            return "Thay đổi trạng thái thành công";
+        }catch (Exception e){
+            return "Có lỗi xảy ra";
+        }
     }
 
 

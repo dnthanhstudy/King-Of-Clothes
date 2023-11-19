@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.service.impl.banhang;
 
+import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
+import com.laptrinhjavaweb.service.impl.HoaDonChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +10,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class HoaDonChiTietServiceImpl
-        //implements HoaDonChiTietService
+public class HoaDonChiTietServiceImpl implements HoaDonChiTietService
 {
 
     @Autowired
     HoaDonChiTietRepository hoaDonChiTietRepository;
+
+    public List<HoaDonChiTietResponse> getHoaDonChiTiet(Long idhd){
+        return hoaDonChiTietRepository.dsHoaDonChiTietByIdHoaDon(idhd);
+    }
 
 //    @Autowired
 //    HoaDonChiTietConverter hoaDonChiTietConverter;

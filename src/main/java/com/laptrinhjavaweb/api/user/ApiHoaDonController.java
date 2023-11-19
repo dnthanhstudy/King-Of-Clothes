@@ -33,10 +33,16 @@ public class ApiHoaDonController {
     }
 
 
+    @GetMapping("/thaydoitrangthai")
+    public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,@RequestParam("trangthai")String trangThai){
+       return  hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai);
+    }
+
     @GetMapping("/dathangnhanhang")
     public ResponseObject datHangNhanHang(@RequestParam(name = "idkh")Long idkh,
                                           @RequestParam(name = "ttgh")Long ttgh){
         HoaDonEntity hoaDon = giaoHangService.thanhToan(idkh,ttgh,"THANHTOANNHANHANG");
         return new ResponseObject("Đặt hàng thành công");
     }
+
 }
