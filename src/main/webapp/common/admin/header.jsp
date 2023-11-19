@@ -722,10 +722,10 @@
                         </li>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="<c:url value='/template/admin/images/profile/pic1.jpg'/>" width="20" alt="">
+                                <img src="/assets/images/nhanvien/<%=SecurityUtils.getPrincipal().getAnh()%>" width="20" alt="">
                                 <div class="header-info">
                                     <span><%=SecurityUtils.getPrincipal().getTen()%></span>
-                                    <small><%=SecurityUtils.getPrincipal().getMa()%></small>
+                                    <small class="user-name-login"><%=SecurityUtils.getPrincipal().getMa()%></small>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">

@@ -51,7 +51,7 @@ public class SanPhamService implements ISanPhamService{
 	private IBienTheService bienTheService;
 
 	@Override
-	public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+	public Map<String, Object> pagingOrSearchOrFindAllOrFilter(Integer pageCurrent, Integer limit, String param, Map<String, Object> params) {
 		Map<String, Object> results = new HashMap<>();
 		Boolean isAll = false;
 		Page<SanPhamEntity> page = null;
@@ -62,8 +62,17 @@ public class SanPhamService implements ISanPhamService{
 			page = sanPhamRepository.findAll(wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-			if(param != null) {
-				List<SanPhamEntity> listSanPhamEntity = sanPhamRepository.seachs(param);
+			if(param != null || params != null) {
+				List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
+				if(param != null) {
+					listSanPhamEntity = sanPhamRepository.seachs(param);
+				}else {
+					List<Long> ids = sanPhamRepository.filters(params);
+					for (Long id : ids) {
+						SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
+						listSanPhamEntity.add(sanPhamEntity);
+					}
+				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();
 				int end = Math.min((start + pageable.getPageSize()), sizeOfListSanPhamEntity);
@@ -77,7 +86,7 @@ public class SanPhamService implements ISanPhamService{
 		listSanPhamResponse = page.getContent().stream().map(
 				item -> sanPhamConvert.convertToResponse(item)
 		).collect(Collectors.toList());
-		
+
 		if(listSanPhamResponse.isEmpty()) {
 			return null;
 		}
@@ -91,6 +100,7 @@ public class SanPhamService implements ISanPhamService{
 		return results;
 	}
 
+
 	@Override
 	public SanPhamResponse findBySlug(String slug) {
 		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
@@ -98,21 +108,6 @@ public class SanPhamService implements ISanPhamService{
 			return null;
 		}
 		return sanPhamConvert.convertToResponse(sanPhamEntity);
-	}
-
-	@Override
-	public List<SanPhamResponse> filters(Map<String, Object> params) {
-		List<Long> ids = sanPhamRepository.filters(params);
-		if(ids.isEmpty()) {
-			return null;
-		}
-		List<SanPhamResponse> results = new ArrayList<>();
-		for (Long id : ids) {
-			SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
-			SanPhamResponse sanPhamResponse = sanPhamConvert.convertToResponse(sanPhamEntity);
-			results.add(sanPhamResponse);
-		}
-		return results;
 	}
 
 	@SuppressWarnings("unused")
@@ -161,5 +156,4 @@ public class SanPhamService implements ISanPhamService{
 			throw new RuntimeException("Error");
 		}
 	}
-
 }

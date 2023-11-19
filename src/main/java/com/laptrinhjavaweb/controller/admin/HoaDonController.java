@@ -5,20 +5,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/giaodich")
+@RequestMapping("/admin/giao-dich")
 public class HoaDonController {
 
-    @GetMapping("/hoadon")
+    @GetMapping("/hoa-don")
     public String hoadon(){
         return "admin/giaodich/hoa-don";
     }
 
-    @GetMapping("/themhoadon")
+    @GetMapping("/create")
     public String themhoadon(){
-        return "admin/giaodich//hoa-don-create";
+        return "admin/giaodich/hoa-don-create";
     }
 
-    @GetMapping("/hoa-don-detail/{id}")
+    @GetMapping("/detail/{ma}")
     public String detailhoadon(){
         return "admin/giaodich/hoa-don-detail";
     }
