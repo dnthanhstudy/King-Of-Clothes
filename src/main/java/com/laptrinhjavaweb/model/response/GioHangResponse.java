@@ -37,6 +37,6 @@ public interface GioHangResponse {
     String getTenSanPham();
 
     @Value("#{target.bienThe.sanPham.slug}")
-    List<GiaTriThuocTinhBienTheEntity> getSlugSanPham();
+    String getSlugSanPham();
 
 }

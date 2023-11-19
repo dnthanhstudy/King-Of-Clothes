@@ -226,109 +226,141 @@
         loadDataCheckbox();
 
     })
+   async function getThuocTinhSanPham(slug){
+        let thuocTinhSanPham ;
+       await $.ajax({
+            url: '/api/san-pham/'+slug,
+            method: 'GET',
+            success: function(req) {
+                thuocTinhSanPham = req.thuocTinh;
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+       return thuocTinhSanPham;
+    }
+    function getDsBienThe(thuocTinhSanPham) {
+        let html = '';
+        thuocTinhSanPham.forEach(function (item) {
+            html+=`
+        <li>
+                                            <div class="color-selector">
+                                                <label>\${item.ten}:</label>
+                <div class="color-buttons">
+        `;
+            item.giaTriThuocTinh.forEach(function (thuoctinhchitiet) {
+                var ten = thuoctinhchitiet.giaTri;
+                var id1 = thuoctinhchitiet.id;
+                html+=`
+                    <button class="color-button button-giatri giatri-\${item.id}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
+                `
+            });
+            html+=`
+            </div>
+                                            </div>
+                                        </li>
+                `;
+        })
+        return html;
+    }
     async function ghct(){
         await  $.ajax({
             url: '/api/user/giohang/'+idkh,
             method: 'GET',
             success: function(data) {
                 console.log(data)
-                // var tbody =$("#cart");
-                // tbody.empty();
-//                 data.forEach(function (sp){
-//                         var html =
-//                             `
-// <div class="row mt-2" style="border-bottom: 1px solid #dedede">
-//     <div class="col-5">
-//         <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-//             <input type="checkbox" class="custom-control-input" checked id="price-2">
-//             <label class="custom-control-label" for="price-2">
-//                 <div class="mb-3" style="max-width: 540px;">
-//                     <div class="row g-0">
-//                         <div class="col-lg-3">
-//                             <img src="/template/web/img/anh3.png" class="img-fluid rounded-start" alt="...">
-//                         </div>
-//                         <div class="col-lg-9">
-//                             <div class="card-body">
-//                                 <h5 class="card-title">\${sp.tenSanPham}</h5>
-//                                 <div class="btn-group">
-//                                                     <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
-//                                                         Phân loại hàng
-//                                                     </span>
-//                                     <ul class="dropdown-menu p-3">
-//                                         <li>
-//                                             <div class="color-selector">
-//                                                 <label>Color:</label>
-//                                                 <div class="color-buttons">
-//                                                     <button class="color-button" data-color="black">Black</button>
-//                                                     <button class="color-button" data-color="red">Red</button>
-//                                                     <button class="color-button" data-color="blue">BLue</button>
-//                                                 </div>
-//                                             </div>
-//                                         </li>
-//                                         <li>
-//                                             <div class="color-selector">
-//                                                 <label>Size:</label>
-//                                                 <div class="color-buttons">
-//                                                     <button class="size-button" data-color="s">Size S</button>
-//                                                     <button class="size-button" data-color="m">Size M</button>
-//                                                     <button class="size-button" data-color="l">Size L</button>
-//                                                     <button class="size-button" data-color="xl">Size XL</button>
-//                                                     <button class="size-button" data-color="xxl">Size XXL</button>
-//                                                 </div>
-//                                             </div>
-//                                         </li>
-//                                         <li class="text-right ">
-//                                             <button type="button" class="btn btn-light" id="cancelButton" >Cancel</button>
-//                                             <button type="button" class="btn text-light" style="background-color: #C3817B" >Submit</button>
-//                                         </li>
-//                                     </ul>
-//
-//                                 </div>
-//                                 <p id="selectedItems">\${sp.tenBienThe}</p>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </label>
-//         </div>
-//     </div>
-//     <div class="col-2">
-//                     <span>\${sp.giaTien}₫</span>
-//                 </div>
-//  <div class="col-2">
-//                     <span>
-//                         <div class="input-group " style="width: 100px;">
-//                                     <div class="input-group-btn">
-//                                         <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
-//                                             <i class="fa fa-minus"></i>
-//                                         </button>
-//                                     </div>
-//                                     <input type="text" class="form-control form-control-sm bg-secondary text-center" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
-//                                     <div class="input-group-btn">
-//                                         <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
-//                                             <i class="fa fa-plus"></i>
-//                                         </button>
-//                                     </div>
-//                                 </div>
-//                     </span>
-//                 </div>
-//     <div class="col-2">
-//         <span id="tongtien-\${sp.idGhct}">\${sp.tongTien}</span>
-//     </div>
-//     <div class="col-1">
-//         <a>Xóa</a>
-//     </div>
-// </div>
-//
-//                             `;
-//                         tbody.append(html);
-//                     })
+                var tbody =$("#cart");
+                tbody.empty();
+                 data.forEach(async function (sp){
+                     const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
+                     console.log(thuocTinhSanPham)
+                     const htmlthuoctinh = getDsBienThe(thuocTinhSanPham);
+                        var html =
+                            `
+<div class="row mt-2" style="border-bottom: 1px solid #dedede">
+    <div class="col-5">
+        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+            <input type="checkbox" class="custom-control-input" checked id="price-2">
+            <label class="custom-control-label" for="price-2">
+                <div class="mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-lg-3">
+                            <img src="/template/web/img/anh3.png" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="card-body">
+                                <h5 class="card-title">\${sp.tenSanPham}</h5>
+                                <div class="btn-group">
+                                                    <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
+                                                        Phân loại hàng
+                                                    </span>
+                                    <ul class="dropdown-menu p-3">
+\${htmlthuoctinh}
+                                        <li class="text-right ">
+                                            <button type="button" class="btn btn-light" id="cancelButton" >Cancel</button>
+                                            <button type="button" class="btn text-light" style="background-color: #C3817B" >Submit</button>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <p id="selectedItems">\${sp.tenBienThe}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+    <div class="col-2">
+                    <span>\${sp.giaTien}₫</span>
+                </div>
+ <div class="col-2">
+                    <span>
+                        <div class="input-group " style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                    </span>
+                </div>
+    <div class="col-2">
+        <span id="tongtien-\${sp.idGhct}">\${sp.tongTien}</span>
+    </div>
+    <div class="col-1">
+        <a>Xóa</a>
+    </div>
+</div>
+
+                            `;
+                        tbody.append(html);
+                     })
+
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
             }
         });
     }
+
+    // $(document).on("click",'.giatri-1',function() {
+    //     $('.giatri-1').removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1
+    //     $(this).addClass('active'); // Thêm lớp active cho button được click
+    // });
+    $(document).on("click", '.button-giatri', function() {
+        var giatri = $(this).data('thuoctinh'); // Lấy giá trị của data-thuoctinh từ button được click
+
+        $('.giatri-' + giatri).removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1
+        $(this).addClass('active'); // Thêm lớp active cho các button có giatri-1 tương ứng
+    });
 
     function tongTien(){
         $.ajax({
