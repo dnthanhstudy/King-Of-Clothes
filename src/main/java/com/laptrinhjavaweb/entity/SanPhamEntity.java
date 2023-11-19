@@ -13,7 +13,9 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "slug", unique = true)
 	private String slug;
-	
+
+
+
 	@Column(name = "gia")
 	private Double gia;
 

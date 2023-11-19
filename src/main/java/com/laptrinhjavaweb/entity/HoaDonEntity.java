@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
+
 import javax.persistence.*;
 
 import java.sql.Date;
@@ -45,7 +47,11 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@Column(name = "diachi", columnDefinition = "nvarchar(255)")
 	private String diaChi;
-	
+
+	@Column(name = "tienship")
+	private Double tienShip;
+
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;
@@ -57,6 +63,8 @@ public class HoaDonEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idlydohuydon")
 	private LyDoHuyDonEntity lyDoHuyDon;
+
+
 	
 	@OneToMany(mappedBy = "hoaDon")
 	private List<ChiTietCaLamEntity> chiTietCaLamEntities = new ArrayList<>();
@@ -66,6 +74,37 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
 	private List<LichSuTichDiemEntity> lichSuTichDiemEntities = new ArrayList<>();
+
+	public void setTrangThai(TrangThaiHoaDonEnum trangThai){
+		if (trangThai == TrangThaiHoaDonEnum.CHUANBIDATHANNG){
+			super.setTrangThai("CHUANBIDATHANG");
+		} else if (trangThai==TrangThaiHoaDonEnum.CHONHANDON){
+			super.setTrangThai("CHONHANDON");
+		}else if (trangThai==TrangThaiHoaDonEnum.DANHANDON){
+			super.setTrangThai("DANHANDON");
+		}else if (trangThai==TrangThaiHoaDonEnum.DANGVANCHUYEN){
+			super.setTrangThai("DANGVANCHUYEN");
+		}else if (trangThai==TrangThaiHoaDonEnum.DANHANHANG){
+			super.setTrangThai("DANHANHANG");
+		}
+	}
+
+	public void setThongTinDatHang(ThongTinMuaHangEntity thongTinMuaHang){
+		diaChi = thongTinMuaHang.getDiaChi();
+		sodienthoai = thongTinMuaHang.getSoDienThoai();
+		tenNguoiNhan = thongTinMuaHang.getTen();
+//		StringBuilder stringBuilder = new StringBuilder();
+//		stringBuilder.append(thongTinMuaHang.getIdXa()).append(" ").append(thongTinMuaHang.getIdHuyen()).append(" ").append(thongTinMuaHang.getIdThanhPho());
+//		diaChiId = stringBuilder.toString();
+	}
+
+	public Double getTienShip() {
+		return tienShip;
+	}
+
+	public void setTienShip(Double tienShip) {
+		this.tienShip = tienShip;
+	}
 
 	public String getMa() {
 		return ma;
@@ -84,7 +123,10 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public Double getTongTienHang() {
-		return tongTienHang;
+		if (phuongThucThanhToan.equals("CHUYENKHOAN")){
+			return 0D;
+		}
+		return tienShip==null?tongTienHang:tienShip+tongTienHang;
 	}
 
 	public void setTongTienHang(Double tongTienHang) {

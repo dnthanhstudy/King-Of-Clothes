@@ -118,22 +118,22 @@
             e.preventDefault();
 
             var tienQuyDiem = {
-                tien: $("form#tien-quy-ra-diem input[name='tien']").val(),
-                diem: $("form#tien-quy-ra-diem input[name='diem']").val(),
-                loai: $("form#tien-quy-ra-diem input[name='loai']").val()
+                tien: $("#tien-quy-ra-diem input[name='tien']").val(),
+                diem: $("#tien-quy-ra-diem input[name='diem']").val(),
+                loai: $("#tien-quy-ra-diem input[name='loai']").val()
             };
 
             var diemQuyTien = {
-                tien: $("form#diem-quy-ra-tien input[name='tien']").val(),
-                diem: $("form#diem-quy-ra-tien input[name='diem']").val(),
-                loai: $("form#diem-quy-ra-tien input[name='loai']").val()
+                tien: $("#diem-quy-ra-tien input[name='tien']").val(),
+                diem: $("#diem-quy-ra-tien input[name='diem']").val(),
+                loai: $("#diem-quy-ra-tien input[name='loai']").val()
             };
 
             var formData = {
                 tienQuyDiem: tienQuyDiem,
                 diemQuyTien: diemQuyTien
             };
-
+            console.log(formData);
             $.ajax({
                 url: '/api/quy-doi-diem',
                 type: "POST",

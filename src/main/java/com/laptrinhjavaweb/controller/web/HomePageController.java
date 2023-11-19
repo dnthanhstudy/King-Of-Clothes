@@ -83,5 +83,9 @@ public class HomePageController {
         return "web/403";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return  "web/test";
+    }
 }
 

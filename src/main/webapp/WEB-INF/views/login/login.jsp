@@ -69,7 +69,8 @@
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail">Your email</label>
 
-                                <input type="text" class="form-control form-control-lg" name="j_username" id="signinSrEmail" tabindex="1" placeholder="Mã khách hàng" aria-label="Mã khách hàng" required="" data-msg="Please enter a valid email address.">
+                                <input type="text" class="form-control form-control-lg" value="0987654322"
+                                       name="j_username" id="signinSrEmail" tabindex="1" placeholder="Mã khách hàng" aria-label="Mã khách hàng" required="" data-msg="Please enter a valid email address.">
                             </div>
                             <!-- End Form Group -->
 
@@ -88,7 +89,7 @@
                                  "defaultClass": "tio-hidden-outlined",
                                  "showClass": "tio-visible-outlined",
                                  "classChangeTarget": "#changePassIcon"
-                               }'>
+                               }' value="123456">
                                     <div id="changePassTarget" class="input-group-append">
                                         <a class="input-group-text" href="javascript:;">
                                             <i id="changePassIcon" class="tio-visible-outlined"></i>
