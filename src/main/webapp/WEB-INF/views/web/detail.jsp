@@ -229,7 +229,7 @@
             url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(","),
             method: 'GET',
             success: function (req) {
-                console.log(req);
+                showSuccess("Thêm vào giỏ hàng thành công")
             },
             error: function(xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);

@@ -17,6 +17,7 @@ import com.laptrinhjavaweb.support.supportgiaohang.DateUtil;
 import com.laptrinhjavaweb.support.supportgiaohang.SanPhamGhnApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
 
     @Override
+    @Transactional
     public HoaDonEntity thanhToan(Long idkh,Long idttgh ,String pttt) {
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).get();
         ThongTinMuaHangEntity thongTinMuaHang = thongTinMuaHangService.findById(idttgh);

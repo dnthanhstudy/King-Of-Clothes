@@ -107,7 +107,7 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTiet.setTrangThai("DELETE");
             hoaDonChiTietRepository.save(hoaDonChiTiet);
         }
-        return new ResponseObject("Tạo hoá đơn thành công");
+        return new ResponseObject("Đặt hàng thành công");
     }
 
 //    @Override

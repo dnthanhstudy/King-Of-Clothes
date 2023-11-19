@@ -776,7 +776,6 @@
     }
 
     function tongTienTheoHoaDon(idhd){
-        console.log(idhd)
         $.ajax({
             url: 'api/user/giaohang/tongtienhd/'+idhd,
             method: 'GET',
@@ -809,16 +808,25 @@
             if (payment==="paypal"){
                 callPayPal();
             }
+        }else{
+            thanhToanNhanHang();
         }
     }
+    function thanhToanNhanHang(){
+    //    http://localhost:8080/api/hoadon/dathangnhanhang
+        var idttmh = $("#idttmuahang").val();
+        $.ajax({
+            url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}`,
+            method: 'GET',
+            success: function (req) {
+                console.log(req)
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
     function callPayPal(){
-        // var order = {
-        //     method: 'paypal',
-        //     intent: 'sale',
-        //     currency: 'USD',
-        //     description: 'Product Description',
-        //     price: '10.00'
-        // };
         var tien = $("#tongthanhtoan").text();
         var tienshipSubstring = Number(tien.slice(0, tien.length - 1));
 

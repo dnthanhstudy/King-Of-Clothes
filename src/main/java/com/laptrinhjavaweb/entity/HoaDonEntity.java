@@ -149,7 +149,7 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Chuyển khoản":"Tiền mặt";
+		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Chuyển khoản":"Thanh toán khi nhận hàng";
 	}
 
 	public void setPhuongThucThanhToan(String phuongThucThanhToan) {

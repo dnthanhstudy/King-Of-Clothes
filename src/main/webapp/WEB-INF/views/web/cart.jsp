@@ -338,7 +338,7 @@
             }
         });
     }
-    function muahang() {
+        function muahang() {
         var listsp = getValByCheckbox();
         if (listsp.length == 0) {
             showError("Bạn chưa chọn sản phẩm để mua")
@@ -348,15 +348,18 @@
         var data = JSON.stringify({
             dsghct: listspAsNumbers,
         });
+console.log(data);
         $.ajax({
             url: '/api/user/giohang/dathang/' + idkh,
             method: 'POST',
             contentType: 'application/json',
             data: data,
             success: function (req) {
-                window.location.href = "/checkout"
+                console.log(req)
+               // window.location.href = "/checkout"
             },
             error: function (xhr, status, error) {
+                console.log(error)
                 showError("Có lỗi xảy ra");
             }
         });
