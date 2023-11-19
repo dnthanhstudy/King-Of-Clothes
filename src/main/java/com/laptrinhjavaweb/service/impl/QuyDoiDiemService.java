@@ -3,14 +3,14 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.convert.QuyDoiDiemConverter;
 import com.laptrinhjavaweb.entity.QuyDoiDiemEntity;
 import com.laptrinhjavaweb.repository.QuyDoiDiemRepository;
-import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.QuyDoiDiemResponse;
 import com.laptrinhjavaweb.resquest.QuyDoiDiemRequest;
 import com.laptrinhjavaweb.service.IQuyDoiDiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuyDoiDiemService implements IQuyDoiDiemService {
@@ -23,27 +23,32 @@ public class QuyDoiDiemService implements IQuyDoiDiemService {
 
 
     @Override
-    public QuyDoiDiemResponse quyDoiDiem(QuyDoiDiemRequest request) {
-        QuyDoiDiemEntity quyDoiDiem = new QuyDoiDiemEntity();
-        quyDoiDiem.setTien(request.getTien());
-        quyDoiDiem.setDiem(request.getDiem());
-        quyDoiDiem.setLoai(request.getLoai());
+    public List<QuyDoiDiemResponse> getAll() {
+        List<QuyDoiDiemEntity> entity = quyDoiDiemRepository.findAll();
 
-        Optional<QuyDoiDiemEntity> existingQuyDoiDiem = quyDoiDiemRepository.findById(request.getId());
-        if (existingQuyDoiDiem.isPresent()) {
-            QuyDoiDiemEntity existingEntity = existingQuyDoiDiem.get();
-            existingEntity.setTien(quyDoiDiem.getTien());
-            existingEntity.setDiem(quyDoiDiem.getDiem());
-            existingEntity.setLoai(quyDoiDiem.getLoai());
-            quyDoiDiemRepository.save(existingEntity);
-
-            QuyDoiDiemResponse result = quyDoiDiemConverter.convertToResponse(existingEntity);
-            return result;
-        } else {
-            QuyDoiDiemEntity savedEntity = quyDoiDiemRepository.save(quyDoiDiem);
-
-            QuyDoiDiemResponse result = quyDoiDiemConverter.convertToResponse(savedEntity);
-            return result;
-        }
+        List<QuyDoiDiemResponse> result = entity.stream().map(
+                item ->
+                        quyDoiDiemConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return result;
     }
+
+    @Override
+    public List<QuyDoiDiemResponse> saveOrUpdate(List<QuyDoiDiemRequest> requests) {
+
+        List<QuyDoiDiemResponse> resuluts = requests.stream().map(
+                item -> {
+                    QuyDoiDiemEntity entity = quyDoiDiemConverter.convertToEntity(item);
+                    if(item.getLoai().equals("Tiền quy ra điểm")){
+                        entity.setLoai("Tiền quy ra điểm");
+                    }else{
+                        entity.setLoai("Điểm quy ra tiền");
+                    }
+                    quyDoiDiemRepository.save(entity);
+                    return quyDoiDiemConverter.convertToResponse(entity);
+                }
+        ).collect(Collectors.toList());
+        return resuluts;
+    }
+
 }
