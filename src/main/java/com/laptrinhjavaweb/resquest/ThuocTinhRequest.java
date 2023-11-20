@@ -1,7 +1,16 @@
 package com.laptrinhjavaweb.resquest;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ThuocTinhRequest {
 
     private String slug;
@@ -11,36 +20,4 @@ public class ThuocTinhRequest {
     private List<String> giaTris;
 
     private Long idSanPham;
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public List<String> getGiaTris() {
-        return giaTris;
-    }
-
-    public void setGiaTris(List<String> giaTris) {
-        this.giaTris = giaTris;
-    }
-
-    public Long getIdSanPham() {
-        return idSanPham;
-    }
-
-    public void setIdSanPham(Long idSanPham) {
-        this.idSanPham = idSanPham;
-    }
 }

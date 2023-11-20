@@ -1,5 +1,10 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -7,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "calam")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CaLamEntity extends BaseEntity{
 
 	@Column(name = "sotiendauca")
@@ -21,36 +30,4 @@ public class CaLamEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "caLam")
 	private List<ChiTietCaLamEntity> chiTietCaLamEntities = new ArrayList<>();
-
-	public Double getSoTienDauCa() {
-		return soTienDauCa;
-	}
-
-	public void setSoTienDauCa(Double soTienDauCa) {
-		this.soTienDauCa = soTienDauCa;
-	}
-
-	public Double getSoTienCuoiCa() {
-		return soTienCuoiCa;
-	}
-
-	public void setSoTienCuoiCa(Double soTienCuoiCa) {
-		this.soTienCuoiCa = soTienCuoiCa;
-	}
-
-	public NhanVienEntity getNhanVien() {
-		return nhanVien;
-	}
-
-	public void setNhanVien(NhanVienEntity nhanVien) {
-		this.nhanVien = nhanVien;
-	}
-
-	public List<ChiTietCaLamEntity> getChiTietCaLamEntities() {
-		return chiTietCaLamEntities;
-	}
-
-	public void setChiTietCaLamEntities(List<ChiTietCaLamEntity> chiTietCaLamEntities) {
-		this.chiTietCaLamEntities = chiTietCaLamEntities;
-	}
 }

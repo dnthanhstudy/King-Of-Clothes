@@ -1,23 +1,32 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 @Entity
 @Table(name = "bienthe")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BienTheEntity extends BaseEntity{
 	
-	@Column(name = "ma", unique = true, columnDefinition = "char(30)")
+	@Column(name = "ma", unique = true)
 	private String ma;
 
-	@Column(name = "ten", columnDefinition = "nvarchar(255)")
+	@Column(name = "ten")
 	private String ten;
 	
 	@Column(name = "gia")
 	private Double gia;
 	
-	@Column(name = "hinhanh", columnDefinition = "char(10)")
+	@Column(name = "hinhanh")
 	private String hinhAnh;
 	
 	@Column(name = "soluong")
@@ -35,79 +44,11 @@ public class BienTheEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
-	
-	public String getMa() {
-		return ma;
-	}
-
-	public void setMa(String ma) {
-		this.ma = ma;
-	}
-
-	public String getTen() {
-		return ten;
-	}
-
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
 
 	public Double getGia() {
 		if (gia==null){
 			return sanPham.getGia();
 		}
 		return gia;
-	}
-
-	public void setGia(Double gia) {
-		this.gia = gia;
-	}
-
-	public String getHinhAnh() {
-		return hinhAnh;
-	}
-
-	public void setHinhAnh(String hinhAnh) {
-		this.hinhAnh = hinhAnh;
-	}
-
-	public Integer getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(Integer soLuong) {
-		this.soLuong = soLuong;
-	}
-
-	public SanPhamEntity getSanPham() {
-		return sanPham;
-	}
-
-	public void setSanPham(SanPhamEntity sanPham) {
-		this.sanPham = sanPham;
-	}
-
-	public List<KhuyenMaiSanPhamEntity> getKhuyenMaiSanPhamEntities() {
-		return khuyenMaiSanPhamEntities;
-	}
-
-	public void setKhuyenMaiSanPhamEntities(List<KhuyenMaiSanPhamEntity> khuyenMaiSanPhamEntities) {
-		this.khuyenMaiSanPhamEntities = khuyenMaiSanPhamEntities;
-	}
-
-	public List<GiaTriThuocTinhBienTheEntity> getGiaTriThuocTinhBienTheEntities() {
-		return giaTriThuocTinhBienTheEntities;
-	}
-
-	public void setGiaTriThuocTinhBienTheEntities(List<GiaTriThuocTinhBienTheEntity> giaTriThuocTinhBienTheEntities) {
-		this.giaTriThuocTinhBienTheEntities = giaTriThuocTinhBienTheEntities;
-	}
-
-	public List<HoaDonChiTietEntity> getHoaDonChiTietEntities() {
-		return hoaDonChiTietEntities;
-	}
-
-	public void setHoaDonChiTietEntities(List<HoaDonChiTietEntity> hoaDonChiTietEntities) {
-		this.hoaDonChiTietEntities = hoaDonChiTietEntities;
 	}
 }
