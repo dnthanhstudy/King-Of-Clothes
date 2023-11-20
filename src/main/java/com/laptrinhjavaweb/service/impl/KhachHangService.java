@@ -136,7 +136,10 @@ public class KhachHangService implements IKhachHangService {
                 khachHangRequest.setSoDienThoai(row.getCell(2).getStringCellValue());
                 khachHangRequest.setEmail(row.getCell(3).getStringCellValue());
                 khachHangRequest.setGioiTinh(row.getCell(4).getStringCellValue());
-                khachHangRequest.setNgaySinh(row.getCell(5).getDateCellValue());
+
+                java.util.Date utilDate = row.getCell(5).getDateCellValue();
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                khachHangRequest.setNgaySinh(sqlDate);
                 khachHangRequest.setMoTa(row.getCell(6).getStringCellValue());
 
                 // Call your existing service method to save the customer

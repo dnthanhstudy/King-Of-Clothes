@@ -246,12 +246,6 @@
         fileInput.addEventListener("change", function () {
             var file = fileInput.files[0];
             if (file) {
-                if (isFileImported(file.name)) {
-                    showError("File has already been imported.");
-                    document.body.removeChild(fileInput);
-                    return;
-                }
-
                 var formData = new FormData();
                 formData.append("file", file);
                 $.ajax({
@@ -262,8 +256,7 @@
                     processData: false,
                     success: function (response) {
                         showSuccess("Import success");
-                        loadKhachHang('/api/khach-hang');
-                        updateImportedFiles(file.name);
+                        loadKhachHang('/api/khach-hang')
                     },
                     error: function () {
                         showError("Import Fail");
@@ -274,22 +267,5 @@
         });
         fileInput.click();
     }
-
-    function isFileImported(fileName) {
-        var importedFiles = getImportedFiles();
-        return importedFiles.includes(fileName);
-    }
-
-    function updateImportedFiles(fileName) {
-        var importedFiles = getImportedFiles();
-        importedFiles.push(fileName);
-        localStorage.setItem("importedFiles", JSON.stringify(importedFiles));
-    }
-
-    function getImportedFiles() {
-        var importedFiles = JSON.parse(localStorage.getItem("importedFiles")) || [];
-        return importedFiles;
-    }
-
 
 </script>

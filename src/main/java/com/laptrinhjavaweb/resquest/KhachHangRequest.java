@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.resquest;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class KhachHangRequest {
 

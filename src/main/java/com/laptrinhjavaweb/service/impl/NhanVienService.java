@@ -79,13 +79,13 @@ public class NhanVienService implements INhanVienService {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
 
         if (nhanVienEntity != null) {
-            nhanVienEntity.setTen(nhanVienRequest.getTen());
-            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
-            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
+            nhanVienEntity.setTen(nhanVienRequest.getTen().trim());
+            nhanVienEntity.setEmail(nhanVienRequest.getEmail().trim());
+            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai().trim());
             nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
-            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
-            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
-            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
+            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi().trim());
+            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh().trim());
+            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
 
             nhanVienRepository.save(nhanVienEntity);

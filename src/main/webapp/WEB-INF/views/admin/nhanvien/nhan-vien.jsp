@@ -232,7 +232,7 @@
             dataType: 'json',
             success: function (response) {
                 if(param === ''){
-                    loadNhanVien('/api/nhan-vien')
+                    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
                 }else{
                     loadNhanVien('/api/nhan-vien/search?q=' + param);
                 }
