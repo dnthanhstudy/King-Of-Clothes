@@ -4,7 +4,7 @@
 <div class="khung">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4">
-            <img src="/template/web/img/anh1.png" width="80px" style="border-radius: 50%" alt="">
+            <img src="/template/web/img/avatar.jpeg" width="80px" style="border-radius: 50%" alt="">
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 my-3" >
             <h5>seiichitakashi</h5>

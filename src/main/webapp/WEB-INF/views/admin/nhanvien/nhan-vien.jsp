@@ -117,7 +117,6 @@
     </div>
     <ul id="pagination" class="d-flex justify-content-center"></ul>
 </div>
-<script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script>
     let pageCurrent = 1;
     function loadNhanVien(url) {

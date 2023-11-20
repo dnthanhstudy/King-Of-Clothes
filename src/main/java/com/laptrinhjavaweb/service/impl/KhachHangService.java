@@ -8,19 +8,17 @@ import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -107,9 +105,9 @@ public class KhachHangService implements IKhachHangService {
 
     @Override
     public List<KhacHangResponse> findAllAndTrangThai(
-            String ma, String ten, String email, String soDienThoai, String trangThai) {
+            String ma, String ten, String email, String soDienThoai, String gioiTinh, String moTa, String trangThai) {
         List<KhachHangEntity> entity = khachHangRepository
-                .findAllByMaContainingOrTenContainingOrEmailContainingOrSoDienThoaiContainingAndTrangThai(ma,ten,email,soDienThoai, SystemConstant.ACTICE);
+                .findAllByMaContainingOrTenContainingOrEmailContainingOrSoDienThoaiContainingOrGioiTinhContainingOrMoTaContainingAndTrangThai(ma,ten,email,soDienThoai, gioiTinh, moTa, SystemConstant.ACTICE);
         if (entity == null) {
             return null;
         }
@@ -119,5 +117,36 @@ public class KhachHangService implements IKhachHangService {
         return result;
     }
 
+    @Override
+    public void importFromExcel(MultipartFile file) {
+        try {
+            InputStream inputStream = file.getInputStream();
+            Workbook workbook = new XSSFWorkbook(inputStream);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            for (Row row : sheet) {
+                if (row.getRowNum() == 0) {
+                    // Skip the header row
+                    continue;
+                }
+
+                KhachHangRequest khachHangRequest = new KhachHangRequest();
+                khachHangRequest.setMa(row.getCell(0).getStringCellValue());
+                khachHangRequest.setTen(row.getCell(1).getStringCellValue());
+                khachHangRequest.setSoDienThoai(row.getCell(2).getStringCellValue());
+                khachHangRequest.setEmail(row.getCell(3).getStringCellValue());
+                khachHangRequest.setGioiTinh(row.getCell(4).getStringCellValue());
+                khachHangRequest.setNgaySinh(row.getCell(5).getDateCellValue());
+                khachHangRequest.setMoTa(row.getCell(6).getStringCellValue());
+
+                // Call your existing service method to save the customer
+                insert(khachHangRequest);
+            }
+
+            workbook.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

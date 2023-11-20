@@ -1424,16 +1424,16 @@
 
             </g>
         </g>
-        <text opacity="0.6" x="15" y="257" fill="#000" font-family="Viga" font-size="25">There is no way Immma
+        <text opacity="0.6" x="15" y="257" fill="#000" font-family="Viga" font-size="25">There is no way KOC
             <tspan x="35" y="292" >let you pass through!</tspan>
             <tspan x="100" y="357" fill="#000" font-size="65">403</tspan>
-            <tspan x="93" y="381.2" fill="#000" font-size="15">Access Forbidden.</tspan>
+            <a href="/trang-chu"><tspan x="135" y="381.2" fill="#000" font-size="15">Home!</tspan>
         </text>
 
-        <text x="15" y="255" fill="#6BA184" font-family="Viga" font-size="25">There is no way Immma
+        <text x="15" y="255" fill="#6BA184" font-family="Viga" font-size="25">There is no way KOC
             <tspan x="35" y="290" >let you pass through!</tspan>
             <tspan x="100" y="355" fill="#BF3E73" font-size="65">403</tspan>
-            <tspan x="93" y="380" fill="#6BA184" font-size="15">Access Forbidden.</tspan>
+            <a href="/trang-chu"><tspan x="135" y="380" fill="#6BA184" font-size="15">Home!</tspan></a>
         </text>
     </g>
     </g>

@@ -1,9 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.entity.NhanVienEntity;
-import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
-import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
 
 import java.util.Map;

@@ -40,7 +40,7 @@
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     <%=SecurityUtils.getPrincipal().getTen()%>
                                 </button>
-                                <input type="hidden" id="customr-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
+                                <input type="hidden" id="customer-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/web/account">Thông tin cá nhân</a></li>
                                     <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>

@@ -21,6 +21,29 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="<c:url value='/template/admin/vendor/global/global.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/vendor/chart.js/Chart.bundle.min.js'/>"></script>
+
+    <!-- Chart piety plugin files -->
+    <script src="<c:url value='/template/admin/vendor/peity/jquery.peity.min.js'/>"></script>
+
+    <!-- Apex Chart -->
+    <script src="<c:url value='/template/admin/vendor/apexchart/apexchart.js'/>"></script>
+    <!-- Dashboard 1 -->
+    <script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>
+
+    <script src="<c:url value='/template/admin/vendor/owl-carousel/owl.carousel.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/custom.min.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/deznav-init.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/demo.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/main.js'/>"></script>
+    <script src="<c:url value='/template/admin/js/styleSwitcher.js'/>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
+
     <script>
         function convertVND(number){
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
@@ -132,26 +155,6 @@
     <%@ include file="/common/admin/footer.jsp" %>
 </div>
 
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="<c:url value='/template/admin/vendor/global/global.min.js'/>"></script>
-<script src="<c:url value='/template/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'/>"></script>
-<script src="<c:url value='/template/admin/vendor/chart.js/Chart.bundle.min.js'/>"></script>
 
-<!-- Chart piety plugin files -->
-<script src="<c:url value='/template/admin/vendor/peity/jquery.peity.min.js'/>"></script>
-
-<!-- Apex Chart -->
-<script src="<c:url value='/template/admin/vendor/apexchart/apexchart.js'/>"></script>
-<!-- Dashboard 1 -->
-<script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>
-
-<script src="<c:url value='/template/admin/vendor/owl-carousel/owl.carousel.js'/>"></script>
-<script src="<c:url value='/template/admin/js/custom.min.js'/>"></script>
-<script src="<c:url value='/template/admin/js/deznav-init.js'/>"></script>
-<script src="<c:url value='/template/admin/js/demo.js'/>"></script>
-<script src="<c:url value='/template/admin/js/main.js'/>"></script>
-<script src="<c:url value='/template/admin/js/styleSwitcher.js'/>"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 </html>
