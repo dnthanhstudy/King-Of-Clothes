@@ -37,6 +37,4 @@ public class NhanVienResponse {
     private String canCuocCongDan;
 
     private String gioiTinh;
-
-    private ChucVuResponse chucVuResponse;
 }

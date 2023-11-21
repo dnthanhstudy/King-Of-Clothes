@@ -41,13 +41,13 @@ public abstract class BaseEntity {
 	private String nguoiTao;
 
 	@LastModifiedDate
-	@Column(name = "ngaysua", columnDefinition = "TIMESTAMP")
+	@Column(name = "ngaysua", columnDefinition = "TIMESTAMP", insertable = false)
 	private Date ngaySua;
 
 	@LastModifiedBy
-	@Column(name = "nguoisua")
+	@Column(name = "nguoisua", insertable = false)
 	private String nguoiSua;
 
-	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'")
+	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'", insertable = false)
 	private String trangThai;
 }

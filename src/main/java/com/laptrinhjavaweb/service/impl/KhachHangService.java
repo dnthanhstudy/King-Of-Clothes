@@ -2,9 +2,11 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.convert.KhachHangConverter;
+import com.laptrinhjavaweb.convert.TimKiemSanPhamConvert;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
+import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
@@ -29,6 +31,9 @@ public class KhachHangService implements IKhachHangService {
 
     @Autowired
     private KhachHangConverter khachHangConverter;
+
+    @Autowired
+    private TimKiemSanPhamConvert timKiemSanPhamConvert;
 
     @Override
     public KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai) {
@@ -151,5 +156,14 @@ public class KhachHangService implements IKhachHangService {
             e.printStackTrace();
         }
     }
+    @Override
+    public List<TimKiemSanPhamResponse> histosies(String ma) {
+        KhachHangEntity khachHangEntity = khachHangRepository.findByMa(ma);
+        List<TimKiemSanPhamResponse> results = khachHangEntity.getTimKiemSanPhamEntities().stream().map(
+                item -> timKiemSanPhamConvert.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return results;
+    }
+
 
 }

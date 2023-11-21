@@ -17,7 +17,7 @@ $(".btn-add-product").on("click", function (event) {
             showSuccess("Thêm sản phẩm thành công");
         },
         error: (error) => {
-            console.log("Error");
+            console.log(error);
         }
     });
 });

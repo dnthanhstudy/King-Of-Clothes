@@ -82,23 +82,20 @@
     }
 
     $('#addMocaButton').click('on', (e) => {
-        window.location.href = "/admin/giao-dich/hoa-don";
-        // let data = {
-        //     "trangThai": "ACTIVE"
-        // }
-        // $.ajax({
-        //     url: "/api/nhan-vien/" + $('.user-name-login').text(),
-        //     method: "PUT",
-        //     contentType: "application/json; charset=utf-8",
-        //     dataType: "json",
-        //     data: JSON.stringify(data),
-        //     success: (response) => {
-        //         window.location.href = "/admin/giao-dich/hoa-don";
-        //     },
-        //     error: (error) => {
-        //         console.log("Error");
-        //     }
-        // });
+        let data = {}
+        $.ajax({
+            url: "/api/nhan-vien/" + $('.user-name-login').text(),
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                window.location.href = "/admin/giao-dich/hoa-don";
+            },
+            error: (error) => {
+                console.log("Error");
+            }
+        });
     })
 </script>
 </body>

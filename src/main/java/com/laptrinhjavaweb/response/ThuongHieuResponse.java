@@ -12,4 +12,6 @@ import lombok.Setter;
 public class ThuongHieuResponse {
 
 	private String ten;
+
+	private String slug;
 }
