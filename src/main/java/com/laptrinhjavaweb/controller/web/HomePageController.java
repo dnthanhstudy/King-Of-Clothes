@@ -28,7 +28,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
     ){
         ModelAndView mav = new ModelAndView("web/shop");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(null, page, limit);
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, null);
         mav.addObject("mapProduct", results);
         return mav;
     }
@@ -40,7 +40,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
     ){
         ModelAndView mav = new ModelAndView("web/search");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAll(param, page, limit);
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, param, null);
         mav.addObject("mapProduct", results);
         return mav;
     }
@@ -83,5 +83,9 @@ public class HomePageController {
         return "web/403";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return  "web/test";
+    }
 }
 

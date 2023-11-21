@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.entity;
 
 import javax.persistence.*;
 
+import com.laptrinhjavaweb.model.enumentity.TrangThaiTTMHEnum;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -16,6 +17,7 @@ public abstract class BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	
 	@CreatedDate
@@ -84,4 +86,5 @@ public abstract class BaseEntity {
 	public void setTrangThai(String trangThai) {
 		this.trangThai = trangThai;
 	}
+
 }

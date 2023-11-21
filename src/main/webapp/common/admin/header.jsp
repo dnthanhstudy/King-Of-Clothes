@@ -15,7 +15,7 @@
           Nav header start
       ***********************************-->
     <div class="nav-header">
-        <a href="/admin" class="brand-logo">
+        <a href="/admin/dashboards" class="brand-logo">
             <svg class="logo-abbr" width="50" height="50" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect class="svg-logo-rect" width="50" height="50" rx="6" fill="#EB8153"></rect>
                 <path class="svg-logo-path" d="M17.5158 25.8619L19.8088 25.2475L14.8746 11.1774C14.5189 9.84988 15.8701 9.0998 16.8205 9.75055L33.0924 22.2055C33.7045 22.5589 33.8512 24.0717 32.6444 24.3951L30.3514 25.0095L35.2856 39.0796C35.6973 40.1334 34.4431 41.2455 33.3397 40.5064L17.0678 28.0515C16.2057 27.2477 16.5504 26.1205 17.5158 25.8619ZM18.685 14.2955L22.2224 24.6007L29.4633 22.6605L18.685 14.2955ZM31.4751 35.9615L27.8171 25.6886L20.5762 27.6288L31.4751 35.9615Z" fill="white"></path>
@@ -722,14 +722,14 @@
                         </li>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="<c:url value='/template/admin/images/profile/pic1.jpg'/>" width="20" alt="">
+                                <img src="/assets/images/nhanvien/<%=SecurityUtils.getPrincipal().getAnh()%>" width="20" alt="">
                                 <div class="header-info">
                                     <span><%=SecurityUtils.getPrincipal().getTen()%></span>
-                                    <small><%=SecurityUtils.getPrincipal().getMa()%></small>
+                                    <small class="user-name-login"><%=SecurityUtils.getPrincipal().getMa()%></small>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="/admin/profile" class="dropdown-item ai-icon">
+                                <a href="/admin/setting/profile" class="dropdown-item ai-icon">
                                     <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                     <span class="ml-2">Profile </span>
                                 </a>
@@ -746,16 +746,7 @@
                     </ul>
                 </div>
             </nav>
-            <div class="sub-header">
-                <div class="d-flex align-items-center flex-wrap mr-auto">
-                    <h5 class="dashboard_bar">Dashboard</h5>
-                </div>
-                <div class="d-flex align-items-center">
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Today</a>
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light mr-1">Month</a>
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary light">Year</a>
-                </div>
-            </div>
+
         </div>
     </div>
     <!--**********************************

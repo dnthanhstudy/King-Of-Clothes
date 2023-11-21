@@ -14,11 +14,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href="">Home</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Shop</p>
+            <p class="m-0">Product</p>
         </div>
     </div>
 </div>
@@ -28,81 +28,58 @@
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
-        <div class="col-lg-3 col-md-12">
+        <div class="col-lg-3 col-md-12" id="filter">
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                 <form>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                        <input value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                        <input value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                        <input value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">$300 - $400</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">$400 - $500</label>
+                        <input value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
                     </div>
                 </form>
             </div>
 
             <c:forEach items="${filterProduct}" var="filter">
                 <div class="border-bottom mb-4 pb-4">
-                        <h5 id="${filter.ma}" class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
-                        <form>
-                            <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
-                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
-                                    <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
-                                </div>
-                            </c:forEach>
-
-                        </form>
+                    <h5 id="${filter.ma}" class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
+                    <form>
+                        <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
+                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                            </div>
+                        </c:forEach>
+                    </form>
                 </div>
             </c:forEach>
+
+            <script>
+                $('#filter input[type="checkbox"]').on('change', function(){ // on change of state
+                    if(this.checked)
+                    {
+                        console.log($(this).val());
+                    }
+                })
+            </script>
         </div>
         <!-- Shop Sidebar End -->
 
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
-                                <div class="input-group-append">
-                                            <span class="input-group-text bg-transparent text-primary">
-                                                <i class="fa fa-search"></i>
-                                            </span>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="dropdown ml-4">
-                            <button class="btn border dropdown-toggle" type="button" id="triggerId"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                Sort by
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <form action="<c:url value='/shop'/>" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:forEach var="item" items="${mapProduct.data}">

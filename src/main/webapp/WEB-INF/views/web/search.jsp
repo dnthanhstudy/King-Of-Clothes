@@ -34,24 +34,20 @@
                 <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                 <form>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                        <input name="gia" value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                        <input name="gia" value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                        <input name="gia" value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">$300 - $400</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">$400 - $500</label>
+                        <input name="gia" value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
                     </div>
                 </form>
             </div>
@@ -62,7 +58,7 @@
                     <form>
                         <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
                                 <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
                             </div>
                         </c:forEach>
@@ -148,6 +144,7 @@
     let paramString = urlString.split('?')[1];
     let queryString = new URLSearchParams(paramString);
     let param = queryString.get('q');
+    $('#input-search-product').val(param);
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 

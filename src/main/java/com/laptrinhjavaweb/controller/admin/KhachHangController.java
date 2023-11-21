@@ -13,12 +13,12 @@ public class KhachHangController {
         return "admin/khachhang/khach-hang";
     }
 
-    @GetMapping("/khach-hang-create")
+    @GetMapping("/create")
     public String createKH() {
         return "admin/khachhang/khach-hang-create";
     }
 
-    @GetMapping("/khach-hang-edit/{id}")
+    @GetMapping("/edit/{ma}")
     public String updateKH() {
         return "admin/khachhang/khach-hang-edit";
     }

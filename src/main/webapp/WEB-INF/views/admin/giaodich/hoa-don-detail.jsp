@@ -12,7 +12,7 @@
 </head>
 <body>
  <section>
-     <div class="content-body" style="background-color: #f2eded">
+     <div class="content-body">
          <div class="container-fluid">
              <h3 style="margin-top: 0;
     margin-bottom: 30px;

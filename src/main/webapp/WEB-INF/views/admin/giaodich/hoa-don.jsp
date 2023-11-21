@@ -6,14 +6,137 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
     <title>Hóa Đơn</title>
 </head>
-<body>
 <section>
+
+
     <div class="content-body" >
         <div class="container-fluid">
+            <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#chitiethoadon"> +
+                Chọn sản phẩm
+            </button>
+            <div class="modal fade" id="chitiethoadon" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true" style="height: 700px">
+                <div class="modal-dialog modal-xl" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Chi tiết hoá đơn</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <p>
+                                    <b>Tên người nhận : </b> <span id="tennguoinhan">Đinh Tuấn Anh</span>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>Số điện thoại : </b> <span id="sodienthoai">0325808823</span>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <b>Địa chỉ : </b> <span id="diachi">Yên trị, Yên Thuỷ, Hoà bình</span>
+                                </p>
+                            </div>
+
+
+
+                        </div>
+                        <hr>
+                        <div class="modal-body" style="height: 700px; overflow-y: scroll;">
+                            <div class="row">
+                                <div class="card card-body mb-2" style="border-radius: 10px">
+                                    <div class="row">
+                                        <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>#</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">3</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Mã sản phẩm</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tên sản phẩm</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nữ aelimited</h5>
+                                                    <p>Màu hồng size M</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Số lượng</span>
+                                                    <div class="input-group w-50">
+                                                        <input type="text" class="form-control" style="text-align: center" value="1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex align-items-center">
+
+                                                <div class="ml-2">
+                                                    <span>Đơn giá</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex project-status align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tổng tiền</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                                        <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+                                                                  stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
+                                                                  stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
+                                                                  stroke="#575757" stroke-width="2" stroke-linecap="round"
+                                                                  stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="float-sm-end">
+                            <button type="button" class="btn btn-outline-success">Nhận đơn</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<%--            --%>
             <div class="card card-body hstack gap-3">
                     <div class="p-2">
                         <a class="Btnaddkh" type="button" href="/admin/giaodich/themhoadon" style="text-decoration: none">Add
@@ -65,9 +188,8 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Mã Hóa đơn</th>
-                                    <th scope="col">Nhân viên</th>
                                     <th scope="col">Khách hàng</th>
-                                    <th scope="col">Thời gian</th>
+                                    <th scope="col">Ngày đặt</th>
                                     <th scope="col">Tổng tiền hàng</th>
                                     <th scope="col">Phương thức</th>
                                     <th scope="col">Trạng thái</th>
@@ -75,7 +197,6 @@
                                 </tr>
                                 </thead>
                                 <tbody >
-
                                 </tbody>
                             </table>
                     </div>
@@ -102,5 +223,79 @@
         </div>
     </div>
 </section>
-</body>
-</html>
+
+<script>
+    loadDsHoaDon()
+  function loadDsHoaDon() {
+      $.ajax({
+          url: '/api/hoadon/dshoadon',
+          method: 'GET',
+          success: function (req) {
+              loadTable(req.data)
+
+          },
+          error: function(xhr, status, error) {
+              console.log("Có lỗi xảy ra")
+          }
+      });
+  }
+  function loadTable(data) {
+      let table = $("#tblHoaDon tbody");
+      table.empty();
+      data.forEach(function (item,index) {
+         table.append(`
+            <tr>
+                  <th scope="row">\${index+1}</th>
+                  <td>\${item.ma}</td>
+                  <td>\${getFormattedDate(item.thoiGianDat)}</td>
+                  <td>\${item.tenNguoiNhan}</td>
+                  <td>\${convertVND(item.tongTien)}</td>
+                  <td>\${item.phuongThucThanhToan}</td>
+                  <td>\${item.trangThai}</td>
+                  <td>
+                    <a href="" class="btn btn-outline-success">Nhận đơn</a>
+                    <a href="" class="btn btn-outline-success">Chi tiết</a>
+                </td>
+                </tr>
+         `)
+      })
+      // $("#tblHoaDon").dataTable({
+      //     destroy: true,
+      //     stripeClasses: ['w-100'],
+      // })
+  }
+    // let dataTable = $("#tblHoaDon").DataTable({
+    //     destroy: true,
+    //     data: req.data,
+    //     responsive:true,
+    //     pagingType: $(window).width() < 768 ? "simple" : "simple_numbers",
+    //     searching: false,
+    //     columns: [
+    //         {
+    //             data: null,
+    //             render: function (data, type, row, meta) {
+    //                 return meta.row + 1; // Số thứ tự bắt đầu từ 1
+    //             },
+    //             orderData: null, // Không sắp xếp cột số thứ tự
+    //         },
+    //         { data: 'ma' },
+    //         { data: 'tenNguoiNhan' },
+    //         { data: 'thoiGianDat', render: function (data) { return formatDateInput(data) } },
+    //         { data: 'tongTien'},
+    //         { data: 'phuongThucThanhToan'},
+    //         { data: 'trangThai'},
+    //         {
+    //             data: 'id',
+    //             render: function (data, type, row) {
+    //                 return `<button type="button" class="btn btn-success">Sửa</button>`;
+    //             }
+    //         },
+    //     ],
+    //     order: [[3, 'desc']], // Sắp xếp theo cột Ngày tạo lập
+    //     pageLength: 10,
+    //     columnDefs: [
+    //         { orderable: false, targets: 0 }, // Không sắp xếp cột số thứ tự
+    //     ]
+    // });
+
+</script>

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
-<html>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <head>
     <title>${product.ten}</title>
 </head>
-<body>
+
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3">Product Detail</h1>
@@ -61,18 +61,20 @@
                 </div>
                 <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia}</h3>
                 <c:forEach var="item" items="${product.thuocTinh}">
-                    <div class="d-flex mb-3">
+                    <div class="d-flex align-items-center mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>
-                        <form>
+                        <form class="d-flex flex-wrap" id="form-${item.ten}">
                             <c:forEach var="itemGiaTri" items="${item.giaTriThuocTinh}">
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" value="${itemGiaTri.id}">
-                                    <label class="custom-control-label">${itemGiaTri.giaTri}</label>
+                                <div class="form-check mr-3 mb-2">
+                                    <input type="radio" name="thuoctinh-${item.ten}" class="form-check-input" value="${itemGiaTri.id}">
+                                    <label class="form-check-label">${itemGiaTri.giaTri}</label>
                                 </div>
                             </c:forEach>
                         </form>
                     </div>
                 </c:forEach>
+
+
 
                 <div class="d-flex align-items-center pt-2 mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p><div class="input-group quantity mr-3" style="width: 130px;">
@@ -206,5 +208,34 @@
     </div>
 </div>
 </div>
-</body>
-</html>
+<script>
+
+    $("#addCart").click(function () {
+        const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+        if (idkh==-1){
+            console.log("Chưa đăng nhập");
+            return;
+
+        }
+
+        // Người dùng đã đăng nhập, thực hiện gửi Ajax request
+        let arrData = [];
+        $("input[type=radio]:checked").each(function() {
+            arrData.push($(this).val());
+        });
+
+        var encodedData = encodeURIComponent(JSON.stringify(arrData));
+        $.ajax({
+            url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(","),
+            method: 'GET',
+            success: function (req) {
+                showSuccess("Thêm vào giỏ hàng thành công")
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+
+    });
+
+</script>

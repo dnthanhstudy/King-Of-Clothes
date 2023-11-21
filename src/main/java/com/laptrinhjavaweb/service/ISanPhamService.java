@@ -1,18 +1,15 @@
 package com.laptrinhjavaweb.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
 
+import java.util.Map;
+
 public interface ISanPhamService {
 
-	Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
-	
-	SanPhamResponse findBySlug(String slug);
+	Map<String, Object> pagingOrSearchOrFindAllOrFilter(Integer pageCurrent, Integer limit, String param, Map<String, Object> params);
 
-	List<SanPhamResponse> filters(Map<String, Object> params);
+	SanPhamResponse findBySlug(String slug);
 
 	SanPhamResponse save(SanPhamRequest sanPhamRequest);
 }

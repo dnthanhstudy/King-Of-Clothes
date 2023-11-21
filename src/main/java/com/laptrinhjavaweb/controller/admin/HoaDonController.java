@@ -13,12 +13,12 @@ public class HoaDonController {
         return "admin/giaodich/hoa-don";
     }
 
-    @GetMapping("/hoa-don-create")
+    @GetMapping("/create")
     public String themhoadon(){
-        return "admin/giaodich//hoa-don-create";
+        return "admin/giaodich/hoa-don-create";
     }
 
-    @GetMapping("/hoa-don-detail/{id}")
+    @GetMapping("/detail")
     public String detailhoadon(){
         return "admin/giaodich/hoa-don-detail";
     }

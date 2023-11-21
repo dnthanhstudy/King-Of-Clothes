@@ -29,7 +29,7 @@ public class ThuocTinhConverter {
 
 	@Autowired
 	private SanPhamRepository sanPhamRepository;
-	
+
 	public ThuocTinhResponse convertToResponse(ThuocTinhEntity entity) {
 		ThuocTinhResponse response = modelMapper.map(entity, ThuocTinhResponse.class);
 		List<GiaTriThuocTinhResponse> giaTriThuocTinhResponses = entity.getGiaTriThuocTinhEntities().stream().map(
@@ -45,7 +45,7 @@ public class ThuocTinhConverter {
 		entity.setSanPham(sanPhamEntity);
 		return entity;
 	}
-	
+
 	public FilterResponse convertToFilterResponse(List<ThuocTinhEntity> entities) {
 		FilterResponse filterResponse = new FilterResponse();
 		filterResponse.setMa(entities.get(0).getSlug());

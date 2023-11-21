@@ -22,6 +22,9 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
     <script>
+        function convertVND(number){
+            return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        }
         function getFormattedDate(longDate) {
             date = new Date(longDate);
             let year = date.getFullYear();

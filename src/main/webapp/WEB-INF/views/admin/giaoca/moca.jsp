@@ -76,9 +76,29 @@
     </div>
 </div>
 <script>
+    $('#thoiGian').text(new Date().toLocaleString());
     if(role === "STAFF"){
         $('#menu').html('');
     }
+
+    $('#addMocaButton').click('on', (e) => {
+        let data = {
+            "trangThai": "ACTIVE"
+        }
+        $.ajax({
+            url: "/api/nhan-vien/" + $('.user-name-login').text(),
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                window.location.href = "/admin/giao-dich/hoa-don";
+            },
+            error: (error) => {
+                console.log("Error");
+            }
+        });
+    })
 </script>
 </body>
 </html>

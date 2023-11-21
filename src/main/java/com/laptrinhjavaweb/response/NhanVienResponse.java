@@ -1,6 +1,18 @@
 package com.laptrinhjavaweb.response;
 
+import java.util.Date;
+
 public class NhanVienResponse {
+
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private String ten;
 
@@ -13,8 +25,20 @@ public class NhanVienResponse {
     private String anh;
 
     private String email;
-        
+
     private ChucVuResponse chucVu;
+
+    private String diaChi;
+
+    private Date ngaySinh;
+
+    private Date ngayCap;
+
+    private String canCuocCongDan;
+
+    private String gioiTinh;
+
+    private ChucVuResponse chucVuResponse;
 
     public String getTen() {
         return ten;
@@ -71,4 +95,52 @@ public class NhanVienResponse {
 	public void setChucVu(ChucVuResponse chucVu) {
 		this.chucVu = chucVu;
 	}
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public Date getNgaySinh() {
+        return ngaySinh;
+    }
+
+    public void setNgaySinh(Date ngaySinh) {
+        this.ngaySinh = ngaySinh;
+    }
+
+    public Date getNgayCap() {
+        return ngayCap;
+    }
+
+    public void setNgayCap(Date ngayCap) {
+        this.ngayCap = ngayCap;
+    }
+
+    public String getCanCuocCongDan() {
+        return canCuocCongDan;
+    }
+
+    public void setCanCuocCongDan(String canCuocCongDan) {
+        this.canCuocCongDan = canCuocCongDan;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
+
+    public ChucVuResponse getChucVuResponse() {
+        return chucVuResponse;
+    }
+
+    public void setChucVuResponse(ChucVuResponse chucVuResponse) {
+        this.chucVuResponse = chucVuResponse;
+    }
 }

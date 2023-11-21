@@ -22,93 +22,62 @@
     color: black;">
                 Sửa thông tin nhân viên
             </h4>
-            <input type="hidden"  id="id" >
+            <form action="" id="form-submit-nhan-vien">
             <div class="row">
                 <div class="col">
                     <label>Mã nhân viên:</label>
-                    <input type="text" id="manv" class="form-control" disabled >
+                    <input type="text" id="ma" name="ma" class="form-control" disabled >
                 </div>
                 <div class="col">
                     <label>Họ và tên:</label>
-                    <input type="text" id="tennv" class="form-control" >
+                    <input type="text" id="ten" name="ten" class="form-control" >
                 </div>
                 <div class="col">
                     <label>Địa chỉ email:</label>
-                    <input type="email" id="email" class="form-control" >
+                    <input type="email" id="email" name="email" class="form-control" >
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col">
                     <label>Địa chỉ thường chú:</label>
-                    <input type="text" id="diachi" class="form-control" >
+                    <input type="text" id="diaChi" name="diaChi" class="form-control" >
                 </div>
                 <div class="col">
                     <label>Số điện thoại:</label>
-                    <input type="text" id="sdt" class="form-control" >
+                    <input type="text" id="soDienThoai" name="soDienThoai" class="form-control" >
                 </div>
                 <div class="col">
-                    <label  class="form-label">Ngày sinh:</label>
-                    <input type="date" class="form-control" id="ngaysinh" >
+                    <label>Số CCCD:</label>
+                    <input type="text" id="canCuocCongDan" name="canCuocCongDan" class="form-control" >
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col">
-                    <label>Số CCCD:</label>
-                    <input type="text" id="cccd" class="form-control" >
+                    <label  class="form-label">Ngày sinh:</label>
+                    <input type="date" class="form-control" id="ngaySinh" name="ngaySinh" >
                 </div>
                 <div class="col">
                     <label class="form-label">Ngày cấp:</label>
-                    <input type="date" class="form-control" id="ngaycap">
-                </div>
-                <div class="col">
-                    <label>Nơi cấp:</label>
-                    <input type="text" id="noicap" class="form-control" >
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col">
-                    <label>Chức vụ:</label>
-                    <select class="form-select" id="selectChucVu">
-                    </select>
-
+                    <input type="date" class="form-control" id="ngayCap" name="ngayCap">
                 </div>
                 <div class="col">
                     <label>Giới tính:</label>
-                    <select class="form-select" id="gioitinh">
-                        <option value="true" selected>Nam</option>
-                        <option value="false">Nữ</option>
+                    <select class="form-select" id="gioiTinh" name="gioiTinh">
+                        <option value="Nam" id="namOption">Nam</option>
+                        <option value="Nữ" id="nuOption">Nữ</option>
                     </select>
                 </div>
-                <div class="col">
-                    <label>Trạng thái:</label>
-                    <select class="form-select" id="trangthai">
-                        <option value="1" selected>Hoạt động</option>
-                        <option value="0">Vô hiệu hóa</option>
-                    </select>
-                </div>
+
             </div>
 
             <div class="row mt-3">
+                <label>Ảnh nhân viên:</label>
                 <div class="form-group col-md-12">
-                    <label class="control-label">Ảnh nhân viên</label>
-                    <div id="myfileupload">
-                        <input type="file" id="uploadfile" id="hinhanh" name="ImageUpload" onchange="readURL(this);">
-                    </div>
+                    <input type="file" id="upload-image" name="ImageUpload">
                     <div id="thumbbox">
-                        <img height="300" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
-                        <a class="removeimg" href="javascript:"></a>
-                    </div>
-                    <div id="boxchoice">
-                        <a href="javascript:" class="Choicefile">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
-                                <style>svg{fill:#ffffff}</style>
-                                <path d="M288 109.3V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V109.3l-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352H192c0 35.3 28.7 64 64 64s64-28.7 64-64H448c35.3 0 64 28.7 64 64v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V416c0-35.3 28.7-64 64-64zM432 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/>
-                            </svg> Chọn ảnh
-                        </a>
-                        <p style="clear:both"></p>
+                        <img height="300" width="300" alt="Thumb image" id="thumbimage"/>
                     </div>
                 </div>
             </div>
@@ -116,13 +85,81 @@
             <div class="row mt-3">
                 <div class="col">
                     <button class="btn" id="updateButton" style="background-color: #A6edab; color: #00852d">Update</button>
-                    <a href="/admin/nhanvien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
+                    <a href="/admin/nhan-vien" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Cancel</a>
                 </div>
             </div>
-
-
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+    function getNhanVienDetail() {
+        var url = window.location.pathname.split("/");
+        var ma = url[url.length - 1];
+        console.log(ma);
+        $.ajax({
+            url: '/api/nhan-vien/' + ma,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                $("#ma").val(req.ma);
+                $("#ten").val(req.ten);
+                $("#soDienThoai").val(req.soDienThoai);
+                $("#email").val(req.email);
+                $("#diaChi").val(req.diaChi);
+                if (req.gioiTinh === "Nam") {
+                    $("#namOption").prop("selected", true);
+                } else if (req.gioiTinh === "Nữ") {
+                    $("#nuOption").prop("selected", true);
+                }
+                $("#ngaySinh").val(formatDateInput(req.ngaySinh));
+                $("#canCuocCongDan").val(req.canCuocCongDan);
+                $("#ngayCap").val(formatDateInput(req.ngayCap));
+                $("#thumbimage").attr('src', "/assets/images/nhanvien/" + req.anh);
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                alert('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+
+    getNhanVienDetail();
+
+    $('#updateButton').on('click', (e) => {
+        e.preventDefault();
+        let data = getDataFromForm();
+        var url = window.location.pathname.split("/");
+        var ma = url[url.length - 1];
+        $.ajax({
+            url: "/api/nhan-vien/" + ma,
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                window.location.href = '/admin/nhan-vien';
+                console.log("success");
+            },
+            error: (error) => {
+                showError("fail")
+            }
+        });
+    })
+
+    function getDataFromForm() {
+        let dataFromForm = $("#form-submit-nhan-vien").serializeArray();
+        let data = {};
+        $.each(dataFromForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        return data;
+    }
+</script>
+
+
 </body>
 </html>
