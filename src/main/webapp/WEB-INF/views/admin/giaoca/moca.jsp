@@ -62,7 +62,7 @@
                         </div>
                         <div class="row mt-2 float-right">
                             <div class="">
-                                <a href="#" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Đăng xuất</a>
+                                <a href="/logout" class="btn ms-2" style="background-color: #FFc5c4; color: #be2329">Đăng xuất</a>
                                 <button class="btn" id="addMocaButton" style="background-color: #A6edab; color: #00852d">Mở ca</button>
                             </div>
                         </div>
@@ -80,22 +80,40 @@
     if(role === "STAFF"){
         $('#menu').html('');
     }
-
     $('#addMocaButton').click('on', (e) => {
-        let data = {}
+        e.preventDefault();
         $.ajax({
-            url: "/api/nhan-vien/" + $('.user-name-login').text(),
-            method: "PUT",
-            contentType: "application/json; charset=utf-8",
+            url: "/api/ca-lam/mo-ca/" + ma,
+            method: "GET",
             dataType: "json",
-            data: JSON.stringify(data),
             success: (response) => {
-                window.location.href = "/admin/giao-dich/hoa-don";
+                let data = {
+                    "maNhanVien": ma,
+                    "soTienDauCa": $('#soTienDauCa').val(),
+                }
+                themCa(data);
             },
             error: (error) => {
-                console.log("Error");
+                console.log(error);
             }
         });
+
+        function themCa(data){
+            $.ajax({
+                url: "/api/ca-lam",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    showSuccess("Mở ca thành công");
+                    window.location.href = "/admin/giao-dich/hoa-don";
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
     })
 </script>
 </body>

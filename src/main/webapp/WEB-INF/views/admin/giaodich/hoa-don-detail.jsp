@@ -12,7 +12,7 @@
 </head>
 <body>
  <section>
-     <div class="content-body" style="background-color: #f2eded">
+     <div class="content-body">
          <div class="container-fluid">
              <h3 style="margin-top: 0;
     margin-bottom: 30px;
@@ -140,6 +140,28 @@
                                  </div>
                              </div>
                          </div>
+                     </div>
+                     <div class="card mt-2" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    padding: 20px; background-color: #fff">
+                         <h4>Lịch sử tích điểm</h4>
+                         <hr>
+                         <table class="table table-hover table-striped">
+                             <thead>
+                             <tr class="table-warning">
+                                 <th scope="col">Số điểm tích được</th>
+                                 <th scope="col">Số điểm dùng</th>
+                                 <th scope="col">Ngày tích</th>
+                             </tr>
+                             </thead>
+                             <tbody>
+                             <tr>
+                                 <td>53</td>
+                                 <td>53</td>
+                                 <td>11/21/2023</td>
+
+                             </tr>
+                             </tbody>
+                         </table>
                      </div>
                  </div>
                  <div class="col-lg-4">

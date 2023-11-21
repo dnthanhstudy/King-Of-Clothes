@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.NhanVienConverter;
+import com.laptrinhjavaweb.converter.NhanVienConverter;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
 import com.laptrinhjavaweb.response.NhanVienResponse;
@@ -77,15 +77,17 @@ public class NhanVienService implements INhanVienService {
     @Override
     public NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+
         if (nhanVienEntity != null) {
-//            nhanVienEntity.setTen(nhanVienRequest.getTen());
-//            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
-//            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
-//            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
-//            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
-//            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
-//            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
-//            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
+            nhanVienEntity.setTen(nhanVienRequest.getTen().trim());
+            nhanVienEntity.setEmail(nhanVienRequest.getEmail().trim());
+            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai().trim());
+            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
+            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi().trim());
+            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh().trim());
+            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
+            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
+
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
             return result;
@@ -169,6 +171,14 @@ public class NhanVienService implements INhanVienService {
     @Override
     public NhanVienEntity insert(NhanVienEntity nhanVienEntity) {
         return nhanVienRepository.save(nhanVienEntity);
+    }
+
+    @Override
+    public NhanVienResponse moCa(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        nhanVienEntity.setTrangThai(SystemConstant.ACTICE);
+        nhanVienRepository.save(nhanVienEntity);
+        return nhanVienConverter.convertToResponse(nhanVienEntity);
     }
 
 }

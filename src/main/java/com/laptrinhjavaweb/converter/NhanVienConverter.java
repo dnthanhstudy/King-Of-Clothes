@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class NhanVienConverter {
     private ChucVuRepository chucVuRepository;
     
     @Autowired
-    private ChucVuConvert chucVuConvert;
+    private ChucVuConverter chucVuConverter;
    
     public NhanVienResponse convertToResponse(NhanVienEntity entity){
         NhanVienResponse response = modelMapper.map(entity, NhanVienResponse.class);
-        ChucVuResponse chucVuResponse = chucVuConvert.convertToResponse(entity.getChucVu());
+        ChucVuResponse chucVuResponse = chucVuConverter.convertToResponse(entity.getChucVu());
         response.setChucVu(chucVuResponse);
         return response;
     }

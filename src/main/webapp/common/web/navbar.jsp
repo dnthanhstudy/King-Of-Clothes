@@ -42,7 +42,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/web/account">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="doi-mat-khau">Đổi mật khẩu</a></li>
                                     <li><a class="dropdown-item" href="/logout" ><s:message code="web.navbar.logout"/></a></li>
                                 </ul>
                             </div>

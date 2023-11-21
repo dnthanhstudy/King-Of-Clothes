@@ -34,6 +34,6 @@
     </g>
 </svg>
 <h1>You are not allowed to enter here</h1>
-<h2>Go <a target="_blank" href="https://www.youtube.com/watch?v=JccW-mLdNe0">Home!</a></h2>
+<h2>Go <a href="/admin/giao-dich/hoa-don">Home!</a></h2>
 </body>
 </html>

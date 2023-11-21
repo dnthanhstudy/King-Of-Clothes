@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.response.KhacHangResponse;

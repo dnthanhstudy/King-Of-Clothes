@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.DanhMucConverter;
+import com.laptrinhjavaweb.converter.DanhMucConverter;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.service.IDanhMucService;

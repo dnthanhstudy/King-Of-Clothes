@@ -518,5 +518,107 @@
 
 
 
+/*btn point*/
+.buttonPoint {
+    --main-focus: #EB8153;
+    --font-color: #f5f5f5;
+    --bg-color-sub: #EB8153;
+    --bg-color: #EB8153;
+    --main-color: #d4744a;
+    position: relative;
+    width: 170px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.buttonPoint, .button__icon2, .button__text2 {
+    transition: all 0.3s;
+}
+
+.buttonPoint .button__text2 {
+    transform: translateX(21px);
+    color: var(--font-color);
+    font-weight: 600;
+}
+
+.buttonPoint .button__icon2 {
+    position: absolute;
+    transform: translateX(119px);
+    height: 100%;
+    width: 59px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonPoint .svgPoint {
+    width: 40px;
+    fill: var(--font-color);
+}
+
+.buttonPoint:hover {
+    background: var(--bg-color);
+}
+
+.buttonPoint:hover .button__text2{
+    color: transparent;
+}
+
+.buttonPoint:hover .button__icon2 {
+    width: 168px;
+    transform: translateX(0);
+}
+
+.buttonPoint:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+}
 
 
+/*radio lọc trạng thái*/
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 300px;
+    font-size: 14px;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+    background-color: #fff;
+    font-weight: 600;
+}

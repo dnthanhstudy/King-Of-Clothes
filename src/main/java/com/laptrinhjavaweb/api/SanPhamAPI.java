@@ -1,18 +1,16 @@
 package com.laptrinhjavaweb.api;
 
-import java.util.List;
-import java.util.Map;
-
 import com.laptrinhjavaweb.exception.ClientError;
+import com.laptrinhjavaweb.exception.EntityNotFoundException;
+import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
+import com.laptrinhjavaweb.service.ISanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.laptrinhjavaweb.exception.EntityNotFoundException;
-import com.laptrinhjavaweb.response.SanPhamResponse;
-import com.laptrinhjavaweb.service.ISanPhamService;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/san-pham")

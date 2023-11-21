@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.ThuongHieuConverter;
+import com.laptrinhjavaweb.converter.ThuongHieuConverter;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
 import com.laptrinhjavaweb.response.ThuongHieuResponse;
 import com.laptrinhjavaweb.service.IThuongHieuService;

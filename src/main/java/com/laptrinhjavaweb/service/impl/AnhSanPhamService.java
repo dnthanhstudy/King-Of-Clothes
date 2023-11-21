@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.AnhSanPhamConverter;
+import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
 import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
 import com.laptrinhjavaweb.repository.AnhSanPhamRepository;
 import com.laptrinhjavaweb.response.AnhSanPhamResponse;

@@ -147,6 +147,7 @@
 
     loadKhachHang('/api/khach-hang')
 
+
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         const param = $('#searchAll').val();
@@ -179,7 +180,7 @@
                                 method: 'DELETE',
                                 success: function (req) {
                                     console.log(req);
-                                    loadKhachHang();
+                                    loadKhachHang('/api/khach-hang')
                                     showSuccess("Delete success");
                                 },
                                 error: function (xhr, status, error) {
@@ -191,5 +192,80 @@
         }
     })
 
+    $(document).ready(function() {
+        // Xác định thẻ table và thẻ th
+        var table = $("table");
+        var th = table.find("th");
+        // Bắt đầu sắp xếp khi thẻ th được nhấp
+        th.click(function() {
+            var table = $(this).parents("table").eq(0);
+            var rows = table.find('tr:gt(0)').toArray().sort(compare($(this).index()));
+
+            // Đảm bảo sắp xếp theo chiều tăng hoặc giảm dần
+            this.asc = !this.asc;
+            if (!this.asc) {
+                rows = rows.reverse();
+            }
+            // Sắp xếp các dòng
+            for (var i = 0; i < rows.length; i++) {
+                table.append(rows[i]);
+            }
+        });
+        // Hàm so sánh để sắp xếp dữ liệu
+        function compare(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index);
+                var valB = getCellValue(b, index);
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB);
+            };
+        }
+        // Lấy giá trị của ô cụ thể trong dòng
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).text();
+        }
+    });
+
+    $("#exportButton").click(function () {
+        // Lấy các thông tin tìm kiếm
+        var ma = $('#searchAll').val();
+        var ten = $('#searchAll').val();
+        var email = $('#searchAll').val();
+        var soDienThoai = $('#searchAll').val();
+        var gioiTinh = $('#searchAll').val();
+        var moTa = $('#searchAll').val();
+
+        window.location.href = "/api/khach-hang/exportToExcel?ma=" + ma + "&ten=" + ten + "&email=" + email + "&soDienThoai=" + soDienThoai + "&gioiTinh=" + gioiTinh + "&moTa=" + moTa;
+    });
+
+
+    function importFile() {
+        var fileInput = document.createElement("input");
+        fileInput.type = "file";
+        fileInput.style.display = "none";
+        document.body.appendChild(fileInput);
+        fileInput.addEventListener("change", function () {
+            var file = fileInput.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append("file", file);
+                $.ajax({
+                    url: "/api/khach-hang/import",
+                    type: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        showSuccess("Import success");
+                        loadKhachHang('/api/khach-hang')
+                    },
+                    error: function () {
+                        showError("Import Fail");
+                    }
+                });
+            }
+            document.body.removeChild(fileInput);
+        });
+        fileInput.click();
+    }
 
 </script>

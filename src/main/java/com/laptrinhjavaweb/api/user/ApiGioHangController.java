@@ -1,9 +1,11 @@
 package com.laptrinhjavaweb.api.user;
 
 import com.laptrinhjavaweb.entity.BienTheEntity;
+import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import com.laptrinhjavaweb.response.BienTheResponse;
+import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.GioHangService;
 import com.laptrinhjavaweb.service.IBienTheService;
 import com.laptrinhjavaweb.utils.ResponseObject;
@@ -31,6 +33,8 @@ public class ApiGioHangController {
     @Autowired
     IBienTheService bienTheService;
 
+    @Autowired
+    GiaoHangService giaoHangService;
     @GetMapping("/{id}")
     public List<GioHangResponse> dsGioHangChiTietByKhachHang(@PathVariable(name = "id")Long idkh){
         return gioHangService.dsGioHangChiTietByIdKh(idkh);
@@ -72,6 +76,7 @@ public class ApiGioHangController {
         List<Long> dsghct = convertStringToLongList(dsghctStr);
         return new ResponseObject(gioHangService.tongTienTheoGioHangChiTiet(dsghct));
     }
+
 
 
 //    @GetMapping("/dsspttchiatheosp/{id}")

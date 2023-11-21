@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

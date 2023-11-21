@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.TimKiemSanPhamEntity;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TimKiemSanPhamConvert {
+public class TimKiemSanPhamConverter {
 
     @Autowired
     private ModelMapper modelMapper;

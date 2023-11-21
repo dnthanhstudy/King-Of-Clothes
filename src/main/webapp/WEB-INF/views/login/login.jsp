@@ -38,6 +38,8 @@
         </script>
     </c:if>
     <div class="container py-5 py-sm-7">
+
+
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-5">
                 <!-- Card -->
@@ -50,7 +52,6 @@
                                     <h1 class="display-4">Sign in</h1>
                                     <p>Don't have an account yet? <a href="/register">Sign up here</a></p>
                                 </div>
-
                                 <span class="divider text-muted mb-4">OR</span>
                             </div>
 
@@ -58,8 +59,8 @@
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail">Your email</label>
 
-                                <input type="text" class="form-control form-control-lg" value="0987654322"
-                                       name="j_username" id="signinSrEmail" tabindex="1" placeholder="Enter Username" aria-label="Enter Username" required="" >
+                                <input type="text" class="form-control form-control-lg" value="admin0182"
+                                       name="j_username" id="signinSrEmail" tabindex="1" placeholder="Mã khách hàng" aria-label="Mã khách hàng" required="" data-msg="Please enter a valid email address.">
                             </div>
                             <!-- End Form Group -->
 
