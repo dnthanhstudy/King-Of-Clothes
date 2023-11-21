@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +24,10 @@ public class KhuyenMaiResponse {
     private Integer soLuong;
 
     private Integer tong;
+
+    private String trangThai;
+
+    private Date ngayTao;
+
+    private List<KhuyenMaiSanPhamResponse> listSanPham;
 }
