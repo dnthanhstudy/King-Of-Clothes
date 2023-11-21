@@ -390,7 +390,6 @@
                 console.log(data);
                 var khuyenMai = $('#cardKhuyenMai');
                 khuyenMai.empty();
-
                 data.forEach(function (item) {
                     console.log(item.ten);
                     // var dateStr = FormatDateTime(item.ngayBatDau);

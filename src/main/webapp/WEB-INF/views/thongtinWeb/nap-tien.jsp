@@ -6,35 +6,35 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
 <head>
     <title>Nạp tiền</title>
 
 </head>
-<body>
-<div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
+<section>
+    <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
     <div class="row">
         <span class="fs-5" style="border-bottom: 1px solid #dedede;padding: 15px">Số tiền nạp (₫) : </span>
     </div>
 
     <div class="row" style="border-bottom: 1px solid #dedede;padding: 15px">
         <div class="col-4 p-2">
-            <button class="color-button w-100">100.000</button>
+            <button class="color-button w-100 getValue" value="100000" onclick="changeValue(this)">100.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">200.000</button>
+            <button class="color-button w-100 getValue" value="200000" onclick="changeValue(this)">200.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">300.000</button>
+            <button class="color-button w-100 getValue" value="300000" onclick="changeValue(this)">300.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">500.000</button>
+            <button class="color-button w-100 getValue" value="500000" onclick="changeValue(this)">500.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">1.000.000</button>
+            <button class="color-button w-100 getValue" value="1000000" onclick="changeValue(this)">1.000.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">2.000.000</button>
+            <button class="color-button w-100 getValue" value="2000000" onclick="changeValue(this)">2.000.000</button>
         </div>
     </div>
 
@@ -43,13 +43,14 @@
     </div>
 
     <div class="input-wrapper1">
-        <input class="input-box1 w-25" type="text" >
+        <input class="input-box1 w-25" type="text" id="soTienNap">
         <span class="underline1"></span>
     </div>
 
     <div class="card p-2 mt-4">
         <span>Thanh toán</span>
         <p>COde phần thanh toán theo MB, hay PayPal thì code vào đây</p>
+
     </div>
 
     <div class="row">
@@ -73,9 +74,18 @@
             </div>
         </div>
     </div>
+        <div class="row text-center">
+            <div class="col-9"></div>
+            <div class="col-3 mt-3">
+                <button type="button" class="btn btn-success" onclick="xacNhanThanhToan();">Xác nhận</button>
+            </div>
+        </div>
 
-</div>
 
+    </div>
+
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         var selectedColor = null;
@@ -87,6 +97,33 @@
             selectedColor = $(this).data("color");
         });
     });
+    // cập nhật value
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    function changeValue(button) {
+        var value = formatNumber(parseFloat(button.value));
+        $("#soTienNap").val(value);
+    }
+    // tự động chuyển dấu
+    function updateFormattedValue() {
+        var inputValue = $("#soTienNap").val().replace(/\./g, ''); // Remove existing periods
+        var formattedValue = formatNumber(parseFloat(inputValue));
+        $("#soTienNap").val(formattedValue);
+    }
+    $(document).ready(function() {
+        $("#soTienNap").on("input", updateFormattedValue);
+    });
+    //xóa dấu '.'
+    function removeFormatting(value) {
+        return value.replace(/\./g, '');
+    }
+
+    function xacNhanThanhToan() {
+        var inputValue = $("#soTienNap").val();
+        var plainNumber = removeFormatting(inputValue);
+        console.log(plainNumber);
+    }
+
 </script>
-</body>
-</html>
+
