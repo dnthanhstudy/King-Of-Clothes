@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row align-items-center py-3 px-xl-5">
@@ -31,14 +32,15 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="customer-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
 <!-- Topbar End -->
 <script>
     $(document).ready(function() {
-        $("a[href*=lang]").on("click", function() {
+        $("a[href*=lang]").on("click", function () {
             var param = $(this).attr("href");
             $.ajax({
-                url : "/trang-chu" + param,
-                success : function() {
+                url: "/trang-chu" + param,
+                success: function () {
                     location.reload();
                 }
             });
@@ -46,17 +48,48 @@
         })
 
         $('#input-search-product').on('keypress', (e) => {
-            if(e.which === 13){
+            if (e.which === 13) {
                 e.preventDefault();
                 const search = $(e.target).val();
-                window.location = 'search?q='+search;
+                window.location = 'search?q=' + search;
             }
         })
 
         $('#icon-search-product').on('click', (e) => {
             e.preventDefault();
             const search = $('#input-search-product').val();
-            window.location = 'search?q='+search;
+            window.location = 'search?q=' + search;
         })
-    })
+
+        let histories = [];
+        const customerCodeWhenLogin = $('#customer-code').val();
+        if(customerCodeWhenLogin !== "null"){
+            console.log(customerCodeWhenLogin);
+           $.ajax({
+               url: '/api/khach-hang/histories?ma='+customerCodeWhenLogin,
+               dataType: "json",
+               success: function (response){
+                    $.each(response, function (index, item){
+                        let history = {
+                            "value": item.timKiem
+                        }
+                        histories.push(history);
+                    })
+                   loadSuggestions(histories);
+               },
+               error: function (error){
+                   console.log(error);
+               }
+           });
+
+           function loadSuggestions(options){
+               $('#input-search-product').autocomplete({
+                   lookup: options,
+                   onSelect: function (suggestion) {
+                       window.location = 'search?q=' + suggestion.value;
+                   }
+               });
+           }
+        }
+    });
 </script>

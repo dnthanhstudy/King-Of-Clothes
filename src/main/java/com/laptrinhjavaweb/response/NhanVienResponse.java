@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -38,6 +37,4 @@ public class NhanVienResponse {
     private String canCuocCongDan;
 
     private String gioiTinh;
-
-    private ChucVuResponse chucVuResponse;
 }

@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.response.KhacHangResponse;
+import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public interface IKhachHangService {
 
     List<KhacHangResponse> findAllAndTrangThai(String ma, String ten, String email, String soDienThoai, String trangThai);
 
+    List<TimKiemSanPhamResponse> histosies(String ma);
 }

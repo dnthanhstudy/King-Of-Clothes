@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.convert.DanhMucConverter;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.response.DanhMucResponse;
@@ -20,8 +21,8 @@ public class DanhMucService implements IDanhMucService {
     private DanhMucConverter danhMucConverter;
 
     @Override
-    public List<DanhMucResponse> findAll() {
-        List<DanhMucResponse> results = danhMucRepository.findAll().stream().map(
+    public List<DanhMucResponse> findAllByTrangThai() {
+        List<DanhMucResponse> results = danhMucRepository.findAllByTrangThai(SystemConstant.ACTICE).stream().map(
                 item -> danhMucConverter.convertToResponse(item)
         ).collect(Collectors.toList());
         return results;

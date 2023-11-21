@@ -22,4 +22,5 @@ public class KhachHangConverter {
         KhachHangEntity entity = modelMapper.map(request, KhachHangEntity.class);
         return entity;
     }
+
 }

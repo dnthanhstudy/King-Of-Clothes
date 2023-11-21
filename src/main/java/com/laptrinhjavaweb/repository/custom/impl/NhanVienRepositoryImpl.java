@@ -24,7 +24,8 @@ public class NhanVienRepositoryImpl implements NhanVienRepositoryCustom{
 				+ " where nhanvien.ten LIKE '%" + param 
 				+ " %' OR nhanvien.ma LIKE '%" + param + "%' OR soDienThoai LIKE '%" + param 
 				+ " %' OR email LIKE '%" + param + "%' OR chucvu.ma LIKE '%" + param
-				+ " %' OR chucvu.ten LIKE '%" + param + "%'";
+				+ " %' OR chucvu.ten LIKE '%" + param
+				+ "%' AND nhanvien.trangthai <> 'DELETE'";
 		Query query = entityManager.createNativeQuery(sql, NhanVienEntity.class);
 		return query.getResultList();
 	}

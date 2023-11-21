@@ -77,17 +77,15 @@ public class NhanVienService implements INhanVienService {
     @Override
     public NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
-
         if (nhanVienEntity != null) {
-            nhanVienEntity.setTen(nhanVienRequest.getTen());
-            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
-            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
-            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
-            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
-            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
-            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
-            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
-
+//            nhanVienEntity.setTen(nhanVienRequest.getTen());
+//            nhanVienEntity.setEmail(nhanVienRequest.getEmail());
+//            nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai());
+//            nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
+//            nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi());
+//            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
+//            nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan());
+//            nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
             return result;

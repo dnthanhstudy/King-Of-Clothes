@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,9 @@ public class KhachHangAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
-
+    @GetMapping("/histories")
+    public ResponseEntity<?> historiesSerach (@RequestParam(name = "ma") String ma){
+        List<TimKiemSanPhamResponse> results = khachHangService.histosies(ma);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
 }

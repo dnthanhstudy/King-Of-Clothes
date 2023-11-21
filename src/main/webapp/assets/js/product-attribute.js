@@ -149,7 +149,7 @@ function generateVariant() {
 function displayVarinatsOnTable(attrs) {
     $("#variants").html("");
     for (const attr of attrs) {
-        let row = Object.values(attr).join("|");
+        let row = Object.values(attr).join(",");
         const trcontent = `<tr>
                           <td class="text-center name-variant">${row}</td>
                           <td>

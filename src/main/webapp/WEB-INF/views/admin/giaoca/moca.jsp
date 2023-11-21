@@ -82,9 +82,7 @@
     }
 
     $('#addMocaButton').click('on', (e) => {
-        let data = {
-            "trangThai": "ACTIVE"
-        }
+        let data = {}
         $.ajax({
             url: "/api/nhan-vien/" + $('.user-name-login').text(),
             method: "PUT",

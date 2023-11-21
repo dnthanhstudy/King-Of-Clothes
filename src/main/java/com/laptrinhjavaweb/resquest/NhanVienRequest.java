@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -35,6 +35,8 @@ public class NhanVienRequest {
     private String maChucVu;
 
     private String soDienThoai;
+
+    private String trangThai;
 
     public String getBase64() {
         if(base64 != null){

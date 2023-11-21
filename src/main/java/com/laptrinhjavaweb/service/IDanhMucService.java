@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IDanhMucService {
 
-    List<DanhMucResponse> findAll();
+    List<DanhMucResponse> findAllByTrangThai();
 }
