@@ -7,13 +7,18 @@ import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 @RestController
@@ -69,13 +74,75 @@ public class KhachHangAPI {
     public ResponseEntity<?> searchKhachHang( @RequestParam(name = "search") String param) {
 
         List<KhacHangResponse> result = khachHangService.findAllAndTrangThai(
-                param, param, param, param, SystemConstant.ACTICE);
+                param, param, param, param, param, param, SystemConstant.ACTICE);
         if(result == null) {
             return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/exportToExcel")
+    public void exportToExcel(HttpServletResponse response,
+                              @RequestParam(name = "ma", required = false) String ma,
+                              @RequestParam(name = "ten", required = false) String ten,
+                              @RequestParam(name = "email", required = false) String email,
+                              @RequestParam(name = "soDienThoai", required = false) String soDienThoai,
+                              @RequestParam(name = "gioiTinh", required = false) String gioiTinh,
+                              @RequestParam(name = "moTa", required = false) String moTa) throws IOException {
+        List<KhacHangResponse> customers = khachHangService.findAllAndTrangThai(ma, ten, email, soDienThoai, gioiTinh, moTa, SystemConstant.ACTICE);
 
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Danh sách khách hàng");
+
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("Mã KH");
+        header.createCell(1).setCellValue("Họ và tên");
+        header.createCell(2).setCellValue("SDT");
+        header.createCell(3).setCellValue("Email");
+        header.createCell(4).setCellValue("Giới tính");
+        header.createCell(5).setCellValue("Ngày sinh");
+        header.createCell(6).setCellValue("Mô tả");
+
+        // Tạo một CellStyle cho định dạng ngày tháng
+        CellStyle dateStyle = workbook.createCellStyle();
+        CreationHelper createHelper = workbook.getCreationHelper();
+        dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd-MM-yyyy"));
+
+        int rowNum = 1;
+        for (KhacHangResponse khachHang : customers) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(khachHang.getMa());
+            row.createCell(1).setCellValue(khachHang.getTen());
+            row.createCell(2).setCellValue(khachHang.getSoDienThoai());
+            row.createCell(3).setCellValue(khachHang.getEmail());
+            row.createCell(4).setCellValue(khachHang.getGioiTinh());
+            // Đặt định dạng cho ô chứa ngày tháng
+            Cell dateCell = row.createCell(5);
+            dateCell.setCellValue(khachHang.getNgaySinh());
+            dateCell.setCellStyle(dateStyle);
+            row.createCell(6).setCellValue(khachHang.getMoTa());
+        }
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=Customer.xlsx");
+
+        OutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
+        outputStream.close();
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<String> importCustomers(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return new ResponseEntity<>("Tệp không được để trống", HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            khachHangService.importFromExcel(file);
+            return new ResponseEntity<>("Dữ liệu đã được import thành công", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Lỗi khi import dữ liệu từ tệp Excel: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

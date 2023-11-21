@@ -17,7 +17,7 @@
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Hi, welcome back!</h4>
-                    <p class="mb-0">Your business dashboard template</p>
+                    <p class="mb-0">HIHI</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -257,5 +257,20 @@
         </div>
     </div>
 </div>
+
+<script >
+    //checkbox change password
+    const changePasswordCheckbox = document.getElementById("changePasswordCheckbox");
+    const passwordFields = document.getElementById("passwordFields");
+
+    changePasswordCheckbox.addEventListener("change", function () {
+        if (changePasswordCheckbox.checked) {
+            passwordFields.style.display = "block";
+        } else {
+            passwordFields.style.display = "none";
+        }
+    });
+
+</script>
 </body>
 </html>

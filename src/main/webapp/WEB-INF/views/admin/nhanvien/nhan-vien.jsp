@@ -117,7 +117,6 @@
     </div>
     <ul id="pagination" class="d-flex justify-content-center"></ul>
 </div>
-<script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script>
     let pageCurrent = 1;
     function loadNhanVien(url) {
@@ -233,7 +232,7 @@
             dataType: 'json',
             success: function (response) {
                 if(param === ''){
-                    loadNhanVien('/api/nhan-vien')
+                    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
                 }else{
                     loadNhanVien('/api/nhan-vien/search?q=' + param);
                 }

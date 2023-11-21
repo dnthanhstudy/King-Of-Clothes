@@ -101,10 +101,7 @@
         </div>
         <div class="col-4 text-center mt-5">
             <div>
-                <img src="/template/web/img/anh1.png" width="50%" style="border-radius: 50%" alt="">
-            </div>
-            <div class="mt-4">
-                <button type="button" class="btn" style="background-color: #EFCACA;color: #BF0000"  onclick="chonAnh()">Chọn Ảnh</button>
+                <img src="/template/web/img/avatar.jpeg" width="50%" style="border-radius: 50%" alt="">
             </div>
         </div>
     </div>
@@ -113,17 +110,5 @@
     </div>
 </div>
 
-<script>
-    function chonAnh() {
-        var fileInput = document.createElement("input");
-        fileInput.type = "file";
-        fileInput.style.display = "none";
-        document.body.appendChild(fileInput);
-        fileInput.addEventListener("change", function () {
-
-        });
-        fileInput.click();
-    }
-</script>
 </body>
 </html>

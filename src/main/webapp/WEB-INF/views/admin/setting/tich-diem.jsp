@@ -26,7 +26,7 @@
              style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;padding: 20px;">
             <form id="tien-quy-ra-diem">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <span>Tỉ lệ quy đổi điểm thưởng:</span>
                     </div>
                     <input type="hidden" name="id" value="">
@@ -36,8 +36,10 @@
                             <span class="underline1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span>
+                    </div>
+                    <div class="col-lg-1">
                         =
                     </div>
                     <div class="col-lg-2">
@@ -55,7 +57,7 @@
 
             <form id="diem-quy-ra-tien">
                 <div class="row mt-4">
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <span>Thanh toán bằng điểm:</span>
                     </div>
                     <div class="col-lg-2">
@@ -65,8 +67,10 @@
                             <span class="underline1"></span>
                         </div>
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span>
+                    </div>
+                    <div class="col-lg-1">
                         =
                     </div>
                     <div class="col-lg-2">
