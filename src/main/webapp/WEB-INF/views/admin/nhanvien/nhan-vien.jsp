@@ -227,14 +227,14 @@
         const param = $('#searchAll').val();
         console.log(param);
         $.ajax({
-            url: '/api/nhan-vien/search?q=' + param,
+            url: '/api/nhan-vien/search?q=' + param + '&limit=3',
             method: 'GET',
             dataType: 'json',
             success: function (response) {
                 if(param === ''){
                     loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
                 }else{
-                    loadNhanVien('/api/nhan-vien/search?q=' + param);
+                    loadNhanVien('/api/nhan-vien/search?q=' + param + '&limit=3');
                 }
             },
             error: function (error){

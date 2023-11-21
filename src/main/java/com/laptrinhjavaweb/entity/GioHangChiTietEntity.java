@@ -1,12 +1,23 @@
 package com.laptrinhjavaweb.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.annotations.Formula;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "giohangchitiet")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class GioHangChiTietEntity extends BaseEntity{
 
 	@ManyToOne
@@ -21,8 +32,8 @@ public class GioHangChiTietEntity extends BaseEntity{
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
 	
-//	@Column(name = "gia")
-//	private Double gia;
+	@Column(name = "gia")
+	private Double gia;
 	
 	@Column(name = "soluong")
 	private Integer soLuong;
@@ -33,45 +44,5 @@ public class GioHangChiTietEntity extends BaseEntity{
 			return sanPham.getGia()*soLuong;
 		}
 		return bienThe.getGia()*soLuong;
-	}
-
-	public BienTheEntity getBienThe() {
-		return bienThe;
-	}
-
-	public void setBienThe(BienTheEntity bienThe) {
-		this.bienThe = bienThe;
-	}
-
-	public GioHangEntity getGioHang() {
-		return gioHang;
-	}
-
-	public void setGioHang(GioHangEntity gioHang) {
-		this.gioHang = gioHang;
-	}
-
-	public SanPhamEntity getSanPham() {
-		return sanPham;
-	}
-
-	public void setSanPham(SanPhamEntity sanPham) {
-		this.sanPham = sanPham;
-	}
-
-//	public Double getGia() {
-//		return gia;
-//	}
-//
-//	public void setGia(Double gia) {
-//		this.gia = gia;
-//	}
-
-	public Integer getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(Integer soLuong) {
-		this.soLuong = soLuong;
 	}
 }

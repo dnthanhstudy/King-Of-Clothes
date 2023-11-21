@@ -51,8 +51,8 @@
                 <span class="nav-text">Giao ca</span>
             </a>
                 <ul aria-expanded="false">
-                    <li><a href="/admin/giao-ca/moca">Mở ca</a></li>
-                    <li><a href="/admin/giao-ca/dongca">Đóng ca</a></li>
+                    <li><a href="/admin/giao-ca/mo-ca">Mở ca</a></li>
+                    <li><a href="/admin/giao-ca/dong-ca">Đóng ca</a></li>
                 </ul>
             </li>
             <li>

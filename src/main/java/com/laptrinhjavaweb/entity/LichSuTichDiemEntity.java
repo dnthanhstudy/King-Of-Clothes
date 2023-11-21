@@ -1,8 +1,17 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "lichsutichdiem")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class LichSuTichDiemEntity extends BaseEntity{
 
 	@ManyToOne
@@ -18,36 +27,4 @@ public class LichSuTichDiemEntity extends BaseEntity{
 
 	@Column(name = "sodiemtichduoc")
 	private Integer soDiemTichDuoc;
-
-	public TichDiemEntity getTichDiem() {
-		return tichDiem;
-	}
-
-	public void setTichDiem(TichDiemEntity tichDiem) {
-		this.tichDiem = tichDiem;
-	}
-
-	public HoaDonEntity getHoaDon() {
-		return hoaDon;
-	}
-
-	public void setHoaDon(HoaDonEntity hoaDon) {
-		this.hoaDon = hoaDon;
-	}
-
-	public Integer getSoDiemDung() {
-		return soDiemDung;
-	}
-
-	public void setSoDiemDung(Integer soDiemDung) {
-		this.soDiemDung = soDiemDung;
-	}
-
-	public Integer getSoDiemTichDuoc() {
-		return soDiemTichDuoc;
-	}
-
-	public void setSoDiemTichDuoc(Integer soDiemTichDuoc) {
-		this.soDiemTichDuoc = soDiemTichDuoc;
-	}
 }

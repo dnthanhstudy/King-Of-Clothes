@@ -1,31 +1,24 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "timkiemsanpham")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TimKiemSanPhamEntity extends BaseEntity {
 
-	@Column(name = "timkiem", columnDefinition = "nvarchar(255)")
+	@Column(name = "timkiem")
 	private String timKiem;
 	
 	@ManyToOne
 	@JoinColumn(name = "idkhachhang")
 	private KhachHangEntity khachHang;
-
-	public String getTimKiem() {
-		return timKiem;
-	}
-
-	public void setTimKiem(String timKiem) {
-		this.timKiem = timKiem;
-	}
-
-	public KhachHangEntity getKhachHang() {
-		return khachHang;
-	}
-
-	public void setKhachHang(KhachHangEntity khachHang) {
-		this.khachHang = khachHang;
-	}
 }

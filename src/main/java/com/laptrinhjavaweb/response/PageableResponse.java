@@ -1,24 +1,17 @@
 package com.laptrinhjavaweb.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PageableResponse {
 
 	private Integer pageCurrent;
 
 	private Integer totalPage;
-
-	public Integer getPageCurrent() {
-		return pageCurrent;
-	}
-
-	public void setPageCurrent(Integer pageCurrent) {
-		this.pageCurrent = pageCurrent;
-	}
-
-	public Integer getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(Integer totalPage) {
-		this.totalPage = totalPage;
-	}
 }

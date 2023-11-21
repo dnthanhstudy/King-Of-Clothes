@@ -67,7 +67,7 @@
                     <div class="col-6 mt-4">
                         <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
-                            <option value="levents">LEVENTS</option>
+                            <option value="lovito">Lovito</option>
                             <option value="paradox">PARADOX</option>
                             <option value="odin-club">ODIN CLUB</option>
                             <option value="by-unispace">By Unispace</option>

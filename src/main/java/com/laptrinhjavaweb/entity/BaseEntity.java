@@ -1,18 +1,30 @@
 package com.laptrinhjavaweb.entity;
 
-import javax.persistence.*;
+import java.util.Date;
 
-import com.laptrinhjavaweb.model.enumentity.TrangThaiTTMHEnum;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
-
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class BaseEntity {
 
 	@Id
@@ -21,70 +33,21 @@ public abstract class BaseEntity {
 	private Long id;
 	
 	@CreatedDate
-	@Column(name = "ngaytao", columnDefinition = "DATETIME")
+	@Column(name = "ngaytao", columnDefinition = "TIMESTAMP", updatable = false)
 	private Date ngayTao;
 
 	@CreatedBy
-	@Column(name = "nguoitao", columnDefinition = "nvarchar(255)")
+	@Column(name = "nguoitao", updatable = false)
 	private String nguoiTao;
 
 	@LastModifiedDate
-	@Column(name = "ngaysua", columnDefinition = "DATETIME")
+	@Column(name = "ngaysua", columnDefinition = "TIMESTAMP")
 	private Date ngaySua;
 
 	@LastModifiedBy
-	@Column(name = "nguoisua", columnDefinition = "nvarchar(255)")
+	@Column(name = "nguoisua")
 	private String nguoiSua;
 
-	@Column(name = "trangthai", columnDefinition = "NVARCHAR(255) default 'ACTIVE'")
+	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'")
 	private String trangThai;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getNgayTao() {
-		return ngayTao;
-	}
-
-	public void setNgayTao(Date ngayTao) {
-		this.ngayTao = ngayTao;
-	}
-
-	public String getNguoiTao() {
-		return nguoiTao;
-	}
-
-	public void setNguoiTao(String nguoiTao) {
-		this.nguoiTao = nguoiTao;
-	}
-
-	public Date getNgaySua() {
-		return ngaySua;
-	}
-
-	public void setNgaySua(Date ngaySua) {
-		this.ngaySua = ngaySua;
-	}
-
-	public String getNguoiSua() {
-		return nguoiSua;
-	}
-
-	public void setNguoiSua(String nguoiSua) {
-		this.nguoiSua = nguoiSua;
-	}
-
-	public String getTrangThai() {
-		return trangThai;
-	}
-
-	public void setTrangThai(String trangThai) {
-		this.trangThai = trangThai;
-	}
-
 }
