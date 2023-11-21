@@ -17,7 +17,7 @@
     <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
         <div class="d-flex justify-content-between">
             <div>
-                <span class="fs-5">Số dư ví : </span><span class="fs-2" id="soDuVi">đ</span>
+                <span class="fs-5">Số dư ví : </span><span class="fs-2" id="soDuVi"></span>đ
             </div>
             <div>
                 <span class="badge bg-primary text-wrap fs-3"> <i class="bi bi-coin"></i> 30</span>
@@ -78,7 +78,7 @@
         success: function(data) {
             console.log(data);
             idVi = data.id;
-            $("#soDuVi").text(data.soTien);
+            $("#soDuVi").text(formatNumber(data.soTien));
         },
         error: function(xhr, status, error) {
             alert('Có lỗi xảy ra: ' + error);
