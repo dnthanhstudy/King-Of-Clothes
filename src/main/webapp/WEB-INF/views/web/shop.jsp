@@ -76,7 +76,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <form action="<c:url value='/shop'/>" method="GET" id="form-submit-product">
+                <form action="<c:url value='/danh-sach-san-pham'/>" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:forEach var="item" items="${mapProduct.data}">
                             <div class="col-lg-4 col-md-6 col-sm-12 pb-1">

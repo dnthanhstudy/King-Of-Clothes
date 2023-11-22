@@ -11,29 +11,56 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.id}")
     Long getIdHdct();
 
+    @Value("#{target.bienThe.sanPham.ten}")
+    String getTenSanPham();
+
+
+    @Value("#{target.bienThe.id}")
+    Long getIdBienThe();
+    @Value("#{target.bienThe.ma}")
+    String getMaBienThe();
+    @Value("#{target.bienThe.ten}")
+    String getTenBienThe();
+
     @Value("#{target.hoaDon.khachHang.id}")
     Long getIdKhachHang();
     @Value("#{target.hoaDon.id}")
     Long getIdHoaDon();
 
-    @Value("#{target.bienThe.id}")
-    Long getIdBienThe();
 
     @Value("#{target.soLuong}")
     Integer getSoLuong();
 
     @Value("#{target.bienThe.gia}")
     BigDecimal getGiaTien();
+
+
+
     @Value("#{target.bienThe.sanPham.danhMuc.ten}")
     String getTenDanhMuc();
-    @Value("#{target.bienThe.ten}")
-    String getTenBienThe();
-
-    @Value("#{target.tongTien}")
-    Double getTongTien();
-    @Value("#{target.bienThe.sanPham.ten}")
-    String getTenSanPham();
 
     @Value("#{target.hoaDon.id}")
     Long getIdhd();
+
+    @Value("#{target.hoaDon.khachHang.ma}")
+    String getMaKhachHang();
+    @Value("#{target.hoaDon.sodienthoai}")
+    String getSoDienThoai();
+    @Value("#{target.hoaDon.tenNguoiNhan}")
+    String getTenNguoiNhan();
+    @Value("#{target.hoaDon.diaChi}")
+    String getDiaChiNguoiNhan();
+
+    @Value("#{target.hoaDon.trangThai}")
+    String getTrangThaiHoaDon();
+
+    @Value("#{target.tongTien}")
+    Double getTongTienHdct();
+    @Value("#{target.hoaDon.tongTienHang}")
+    Double getTongTienSanPham();
+
+    @Value("#{target.hoaDon.tienShip}")
+    Double getTienShip();
+    @Value("#{target.hoaDon.tongTien}")
+    Double getTongTien();
 }

@@ -10,6 +10,341 @@
     <title>Hóa Đơn</title>
 </head>
 <section>
+    <div class="modal fade chitiethoadon" tabindex="-1" aria-labelledby="chitiethoadon" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="chitiethoadon">Chi tiết hóa đơn</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;padding: 20px; background-color: #fff">
+                        <div class="">
+                            <h4>Thông tin khách hàng</h4>
+                        </div>
+                        <hr>
+                        <div class="row my-2">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <strong>Mã Khách hàng đặt:</strong> <span id="makh">KH01</span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <strong>Số điện thoại:</strong> <span id="sodienthoai">0325808823</span>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <strong>Tên người nhận:</strong> <span id="tennguoinhan">Đinh Tuấn Anh</span>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <strong>Địa chỉ:</strong> <span id="diachi">Yên trị, Yên Thuỷ, Hoà bình</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" style="height: 400px; overflow-y: scroll;" id="cart">
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã biến thể</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black" >SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success" >Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black" >150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success">Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success">Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success">Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success">Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="project-info">
+                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                    <span>#</span>
+                                    <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Mã sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Tên sản phẩm</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
+                                            <div class="text-success">Màu hồng, M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Số lượng</span>
+                                            <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Đơn giá</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="ml-2">
+                                            <span>Thành tiền</span>
+                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer" id="trangthaibutton">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-info">Nhận đơn</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="content-body" >
         <div class="container-fluid">
@@ -114,6 +449,7 @@
           url: '/api/hoadon/dshoadon',
           method: 'GET',
           success: function (req) {
+              console.log(req);
               loadTable(req.data)
 
           },
@@ -136,343 +472,7 @@
                   <td>\${item.phuongThucThanhToan}</td>
                   <td>\${item.trangThai}</td>
                   <td>
-                    <a href="" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#chitiethoadon">Chi tiết</a>
-
-                        <div class="modal fade" id="chitiethoadon" tabindex="-1" aria-labelledby="chitiethoadon" aria-hidden="true">
-                             <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="chitiethoadon">Chi tiết hóa đơn</h1>
-                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card" style="box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;padding: 20px; background-color: #fff">
-                                            <div class="">
-                                                <h4>Thông tin khách hàng</h4>
-                                            </div>
-                                            <hr>
-                                            <div class="row my-2">
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <strong>Mã khách hàng:</strong> <span>KH01</span>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <strong>Số điện thoại:</strong> <span>0325808823</span>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <strong>Tên người nhận:</strong> <span>Đinh Tuấn Anh</span>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                                    <strong>Địa chỉ:</strong> <span>Yên trị, Yên Thuỷ, Hoà bình</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="" style="height: 400px; overflow-y: scroll;">
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card">
-                                                <div class="project-info">
-                                                    <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                                         <span>#</span>
-                                                        <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                               <span>Mã sản phẩm</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                 <span>Tên sản phẩm</span>
-                                                                 <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                                                 <div class="text-success">Màu hồng, M</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Số lượng</span>
-                                                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="2">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Đơn giá</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="ml-2">
-                                                                <span>Thành tiền</span>
-                                                                <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                     </div>
-                                    <div class="modal-footer">
-                                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Hủy</button>
-                                         <button type="button" class="btn btn-info">Nhận đơn</button>
-                                    </div>
-                                </div>
-                             </div>
-                        </div>
+                    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target=".chitiethoadon" onclick="chiTietHoaDon(\${item.id})">Chi tiết</button>
                 </td>
                 </tr>
          `)
@@ -482,38 +482,141 @@
       //     stripeClasses: ['w-100'],
       // })
   }
-    // let dataTable = $("#tblHoaDon").DataTable({
-    //     destroy: true,
-    //     data: req.data,
-    //     responsive:true,
-    //     pagingType: $(window).width() < 768 ? "simple" : "simple_numbers",
-    //     searching: false,
-    //     columns: [
-    //         {
-    //             data: null,
-    //             render: function (data, type, row, meta) {
-    //                 return meta.row + 1; // Số thứ tự bắt đầu từ 1
-    //             },
-    //             orderData: null, // Không sắp xếp cột số thứ tự
-    //         },
-    //         { data: 'ma' },
-    //         { data: 'tenNguoiNhan' },
-    //         { data: 'thoiGianDat', render: function (data) { return formatDateInput(data) } },
-    //         { data: 'tongTien'},
-    //         { data: 'phuongThucThanhToan'},
-    //         { data: 'trangThai'},
-    //         {
-    //             data: 'id',
-    //             render: function (data, type, row) {
-    //                 return `<button type="button" class="btn btn-success">Sửa</button>`;
-    //             }
-    //         },
-    //     ],
-    //     order: [[3, 'desc']], // Sắp xếp theo cột Ngày tạo lập
-    //     pageLength: 10,
-    //     columnDefs: [
-    //         { orderable: false, targets: 0 }, // Không sắp xếp cột số thứ tự
-    //     ]
-    // });
+   function chiTietHoaDon(idhd) {
+       $.ajax({
+           url: '/api/hdct/'+idhd,
+           method: 'GET',
+           success: function (req) {
+               var data  = req.data[0];
+               console.log(data)
+              $("#makh").text(data.maKhachHang)
+              $("#tennguoinhan").text(data.tenNguoiNhan)
+              $("#sodienthoai").text(data.soDienThoai)
+              $("#diachi").text(data.diaChiNguoiNhan)
+               let cart = $("#cart")
+               cart.empty();
+               let html = "";
+                req.data.forEach(function (item,index) {
+                    html+=`
+                     <div class="card">
+                        <div class="project-info">
+                        <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                        <span>#</span>
+                    <h5 class="mb-0 pt-1 font-w500 text-black">\${index+1}</h5>
+                </div>
+                    <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-2">
+                                <span>Mã biến thể</span>
+                                <h5 class="mb-0 pt-1 font-w500 text-black" >\${item.maBienThe}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 my-2 col-lg-6 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-2">
+                                <span>Tên sản phẩm</span>
+                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.tenSanPham}</h5>
+                                <div class="text-success" >\${item.tenBienThe}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-2">
+                                <span>Đơn giá</span>
+                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.giaTien}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-2">
+                                <span>Số lượng</span>
+                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="\${item.soLuong}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-2">
+                                <span>Thành tiền</span>
+                                <h5 class="mb-0 pt-1 font-w500 text-black" >\${item.tongTienHdct}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                    `
+                })
+               cart.append(html);
+                cart.append(`
+                <div class="card">
+                  <h5 class="card-header">Thành tiền</h5>
+                  <div class="card-body">
+                    <h5 class="card-title">Ship : \${convertVND(data.tienShip)} </h5>
+                    <p class="card-text">Tiền sản phẩm : \${convertVND(data.tongTienSanPham)}</p>
+                    <p class="card-text">Tổng tiền : \${convertVND(data.tongTien)}</p>
+                  </div>
+                </div>
+                `);
+               setTrangThaiHoaDon(idhd,data.trangThaiHoaDon)
+           },
+           error: function(xhr, status, error) {
+               console.log("Có lỗi xảy ra")
+           }
+       });
+   }
+    // <div class="modal-footer" id="trangthaibutton">
+    //     <button type="button" class="btn btn-default" data-bs-dismiss="modal">Hủy</button>
+    //     <button type="button" class="btn btn-info">Nhận đơn</button>
+    // </div>
+   function setTrangThaiHoaDon(idhd,trangThaiHoaDon) {
 
+        let trangThaiHtml = $("#trangthaibutton");
+        trangThaiHtml.empty();
+        trangThaiHtml.append('<button type="button" class="btn btn-default" data-bs-dismiss="modal">Quay lại</button>');
+       if (trangThaiHoaDon=='Chờ nhận đơn'){
+           trangThaiHtml.append(`
+           <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'HUYDON')">Huỷ đơn</button>
+           <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANDON')">Nhận đơn</button>
+           `)
+       }else if (trangThaiHoaDon=='Đã nhận đơn'){
+          trangThaiHtml.append(`
+           <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'HUYDON')">Huỷ đơn</button>
+           <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANGGIAOHANG')">Đang giao hàng</button>
+          `);
+       }else if (trangThaiHoaDon=='Đang giao hàng'){
+           trangThaiHtml.append(`
+                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANHANG')">Đã nhận hàng</button>
+      `);
+       }
+
+
+   }
+   function thayDoiTrangThaiHoaDon(idhd,trangThai){
+       $.ajax({
+           url: `/api/hoadon/thaydoitrangthai?idhd=\${idhd}&trangthai=\${trangThai}`,
+           method: 'GET',
+           success: function (req) {
+               showMessageHoaDon(trangThai);
+               loadDsHoaDon();
+           },
+           error: function(xhr, status, error) {
+               console.log("Có lỗi xảy ra")
+           }
+       });
+   }
+   function showMessageHoaDon(trangThai){
+           if (trangThai=='HUYDON'){
+               showSuccess("Đã huỷ đơn")
+           }else  if (trangThai=="DANHANDON"){
+               showSuccess("Đã nhận đơn")
+           }else if (trangThai=="DANGGIAOHANG"){
+               showSuccess("Đơn hàng đang giao hàng")
+           }else if (trangThai=="DANHANHANG"){
+               showSuccess("Đơn hàng đã nhận")
+           }
+
+   }
 </script>

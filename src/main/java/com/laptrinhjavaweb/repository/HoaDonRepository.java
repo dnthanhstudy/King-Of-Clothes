@@ -25,6 +25,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long> {
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
     HoaDonEntity findHoaDonMoiDat(@Param("idkh") Long idkh);
 
-    @Query("select hd from HoaDonEntity hd where hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANNG')")
+    @Query("select hd from HoaDonEntity hd where hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANG')")
     List<HoaDonResponse> dsHoaDonOnline();
+
+    List<HoaDonResponse> findAllByKhachHang_IdAndTrangThai(Long idkh,String trangThai);
+
+    List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(Long idkh,List<String> trangThais);
 }

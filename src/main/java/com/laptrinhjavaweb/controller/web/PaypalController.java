@@ -62,7 +62,7 @@ public class PaypalController {
         try {
             Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
                     order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-                    "http://localhost:8080/" + SUCCESS_URL+"/"+order.getIdkh()+"/"+order.getIdttmuahang());
+                    "http://localhost:8080/" + SUCCESS_URL+"/"+order.getIdkh()+"/"+order.getIdttmuahang()+"/"+order.getPhiShip());
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
                     return "redirect:"+link.getHref();
@@ -81,16 +81,17 @@ public class PaypalController {
         return "cancel";
     }
 
-    @GetMapping(value = "/success/{idkh}/{ttgh}")
+    @GetMapping(value = "/success/{idkh}/{ttgh}/{phiship}")
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,
                              @PathVariable(name = "idkh")Long idkh,
-                             @PathVariable(name = "ttgh")Long ttgh
+                             @PathVariable(name = "ttgh")Long ttgh,
+                             @PathVariable(name = "phiship")Double phiship
     ) {
         try {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-               HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN");
+               HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN",phiship);
                 if (hoaDon==null){
                     return "web/403";
                 }
@@ -119,7 +120,7 @@ public class PaypalController {
                 , new ParameterizedTypeReference<ApiResponse<PreviewGiaoHang>>() {
                 }
         );
-        hoaDon.setMa(responseEntity.getMaHoaDon());
+        hoaDon.setMaGiaoHang(responseEntity.getMaHoaDon());
         hoaDon.setTienShip(responseEntity.getTongPhiGiao());
         hoaDonService.saveHoaDon(hoaDon);
 
