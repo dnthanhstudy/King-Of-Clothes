@@ -74,7 +74,7 @@
                     </div>
                 </c:forEach>
 
-
+                <p class="text-dark font-weight-medium mb-0 mr-3">Thương hiệu: ${product.thuongHieu.ten}</p>
 
                 <div class="d-flex align-items-center pt-2 mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p><div class="input-group quantity mr-3" style="width: 130px;">
@@ -213,9 +213,7 @@
     $("#addCart").click(function () {
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
         if (idkh==-1){
-            console.log("Chưa đăng nhập");
-            return;
-
+            window.location.href = "/login?is_not_login";
         }
 
         // Người dùng đã đăng nhập, thực hiện gửi Ajax request

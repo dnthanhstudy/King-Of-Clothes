@@ -19,7 +19,7 @@ public class BienTheRequest {
 
     private String base64;
 
-    private String anh;
+    private String hinhAnh;
 
     private Long idSanPham;
 
