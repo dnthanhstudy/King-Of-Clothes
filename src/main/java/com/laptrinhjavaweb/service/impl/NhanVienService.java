@@ -58,6 +58,7 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
+        nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
@@ -177,6 +178,14 @@ public class NhanVienService implements INhanVienService {
     public NhanVienResponse moCa(String ma) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
         nhanVienEntity.setTrangThai(SystemConstant.ACTICE);
+        nhanVienRepository.save(nhanVienEntity);
+        return nhanVienConverter.convertToResponse(nhanVienEntity);
+    }
+
+    @Override
+    public NhanVienResponse dongCa(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        nhanVienEntity.setTrangThai(SystemConstant.IN_ACTICE);
         nhanVienRepository.save(nhanVienEntity);
         return nhanVienConverter.convertToResponse(nhanVienEntity);
     }

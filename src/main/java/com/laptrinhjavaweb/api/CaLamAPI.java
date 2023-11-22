@@ -28,6 +28,14 @@ public class CaLamAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    @GetMapping("/dong-ca/{ma}")
+    public ResponseEntity<?> dongCa(
+            @PathVariable("ma") String ma
+    ){
+        NhanVienResponse result = nhanVienService.dongCa(ma);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> themCa(@RequestBody CaLamRequest request){
         CaLamResponse result = caLamService.insert(request);

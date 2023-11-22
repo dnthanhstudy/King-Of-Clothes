@@ -54,43 +54,74 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <hr>
-            <table class="table table-hover table-striped">
-            <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Mã SP</th>
-                <th scope="col">Tên SP</th>
-                <th scope="col">Giá</th>
-                <th scope="col">Giảm giá</th>
-                <th scope="col">Danh muc</th>
-                <th scope="col">Thương hiệu</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>STT</td>
-                <td>Hình ảnh</td>
-                <td>Mã SP</td>
-                <td>Tên SP</td>
-                <td>Giá</td>
-                <td>Giảm giá</td>
-                <td>Danh muc</td>
-                <td>Thương hiệu</td>
-                <td>
-                    <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
-                    <button class="btn btn-danger">Xóa</button>
-                </td>
-            </tr>
-
-            </tbody>
-        </table>
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Tên SP</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Danh muc</th>
+                        <th scope="col">Thương hiệu</th>
+                        <th scope="col" colspan="2">Thao tác</th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbody-product">
+                    </tbody>
+                </table>
             </div>
         </div>
-
+        <ul class="pagination" id="pagination"></ul>
     </div>
 </div>
+<script>
+    let pageCurrent = 1;
+    loadAllProduct();
+    function loadAllProduct(){
+        $.ajax({
+            url: "/api/san-pham/pagination?page="+pageCurrent,
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: (response) => {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<tr>
+                                <td>\${index+1}</td>
+                                <td>
+                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 150px;">
+                                </td>
+                                <td>\${item.ten}</td>
+                                <td>\${item.gia}</td>
+                                <td>\${item.danhMuc.ten}</td>
+                                <td>\${item.thuongHieu.ten}</td>
+                                <td>
+                                    <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
+                                    <button class="btn btn-danger">Xóa</button>
+                                </td>
+                            </tr>`;
+                })
+                $('.tbody-product').html(html);
 
+                console.log(response);
+                $('#pagination').twbsPagination({
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            loadAllProduct();
+                        }
+                    },
+                });
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+</script>
 </body>
 </html>

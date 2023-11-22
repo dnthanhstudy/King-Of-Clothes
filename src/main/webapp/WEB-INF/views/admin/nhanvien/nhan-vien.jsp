@@ -185,7 +185,7 @@
                             event.preventDefault();
                             pageCurrent = page;
                             console.log(pageCurrent)
-                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=2');
                         }
                     },
                 });
@@ -195,7 +195,7 @@
             }
         });
     }
-    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=2');
 
 
     $('#cardNhanVien').on('click', (e) => {

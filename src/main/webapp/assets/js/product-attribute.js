@@ -4,7 +4,7 @@ $(".input-name-atrribute").on("keypress", function (e) {
         e.preventDefault();
         let nameAttribute = $(e.target).val();
         if (!nameAttribute) {
-            messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
+            showError("Thuộc tính này đã tòn tại")
         } else {
             $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
@@ -18,7 +18,7 @@ $(".input-name-atrribute").on("keypress", function (e) {
                                                   <button type="button" class="btn btn-success position-relative">
                                                       ${nameAttribute}
                                                     <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                        <i class="btn-remove-parent-trash fa-solid fa-trash"></i>
+                                                         <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
                                                     </span>
                                                   </button>
                                               </div>
@@ -53,12 +53,12 @@ $("#card-attribute .card-body").on("click", function (e) {
                 const slugCurrent = eleClick.parent().parent().data("slug");
                 if (valueAttr) {
                     if (checkValuExsits(slugCurrent, valueAttr) !== undefined) {
-                        messageNotication(valueExsits, "rgba(255, 99, 71, 1)");
+                        showError("Gía trị thuộc tính này đã tồn tại")
                     } else {
                         const eleValueAttr = `<button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
                 ${valueAttr}
                 <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  <i class="btn-remove-children-trash fa-solid fa-trash"></i>
+                   <i class="fa fa-trash-o btn-remove-children-trash" aria-hidden="true"></i>
                 </span>
           </button>`;
                         eleClick.parent().prev().append(eleValueAttr);
@@ -284,4 +284,61 @@ function getDataFromForm() {
         data[propertyName] = propertyValue;
     });
     return data;
+}
+
+let attributes = [];
+$.ajax({
+    url: '/api/filter',
+    dataType: "json",
+    success: function (response){
+        $.each(response, function (index, item){
+            let attribute = {
+                "value": item.ten,
+                "slug": item.ma
+            }
+            attributes.push(attribute);
+        })
+        console.log(attributes);
+        loadSuggestions(attributes);
+    },
+    error: function (error){
+        console.log(error);
+    }
+});
+
+function loadSuggestions(options){
+    $('.input-name-atrribute').autocomplete({
+        lookup: options,
+        onSelect: function (suggestion) {
+            let nameAttribute = suggestion.value;
+            if (!nameAttribute) {
+                showError("Không được để trống")
+            } else {
+                $(".card-text-none-attribute").hide();
+                const slugAttribute = suggestion.slug;
+                if (findBySlug(slugAttribute) !== undefined) {
+                    showError("Thuộc tính này đã tòn tại")
+                } else {
+                    const eleDivProductsHasAtributes = $(
+                        `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
+                    );
+                    const eleNameAttribute = `<div class="name-attribute">
+                                                  <button type="button" class="btn btn-success position-relative">
+                                                      ${nameAttribute}
+                                                    <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
+                                                    </span>
+                                                  </button>
+                                              </div>
+            
+                                              <div class="input-group mt-3">
+                                                  <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
+                                              </div>`;
+                    eleDivProductsHasAtributes.html(eleNameAttribute);
+                    $("#card-attribute .card-body").append(eleDivProductsHasAtributes);
+                }
+                $('.input-name-atrribute').val('');
+            }
+        }
+    });
 }

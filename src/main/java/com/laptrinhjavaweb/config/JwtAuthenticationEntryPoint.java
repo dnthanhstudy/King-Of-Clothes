@@ -16,7 +16,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-
+        System.out.println(request.getRequestURI());
         response.sendRedirect(request.getContextPath() + "/access-denied");
     }
 }
