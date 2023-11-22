@@ -8,5 +8,5 @@ public class SystemConstant {
 
     public static final String DELETE = "DELETE";
 
-    public static final String path = "D:/01_HOCTAP/DATN/King-Of-Clothes/src/main/webapp/assets/images";
+    public static final String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images";
 }
