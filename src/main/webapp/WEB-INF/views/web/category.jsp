@@ -1,24 +1,23 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: asus
+  Date: 11/22/2023
+  Time: 11:05 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/common/taglib.jsp" %>
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lọc sản phẩm</title>
+    <title>Danh mục</title>
 </head>
 <body>
-
-<!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Danh mục</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0"><a href="">Trang chủ</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Product</p>
+            <p class="m-0">Danh mục</p>
         </div>
     </div>
 </div>
@@ -28,10 +27,10 @@
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
-        <div class="col-lg-3 col-md-12">
+        <div class="col-lg-3 col-md-12" id="filter">
             <!-- Price Start -->
             <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                 <form>
                     <div class="mb-3">
                         <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
@@ -54,47 +53,29 @@
                     <form>
                         <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
                             <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
                                 <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
                             </div>
                         </c:forEach>
                     </form>
                 </div>
             </c:forEach>
+
+            <script>
+                $('#filter input[type="checkbox"]').on('change', function(){ // on change of state
+                    if(this.checked)
+                    {
+                        console.log($(this).val());
+                    }
+                })
+            </script>
         </div>
         <!-- Shop Sidebar End -->
 
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
-                                <div class="input-group-append">
-                                            <span class="input-group-text bg-transparent text-primary">
-                                                <i class="fa fa-search"></i>
-                                            </span>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="dropdown ml-4">
-                            <button class="btn border dropdown-toggle" type="button" id="triggerId"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                Sort by
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="" method="GET" id="form-submit-product">
+                <form action="<c:url value='/shop'/>" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:forEach var="item" items="${mapProduct.data}">
                             <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
@@ -124,7 +105,6 @@
                     </div>
                     <div class="col-12 pb-1">
                         <ul class="pagination" id="pagination"></ul>
-                        <input type="hidden" value="" id="search-product" name="q"/>
                         <input type="hidden" value="" id="page-product" name="page"/>
                     </div>
                 </form>
@@ -133,30 +113,7 @@
         <!-- Shop Product End -->
     </div>
 </div>
-<!-- Shop End -->
+
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
-<script>
-
-    <%--const urlString = window.location.href;--%>
-    <%--let paramString = urlString.split('?')[1];--%>
-    <%--let queryString = new URLSearchParams(paramString);--%>
-    <%--console.log(queryString);--%>
-    <%--$('#input-search-product').val(param);--%>
-    <%--let currentPage = ${mapProduct.meta.pageCurrent};--%>
-    <%--let totalPages = ${mapProduct.meta.totalPage};--%>
-
-    // $('#pagination').twbsPagination({
-    //     totalPages: totalPages,
-    //     visiblePages: 5,
-    //     startPage: currentPage,
-    //     onPageClick: function (event, page) {
-    //         if (currentPage != page) {
-    //             $('#page-product').val(page);
-    //             $('#search-product').val(param);
-    //             //$('#form-submit-product').attr('action', '/search?q='+ param + '&page='+page).submit();
-    //         }
-    //     }
-    // });
-</script>
 </body>
 </html>
