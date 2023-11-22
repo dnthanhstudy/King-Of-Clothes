@@ -6,12 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.laptrinhjavaweb.convert.AnhSanPhamConverter;
-import com.laptrinhjavaweb.convert.GiaTriThuocTinhConverter;
-import com.laptrinhjavaweb.convert.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
-import com.laptrinhjavaweb.entity.ThuocTinhEntity;
-import com.laptrinhjavaweb.response.AnhSanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
@@ -22,7 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.laptrinhjavaweb.convert.SanPhamConverter;
+import com.laptrinhjavaweb.converter.SanPhamConverter;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.SanPhamRepository;
 import com.laptrinhjavaweb.response.PageableResponse;

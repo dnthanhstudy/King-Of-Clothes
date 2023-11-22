@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.NhanVienConverter;
+import com.laptrinhjavaweb.converter.NhanVienConverter;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
 import com.laptrinhjavaweb.response.NhanVienResponse;
@@ -171,6 +171,14 @@ public class NhanVienService implements INhanVienService {
     @Override
     public NhanVienEntity insert(NhanVienEntity nhanVienEntity) {
         return nhanVienRepository.save(nhanVienEntity);
+    }
+
+    @Override
+    public NhanVienResponse moCa(String ma) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
+        nhanVienEntity.setTrangThai(SystemConstant.ACTICE);
+        nhanVienRepository.save(nhanVienEntity);
+        return nhanVienConverter.convertToResponse(nhanVienEntity);
     }
 
 }

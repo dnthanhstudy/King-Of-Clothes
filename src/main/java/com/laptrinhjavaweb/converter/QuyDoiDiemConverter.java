@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.QuyDoiDiemEntity;
 import com.laptrinhjavaweb.response.QuyDoiDiemResponse;

@@ -28,6 +28,11 @@ public class DashboardController {
         return "admin/403";
     }
 
+    @GetMapping("/lich-su-tich-diem")
+    public String lstd() {
+        return "admin/setting/lich-su-tich-diem";
+    }
+
 }
 
 

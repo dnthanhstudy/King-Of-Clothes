@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
-import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,9 +21,9 @@ public interface IKhachHangService {
 
     KhacHangResponse getDetail(String ma);
 
-    List<KhacHangResponse> findAllAndTrangThai(String ma, String ten, String email, String soDienThoai, String gioiTinh, String moTa, String trangThai);
-
-    List<TimKiemSanPhamResponse> histosies(String ma);
+    List<KhacHangResponse> findAllAndTrangThai(String ma, String ten, String email, String soDienThoai,  String gioiTinh, String moTa, String trangThai);
 
     void importFromExcel(MultipartFile file);
+
+    List<TimKiemSanPhamResponse> histosies(String ma);
 }

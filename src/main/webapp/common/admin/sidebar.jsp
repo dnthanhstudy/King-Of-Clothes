@@ -86,6 +86,7 @@
 ***********************************-->
 <input class="ma-chuc-vu" type="hidden" value="<%=SecurityUtils.getPrincipal().getMaChucVu()%>">
 <script>
+    const ma = $('.user-name-login').text();
     const role = $('.ma-chuc-vu').val();
     if(role === "STAFF"){
         const html = `<li class="nav-label first">Main Menu</li>

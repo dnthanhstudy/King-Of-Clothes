@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.QuyDoiDiemConverter;
+import com.laptrinhjavaweb.converter.QuyDoiDiemConverter;
 import com.laptrinhjavaweb.entity.QuyDoiDiemEntity;
 import com.laptrinhjavaweb.repository.QuyDoiDiemRepository;
 import com.laptrinhjavaweb.response.QuyDoiDiemResponse;

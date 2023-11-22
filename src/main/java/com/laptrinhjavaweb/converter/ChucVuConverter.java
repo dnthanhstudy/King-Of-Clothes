@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.convert;
+package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.ChucVuEntity;
 import com.laptrinhjavaweb.response.ChucVuResponse;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ChucVuConvert {
+public class ChucVuConverter {
 
     @Autowired
     private ModelMapper modelMapper;

@@ -1,14 +1,11 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.ChucVuConvert;
+import com.laptrinhjavaweb.converter.ChucVuConverter;
 import com.laptrinhjavaweb.entity.ChucVuEntity;
-import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.ChucVuRepository;
 import com.laptrinhjavaweb.response.ChucVuResponse;
-import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.ChucVuRequest;
 import com.laptrinhjavaweb.service.IChucVuService;
-import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +19,7 @@ public class ChucVuService implements IChucVuService {
     private ChucVuRepository chucVuRepository;
 
     @Autowired
-    private ChucVuConvert chucVuConvert;
+    private ChucVuConverter chucVuConverter;
 
     @Override
     public ChucVuResponse findByMa(String ma) {
@@ -30,7 +27,7 @@ public class ChucVuService implements IChucVuService {
         if(chucVuEntity == null){
             return null;
         }
-        ChucVuResponse result = chucVuConvert.convertToResponse(chucVuEntity);
+        ChucVuResponse result = chucVuConverter.convertToResponse(chucVuEntity);
         return result;
     }
 
@@ -42,11 +39,11 @@ public class ChucVuService implements IChucVuService {
         if(chucVuEntity != null){
             return null;
         }
-        chucVuEntity = chucVuConvert.convertToEntity(chucVuRequest);
+        chucVuEntity = chucVuConverter.convertToEntity(chucVuRequest);
         chucVuEntity.setMa("STAFF");
         chucVuEntity.setTrangThai("ACTIVE");
         chucVuRepository.save(chucVuEntity);
-        ChucVuResponse result = chucVuConvert.convertToResponse(chucVuEntity);
+        ChucVuResponse result = chucVuConverter.convertToResponse(chucVuEntity);
         return result;
     }
 
@@ -56,7 +53,7 @@ public class ChucVuService implements IChucVuService {
 
         List<ChucVuResponse> result = entity.stream().map(
                 item ->
-                        chucVuConvert.convertToResponse(item)
+                        chucVuConverter.convertToResponse(item)
         ).collect(Collectors.toList());
         return result;
     }
