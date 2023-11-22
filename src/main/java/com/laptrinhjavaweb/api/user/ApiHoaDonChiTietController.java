@@ -1,7 +1,6 @@
 package com.laptrinhjavaweb.api.user;
 
-import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
-import com.laptrinhjavaweb.service.impl.HoaDonChiTietService;
+import com.laptrinhjavaweb.service.HoaDonChiTietService;
 import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

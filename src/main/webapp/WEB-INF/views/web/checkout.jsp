@@ -384,6 +384,7 @@
     <input type="hidden" name="price"  value="10.00">
     <input type="hidden" name="idkh"  value="<%=SecurityUtils.getPrincipal().getId()%>">
     <input type="hidden" name="idttmuahang" value="" id="idttmuahang">
+    <input type="hidden" name="phiShip" value="" id="tienship">
     <button id="submidpaypal" type="submit">Pay with PayPal</button>
 </form>
 <script>
@@ -761,7 +762,7 @@
                         <h6 class="card-title">\${custom.soLuong}</h6>
                     </div>
                     <div class="col-1 mt-3">
-                        <h6 class="card-title">\${custom.tongTien}</h6>
+                        <h6 class="card-title">\${custom.tongTienHdct}</h6>
                     </div>
                 </div>
                     `;
@@ -815,11 +816,14 @@
     function thanhToanNhanHang(){
     //    http://localhost:8080/api/hoadon/dathangnhanhang
         var idttmh = $("#idttmuahang").val();
+        var tienship = $(".sotiengiaohang:first").text();
+        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
         $.ajax({
-            url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}`,
+            url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}&phiship=`+tienshipSubstring,
             method: 'GET',
             success: function (req) {
                 showSuccess("Thanh toán thành công");
+                window.location.href = "/pay/success"
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
@@ -831,7 +835,10 @@
         var tienshipSubstring = Number(tien.slice(0, tien.length - 1));
 
         $("input[name='price']").val(tienshipSubstring/23000);
+        var tienship = $(".sotiengiaohang:first").text(); // Lấy giá trị từ phần tử đầu tiên
 
+        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
+        $("#tienship").val(tienshipSubstring)
         $("#submidpaypal").click();
     }
 </script>

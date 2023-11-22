@@ -19,4 +19,5 @@ public class Order {
     private String idkh;
     private Long idttmuahang;
 
+    private Double phiShip;
 }

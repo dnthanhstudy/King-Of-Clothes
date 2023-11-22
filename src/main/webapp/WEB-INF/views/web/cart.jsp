@@ -240,8 +240,9 @@
         });
        return thuocTinhSanPham;
     }
-    function getDsBienThe(thuocTinhSanPham) {
+    function getDsBienThe(thuocTinhSanPham,idsp) {
         let html = '';
+
         thuocTinhSanPham.forEach(function (item) {
             html+=`
         <li>
@@ -253,7 +254,7 @@
                 var ten = thuoctinhchitiet.giaTri;
                 var id1 = thuoctinhchitiet.id;
                 html+=`
-                    <button class="color-button button-giatri giatri-\${item.id}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
+                    <button class="color-button ghct-\${idsp} button-giatri giatri-\${item.id}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
                 `
             });
             html+=`
@@ -275,14 +276,14 @@
                  data.forEach(async function (sp){
                      const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
                      console.log(thuocTinhSanPham)
-                     const htmlthuoctinh = getDsBienThe(thuocTinhSanPham);
+                     const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct);
                         var html =
                             `
 <div class="row mt-2" style="border-bottom: 1px solid #dedede">
     <div class="col-5">
-        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-            <input type="checkbox" class="custom-control-input" checked id="price-2">
-            <label class="custom-control-label" for="price-2">
+                               <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                   <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
+            <label class="form-check-label"">
                 <div class="mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-lg-3">
@@ -295,11 +296,11 @@
                                                     <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
                                                         Phân loại hàng
                                                     </span>
-                                    <ul class="dropdown-menu p-3">
+                                    <ul class="dropdown-menu p-3" >
 \${htmlthuoctinh}
                                         <li class="text-right ">
-                                            <button type="button" class="btn btn-light" id="cancelButton" >Cancel</button>
-                                            <button type="button" class="btn text-light" style="background-color: #C3817B" >Submit</button>
+                                            <button type="button" class="btn btn-light cancelbutton"  >Back</button>
+                                            <button type="button" class="btn text-light xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
                                         </li>
                                     </ul>
 
@@ -351,17 +352,47 @@
         });
     }
 
-    // $(document).on("click",'.giatri-1',function() {
-    //     $('.giatri-1').removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1
-    //     $(this).addClass('active'); // Thêm lớp active cho button được click
+    // $(document).on('click', function(event) {
+    //     var dropdown = $('.dropdown-menu');
+    //     if (!dropdown.is(event.target) && dropdown.has(event.target).length === 0) {
+    //         dropdown.removeClass('show');
+    //     }
     // });
+
     $(document).on("click", '.button-giatri', function() {
         var giatri = $(this).data('thuoctinh'); // Lấy giá trị của data-thuoctinh từ button được click
 
         $('.giatri-' + giatri).removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1
         $(this).addClass('active'); // Thêm lớp active cho các button có giatri-1 tương ứng
     });
+    $(document).on("click", '.cancelbutton', function() {
+        $(this).closest(".show").removeClass('show');
+    });
+    $(document).on("click", '.xacnhanthuoctinh', function() {
+        let getGiaTri =$(this).val();
+        let activeGetGiaTri = $(`.\${getGiaTri}.active`);
+        let dsThuocTinhId = [];
+            activeGetGiaTri.each(function() {
+                dsThuocTinhId.push($(this).data('id'));
+            });
+            var ghctId = getGiaTri.split("-")[1];
+            updateGioHangChiTiet(ghctId,dsThuocTinhId)
+    });
 
+    function updateGioHangChiTiet(idghct,dsThuocTinhId){
+        $.ajax({
+            url: '/api/user/giohang/updateCart?idghct='+idghct+'&data=' + dsThuocTinhId.join(","),
+            method: 'GET',
+            success: function (req) {
+                ghct();
+                showSuccess("Thành công");
+            },
+            error: function(xhr, status, error) {
+                showError("Có lỗi xảy ra")
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
     function tongTien(){
         $.ajax({
             url: '/api/user/giohang/tongtienghct?dsghct=',

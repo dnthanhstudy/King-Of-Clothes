@@ -12,10 +12,12 @@ import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.ThongTinMuaHangRepository;
 import com.laptrinhjavaweb.service.HoaDonService;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -88,6 +90,18 @@ public class HoaDonServiceImpl implements HoaDonService {
         }catch (Exception e){
             return "Có lỗi xảy ra";
         }
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh, String trangThai) {
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThai(idkh,trangThai);
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonDaMua(Long idkh) {
+        List<String> dsTrangThai = new ArrayList<>();
+        dsTrangThai.add(TrangThaiHoaDon.CHUANBIDATHANG);
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(idkh,dsTrangThai);
     }
 
 

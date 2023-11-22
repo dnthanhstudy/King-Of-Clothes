@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.entity;
 
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 
 import javax.persistence.*;
 
@@ -10,11 +11,22 @@ import java.util.List;
 
 @Entity
 @Table(name = "hoadon")
+
 public class HoaDonEntity extends BaseEntity{
 
 	@Column(name = "ma", unique = true, columnDefinition = "char(10)")
 	private String ma;
-	
+	@Column(name = "magiaohang", unique = true)
+	private String maGiaoHang;
+
+	public String getMaGiaoHang() {
+		return maGiaoHang;
+	}
+
+	public void setMaGiaoHang(String maGiaoHang) {
+		this.maGiaoHang = maGiaoHang;
+	}
+
 	@Column(name = "mota", columnDefinition = "TEXT")
 	private String moTa;
 	
@@ -90,7 +102,12 @@ public class HoaDonEntity extends BaseEntity{
 	}
 	@Override
 	public String getTrangThai() {
-		return super.getTrangThai().equals("CHONHANDON")?"Chờ nhận đơn":"Đã nhận đơn";
+		String tt = super.getTrangThai();
+		return tt.equals(TrangThaiHoaDon.CHONHANDON)?"Chờ nhận đơn":
+				tt.equals(TrangThaiHoaDon.DANHANDON)?"Đã nhận đơn"
+				:tt.equals(TrangThaiHoaDon.DANGGIAOHANG)?"Đang giao hàng":
+				tt.equals(TrangThaiHoaDon.HUYDON)?"Huỷ đơn":
+				tt.equals(TrangThaiHoaDon.DANHANHANG)?"Đã nhận hàng":"";
 	}
 
 	public void setThongTinDatHang(ThongTinMuaHangEntity thongTinMuaHang){
@@ -127,7 +144,14 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public Double getTongTienHang() {
-		return tienShip==null?tongTienHang:tienShip+tongTienHang;
+		return tongTienHang;
+	}
+	public Double getTongTien() {
+		try {
+			return tongTienHang+tienShip;
+		}catch (Exception e){
+			return 0D;
+		}
 	}
 	public Double getTienKhachTraOnline() {
 		if (phuongThucThanhToan.equals("CHUYENKHOAN")){
@@ -149,7 +173,7 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Chuyển khoản":"Thanh toán khi nhận hàng";
+		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Đã thanh toán":"Thanh toán khi nhận hàng";
 	}
 
 	public void setPhuongThucThanhToan(String phuongThucThanhToan) {

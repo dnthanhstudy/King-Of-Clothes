@@ -19,4 +19,8 @@ public interface HoaDonService {
     List<HoaDonResponse> dsHoaDonOnline();
 
     String thayDoiTrangThaiHoaDon(Long idhd, String trangThai);
+
+    List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh,String trangThai);
+
+    List<HoaDonResponse> dsHoaDonDaMua(Long idkh);
 }

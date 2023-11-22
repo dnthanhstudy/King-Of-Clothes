@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.service.impl;
+package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 

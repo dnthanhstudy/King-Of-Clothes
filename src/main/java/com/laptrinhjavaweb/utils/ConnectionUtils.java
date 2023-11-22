@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class ConnectionUtils {
 
-    public static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=duantotnghiep;" +
+    public static final String DB_URL = "jdbc:sqlserver://localhost:1433;databaseName=duantotnghiep1;" +
             "encrypt=true;trustServerCertificate=true;";
 
     public static final String USER = "sa";
 
-    public static final String PASS = "123";
+    public static final String PASS = "123456";
 
     public static final Connection getConection() {
         Connection con = null;

@@ -61,6 +61,16 @@ public class ApiGioHangController {
         BienTheResponse bienThe = bienTheService.findByIdGiaTriThuocTinh(ds);
         return gioHangService.themVaoGioHang(idkh,bienThe.getId());
     }
+    @GetMapping("/updateCart")
+    public String updateGioHangChiTiet(
+            @RequestParam("data") String params,
+            @RequestParam("idghct") Long idghct
+
+    ) {
+       List<Long> ds = convertStringToLongList(params);
+        BienTheResponse bienThe = bienTheService.findByIdGiaTriThuocTinh(ds);
+        return gioHangService.updateGioHangChiTiet(idghct,bienThe.getId());
+    }
     public static List<Long> convertStringToLongList(String params) {
         List<Long> ds = new ArrayList<>();
         for (String number : params.split(",")) {
