@@ -16,10 +16,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long> {
 
 
     @Query(value = "SELECT SUM(COALESCE(bt.gia, sp.gia) * hdct.soluong) AS total\n" +
-            "FROM dbo.hoadon hd\n" +
-            "left JOIN dbo.hoadonchitiet hdct ON hdct.idhoadon = hd.id\n" +
-            "left JOIN dbo.bienthe bt ON bt.id = hdct.idbienthe\n" +
-            "left JOIN dbo.sanpham sp ON sp.id = bt.idsanpham\n" +
+            "FROM hoadon hd\n" +
+            "left JOIN hoadonchitiet hdct ON hdct.idhoadon = hd.id\n" +
+            "left JOIN bienthe bt ON bt.id = hdct.idbienthe\n" +
+            "left JOIN sanpham sp ON sp.id = bt.idsanpham\n" +
             "WHERE hd.id =:idhd",nativeQuery = true)
     BigDecimal tongTienByHoaDon(@Param("idhd")Long idhd);
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")

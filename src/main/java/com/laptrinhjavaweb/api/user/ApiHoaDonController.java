@@ -61,10 +61,10 @@ public class ApiHoaDonController {
     @GetMapping("/thaydoitrangthai")
     public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,@RequestParam("trangthai")String trangThai){
         hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai);
-        if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
-            HoaDonEntity hoaDon = hoaDonService.findById(idhd);
-            giaoHangController.datHang(idhd);
-        }
+//        if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
+//            HoaDonEntity hoaDon = hoaDonService.findById(idhd);
+//            giaoHangController.datHang(idhd);
+//        }
        return  "Thay đổi trạng thái thành công";
     }
 
