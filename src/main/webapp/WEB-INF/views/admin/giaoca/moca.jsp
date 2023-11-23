@@ -76,45 +76,60 @@
     </div>
 </div>
 <script>
-    $('#thoiGian').text(new Date().toLocaleString());
-    if(role === "STAFF"){
-        $('#menu').html('');
-    }
-    $('#addMocaButton').click('on', (e) => {
-        e.preventDefault();
-        $.ajax({
-            url: "/api/ca-lam/mo-ca/" + ma,
-            method: "GET",
-            dataType: "json",
-            success: (response) => {
-                let data = {
-                    "maNhanVien": ma,
-                    "soTienDauCa": $('#soTienDauCa').val(),
-                }
-                themCa(data);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
+    $(document).ready(function () {
+        function updateDateTime() {
+            $.get("/api/ca-lam/getDateTime", function(response) {
+                $("#thoiGian").text(response);
+            });
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
 
-        function themCa(data){
+
+        $('#addMocaButton').click('on', (e) => {
+            e.preventDefault();
+
+            var soTienDauCa = $('#soTienDauCa').val();
+            if (!soTienDauCa || isNaN(soTienDauCa)) {
+                showError("Vui lòng nhập số tiền hợp lệ.");
+                return;
+            }
+
             $.ajax({
-                url: "/api/ca-lam",
-                method: "POST",
-                contentType: "application/json; charset=utf-8",
+                url: "/api/ca-lam/mo-ca/" + ma,
+                method: "GET",
                 dataType: "json",
-                data: JSON.stringify(data),
                 success: (response) => {
-                    showSuccess("Mở ca thành công");
-                    window.location.href = "/admin/giao-dich/hoa-don";
+                    let data = {
+                        "maNhanVien": ma,
+                        "soTienDauCa": soTienDauCa,
+                    }
+                    themCa(data);
                 },
                 error: (error) => {
                     console.log(error);
                 }
             });
-        }
-    })
+
+            function themCa(data) {
+                $.ajax({
+                    url: "/api/ca-lam",
+                    method: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success: (response) => {
+                        showSuccess("Mở ca thành công");
+                        window.location.href = "/admin/giao-dich/hoa-don";
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    });
 </script>
+
 </body>
 </html>

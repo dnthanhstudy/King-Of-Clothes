@@ -138,5 +138,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function updateDateTime() {
+        $.get("/api/ca-lam/getDateTime", function(response) {
+            $("#ngayhientai").text(response);
+        });
+    }
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+</script>
 </body>
 </html>

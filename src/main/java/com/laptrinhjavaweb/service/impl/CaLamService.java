@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 public class CaLamService implements ICaLamService {
 
@@ -25,5 +28,12 @@ public class CaLamService implements ICaLamService {
         CaLamEntity caLamEntity = caLamConverter.convertToEntity(caLamRequest);
         caLamRepository.save(caLamEntity);
         return caLamConverter.convertToResponse(caLamEntity);
+    }
+
+    @Override
+    public String getCurrentDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

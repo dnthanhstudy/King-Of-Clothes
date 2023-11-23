@@ -33,4 +33,11 @@ public class CaLamAPI {
         CaLamResponse result = caLamService.insert(request);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
+
+    @GetMapping("/getDateTime")
+    @ResponseBody
+    public String getDateTime() {
+        String dateTime = caLamService.getCurrentDateTime();
+        return dateTime;
+    }
 }
