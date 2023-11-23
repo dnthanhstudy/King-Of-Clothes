@@ -29,4 +29,6 @@ public interface INhanVienService {
     NhanVienEntity insert(NhanVienEntity nhanVienEntity);
 
     NhanVienResponse moCa(String ma);
+
+    NhanVienResponse dongCa(String ma);
 }
