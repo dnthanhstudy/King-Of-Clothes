@@ -73,8 +73,13 @@
         </div>
         <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         padding: 20px; background-color: #fff">
-            <div class="row col-12">
-                <h4>Danh sách hóa đơn</h4>
+            <div class="row ">
+                <div class="col-9">
+                    <h4>Danh sách hóa đơn</h4>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-outline-success">Tạo hoá đơn</button>
+                </div>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
