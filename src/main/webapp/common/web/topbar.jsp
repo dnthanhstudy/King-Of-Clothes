@@ -49,6 +49,7 @@
 
         $('#input-search-product').on('keypress', (e) => {
             if (e.which === 13) {
+                console.log(123);
                 e.preventDefault();
                 const search = $(e.target).val();
                 window.location = 'search?q=' + search;
@@ -86,6 +87,7 @@
                $('#input-search-product').autocomplete({
                    lookup: options,
                    onSelect: function (suggestion) {
+                       console.log(123456);
                        window.location = 'search?q=' + suggestion.value;
                    }
                });
