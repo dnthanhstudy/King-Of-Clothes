@@ -25,6 +25,9 @@
         .autocomplete-suggestions strong { font-weight: bold; color: #000; }
     </style>
     <script>
+        function convertVND(number){
+            return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
+        }
         function getFormattedDate(longDate) {
             date = new Date(longDate);
             let year = date.getFullYear();
