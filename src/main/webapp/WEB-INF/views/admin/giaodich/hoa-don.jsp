@@ -14,33 +14,38 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="chitiethoadon">Chi tiết hóa đơn</h1>
+                    <h1 class="modal-title fs-4" id="chitiethoadon">Chi tiết hóa đơn</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card" style="box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;padding: 20px; background-color: #fff">
                         <div class="">
-                            <h4>Thông tin khách hàng</h4>
+                            <h5>Thông tin khách hàng</h5>
                         </div>
                         <hr>
-                        <div class="row my-2">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col">
                                 <strong>Mã Khách hàng đặt:</strong> <span id="makh">KH01</span>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col">
+                                <strong>Tên người nhận:</strong> <span id="tennguoinhan">Đinh Tuấn Anh</span>
+                            </div>
+                            <div class="col">
                                 <strong>Số điện thoại:</strong> <span id="sodienthoai">0325808823</span>
                             </div>
                         </div>
                         <div class="row my-2">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <strong>Tên người nhận:</strong> <span id="tennguoinhan">Đinh Tuấn Anh</span>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="col">
                                 <strong>Địa chỉ:</strong> <span id="diachi">Yên trị, Yên Thuỷ, Hoà bình</span>
                             </div>
+                            <div class="col">
+                                <strong>Lưu ý cho shop:</strong>
+                                <p>abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</p>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="" style="height: 400px; overflow-y: scroll;" id="cart">
+                    <div class="" style="height: 300px; overflow-y: scroll;" id="cart">
                         <div class="card">
                             <div class="project-info">
                                 <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
@@ -336,12 +341,33 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <div class="d-flex justify-content-between">
+                                <h6>Tiền ship:</h6>
+                                <h6>25.000 VND</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6>Tiền sản phẩm:</h6>
+                                <h6>500.000 VND</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6>Tổng tiền hàng:</h6>
+                                <h6>525.000 VND</h6>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="modal-footer" id="trangthaibutton">
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn btn-info">Nhận đơn</button>
+                    <button type="button" class="btn btn-outline-default" data-bs-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-outline-secondary">Nhận đơn</button>
+                    <button type="button" class="btn btn-outline-success">Nhận đơn</button>
+                    <button type="button" class="btn btn-outline-warning">Nhận đơn</button>
+                    <button type="button" class="btn btn-outline-primary">Nhận đơn</button>
                 </div>
+                </div>
+
             </div>
         </div>
     </div>
