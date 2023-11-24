@@ -14,6 +14,8 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.bienThe.sanPham.ten}")
     String getTenSanPham();
 
+    @Value("#{target.bienThe.hinhAnh}")
+    String getImage();
 
     @Value("#{target.bienThe.id}")
     Long getIdBienThe();

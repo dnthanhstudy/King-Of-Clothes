@@ -88,6 +88,7 @@ public class KhachHangService implements IKhachHangService {
         khachHangEntity.setTrangThai("ACTIVE");
         khachHangRepository.save(khachHangEntity);
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
+        result.setId(khachHangEntity.getId());
         return result;
     }
 
