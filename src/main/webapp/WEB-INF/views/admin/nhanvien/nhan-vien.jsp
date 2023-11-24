@@ -184,8 +184,7 @@
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            console.log(pageCurrent)
-                            loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+                            loadNhanVien(url);
                         }
                     },
                 });
@@ -234,7 +233,7 @@
                 if(param === ''){
                     loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
                 }else{
-                    loadNhanVien('/api/nhan-vien/search?q=' + param + '&limit=3');
+                    loadNhanVien('/api/nhan-vien/search?q=' + param + pageCurrent + '&limit=3');
                 }
             },
             error: function (error){

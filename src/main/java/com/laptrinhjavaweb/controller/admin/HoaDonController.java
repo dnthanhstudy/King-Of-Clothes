@@ -13,7 +13,7 @@ public class HoaDonController {
     @GetMapping("/hoa-don")
     public String hoadon(){
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
-        if(myUserResponse.getTrangThai().equals("INACTIVE")){
+        if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
             return "redirect:/admin/giao-ca/mo-ca?is_not_opened_shift";
         }
         return "admin/giaodich/hoa-don";
