@@ -111,263 +111,8 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body" style="height: 700px; overflow-y: scroll;">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="card mb-3" style="max-width: 540px;">
-                                                <div class="row g-0">
-                                                    <div class="col-md-4">
-                                                        <img src="/template/web/img/anh2.png"
-                                                             class="img-fluid rounded-start" alt="...">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title">Áo polo nam aelimited</h6>
-                                                            <p class="card-text" style="color: #EB8153">500.000</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="row" id="list-products">
+
                                     </div>
                                 </div>
                             </div>
@@ -909,7 +654,7 @@
                         <div class="row">
                             <div class="col-9">
                                 <div class="group123 mt-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-2" aria-hidden="true"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
                                          viewBox="0 0 512 512">
                                         <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                         <style>svg {
@@ -917,7 +662,8 @@
                                         }</style>
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                     </svg>
-                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100">
+                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100" id="search-customer">
+                                    <input type="text" hidden value="" id="code-customer">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -936,72 +682,47 @@
                                                         aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <label>Mã khách hàng:</label>
-                                                        <input type="text" class="form-control" disabled>
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Họ và tên:</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Số điện thoại:</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-3">
-                                                    <div class="col">
-                                                        <label>Địa chỉ email:</label>
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Số CCCD:</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Địa chỉ:</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-3">
-                                                    <div class="col">
-                                                        <label class="form-label">Ngày sinh:</label>
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Giới tính:</label>
-                                                        <select class="form-select">
-                                                            <option value="true" selected>Nam</option>
-                                                            <option value="false">Nữ</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col">
-                                                        <label>Trạng thái:</label>
-                                                        <select class="form-select">
-                                                            <option value="1" selected>Hoạt động</option>
-                                                            <option value="0">Ngừng hoạt động</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col d-none">
-                                                        <label class="form-label">Ngày đăng ký:</label>
-                                                        <input type="text" class="form-control" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-3">
-                                                    <div class="col">
-                                                        <div class="form-floating">
-                                                            <textarea class="form-control"
-                                                                      placeholder="Leave a comment here"></textarea>
-                                                            <label>Mô tả</label>
+                                                <form action="" method="POST" id="form-data-customer">
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <label>Họ và tên:</label>
+                                                            <input name="ten" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Số điện thoại:</label>
+                                                            <input name="soDienThoai" type="text" class="form-control">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Địa chỉ email:</label>
+                                                            <input name="email" type="email" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col">
+                                                            <label class="form-label">Ngày sinh:</label>
+                                                            <input type="date" class="form-control">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Giới tính:</label>
+                                                            <select class="form-select" name="gioitinh">
+                                                                <option value="true" selected>Nam</option>
+                                                                <option value="false">Nữ</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col">
+                                                            <div class="form-floating">
+                                                                <textarea class="form-control"
+                                                                          placeholder="Leave a comment here"></textarea>
+                                                                <label>Mô tả</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn" style="background-color: #A6edab; color: #00852d">
+                                                <button class="btn" id="btn-add-customer" style="background-color: #A6edab; color: #00852d">
                                                     Add
                                                 </button>
                                             </div>
@@ -1011,6 +732,13 @@
                             </div>
                         </div>
                         <div class="row mt-3">
+                            <div class="col">
+                                <div class=" badge bg-success text-wrap">
+                                    <span>Điểm: </span><strong>50</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
                             <div class="col-6 ">
                                 <h5>Tổng tiền hàng:</h5>
                             </div>
@@ -1028,6 +756,14 @@
                                     <input class="input-box1" type="text" placeholder="Nhập số tiền">
                                     <span class="underline1"></span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6 ">
+                                <h5>Điểm:</h5>
+                            </div>
+                            <div class="col-6 text-right">
+                                <h5>2450000</h5>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -1075,6 +811,73 @@
         </div>
     </div>
 </section>
+
+
+<script>
+
+    function time(){
+        $('#thoiGian').text(new Date().toLocaleString());
+    }
+    setInterval(time, 1000);
+
+    $.ajax({
+        url: "/api/san-pham",
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            let html = '';
+            $.each(response.data, (index, item) => {
+                html += `<div class="col-lg-4">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                         class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>
+                                        <p class="card-text" style="color: #EB8153">\${item.gia}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+            })
+            $('#list-products').html(html);
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+
+    $('#btn-add-customer').on('click', ()=>{
+        let dataForm = $('#form-data-customer').serializeArray();
+        let data = {};
+        $.each(dataForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        $.ajax({
+            url: "/api/khach-hang",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                console.log(response);
+                $('.close-add-customer').removeClass('show');
+                $('.modal-backdrop').addClass('d-none');
+                $('#search-customer').val(`${response.ten} + " - " + ${response.soDienThoai}`);
+                $('#code-customer').val(response.ma);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    })
+</script>
 
 </body>
 </html>

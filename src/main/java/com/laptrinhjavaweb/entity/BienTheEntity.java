@@ -45,6 +45,10 @@ public class BienTheEntity extends BaseEntity{
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
 
+	public String getHinhAnh() {
+		return hinhAnh == null?sanPham.getAnhSanPhamEntities().get(0).getHinhAnh():hinhAnh;
+	}
+
 	public Double getGia() {
 		if (gia==null){
 			return sanPham.getGia();

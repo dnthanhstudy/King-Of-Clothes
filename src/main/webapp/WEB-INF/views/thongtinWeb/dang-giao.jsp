@@ -17,7 +17,7 @@
             <a class="nav-link " href="/web/all">Tất cả</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link " href="/web/cho-thanh-toan">Chờ thanh toán</a>
+            <a class="nav-link " href="/web/cho-xac-nhan">Chờ xác nhận</a>
         </li>
         <li class="nav-item  ms-5">
             <a class="nav-link" href="/web/van-chuyen">Vận chuyển</a>
