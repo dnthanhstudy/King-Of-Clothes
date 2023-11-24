@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ThuongHieuResponse {
 
+	private Long id;
+
 	private String ten;
 
 	private String slug;

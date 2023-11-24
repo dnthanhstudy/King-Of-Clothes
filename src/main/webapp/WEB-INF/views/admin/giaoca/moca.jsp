@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="content-body">
-    <c:if test="${param.isNotOpenShift != null}">
+    <c:if test="${param.is_not_opened_shift != null}">
         <script>
             showError("Bạn cần phải mở ca làm việc mới thực hiện được các quyền tiêp theo!")
         </script>
@@ -76,58 +76,56 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        function updateDateTime() {
-            $.get("/api/ca-lam/getDateTime", function(response) {
-                $("#thoiGian").text(response);
-            });
+    if(role === "STAFF"){
+        $('#menu').html('');
+    }
+
+    function time(){
+        $('#thoiGian').text(new Date().toLocaleString());
+    }
+    setInterval(time, 1000);
+
+    $('#addMocaButton').click('on', (e) => {
+        e.preventDefault();
+
+        var soTienDauCa = $('#soTienDauCa').val();
+        if (!soTienDauCa || isNaN(soTienDauCa)) {
+            showError("Vui lòng nhập số tiền hợp lệ.");
+            return;
         }
-        updateDateTime();
-        setInterval(updateDateTime, 1000);
 
-
-        $('#addMocaButton').click('on', (e) => {
-            e.preventDefault();
-
-            var soTienDauCa = $('#soTienDauCa').val();
-            if (!soTienDauCa || isNaN(soTienDauCa)) {
-                showError("Vui lòng nhập số tiền hợp lệ.");
-                return;
+        $.ajax({
+            url: "/api/ca-lam/mo-ca/" + ma,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                let data = {
+                    "maNhanVien": ma,
+                    "soTienDauCa": soTienDauCa,
+                }
+                themCa(data);
+            },
+            error: (error) => {
+                console.log(error);
             }
+        });
 
+        function themCa(data) {
             $.ajax({
-                url: "/api/ca-lam/mo-ca/" + ma,
-                method: "GET",
+                url: "/api/ca-lam",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
                 dataType: "json",
+                data: JSON.stringify(data),
                 success: (response) => {
-                    let data = {
-                        "maNhanVien": ma,
-                        "soTienDauCa": soTienDauCa,
-                    }
-                    themCa(data);
+                    showSuccess("Mở ca thành công");
+                    window.location.href = "/admin/giao-dich/hoa-don";
                 },
                 error: (error) => {
                     console.log(error);
                 }
             });
-
-            function themCa(data) {
-                $.ajax({
-                    url: "/api/ca-lam",
-                    method: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(data),
-                    success: (response) => {
-                        showSuccess("Mở ca thành công");
-                        window.location.href = "/admin/giao-dich/hoa-don";
-                    },
-                    error: (error) => {
-                        console.log(error);
-                    }
-                });
-            }
-        });
+        }
     });
 </script>
 
