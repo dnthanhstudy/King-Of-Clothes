@@ -25,7 +25,7 @@
                 <h6><strong>Giờ mở ca:</strong> 20/10/2023 7:00</h6>
             </div>
             <div class="col-3">
-                <strong>Giờ hiện tại: </strong> <span id="ngayhientai"></span>
+                <strong>Giờ hiện tại: </strong> <span id="thoiGian"></span>
             </div>
             <div class="col-3">
                 <h6 ><strong>Nhân viên:</strong> Dinh Anh Tuan</h6>
@@ -138,5 +138,13 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function time(){
+        $('#thoiGian').text(new Date().toLocaleString());
+    }
+    setInterval(time, 1000);
+</script>
 </body>
 </html>

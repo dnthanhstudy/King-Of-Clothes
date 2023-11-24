@@ -43,19 +43,21 @@
                                 <span class="divider text-muted mb-4">OR</span>
                             </div>
 
-                            <label class="input-label" for="fullNameSrEmail">Full name</label>
+
 
                             <!-- Form Group -->
                             <div class="form-row">
                                 <div class="col-sm-6">
+                                    <label class="input-label" for="fullNameSrEmail">Username</label>
                                     <div class="js-form-message form-group">
-                                        <input type="text" class="form-control form-control-lg" name="fullName" id="fullNameSrEmail" placeholder="Mark" aria-label="Mark" required="" data-msg="Please enter your first name.">
+                                        <input type="text" class="form-control form-control-lg" name="fullName" id="fullNameSrEmail" placeholder="Username">
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
+                                    <label class="input-label" for="fullNameSrEmail">Phone</label>
                                     <div class="js-form-message form-group">
-                                        <input type="text" class="form-control form-control-lg" placeholder="Williams" aria-label="Williams" required="" data-msg="Please enter your last name.">
+                                        <input type="text" class="form-control form-control-lg" placeholder="Phone">
                                     </div>
                                 </div>
                             </div>

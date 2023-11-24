@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DanhMucResponse {
 
+	private Long id;
+	
 	private String slug;
 	
 	private String ten;

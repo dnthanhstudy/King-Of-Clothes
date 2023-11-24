@@ -45,7 +45,7 @@ public class SanPhamService implements ISanPhamService{
 	private IBienTheService bienTheService;
 
 	@Override
-	public Map<String, Object> pagingOrSearchOrFindAllOrFilter(Integer pageCurrent, Integer limit, String param, Map<String, Object> params) {
+	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
 		Map<String, Object> results = new HashMap<>();
 		Boolean isAll = false;
 		Page<SanPhamEntity> page = null;
@@ -56,16 +56,18 @@ public class SanPhamService implements ISanPhamService{
 			page = sanPhamRepository.findAll(wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-			if(param != null || params != null) {
+			if(param != null || params != null || slug != null) {
 				List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
 				if(param != null) {
 					listSanPhamEntity = sanPhamRepository.seachs(param);
-				}else {
+				}else if(params != null && !params.isEmpty()){
 					List<Long> ids = sanPhamRepository.filters(params);
 					for (Long id : ids) {
 						SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
 						listSanPhamEntity.add(sanPhamEntity);
 					}
+				}else{
+					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slug(slug);
 				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();

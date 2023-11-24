@@ -71,7 +71,7 @@
                 </table>
             </div>
         </div>
-        <ul class="pagination" id="pagination"></ul>
+        <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
     </div>
 </div>
 <script>
@@ -89,7 +89,7 @@
                     html += `<tr>
                                 <td>\${index+1}</td>
                                 <td>
-                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 150px;">
+                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;">
                                 </td>
                                 <td>\${item.ten}</td>
                                 <td>\${item.gia}</td>

@@ -1,24 +1,24 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: asus
+  Date: 11/22/2023
+  Time: 11:05 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tìm kiếm sản phẩm</title>
+    <title>Danh mục ${mapProduct.data[0].danhMuc.ten}</title>
 </head>
 <body>
-
-<!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Danh mục</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0"><a href="">Trang chủ</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Product</p>
+            <p class="m-0">Danh mục</p>
         </div>
     </div>
 </div>
@@ -29,10 +29,9 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-12">
-            <!-- Price Start -->
             <form method="GET" id="filter">
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                    <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                     <div>
                         <div class="mb-3">
                             <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
@@ -69,7 +68,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <form action="/search" method="GET" id="form-submit-product">
+                <form action="/danh-muc/${mapProduct.data[0].danhMuc.slug}" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:if test="${empty mapProduct.data}">
                             <p>Không tìm thấy kết quả phù hợp</p>
@@ -106,7 +105,6 @@
                     </div>
                     <div class="col-12 pb-1">
                         <ul class="pagination" id="pagination"></ul>
-                        <input type="hidden" value="" id="search-product" name="q"/>
                         <input type="hidden" value="" id="page-product" name="page"/>
                     </div>
                 </form>
@@ -115,15 +113,10 @@
         <!-- Shop Product End -->
     </div>
 </div>
-<!-- Shop End -->
+
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
 <script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script>
-    const urlString = window.location.href;
-    let paramString = urlString.split('?')[1];
-    let queryString = new URLSearchParams(paramString);
-    let param = queryString.get('q');
-    $('#input-search-product').val(param);
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
@@ -134,7 +127,6 @@
         onPageClick: function (event, page) {
             if (currentPage != page) {
                 $('#page-product').val(page);
-                $('#search-product').val(param);
                 $('#form-submit-product').submit();
             }
         }

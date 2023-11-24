@@ -1,10 +1,12 @@
 package com.laptrinhjavaweb.model.response;
 
+import com.laptrinhjavaweb.entity.GiaTriThuocTinhBienTheEntity;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Projection(types = {GioHangChiTietEntity.class})
 public interface GioHangResponse {
@@ -33,4 +35,8 @@ public interface GioHangResponse {
     BigDecimal getTongTien();
     @Value("#{target.bienThe.sanPham.ten}")
     String getTenSanPham();
+
+    @Value("#{target.bienThe.sanPham.slug}")
+    String getSlugSanPham();
+
 }

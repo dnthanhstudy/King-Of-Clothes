@@ -6,4 +6,5 @@ import com.laptrinhjavaweb.resquest.CaLamRequest;
 public interface ICaLamService {
 
     CaLamResponse insert (CaLamRequest caLamRequest);
+
 }

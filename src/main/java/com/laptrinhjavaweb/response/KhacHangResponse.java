@@ -30,4 +30,6 @@ public class KhacHangResponse {
     private Date ngaySinh;
 
     private String moTa;
+
+    private String trangThai;
 }

@@ -73,15 +73,15 @@
                 </div>
                 <div class="col-12 col-sm-7">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Nam">
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Nam">
                         <label class="form-check-label" for="inlineRadio1">Nam</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Nữ">
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Nữ">
                         <label class="form-check-label" for="inlineRadio2">Nữ</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Khác">
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Khác">
                         <label class="form-check-label" for="inlineRadio3">Khác</label>
                     </div>
                 </div>
@@ -109,26 +109,64 @@
         <button type="button" class="btn" style="background-color: #EFCACA;color: #BF0000;"  >Submit</button>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
+    moment.locale('vn');
     let ma = $('#customer-code').val();
-    $.ajax({
-        url: '/api/khach-hang/' + ma,
-        method: 'GET',
-        dataType: 'json',
-        success: function (req) {
-            console.log(req);
-            $('#ma').text(req.ma);
-            $('#ten').val(req.ten);
-            $('#sdt').val(req.soDienThoai);
-            $('#email').val(req.email);
-            $('#ngaysinh').val(formatDateInput(req.ngaySinh));
-            $('#gioitinh').val(req.gioiTinh);
-        },
-        error: function (xhr, status, error) {
-            console.log(error);
-        }
-    });
+    var options = {
+        month: 'numeric', day: 'numeric', year: 'numeric',
+    };
+    if($('.ma-chuc-vu').val() === 'CUSTOMER'){
+        $.ajax({
+            url: '/api/khach-hang/' + ma,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                console.log(req);
+                $('#ma').text(req.ma);
+                $('#ten').val(req.ten);
+                $('#sdt').val(req.soDienThoai);
+                $('#email').val(req.email);
+                var date = new Date(req.ngaySinh);
+                console.log(moment(date).format('YYYY-MM-DD'))
+                $('#ngaysinh').val(moment(date).format('YYYY-MM-DD'));
+                $('.gioi-tinh').each((index, item) => {
+                    if($(item).val() === req.gioiTinh){
+                        $(item).attr('checked', true);
+                    }
+                })
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }else {
+        $.ajax({
+            url: '/api/nhan-vien/' + ma,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                $('#ma').text(req.ma);
+                $('#ten').val(req.ten);
+                $('#sdt').val(req.soDienThoai);
+                $('#email').val(req.email);
+                var date = new Date(req.ngaySinh);
+                console.log(moment(date).format('YYYY-MM-DD'))
+                $('#ngaysinh').val(moment(date).format('YYYY-MM-DD'));
+                $('.gioi-tinh').each((index, item) => {
+                    if($(item).val() === req.gioiTinh){
+                        $(item).attr('checked', true);
+                    }
+                })
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+
 </script>
 </body>
 </html>

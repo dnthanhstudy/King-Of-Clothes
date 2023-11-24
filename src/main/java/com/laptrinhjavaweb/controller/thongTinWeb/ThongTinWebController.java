@@ -18,9 +18,9 @@ public class ThongTinWebController {
         return "thongtinWeb/account";
     }
 
-    @GetMapping("/cho-thanh-toan")
-    public String chothanhtoan() {
-        return "thongtinWeb/cho-thanh-toan";
+    @GetMapping("/cho-xac-nhan")
+    public String choxacnhan() {
+        return "thongtinWeb/cho-xac-nhan";
     }
 
     @GetMapping("/hoan-thanh")
