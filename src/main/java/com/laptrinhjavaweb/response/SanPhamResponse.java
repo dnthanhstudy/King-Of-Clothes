@@ -12,6 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SanPhamResponse {
+
+	private Long id;
+
 	private String slug;
 	
 	private String ma;

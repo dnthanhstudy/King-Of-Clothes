@@ -9,6 +9,8 @@ import java.util.Date;
 @Setter
 public class CaLamResponse {
 
+    private Long id;
+
     private Date ngayTao;
 
     private Double soTienCuoiCa;

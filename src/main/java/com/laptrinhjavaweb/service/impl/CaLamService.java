@@ -29,11 +29,4 @@ public class CaLamService implements ICaLamService {
         caLamRepository.save(caLamEntity);
         return caLamConverter.convertToResponse(caLamEntity);
     }
-
-    @Override
-    public String getCurrentDateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
 }

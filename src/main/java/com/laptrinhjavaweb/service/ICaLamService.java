@@ -7,5 +7,4 @@ public interface ICaLamService {
 
     CaLamResponse insert (CaLamRequest caLamRequest);
 
-    String getCurrentDateTime();
 }
