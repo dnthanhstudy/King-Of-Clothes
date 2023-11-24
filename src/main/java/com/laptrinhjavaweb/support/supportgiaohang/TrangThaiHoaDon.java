@@ -8,4 +8,5 @@ public class TrangThaiHoaDon {
     public static String DANGGIAOHANG = "DANGGIAOHANG";
     public static String DANHANHANG = "DANHANHANG";
     public static String HUYDON = "HUYDON";
+    public static String CHOGIAOHANG = "CHOGIAOHANG";
 }

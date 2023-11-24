@@ -86,7 +86,7 @@
             <div class="row">
                 <div class="col-8">
                     <div class="group123">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-2" aria-hidden="true"
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
                              viewBox="0 0 512 512">
                             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <style>svg {
@@ -759,11 +759,16 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-6 ">
-                                <h5>Điểm:</h5>
+                            <div class="col-6">
+                                <h5>Thanh toán bằng điểm</h5>
+
                             </div>
-                            <div class="col-6 text-right">
-                                <h5>2450000</h5>
+                            <div class="col-2"></div>
+                            <div class="col-4 text-right">
+                                <div class="input-wrapper1">
+                                    <input class="input-box1" type="text" placeholder="Nhập số điểm">
+                                    <span class="underline1"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -869,7 +874,7 @@
                 console.log(response);
                 $('.close-add-customer').removeClass('show');
                 $('.modal-backdrop').addClass('d-none');
-                $('#search-customer').val(`${response.ten} + " - " + ${response.soDienThoai}`);
+                $('#search-customer').val(response.ten + " - " + response.soDienThoai);
                 $('#code-customer').val(response.ma);
             },
             error: (error) => {
@@ -877,6 +882,38 @@
             }
         });
     })
+
+
+    let customers = [];
+    $.ajax({
+        url: '/api/khach-hang',
+        dataType: "json",
+        success: function (response){
+            $.each(response, function (index, item){
+                let customer = {
+                    "value": item.ten,
+                    "soDienThoai": item.soDienThoai,
+                    "id": item.id
+                }
+                customers.push(customer);
+            })
+            loadSuggestions(customers);
+        },
+        error: function (error){
+            console.log(error);
+        }
+    });
+
+    function loadSuggestions(options){
+        $('#search-customer').autocomplete({
+            lookup: options,
+            onSelect: function (suggestion) {
+                $('#code-customer').val(suggestion.id);
+                console.log($('#code-customer').val())
+                $('#search-customer').val(suggestion.value + " - " + suggestion.soDienThoai);
+            }
+        });
+    }
 </script>
 
 </body>

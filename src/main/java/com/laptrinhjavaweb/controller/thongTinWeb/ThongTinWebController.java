@@ -28,9 +28,9 @@ public class ThongTinWebController {
         return "thongtinWeb/hoan-thanh";
     }
 
-    @GetMapping("/van-chuyen")
-    public String vanchuyen() {
-        return "thongtinWeb/van-chuyen";
+    @GetMapping("/cho-giao-hang")
+    public String chogiaohang() {
+        return "thongtinWeb/cho-giao-hang";
     }
 
     @GetMapping("/dang-giao")
