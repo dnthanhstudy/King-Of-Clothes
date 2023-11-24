@@ -70,5 +70,4 @@ public class SendEmailAPI {
             return ResponseEntity.badRequest().body("Thất bại");
         }
     }
-
 }
