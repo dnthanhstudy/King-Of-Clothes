@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -25,10 +26,16 @@ public class HomePageController {
     @GetMapping("/danh-sach-san-pham")
     public ModelAndView shop(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+            @RequestParam Map<String, Object> params
     ){
         ModelAndView mav = new ModelAndView("web/shop");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, null);
+        Map<String, Object> results = new HashMap<>();
+        if(params == null){
+            results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, null);
+        }else{
+            results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, params);
+        }
         mav.addObject("mapProduct", results);
         return mav;
     }

@@ -14,11 +14,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Sản phẩm</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Trang chủ</a></p>
+            <p class="m-0"><a href="">Home</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Sản phẩm</p>
+            <p class="m-0">Product</p>
         </div>
     </div>
 </div>
@@ -33,17 +33,21 @@
             <div class="border-bottom mb-4 pb-4">
                 <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                 <form>
-                    <div class="mb-3">
-                        <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
                     </div>
-                    <div class=" mb-3">
-                        <button value="100000,200000" name="gia" class="btn btn-primary">100.000đ - 200.000đ</button>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
                     </div>
-                    <div class=" mb-3">
-                        <button value="200000,500000" name="gia" class="btn btn-primary">200.000đ - 500.000đ</button>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
                     </div>
-                    <div class=" mb-3">
-                        <button value="500000,1000000000" name="gia" class="btn btn-primary">Trên 500.000đ</button>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
                     </div>
                 </form>
             </div>
@@ -76,7 +80,7 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <form action="<c:url value='/danh-sach-san-pham'/>" method="GET" id="form-submit-product">
+                <form action="<c:url value='/shop'/>" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:forEach var="item" items="${mapProduct.data}">
                             <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
