@@ -28,52 +28,44 @@
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
-        <div class="col-lg-3 col-md-12" id="filter">
-            <!-- Price Start -->
-            <div class="border-bottom mb-4 pb-4">
-                <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
-                    </div>
-                </form>
-            </div>
-
-            <c:forEach items="${filterProduct}" var="filter">
+        <div class="col-lg-3 col-md-12">
+            <form method="GET" id="filter">
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 id="${filter.ma}" class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
-                    <form>
-                        <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
-                                <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
-                            </div>
-                        </c:forEach>
-                    </form>
+                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                    <div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
+                            <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
+                            <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
+                            <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
+                            <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
+                        </div>
+                    </div>
                 </div>
-            </c:forEach>
 
-            <script>
-                $('#filter input[type="checkbox"]').on('change', function(){ // on change of state
-                    if(this.checked)
-                    {
-                        console.log($(this).val());
-                    }
-                })
-            </script>
+                <c:forEach items="${filterProduct}" var="filter">
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
+                        <div>
+                            <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <input name="${filter.ma}" value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                    <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:forEach>
+            </form>
         </div>
         <!-- Shop Sidebar End -->
 
@@ -120,6 +112,7 @@
 </div>
 <!-- Shop End -->
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
+<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script>
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};

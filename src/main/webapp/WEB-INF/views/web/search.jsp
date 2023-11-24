@@ -30,41 +30,43 @@
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-12">
             <!-- Price Start -->
-            <div class="border-bottom mb-4 pb-4">
-                <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input name="gia" value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input name="gia" value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input name="gia" value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input name="gia" value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
-                    </div>
-                </form>
-            </div>
-
-            <c:forEach items="${filterProduct}" var="filter">
+            <form method="GET" id="filter">
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 id="${filter.ma}" class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
-                    <form>
-                        <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
-                            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                <input value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
-                                <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
-                            </div>
-                        </c:forEach>
-                    </form>
+                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                    <div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
+                            <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
+                            <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
+                            <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input name="gia" value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
+                            <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
+                        </div>
+                    </div>
                 </div>
-            </c:forEach>
+
+                <c:forEach items="${filterProduct}" var="filter">
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
+                        <div>
+                            <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
+                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                                    <input name="${filter.ma}" value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                    <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:forEach>
+            </form>
         </div>
         <!-- Shop Sidebar End -->
 
@@ -98,7 +100,7 @@
                     </div>
                 </div>
 
-                <form action="" method="GET" id="form-submit-product">
+                <form action="/search" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:if test="${empty mapProduct.data}">
                             <p>Không tìm thấy kết quả phù hợp</p>
@@ -146,12 +148,12 @@
 </div>
 <!-- Shop End -->
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
+<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script>
     const urlString = window.location.href;
     let paramString = urlString.split('?')[1];
     let queryString = new URLSearchParams(paramString);
     let param = queryString.get('q');
-    $('#search-product').val(param);
     $('#input-search-product').val(param);
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
@@ -163,7 +165,8 @@
         onPageClick: function (event, page) {
             if (currentPage != page) {
                 $('#page-product').val(page);
-                $('#form-submit-product').attr('action', '/search?q='+ param + '&page='+page).submit();
+                $('#search-product').val(param);
+                $('#form-submit-product').submit();
             }
         }
     });
