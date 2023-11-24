@@ -872,7 +872,7 @@
             data: JSON.stringify(data),
             success: (response) => {
                 console.log(response);
-                $('.close-add-customer').removeClass('show');
+                $('#exampleModal1').removeClass('show');
                 $('.modal-backdrop').addClass('d-none');
                 $('#search-customer').val(response.ten + " - " + response.soDienThoai);
                 $('#code-customer').val(response.ma);
