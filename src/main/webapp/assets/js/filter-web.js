@@ -21,5 +21,5 @@ function filter(){
         urlFinal += url;
     }
     urlFinal = urlFinal.slice(0, -1);
-    window.location.href = "/shop?" + urlFinal;
+    window.location.href = "/danh-sach-san-pham?" + urlFinal;
 }

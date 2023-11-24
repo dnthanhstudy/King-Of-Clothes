@@ -1,5 +1,10 @@
 package com.laptrinhjavaweb.controller.login;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.entity.NhanVienEntity;
+import com.laptrinhjavaweb.response.MyUserResponse;
+import com.laptrinhjavaweb.service.INhanVienService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -12,6 +17,9 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
+
+    @Autowired
+    private INhanVienService nhanVienService;
 
     @GetMapping("/login")
     public String login(){
@@ -42,6 +50,10 @@ public class LoginController {
     public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
+            MyUserResponse myUserResponse = (MyUserResponse) auth.getPrincipal();
+            if(myUserResponse.getMaChucVu().equals("STAFF") || myUserResponse.getMaChucVu().equals("ADMIN")){
+                nhanVienService.dongCa(myUserResponse.getMa());
+            }
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login";

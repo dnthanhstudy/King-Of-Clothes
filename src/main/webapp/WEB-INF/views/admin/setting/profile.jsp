@@ -37,7 +37,7 @@
                         </div>
                         <div class="profile-info">
                             <div class="profile-photo">
-                                <img  src="/template/admin/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                <img  src="/template/admin/images/profile/profile.png" id="anh" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2">
@@ -196,30 +196,30 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Username</label>
-                                                            <input type="text" placeholder="Username" name="username" class="form-control">
+                                                            <input type="text" placeholder="Username" id="username" class="form-control">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
-                                                            <input type="text" placeholder="Name" class="form-control">
+                                                            <input type="text" placeholder="Name" id="name" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Email</label>
-                                                            <input type="email" placeholder="Email" class="form-control">
+                                                            <input type="email" placeholder="Email" id="email1" class="form-control">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Phone number</label>
-                                                            <input type="text" placeholder="Phone number" class="form-control">
+                                                            <input type="text" placeholder="Phone number" id="phone" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Date of birth </label>
-                                                        <input type="date"  class="form-control">
+                                                        <input type="date" id="date" class="form-control">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <input type="text" placeholder="Address" class="form-control">
+                                                        <input type="text" placeholder="Address" id="address" class="form-control">
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12 col-sm-12">
@@ -257,7 +257,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script >
     //checkbox change password
     const changePasswordCheckbox = document.getElementById("changePasswordCheckbox");
@@ -271,7 +271,11 @@
         }
     });
 
-    let ma = $('.user-name-login').text();
+    moment.locale('vn');
+    var options = {
+        month: 'numeric', day: 'numeric', year: 'numeric',
+    };
+
     $.ajax({
         url: '/api/nhan-vien/' + ma,
         method: 'GET',
@@ -286,6 +290,14 @@
             $('#ngaysinh').text(formatDateInput(req.ngaySinh));
             $('#sdt').text(req.soDienThoai);
             $('#diachi').text(req.diaChi);
+            $('#username').val(req.ma);
+            $('#name').val(req.ten);
+            $('#email1').val(req.email);
+            $('#phone').val(req.soDienThoai);
+            var date = new Date(req.ngaySinh);
+            console.log(moment(date).format('YYYY-MM-DD'))
+            $('#date').val(moment(date).format('YYYY-MM-DD'));
+            $('#address').val(req.diaChi);
         },
         error: function (xhr, status, error) {
             console.log(error);

@@ -1,8 +1,10 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.response.CaLamResponse;
+import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.CaLamRequest;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.ICaLamService;
 import com.laptrinhjavaweb.service.INhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class CaLamAPI {
             @PathVariable("ma") String ma
     ){
         NhanVienResponse result = nhanVienService.moCa(ma);
+        MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
+        myUserResponse.setTrangThai("ACTIVE");
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -41,4 +45,5 @@ public class CaLamAPI {
         CaLamResponse result = caLamService.insert(request);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
+
 }

@@ -14,11 +14,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Our Shop</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href="">Home</a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Shop</p>
+            <p class="m-0">Product</p>
         </div>
     </div>
 </div>
@@ -34,21 +34,17 @@
                 <div class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                     <div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input name="gia" value="0,100000" type="checkbox" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1">Dưới 100.000đ</label>
+                        <div class="mb-3">
+                            <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input name="gia" value="100000,200000" type="checkbox" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2">100.000đ - 200.000đ</label>
+                        <div class=" mb-3">
+                            <button value="100000,200000" name="gia" class="btn btn-primary">100.000đ - 200.000đ</button>
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input name="gia" value="200000,500000" type="checkbox" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3">200.000đ - 500.000đ</label>
+                        <div class=" mb-3">
+                            <button value="200000,500000" name="gia" class="btn btn-primary">200.000đ - 500.000đ</button>
                         </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input name="gia" value="500000,1000000000" type="checkbox" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4">Trên 500.000đ</label>
+                        <div class=" mb-3">
+                            <button value="500000,1000000000" name="gia" class="btn btn-primary">Trên 500.000đ</button>
                         </div>
                     </div>
                 </div>
@@ -73,33 +69,6 @@
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <div class="col-12 pb-1">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <form action="">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search by name">
-                                <div class="input-group-append">
-                                            <span class="input-group-text bg-transparent text-primary">
-                                                <i class="fa fa-search"></i>
-                                            </span>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="dropdown ml-4">
-                            <button class="btn border dropdown-toggle" type="button" id="triggerId"
-                                    data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                Sort by
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Latest</a>
-                                <a class="dropdown-item" href="#">Popularity</a>
-                                <a class="dropdown-item" href="#">Best Rating</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <form action="/search" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:if test="${empty mapProduct.data}">

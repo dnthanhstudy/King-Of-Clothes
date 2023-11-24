@@ -31,4 +31,6 @@ public class MyUserResponse extends User {
     private String maChucVu;
 
     private String anh;
+
+    private String trangThai;
 }

@@ -6,7 +6,6 @@ import com.laptrinhjavaweb.entity.GioHangEntity;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
-import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import com.laptrinhjavaweb.repository.BienTheRepository;
@@ -16,14 +15,13 @@ import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.service.GioHangService;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 @Service
 public class GioHangServiceImpl implements GioHangService {
@@ -90,7 +88,7 @@ public class GioHangServiceImpl implements GioHangService {
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         HoaDonEntity hoaDon = new HoaDonEntity();
         hoaDon.setKhachHang(khachHang);
-        hoaDon.setTrangThai(TrangThaiHoaDonEnum.CHUANBIDATHANNG);
+        hoaDon.setTrangThai(TrangThaiHoaDon.CHUANBIDATHANG);
         hoaDon = hoaDonRepository.save(hoaDon);
         hoaDon.setMa("HD"+hoaDon.getId());
         hoaDonRepository.save(hoaDon);
@@ -143,6 +141,15 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTietRepository.save(gioHangChiTiet);
         }
         return "Đã thêm vào giỏ";
+    }
+
+    @Override
+    public String updateGioHangChiTiet(Long idghct, Long bienTheId) {
+        GioHangChiTietEntity gioHangChiTiet = gioHangChiTietRepository.findById(idghct).orElse(null);
+        assert gioHangChiTiet != null;
+        gioHangChiTiet.setBienThe(bienTheRepository.findById(bienTheId).orElse(null));
+        gioHangChiTietRepository.save(gioHangChiTiet);
+        return "Thay đổi trạng thái thành công";
     }
 
 //

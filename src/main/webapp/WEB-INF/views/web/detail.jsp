@@ -222,7 +222,6 @@
             arrData.push($(this).val());
         });
 
-        var encodedData = encodeURIComponent(JSON.stringify(arrData));
         $.ajax({
             url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(","),
             method: 'GET',

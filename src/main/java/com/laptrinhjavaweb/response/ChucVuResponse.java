@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ChucVuResponse {
 
+    private Long id;
+
     private String ma;
 
     private String ten;

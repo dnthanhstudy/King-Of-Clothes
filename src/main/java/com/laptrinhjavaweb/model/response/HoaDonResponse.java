@@ -23,6 +23,8 @@ public interface HoaDonResponse {
     @Value("#{target.ngayDat}")
     Date getThoiGianDat();
     @Value("#{target.tongTienHang}")
+    Double getTongTienHang();
+    @Value("#{target.tongTien}")
     Double getTongTien();
 
     @Value("#{target.tienKhachTraOnline}")

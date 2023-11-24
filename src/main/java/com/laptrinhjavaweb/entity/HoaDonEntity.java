@@ -1,6 +1,11 @@
 package com.laptrinhjavaweb.entity;
 
 import java.util.Date;
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
+
+import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +29,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class HoaDonEntity extends BaseEntity{
 
 	@Column(name = "ma", unique = true)
 	private String ma;
-	
+
+	@Column(name = "magiaohang", unique = true)
+	private String maGiaoHang;
+
 	@Column(name = "mota", columnDefinition = "TEXT")
 	private String moTa;
 	
@@ -101,7 +110,12 @@ public class HoaDonEntity extends BaseEntity{
 	}
 	@Override
 	public String getTrangThai() {
-		return super.getTrangThai().equals("CHONHANDON")?"Chờ nhận đơn":"Đã nhận đơn";
+		String tt = super.getTrangThai();
+		return tt.equals(TrangThaiHoaDon.CHONHANDON)?"Chờ nhận đơn":
+				tt.equals(TrangThaiHoaDon.DANHANDON)?"Đã nhận đơn"
+				:tt.equals(TrangThaiHoaDon.DANGGIAOHANG)?"Đang giao hàng":
+				tt.equals(TrangThaiHoaDon.HUYDON)?"Huỷ đơn":
+				tt.equals(TrangThaiHoaDon.DANHANHANG)?"Đã nhận hàng":"";
 	}
 
 	public void setThongTinDatHang(ThongTinMuaHangEntity thongTinMuaHang){
@@ -114,7 +128,14 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public Double getTongTienHang() {
-		return tienShip==null?tongTienHang:tienShip+tongTienHang;
+		return tongTienHang;
+	}
+	public Double getTongTien() {
+		try {
+			return tongTienHang+tienShip;
+		}catch (Exception e){
+			return 0D;
+		}
 	}
 	public Double getTienKhachTraOnline() {
 		if (phuongThucThanhToan.equals("CHUYENKHOAN")){
@@ -124,6 +145,7 @@ public class HoaDonEntity extends BaseEntity{
 	}
 
 	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Chuyển khoản":"Tiền mặt";
+		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Đã thanh toán":"Thanh toán khi nhận hàng";
 	}
+
 }

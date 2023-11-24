@@ -30,7 +30,7 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/trang-chu" class="nav-item nav-link active"><s:message code="web.navbar.home"/></a>
                         <a href="/shop_us" class="nav-item nav-link"><s:message code="web.navbar.shopus"/></a>
-                        <a href="/shop" class="nav-item nav-link"><s:message code="web.navbar.product"/></a>
+                        <a href="/danh-sach-san-pham" class="nav-item nav-link"><s:message code="web.navbar.product"/></a>
                         <a href="/faqs" class="nav-item nav-link"><s:message code="web.navbar.FAQs"/></a>
                         <a href="/contact" class="nav-item nav-link"><s:message code="web.navbar.Contact"/></a>
                     </div>
