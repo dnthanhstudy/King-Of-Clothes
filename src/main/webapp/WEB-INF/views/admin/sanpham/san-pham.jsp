@@ -13,15 +13,6 @@
 <body>
 <div class="content-body">
     <div class="container-fluid">
-        <h4 style="margin-top: 0;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #FFD43B;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    color: black;">
-           Sản phẩm
-        </h4>
-
         <div class="card card-body hstack gap-3 mt-3">
             <div class="p-2">
                 <a href="/admin/san-pham/create" class="btn btn-primary">Thêm mới</a>

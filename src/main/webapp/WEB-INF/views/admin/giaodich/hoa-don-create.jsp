@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp" %>
 <html>
 <head>
     <title>Thêm Hóa Đơn</title>
@@ -760,7 +761,7 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <h5>Thanh toán bằng điểm</h5>
+                                <h5>Thanh toán bằng điểm:</h5>
 
                             </div>
                             <div class="col-2"></div>
@@ -832,7 +833,7 @@
         success: (response) => {
             let html = '';
             $.each(response.data, (index, item) => {
-                html += `<div class="col-lg-4">
+                html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -843,6 +844,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title line-clamp-2">\${item.ten}</h6>
                                         <p class="card-text" style="color: #EB8153">\${item.gia}</p>
+                                        <input type="checkbox" class="card-checkbox" style="display: none;">
                                     </div>
                                 </div>
                             </div>
@@ -874,7 +876,7 @@
                 console.log(response);
                 $('#exampleModal1').removeClass('show');
                 $('.modal-backdrop').addClass('d-none');
-                $('#search-customer').val(response.ten + " - " + response.soDienThoai);
+                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
                 $('#code-customer').val(response.ma);
             },
             error: (error) => {
@@ -891,8 +893,8 @@
         success: function (response){
             $.each(response, function (index, item){
                 let customer = {
-                    "value": item.ten,
-                    "soDienThoai": item.soDienThoai,
+                    "value": item.soDienThoai,
+                    "ten": item.ten,
                     "id": item.id
                 }
                 customers.push(customer);
@@ -910,9 +912,27 @@
             onSelect: function (suggestion) {
                 $('#code-customer').val(suggestion.id);
                 console.log($('#code-customer').val())
-                $('#search-customer').val(suggestion.value + " - " + suggestion.soDienThoai);
+                $('#search-customer').val(suggestion.value + " - " + suggestion.ten);
             }
         });
+    }
+
+
+    function toggleCheckbox(card) {
+        var checkbox = card.querySelector('.card-checkbox');
+        checkbox.checked = !checkbox.checked;
+
+        // Thay đổi màu nền của phần nội dung bên trong thẻ card khi được chọn hoặc hủy chọn
+        var cardBody = card.querySelector('.card-body');
+        if (checkbox.checked) {
+            cardBody.style.backgroundColor = '#e0e0e0'; // Màu khi được chọn
+            console.log('Card được chọn:', card.querySelector('.card-title').textContent);
+            // Thêm các hành động khác khi card được chọn
+        } else {
+            cardBody.style.backgroundColor = '#ffffff'; // Màu khi bị hủy chọn
+            console.log('Card bị hủy chọn:', card.querySelector('.card-title').textContent);
+            // Thêm các hành động khác khi card bị hủy chọn
+        }
     }
 </script>
 
