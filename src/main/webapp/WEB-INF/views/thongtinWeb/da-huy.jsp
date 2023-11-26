@@ -78,13 +78,29 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <div class="text-right">
-                                                    <div>
-                                                        Thành tiền: <span class="text-danger" style="font-size: 25px">\${item1.tongTien}₫</span>
-                                                    </div>
-                                                    <div class="my-2">
-                                                        <button class="btn btn-danger me-2" >Mua lại</button>
-                                                        <button class="btn btn-secondary" >Xem đơn hàng</button>
+                                                <div class="row">
+                                                    <div class="col-9"></div>
+                                                    <div class="col-3">
+                                                        <div class="row d-flex justify-content-between">
+                                                            <div class="col">
+                                                                Phí ship:
+                                                            </div>
+                                                            <div class="col text-right">
+                                                                <span class="text-danger">\${item1.tienShip}₫</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row d-flex justify-content-between">
+                                                            <div class="col">
+                                                                Thành tiền:
+                                                            </div>
+                                                            <div class="col text-right">
+                                                                <span class="text-danger" style="font-size: 25px">\${item1.tongTien}₫</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="my-2 text-right">
+                                                            <button class="btn btn-danger me-2" >Mua lại</button>
+                                                            <button class="btn btn-secondary" >Xem đơn hàng</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
