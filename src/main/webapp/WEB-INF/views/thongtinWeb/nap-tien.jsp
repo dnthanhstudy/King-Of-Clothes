@@ -19,22 +19,22 @@
 
     <div class="row" style="border-bottom: 1px solid #dedede;padding: 15px">
         <div class="col-4 p-2">
-            <button class="color-button w-100">100.000</button>
+            <button class="color-button1 w-100">100.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">200.000</button>
+            <button class="color-button1 w-100">200.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">300.000</button>
+            <button class="color-button1 w-100">300.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">500.000</button>
+            <button class="color-button1 w-100">500.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">1.000.000</button>
+            <button class="color-button1 w-100">1.000.000</button>
         </div>
         <div class="col-4 p-2">
-            <button class="color-button w-100">2.000.000</button>
+            <button class="color-button1 w-100">2.000.000</button>
         </div>
     </div>
 

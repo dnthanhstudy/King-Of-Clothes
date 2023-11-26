@@ -19,7 +19,7 @@ public interface ThongTinMuaHangRepository extends JpaRepository<ThongTinMuaHang
     List<ThongTinMuaHangResponse> dsThongTinMuaHangByIdKhachHang(@Param("idkh") Long idkh);
     @Modifying
     @Transactional
-    @Query("update ThongTinMuaHangEntity tt set tt.trangThai=1 " +
+    @Query("update ThongTinMuaHangEntity tt set tt.trangThai='ACTIVE' " +
             "where tt.khachHang.id=:idkh and tt.trangThai <> 'DELETE'")
     void updateTrangThaiThongTinMuaHang(@Param("idkh") Long idkh);
 

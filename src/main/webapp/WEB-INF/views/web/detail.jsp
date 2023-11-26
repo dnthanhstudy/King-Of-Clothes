@@ -59,7 +59,7 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia}</h3>
+                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia} VND</h3>
                 <c:forEach var="item" items="${product.thuocTinh}">
                     <div class="d-flex align-items-center mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>

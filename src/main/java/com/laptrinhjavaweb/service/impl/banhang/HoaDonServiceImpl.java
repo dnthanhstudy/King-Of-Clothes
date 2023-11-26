@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
@@ -13,8 +12,10 @@ import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.ThongTinMuaHangRepository;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
+import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     KhachHangRepository khachHangRepository;
 
     @Autowired
-    GioHangChiTietRepository gioHangChiTietRepo;
+    GioHangChiTietRepository gioHangChiTietRepository;
 
 //    @Autowired
 //    BienTheRepository bienTheRepository;
@@ -42,7 +43,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     ThongTinMuaHangRepository thongTinMuaHangRepository;
-
+    
 //    @Autowired
 //    HoaDonConverter hoaDonConverter;
 
@@ -102,6 +103,20 @@ public class HoaDonServiceImpl implements HoaDonService {
         List<String> dsTrangThai = new ArrayList<>();
         dsTrangThai.add(TrangThaiHoaDon.CHUANBIDATHANG);
         return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(idkh,dsTrangThai);
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoadon() {
+        return hoaDonRepository.findAllByTrangThaiNotContains(hoaDonRepository.findAllByTrangThaiNotContains("CHUANBIDATHANG").toString());
+    }
+
+    @Override
+    @Transactional
+    public ResponseObject huyDatHang(Long idkh) {
+        HoaDonEntity hoaDon = hoaDonRepository.findHoaDonMoiDat(idkh);
+        hoaDonRepository.delete(hoaDon);
+         int sl =  gioHangChiTietRepository.layLaiDsGioHangChiTiet(idkh);
+        return new ResponseObject("Thành công");
     }
 
 

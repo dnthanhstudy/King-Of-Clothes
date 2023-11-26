@@ -10,6 +10,7 @@ import com.laptrinhjavaweb.service.GioHangService;
 import com.laptrinhjavaweb.service.IBienTheService;
 import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,7 +63,7 @@ public class ApiGioHangController {
         return gioHangService.themVaoGioHang(idkh,bienThe.getId());
     }
     @GetMapping("/updateCart")
-    public String updateGioHangChiTiet(
+    public GioHangResponse updateGioHangChiTiet(
             @RequestParam("data") String params,
             @RequestParam("idghct") Long idghct
 
@@ -87,6 +88,12 @@ public class ApiGioHangController {
         return new ResponseObject(gioHangService.tongTienTheoGioHangChiTiet(dsghct));
     }
 
+    @DeleteMapping("/{idghct}")
+    public String deleteGiohangChiTiet(
+            @PathVariable(name = "idghct")Long idghct
+    ){
+        return gioHangService.xoaGioHangChiTiet(idghct);
+    }
 
 
 //    @GetMapping("/dsspttchiatheosp/{id}")

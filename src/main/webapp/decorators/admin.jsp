@@ -150,8 +150,8 @@
 <script src="<c:url value='/template/admin/vendor/apexchart/apexchart.js'/>"></script>
 <!-- Dashboard 1 -->
 <script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>
-<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
+<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/owl-carousel/owl.carousel.js'/>"></script>
 <script src="<c:url value='/template/admin/js/custom.min.js'/>"></script>
 <script src="<c:url value='/template/admin/js/deznav-init.js'/>"></script>

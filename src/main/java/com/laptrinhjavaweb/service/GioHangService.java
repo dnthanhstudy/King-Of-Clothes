@@ -21,6 +21,8 @@ public interface GioHangService {
 //    List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh);
 //
     String themVaoGioHang(Long idkh, Long bienTheId);
-    String updateGioHangChiTiet(Long idghct, Long bienTheId);
+    GioHangResponse updateGioHangChiTiet(Long idghct, Long bienTheId);
+
+    String xoaGioHangChiTiet(Long idghct);
 
 }

@@ -3,17 +3,19 @@ package com.laptrinhjavaweb.repository;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEntity,Long> {
 
-    @Query("select ghct from GioHangChiTietEntity ghct where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai<>'DELETE'")
+    @Query("select ghct from GioHangChiTietEntity ghct where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai not in ('DELETE','PENDING')")
     List<GioHangResponse> dsGioHangChiTietByIdKh(@Param("idkh")Long idkh);
 
     GioHangChiTietEntity findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(Long bienTheId,Long khachHangId,String trangThai);
@@ -26,4 +28,14 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
 
     @Query(value = "SELECT * FROM giohangchitiet WHERE id IN (:dsghct)",nativeQuery = true)
     List<GioHangChiTietEntity> dsGioHangChiTiet(@Param("dsghct") List<Long> dsghct);
+
+    @Query(value = "update giohangchitiet ghct \n" +
+            "join giohang gh on ghct.idgiohang = gh.id \n" +
+            "set ghct.trangthai = 'ACTIVE' \n" +
+            "where ghct.trangthai = 'PENDING' AND idkhachhang =:idkh",nativeQuery = true)
+    @Modifying
+    int layLaiDsGioHangChiTiet(@Param("idkh")Long idkh);
+
+    @Query(value ="select ghct from GioHangChiTietEntity ghct where ghct.id =:idghct")
+    GioHangResponse getGioHangChiTietResponse(@Param("idghct")Long idghct);
 }
