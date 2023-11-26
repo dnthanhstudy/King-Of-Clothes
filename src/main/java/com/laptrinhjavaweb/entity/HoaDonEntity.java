@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "hoadon")
@@ -29,7 +30,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class HoaDonEntity extends BaseEntity{
 
 	@Column(name = "ma", unique = true)
@@ -89,7 +89,7 @@ public class HoaDonEntity extends BaseEntity{
 	@OneToMany(mappedBy = "hoaDon")
 	private List<ChiTietCaLamEntity> chiTietCaLamEntities = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "hoaDon")
+	@OneToMany(mappedBy = "hoaDon",cascade = CascadeType.REMOVE)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities  = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)

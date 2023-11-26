@@ -50,4 +50,8 @@ public abstract class BaseEntity {
 
 	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'", insertable = false)
 	private String trangThai;
+
+	public String getTrangThai() {
+		return trangThai.equals("DEFAULT")?"Mặc định":"";
+	}
 }

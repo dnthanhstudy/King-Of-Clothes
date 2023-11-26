@@ -179,7 +179,6 @@
                                 url: '/api/khach-hang/' + ma,
                                 method: 'DELETE',
                                 success: function (req) {
-                                    console.log(req);
                                     loadKhachHang('/api/khach-hang')
                                     showSuccess("Delete success");
                                 },

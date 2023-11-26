@@ -320,13 +320,13 @@
                 <div class="form-check ms-3 my-3" id="mbBankRadio">
                     <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="mbb" checked>
                     <label class="form-check-label" for="exampleRadios1">
-                        <img src="/template/web/img/mb.png" alt=""> MB Bank
+                        <img src="/template/web/img/cashinwallet-dd94.png" style="width: 70px;height: 70px" alt=""> Ví điện tử
                     </label>
                 </div>
                 <div class="form-check ms-3 my-3" id="vpBankRadio">
                     <input class="form-check-input" type="radio" name="payment" id="exampleRadios2" value="paypal">
                     <label class="form-check-label" for="exampleRadios2">
-                        <img src="/template/web/img/pp.webp" style="width: 70px;height: 70px" alt=""> PayPal
+                        <img src="/template/web/img/pp.png" style="width: 80px;height: 70px" alt=""> PayPal
                     </label>
                 </div>
                 <div class="thanhtoan">
@@ -424,7 +424,7 @@
     function themDiaChi(){
         idtt = -1;
         $("#tennguoinhanform").val('');
-        $("#sdtform").val('')
+        $("#sdtform").val('');
             $("#thanhpho").val(1).trigger('change.select2')
             $("#quanhuyen").val(1).trigger('change.select2')
             $("#xa").val(1).trigger('change.select2')
@@ -438,7 +438,19 @@
             capNhatDiaChiForm()
         }
     }
-
+    function diaChiForm(){
+        var diaChi = $("#sonha").val()+getText($("#xa :selected"))+getText($("#quanhuyen :selected"))+getText($("#thanhpho :selected"))+", Vietnam";
+        return JSON.stringify({
+            tenNguoiNhan: $("#tennguoinhanform").val(),
+            soDienThoai : $("#sdtform").val(),
+            idThanhPho : $("#thanhpho").val(),
+            idHuyen : $("#quanhuyen").val(),
+            idXa : $("#xa").val(),
+            soNha : $("#sonha").val(),
+            diaChi:diaChi,
+            macDinh :$("#defaultform").is(':checked')
+        });
+    }
     function capNhatDiaChiForm(){
         var idttmuahang  = idtt;
         var diaChi = $("#sonha").val()+getText($("#xa :selected"))+getText($("#quanhuyen :selected"))+getText($("#thanhpho :selected"));
@@ -450,7 +462,7 @@
             data: data,
             success: function(response) {
                 dsthongtinmuahang()
-                getAddressDefault()
+              //  getAddressDefault()
                 showSuccess(response.data);
             },
             error: function(xhr, status, error) {
@@ -462,19 +474,7 @@
         var data = val.text();
         return ", "+ data;
     }
-    function diaChiForm(){
-        var diaChi = $("#sonha").val()+getText($("#xa :selected"))+getText($("#quanhuyen :selected"))+getText($("#thanhpho :selected"))+", Vietnam";
-        return JSON.stringify({
-            tenNguoiNhan: $("#tennguoinhanform").val(),
-            soDienThoai : $("#sdtform").val(),
-            idThanhPho : $("#thanhpho").val(),
-            idHuyen : $("#quanhuyen").val(),
-            idXa : $("#xa").val(),
-            soNha : $("#sonha").val(),
-            diaChi:diaChi,
-            macDinh : $("#defaultform").val()
-        });
-    }
+
     function themDiaChiForm(){
         var data = diaChiForm();
         $.ajax({
@@ -727,15 +727,19 @@
     }
     function ghct(){
         $.ajax({
-            url: '/api/hoadon/hdct/'+idkh,
+            url: '/api/hoadon/chuanbidat/'+idkh,
             method: 'GET',
-            success: function(req) {
+            success: async function (req) {
                 var data = req.data;
-                console.log(data);
-                var tbody =$("#hdct");
+                console.log(data)
+                if (data.length == 0) {
+                    await Swal.fire('Incorrect...', 'Bạn chưa thêm sản phẩm vào giỏ hàng !', 'error');
+                    window.location.href = "/cart"
+                }
+                var tbody = $("#hdct");
                 tbody.empty();
                 tongTienTheoHoaDon(data[0].idhd);
-                data.forEach(function (custom){
+                data.forEach(function (custom) {
                     var html = `
                         <div class="row mt-3" style="border-bottom: 1px solid #dedede">
                     <div class="col-5">

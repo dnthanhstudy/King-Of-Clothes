@@ -46,6 +46,25 @@
         .autocomplete-suggestions strong { font-weight: bold; color: #000; }
     </style>
     <script>
+        function showConfirm(message) {
+            return new Promise((resolve) => {
+                Swal.fire({
+                    title: 'Warning?',
+                    text: message,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Đồng ý!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                });
+            });
+        }
         function convertVND(number){
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         }

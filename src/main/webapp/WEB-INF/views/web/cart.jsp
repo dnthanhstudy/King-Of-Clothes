@@ -212,6 +212,41 @@
 
 
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+   async function huyDatHang(){
+       await $.ajax({
+            url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
+            method: 'GET',
+            success: function(req) {
+                ghct()
+            },
+            error: function(xhr, status, error) {
+                showError('Có lỗi xảy ra, hãy liên hệ admin');
+            }
+        });
+    }
+    checkChuanBiDat();
+   async function checkChuanBiDat(){
+       await ghct()
+       await $.ajax({
+            url: '/api/hoadon/chuanbidat/'+idkh,
+            method: 'GET',
+            success: async function (req) {
+                var data = req.data;
+                if (data.length != 0) {
+                    if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
+                         window.location.href = "/checkout"
+                    }
+                    else {
+                        await huyDatHang()
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+
     var dsCheckbox = [];
 
     $(".allchecked").click(function (){
@@ -224,7 +259,6 @@
             $("input[name='idghct']").prop('checked',false)
         }
         loadDataCheckbox();
-
     })
    async function getThuocTinhSanPham(slug){
         let thuocTinhSanPham ;
@@ -273,10 +307,14 @@
                 console.log(data)
                 var tbody =$("#cart");
                 tbody.empty();
-                 data.forEach(async function (sp){
-                     const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
-                     console.log(thuocTinhSanPham)
-                     const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct);
+                if (data.length==0){
+                    tbody.append(`
+                    <h3 class="text-center"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
+                    `)
+                }else{
+                    data.forEach(async function (sp){
+                        const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
+                        const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct);
                         var html =
                             `
 <div class="row mt-2" style="border-bottom: 1px solid #dedede">
@@ -300,12 +338,12 @@
 \${htmlthuoctinh}
                                         <li class="text-right ">
                                             <button type="button" class="btn btn-light cancelbutton"  >Back</button>
-                                            <button type="button" class="btn text-light xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
+                                            <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
                                         </li>
                                     </ul>
 
                                 </div>
-                                <p id="selectedItems">\${sp.tenBienThe}</p>
+                                <p id="tenbienthe-\${sp.idGhct}">\${sp.tenBienThe}</p>
                             </div>
                         </div>
                     </div>
@@ -314,7 +352,7 @@
         </div>
     </div>
     <div class="col-2">
-                    <span>\${sp.giaTien}₫</span>
+                    <span id="giatienbienthe-\${sp.idGhct}">\${sp.giaTien}₫</span>
                 </div>
  <div class="col-2">
                     <span>
@@ -343,7 +381,9 @@
 
                             `;
                         tbody.append(html);
-                     })
+                    })
+
+                }
 
             },
             error: function(xhr, status, error) {
@@ -384,7 +424,10 @@
             url: '/api/user/giohang/updateCart?idghct='+idghct+'&data=' + dsThuocTinhId.join(","),
             method: 'GET',
             success: function (req) {
-                ghct();
+                $("#tenbienthe-"+idghct).text(req.tenBienThe);
+                $("#giatienbienthe-"+idghct).text(req.giaTien);
+                $("#tongtien-"+idghct).text(req.giaTien);
+                tongTienTheoGhct(dsCheckbox);
                 showSuccess("Thành công");
             },
             error: function(xhr, status, error) {
@@ -442,13 +485,13 @@
         var listsp = getValByCheckbox();
         if (listsp.length == 0) {
             showError("Bạn chưa chọn sản phẩm để mua")
+            return;
         }
         var listspAsNumbers = listsp.map(str => Number(str));
 
         var data = JSON.stringify({
             dsghct: listspAsNumbers,
         });
-console.log(data);
         $.ajax({
             url: '/api/user/giohang/dathang/' + idkh,
             method: 'POST',
@@ -464,10 +507,7 @@ console.log(data);
             }
         });
     }
-    async function  init(){
-        await ghct();
-        //tongTien()
-    }
+
     // Đặt sự kiện delegating cho phần tử body để bắt sự kiện click của checkbox
 
     $(document).on('click', 'input[name="idghct"]', function() {
@@ -506,5 +546,9 @@ console.log(data);
             }
         });
     }
-    init();
+    // async function  init(){
+    //     await ghct();
+    //     //tongTien()
+    // }
+    // init();
 </script>
