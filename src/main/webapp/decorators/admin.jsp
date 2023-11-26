@@ -17,7 +17,8 @@
     <link href="<c:url value='/assets/css/customer.css'/>" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="<c:url value='/template/admin/vendor/global/global.min.js'/>"></script>
+<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--%>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .autocomplete-suggestions { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
@@ -26,6 +27,7 @@
         .autocomplete-suggestions strong { font-weight: bold; color: #000; }
     </style>
     <script>
+
         function convertVND(number){
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         }
@@ -112,7 +114,9 @@
         }
     </script>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
 
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 </head>
 <body>
 <!--*******************
@@ -139,17 +143,17 @@
 
 
 <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="<c:url value='/template/admin/vendor/global/global.min.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/chart.js/Chart.bundle.min.js'/>"></script>
 
 <!-- Chart piety plugin files -->
-<%--<script src="<c:url value='/template/admin/vendor/peity/jquery.peity.min.js'/>"></script>--%>
+<script src="<c:url value='/template/admin/vendor/peity/jquery.peity.min.js'/>"></script>
 
 <!-- Apex Chart -->
 <script src="<c:url value='/template/admin/vendor/apexchart/apexchart.js'/>"></script>
 <!-- Dashboard 1 -->
 <script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>
+
 <script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/owl-carousel/owl.carousel.js'/>"></script>

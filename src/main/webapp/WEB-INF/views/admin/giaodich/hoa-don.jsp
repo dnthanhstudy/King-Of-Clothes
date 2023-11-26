@@ -30,20 +30,21 @@
                             <div class="col">
                                 <strong>Tên người nhận:</strong> <span id="tennguoinhan">Đinh Tuấn Anh</span>
                             </div>
-                            <div class="col">
-                                <strong>Số điện thoại:</strong> <span id="sodienthoai">0325808823</span>
-                            </div>
                         </div>
                         <div class="row my-2">
                             <div class="col">
                                 <strong>Địa chỉ:</strong> <span id="diachi">Yên trị, Yên Thuỷ, Hoà bình</span>
                             </div>
                             <div class="col">
-                                <strong>Lưu ý cho shop:</strong>
-                                <p>abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</p>
+                                <strong>Số điện thoại:</strong> <span id="sodienthoai">0325808823</span>
                             </div>
                         </div>
-
+                        <div class="row my-2">
+                            <div class="col">
+                                <strong>Lưu ý cho shop:</strong>
+                                <span>abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="" style="height: 300px; overflow-y: scroll;" id="cart">
                         <div class="card">

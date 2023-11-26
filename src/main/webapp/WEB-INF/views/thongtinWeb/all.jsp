@@ -46,25 +46,24 @@
 
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-
     $.ajax({
         url: '/api/hoadon/dshoadondamua/' + idkh,
         method: "GET",
         dataType: "json",
-        success: async(response) => {
-            console.log(response)
-        await    $.each(response.data,async (index, item) => {
-                console.log(item);
+        success: async (response) => {
+            for (const item of response.data) {
+                let dshd = $('#dshd');
                 let idhd = item.id;
-               await $.ajax({
-                    url: '/api/hdct/' + idhd ,
-                    method: "GET",
-                    dataType: "json",
-                    success: (res) => {
-                        console.log(res)
-                        let html = '';
-                        $.each(res.data, (index1, item1) => {
-                            html += `<div class="col-12 mt-3">
+                try {
+                    const res = await $.ajax({
+                        url: '/api/hdct/' + idhd,
+                        method: "GET",
+                        dataType: "json",
+                    });
+
+                    let html = '';
+                    $.each(res.data, (index1, item1) => {
+                        html += `<div class="col-12 mt-3">
                                             <div class="khung">
                                                 <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">
                                                     <span><i class="bi bi-truck"></i> Đơn hàng đang được xác nhận</span>
@@ -113,16 +112,19 @@
                                                 </div>
                                             </div>
                                         </div>`;
-                        })
-                        $('#dshd').html(html);
-                    }
-                })
-            })
+                    });
+
+                    dshd.append(html);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
         },
         error: (error) => {
             console.log(error);
         }
     });
+
 </script>
 
 
