@@ -18,7 +18,7 @@
     border-bottom: 2px solid #FFD43B;
     padding-bottom: 10px;
     padding-left: 5px;
-    color: black;" class="font-weight-bold">Đóng ca làm việc: <span class="text-uppercase">CA0001</span></h4>
+    color: black;" class="font-weight-bold">Đóng ca làm việc</h4>
 
         <div class="row">
             <div class="col-3">

@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <title>Chờ xác nhận</title>
+    <title>Đã nhận đơn</title>
 </head>
 <body>
 <div class="menu">
@@ -19,10 +19,10 @@
             <a class="nav-link " href="/web/all">Tất cả</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link active" href="/web/cho-xac-nhan">Chờ xác nhận</a>
+            <a class="nav-link " href="/web/cho-xac-nhan">Chờ xác nhận</a>
         </li>
         <li class="nav-item  ms-5">
-            <a class="nav-link" href="/web/cho-giao-hang">Chờ giao hàng</a>
+            <a class="nav-link active" href="/web/cho-giao-hang">Chờ giao hàng</a>
         </li>
         <li class="nav-item ms-5">
             <a class="nav-link " href="/web/dang-giao">Đang giao</a>
@@ -31,7 +31,7 @@
             <a class="nav-link" href="/web/hoan-thanh">Hoàn thành</a>
         </li>
         <li class="nav-item ms-5">
-            <a class="nav-link" href="/web/da-huy">Đã hủy</a>
+            <a class="nav-link " href="/web/da-huy">Đã hủy</a>
         </li>
     </ul>
 </div>
@@ -39,12 +39,11 @@
 <div class="row mt-3" id="dshd">
 
 </div>
-
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
 
     $.ajax({
-        url: '/api/hoadon/dshdtheott/' + idkh + '?trangthai=CHONHANDON',
+        url: '/api/hoadon/dshdtheott/' + idkh + '?trangthai=CHOGIAOHANG',
         method: "GET",
         dataType: "json",
         success: (response) => {
@@ -64,7 +63,7 @@
                     <h4>\${item.tenSanPham}</h4>
                     <div class="d-flex justify-content-between">
                         <span>Phân loại: \${item.tenBienThe} </span>
-                        <span class="text-danger">\${item.tongTienHang}₫</span></span>
+                        <span class="text-danger">\${item.tongTienSanPham}₫</span></span>
                     </div>
                     <div class="d-flex justify-content-between">
                         <span>x\${item.soLuong} </span>
@@ -77,7 +76,7 @@
                     Thành tiền: <span class="text-danger" style="font-size: 25px">\${item.tongTien}₫</span>
                 </div>
                 <div class="my-2">
-<!--                    <button class="btn btn-danger me-2" >Mua lại</button>-->
+                    <button class="btn btn-danger me-2" >Mua lại</button>
                     <button class="btn btn-secondary" >Xem đơn hàng</button>
                 </div>
             </div>
@@ -91,6 +90,5 @@
         }
     });
 </script>
-
 </body>
 </html>
