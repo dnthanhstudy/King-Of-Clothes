@@ -18,7 +18,7 @@ public class DashboardController {
     @GetMapping("/setting/profile")
     public String profile() {
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
-        if(myUserResponse.getTrangThai().equals("INACTIVE")){
+        if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
             return "redirect:/admin/giao-ca/mo-ca?is_not_opened_shift";
         }
         return "admin/setting/profile";
@@ -27,7 +27,7 @@ public class DashboardController {
     @GetMapping("/setting/tich-diem")
     public String tichdiem() {
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
-        if(myUserResponse.getTrangThai().equals("INACTIVE")){
+        if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
             return "redirect:/admin/giao-ca/mo-ca?is_not_opened_shift";
         }
         return "admin/setting/tich-diem";

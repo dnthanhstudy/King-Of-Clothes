@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.controller.web;
 
-import com.laptrinhjavaweb.api.user.ApiGiaoHangController;
+import com.laptrinhjavaweb.api.hoadon.ApiGiaoHangController;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -15,7 +15,6 @@ import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

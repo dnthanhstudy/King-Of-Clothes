@@ -746,11 +746,11 @@
                         <div class="mb-3">
                             <div class="row g-0">
                                 <div class="col-md-2">
-                                    <img src="/template/web/img/anh2.png" class="img-fluid rounded-start " alt="...">
+                                    <img src="/assets/images/sanpham/\${custom.image}" class="img-fluid rounded-start " alt="...">
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body">
-                                        <h6 class="card-title">\${custom.tenSanPham}</h6>
+                                        <h6 class="card-title line-clamp-1">\${custom.tenSanPham}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -801,8 +801,6 @@
         var tongtienSubstring = Number(tongtien.slice(0, tongtien.length - 1));
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
 
-        console.log(tongtienSubstring);
-        console.log(tienshipSubstring);
 
         $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
     }
@@ -823,7 +821,6 @@
         }
     }
     function thanhToanNhanHang(){
-    //    http://localhost:8080/api/hoadon/dathangnhanhang
         var idttmh = $("#idttmuahang").val();
         var tienship = $(".sotiengiaohang:first").text();
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));

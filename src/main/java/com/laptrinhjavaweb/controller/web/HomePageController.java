@@ -23,18 +23,32 @@ public class HomePageController {
         return "web/homepage";
     }
 
+    @GetMapping("/danh-muc/{slug}")
+    public ModelAndView danhMuc(
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+            @PathVariable(name = "slug") String slug
+    ){
+        ModelAndView mav = new ModelAndView("web/category");
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, slug);
+        mav.addObject("mapProduct", results);
+        return mav;
+    }
+
     @GetMapping("/danh-sach-san-pham")
     public ModelAndView shop(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
             @RequestParam Map<String, Object> params
     ){
+        deleteKeyFromMap(params);
         ModelAndView mav = new ModelAndView("web/shop");
         Map<String, Object> results = new HashMap<>();
-        if(params == null){
-            results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, null);
+        if(params == null || params.isEmpty()){
+            results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, null);
         }else{
-            results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, null, params);
+            results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, params, null);
+            mav.addObject("attributeChecked", params);
         }
         mav.addObject("mapProduct", results);
         return mav;
@@ -47,7 +61,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
     ){
         ModelAndView mav = new ModelAndView("web/search");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilter(page, limit, param, null);
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
         mav.addObject("mapProduct", results);
         return mav;
     }
@@ -93,6 +107,11 @@ public class HomePageController {
     @GetMapping("/test")
     public String test(){
         return  "web/test";
+    }
+
+    private void deleteKeyFromMap(Map<String, Object> params){
+        params.remove("page");
+        params.remove("key");
     }
 }
 

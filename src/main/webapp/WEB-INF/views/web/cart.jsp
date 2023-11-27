@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-2">
                     <span>
-                        <div class="input-group quantity" style="width: 100px;">
+<div class="input-group quantity" style="width: 100px;">
                                     <div class="input-group-btn">
 <button class="btn btn-sm btn-primary btn-minus">
                                             <i class="fa fa-minus"></i>
@@ -219,8 +219,8 @@
 
 
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-   async function huyDatHang(){
-       await $.ajax({
+    async function huyDatHang(){
+        await $.ajax({
             url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
             method: 'GET',
             success: function(req) {
@@ -232,16 +232,16 @@
         });
     }
     checkChuanBiDat();
-   async function checkChuanBiDat(){
-       await ghct()
-       await $.ajax({
+    async function checkChuanBiDat(){
+        await ghct()
+        await $.ajax({
             url: '/api/hoadon/chuanbidat/'+idkh,
             method: 'GET',
             success: async function (req) {
                 var data = req.data;
                 if (data.length != 0) {
                     if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
-                         window.location.href = "/checkout"
+                        window.location.href = "/checkout"
                     }
                     else {
                         await huyDatHang()
@@ -283,21 +283,24 @@
         return thuocTinhSanPham;
     }
 
-    function getDsBienThe(thuocTinhSanPham, idsp) {
+    function getDsBienThe(thuocTinhSanPham, idsp,arrTenBienThe) {
         let html = '';
 
-        thuocTinhSanPham.forEach(function (item) {
+        thuocTinhSanPham.forEach(function (item,index) {
+            console.log(item)
             html += `
         <li>
                                             <div class="color-selector">
                                                 <label>\${item.ten}:</label>
                 <div class="color-buttons">
         `;
-            item.giaTriThuocTinh.forEach(function (thuoctinhchitiet) {
+            let dsGiaTriThuocTinh = item.giaTriThuocTinh;
+            dsGiaTriThuocTinh.forEach(function (thuoctinhchitiet) {
+                let isActive = thuoctinhchitiet.giaTri==arrTenBienThe[index]?"active":"";
                 var ten = thuoctinhchitiet.giaTri;
                 var id1 = thuoctinhchitiet.id;
                 html += `
-                    <button class="color-button ghct-\${idsp} button-giatri giatri-\${item.id}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
+                    <button class="color-button ghct-\${idsp} button-giatri giatri-\${item.id} \${isActive}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
                 `
             });
             html += `
@@ -322,11 +325,11 @@
                     <h3 class="text-center"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
                     `)
                 }else{
-                 data.forEach(async function (sp){
-                     const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
-                     const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct);
-                    var html =
-                        `
+                    data.forEach(async function (sp){
+                        const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
+                        const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
+                        var html =
+                            `
 <div class="row mt-2" style="border-bottom: 1px solid #dedede">
     <div class="col-5">
                                <div class="form-check align-items-center justify-content-between mb-3 datacart">
@@ -335,17 +338,17 @@
                 <div class="mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-lg-3">
-                            <img src="/template/web/img/anh3.png" class="img-fluid rounded-start" alt="...">
+                            <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">
                         </div>
-                        <div class="col-lg-9">
+<div class="col-lg-9">
                             <div class="card-body">
-                                <h5 class="card-title">\${sp.tenSanPham}</h5>
+                                <h5 class="card-title line-clamp-1">\${sp.tenSanPham}</h5>
                                 <div class="btn-group">
                                                     <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
                                                         Phân loại hàng
                                                     </span>
                                     <ul class="dropdown-menu p-3" >
-\${htmlthuoctinh}
+                                        \${htmlthuoctinh}
                                         <li class="text-right ">
                                             <button type="button" class="btn btn-light cancelbutton"  >Back</button>
                                             <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
@@ -390,10 +393,10 @@
 </div>
 
                             `;
-                    tbody.append(html);
-                     })
-
+                        tbody.append(html);
+                    })
                 }
+
 
             },
             error: function (xhr, status, error) {
@@ -402,12 +405,6 @@
         });
     }
 
-    // $(document).on('click', function(event) {
-    //     var dropdown = $('.dropdown-menu');
-    //     if (!dropdown.is(event.target) && dropdown.has(event.target).length === 0) {
-    //         dropdown.removeClass('show');
-    //     }
-    // });
 
     $(document).on("click", '.button-giatri', function () {
         var giatri = $(this).data('thuoctinh'); // Lấy giá trị của data-thuoctinh từ button được click
@@ -531,6 +528,9 @@
 
     function loadDataCheckbox() {
         var listCheckbox = getValByCheckbox();
+        if (listCheckbox.length==0){
+            $(".allchecked").prop("checked",false)
+        }
         dsCheckbox = listCheckbox;
         tongTienTheoGhct(dsCheckbox)
     }
@@ -563,9 +563,4 @@
             }
         });
     }
-    // async function  init(){
-    //     await ghct();
-    //     //tongTien()
-    // }
-    // init();
 </script>

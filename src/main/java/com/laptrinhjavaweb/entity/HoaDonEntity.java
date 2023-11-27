@@ -53,7 +53,8 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@Column(name = "ngaydukiengiaohang", columnDefinition = "TIMESTAMP")
 	private Date ngayDuKienGiaoHang;
-	
+	@Column(name = "ngaygiaohang", columnDefinition = "TIMESTAMP")
+	private Date ngayGiaoHang;
 	@Column(name = "ngaythanhtoan", columnDefinition = "TIMESTAMP")
 	private Date ngayThanhToan;
 	
@@ -138,11 +139,16 @@ public class HoaDonEntity extends BaseEntity{
 			return 0D;
 		}
 	}
+
+	public Double getTienShip() {
+		return tienShip==null?0:tienShip;
+	}
+
 	public Double getTienKhachTraOnline() {
 		if (phuongThucThanhToan.equals("CHUYENKHOAN")){
 			return 0D;
 		}
-		return tienShip==null?tongTienHang:tienShip+tongTienHang;
+		return getTienShip()+tongTienHang;
 	}
 
 	public String getPhuongThucThanhToan() {
