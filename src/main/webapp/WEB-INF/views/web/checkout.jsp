@@ -808,6 +808,11 @@
     }
     tongThanhToan();
     function datHang(){
+        if ($(".sotiengiaohang").text().length === 0) {
+            showError("Bạn chưa chọn địa chỉ giao hàng");
+            return;
+        }
+
         if (loaiDatHang === 1){
             var payment = $('input[name="payment"]:checked').val();
             if (payment==="paypal"){
