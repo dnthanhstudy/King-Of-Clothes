@@ -43,7 +43,7 @@ public class NhanVienAPI {
 
     @GetMapping("/pagination")
     public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                        @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+                                        @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit
     ){
         Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, page, limit);
         return new ResponseEntity<>(results, HttpStatus.OK);

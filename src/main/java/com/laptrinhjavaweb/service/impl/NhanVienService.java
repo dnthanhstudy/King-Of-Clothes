@@ -53,7 +53,7 @@ public class NhanVienService implements INhanVienService {
             return null;
         }
         if(nhanVienRequest.getBase64() != null){
-            nhanVienRequest.setAnh(GenerateStringUtils.generate(6) + ".png");
+            nhanVienRequest.setAnh(GenerateStringUtils.generate(6) + ".jpg");
             saveImage(nhanVienRequest);
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);

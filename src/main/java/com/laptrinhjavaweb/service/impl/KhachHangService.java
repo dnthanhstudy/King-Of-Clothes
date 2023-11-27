@@ -4,8 +4,11 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.KhachHangConverter;
 import com.laptrinhjavaweb.converter.TimKiemSanPhamConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
+import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
+import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
@@ -15,12 +18,19 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,15 +55,56 @@ public class KhachHangService implements IKhachHangService {
         return result;
     }
 
-    @Override
-    public List<KhacHangResponse> getDsKhachHang() {
-        List<KhachHangEntity> entity = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE);
+//    @Override
+//    public List<KhacHangResponse> getDsKhachHang() {
+//        List<KhachHangEntity> entity = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE);
+//
+//        List<KhacHangResponse> result = entity.stream().map(
+//                item ->
+//                        khachHangConverter.convertToResponse(item)
+//        ).collect(Collectors.toList());
+//        return result;
+//    }
 
-        List<KhacHangResponse> result = entity.stream().map(
-                item ->
-                        khachHangConverter.convertToResponse(item)
+    @Override
+    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+        Map<String, Object> results = new HashMap<>();
+        Boolean isAll = false;
+        Page<KhachHangEntity> page = null;
+        List<KhacHangResponse> listKhachHangResponse = new ArrayList<>();
+        if(pageCurrent == null && limit == null) {
+            isAll = true;
+            Pageable wholePage = Pageable.unpaged();
+            page = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE, wholePage);
+        }else {
+            Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
+            if(param != null) {
+                List<KhachHangEntity> listKhachHangEntity = khachHangRepository.searchs(param);
+                int sizeOflistKhachHangEntity = listKhachHangEntity.size();
+                int start = (int) pageable.getOffset();
+                int end = Math.min((start + pageable.getPageSize()), sizeOflistKhachHangEntity);
+                List<KhachHangEntity> pageContent = listKhachHangEntity.subList(start, end);
+                page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
+
+            }else {
+                page = khachHangRepository.findAll(pageable);
+            }
+        }
+        listKhachHangResponse = page.getContent().stream().map(
+                item -> khachHangConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-        return result;
+
+        if(listKhachHangResponse.isEmpty()) {
+            return null;
+        }
+        results.put("data", listKhachHangResponse);
+        if(!isAll) {
+            PageableResponse pageableResponse = new PageableResponse();
+            pageableResponse.setPageCurrent(pageCurrent);
+            pageableResponse.setTotalPage(page.getTotalPages());
+            results.put("meta", pageableResponse);
+        }
+        return results;
     }
 
     @Override

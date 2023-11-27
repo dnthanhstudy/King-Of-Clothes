@@ -119,9 +119,9 @@
 </div>
 <script>
     let pageCurrent = 1;
-    function loadNhanVien(url) {
+    function loadNhanVien() {
         $.ajax({
-            url: url,
+            url: "/api/nhan-vien/pagination?page=" + pageCurrent,
             method: 'GET',
             success: function (data) {
                 var nhanVien = $('#cardNhanVien ');
@@ -184,7 +184,7 @@
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadNhanVien(url);
+                            loadNhanVien();
                         }
                     },
                 });
@@ -194,7 +194,7 @@
             }
         });
     }
-    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+    loadNhanVien();
 
 
     $('#cardNhanVien').on('click', (e) => {
@@ -208,7 +208,7 @@
                             method: 'DELETE',
                             success: function (req) {
                                 console.log(req);
-                                loadNhanVien('/api/nhan-vien')
+                                loadNhanVien()
                                 showSuccess("Delete success");
                             },
                             error: function (xhr, status, error) {
@@ -231,7 +231,7 @@
             dataType: 'json',
             success: function (response) {
                 if(param === ''){
-                    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+                    loadNhanVien();
                 }else{
                     loadNhanVien('/api/nhan-vien/search?q=' + param + pageCurrent + '&limit=3');
                 }

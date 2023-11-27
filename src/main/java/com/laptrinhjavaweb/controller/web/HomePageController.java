@@ -38,7 +38,7 @@ public class HomePageController {
     @GetMapping("/danh-sach-san-pham")
     public ModelAndView shop(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam Map<String, Object> params
     ){
         deleteKeyFromMap(params);
