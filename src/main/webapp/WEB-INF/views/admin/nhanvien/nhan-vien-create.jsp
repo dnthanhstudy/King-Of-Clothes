@@ -140,7 +140,8 @@
                 console.log("success");
             },
             error: (error) => {
-                showError("fail")
+               //console.log(error);
+                showError(error.responseJSON.error);
             }
         });
     })
