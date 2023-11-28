@@ -1,14 +1,15 @@
 package com.laptrinhjavaweb.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AnhSanPhamResponse {
 
 	private String hinhAnh;
-
-	public String getHinhAnh() {
-		return hinhAnh;
-	}
-
-	public void setHinhAnh(String hinhAnh) {
-		this.hinhAnh = hinhAnh;
-	}
 }

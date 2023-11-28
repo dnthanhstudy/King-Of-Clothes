@@ -1,8 +1,20 @@
 package com.laptrinhjavaweb.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class SanPhamResponse {
+
+	private Long id;
+
 	private String slug;
 	
 	private String ma;
@@ -24,92 +36,4 @@ public class SanPhamResponse {
 	private List<ThuocTinhResponse> thuocTinh;
 
 	private List<AnhSanPhamResponse> anh;
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public String getMa() {
-		return ma;
-	}
-
-	public void setMa(String ma) {
-		this.ma = ma;
-	}
-
-	public String getTen() {
-		return ten;
-	}
-
-	public void setTen(String ten) {
-		this.ten = ten;
-	}
-
-	public Double getGia() {
-		return gia;
-	}
-
-	public void setGia(Double gia) {
-		this.gia = gia;
-	}
-
-	public Integer getSoLuong() {
-		return soLuong;
-	}
-
-	public void setSoLuong(Integer soLuong) {
-		this.soLuong = soLuong;
-	}
-
-	public String getMoTa() {
-		return moTa;
-	}
-
-	public void setMoTa(String moTa) {
-		this.moTa = moTa;
-	}
-
-	public String getThongTinChiTiet() {
-		return thongTinChiTiet;
-	}
-
-	public void setThongTinChiTiet(String thongTinChiTiet) {
-		this.thongTinChiTiet = thongTinChiTiet;
-	}
-
-	public DanhMucResponse getDanhMuc() {
-		return danhMuc;
-	}
-
-	public void setDanhMuc(DanhMucResponse danhMuc) {
-		this.danhMuc = danhMuc;
-	}
-
-	public ThuongHieuResponse getThuongHieu() {
-		return thuongHieu;
-	}
-
-	public void setThuongHieu(ThuongHieuResponse thuongHieu) {
-		this.thuongHieu = thuongHieu;
-	}
-
-	public List<ThuocTinhResponse> getThuocTinh() {
-		return thuocTinh;
-	}
-
-	public void setThuocTinh(List<ThuocTinhResponse> thuocTinh) {
-		this.thuocTinh = thuocTinh;
-	}
-
-	public List<AnhSanPhamResponse> getAnh() {
-		return anh;
-	}
-
-	public void setAnh(List<AnhSanPhamResponse> anh) {
-		this.anh = anh;
-	}
 }

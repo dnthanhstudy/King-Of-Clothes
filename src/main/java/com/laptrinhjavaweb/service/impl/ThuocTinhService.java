@@ -8,7 +8,7 @@ import com.laptrinhjavaweb.resquest.ThuocTinhRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.laptrinhjavaweb.convert.ThuocTinhConverter;
+import com.laptrinhjavaweb.converter.ThuocTinhConverter;
 import com.laptrinhjavaweb.entity.ThuocTinhEntity;
 import com.laptrinhjavaweb.repository.ThuocTinhRepository;
 import com.laptrinhjavaweb.response.FilterResponse;

@@ -1,9 +1,18 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "chitieu")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChiTieuEntity extends BaseEntity{
 	
 	@Column(name = "sotien")
@@ -15,28 +24,4 @@ public class ChiTieuEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idvidientu")
 	private ViDienTuEntity viDienTu;
-
-	public Double getSoTien() {
-		return soTien;
-	}
-
-	public void setSoTien(Double soTien) {
-		this.soTien = soTien;
-	}
-
-	public Integer getLoaiChiTieu() {
-		return loaiChiTieu;
-	}
-
-	public void setLoaiChiTieu(Integer loaiChiTieu) {
-		this.loaiChiTieu = loaiChiTieu;
-	}
-
-	public ViDienTuEntity getViDienTu() {
-		return viDienTu;
-	}
-
-	public void setViDienTu(ViDienTuEntity viDienTu) {
-		this.viDienTu = viDienTu;
-	}
 }

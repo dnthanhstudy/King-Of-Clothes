@@ -132,7 +132,7 @@
                 });
             },
             error: function (xhr, status, error) {
-                showError("Delete fail");
+                console.log(error);
             }
         });
     }

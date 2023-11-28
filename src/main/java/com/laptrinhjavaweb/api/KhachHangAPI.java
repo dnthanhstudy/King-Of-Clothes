@@ -1,10 +1,9 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
 import org.apache.poi.ss.usermodel.*;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
 
@@ -145,4 +143,9 @@ public class KhachHangAPI {
         }
     }
 
+    @GetMapping("/histories")
+    public ResponseEntity<?> historiesSerach (@RequestParam(name = "ma") String ma){
+        List<TimKiemSanPhamResponse> results = khachHangService.histosies(ma);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
 }

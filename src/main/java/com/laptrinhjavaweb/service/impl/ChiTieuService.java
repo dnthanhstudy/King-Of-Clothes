@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.ChiTieuConvert;
+import com.laptrinhjavaweb.converter.ChiTieuConvert;
 import com.laptrinhjavaweb.entity.ChiTieuEntity;
 import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.response.ChiTieuResponse;

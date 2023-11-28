@@ -56,21 +56,19 @@
 
                     <div class="col-6 mt-4">
                         <select class="form-select" name="danhMucSlug">
-                            <option selected>Vui lòng chọn danh mục</option>
-                            <option value="ao-thun">Áo thun</option>
-                            <option value="ao-polo">Áo polo</option>
-                            <option value="the-theo-du-lich">Thể Thao & Du Lịch</option>
-                            <option value="ao-hoodie-ao-len-ao-ni">Áo Hoodie, Áo len & Áo Nỉ</option>
+                            <option value="" selected>Vui lòng chọn danh mục</option>
+                            <c:forEach var="item" items="${categoriesProduct}">
+                                <option value="${item.slug}">${item.ten}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
                     <div class="col-6 mt-4">
                         <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
-                            <option value="levents">LEVENTS</option>
-                            <option value="paradox">PARADOX</option>
-                            <option value="odin-club">ODIN CLUB</option>
-                            <option value="by-unispace">By Unispace</option>
+                            <c:forEach var="item" items="${brandsProduct}">
+                                <option value="${item.slug}">${item.ten}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

@@ -15,10 +15,12 @@ import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.ThongTinMuaHangService;
 import com.laptrinhjavaweb.support.supportgiaohang.DateUtil;
 import com.laptrinhjavaweb.support.supportgiaohang.SanPhamGhnApi;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,17 +118,19 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
     @Override
     @Transactional
-    public HoaDonEntity thanhToan(Long idkh,Long idttgh ,String pttt) {
+    public HoaDonEntity thanhToan(Long idkh,Long idttgh ,String pttt,Double phiShip) {
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).get();
         ThongTinMuaHangEntity thongTinMuaHang = thongTinMuaHangService.findById(idttgh);
         HoaDonEntity hoaDon = hoaDonRepository.findHoaDonMoiDat(khachHang.getId());
         if (hoaDon == null){
             return null;
         }
-        hoaDon.setTrangThai(TrangThaiHoaDonEnum.CHONHANDON);
+        hoaDon.setTrangThai(TrangThaiHoaDon.CHONHANDON);
         hoaDon.setNgayDat(DateUtil.dateNow());
         hoaDon.setThongTinDatHang(thongTinMuaHang);
         hoaDon.setPhuongThucThanhToan(pttt);
+        hoaDon.setTienShip(phiShip);
+        hoaDon.setNgayThanhToan(DateUtil.dateNow());
         hoaDon.setTongTienHang(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()).doubleValue());
         return hoaDonRepository.save(hoaDon);
     }

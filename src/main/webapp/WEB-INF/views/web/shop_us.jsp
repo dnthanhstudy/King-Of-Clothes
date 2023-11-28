@@ -20,11 +20,11 @@
 <body>
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Us</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3"><s:message code="web.navbar.shopus" /></h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0"><a href=""><s:message code="web.navbar.home" /></a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Shop Us</p>
+            <p class="m-0"><s:message code="web.navbar.shopus" /></p>
         </div>
     </div>
 </div>
@@ -94,7 +94,7 @@
                         <h1 class='bx bx-cart-add'></h1>
                     </div>
                     <div class="choose-title text-center">
-                        <h5>Best Product</h5>
+                        <h5><s:message code="web.homepage.qualityProduct" /></h5>
                     </div>
                     <div class="choose-des">
                         <p>It is a long established fact that a reader will be distracted by the readable content of a
@@ -111,7 +111,7 @@
                         <h1 class='bx bx-headphone'></h1>
                     </div>
                     <div class="choose-title text-center">
-                        <h5>24/7 Support</h5>
+                        <h5><s:message code="web.homepage.freeship" /></h5>
                     </div>
                     <div class="choose-des">
                         <p>It is a long established fact that a reader will be distracted by the readable content of a
@@ -128,7 +128,7 @@
                         <h1 class='bx bx-strikethrough'></h1>
                     </div>
                     <div class="choose-title text-center">
-                        <h5>Secure</h5>
+                        <h5><s:message code="web.homepage.DayReturn" /></h5>
                     </div>
                     <div class="choose-des">
                         <p>It is a long established fact that a reader will be distracted by the readable content of a
@@ -145,7 +145,7 @@
                         <h1 class='bx bx-trending-up'></h1>
                     </div>
                     <div class="choose-title text-center">
-                        <h5>Best Product</h5>
+                        <h5><s:message code="web.homepage.support" /></h5>
                     </div>
                     <div class="choose-des">
                         <p>It is a long established fact that a reader will be distracted by the readable content of a

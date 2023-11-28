@@ -30,7 +30,7 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="/trang-chu" class="nav-item nav-link active"><s:message code="web.navbar.home"/></a>
                         <a href="/shop_us" class="nav-item nav-link"><s:message code="web.navbar.shopus"/></a>
-                        <a href="/shop" class="nav-item nav-link"><s:message code="web.navbar.product"/></a>
+                        <a href="/danh-sach-san-pham" class="nav-item nav-link"><s:message code="web.navbar.product"/></a>
                         <a href="/faqs" class="nav-item nav-link"><s:message code="web.navbar.FAQs"/></a>
                         <a href="/contact" class="nav-item nav-link"><s:message code="web.navbar.Contact"/></a>
                     </div>
@@ -40,10 +40,9 @@
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     <%=SecurityUtils.getPrincipal().getTen()%>
                                 </button>
-                                <input type="hidden" id="customer-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/web/account">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="doi-mat-khau">Đổi mật khẩu</a></li>
                                     <li><a class="dropdown-item" href="/logout" ><s:message code="web.navbar.logout"/></a></li>
                                 </ul>
                             </div>

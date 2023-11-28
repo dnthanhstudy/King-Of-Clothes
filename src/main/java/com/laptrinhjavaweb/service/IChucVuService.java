@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.service;
 
-import com.laptrinhjavaweb.entity.ChucVuEntity;
 import com.laptrinhjavaweb.response.ChucVuResponse;
 import com.laptrinhjavaweb.resquest.ChucVuRequest;
 

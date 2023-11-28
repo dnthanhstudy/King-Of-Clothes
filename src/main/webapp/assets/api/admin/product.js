@@ -15,9 +15,10 @@ $(".btn-add-product").on("click", function (event) {
         data: JSON.stringify(data),
         success: (response) => {
             showSuccess("Thêm sản phẩm thành công");
+            window.location.href = "/admin/san-pham";
         },
         error: (error) => {
-            console.log("Error");
+            console.log(error);
         }
     });
 });

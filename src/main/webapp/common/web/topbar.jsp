@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row align-items-center py-3 px-xl-5">
@@ -8,14 +9,16 @@
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
+            <form action="/search" method="get">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products" id="input-search-product">
-                    <div class="input-group-append" id="icon-search-product">
+                        <input name="q" type="text" class="form-control" placeholder="Search for products" id="input-search-product">
+                        <div class="input-group-append" id="icon-search-product">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
-                    </div>
+                        </div>
                 </div>
+            </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
             <a href="?lang=vi" class="btn border" >Việt</a>
@@ -31,32 +34,66 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="customer-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
 <!-- Topbar End -->
 <script>
     $(document).ready(function() {
-        $("a[href*=lang]").on("click", function() {
+        $("a[href*=lang]").on("click", function () {
             var param = $(this).attr("href");
             $.ajax({
-                url : "/trang-chu" + param,
-                success : function() {
+                url: "/trang-chu" + param,
+                success: function () {
                     location.reload();
                 }
             });
             return false;
         })
 
-        $('#input-search-product').on('keypress', (e) => {
-            if(e.which === 13){
-                e.preventDefault();
-                const search = $(e.target).val();
-                window.location = 'search?q='+search;
-            }
-        })
+        // $('#input-search-product').on('keypress', (e) => {
+        //     if (e.which === 13) {
+        //         console.log(123);
+        //         e.preventDefault();
+        //         const search = $(e.target).val();
+        //         window.location = 'search?q=' + search;
+        //     }
+        // })
+        //
+        // $('#icon-search-product').on('click', (e) => {
+        //     e.preventDefault();
+        //     const search = $('#input-search-product').val();
+        //     window.location = 'search?q=' + search;
+        // })
 
-        $('#icon-search-product').on('click', (e) => {
-            e.preventDefault();
-            const search = $('#input-search-product').val();
-            window.location = 'search?q='+search;
-        })
-    })
+        let histories = [];
+        const customerCodeWhenLogin = $('#customer-code').val();
+        if(customerCodeWhenLogin !== "null"){
+            console.log(customerCodeWhenLogin);
+           $.ajax({
+               url: '/api/khach-hang/histories?ma='+customerCodeWhenLogin,
+               dataType: "json",
+               success: function (response){
+                    $.each(response, function (index, item){
+                        let history = {
+                            "value": item.timKiem
+                        }
+                        histories.push(history);
+                    })
+                   loadSuggestions(histories);
+               },
+               error: function (error){
+                   console.log(error);
+               }
+           });
+
+           function loadSuggestions(options){
+               $('#input-search-product').autocomplete({
+                   lookup: options,
+                   onSelect: function (suggestion) {
+                       $('#input-search-product').val(suggestion.value)
+                       //window.location = 'search?q=' + suggestion.value;
+                   }
+               });
+           }
+        }
+    });
 </script>

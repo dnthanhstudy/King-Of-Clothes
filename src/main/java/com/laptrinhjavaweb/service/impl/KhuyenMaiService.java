@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.KhuyenMaiConvert;
+import com.laptrinhjavaweb.converter.KhuyenMaiConvert;
 import com.laptrinhjavaweb.entity.KhuyenMaiEntity;
 import com.laptrinhjavaweb.repository.KhuyenMaiRepository;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;

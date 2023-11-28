@@ -1,5 +1,10 @@
 package com.laptrinhjavaweb.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +12,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "giohang")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class GioHangEntity extends BaseEntity{
 
 	@OneToOne
@@ -15,20 +24,4 @@ public class GioHangEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "gioHang", fetch = FetchType.LAZY)
 	private List<GioHangChiTietEntity> gioHangChiTietEntities = new ArrayList<>();
-
-	public KhachHangEntity getKhachHang() {
-		return khachHang;
-	}
-
-	public void setKhachHang(KhachHangEntity khachHang) {
-		this.khachHang = khachHang;
-	}
-
-	public List<GioHangChiTietEntity> getGioHangChiTietEntities() {
-		return gioHangChiTietEntities;
-	}
-
-	public void setGioHangChiTietEntities(List<GioHangChiTietEntity> gioHangChiTietEntities) {
-		this.gioHangChiTietEntities = gioHangChiTietEntities;
-	}
 }

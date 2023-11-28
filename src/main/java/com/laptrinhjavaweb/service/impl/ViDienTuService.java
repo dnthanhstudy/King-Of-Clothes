@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.ViDienTuConvert;
+import com.laptrinhjavaweb.converter.ViDienTuConvert;
 import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.repository.ViDienTuRepository;
 import com.laptrinhjavaweb.response.ViDienTuResponse;

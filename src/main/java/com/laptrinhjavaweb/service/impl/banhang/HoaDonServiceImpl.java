@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
@@ -11,10 +12,12 @@ import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.ThongTinMuaHangRepository;
 import com.laptrinhjavaweb.service.HoaDonService;
+import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,6 +76,32 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public List<HoaDonResponse> dsHoaDonOnline() {
         return hoaDonRepository.dsHoaDonOnline();
+    }
+
+    @Override
+    public String thayDoiTrangThaiHoaDon(Long idhd, String trangThai) {
+        try{
+            HoaDonEntity hoaDon = hoaDonRepository.findById(idhd).orElse(null);
+            assert hoaDon != null;
+            // TrangThaiHoaDonEnum
+            hoaDon.setTrangThai(trangThai);
+            hoaDonRepository.save(hoaDon);
+            return "Thay đổi trạng thái thành công";
+        }catch (Exception e){
+            return "Có lỗi xảy ra";
+        }
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh, String trangThai) {
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThai(idkh,trangThai);
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonDaMua(Long idkh) {
+        List<String> dsTrangThai = new ArrayList<>();
+        dsTrangThai.add(TrangThaiHoaDon.CHUANBIDATHANG);
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(idkh,dsTrangThai);
     }
 
 

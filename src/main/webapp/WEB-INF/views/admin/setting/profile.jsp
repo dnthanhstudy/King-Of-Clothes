@@ -37,12 +37,12 @@
                         </div>
                         <div class="profile-info">
                             <div class="profile-photo">
-                                <img src="/template/admin/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                <img  src="/template/admin/images/profile/profile.png" id="anh" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2">
-                                    <h4 class="text-primary mb-0">Họ và tên</h4>
-                                    <p>Chức vụ</p>
+                                    <h4 id="ten" class="text-primary mb-0">Họ và tên</h4>
+                                    <p id="chucvu">Chức vụ</p>
                                 </div>
                                 <div class="dropdown ml-auto">
                                     <a href="#" class="btn btn-primary light sharp" data-toggle="dropdown" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewbox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="5" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="19" cy="12" r="2"></circle></g></svg></a>
@@ -140,7 +140,7 @@
                                                 <div class="col-sm-3 col-5">
                                                     <h5 class="f-w-500">Username <span class="pull-right">:</span></h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span>abc</span>
+                                                <div class="col-sm-9 col-7"><span id="ma">abc</span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
@@ -148,7 +148,7 @@
                                                     <h5 class="f-w-500">Name <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span>Mitchell C.Shay</span>
+                                                <div class="col-sm-9 col-7"><span id="ten1">Mitchell C.Shay</span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
@@ -156,7 +156,7 @@
                                                     <h5 class="f-w-500">Email <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a9ccd1c8c4d9c5cce9ccd1c8c4d9c5ccc587cac6c4">[email&#160;protected]</a></span>
+                                                <div class="col-sm-9 col-7"><span id="email"></span>
                                                 </div>
                                             </div>
 
@@ -165,21 +165,21 @@
                                                     <h5 class="f-w-500">Date of birth <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span>01-01-2001</span>
+                                                <div class="col-sm-9 col-7"><span id="ngaysinh">01-01-2001</span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-sm-3 col-5">
                                                     <h5 class="f-w-500">Phone number <span class="pull-right">:</span></h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span>0987654321</span>
+                                                <div class="col-sm-9 col-7"><span id="sdt">0987654321</span>
                                                 </div>
                                             </div>
                                             <div class="row mb-2">
                                                 <div class="col-sm-3 col-5">
                                                     <h5 class="f-w-500">Address <span class="pull-right">:</span></h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span>Hà Nội</span>
+                                                <div class="col-sm-9 col-7"><span id="diachi">Hà Nội</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,30 +196,30 @@
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Username</label>
-                                                            <input type="text" placeholder="Username" class="form-control">
+                                                            <input type="text" placeholder="Username" id="username" class="form-control">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
-                                                            <input type="text" placeholder="Name" class="form-control">
+                                                            <input type="text" placeholder="Name" id="name" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Email</label>
-                                                            <input type="email" placeholder="Email" class="form-control">
+                                                            <input type="email" placeholder="Email" id="email1" class="form-control">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Phone number</label>
-                                                            <input type="text" placeholder="Phone number" class="form-control">
+                                                            <input type="text" placeholder="Phone number" id="phone" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Date of birth </label>
-                                                        <input type="date"  class="form-control">
+                                                        <input type="date" id="date" class="form-control">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <input type="text" placeholder="Address" class="form-control">
+                                                        <input type="text" placeholder="Address" id="address" class="form-control">
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12 col-sm-12">
@@ -257,7 +257,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script >
     //checkbox change password
     const changePasswordCheckbox = document.getElementById("changePasswordCheckbox");
@@ -268,6 +268,39 @@
             passwordFields.style.display = "block";
         } else {
             passwordFields.style.display = "none";
+        }
+    });
+
+    moment.locale('vn');
+    var options = {
+        month: 'numeric', day: 'numeric', year: 'numeric',
+    };
+
+    $.ajax({
+        url: '/api/nhan-vien/' + ma,
+        method: 'GET',
+        dataType: 'json',
+        success: function (req) {
+           console.log(req);
+            $('#ma').text(req.ma);
+            $('#email').text(req.email);
+            $('#ten').text(req.ten);
+            $('#ten1').text(req.ten);
+            $('#chucvu').text(req.chucVu.ten);
+            $('#ngaysinh').text(formatDateInput(req.ngaySinh));
+            $('#sdt').text(req.soDienThoai);
+            $('#diachi').text(req.diaChi);
+            $('#username').val(req.ma);
+            $('#name').val(req.ten);
+            $('#email1').val(req.email);
+            $('#phone').val(req.soDienThoai);
+            var date = new Date(req.ngaySinh);
+            console.log(moment(date).format('YYYY-MM-DD'))
+            $('#date').val(moment(date).format('YYYY-MM-DD'));
+            $('#address').val(req.diaChi);
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
         }
     });
 

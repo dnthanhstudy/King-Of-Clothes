@@ -24,7 +24,7 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-7">
-                    <p>seiichitakashi</p>
+                    <p id="ma">seiichitakashi</p>
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-7">
-                    <input placeholder="Họ và tên:" class="form-control"/>
+                    <input placeholder="Họ và tên:" id="ten" class="form-control"/>
                 </div>
             </div>
 
@@ -48,7 +48,7 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-7">
-                    <input placeholder="Email:" class="form-control"/>
+                    <input placeholder="Email:" id="email" class="form-control"/>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-7">
-                    <input placeholder="Số điện thoại:" class="form-control"/>
+                    <input placeholder="Số điện thoại:" id="sdt" class="form-control"/>
                 </div>
             </div>
 
@@ -73,15 +73,15 @@
                 </div>
                 <div class="col-12 col-sm-7">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Nam">
                         <label class="form-check-label" for="inlineRadio1">Nam</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Nữ">
                         <label class="form-check-label" for="inlineRadio2">Nữ</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+                        <input class="form-check-input gioi-tinh" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Khác">
                         <label class="form-check-label" for="inlineRadio3">Khác</label>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     </label>
                 </div>
                 <div class="col-12 col-sm-7">
-                    <input type="date" placeholder="Ngày sinh:" class="form-control"/>
+                    <input type="date" id="ngaysinh" class="form-control">
                 </div>
             </div>
 
@@ -109,6 +109,64 @@
         <button type="button" class="btn" style="background-color: #EFCACA;color: #BF0000;"  >Submit</button>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script>
+    moment.locale('vn');
+    let ma = $('#customer-code').val();
+    var options = {
+        month: 'numeric', day: 'numeric', year: 'numeric',
+    };
+    if($('.ma-chuc-vu').val() === 'CUSTOMER'){
+        $.ajax({
+            url: '/api/khach-hang/' + ma,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                console.log(req);
+                $('#ma').text(req.ma);
+                $('#ten').val(req.ten);
+                $('#sdt').val(req.soDienThoai);
+                $('#email').val(req.email);
+                var date = new Date(req.ngaySinh);
+                console.log(moment(date).format('YYYY-MM-DD'))
+                $('#ngaysinh').val(moment(date).format('YYYY-MM-DD'));
+                $('.gioi-tinh').each((index, item) => {
+                    if($(item).val() === req.gioiTinh){
+                        $(item).attr('checked', true);
+                    }
+                })
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }else {
+        $.ajax({
+            url: '/api/nhan-vien/' + ma,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                $('#ma').text(req.ma);
+                $('#ten').val(req.ten);
+                $('#sdt').val(req.soDienThoai);
+                $('#email').val(req.email);
+                var date = new Date(req.ngaySinh);
+                console.log(moment(date).format('YYYY-MM-DD'))
+                $('#ngaysinh').val(moment(date).format('YYYY-MM-DD'));
+                $('.gioi-tinh').each((index, item) => {
+                    if($(item).val() === req.gioiTinh){
+                        $(item).attr('checked', true);
+                    }
+                })
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
 
+
+
+</script>
 </body>
 </html>

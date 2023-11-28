@@ -1,9 +1,8 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.convert.GiaTriThuocTinhConverter;
+import com.laptrinhjavaweb.converter.GiaTriThuocTinhConverter;
 import com.laptrinhjavaweb.entity.GiaTriThuocTinhEntity;
 import com.laptrinhjavaweb.repository.GiaTriThuocTinhRepository;
-import com.laptrinhjavaweb.response.GiaTriThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.GiaTriThuocTinhRequest;
 import com.laptrinhjavaweb.service.IGiaTriThuocTinhService;
 import org.springframework.beans.factory.annotation.Autowired;

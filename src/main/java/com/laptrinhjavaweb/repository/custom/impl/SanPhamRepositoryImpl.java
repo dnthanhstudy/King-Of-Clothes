@@ -25,7 +25,9 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	@Override
 	public List<SanPhamEntity> seachs(String param) {
 		String sql = "FROM SanPhamEntity WHERE ten LIKE '%" + param + "%' OR mota LIKE '%" + param
-				+ "%' OR thongtinchitiet LIKE '%" + param + "%'";
+				+ "%' OR thongtinchitiet LIKE '%" + param
+				+ "%' OR thuongHieu.ten LIKE '%" + param
+				+ "%' OR danhMuc.ten LIKE '%" + param + "%'";
 		Query query = entityManager.createQuery(sql, SanPhamEntity.class);
         return query.getResultList();
 	}
@@ -52,12 +54,9 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			if(k.equals("thuong-hieu")) {
 				query = "thuonghieu.slug" + "=" + v;
 			}
-			else if(k.equals("gia-tu")) {
+			else if(k.equals("gia")) {
 				List<String> gias = Arrays.asList(v.toString().split(","));
 				query = "sanpham.gia >= " + Double.parseDouble(gias.get(0)) + " and sanpham.gia <= " + Double.parseDouble(gias.get(1));
-			}
-			else if(k.equals("gia-den")) {
-				query = "sanpham.gia <=" + v;
 			}else {
 				inSlugSQL.add(k);
 				List<String> strs = Arrays.asList(v.toString().split(","));
@@ -74,7 +73,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		}
 		String sqlInGiaTri = null;
 		if(!inGiaTriSQL.isEmpty()) {
-			sqlInGiaTri = inGiaTriSQL.stream().map(x -> "N'" + x + "'").collect(Collectors.joining(", ", "(", ")"));
+			sqlInGiaTri = inGiaTriSQL.stream().map(x -> "'" + x + "'").collect(Collectors.joining(", ", "(", ")"));
 		}
 		if(sqlInSlug != null) {
 			sqlInSlug = "thuoctinh.slug IN "+ sqlInSlug;

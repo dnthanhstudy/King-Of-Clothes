@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.convert.BienTheConverter;
+import com.laptrinhjavaweb.converter.BienTheConverter;
 import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
 import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.repository.AnhSanPhamRepository;
@@ -53,7 +53,7 @@ public class BienTheService implements IBienTheService{
 	public BienTheResponse save(BienTheRequest request) {
 		boolean isSaveImage = false;
 		if(request.getBase64() != null) {
-			request.setAnh(GenerateStringUtils.generate(6) + ".jpg");
+			request.setHinhAnh(GenerateStringUtils.generate(6) + ".jpg");
 			saveImage(request);
 			isSaveImage = true;
 		}
@@ -64,7 +64,7 @@ public class BienTheService implements IBienTheService{
 
 		if(isSaveImage) {
 			AnhSanPhamEntity anhSanPhamEntity = new AnhSanPhamEntity();
-			anhSanPhamEntity.setHinhAnh(request.getAnh());
+			anhSanPhamEntity.setHinhAnh(request.getHinhAnh());
 			anhSanPhamEntity.setSanPham(entity.getSanPham());
 			anhSanPhamRepository.save(anhSanPhamEntity);
 		}
@@ -72,7 +72,7 @@ public class BienTheService implements IBienTheService{
 	}
 
 	public void saveImage(BienTheRequest request) {
-		String path = SystemConstant.path + "/sanpham/" + request.getAnh();
+		String path = SystemConstant.path + "/sanpham/" + request.getHinhAnh();
 		if (request.getBase64() != null) {
 			byte[] bytes = Base64.decodeBase64(request.getBase64().getBytes());
 			uploadFileUtils.writeOrUpdate(path, bytes);
