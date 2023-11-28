@@ -3,8 +3,7 @@ package com.laptrinhjavaweb.converter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.laptrinhjavaweb.entity.DanhMucEntity;
-import com.laptrinhjavaweb.entity.ThuongHieuEntity;
+import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
@@ -12,7 +11,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.response.AnhSanPhamResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
@@ -40,6 +38,7 @@ public class SanPhamConverter {
 
 	@Autowired
 	private ThuongHieuRepository thuongHieuRepository;
+
 	
 	public SanPhamResponse convertToResponse(SanPhamEntity entity) {
 		SanPhamResponse response = modelMapper.map(entity, SanPhamResponse.class);

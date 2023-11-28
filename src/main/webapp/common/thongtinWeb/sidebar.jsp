@@ -1,3 +1,4 @@
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -7,7 +8,7 @@
             <img src="/template/web/img/avatar.jpeg" width="80px" style="border-radius: 50%" alt="">
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 my-3" >
-            <h5>seiichitakashi</h5>
+            <h5><%=SecurityUtils.getPrincipal().getTen()%></h5>
             <a href="/web/account" class="text-decoration-none"><i class="bi bi-pencil-fill"></i> Sửa hồ sơ</a>
         </div>
     </div>

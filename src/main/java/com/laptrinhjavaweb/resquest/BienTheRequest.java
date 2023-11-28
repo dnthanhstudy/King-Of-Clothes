@@ -23,8 +23,6 @@ public class BienTheRequest {
 
     private Long idSanPham;
 
-    private Long idThuocTinh;
-
     public String getBase64() {
         if(base64 != null){
             return base64.split(",")[1];

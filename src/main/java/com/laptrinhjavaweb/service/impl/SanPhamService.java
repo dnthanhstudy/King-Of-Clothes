@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
+import com.laptrinhjavaweb.converter.BienTheConverter;
+import com.laptrinhjavaweb.converter.ThuocTinhConverter;
+import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
+import com.laptrinhjavaweb.entity.BienTheEntity;
+import com.laptrinhjavaweb.entity.ThuocTinhEntity;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
@@ -43,6 +49,15 @@ public class SanPhamService implements ISanPhamService{
 
 	@Autowired
 	private IBienTheService bienTheService;
+
+	@Autowired
+	private BienTheConverter bienTheConverter;
+
+	@Autowired
+	private AnhSanPhamConverter anhSanPhamConverter;
+
+	@Autowired
+	private ThuocTinhConverter thuocTinhConverter;
 
 	@Override
 	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
