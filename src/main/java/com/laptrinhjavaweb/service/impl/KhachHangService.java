@@ -75,7 +75,7 @@ public class KhachHangService implements IKhachHangService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE, wholePage);
+            page = khachHangRepository.findAll(wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {

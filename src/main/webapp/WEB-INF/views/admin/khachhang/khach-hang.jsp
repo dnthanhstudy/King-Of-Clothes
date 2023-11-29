@@ -65,6 +65,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Giới tính</th>
                             <th scope="col">Ngày sinh</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">ACTION</th>
                         </tr>
@@ -100,6 +101,7 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
+                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
                                  <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -149,15 +151,20 @@
         const param = $('#searchAll').val();
         console.log(param);
         $.ajax({
-            url: '/api/khach-hang/search?q=' + param + '&page=' + pageCurrent ,
+            url: '/api/khach-hang/search',
             method: 'GET',
+            data: {
+                q: param,
+                page: pageCurrent
+            },
             dataType: 'json',
             success: function(req) {
+                console.log(req);
                 var tbody = $('#tblKhachHang tbody');
                 tbody.empty();
                 var index = 0;
                 req.data.forEach(function(item) {
-                        var row = `
+                    var row = `
                             <tr>
                                 <td>\${++index}</td>
                                 <td>\${item.ma}</td>
@@ -166,6 +173,7 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
+                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
                                  <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -203,7 +211,7 @@
                 });
             },
             error: function (error) {
-                showError("Fale")
+                showError("Faile")
             }
         });
     });
@@ -229,6 +237,8 @@
                     })
         }
     })
+
+
 
     $(document).ready(function() {
         // Xác định thẻ table và thẻ th
