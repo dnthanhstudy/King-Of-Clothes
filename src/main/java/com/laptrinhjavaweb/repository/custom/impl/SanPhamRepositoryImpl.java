@@ -27,7 +27,8 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		String sql = "FROM SanPhamEntity WHERE ten LIKE '%" + param + "%' OR mota LIKE '%" + param
 				+ "%' OR thongtinchitiet LIKE '%" + param
 				+ "%' OR thuongHieu.ten LIKE '%" + param
-				+ "%' OR danhMuc.ten LIKE '%" + param + "%'";
+				+ "%' OR danhMuc.ten LIKE '%" + param
+				+ "%' AND trangThai = 'ACTIVE'";
 		Query query = entityManager.createQuery(sql, SanPhamEntity.class);
         return query.getResultList();
 	}
@@ -40,6 +41,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		Query query = entityManager.createNativeQuery(sql);
 		return query.getResultList();
 	}
+	
 
 	private String buildSQL(Map<String, Object> params) {
 		String queryFinal = "SELECT distinct sanpham.id FROM thuoctinh"
@@ -83,7 +85,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			sqlInGiaTri = "giatrithuoctinh.giatri IN " + sqlInGiaTri;
 			whereSQL.add(sqlInGiaTri);
 		}
-		queryFinal = queryFinal + " WHERE " + String.join(" AND ", whereSQL);
+		queryFinal = queryFinal + " WHERE sanpham.trangthai = 'ACTIVE' " + String.join(" AND ", whereSQL);
 		System.out.println(queryFinal);
 		return queryFinal;
 	}

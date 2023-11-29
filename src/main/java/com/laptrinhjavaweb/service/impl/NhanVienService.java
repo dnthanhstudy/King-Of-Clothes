@@ -97,7 +97,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+    public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param ){
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<NhanVienEntity> page = null;
@@ -105,7 +105,7 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThai(SystemConstant.IN_ACTICE, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -117,7 +117,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAll(pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(

@@ -12,7 +12,7 @@ public interface INhanVienService {
 
     NhanVienResponse save(NhanVienRequest nhanVienRequest);
 
-    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
+    Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param );
 
     NhanVienResponse getDetail(String ma);
 

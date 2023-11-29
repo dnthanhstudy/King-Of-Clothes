@@ -10,4 +10,5 @@ public interface SanPhamRepositoryCustom {
 	List<SanPhamEntity> seachs(String param);
 
 	List<Long> filters(Map<String, Object> params);
+
 }

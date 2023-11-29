@@ -11,7 +11,7 @@ import java.util.List;
 public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>, NhanVienRepositoryCustom {
 
 
-    Page<NhanVienEntity> findAllByTrangThai(String trangThai, Pageable pageable);
+    Page<NhanVienEntity> findAllByTrangThaiNotAndChucVu_Ma(String trangThai, String chucVu, Pageable pageable);
 
     NhanVienEntity findByMaAndTrangThai(String ma, String trangThai);
 

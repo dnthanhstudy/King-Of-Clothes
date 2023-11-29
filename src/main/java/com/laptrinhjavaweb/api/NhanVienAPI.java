@@ -33,25 +33,20 @@ public class NhanVienAPI {
     public ResponseEntity<?> searchs(
             @RequestParam(name = "q") String param,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(param, page, limit);
+            @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit){
+        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(page, limit, null, param);
     	if(results == null){
             return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
         }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
-    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                        @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit
-    ){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, page, limit);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
-
     @GetMapping
-    public ResponseEntity<?> findAll(){
-        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(null, null, null);
+    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                        @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit,
+                                        @RequestParam(name = "role", required = false) String role
+    ){
+        Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(page, limit, role, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
