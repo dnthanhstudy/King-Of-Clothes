@@ -19,14 +19,17 @@ public class HomePageController {
     private ISanPhamService sanPhamService;
 
     @GetMapping("/trang-chu")
-    public String homePage(){
-        return "web/homepage";
+    public ModelAndView homePage(){
+        ModelAndView mav = new ModelAndView("web/homepage");
+        mav.addObject("productOutstanding", sanPhamService.random(null, null, 1, null, 6));
+        mav.addObject("productPopular", sanPhamService.random(null, null, null, 1, 6));
+        return mav;
     }
 
     @GetMapping("/danh-muc/{slug}")
     public ModelAndView danhMuc(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @PathVariable(name = "slug") String slug
     ){
         ModelAndView mav = new ModelAndView("web/category");
@@ -38,7 +41,7 @@ public class HomePageController {
     @GetMapping("/danh-sach-san-pham")
     public ModelAndView shop(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam Map<String, Object> params
     ){
         deleteKeyFromMap(params);
@@ -58,7 +61,7 @@ public class HomePageController {
     public ModelAndView search(
             @RequestParam(name = "q") String param,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit
     ){
         ModelAndView mav = new ModelAndView("web/search");
         Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
@@ -71,6 +74,7 @@ public class HomePageController {
         ModelAndView mav = new ModelAndView("web/detail");
         SanPhamResponse result = sanPhamService.findBySlug(slug);
         mav.addObject("product", result);
+        mav.addObject("sameProduct", sanPhamService.same(slug));
         return mav;
     }
 
@@ -111,7 +115,7 @@ public class HomePageController {
 
     private void deleteKeyFromMap(Map<String, Object> params){
         params.remove("page");
-        params.remove("key");
+        params.remove("limit");
     }
 }
 
