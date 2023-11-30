@@ -167,4 +167,20 @@ public class SanPhamService implements ISanPhamService{
 			throw new RuntimeException("Error");
 		}
 	}
+
+	@Override
+	public List<SanPhamResponse> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public List<SanPhamResponse> same(String slug) {
+		List<SanPhamResponse> results = sanPhamRepository.same(slug)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
 }

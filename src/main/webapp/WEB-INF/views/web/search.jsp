@@ -108,6 +108,7 @@
                         <ul class="pagination" id="pagination"></ul>
                         <input type="hidden" value="" id="search-product" name="q"/>
                         <input type="hidden" value="" id="page-product" name="page"/>
+                        <input type="hidden" value="" id="limit-product" name="limit"/>
                     </div>
                 </form>
             </div>
@@ -127,6 +128,7 @@
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
+    let limit = 9;
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
@@ -135,6 +137,7 @@
             if (currentPage != page) {
                 $('#page-product').val(page);
                 $('#search-product').val(param);
+                $('#limit-product').val(limit);
                 $('#form-submit-product').submit();
             }
         }
