@@ -59,7 +59,7 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia}</h3>
+                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia} VND</h3>
                 <c:forEach var="item" items="${product.thuocTinh}">
                     <div class="d-flex align-items-center mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>
@@ -203,6 +203,32 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Các sản phẩm tương tự</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel related-carousel">
+                <c:forEach items="${sameProduct}" var="item">
+                    <div class="card product-item border-0">
+                        <a href="/san-pham/${item.slug}">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">${item.ten}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>${item.gia}</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

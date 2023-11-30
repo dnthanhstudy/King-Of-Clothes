@@ -39,4 +39,7 @@ public interface GioHangResponse {
     @Value("#{target.bienThe.sanPham.slug}")
     String getSlugSanPham();
 
+    @Value("#{target.hinhAnh}")
+    String getImage();
+
 }

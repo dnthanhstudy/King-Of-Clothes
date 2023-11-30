@@ -182,6 +182,40 @@ label {
 }
 
 
+.color-button1 {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #fff;
+    margin-right: 10px;
+    transition: border-color 0.3s; /* Thêm hiệu ứng transition cho border-color */
+}
+
+.color-button1:hover {
+    border-color: red;
+}
+
+.color-button1.active {
+    border-color: red;
+}
+
+.size-button1 {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #fff;
+    margin-right: 10px;
+    transition: border-color 0.3s; /* Thêm hiệu ứng transition cho border-color */
+}
+.size-button1:hover {
+    border-color: red;
+}
+
+.size-button1.active {
+    border-color: red;
+}
+
+
 
 /*input tiền*/
 .input-wrapper1 {
@@ -217,3 +251,6 @@ label {
     transform: scaleX(1);
 }
 
+.hovers :hover{
+    color: #D19C97;
+}

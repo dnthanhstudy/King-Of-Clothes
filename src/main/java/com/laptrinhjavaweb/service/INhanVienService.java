@@ -10,16 +10,22 @@ public interface INhanVienService {
 
     NhanVienResponse findByMaAndTrangThai(String ma, String trangThai);
 
+    Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param );
+
     NhanVienResponse save(NhanVienRequest nhanVienRequest);
-
-    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
-
-    NhanVienResponse getDetail(String ma);
 
     NhanVienResponse update(String ma, NhanVienRequest nhanVienRequest);
 
+    NhanVienResponse getDetail(String ma);
+
     void delete(String ma);
 
+    NhanVienResponse moCa(String ma);
+
+    NhanVienResponse dongCa(String ma);
+
+
+    //forgot password nhân viên
     NhanVienEntity findByEmail(String email);
 
     String generateRandomPassword();
@@ -28,7 +34,4 @@ public interface INhanVienService {
 
     NhanVienEntity insert(NhanVienEntity nhanVienEntity);
 
-    NhanVienResponse moCa(String ma);
-
-    NhanVienResponse dongCa(String ma);
 }

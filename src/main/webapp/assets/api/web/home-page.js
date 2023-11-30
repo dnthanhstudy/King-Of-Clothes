@@ -19,24 +19,29 @@ function loadProduct() {
             let html = '';
             $.each(response.data, (index, item) => {
                 html += `<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                            <div class="card product-item border-0 mb-4">
-                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" alt="">
-                                </div>
-                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3">${item.ten}</h6>
-                                    <div class="d-flex justify-content-center">
-                                        <h6>${item.gia}</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            <a href="/san-pham/${item.slug}">
+                                  <div class="card product-item border-0 mb-4">
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" alt="">
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3">${item.ten}</h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6 class="product-price-origin">${item.gia}</h6>
+                                            <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="/san-pham/${item.slug}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                    <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                                </div>
-                            </div>
+                            </a>
                         </div>`;
             })
             $('#product-home-page').append(html);
+
+            $('.product-price-origin').each(function(index, item) {
+                let res = $(item).html();
+                res = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(res);
+                $(item).html(res);
+            });
         },
         error: (error) => {
             console.log(error);

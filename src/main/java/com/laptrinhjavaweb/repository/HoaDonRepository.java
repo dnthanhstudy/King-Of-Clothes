@@ -31,4 +31,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long> {
     List<HoaDonResponse> findAllByKhachHang_IdAndTrangThai(Long idkh,String trangThai);
 
     List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(Long idkh,List<String> trangThais);
+
+    List<HoaDonResponse> findAllByTrangThaiNotContains(String trangThai);
+
 }

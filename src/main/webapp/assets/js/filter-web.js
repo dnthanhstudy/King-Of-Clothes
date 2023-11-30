@@ -14,9 +14,6 @@ $("#gia").on("click", "button", function(e){
 
 function filterAndPageable(page, limit, priceFilter){
     let filters = getCheckedWhenFilter();
-    if(Object.keys(filters).length === 0){
-        window.location.href = "/danh-sach-san-pham";
-    }
     if(priceFilter !== 'not-filter'){
         let inputEle = `<input type="hidden" value="${priceFilter}" name="gia"/>`;
         $('.value-server').append(inputEle);
@@ -24,13 +21,12 @@ function filterAndPageable(page, limit, priceFilter){
     Object.keys(filters).map(function(key) {
         let name = key;
         let value = filters[key].join(",");
-
         let inputEle = `<input type="hidden" value="${value}" name="${name}"/>`;
         $('.value-server').append(inputEle);
-        $('#page-product').val(page);
-        $('#limit-product').val(limit);
-        $('#form-submit-product').submit();
     })
+    $('#page-product').val(page);
+    $('#limit-product').val(limit);
+    $('#form-submit-product').submit();
 }
 
 function getCheckedWhenFilter(){

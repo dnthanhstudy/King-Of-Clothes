@@ -31,6 +31,8 @@ public interface HoaDonResponse {
     Double getTienKhachTra();
     @Value("#{target.phuongThucThanhToan}")
     String getPhuongThucThanhToan();
+    @Value("#{target.tienShip}")
+    String getTienShip();
 
     @Value("#{target.trangThai}")
     String getTrangThai();

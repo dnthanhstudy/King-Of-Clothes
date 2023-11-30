@@ -40,6 +40,8 @@
                 <ul aria-expanded="false">
                     <li><a href="/admin/nhan-vien">Nhân viên</a></li>
                     <li><a href="/admin/khach-hang">Khách hàng</a></li>
+                    <li><a href="/admin/danh-muc">Danh mục</a></li>
+                    <li><a href="/admin/thuong-hieu">Thương hiệu</a></li>
                     <li><a href="/admin/san-pham">Sản phẩm</a></li>
                     <li><a href="/admin/khuyen-mai">Khuyến mại</a></li>
                     <li><a href="/admin/giao-ca/thong-ke-giao-ca">Thống kê giao ca</a></li>

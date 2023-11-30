@@ -65,6 +65,7 @@
                             <th scope="col">Email</th>
                             <th scope="col">Giới tính</th>
                             <th scope="col">Ngày sinh</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">ACTION</th>
                         </tr>
@@ -75,40 +76,23 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer d-flex justify-content-center">
-                <nav class="mt-2">
-                    <ul class="pagination pagination-gutter pagination-primary  no-bg">
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-left"></i></a>
-                        </li>
-                        <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
         </div>
+        <ul id="pagination" class="d-flex justify-content-center"></ul>
     </div>
 </div>
 
 <script>
-    function loadKhachHang(url){
+    let param = '';
+    let pageCurrent = 1;
+    function loadKhacHang() {
         $.ajax({
-            url: url,
+            url: "/api/khach-hang?page=" + pageCurrent,
             method: 'GET',
-            success: function(req) {
+            success: function (response) {
                 var tbody = $('#tblKhachHang tbody');
                 tbody.empty();
                 var index = 0;
-                req.forEach(function(item) {
+                response.data.forEach(function(item) {
                     var row = `
                             <tr>
                                 <td>\${++index}</td>
@@ -118,6 +102,7 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
+                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
                                  <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -136,7 +121,26 @@
                             </tr>
                         `;
                     tbody.append(row);
-
+                });
+                $('#pagination').twbsPagination({
+                    first: "First",
+                    prev: "Previous",
+                    next: "Next",
+                    last: "Last",
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            if(param != ''){
+                                searchKhachHang(param)
+                            }else{
+                                loadKhacHang();
+                            }
+                        }
+                    },
                 });
             },
             error: function(xhr, status, error) {
@@ -144,29 +148,75 @@
             }
         });
     }
+    loadKhacHang();
 
-    loadKhachHang('/api/khach-hang')
+    function searchKhachHang(){
+        $.ajax({
+            url: '/api/khach-hang/search?q=' + param + "&page=" + pageCurrent,
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                var tbody = $('#tblKhachHang tbody');
+                tbody.empty();
+                var index = 0;
+                response.data.forEach(function(item) {
+                    var row = `
+                            <tr>
+                                <td>\${++index}</td>
+                                <td>\${item.ma}</td>
+                                 <td>\${item.ten}</td>
+                                 <td>\${item.soDienThoai}</td>
+                                 <td>\${item.email}</td>
+                                 <td>\${item.gioiTinh}</td>
+                                 <td>\${getFormattedDate(item.ngaySinh)}</td>
+                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
+                                 <td>\${item.moTa}</td>
+                                 <td>
+                                      <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                            <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+                                        </svg>
+                                    </a>
+                                    <button type="button" class="btn btn-danger btn-delete-khach-hang" value="\${item.ma}" >
+                                       <svg viewbox="0 0 24 24" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                           <path d="M3 6H5H21" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                           <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                       </svg>
+                                   </button>
+
+                                 </td>
+                            </tr>
+                        `;
+                    tbody.append(row);
+                });
+                $('#pagination').twbsPagination({
+                    first: "First",
+                    prev: "Previous",
+                    next: "Next",
+                    last: "Last",
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            searchKhachHang()
+                        }
+                    },
+                });
+            },
+            error: function (xhr, status, error) {
+                alert('Lỗi khi lấy danh sách nhân viên: ' + error);
+            }
+        });
+    }
 
 
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
-        const param = $('#searchAll').val();
-        console.log(param);
-        $.ajax({
-            url: '/api/khach-hang/search?search=' + param,
-            method: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                if(param === ''){
-                    loadKhachHang('/api/khach-hang')
-                }else{
-                    loadKhachHang('/api/khach-hang/search?search=' + param);
-                }
-            },
-            error: function (error){
-                showError("Fail")
-            }
-        });
+        param = $('#searchAll').val();
+        searchKhachHang();
     })
 
     $('#tblKhachHang').on('click', (e) => {
@@ -179,8 +229,7 @@
                                 url: '/api/khach-hang/' + ma,
                                 method: 'DELETE',
                                 success: function (req) {
-                                    console.log(req);
-                                    loadKhachHang('/api/khach-hang')
+                                    loadKhacHang();
                                     showSuccess("Delete success");
                                 },
                                 error: function (xhr, status, error) {
@@ -237,7 +286,6 @@
         window.location.href = "/api/khach-hang/exportToExcel?ma=" + ma + "&ten=" + ten + "&email=" + email + "&soDienThoai=" + soDienThoai + "&gioiTinh=" + gioiTinh + "&moTa=" + moTa;
     });
 
-
     function importFile() {
         var fileInput = document.createElement("input");
         fileInput.type = "file";
@@ -256,7 +304,7 @@
                     processData: false,
                     success: function (response) {
                         showSuccess("Import success");
-                        loadKhachHang('/api/khach-hang')
+                       loadKhacHang()
                     },
                     error: function () {
                         showError("Import Fail");

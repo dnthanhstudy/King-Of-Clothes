@@ -45,4 +45,7 @@ public class GioHangChiTietEntity extends BaseEntity{
 		}
 		return bienThe.getGia()*soLuong;
 	}
+	public String getHinhAnh() {
+		return bienThe.getHinhAnh();
+	}
 }

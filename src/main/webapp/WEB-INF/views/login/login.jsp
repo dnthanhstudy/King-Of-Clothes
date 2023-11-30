@@ -59,7 +59,7 @@
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail">Your email</label>
 
-                                <input type="text" class="form-control form-control-lg" value="admin0182"
+                                <input type="text" class="form-control form-control-lg" value="admin9193"
                                        name="j_username" id="signinSrEmail" tabindex="1" placeholder="Mã khách hàng" aria-label="Mã khách hàng" required="" data-msg="Please enter a valid email address.">
                             </div>
                             <!-- End Form Group -->

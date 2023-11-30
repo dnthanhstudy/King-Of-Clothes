@@ -57,42 +57,6 @@
                             </div>
                         </div>
 
-                        <div class="p-2">
-                            <button class="btn" style="background-color: orange;color: white">
-                                Import
-                            </button>
-                        </div>
-
-                        <div class="p-2">
-                            <div>
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#addcv"
-                                        style="background-color: #EFCACA;color: #BF0000">
-                                    Export
-                                </button>
-
-                                <div class="modal" id="addcv" tabindex="-1" aria-labelledby="addcv" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="addcv">Export danh sách nhân viên</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <label>Nhập số nhân viên muốn export:</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn" style="background-color: #EFCACA;color: #BF0000">
-                                                    Export
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <%--search--%>
                         <div class="p-2 ms-auto">
                             <div class="InputContainer">
@@ -118,15 +82,17 @@
     <ul id="pagination" class="d-flex justify-content-center"></ul>
 </div>
 <script>
+    let param = '';
     let pageCurrent = 1;
-    function loadNhanVien(url) {
+    function loadNhanVien() {
         $.ajax({
-            url: url,
+            url: "/api/nhan-vien?page=" + pageCurrent + "&role=STAFF",
             method: 'GET',
-            success: function (data) {
+            success: function (response) {
+                console.log(response)
                 var nhanVien = $('#cardNhanVien ');
                 nhanVien.empty();
-                data.data.forEach(function(item) {
+                response.data.forEach(function(item) {
                     var card =
                         ` <div class="col-xl-4 col-xxl-4 col-sm-6">
                                 <div class="card user-card">
@@ -178,13 +144,18 @@
                     next: "Next",
                     last: "Last",
                     visiblePages: 5,
-                    totalPages: data.meta.totalPage,
-                    startPage: data.meta.pageCurrent,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
                     onPageClick: function (event, page) {
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadNhanVien(url);
+                            if(param != ''){
+                                searchNhanVien(param)
+                            }else{
+                                loadNhanVien();
+                            }
+
                         }
                     },
                 });
@@ -194,7 +165,7 @@
             }
         });
     }
-    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
+    loadNhanVien();
 
 
     $('#cardNhanVien').on('click', (e) => {
@@ -208,7 +179,7 @@
                             method: 'DELETE',
                             success: function (req) {
                                 console.log(req);
-                                loadNhanVien('/api/nhan-vien')
+                                loadNhanVien()
                                 showSuccess("Delete success");
                             },
                             error: function (xhr, status, error) {
@@ -221,24 +192,86 @@
     })
 
 
-    $('#searchButton').on('click', (e) =>{
-        e.preventDefault();
-        const param = $('#searchAll').val();
-        console.log(param);
+    function searchNhanVien(){
         $.ajax({
-            url: '/api/nhan-vien/search?q=' + param,
+            url: '/api/nhan-vien/search?q=' + param + "&page=" + pageCurrent,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                if(param === ''){
-                    loadNhanVien('/api/nhan-vien/pagination?page=' + pageCurrent + '&limit=3');
-                }else{
-                    loadNhanVien('/api/nhan-vien/search?q=' + param + pageCurrent + '&limit=3');
-                }
-            },
-            error: function (error){
+                var nhanVien = $('#cardNhanVien ');
+                nhanVien.empty();
+                response.data.forEach(function(item) {
+                    var card =
+                        ` <div class="col-xl-4 col-xxl-4 col-sm-6">
+                                <div class="card user-card">
+                                    <div class="card-body pb-0">
+                                           <div class="d-flex mb-3 align-items-center">
+                                                    <div class="dz-media mr-3 rounded-circle">
+                                                         <img src="/assets/images/nhanvien/\${item.anh}" alt="">
+                                                    </div>
+                                                     <div>
+                                                       <h5 class="title">\${item.ten}</h5>
+                                                     <span class="" style="color: #eb8153">\${item.chucVu.ten}</span>
+                                                     </div>
+                                             </div>
+                                            <div class="mb-2">
+                                                <span>Username: \${item.ma}</span>
+                                            </div>
+                                            <span>Email: \${item.email}</span>
 
+                                            <div class="mt-2">
+                                                <span>Phone: \${item.soDienThoai}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between my-3">
+<!--                                                <button class="btn btn-success" title="Update status" onclick="updateStatus(\${item.id}, \${item.trangThai})" >Click</button class="btn btn-success">-->
+                                                 <a class="btn btn-secondary"  href="/admin/nhan-vien/detail/\${item.ma}" style="text-decoration: none;color: white;">Chi tiết</a>
+                                            </div>
+
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between">
+                                            <a class="edit-button"  href="/admin/nhan-vien/edit/\${item.ma}" style="text-decoration: none">
+                                               <svg class="edit-svgIcon" viewBox="0 0 512 512">
+                                               <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
+                                             </svg>
+                                            </a>
+                                             <button type="button" class="delete-button btn-delete-nhan-vien" value="\${item.ma}">
+                                             <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                            </svg>
+                                            </button>
+                                      </div>
+                                    </div>
+                         </div>
+                            `;
+                    nhanVien.append(card);
+
+                })
+                $('#pagination').twbsPagination({
+                    first: "First",
+                    prev: "Previous",
+                    next: "Next",
+                    last: "Last",
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            searchNhanVien()
+                        }
+                    },
+                });
+            },
+            error: function (xhr, status, error) {
+                alert('Lỗi khi lấy danh sách nhân viên: ' + error);
             }
         });
+    }
+
+    $('#searchButton').on('click', (e) =>{
+        e.preventDefault();
+        param = $('#searchAll').val();
+        searchNhanVien();
     })
 </script>

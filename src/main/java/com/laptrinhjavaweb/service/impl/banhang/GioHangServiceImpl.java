@@ -66,13 +66,6 @@ public class GioHangServiceImpl implements GioHangService {
     public List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH) {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
-//
-//    @Override
-//    public BigDecimal tongTien(Long idKH) {
-//
-//        return null;
-//    }
-
     @Override
     public BigDecimal tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
         return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
@@ -102,23 +95,12 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
             hoaDonChiTiet.setGia(bienThe.getGia());
             hoaDonChiTiet.setHoaDon(hoaDon);
-            gioHangChiTiet.setTrangThai("DELETE");
+            gioHangChiTiet.setTrangThai("PENDING");
             hoaDonChiTietRepository.save(hoaDonChiTiet);
         }
         return new ResponseObject("Đặt hàng thành công");
     }
 
-//    @Override
-//    public List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh) {
-//        List<Long> dsIdSanPham = gioHangChiTietRepository.getDsIdSanPhamByKhachHang(idKh);
-//        List<List<GioHangResponse>> dsGioHangChiaTheoSanPham = new ArrayList<>();
-//        for (Long id: dsIdSanPham
-//        ) {
-//            dsGioHangChiaTheoSanPham.add(gioHangChiTietRepository.getDsspThuocTinhByIdSanPhamAndIdKh(id,idKh));
-//        }
-//        return dsGioHangChiaTheoSanPham;
-//    }
-//
     @Override
     @Transactional
     public String themVaoGioHang(Long idkh, Long idBienThe) {
@@ -144,12 +126,18 @@ public class GioHangServiceImpl implements GioHangService {
     }
 
     @Override
-    public String updateGioHangChiTiet(Long idghct, Long bienTheId) {
+    public GioHangResponse updateGioHangChiTiet(Long idghct, Long bienTheId) {
         GioHangChiTietEntity gioHangChiTiet = gioHangChiTietRepository.findById(idghct).orElse(null);
         assert gioHangChiTiet != null;
         gioHangChiTiet.setBienThe(bienTheRepository.findById(bienTheId).orElse(null));
         gioHangChiTietRepository.save(gioHangChiTiet);
-        return "Thay đổi trạng thái thành công";
+        return gioHangChiTietRepository.getGioHangChiTietResponse(idghct);
+    }
+
+    @Override
+    public String xoaGioHangChiTiet(Long idghct) {
+        gioHangChiTietRepository.delete(gioHangChiTietRepository.findById(idghct).get());
+        return "Xoá thành công";
     }
 
 //

@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.api.user;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.GioHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/hoadon")
 public class ApiHoaDonController {
@@ -35,6 +38,11 @@ public class ApiHoaDonController {
     @Autowired
     ApiGiaoHangController giaoHangController;
 
+    @GetMapping("/findall")
+    public List<HoaDonResponse> findAllHoaDon(){
+        return hoaDonService.dsHoadon();
+    }
+
     @GetMapping("/dshoadondamua/{idkh}")
     public ResponseObject getDsHoaDonTheoTrangThai(@PathVariable("idkh")Long idkh){
         return new ResponseObject(hoaDonService.dsHoaDonDaMua(idkh));
@@ -46,7 +54,7 @@ public class ApiHoaDonController {
         return new ResponseObject(hoaDonService.dsHoaDonTheoTrangThai(idkh,trangThai));
     }
 
-    @GetMapping("/hdct/{idkh}")
+    @GetMapping("/chuanbidat/{idkh}")
     public ResponseObject getHoaDonChiTiet(@PathVariable(name = "idkh")Long idkh){
         return new ResponseObject(hoaDonService.findHoaDonMoiDat(idkh));
     }
@@ -77,16 +85,9 @@ public class ApiHoaDonController {
         HoaDonEntity hoaDon = giaoHangService.thanhToan(idkh,ttgh,"THANHTOANNHANHANG",phiShip);
         return new ResponseObject("Đặt hàng thành công");
     }
-//    private void taoHangGiaoHangNhanh(Long idhd){
-//        String url = "http://localhost:8080/api/user/giaohang/datHang/"+idhd;
-//        Object responseEntity = ConvertJson.convert(restTemplate, url
-//                , HttpMethod.POST, null
-//                , new ParameterizedTypeReference<ApiResponse<Object>>() {
-//                }
-//        );
-//        hoaDon.setMa(responseEntity.getMaHoaDon());
-//        hoaDon.setMaGiaoHang(responseEntity.getMaHoaDon());
-//        hoaDonService.saveHoaDon(hoaDon);
 
-//    }
+    @GetMapping("/huydathang/{idkh}")
+    public ResponseObject huyDatHang(@PathVariable("idkh")Long idkh){
+        return hoaDonService.huyDatHang(idkh);
+    }
 }

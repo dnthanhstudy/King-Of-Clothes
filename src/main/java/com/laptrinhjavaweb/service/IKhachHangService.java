@@ -6,12 +6,15 @@ import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IKhachHangService {
 
     KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai);
 
-    List<KhacHangResponse> getDsKhachHang();
+    Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param );
+
+//    List<KhacHangResponse> getDsKhachHang();
 
     KhacHangResponse update(String ma, KhachHangRequest khachHangRequest);
 

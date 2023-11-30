@@ -33,6 +33,10 @@ public class GiaTriThuocTinhBienTheRepositoryImpl implements GiaTriThuocTinhBien
 
 	private String buildQuery(List<Long> giaTriThuocTinhsId) {
 		List<String> giaTriThuocTinhs = new ArrayList<>();
+		String add = "";
+		if(giaTriThuocTinhsId.size() == 1){
+			add = " AND t2.idgiatrithuoctinh <> t1.idgiatrithuoctinh ";
+		}
 		for (Long item : giaTriThuocTinhsId) {
 			giaTriThuocTinhs.add(String.valueOf(item));
 		}
@@ -44,8 +48,7 @@ public class GiaTriThuocTinhBienTheRepositoryImpl implements GiaTriThuocTinhBien
 				" SELECT t2.idbienthe " +
 				" FROM giatrithuoctinhbienthe AS t2 " +
 				" WHERE t2.idgiatrithuoctinh IN " + results + " AND " +
-				" t2.idbienthe = t1.idbienthe AND " +
-				" t2.idgiatrithuoctinh <> t1.idgiatrithuoctinh " +
+				" t2.idbienthe = t1.idbienthe" + add +
 				" )" +
 				" GROUP BY t1.idbienthe" +
 				" HAVING COUNT(t1.idbienthe) >= " + giaTriThuocTinhsId.size();

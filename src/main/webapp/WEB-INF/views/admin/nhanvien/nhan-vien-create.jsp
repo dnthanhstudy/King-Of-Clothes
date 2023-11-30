@@ -58,16 +58,6 @@
                         <label class="form-label">Ngày cấp:</label>
                         <input type="date" name="ngayCap" class="form-control" id="ngaycap">
                     </div>
-
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col">
-                        <label>Chức vụ:</label>
-                        <select class="form-select" id="selectChucVu" name="maChucVu">
-
-                        </select>
-                    </div>
                     <div class="col">
                         <label>Giới tính:</label>
                         <select class="form-select" id="gioitinh" name="gioiTinh">
@@ -75,6 +65,7 @@
                             <option value="Nữ">Nữ</option>
                         </select>
                     </div>
+
                 </div>
 
                 <div class="row mt-3">
@@ -140,7 +131,7 @@
                 console.log("success");
             },
             error: (error) => {
-                showError("fail")
+                showError(error.responseJSON.error);
             }
         });
     })
@@ -158,27 +149,27 @@
         return data;
     }
 
-    function updateChucVuSelect() {
-        $.ajax({
-            url: '/api/chuc-vu',
-            method: 'GET',
-            success: function (req) {
-                var select = $("#selectChucVu");
-                select.html('');
-                let html = '';
-                $.each(req, (index, value)=>{
-                    const ten = value.ten;
-                    const ma = value.ma;
-                    html += '<option value="'+ ma +'">' + ten + '</option>';
-                })
-                select.append(html);
-            },
-            error: function (xhr, status, error) {
-                showError("Lỗi khi cập nhật select chức vụ");
-            }
-        });
-    }
-    updateChucVuSelect();
+    // function updateChucVuSelect() {
+    //     $.ajax({
+    //         url: '/api/chuc-vu',
+    //         method: 'GET',
+    //         success: function (req) {
+    //             var select = $("#selectChucVu");
+    //             select.html('');
+    //             let html = '';
+    //             $.each(req, (index, value)=>{
+    //                 const ten = value.ten;
+    //                 const ma = value.ma;
+    //                 html += '<option value="'+ ma +'">' + ten + '</option>';
+    //             })
+    //             select.append(html);
+    //         },
+    //         error: function (xhr, status, error) {
+    //             showError("Lỗi khi cập nhật select chức vụ");
+    //         }
+    //     });
+    // }
+    // updateChucVuSelect();
 
 
 </script>
