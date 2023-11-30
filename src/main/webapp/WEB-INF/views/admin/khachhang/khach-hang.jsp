@@ -82,16 +82,17 @@
 </div>
 
 <script>
+    let param = '';
     let pageCurrent = 1;
-    function loadKhachHang(){
+    function loadKhacHang() {
         $.ajax({
-            url: "/api/khach-hang/pagination?page=" + pageCurrent,
+            url: "/api/khach-hang?page=" + pageCurrent,
             method: 'GET',
-            success: function(req) {
+            success: function (response) {
                 var tbody = $('#tblKhachHang tbody');
                 tbody.empty();
                 var index = 0;
-                req.data.forEach(function(item) {
+                response.data.forEach(function(item) {
                     var row = `
                             <tr>
                                 <td>\${++index}</td>
@@ -127,13 +128,17 @@
                     next: "Next",
                     last: "Last",
                     visiblePages: 5,
-                    totalPages: req.meta.totalPage,
-                    startPage: req.meta.pageCurrent,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
                     onPageClick: function (event, page) {
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadKhachHang();
+                            if(param != ''){
+                                searchKhachHang(param)
+                            }else{
+                                loadKhacHang();
+                            }
                         }
                     },
                 });
@@ -143,27 +148,18 @@
             }
         });
     }
-    loadKhachHang();
+    loadKhacHang();
 
-
-    $('#searchButton').on('click', (e) => {
-        e.preventDefault();
-        const param = $('#searchAll').val();
-        console.log(param);
+    function searchKhachHang(){
         $.ajax({
-            url: '/api/khach-hang/search',
+            url: '/api/khach-hang/search?q=' + param + "&page=" + pageCurrent,
             method: 'GET',
-            data: {
-                q: param,
-                page: pageCurrent
-            },
             dataType: 'json',
-            success: function(req) {
-                console.log(req);
+            success: function (response) {
                 var tbody = $('#tblKhachHang tbody');
                 tbody.empty();
                 var index = 0;
-                req.data.forEach(function(item) {
+                response.data.forEach(function(item) {
                     var row = `
                             <tr>
                                 <td>\${++index}</td>
@@ -199,22 +195,29 @@
                     next: "Next",
                     last: "Last",
                     visiblePages: 5,
-                    totalPages: req.meta.totalPage,
-                    startPage: req.meta.pageCurrent,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
                     onPageClick: function (event, page) {
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadKhachHang();
+                            searchKhachHang()
                         }
                     },
                 });
             },
-            error: function (error) {
-                showError("Faile")
+            error: function (xhr, status, error) {
+                alert('Lỗi khi lấy danh sách nhân viên: ' + error);
             }
         });
-    });
+    }
+
+
+    $('#searchButton').on('click', (e) =>{
+        e.preventDefault();
+        param = $('#searchAll').val();
+        searchKhachHang();
+    })
 
     $('#tblKhachHang').on('click', (e) => {
         if($(e.target).hasClass('btn-delete-khach-hang')){
@@ -226,7 +229,7 @@
                                 url: '/api/khach-hang/' + ma,
                                 method: 'DELETE',
                                 success: function (req) {
-                                    loadKhachHang('/api/khach-hang')
+                                    loadKhacHang();
                                     showSuccess("Delete success");
                                 },
                                 error: function (xhr, status, error) {
@@ -237,8 +240,6 @@
                     })
         }
     })
-
-
 
     $(document).ready(function() {
         // Xác định thẻ table và thẻ th
@@ -285,7 +286,6 @@
         window.location.href = "/api/khach-hang/exportToExcel?ma=" + ma + "&ten=" + ten + "&email=" + email + "&soDienThoai=" + soDienThoai + "&gioiTinh=" + gioiTinh + "&moTa=" + moTa;
     });
 
-
     function importFile() {
         var fileInput = document.createElement("input");
         fileInput.type = "file";
@@ -304,7 +304,7 @@
                     processData: false,
                     success: function (response) {
                         showSuccess("Import success");
-                        loadKhachHang('/api/khach-hang')
+                       loadKhacHang()
                     },
                     error: function () {
                         showError("Import Fail");

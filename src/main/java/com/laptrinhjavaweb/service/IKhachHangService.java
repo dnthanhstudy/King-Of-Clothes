@@ -12,7 +12,7 @@ public interface IKhachHangService {
 
     KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai);
 
-    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
+    Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param );
 
 //    List<KhacHangResponse> getDsKhachHang();
 

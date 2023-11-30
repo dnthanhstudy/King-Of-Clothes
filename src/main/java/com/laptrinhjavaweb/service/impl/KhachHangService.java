@@ -67,7 +67,7 @@ public class KhachHangService implements IKhachHangService {
 //    }
 
     @Override
-    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+    public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param ) {
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<KhachHangEntity> page = null;
@@ -75,7 +75,7 @@ public class KhachHangService implements IKhachHangService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = khachHangRepository.findAll(wholePage);
+            page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -87,7 +87,7 @@ public class KhachHangService implements IKhachHangService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
 
             }else {
-                page = khachHangRepository.findAll(pageable);
+                page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listKhachHangResponse = page.getContent().stream().map(

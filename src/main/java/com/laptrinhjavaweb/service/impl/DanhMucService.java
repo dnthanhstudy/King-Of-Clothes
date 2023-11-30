@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.DanhMucConverter;
 import com.laptrinhjavaweb.entity.DanhMucEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
+import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.response.KhacHangResponse;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +45,7 @@ public class DanhMucService implements IDanhMucService {
     }
 
     @Override
-    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+    public  Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param ){
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<DanhMucEntity> page = null;
@@ -51,7 +53,7 @@ public class DanhMucService implements IDanhMucService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = danhMucRepository.findAll(wholePage);
+            page = danhMucRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -63,7 +65,7 @@ public class DanhMucService implements IDanhMucService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistDanhMucEntity);
 
             }else {
-                page = danhMucRepository.findAll(pageable);
+                page = danhMucRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listDanhMucResponse = page.getContent().stream().map(
@@ -94,5 +96,12 @@ public class DanhMucService implements IDanhMucService {
         DanhMucResponse result = danhMucConverter.convertToResponse(danhMucEntity);
         result.setId(danhMucEntity.getId());
         return result;
+    }
+
+    @Override
+    public void delete(String slug) {
+        DanhMucEntity danhMucEntity = danhMucRepository.findBySlug(slug);
+        danhMucEntity.setTrangThai("INACTIVE");
+        danhMucRepository.save(danhMucEntity);
     }
 }

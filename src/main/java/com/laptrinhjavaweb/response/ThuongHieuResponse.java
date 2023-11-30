@@ -16,4 +16,6 @@ public class ThuongHieuResponse {
 	private String ten;
 
 	private String slug;
+
+	private String trangThai;
 }

@@ -74,7 +74,4 @@ public class NhanVienAPI {
         nhanVienService.delete(ma);
         return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
     }
-
-
-
 }

@@ -19,10 +19,9 @@ public class DanhMucRepositoryImpl implements DanhMucRepositoryCustom {
     @Override
     public List<DanhMucEntity> searchs(String param) {
         String sql = "select * from danhmuc "
-                + " where danhmuc.ten LIKE :param";
-
+                + " where danhmuc.ten LIKE '%" + param
+                + "%' AND danhmuc.trangthai <> 'INACTIVE'";
         Query query = entityManager.createNativeQuery(sql, DanhMucEntity.class);
-        query.setParameter("param", "%" + param + "%");
         return query.getResultList();
     }
 }

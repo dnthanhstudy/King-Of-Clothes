@@ -41,7 +41,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		Query query = entityManager.createNativeQuery(sql);
 		return query.getResultList();
 	}
-	
+
 
 	private String buildSQL(Map<String, Object> params) {
 		String queryFinal = "SELECT distinct sanpham.id FROM thuoctinh"

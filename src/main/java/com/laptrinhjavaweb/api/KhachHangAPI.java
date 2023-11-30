@@ -32,24 +32,18 @@ public class KhachHangAPI {
             @RequestParam(name = "q") String param,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(param, page, limit);
+        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(page, limit, param);
         if(results == null){
             return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
         }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
+    @GetMapping
     public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
                                         @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
     ){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(null, page, limit);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<?> findAll(){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(null, null, null);
+        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(page, limit, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
@@ -88,17 +82,6 @@ public class KhachHangAPI {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy khách hàng với mã " + ma);
         }
     }
-
-//    @GetMapping("/search")
-//    public ResponseEntity<?> searchKhachHang( @RequestParam(name = "search") String param) {
-//
-//        List<KhacHangResponse> result = khachHangService.findAllAndTrangThai(
-//                param, param, param, param, param, param, SystemConstant.ACTICE);
-//        if(result == null) {
-//            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
 
     @GetMapping("/exportToExcel")
     public void exportToExcel(HttpServletResponse response,

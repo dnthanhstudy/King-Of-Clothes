@@ -75,7 +75,6 @@
             <div class="row mt-3">
                 <label>Ảnh nhân viên:</label>
                 <div class="form-group col-md-12">
-                    <input type="file" id="upload-image" name="ImageUpload">
                     <div id="thumbbox">
                         <img height="300" width="300" alt="Thumb image" id="thumbimage"/>
                     </div>
