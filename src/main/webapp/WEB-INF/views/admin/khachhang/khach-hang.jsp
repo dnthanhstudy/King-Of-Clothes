@@ -55,7 +55,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="">
-                    <table class="table table-hover" id="tblKhachHang">
+                    <table class="table table-hover table-striped" id="tblKhachHang">
                         <thead>
                         <tr>
                             <th scope="col">STT</th>
@@ -65,7 +65,6 @@
                             <th scope="col">Email</th>
                             <th scope="col">Giới tính</th>
                             <th scope="col">Ngày sinh</th>
-                            <th scope="col">Trạng thái</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col">ACTION</th>
                         </tr>
@@ -102,7 +101,6 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
-                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
                                  <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -144,7 +142,7 @@
                 });
             },
             error: function(xhr, status, error) {
-                alert('Có lỗi xảy ra: ' + error);
+                console.log('Có lỗi xảy ra: ' + error);
             }
         });
     }
@@ -169,7 +167,6 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
-                                 <td>\${item.trangThai === "ACTIVE" ? "Hoạt động" : "Ngừng hoạt động"}</td>
                                  <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -207,7 +204,7 @@
                 });
             },
             error: function (xhr, status, error) {
-                alert('Lỗi khi lấy danh sách nhân viên: ' + error);
+                console.log('Lỗi khi lấy danh sách khách hàng: ' + error);
             }
         });
     }

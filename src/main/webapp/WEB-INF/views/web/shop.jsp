@@ -29,9 +29,10 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-12">
-            <form method="GET" id="filter">
-                <div class="border-bottom mb-4 pb-4">
-                    <h5 id="gia" class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+            <c:set var="price" value="not-filter" />
+            <div id="filter">
+                <div id="gia" class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
                     <div>
                         <div class="mb-3">
                             <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
@@ -47,9 +48,8 @@
                         </div>
                     </div>
                 </div>
-
                 <c:forEach items="${filterProduct}" var="filter">
-                    <div class="border-bottom mb-4 pb-4">
+                    <div id="${filter.ma}" class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
                         <div>
                             <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
@@ -63,7 +63,12 @@
                                         <c:set var="isChecked" value="false" />
                                         <c:set var="loopBreak" value="false" />
 
+
                                         <c:forEach items="${attributeChecked}" var="checked">
+                                            <c:if test="${checked.key eq 'gia'}">
+                                                <c:set var="price" value="${checked.value}" />
+                                            </c:if>
+
                                             <c:forEach items="${f:split(checked.value, ',')}" var="val">
                                                 <c:if test="${val == giaTri && checked.key == filter.ma && not loopBreak}">
                                                     <c:set var="isChecked" value="true" />
@@ -79,14 +84,15 @@
                         </div>
                     </div>
                 </c:forEach>
-            </form>
+            </div>
+            <input id="price-filter" type="hidden" name="gia" value="${price}">
         </div>
         <!-- Shop Sidebar End -->
 
         <!-- Shop Product Start -->
         <div class="col-lg-9 col-md-12">
             <div class="row pb-3">
-                <form action="<c:url value='/danh-sach-san-pham'/>" method="GET" id="form-submit-product">
+                <form action="/danh-sach-san-pham" method="GET" id="form-submit-product">
                     <div class="list-product row">
                         <c:if test="${empty mapProduct.data}">
                             <p>Không tìm thấy kết quả phù hợp</p>
@@ -104,9 +110,6 @@
                                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                                 <div class="d-flex justify-content-center">
                                                     <h6>${item.gia} VND</h6>
-<%--                                                    <h6 class="text-muted ml-2">--%>
-<%--                                                        <del>$123.00</del>--%>
-<%--                                                    </h6>--%>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,8 +119,12 @@
                         </c:if>
                     </div>
                     <div class="col-12 pb-1">
-                        <ul class="pagination" id="pagination"></ul>
+                        <ul class="pagination d-flex justify-content-center" id="pagination"></ul>
+                        <div class="value-server">
+
+                        </div>
                         <input type="hidden" value="" id="page-product" name="page"/>
+                        <input type="hidden" value="" id="limit-product" name="limit"/>
                     </div>
                 </form>
             </div>
@@ -132,17 +139,21 @@
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
+    let limit = 9;
+
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
         startPage: currentPage,
         onPageClick: function (event, page) {
             if (currentPage != page) {
-                $('#page-product').val(page);
-                $('#form-submit-product').submit();
+                const priceFilter = $('#price-filter').val();
+                filterAndPageable(page, limit, priceFilter);
             }
         }
     });
+
+    $('#form-submit-product')[0].scrollIntoView({ behavior: 'smooth' });
 </script>
 </body>
 </html>

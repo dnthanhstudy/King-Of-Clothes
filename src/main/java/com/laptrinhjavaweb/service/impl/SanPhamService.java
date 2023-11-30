@@ -10,9 +10,7 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
 import com.laptrinhjavaweb.converter.BienTheConverter;
 import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
-import com.laptrinhjavaweb.entity.BienTheEntity;
-import com.laptrinhjavaweb.entity.ThuocTinhEntity;
+import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
@@ -21,7 +19,6 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.SanPhamRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
@@ -164,5 +161,28 @@ public class SanPhamService implements ISanPhamService{
 		}catch(Exception ex) {
 			throw new RuntimeException("Error");
 		}
+	}
+
+	@Override
+	public List<SanPhamResponse> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public List<SanPhamResponse> same(String slug) {
+		List<SanPhamResponse> results = sanPhamRepository.same(slug)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public void delete(String slug) {
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
+		sanPhamEntity.setTrangThai("INACTIVE");
+		sanPhamRepository.save(sanPhamEntity);
 	}
 }

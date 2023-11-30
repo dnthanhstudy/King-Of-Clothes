@@ -1,8 +1,39 @@
-$("#filter").on("change", "input:checkbox", function(){
-    filter();
+actionPriceFilter();
+
+$("#filter").on("change", "input[type='checkbox']", function(){
+    const priceFilter = $('#price-filter').val();
+    filterAndPageable(1, 9, priceFilter);
 });
 
-function filter(){
+$("#gia").on("click", "button", function(e){
+    e.preventDefault();
+    const priceFilter = $(this).val();
+    $('#price-filter').val($(this).val());
+    filterAndPageable(1, 9, priceFilter);
+});
+
+function filterAndPageable(page, limit, priceFilter){
+    let filters = getCheckedWhenFilter();
+    if(Object.keys(filters).length === 0){
+        window.location.href = "/danh-sach-san-pham";
+    }
+    if(priceFilter !== 'not-filter'){
+        let inputEle = `<input type="hidden" value="${priceFilter}" name="gia"/>`;
+        $('.value-server').append(inputEle);
+    }
+    Object.keys(filters).map(function(key) {
+        let name = key;
+        let value = filters[key].join(",");
+
+        let inputEle = `<input type="hidden" value="${value}" name="${name}"/>`;
+        $('.value-server').append(inputEle);
+        $('#page-product').val(page);
+        $('#limit-product').val(limit);
+        $('#form-submit-product').submit();
+    })
+}
+
+function getCheckedWhenFilter(){
     let checkboxChecked = $('#filter input[type="checkbox"]:checked');
     let filters = {};
     checkboxChecked.each(function () {
@@ -14,12 +45,19 @@ function filter(){
         }
         filters[name].push(value);
     });
+    return filters;
+}
 
-    let urlFinal = "";
-    for(var key in filters){
-        let url = key + "=" + filters[key].join(",") + "&";
-        urlFinal += url;
+function actionPriceFilter(){
+    const priceFilter = $('#price-filter').val();
+    if(priceFilter !== 'not-filter'){
+        let prices = $('#gia button');
+        prices.each(function () {
+            var value = $(this).val();
+            if(value === priceFilter){
+                $(this).addClass('btn-secondary');
+                return false;
+            }
+        });
     }
-    urlFinal = urlFinal.slice(0, -1);
-    window.location.href = "/danh-sach-san-pham?" + urlFinal;
 }

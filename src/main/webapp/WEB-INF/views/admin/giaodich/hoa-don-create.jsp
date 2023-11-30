@@ -115,6 +115,7 @@
                                     <div class="row" id="list-products">
 
                                     </div>
+                                    <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
                                 </div>
                             </div>
                         </div>
@@ -826,14 +827,16 @@
     }
     setInterval(time, 1000);
 
-    $.ajax({
-        url: "/api/san-pham",
-        method: "GET",
-        dataType: "json",
-        success: (response) => {
-            let html = '';
-            $.each(response.data, (index, item) => {
-                html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
+    let pageCurrent = 1;
+    function loadAllProduct() {
+        $.ajax({
+            url: "/api/san-pham/pagination?page=" + pageCurrent + "&limit=12",
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -850,15 +853,29 @@
                             </div>
                         </div>
                     </div>`;
-            })
-            $('#list-products').html(html);
-        },
-        error: (error) => {
-            console.log(error);
-        }
-    });
+                })
+                $('#list-products').html(html);
+                $('#pagination').twbsPagination({
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if (page !== pageCurrent) {
+                            event.preventDefault();
+                            pageCurrent = page;
+                            loadAllProduct();
+                        }
+                    },
+                });
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+    loadAllProduct();
 
-    $('#btn-add-customer').on('click', ()=>{
+        $('#btn-add-customer').on('click', ()=>{
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
         $.each(dataForm, (index, value) => {

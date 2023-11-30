@@ -98,8 +98,9 @@
                         </c:if>
                     </div>
                     <div class="col-12 pb-1">
-                        <ul class="pagination" id="pagination"></ul>
+                        <ul class="pagination d-flex justify-content-center" id="pagination"></ul>
                         <input type="hidden" value="" id="page-product" name="page"/>
+                        <input type="hidden" value="" id="limit-product" name="limit"/>
                     </div>
                 </form>
             </div>
@@ -114,6 +115,7 @@
     let currentPage = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
+    let limit = 9;
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
@@ -121,6 +123,7 @@
         onPageClick: function (event, page) {
             if (currentPage != page) {
                 $('#page-product').val(page);
+                $('#limit-product').val(limit);
                 $('#form-submit-product').submit();
             }
         }

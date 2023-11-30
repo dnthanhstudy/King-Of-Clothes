@@ -37,11 +37,44 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	@Override
 	public List<Long> filters(Map<String, Object> params) {
 		String sql = buildSQL(params);
-		System.out.println(sql);
 		Query query = entityManager.createNativeQuery(sql);
 		return query.getResultList();
 	}
 
+	@Override
+	public List<SanPhamEntity> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+		String sql = "SELECT * FROM sanpham WHERE ";
+		if(sanPhamMoi != null){
+			sql += "sanmhammoi = 1";
+		}else if(sanPhamNhieuLuotXem != null){
+			sql += "sapnhamnhieuluotxem = 1";
+		}else if(sanPhamPhoBien != null){
+			sql += "sanphamnoibat = 1";
+		}else{
+			sql += "sanphamphobien = 1";
+		}
+		sql += " ORDER BY ngaytao DESC, RAND() LIMIT " + limit;
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<SanPhamEntity> same(String slug) {
+		String sql = "SELECT sp1.*" +
+				" FROM sanpham AS sp1" +
+				" WHERE EXISTS " +
+				"(" +
+							"    SELECT sp2.*" +
+							"    FROM sanpham AS sp2 " +
+							"    WHERE sp2.slug = '" + slug + "'" +
+							"        AND (sp1.iddanhmuc = sp2.iddanhmuc OR sp1.idthuonghieu = sp2.idthuonghieu" +
+							"   		)" +
+				"        		AND sp1.id <> sp2.id" +
+				")" +
+				"ORDER BY ngaytao DESC, RAND() LIMIT 4";
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		return query.getResultList();
+	}
 
 	private String buildSQL(Map<String, Object> params) {
 		String queryFinal = "SELECT distinct sanpham.id FROM thuoctinh"
