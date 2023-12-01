@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,11 +15,11 @@
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-        <h1 class="font-weight-semi-bold text-uppercase mb-3">Product</h1>
+        <h1 class="font-weight-semi-bold text-uppercase mb-3"><s:message code="web.navbar.product"/></h1>
         <div class="d-inline-flex">
-            <p class="m-0"><a href="">Home</a></p>
+            <p class="m-0"><a href=""><s:message code="web.navbar.home"/></a></p>
             <p class="m-0 px-2">-</p>
-            <p class="m-0">Product</p>
+            <p class="m-0"><s:message code="web.navbar.product"/></p>
         </div>
     </div>
 </div>
@@ -32,7 +33,7 @@
             <!-- Price Start -->
             <form method="GET" id="filter">
                 <div class="border-bottom mb-4 pb-4">
-                    <h5 class="font-weight-semi-bold mb-4">Lọc theo giá</h5>
+                    <h5 class="font-weight-semi-bold mb-4"><s:message code="web.product.price"/></h5>
                     <div>
                         <div class="mb-3">
                             <button value="0,100000" name="gia" class="btn btn-primary">Dưới 100.000đ</button>
@@ -86,7 +87,7 @@
                                             <div class="card-body border-left border-right border text-center p-0 pt-4 pb-3">
                                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                                 <div class="d-flex justify-content-center">
-                                                    <h6>${item.gia} VND</h6>
+                                                    <h6 class="product-price-origin">${item.gia}</h6>
                                                         <%--                                                    <h6 class="text-muted ml-2">--%>
                                                         <%--                                                        <del>$123.00</del>--%>
                                                         <%--                                                    </h6>--%>
@@ -138,5 +139,6 @@
         }
     });
 </script>
+<script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.response.KhacHangResponse;
+import com.laptrinhjavaweb.response.MessageResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
@@ -36,7 +37,7 @@ public class NhanVienAPI {
             @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit){
         Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(page, limit, null, param);
     	if(results == null){
-            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
+            return new ResponseEntity<>(new MessageResponse("Không tìm thấy kết quả phù hợp"), HttpStatus.OK);
         }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }

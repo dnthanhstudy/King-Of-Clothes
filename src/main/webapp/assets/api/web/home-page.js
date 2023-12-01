@@ -27,7 +27,7 @@ function loadProduct() {
                                     <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                         <h6 class="text-truncate mb-3">${item.ten}</h6>
                                         <div class="d-flex justify-content-center">
-                                            <h6>${item.gia} VND</h6>
+                                             <h6 class="product-price-origin">${item.gia}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -35,6 +35,12 @@ function loadProduct() {
                         </div>`;
             })
             $('#product-home-page').append(html);
+
+            $('.product-price-origin').each(function(index, item) {
+                let res = $(item).html();
+                res = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(res);
+                $(item).html(res);
+            });
         },
         error: (error) => {
             console.log(error);

@@ -43,7 +43,7 @@
     <!-- Featured End -->
     <div class="container-fluid py-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm phổ biến</span></h2>
+            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.popularProduct"/></span></h2>
         </div>
         <div class="row px-xl-5">
             <div class="col">
@@ -57,7 +57,7 @@
                                 <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">${item.ten}</h6>
                                     <div class="d-flex justify-content-center">
-                                        <h6>${item.gia} VND</h6>
+                                        <h6 class="product-price-origin">${item.gia}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -75,9 +75,9 @@
                 <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
                     <img src="<c:url value='/template/web/img/offer-1.png'/>" alt="">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        <h5 class="text-uppercase text-primary mb-3"><s:message code="web.homepage.discount"/></h5>
+                        <h1 class="mb-4 font-weight-semi-bold"><s:message code="web.homepage.textBanner1"/></h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3"><s:message code="web.homepage.shopNow"/></a>
                     </div>
                 </div>
             </div>
@@ -85,9 +85,9 @@
                 <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
                     <img src="<c:url value='/template/web/img/offer-2.png'/>" alt="">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        <h5 class="text-uppercase text-primary mb-3"><s:message code="web.homepage.discount"/></h5>
+                        <h1 class="mb-4 font-weight-semi-bold"><s:message code="web.homepage.textBanner2"/></h1>
+                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3"><s:message code="web.homepage.shopNow"/></a>
                     </div>
                 </div>
             </div>
@@ -131,13 +131,13 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Best - Selling Products</span></h2>
+            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>
         </div>
         <div class="row px-xl-5 pb-3" id="product-home-page">
         </div>
 
         <div class="d-flex justify-content-center">
-            <button class="btn btn-primary" id="load-more-product">Load more</button>
+            <button class="btn btn-primary" id="load-more-product"><s:message code="web.homepage.loadMore"/></button>
         </div>
     </div>
     <!-- Products End -->

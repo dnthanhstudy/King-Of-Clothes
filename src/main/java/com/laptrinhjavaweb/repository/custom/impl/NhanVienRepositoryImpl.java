@@ -21,13 +21,13 @@ public class NhanVienRepositoryImpl implements NhanVienRepositoryCustom{
 	@Override
 	public List<NhanVienEntity> searchs(String param) {
 		String sql = "select nhanvien.* from nhanvien join chucvu on nhanvien.idchucvu = chucvu.id"
-				+ " where nhanvien.ten LIKE '%" + param
+				+ " where (nhanvien.ten LIKE '%" + param
 				+ "%' OR nhanvien.ma LIKE '%" + param
-				+ "%' OR soDienThoai LIKE '%" + param
+				+ "%' OR sodienthoai LIKE '%" + param
 				+ "%' OR email LIKE '%" + param
 				+ "%' OR chucvu.ma LIKE '%" + param
 				+ "%' OR chucvu.ten LIKE '%" + param
-				+ "%' AND nhanvien.trangthai <> 'DELETE'";
+				+ "%'" + ")" +  "AND nhanvien.trangthai <> 'DELETE' AND chucvu.ma <> 'ADMIN'";
 		Query query = entityManager.createNativeQuery(sql, NhanVienEntity.class);
 		return query.getResultList();
 	}

@@ -59,7 +59,6 @@ public class NhanVienService implements INhanVienService {
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
         nhanVienEntity.getChucVu().setMa("STAFF");
-        nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
@@ -89,7 +88,7 @@ public class NhanVienService implements INhanVienService {
             nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh().trim());
             nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
-
+            
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
             return result;
