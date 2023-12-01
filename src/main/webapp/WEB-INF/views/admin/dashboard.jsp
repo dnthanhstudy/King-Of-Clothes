@@ -102,45 +102,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-7">
-                <div id="ngang" style="width:100%;max-width:700px"></div>
+            <div class="col-6">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                        Basic line chart showing trends in a dataset. This chart includes the
+                        <code>series-label</code> module, which adds a label to each line for
+                        enhanced readability.
+                    </p>
+                </figure>
             </div>
-            <div class="col-5">
-                <div id="tron" style="width:100%;max-width:700px"></div>
-            </div>
+
         </div>
     </div>
 </div>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script>
-    const xArray1 = [50,60,70,80,90,100,110,120,130,140,150];
-    const yArray1 = [7,8,8,9,9,9,10,11,14,14,15];
 
-    // Define Data
-    const data1 = [{
-        x: xArray1,
-        y: yArray1,
-        mode:"lines"
-    }];
-
-    // Define Layout
-    const layout1 = {
-        xaxis: {range: [40, 160], title: "Square Meters"},
-        yaxis: {range: [5, 16], title: "Price in Millions"},
-        title: "House Prices vs. Size"
-    };
-
-    // Display using Plotly
-    Plotly.newPlot("ngang", data1, layout1);
-
-    const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
-    const yArray = [55, 49, 44, 24, 15];
-
-    const layout = {title:"World Wide Wine Production"};
-
-    const data = [{labels:xArray, values:yArray, type:"pie"}];
-
-    Plotly.newPlot("tron", data, layout);
-</script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </body>
 </html>
