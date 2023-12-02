@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.api.user;
+package com.laptrinhjavaweb.api.hoadon;
 
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.service.GiaoHangService;

@@ -14,7 +14,7 @@ public class KhuyenMaiController {
         return "admin/discount/view";
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/detail/{ma}")
     public String detail(){
         return "admin/discount/detail-discount";
     }

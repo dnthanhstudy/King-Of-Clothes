@@ -34,4 +34,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long> {
 
     List<HoaDonResponse> findAllByTrangThaiNotContains(String trangThai);
 
+    @Query("select hd from HoaDonEntity hd where hd.trangThai ='DANGGIAOHANG' order by hd.ngayGiaoHang")
+    List<HoaDonResponse> dsHoaDonDangGiao();
+
 }

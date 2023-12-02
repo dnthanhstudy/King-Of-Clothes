@@ -1,18 +1,11 @@
-package com.laptrinhjavaweb.api.user;
+package com.laptrinhjavaweb.api.hoadon;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.service.GiaoHangService;
-import com.laptrinhjavaweb.service.GioHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
-import com.laptrinhjavaweb.support.supportgiaohang.ApiResponse;
-import com.laptrinhjavaweb.support.supportgiaohang.ConvertJson;
-import com.laptrinhjavaweb.support.supportgiaohang.PreviewGiaoHang;
-import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

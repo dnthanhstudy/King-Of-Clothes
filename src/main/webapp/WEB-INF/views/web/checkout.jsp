@@ -801,13 +801,16 @@
         var tongtienSubstring = Number(tongtien.slice(0, tongtien.length - 1));
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
 
-        console.log(tongtienSubstring);
-        console.log(tienshipSubstring);
 
         $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
     }
     tongThanhToan();
     function datHang(){
+        if ($(".sotiengiaohang").text().length === 0) {
+            showError("Bạn chưa chọn địa chỉ giao hàng");
+            return;
+        }
+
         if (loaiDatHang === 1){
             var payment = $('input[name="payment"]:checked').val();
             if (payment==="paypal"){
@@ -818,7 +821,6 @@
         }
     }
     function thanhToanNhanHang(){
-    //    http://localhost:8080/api/hoadon/dathangnhanhang
         var idttmh = $("#idttmuahang").val();
         var tienship = $(".sotiengiaohang:first").text();
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));

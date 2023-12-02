@@ -17,12 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Bean;
 
 @Entity
 @Table(name = "hoadon")
@@ -55,7 +53,8 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@Column(name = "ngaydukiengiaohang", columnDefinition = "TIMESTAMP")
 	private Date ngayDuKienGiaoHang;
-	
+	@Column(name = "ngaygiaohang", columnDefinition = "TIMESTAMP")
+	private Date ngayGiaoHang;
 	@Column(name = "ngaythanhtoan", columnDefinition = "TIMESTAMP")
 	private Date ngayThanhToan;
 	
@@ -85,6 +84,9 @@ public class HoaDonEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idlydohuydon")
 	private LyDoHuyDonEntity lyDoHuyDon;
+
+	@OneToMany(mappedBy = "hoaDon")
+	private List<TrangThaiGiaoHangEntity> trangThaiGiaoHangs;
 
 	@OneToMany(mappedBy = "hoaDon")
 	private List<ChiTietCaLamEntity> chiTietCaLamEntities = new ArrayList<>();

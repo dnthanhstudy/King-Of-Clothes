@@ -120,8 +120,10 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTiet.setGioHang(khachHang.getGioHangEntities());
             gioHangChiTiet.setSoLuong(1);
             gioHangChiTiet.setTrangThai("ACTIVE");
-            gioHangChiTietRepository.save(gioHangChiTiet);
+        }else {
+            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
         }
+        gioHangChiTietRepository.save(gioHangChiTiet);
         return "Đã thêm vào giỏ";
     }
 
