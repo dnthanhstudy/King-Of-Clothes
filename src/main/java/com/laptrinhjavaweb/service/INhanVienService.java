@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.response.NhanVienResponse;
+import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
 
 import java.util.Map;
@@ -23,15 +24,4 @@ public interface INhanVienService {
     NhanVienResponse moCa(String ma);
 
     NhanVienResponse dongCa(String ma);
-
-
-    //forgot password nhân viên
-    NhanVienEntity findByEmail(String email);
-
-    String generateRandomPassword();
-
-    NhanVienEntity findByRestToken(String restToken);
-
-    NhanVienEntity insert(NhanVienEntity nhanVienEntity);
-
 }

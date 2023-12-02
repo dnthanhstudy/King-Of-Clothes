@@ -19,7 +19,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,7 +67,6 @@ public class NhanVienService implements INhanVienService {
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
     }
-
 
     @Override
     public NhanVienResponse getDetail(String ma) {
@@ -153,28 +155,6 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public NhanVienEntity findByEmail(String email) {
-        return nhanVienRepository.findByEmail(email);
-    }
-
-    @Override
-    public String generateRandomPassword() {
-        java.util.Random random = new Random();
-        int password = 100000 + random.nextInt(900000);
-        return String.valueOf(password);
-    }
-
-    @Override
-    public NhanVienEntity findByRestToken(String restToken) {
-        return nhanVienRepository.findByRestToken(restToken);
-    }
-
-    @Override
-    public NhanVienEntity insert(NhanVienEntity nhanVienEntity) {
-        return nhanVienRepository.save(nhanVienEntity);
-    }
-
-    @Override
     public NhanVienResponse moCa(String ma) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
         nhanVienEntity.setTrangThai(SystemConstant.ACTICE);
@@ -189,4 +169,6 @@ public class NhanVienService implements INhanVienService {
         nhanVienRepository.save(nhanVienEntity);
         return nhanVienConverter.convertToResponse(nhanVienEntity);
     }
+
+
 }

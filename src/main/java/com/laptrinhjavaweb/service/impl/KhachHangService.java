@@ -4,10 +4,8 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.KhachHangConverter;
 import com.laptrinhjavaweb.converter.TimKiemSanPhamConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
-import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
@@ -22,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +44,9 @@ public class KhachHangService implements IKhachHangService {
     @Autowired
     private TimKiemSanPhamConverter timKiemSanPhamConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai) {
         KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmailAndTrangThai(sodienThoai, email, trangThai);
@@ -54,17 +56,6 @@ public class KhachHangService implements IKhachHangService {
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
         return result;
     }
-
-//    @Override
-//    public List<KhacHangResponse> getDsKhachHang() {
-//        List<KhachHangEntity> entity = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE);
-//
-//        List<KhacHangResponse> result = entity.stream().map(
-//                item ->
-//                        khachHangConverter.convertToResponse(item)
-//        ).collect(Collectors.toList());
-//        return result;
-//    }
 
     @Override
     public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param ) {
@@ -218,5 +209,29 @@ public class KhachHangService implements IKhachHangService {
         return results;
     }
 
+    @Override
+    public KhacHangResponse register(KhachHangRequest khachHangRequest) {
+        String xacNhanMatKhau = khachHangRequest.getXacNhanMatKhau();
 
+        if (xacNhanMatKhau == null || !khachHangRequest.getMatKhau().equals(xacNhanMatKhau.trim())) {
+            return null;
+        }
+
+        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
+                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
+        );
+        if (khachHangEntity != null) {
+            return null;
+        }
+
+        String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
+        khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
+        khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
+        khachHangEntity.setMatKhau(newPassword);
+        khachHangRepository.save(khachHangEntity);
+
+        KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
+        result.setId(khachHangEntity.getId());
+        return result;
+    }
 }
