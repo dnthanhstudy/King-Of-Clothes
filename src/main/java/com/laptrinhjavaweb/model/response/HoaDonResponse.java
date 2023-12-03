@@ -15,6 +15,9 @@ public interface HoaDonResponse {
     @Value("#{target.ma}")
     String getMa();
 
+    @Value("#{target.maGiaoHang}")
+    String getMaGiaoHang();
+
 //    @Value("#{target.nhanVien.id}")
 //    Long getNhanVienId();
 
@@ -36,5 +39,7 @@ public interface HoaDonResponse {
 
     @Value("#{target.trangThai}")
     String getTrangThai();
+    @Value("#{target.diaChi}")
+    String getDiaChi();
 
 }

@@ -9,6 +9,7 @@ import com.laptrinhjavaweb.repository.ThongTinMuaHangRepository;
 import com.laptrinhjavaweb.service.ThongTinMuaHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class ThongTinMuaHangServiceImpl implements ThongTinMuaHangService {
     }
 
     @Override
+    @Transactional
     public String themDiaChiGiaoHang(Long idkh,DiaChiGiaoHangRequest request) {
         KhachHangEntity khachHang = new KhachHangEntity();
         khachHang.setId(idkh);
@@ -46,18 +48,16 @@ public class ThongTinMuaHangServiceImpl implements ThongTinMuaHangService {
                 .diaChi(request.getDiaChi())
                 .soNha(request.getSoNha())
                 .build();
-
+        thongTinMuaHang = thongTinMuaHangRepository.save(thongTinMuaHang);
         if (request.getMacDinh()){
             thongTinMuaHangRepository.updateTrangThaiThongTinMuaHang(idkh);
-            thongTinMuaHang.setTrangThai(TrangThaiTTMHEnum.MACDINH);
-        }else{
-            thongTinMuaHang.setTrangThai(TrangThaiTTMHEnum.BINHTHUONG);
+            thongTinMuaHangRepository.setDefault(thongTinMuaHang.getId());
         }
-        thongTinMuaHang = thongTinMuaHangRepository.save(thongTinMuaHang);
         return "Thêm thành công";
     }
 
     @Override
+    @Transactional
     public String suaDiaChiGiaoHang(Long idttgh, DiaChiGiaoHangRequest request) {
         ThongTinMuaHangEntity thongTinMuaHang = thongTinMuaHangRepository.findById(idttgh).orElse(null);
         if (thongTinMuaHang==null){
@@ -75,13 +75,12 @@ public class ThongTinMuaHangServiceImpl implements ThongTinMuaHangService {
                 .soNha(request.getSoNha())
                 .build();
     thongTinMuaHangUpdate.setId(idttgh);
-        if (request.getMacDinh()){
-            thongTinMuaHangRepository.updateTrangThaiThongTinMuaHang(khachHang.getId());
-            thongTinMuaHangUpdate.setTrangThai(TrangThaiTTMHEnum.MACDINH);
-        }else{
-            thongTinMuaHangUpdate.setTrangThai(TrangThaiTTMHEnum.BINHTHUONG);
-        }
+    thongTinMuaHangUpdate.setTrangThai("ACTIVE");
         thongTinMuaHang = thongTinMuaHangRepository.save(thongTinMuaHangUpdate);
+        if (request.getMacDinh()){
+            thongTinMuaHangRepository.updateTrangThaiThongTinMuaHang(thongTinMuaHang.getKhachHang().getId());
+            thongTinMuaHangRepository.setDefault(thongTinMuaHang.getId());
+        }
         return "Sửa thành công";
     }
 

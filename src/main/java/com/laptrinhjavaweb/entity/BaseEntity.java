@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.laptrinhjavaweb.model.enumentity.TrangThaiTTMHEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,4 +52,17 @@ public abstract class BaseEntity {
 	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'", insertable = false)
 	private String trangThai;
 
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+
+//	public void setTrangThai(TrangThaiTTMHEnum trangThai) {
+//		if (trangThai == TrangThaiTTMHEnum.MACDINH){
+//			this.trangThai = "DEFAULT";
+//		}else if (trangThai == TrangThaiTTMHEnum.BINHTHUONG){
+//		this.trangThai = "ACTIVE";
+//		}else {
+//		this.trangThai = "DELETE";
+//		}
+//	}
 }
