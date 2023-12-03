@@ -45,15 +45,6 @@ public class ThongTinMuaHangEntity extends BaseEntity{
 	@JoinColumn(name = "idkhachhang")
 	private KhachHangEntity khachHang;
 
-	public void setTrangThai(TrangThaiTTMHEnum trangThai) {
-		if (trangThai == TrangThaiTTMHEnum.MACDINH){
-			super.setTrangThai("DEFAULT");
-		}else if (trangThai == TrangThaiTTMHEnum.BINHTHUONG){
-			super.setTrangThai("ACTIVE");
-		}else {
-			super.setTrangThai("DELETE");
-		}
-	}
 
 	public Boolean getDefault(){
 		return super.getTrangThai().equals("DEFAULT");

@@ -462,7 +462,7 @@
             data: data,
             success: function(response) {
                 dsthongtinmuahang()
-              //  getAddressDefault()
+                getAddressDefault()
                 showSuccess(response.data);
             },
             error: function(xhr, status, error) {
@@ -488,6 +488,7 @@
                 showSuccess(response.data);
             },
             error: function(xhr, status, error) {
+                showError("Lỗi ")
                 console.log('Có lỗi xảy ra: ' + error);
             }
         });

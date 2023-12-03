@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.ThongTinMuaHangResponse;
+import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
@@ -38,6 +39,9 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
     @Autowired
     private ThongTinMuaHangService thongTinMuaHangService;
+
+    @Autowired
+    private GioHangChiTietRepository gioHangChiTietRepository;
     private String diaChiBuuCuc ="Số 97 Thiên hiền , Phường Mỹ Đình 1, QUận Nam Từ Liêm , Hà Nội, Vietnam";
 
     private ThongTinDatHangRequest getThongTinDatHangRequest (List<SanPhamGhnApi> dssp,
@@ -132,6 +136,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setTienShip(phiShip);
         hoaDon.setNgayThanhToan(DateUtil.dateNow());
         hoaDon.setTongTienHang(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()).doubleValue());
+        int parameter = gioHangChiTietRepository.updateTrangThaiDaDatThanhCong(khachHang.getId());
         return hoaDonRepository.save(hoaDon);
     }
 

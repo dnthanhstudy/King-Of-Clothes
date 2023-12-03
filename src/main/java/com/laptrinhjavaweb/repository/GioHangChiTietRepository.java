@@ -38,4 +38,9 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
 
     @Query(value ="select ghct from GioHangChiTietEntity ghct where ghct.id =:idghct")
     GioHangResponse getGioHangChiTietResponse(@Param("idghct")Long idghct);
+
+    @Modifying
+    @Query(value ="update giohangchitiet ghct join giohang gh on  gh.id =ghct.idgiohang\n" +
+            "  set ghct.trangthai = 'DELETE' WHERE ghct.TRANGTHAI = 'PENDING' AND idkhachhang =:idkh",nativeQuery = true)
+    int updateTrangThaiDaDatThanhCong(@Param("idkh")Long idkh);
 }
