@@ -75,6 +75,7 @@ public class ThongTinMuaHangServiceImpl implements ThongTinMuaHangService {
                 .soNha(request.getSoNha())
                 .build();
     thongTinMuaHangUpdate.setId(idttgh);
+    thongTinMuaHangUpdate.setTrangThai("ACTIVE");
         thongTinMuaHang = thongTinMuaHangRepository.save(thongTinMuaHangUpdate);
         if (request.getMacDinh()){
             thongTinMuaHangRepository.updateTrangThaiThongTinMuaHang(thongTinMuaHang.getKhachHang().getId());

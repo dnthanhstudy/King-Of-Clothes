@@ -39,5 +39,7 @@ public interface HoaDonResponse {
 
     @Value("#{target.trangThai}")
     String getTrangThai();
+    @Value("#{target.diaChi}")
+    String getDiaChi();
 
 }
