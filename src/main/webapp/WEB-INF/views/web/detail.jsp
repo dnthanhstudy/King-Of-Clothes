@@ -59,7 +59,7 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4 product-price">${product.gia} VND</h3>
+                <h3 class="font-weight-semi-bold mb-4 product-price product-price-origin">${product.gia}</h3>
                 <c:forEach var="item" items="${product.thuocTinh}">
                     <div class="d-flex align-items-center mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>
@@ -207,7 +207,34 @@
         </div>
     </div>
 </div>
+<div class="container-fluid py-5">
+    <div class="text-center mb-4">
+        <h2 class="section-title px-5"><span class="px-2">Các sản phẩm tương tự</span></h2>
+    </div>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel related-carousel">
+                <c:forEach items="${sameProduct}" var="item">
+                    <a href="/san-pham/${item.slug}" class="text-decoration-none">
+                        <div class="card product-item border-0 hovers">
+                            <div class="card-header  product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" style="height:350px" alt="">
+                            </div>
+                            <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">${item.ten}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6 class="product-price-origin">${item.gia}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
 </div>
+</div>
+<script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script>
 
     $("#addCart").click(function () {

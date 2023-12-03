@@ -19,7 +19,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,13 +61,12 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
-        nhanVienRepository.save(nhanVienEntity);
+        nhanVienEntity.getChucVu().setMa("STAFF");
         nhanVienEntity.setTrangThai("INACTIVE");
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
     }
-
 
     @Override
     public NhanVienResponse getDetail(String ma) {
@@ -88,7 +90,7 @@ public class NhanVienService implements INhanVienService {
             nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh().trim());
             nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
-
+            
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
             return result;
@@ -97,7 +99,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+    public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param ){
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<NhanVienEntity> page = null;
@@ -105,7 +107,7 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThai(SystemConstant.IN_ACTICE, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -117,7 +119,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAll(pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(
@@ -153,28 +155,6 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    public NhanVienEntity findByEmail(String email) {
-        return nhanVienRepository.findByEmail(email);
-    }
-
-    @Override
-    public String generateRandomPassword() {
-        java.util.Random random = new Random();
-        int password = 100000 + random.nextInt(900000);
-        return String.valueOf(password);
-    }
-
-    @Override
-    public NhanVienEntity findByRestToken(String restToken) {
-        return nhanVienRepository.findByRestToken(restToken);
-    }
-
-    @Override
-    public NhanVienEntity insert(NhanVienEntity nhanVienEntity) {
-        return nhanVienRepository.save(nhanVienEntity);
-    }
-
-    @Override
     public NhanVienResponse moCa(String ma) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findByMa(ma);
         nhanVienEntity.setTrangThai(SystemConstant.ACTICE);
@@ -189,4 +169,6 @@ public class NhanVienService implements INhanVienService {
         nhanVienRepository.save(nhanVienEntity);
         return nhanVienConverter.convertToResponse(nhanVienEntity);
     }
+
+
 }

@@ -30,7 +30,7 @@ public class SanPhamAPI {
 
 	@GetMapping("/pagination")
 	public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
-										@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit
+										@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
 	){
 		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
@@ -46,7 +46,7 @@ public class SanPhamAPI {
 	public ResponseEntity<?> search(
 			@RequestParam(name = "q") String param,
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
-			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
+			@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
 		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
 		if(results == null) {
 			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
@@ -86,4 +86,11 @@ public class SanPhamAPI {
 		}
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
+
+	@DeleteMapping("/{slug}")
+	public ResponseEntity<?> delete(@PathVariable(name = "slug") String slug){
+		sanPhamService.delete(slug);
+		return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+	}
+
 }

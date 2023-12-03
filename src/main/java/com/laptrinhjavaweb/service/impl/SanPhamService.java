@@ -6,24 +6,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
 import com.laptrinhjavaweb.converter.BienTheConverter;
 import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.AnhSanPhamEntity;
-import com.laptrinhjavaweb.entity.BienTheEntity;
-import com.laptrinhjavaweb.entity.ThuocTinhEntity;
+import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.SanPhamRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
@@ -68,7 +63,7 @@ public class SanPhamService implements ISanPhamService{
 		if(pageCurrent == null && limit == null) {
 			isAll = true;
 			Pageable wholePage = Pageable.unpaged();
-			page = sanPhamRepository.findAll(wholePage);
+			page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE,wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
 			if(param != null || params != null || slug != null) {
@@ -82,7 +77,7 @@ public class SanPhamService implements ISanPhamService{
 						listSanPhamEntity.add(sanPhamEntity);
 					}
 				}else{
-					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slug(slug);
+					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
 				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();
@@ -91,7 +86,7 @@ public class SanPhamService implements ISanPhamService{
 				page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntity);
 
 			}else {
-				page = sanPhamRepository.findAll(pageable);
+				page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE, pageable);
 			}
 		}
 		listSanPhamResponse = page.getContent().stream().map(
@@ -166,5 +161,28 @@ public class SanPhamService implements ISanPhamService{
 		}catch(Exception ex) {
 			throw new RuntimeException("Error");
 		}
+	}
+
+	@Override
+	public List<SanPhamResponse> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public List<SanPhamResponse> same(String slug) {
+		List<SanPhamResponse> results = sanPhamRepository.same(slug)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public void delete(String slug) {
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
+		sanPhamEntity.setTrangThai("INACTIVE");
+		sanPhamRepository.save(sanPhamEntity);
 	}
 }

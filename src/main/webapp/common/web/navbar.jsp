@@ -38,11 +38,12 @@
                         <security:authorize access="hasAnyRole('ADMIN', 'STAFF', 'CUSTOMER')">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <%=SecurityUtils.getPrincipal().getTen()%>
+                                    <s:message code="web.navbar.hello"/>, <%=SecurityUtils.getPrincipal().getTen()%>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/web/account">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="doi-mat-khau">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="/web/account"><s:message code="web.ttweb.account"/></a></li>
+                                    <li><a class="dropdown-item" href="/web/all"><s:message code="web.ttweb.purchaseOrder"/></a></li>
+                                    <li><a class="dropdown-item" href="doi-mat-khau"><s:message code="web.ttweb.changPass"/></a></li>
                                     <li><a class="dropdown-item" href="/logout" ><s:message code="web.navbar.logout"/></a></li>
                                 </ul>
                             </div>

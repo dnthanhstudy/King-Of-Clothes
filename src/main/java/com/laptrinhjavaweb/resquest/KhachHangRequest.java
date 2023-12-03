@@ -28,4 +28,6 @@ public class KhachHangRequest {
     private Date ngaySinh;
 
     private String moTa;
+
+    private String xacNhanMatKhau;
 }

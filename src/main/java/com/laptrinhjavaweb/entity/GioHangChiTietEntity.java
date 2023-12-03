@@ -46,6 +46,7 @@ public class GioHangChiTietEntity extends BaseEntity{
 		return bienThe.getGia()*soLuong;
 	}
 	public String getHinhAnh() {
-		return bienThe.getHinhAnh();
+		return bienThe.getHinhAnh()==null?
+				bienThe.getSanPham().getAnhSanPhamEntities().get(0).getHinhAnh(): bienThe.getHinhAnh();
 	}
 }

@@ -27,35 +27,23 @@ public class KhachHangAPI {
     @Autowired
     private IKhachHangService khachHangService;
 
-//    @GetMapping
-//    public ResponseEntity<?> getDsKhachHang(){
-//        List<KhacHangResponse> result = khachHangService.getDsKhachHang();
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
-
     @GetMapping("/search")
     public ResponseEntity<?> searchs(
             @RequestParam(name = "q") String param,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(param, page, limit);
+            @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
+        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(page, limit, param);
         if(results == null){
             return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
         }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping("/pagination")
-    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
-                                        @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit
-    ){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(null, page, limit);
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
-
     @GetMapping
-    public ResponseEntity<?> findAll(){
-        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(null, null, null);
+    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                        @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
+    ){
+        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(page, limit, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
@@ -66,6 +54,16 @@ public class KhachHangAPI {
             throw new ClientError("Số điện thoại hoặc email đã tồn tại");
         }
         return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody KhachHangRequest khachHangRequest) {
+        KhacHangResponse result = khachHangService.register(khachHangRequest);
+        if (result != null) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Đăng ký không thành công", HttpStatus.BAD_REQUEST);
+        }
     }
 
 
@@ -94,17 +92,6 @@ public class KhachHangAPI {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy khách hàng với mã " + ma);
         }
     }
-
-//    @GetMapping("/search")
-//    public ResponseEntity<?> searchKhachHang( @RequestParam(name = "search") String param) {
-//
-//        List<KhacHangResponse> result = khachHangService.findAllAndTrangThai(
-//                param, param, param, param, param, param, SystemConstant.ACTICE);
-//        if(result == null) {
-//            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
 
     @GetMapping("/exportToExcel")
     public void exportToExcel(HttpServletResponse response,

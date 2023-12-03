@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.response.KhacHangResponse;
+import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,9 +13,7 @@ public interface IKhachHangService {
 
     KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai);
 
-    Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit);
-
-//    List<KhacHangResponse> getDsKhachHang();
+    Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param );
 
     KhacHangResponse update(String ma, KhachHangRequest khachHangRequest);
 
@@ -29,4 +28,6 @@ public interface IKhachHangService {
     void importFromExcel(MultipartFile file);
 
     List<TimKiemSanPhamResponse> histosies(String ma);
+
+    KhacHangResponse register(KhachHangRequest khachHangRequest);
 }
