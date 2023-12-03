@@ -41,7 +41,7 @@
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2">
-                                    <h4 id="ten" class="text-primary mb-0">Họ và tên</h4>
+                                    <h4 id="ten2" class="text-primary mb-0">Họ và tên</h4>
                                     <p id="chucvu">Chức vụ</p>
                                 </div>
                                 <div class="dropdown ml-auto">
@@ -156,7 +156,7 @@
                                                     <h5 class="f-w-500">Email <span class="pull-right">:</span>
                                                     </h5>
                                                 </div>
-                                                <div class="col-sm-9 col-7"><span id="email"></span>
+                                                <div class="col-sm-9 col-7"><span id="email1"></span>
                                                 </div>
                                             </div>
 
@@ -188,38 +188,44 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-cyan">Account Setting</h4>
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label>Image </label>
-                                                        <input type="file"  class="form-control" >
-                                                    </div>
+                                                <form action="" id="form-submit-nhan-vien">
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Username</label>
-                                                            <input type="text" placeholder="Username" id="username" class="form-control">
+                                                            <p style="color: #3AB54B" id="username" name="ma">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
-                                                            <input type="text" placeholder="Name" id="name" class="form-control">
+                                                            <input type="text" placeholder="Name" id="ten" name="ten" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Email</label>
-                                                            <input type="email" placeholder="Email" id="email1" class="form-control">
+                                                            <input type="email" placeholder="Email" id="email" name="email" class="form-control">
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Phone number</label>
-                                                            <input type="text" placeholder="Phone number" id="phone" class="form-control">
+                                                            <input type="text" placeholder="Phone number" id="soDienThoai" name="soDienThoai" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Date of birth </label>
-                                                        <input type="date" id="date" class="form-control">
+                                                        <label>Citizen card</label>
+                                                        <input type="text" placeholder="Citizen card" id="canCuocCongDan" name="canCuocCongDan" class="form-control">
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>Date of birth </label>
+                                                            <input type="date" id="ngaySinh" name="ngaySinh" class="form-control">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>Date range </label>
+                                                            <input type="date" id="ngayCap" name="ngayCap" class="form-control">
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <input type="text" placeholder="Address" id="address" class="form-control">
+                                                        <input type="text" placeholder="Address" id="diaChi" name="diaChi" class="form-control">
                                                     </div>
                                                     <div class="row mb-3">
                                                         <div class="col-12 col-sm-12">
@@ -234,7 +240,7 @@
                                                     <div id="passwordFields" style="display: none;">
                                                         <div class="form-group">
                                                             <label>Password</label>
-                                                            <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                                                            <input type="password" id="matKhau" name="matKhau" placeholder="Password" class="form-control">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>Confirm Password</label>
@@ -242,7 +248,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <button class="btn" type="submit" style="background-color: #A6edab; color: #00852d">Submit</button>
+                                                    <button class="btn" id="updateButton" style="background-color: #A6edab; color: #00852d">Submit</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -283,27 +289,60 @@
         success: function (req) {
            console.log(req);
             $('#ma').text(req.ma);
-            $('#email').text(req.email);
-            $('#ten').text(req.ten);
+            $('#email1').text(req.email);
+            $('#ten2').text(req.ten);
             $('#ten1').text(req.ten);
             $('#chucvu').text(req.chucVu.ten);
             $('#ngaysinh').text(formatDateInput(req.ngaySinh));
             $('#sdt').text(req.soDienThoai);
-            $('#diachi').text(req.diaChi);
-            $('#username').val(req.ma);
-            $('#name').val(req.ten);
-            $('#email1').val(req.email);
-            $('#phone').val(req.soDienThoai);
+            $('#address').text(req.diaChi);
+            $('#username').text(req.ma);
+            $('#ten').val(req.ten);
+            $('#email').val(req.email);
+            $('#soDienThoai').val(req.soDienThoai);
             var date = new Date(req.ngaySinh);
-            console.log(moment(date).format('YYYY-MM-DD'))
-            $('#date').val(moment(date).format('YYYY-MM-DD'));
-            $('#address').val(req.diaChi);
+            $('#ngaySinh').val(moment(date).format('YYYY-MM-DD'));
+            $('#diaChi').val(req.diaChi);
+            $('#canCuocCongDan').val(req.canCuocCongDan);
+            var ngayCap = new Date(req.ngayCap);
+            $('#ngayCap').val(moment(ngayCap).format('YYYY-MM-DD'));
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
     });
 
+
+    $('#updateButton').on('click', (e) => {
+        e.preventDefault();
+        let data = getDataFromForm();
+        $.ajax({
+            url: "/api/nhan-vien/" + ma,
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                console.log("success");
+                showSuccess("Cập nhật thành công!")
+            },
+            error: (error) => {
+                showError("Cập nhật thất bại!")
+            }
+        });
+    });
+
+
+    function getDataFromForm() {
+        let dataFromForm = $("#form-submit-nhan-vien").serializeArray();
+        let data = {};
+        $.each(dataFromForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        return data;
+    }
 </script>
 </body>
 </html>

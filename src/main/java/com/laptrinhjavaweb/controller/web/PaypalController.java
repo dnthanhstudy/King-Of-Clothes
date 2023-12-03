@@ -124,4 +124,48 @@ public class PaypalController {
         hoaDonService.saveHoaDon(hoaDon);
 
     }
+
+    @GetMapping("/test")
+    public String test(@RequestParam(name = "price") Double price) {
+        Order order = new Order();
+        order.setPrice(price);
+       // order.setPrice(10);
+        order.setDescription("Test payment");
+        order.setMethod("paypal");
+        order.setCurrency("USD");
+        order.setIntent("sale");
+        System.out.println(order);
+        try {
+            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
+                    order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
+                    "http://localhost:8080/pay/successurl" );
+            for(Links link:payment.getLinks()) {
+                if(link.getRel().equals("approval_url")) {
+                    return "redirect:"+link.getHref();
+                }
+            }
+
+        } catch (PayPalRESTException e) {
+
+            e.printStackTrace();
+        }
+        return "redirect:/pay";
+    }
+
+    @GetMapping(value = "/successurl")
+    public String thanhcongtest(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId
+    ) {
+        try {
+            Payment payment = service.executePayment(paymentId, payerId);
+            System.out.println(payment.toJSON());
+            if (payment.getState().equals("approved")) {
+
+                //Code trong này
+                return "paypal/success";
+            }
+        } catch (PayPalRESTException e) {
+            System.out.println(e.getMessage());
+        }
+        return "redirect:/pay";
+    }
 }

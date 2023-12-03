@@ -47,12 +47,6 @@
         <span class="underline1"></span>
     </div>
 
-    <div class="card p-2 mt-4">
-        <span>Thanh toán</span>
-        <p>COde phần thanh toán theo MB, hay PayPal thì code vào đây</p>
-
-    </div>
-
     <div class="row">
         <div class="col-6"></div>
         <div class="col-6">
@@ -61,7 +55,7 @@
                     <span>Nạp tiền</span>
                 </div>
                 <div>
-                    <span>0₫</span>
+                    <span id="naptien">0</span>₫
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-2">
@@ -69,7 +63,7 @@
                     <span class="fs-5">Tổng thanh toán</span>
                 </div>
                 <div>
-                    <span>0₫</span>
+                    <span id="tongtien">0</span>₫
                 </div>
             </div>
         </div>
@@ -104,16 +98,33 @@
     function changeValue(button) {
         var value = formatNumber(parseFloat(button.value));
         $("#soTienNap").val(value);
+        $("#naptien").text(value);
+        $("#tongtien").text(value);
+        updateAmounts(value);
     }
     // tự động chuyển dấu
     function updateFormattedValue() {
         var inputValue = $("#soTienNap").val().replace(/\./g, ''); // Remove existing periods
+
+        // Check if the input is emty or not a valid number
+        if (inputValue === "" || isNaN(inputValue)) {
+            inputValue = "0";
+        }
+
         var formattedValue = formatNumber(parseFloat(inputValue));
         $("#soTienNap").val(formattedValue);
+        updateAmounts(formattedValue);
     }
     $(document).ready(function() {
         $("#soTienNap").on("input", updateFormattedValue);
+
+
     });
+
+    function updateAmounts(value) {
+        $("#naptien").text(value);
+        $("#tongtien").text(value);
+    }
     //xóa dấu '.'
     function removeFormatting(value) {
         return value.replace(/\./g, '');
