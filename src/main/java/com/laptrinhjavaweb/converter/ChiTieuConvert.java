@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.ChiTieuEntity;
+import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.response.ChiTieuResponse;
 import com.laptrinhjavaweb.response.ViDienTuResponse;
 import org.modelmapper.ModelMapper;

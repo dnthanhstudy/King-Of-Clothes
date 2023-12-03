@@ -148,7 +148,6 @@
                 $('#soDienThoai').val(req.soDienThoai);
                 $('#email').val(req.email);
                 var date = new Date(req.ngaySinh);
-                console.log(moment(date).format('YYYY-MM-DD'))
                 $('#ngaySinh').val(moment(date).format('YYYY-MM-DD'));
                 $('.gioiTinh').each((index, item) => {
                     if($(item).val() === req.gioiTinh){
