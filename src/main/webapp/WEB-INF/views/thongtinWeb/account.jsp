@@ -92,6 +92,7 @@
                     <div class="col-12 col-sm-7">
                         <input type="date" id="ngaySinh" name="ngaySinh" class="form-control">
                     </div>
+                    <input type="hidden" id="moTa" name="moTa" class="form-control">
                 </div>
             </div>
             <div class="col-4 text-center mt-5">

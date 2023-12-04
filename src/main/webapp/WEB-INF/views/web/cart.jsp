@@ -39,110 +39,8 @@
         </div>
         <div class="khung mb-3">
             <div id="cart">
-                <div class="row mt-2" style="border-bottom: 1px solid #dedede">
-                    <div class="col-5">
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="">
-                            <label class="form-check-label">
-                                <div class="mb-3" style="max-width: 540px;">
-                                    <div class="row g-0">
-                                        <div class="col-lg-3">
-                                            <img src="/template/web/img/anh2.png" class="img-fluid rounded-start"
-                                                 alt="...">
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Áo polo nam </h5>
-                                                <span>Trắng, Size M</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <span>99.000₫</span>
-                    </div>
-                    <div class="col-2">
-                    <span>
-                        <div class="input-group quantity" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center"
-                                           value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                    </span>
-                    </div>
-                    <div class="col-2">
-                        <span>99.000₫</span>
-                    </div>
-                    <div class="col-1">
-                        <a>Xóa</a>
-                    </div>
-                </div>
-                <div class="row mt-2" style="border-bottom: 1px solid #dedede">
-                    <div class="col-5">
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="checkbox" class="custom-control-input" checked id="price-2">
-                            <label class="custom-control-label" for="price-2">
-                                <div class="mb-3" style="max-width: 540px;">
-                                    <div class="row g-0">
-                                        <div class="col-lg-3">
-                                            <img src="/template/web/img/anh3.png" class="img-fluid rounded-start"
-                                                 alt="...">
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Áo polo nam </h5>
-                                                <span>Xanh than, Size L</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <span>99.000₫</span>
-                    </div>
-                    <div class="col-2">
-                    <span>
-<div class="input-group quantity" style="width: 100px;">
-                                    <div class="input-group-btn">
-<button class="btn btn-sm btn-primary btn-minus">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center"
-                                           value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                    </span>
-                    </div>
-                    <div class="col-2">
-                        <span>99.000₫</span>
-                    </div>
-                    <div class="col-1">
-                        <a>Xóa</a>
-                    </div>
-                </div>
-                <%--    Tổng tiền    --%>
-            </div>
 
-            <%--           Thành tiền --%>
+            </div>
             <div>
                 <div class="row mt-2" style="border-bottom: 1px solid #dedede;height: 75px">
                     <div class="col-5">
@@ -159,7 +57,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="khung mb-3">
