@@ -47,15 +47,14 @@ public class NhanVienService implements INhanVienService {
     }
 
     @Override
-    @Transactional
     public NhanVienResponse save(NhanVienRequest nhanVienRequest) {
         NhanVienEntity nhanVienEntity = nhanVienRepository.findBySoDienThoaiOrEmailOrCanCuocCongDan(
                 nhanVienRequest.getSoDienThoai(), nhanVienRequest.getEmail(), nhanVienRequest.getCanCuocCongDan()
         );
-        if(nhanVienEntity != null){
+        if (nhanVienEntity != null) {
             return null;
         }
-        if(nhanVienRequest.getBase64() != null){
+        if (nhanVienRequest.getBase64() != null) {
             nhanVienRequest.setAnh(GenerateStringUtils.generate(6) + ".jpg");
             saveImage(nhanVienRequest);
         }
@@ -63,6 +62,7 @@ public class NhanVienService implements INhanVienService {
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
         nhanVienEntity.getChucVu().setMa("STAFF");
         nhanVienEntity.setTrangThai("INACTIVE");
+
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
@@ -87,7 +87,7 @@ public class NhanVienService implements INhanVienService {
             nhanVienEntity.setSoDienThoai(nhanVienRequest.getSoDienThoai().trim());
             nhanVienEntity.setNgaySinh(nhanVienRequest.getNgaySinh());
             nhanVienEntity.setDiaChi(nhanVienRequest.getDiaChi().trim());
-            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh().trim());
+            nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
             nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
             

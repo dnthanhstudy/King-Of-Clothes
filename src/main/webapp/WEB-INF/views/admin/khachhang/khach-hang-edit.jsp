@@ -89,14 +89,22 @@
 
         let soDienThoai = $("#soDienThoai").val();
         let email = $("#email").val();
+        let ngaySinh = $("#ngaySinh").val();
 
         if ($("#moTa").val() === "") {
             showError("Mô tả không được để trống");
             isValid = false;
         }
-        if ($("#ngaySinh").val() === "") {
+        if (ngaySinh === "") {
             showError("Ngày sinh không được để trống");
             isValid = false;
+        } else {
+            let selectedDate = new Date(ngaySinh);
+            let currentDate = new Date();
+            if (selectedDate > currentDate) {
+                showError("Ngày sinh không được lớn hơn ngày hiện tại");
+                isValid = false;
+            }
         }
         if (email === "") {
             showError("Địa chỉ email không được để trống");
@@ -118,7 +126,6 @@
         }
         return isValid;
     }
-
 
     function getKHDetail() {
         var url = window.location.pathname.split("/");

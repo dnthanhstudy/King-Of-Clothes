@@ -21,7 +21,7 @@ public class ViDienTuAPI {
     public ResponseEntity<?> findByKhachHang(@PathVariable("idkh") Long idkh){
         ViDienTuResponse results = viDienTuService.findByIdKhachHang(idkh);
         if(results == null){
-            throw new EntityNotFoundException("Không tồn tại slug này!");
+            throw new EntityNotFoundException("Không tìm thấy khách hàng!");
         }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }

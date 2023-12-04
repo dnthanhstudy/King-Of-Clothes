@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %><%--
   Created by IntelliJ IDEA.
   User: asus
   Date: 11/17/2023
@@ -6,7 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    Long idkh = SecurityUtils.getPrincipal().getId();
+%>
 <head>
     <title>Nạp tiền</title>
 
@@ -47,36 +49,29 @@
         <span class="underline1"></span>
     </div>
 
-    <div class="card p-2 mt-4">
-        <span>Thanh toán</span>
-        <p>COde phần thanh toán theo MB, hay PayPal thì code vào đây</p>
-
-    </div>
-
     <div class="row">
         <div class="col-6"></div>
         <div class="col-6">
             <div class="d-flex justify-content-between mt-4">
                 <div>
-                    <span>Nạp tiền</span>
+                    <span>Nạp tiền: (₫)</span>
                 </div>
                 <div>
-                    <span>0₫</span>
+                    <span id="naptienviet">0</span>₫
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-2">
                 <div>
-                    <span class="fs-5">Tổng thanh toán</span>
+                    <span class="fs-5">USD: ($)</span>
                 </div>
                 <div>
-                    <span>0₫</span>
+                    <span id="naptienmy">0</span>$
                 </div>
             </div>
         </div>
     </div>
         <div class="row text-center">
-            <div class="col-9"></div>
-            <div class="col-3 mt-3">
+            <div class="col mt-3 text-right">
                 <button type="button" class="btn btn-success" onclick="xacNhanThanhToan();">Xác nhận</button>
             </div>
         </div>
@@ -88,6 +83,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+        var idVi = -1;
+        var idkh = '<%= idkh %>';
+       function getVi() {
+           $.ajax({
+               url: '/api/vi-dien-tu/'+idkh,
+               method: 'GET',
+               success: function(data) {
+                   console.log(data);
+                   idVi = data.id;
+               },
+               error: function(xhr, status, error) {
+                   alert('Có lỗi xảy ra: ' + error);
+               }
+           });
+       }
+        getVi()
         var selectedColor = null;
 
         $(".color-button").on("click", function () {
@@ -104,26 +115,51 @@
     function changeValue(button) {
         var value = formatNumber(parseFloat(button.value));
         $("#soTienNap").val(value);
+        $("#naptienviet").text(value);
+        $("#naptienmy").text();
+        updateAmounts(value);
     }
     // tự động chuyển dấu
     function updateFormattedValue() {
         var inputValue = $("#soTienNap").val().replace(/\./g, ''); // Remove existing periods
+
+        // Check if the input is emty or not a valid number
+        if (inputValue === "" || isNaN(inputValue)) {
+            inputValue = "0";
+        }
+
         var formattedValue = formatNumber(parseFloat(inputValue));
         $("#soTienNap").val(formattedValue);
+        updateAmounts(formattedValue);
     }
     $(document).ready(function() {
         $("#soTienNap").on("input", updateFormattedValue);
     });
+
+    function updateAmounts(value) {
+        $("#naptienviet").text(value);
+
+        var price = convertVNDtoUSD(removeFormatting(value));
+        $("#naptienmy").text(formatNumber(price.toFixed(2))); // Giữ hai số sau dấu thập phân
+    }
     //xóa dấu '.'
     function removeFormatting(value) {
         return value.replace(/\./g, '');
     }
 
-    function xacNhanThanhToan() {
-        var inputValue = $("#soTienNap").val();
-        var plainNumber = removeFormatting(inputValue);
-        console.log(plainNumber);
+    function convertVNDtoUSD(vndAmount) {
+        // Giả sử tỷ giá là 1 USD = 24290 VND
+        var exchangeRate = 24290;
+        return vndAmount / exchangeRate;
     }
+
+    function xacNhanThanhToan() {
+        var price = $("#naptienmy").text();
+        var price1 = $("#naptienviet").text();
+        console.log("Amount in USD: " + price);
+        window.location.href = "/pay/naptien?price=" + price + "&idvi=" + idVi + "&tienviet=" + price1;
+    }
+
 
 </script>
 

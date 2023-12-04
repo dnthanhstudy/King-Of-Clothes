@@ -103,11 +103,11 @@ public class KhachHangService implements IKhachHangService {
         KhachHangEntity khachHangEntity = khachHangRepository.findByMa(ma);
 
         if (khachHangEntity != null) {
-            khachHangEntity.setTen(khachHangRequest.getTen());
-            khachHangEntity.setEmail(khachHangRequest.getEmail());
-            khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai());
+            khachHangEntity.setTen(khachHangRequest.getTen().trim());
+            khachHangEntity.setEmail(khachHangRequest.getEmail().trim());
+            khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai().trim());
             khachHangEntity.setNgaySinh(khachHangRequest.getNgaySinh());
-            khachHangEntity.setMoTa(khachHangRequest.getMoTa());
+            khachHangEntity.setMoTa(khachHangRequest.getMoTa().trim());
             khachHangEntity.setGioiTinh(khachHangRequest.getGioiTinh());
 
             khachHangRepository.save(khachHangEntity);
