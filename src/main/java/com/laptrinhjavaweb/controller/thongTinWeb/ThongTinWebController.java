@@ -43,5 +43,8 @@ public class ThongTinWebController {
         return "thongtinWeb/da-huy";
     }
 
-
+    @GetMapping("/thong-tin-don-hang")
+    public String thongtindonhang() {
+        return "thongtinWeb/chi-tiet-don-hang";
+    }
 }

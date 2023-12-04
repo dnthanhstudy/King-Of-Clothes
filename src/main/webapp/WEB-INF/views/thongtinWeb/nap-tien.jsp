@@ -82,7 +82,6 @@
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
         var idVi = -1;
         var idkh = '<%= idkh %>';
        function getVi() {
@@ -107,7 +106,6 @@
 
             selectedColor = $(this).data("color");
         });
-    });
     // cập nhật value
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

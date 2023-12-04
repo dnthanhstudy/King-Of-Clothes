@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.KhachHangConverter;
 import com.laptrinhjavaweb.converter.TimKiemSanPhamConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
+import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
@@ -16,12 +17,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -210,28 +214,25 @@ public class KhachHangService implements IKhachHangService {
     }
 
     @Override
+    @Transactional
     public KhacHangResponse register(KhachHangRequest khachHangRequest) {
-        String xacNhanMatKhau = khachHangRequest.getXacNhanMatKhau();
-
-        if (xacNhanMatKhau == null || !khachHangRequest.getMatKhau().equals(xacNhanMatKhau.trim())) {
-            return null;
-        }
-
-        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
+        KhachHangEntity entity = khachHangRepository.findBySoDienThoaiOrEmail(
                 khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
         );
-        if (khachHangEntity != null) {
-            return null;
+        if (entity != null) {
+            throw new ClientError("Số điện thoại hoặc email đã tồn tại");
         }
 
-        String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
-        khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
+        KhachHangEntity khachHangEntity = new KhachHangEntity();
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
-        khachHangEntity.setMatKhau(newPassword);
+        String encodedPassword = passwordEncoder.encode(khachHangRequest.getMatKhau());
+        khachHangEntity.setMatKhau(encodedPassword);
+        khachHangEntity.setTen(khachHangRequest.getTen());
+        khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai());
+        khachHangEntity.setEmail(khachHangRequest.getEmail());
         khachHangRepository.save(khachHangEntity);
 
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
-        result.setId(khachHangEntity.getId());
         return result;
     }
 }
