@@ -35,7 +35,8 @@
                     </div>
                     <div class="col-9">
                         <strong>Đang giao hàng</strong><br>
-                        <span>Đơn hàng đang trên đường giao đến bạn</span>
+                        <span>Đơn hàng đang trên đường giao đến bạn</span><br>
+                        <span></span>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -44,7 +45,8 @@
                     </div>
                     <div class="col-9">
                         <strong>Đang được chuẩn bị</strong><br>
-                        <span>Shop đang chuẩn bị hàng</span>
+                        <span>Shop đang chuẩn bị hàng</span><br>
+                        <span></span>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -53,7 +55,8 @@
                     </div>
                     <div class="col-9">
                         <strong>Đặt hàng thành công</strong><br>
-                        <span>Shop đang chuẩn bị hàng</span>
+                        <span>Shop đang chuẩn bị hàng</span><br>
+                        <span></span>
                     </div>
                 </div>
             </div>
