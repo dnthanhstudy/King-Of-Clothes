@@ -9,7 +9,7 @@ import java.util.Date;
 @Setter
 public class KhachHangRequest {
 
-    private  String ma;
+    private String ma;
 
     private String soDienThoai;
 
@@ -24,4 +24,6 @@ public class KhachHangRequest {
     private Date ngaySinh;
 
     private String moTa;
+
+    private String xacNhanMatKhau;
 }
