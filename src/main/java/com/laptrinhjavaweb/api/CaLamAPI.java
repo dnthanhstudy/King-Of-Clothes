@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.CaLamRequest;
 import com.laptrinhjavaweb.security.utils.SecurityUtils;
+import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.service.ICaLamService;
 import com.laptrinhjavaweb.service.INhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class CaLamAPI {
 
     @Autowired
     private ICaLamService caLamService;
+
+    @Autowired
+    private HoaDonService hoaDonService;
 
     @GetMapping("/mo-ca/{ma}")
     public ResponseEntity<?> moCa(
@@ -44,6 +48,15 @@ public class CaLamAPI {
     public ResponseEntity<?> themCa(@RequestBody CaLamRequest request){
         CaLamResponse result = caLamService.insert(request);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/ket-ca")
+    public ResponseEntity<?> ketCa(
+            @RequestParam(name = "ngay") String ngay,
+            @RequestParam(name = "ma") String maNhanVien
+    ){
+        CaLamResponse result = hoaDonService.findAllByMaNhanVienAndHoaDon(ngay, maNhanVien);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }
