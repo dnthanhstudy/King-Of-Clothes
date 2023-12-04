@@ -87,7 +87,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             // TrangThaiHoaDonEnum
             hoaDon.setTrangThai(trangThai);
             hoaDonRepository.save(hoaDon);
-            return "Thay đổi trạng thái thành công";
+                return "Thay đổi trạng thái thành công";
         }catch (Exception e){
             return "Có lỗi xảy ra";
         }

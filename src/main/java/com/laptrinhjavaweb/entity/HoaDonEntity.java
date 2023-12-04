@@ -108,6 +108,8 @@ public class HoaDonEntity extends BaseEntity{
 			super.setTrangThai("DANGVANCHUYEN");
 		}else if (trangThai==TrangThaiHoaDonEnum.DANHANHANG){
 			super.setTrangThai("DANHANHANG");
+		}else if (trangThai==TrangThaiHoaDonEnum.HUYDON){
+			super.setTrangThai("HUYDON");
 		}
 	}
 	@Override

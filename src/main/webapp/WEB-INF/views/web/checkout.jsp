@@ -269,7 +269,7 @@
                             <h6 class="mt-2">Lời nhắn:</h6>
                         </div>
                         <div class="col-10">
-                            <input type="text" class="form-control w-75" placeholder="Lưu ý cho shop">
+                            <input type="text" class="form-control w-75" id="luuychoshop" placeholder="Lưu ý cho shop">
                         </div>
                     </div>
                 </div>
@@ -826,8 +826,14 @@
         var tienship = $(".sotiengiaohang:first").text();
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
         $.ajax({
-            url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}&phiship=`+tienshipSubstring,
-            method: 'GET',
+            url: `api/hoadon/dathangnhanhang`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                idkh: parseInt(idkh),
+                ttgh: parseInt(idttmh),
+                phiship: parseFloat(tienshipSubstring)
+            }),
             success: function (req) {
                 showSuccess("Thanh toán thành công");
                 window.location.href = "/pay/success"

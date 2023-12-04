@@ -42,4 +42,7 @@ public interface HoaDonResponse {
     @Value("#{target.diaChi}")
     String getDiaChi();
 
+    @Value("#{target.sodienthoai}")
+    String getSoDienThoai();
+
 }

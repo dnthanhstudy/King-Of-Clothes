@@ -24,4 +24,7 @@ public interface TrangThaiGiaoHangResponse {
     String getDiaChiNguoiNhan();
     @Value("#{target.hoaDon.tongTien}")
     String getSoTienThuHo();
+
+    @Value("#{target.ngayTao}")
+    String getNgayTao();
 }

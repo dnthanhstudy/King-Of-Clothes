@@ -606,9 +606,9 @@
            <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANGGIAOHANG')">Đang giao hàng</button>
           `);
        }else if (trangThaiHoaDon=='Đang giao hàng'){
-           trangThaiHtml.append(`
-                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANHANG')">Đã nhận hàng</button>
-      `);
+           // trangThaiHtml.append(`
+           //          <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANHANG')">Đã nhận hàng</button>
+      // `);
        }
 
 
