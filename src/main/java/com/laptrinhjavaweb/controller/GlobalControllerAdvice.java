@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.controller;
 
 import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.response.FilterResponse;
-import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.response.ThuongHieuResponse;
 import com.laptrinhjavaweb.service.IDanhMucService;
 import com.laptrinhjavaweb.service.IThuocTinhService;
