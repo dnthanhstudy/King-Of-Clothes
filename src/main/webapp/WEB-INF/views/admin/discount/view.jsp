@@ -48,7 +48,7 @@
                         }</style>
                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                     </svg>
-                    <input placeholder="Tìm khuyến mại" type="search" class="inputghichu w-100">
+                    <input placeholder="Tìm khuyến mại" type="search" class="inputghichu w-100" id="searchButton">
                 </div>
                 <%--                <div>--%>
                 <%--                    <nav class="navbar navbar-light bg-light">--%>
@@ -392,24 +392,26 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
     </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
 <script>
+    let pageCurrent = 1;
+    var value="";
     function loadKhuyenMai() {
         $.ajax({
-            url: '/api/khuyen-mai',
+            url: "/api/khuyen-mai/pagination?page="+pageCurrent+"&q="+value,
             method: 'GET',
-            success: function (data) {
-                console.log(data);
+            success: function (response) {
+                console.log(response);
                 var khuyenMai = $('#cardKhuyenMai');
                 khuyenMai.empty();
-                var count = data.length;
+                var count = response.data.length;
                 $("#tongKM").text(count);
-                data.forEach(function (item) {
-                    console.log(item.ten);
-                    // var dateStr = FormatDateTime(item.ngayBatDau);
-                    console.log(item.ngayBatDau);
+                response.data.forEach(function (item) {
                     var ngayBatDauFMT = formatMicrosoftJSONDate(item.ngayBatDau);
                     var ngayKetThucFMT = formatMicrosoftJSONDate(item.ngayKetThuc);
                     var ngayTaoFMT = formatMicrosoftJSONDate(item.ngayTao);
@@ -494,9 +496,25 @@
                             </div>
                         </div>
                     </div>
-                        `
+                        `;
                     khuyenMai.append(card);
-                })
+                });
+                $('#pagination').twbsPagination({
+                    first: "First",
+                    prev: "Previous",
+                    next: "Next",
+                    last: "Last",
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if(page !== pageCurrent){
+                            event.preventDefault();
+                            pageCurrent = page;
+                            loadKhuyenMai();
+                        }
+                    },
+                });
             },
             error: function (xhr, status, error) {
                 alert('Lỗi khi lấy danh sách : ' + error);
@@ -546,4 +564,14 @@
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+    $(document).ready(function() {
+        var searchButton = $('#searchButton');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                value = searchButton.val();
+                loadKhuyenMai();
+            }
+        });
+    });
 </script>

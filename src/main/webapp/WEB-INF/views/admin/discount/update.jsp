@@ -110,31 +110,31 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <table id="example5" class="display" style="min-width: 845px">
-                                                                            <thead>
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <div class="custom-control custom-checkbox ml-2">
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <hr>
+                                                                            <table class="table table-hover table-striped">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th scope="col"><div class="custom-control custom-checkbox ml-2">
                                                                                         <input type="checkbox" class="custom-control-input" id="checkAll" required="">
                                                                                         <label class="custom-control-label" for="checkAll"></label>
-                                                                                    </div>
-                                                                                </th>
-                                                                                <th>Tên sản phẩm</th>
-                                                                                <th>Mã SP</th>
-                                                                                <th>Số lượng</th>
-                                                                                <th>Giá tiền</th>
-                                                                            </tr>
-                                                                            </thead>
-                                                                            <tbody>
-
-                                                                            </tbody>
-                                                                        </table>
-                                                                        <div id="cardSanPham">
+                                                                                    </div></th>
+                                                                                    <th scope="col">Tên SP</th>
+                                                                                    <th scope="col">Giá</th>
+                                                                                    <th scope="col">Danh muc</th>
+                                                                                    <th scope="col">Thương hiệu</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody class="tbody-product">
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-danger light" data-dismiss="modal">Đóng</button>
-                                                                        <button type="button" class="btn btn-primary">Xác nhận</button>
+                                                                        <button type="button" class="btn btn-primary" id="getValue" data-dismiss="modal">
+                                                                            Xác nhận
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -171,6 +171,7 @@
     var maKM = url[url.length - 1];
     var listSlugSanPham = [];
     var idKM;
+    var trangThai;
     $.ajax({
         url: '/api/khuyen-mai/detail/'+maKM,
         method: 'GET',
@@ -191,21 +192,29 @@
             data.listSanPham.forEach(function (item) {
                 listSlugSanPham.push(item.sanPhamResponse.slug);
             });
-            console.log(listSlugSanPham)
             idKM = data.id;
+            trangThai = data.trangThai;
         },
         error: function(xhr, status, error) {
             console.log(error);
         }
     });
-    function displayListSanPham(listSanPham){
 
-    }
     function displayDateFormat(inputDate) {
         var ngayTaoDate = new Date(inputDate);
         var ngayTaoDateString = ngayTaoDate.toISOString().slice(0, 16);
         return ngayTaoDateString;
     }
+
+    var checkedValues = [];
+    $("#getValue").click(function (){
+        checkedValues = []
+        $('.form-check-input:checked').each(function () {
+            checkedValues.push($(this).val());
+        });
+        $('#modalSanPham').modal('hide');
+        console.log(checkedValues);
+    })
 
 
 
@@ -231,9 +240,9 @@
             giaTri: giaTriGiam,
             ngayBatDau: ngayBatDauFMT,
             ngayKetThuc:  ngayKetThucFMT,
-            trangThai: "ACTIVE",
             moTa: moTa,
-            listSanPham: listSlugSanPham,
+            trangThai: trangThai,
+            listSanPham: checkedValues,
         }
         console.log(km)
         $.ajax({
@@ -259,32 +268,36 @@
         $.ajax({
             url: '/api/san-pham',
             method: 'GET',
-            success: function (data) {
-                var cardsanpham = $('#cardSanPham');
-                cardsanpham.empty();
-                data.data.forEach(function (item) {
-                    var card = `
-                        <tr>
-                                <td>
-                                <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" value="\${item.id}" id="flexCheckDefault" name="mailId[]">
-                                </div>
-                                </td>
+            success: function (response) {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    let isCheck = false;
+                    listSlugSanPham.forEach(x => {
+                        if (item.slug === x) {
+                            isCheck = true;
+                            return false;
+                        }
+                    });
 
-                                <td class="ml-1 pl-9">\${item.id}</td>
-                                <td class="ml-1 pl-9">\${item.ten}</td>
-                                <td class="ml-1 pl-9">\${item.gia}</td>
-                        </tr>
-                        `
-                    cardsanpham.append(card);
-                })
+                    html += `<tr>
+             <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
+                </div>
+            </td>
+            <td>\${item.ten}</td>
+            <td>\${item.gia}</td>
+            <td>\${item.danhMuc.ten}</td>
+            <td>\${item.thuongHieu.ten}</td>
+       </tr>`;
+                });
+
+                $('.tbody-product').html(html);
             },
             error: function (xhr, status, error) {
                 console.log(error);
             }
         });
     }
-
     loadKhuyenMai();
-
 </script>

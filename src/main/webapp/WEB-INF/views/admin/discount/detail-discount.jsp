@@ -152,10 +152,10 @@
             var card = `
                 <div class="form-group row">
                     <div class="col-lg-3 ml-right">
-                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.id}" >Cập nhật khuyến mại</a>
+                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật khuyến mại</a>
                     </div>
                     <div class="col-lg-3 ml-right">
-                        <a class="btn btn-danger" href="/admin/khuyen-mai/delete/\${data.id}" onclick="Delete(\${data.ma})">Xóa khuyến mại</a>
+                        <a class="btn btn-danger btn-delete-khuyen-mai " data-ma="\${data.ma}">Xóa khuyến mại</a>
                     </div>
                 </div>
                 `;
@@ -198,5 +198,27 @@
         var formattedDate = hours + ':' + minutes + ' ' + day + '/' + month + '/' + year;
         return formattedDate;
     }
+    $('#cardBtn').on('click', (e) => {
+        if ($(e.target).hasClass('btn-delete-khuyen-mai')) {
+            let ma = $(e.target).data('ma');
+            showConfirm("Bạn có muốn xóa?", ma)
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: '/api/khuyen-mai/delete/' + ma,
+                            method: 'DELETE',
+                            success: function (req) {
+                                console.log(req);
+                                loadKhuyenMai();
+                                showSuccess("Delete success");
+                            },
+                            error: function (xhr, status, error) {
+                                showError("Delete fail");
+                            }
+                        });
+                    }
+                })
+        }
+    });
 
 </script>

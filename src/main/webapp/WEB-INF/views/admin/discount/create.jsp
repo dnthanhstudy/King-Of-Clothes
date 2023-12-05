@@ -141,6 +141,9 @@
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
+                                                                        <div>
+                                                                            <ul id="pagination" class="d-flex justify-content-center"></ul>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button"
@@ -180,36 +183,23 @@
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
-
+    var generatedNumbers = new Set();
+    let pageCurrent = 1;
+    let limit = 5;
+    ///pagination?page='+ pageCurrent+'&limit='+limit,
+    var genMa = "KOCS"+generateNumber();
+    $("#maKM").val(genMa);
     function loadKhuyenMai() {
         $.ajax({
             url: '/api/san-pham',
             method: 'GET',
             success: function (response) {
-                // var cardsanpham = $('#cardSanPham');
-                // cardsanpham.empty();
-                // data.data.forEach(function (item) {
-                //     var card = `
-                //         <tr>
-                //                 <td>
-                //                 <div class="form-check">
-                //                   <input class="form-check-input" type="checkbox" value="\${item.slug}" id="flexCheckDefault" name="mailId[]">
-                //                 </div>
-                //                 </td>
-                //
-                //                 <td class="ml-1 pl-9">\${item.id}</td>
-                //                 <td class="ml-1 pl-9">\${item.ten}</td>
-                //                 <td class="ml-1 pl-9">\${item.gia}</td>
-                //         </tr>
-                //         `
-                //     cardsanpham.append(card);
-                // })
                 let html = '';
                 $.each(response.data, (index, item) => {
                     html += `<tr>
                                  <td>
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="\${item.slug}" id="flexCheckDefault" name="mailId[]">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
                                     </div>
                                 </td>
                                 <td>\${item.ten}</td>
@@ -219,6 +209,22 @@
                            </tr>`;
                 })
                 $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
             },
             error: function (xhr, status, error) {
                 console.log(error);
@@ -236,11 +242,6 @@
         });
         $('#modalSanPham').modal('hide');
         console.log(checkedValues);
-        for (var x in checkedValues) {
-            var sp = {
-                slug: x,
-            }
-        }
     })
 
     $("#addDiscount").click(function () {
@@ -278,6 +279,7 @@
             data: JSON.stringify(km),
             success: function (response) {
                 window.location.href = "/admin/khuyen-mai";
+                showSuccess("Them thanh cong");
                 // console.log(response)
             },
             error: function (xhr, status, error) {
@@ -291,5 +293,16 @@
 
         return date;
     }
+
+        function generateNumber() {
+            var randomNumber;
+            do {
+                randomNumber = Math.floor(Math.random() * 999) + 1;
+                randomNumber = randomNumber.toString().padStart(3, '0');
+            } while (generatedNumbers.has(randomNumber));
+
+            generatedNumbers.add(randomNumber);
+            return randomNumber;
+        }
 
 </script>

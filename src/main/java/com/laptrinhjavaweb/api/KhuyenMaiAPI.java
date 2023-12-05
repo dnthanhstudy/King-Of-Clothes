@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/khuyen-mai")
@@ -38,6 +39,25 @@ public class KhuyenMaiAPI {
     @PutMapping("/update/{ma}")
     public ResponseEntity<?> update(@RequestBody KhuyenMaiRequest km, @PathVariable String ma){
         KhuyenMaiResponse results = khuyenMaiService.update(km, ma);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<?> search(
+            @RequestParam(name = "q") String param,
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
+        Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
+        if(results == null) {
+            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
+        }
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+    @GetMapping("/pagination")
+    public ResponseEntity<?> pagination(@RequestParam(name = "q", required = false) String param,
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+                                        @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
+    ){
+        Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 }
