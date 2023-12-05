@@ -54,26 +54,32 @@
                             </div>
                             <div class="d-flex flex-wrap align-items-center">
 
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="text-center border-bx mr-3">
-                                        <span>Doanh thu</span>
-                                        <p class="mb-0 pt-1 font-w600 text-black">505,785,000 VNĐ</p>
-                                    </div>
-                                    <div class="text-center border-bx">
-                                        <span>Tổng tiền đã giảm giá:</span>
-                                        <p class="mb-0 pt-1 font-w600 text-black">458,388 VNĐ</p>
-                                    </div>
-                                </div>
+<%--                                <div class="d-flex align-items-center mb-4">--%>
+<%--                                    <div class="text-center border-bx mr-3">--%>
+<%--                                        <span>Doanh thu</span>--%>
+<%--                                        <p class="mb-0 pt-1 font-w600 text-black">505,785,000 VNĐ</p>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="text-center border-bx">--%>
+<%--                                        <span>Tổng tiền đã giảm giá:</span>--%>
+<%--                                        <p class="mb-0 pt-1 font-w600 text-black">458,388 VNĐ</p>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div>Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span></div>
-                                    <div>Tổng số lượng:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
-                                    <div>Đã dùng:<span class="text-black ml-1 font-w550">00</span></div>
-                                    <div>Sản phẩm khuyến mại:
-                                        <div id="cardSanPham">
+                                    <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span></div>
+                                    <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
+                                    <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550">00</span></div>
+                                    <div class="mb-3">
+                                        <div class="mb-3">Sản phẩm khuyến mại:</div>
 
-                                        </div>
+                                        <table class="table table-hover table-striped">
+                                            <tbody class="tbody-product">
+                                            <div id="cardSanPham">
+
+                                            </div>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <div>
@@ -109,9 +115,9 @@
 <script>
 
     var url = window.location.pathname.split("/");
-    var ma = url[url.length - 1];
+    var maKM = url[url.length - 1];
     $.ajax({
-        url: '/api/khuyen-mai/detail/'+ma,
+        url: '/api/khuyen-mai/detail/'+maKM,
         method: 'GET',
         success: function(data) {
             console.log(data);
@@ -128,24 +134,28 @@
             $("#soLuong").text(data.soLuong);
             var dsSanPhamKhuyenMai = data.listSanPham;
             console.log(dsSanPhamKhuyenMai)
-            var sanpham = $('#cardSanPham');
-            sanpham.empty();
-
+            let html = '';
+            var i = 0
             dsSanPhamKhuyenMai.forEach(function (item){
-                cardSanPham = `
-                    <div class="m-0 p-0">
-                        <span class="text-black ml-4 font-w550" id="moTa">- \${item.sanPhamResponse.ten}</span>
-                    </div>
-                `
-                sanpham.append(cardSanPham);
+                i++;
+                html +=  `<tr>
+                                <td>\${i}</td>
+                                <td>
+                                    <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                </td>
+                                <td>\${item.sanPhamResponse.ten}</td>
+
+                            </tr>`
+
             })
+            $('.tbody-product').html(html);
             var card = `
                 <div class="form-group row">
                     <div class="col-lg-3 ml-right">
                         <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.id}" >Cập nhật khuyến mại</a>
                     </div>
                     <div class="col-lg-3 ml-right">
-                        <a class="btn btn-danger" href="/admin/khuyen-mai/delete/\${data.id}" onclick="Delete(\${data.id})">Xóa khuyến mại</a>
+                        <a class="btn btn-danger" href="/admin/khuyen-mai/delete/\${data.id}" onclick="Delete(\${data.ma})">Xóa khuyến mại</a>
                     </div>
                 </div>
                 `;

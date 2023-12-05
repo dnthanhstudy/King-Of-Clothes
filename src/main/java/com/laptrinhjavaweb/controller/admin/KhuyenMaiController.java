@@ -29,18 +29,9 @@ public class KhuyenMaiController {
         return "admin/discount/view";
     }
 
-    @GetMapping("/delete")
-    public String delete(){
-        return "admin/discount/view";
-    }
-
-    @GetMapping("/edit")
+    @GetMapping("/edit/{ma}")
     public String edit(){
-        return "admin/discount/create";
+        return "admin/discount/update";
     }
 
-    @PostMapping("/update")
-    public String update(){
-        return "admin/discount/view";
-    }
 }

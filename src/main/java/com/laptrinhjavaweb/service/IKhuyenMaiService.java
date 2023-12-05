@@ -8,8 +8,8 @@ import java.util.List;
 public interface IKhuyenMaiService {
     List<KhuyenMaiResponse> getAll();
     KhuyenMaiResponse save(KhuyenMaiRequest request);
-    String delete(Long id);
-    KhuyenMaiResponse update(KhuyenMaiRequest request);
+    String delete(String ma);
+    KhuyenMaiResponse update(KhuyenMaiRequest request, String ma);
     KhuyenMaiResponse findById(Long id);
     KhuyenMaiResponse findByMa(String ma);
 }

@@ -88,9 +88,9 @@
                                 <td>\${item.thuongHieu.ten}</td>
                                 <td>
                                     <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
-                                    <button class="btn btn-danger">Xóa</button>
+                                     <button class="btn btn-danger">Xóa</button>
                                 </td>
-                            </tr>`;
+                           </tr>`;
                 })
                 $('.tbody-product').html(html);
 

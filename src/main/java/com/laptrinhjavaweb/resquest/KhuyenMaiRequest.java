@@ -4,10 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.List;
+
 @Getter
 @Setter
 public class KhuyenMaiRequest {
-    private Long id;
 
     private String ma;
 
@@ -19,7 +20,13 @@ public class KhuyenMaiRequest {
 
     private Date ngayKetThuc;
 
+    private Integer giaTri;
+
     private Integer soLuong;
 
-    private Integer tong;
+    private String trangThai;
+
+    private String moTa;
+
+    List<String> listSanPham;
 }
