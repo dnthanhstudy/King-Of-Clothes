@@ -418,11 +418,11 @@
                     var trangThaiStr = "";
                     var textColor = "";
                     var textFront = "text-info";
-                    if (item.trangThai == 0) {
+                    if (item.trangThai == "DELETE") {
                         trangThaiStr = "Đã dừng";
                         textColor = "bgl-danger";
                         textFront = "text-danger";
-                    } else if (item.trangThai == 2) {
+                    } else if (item.trangThai == "UPCOMING") {
                         trangThaiStr = "Sắp diễn ra";
                         textColor = "bgl-warning";
                         textFront = "text-warning";
