@@ -21,11 +21,11 @@ public class SanPhamAPI {
 	
 	@GetMapping("/{slug}")
 	public ResponseEntity<?> findBySlug(@PathVariable("slug") String slug){
-		SanPhamResponse results = sanPhamService.findBySlug(slug);
-		if(results == null){
+		SanPhamResponse result = sanPhamService.findBySlug(slug);
+		if(result == null){
 			throw new EntityNotFoundException("Không tồn tại slug này!");
 		}
-		return new ResponseEntity<>(results, HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/pagination")
