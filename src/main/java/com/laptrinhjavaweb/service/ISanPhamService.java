@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ISanPhamService {
@@ -15,5 +16,13 @@ public interface ISanPhamService {
 	SanPhamEntity findEntityBySlug(String slug);
 
 	SanPhamResponse save(SanPhamRequest sanPhamRequest);
+
+	List<SanPhamResponse> random(
+			Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
+			Integer limit);
+
+	List<SanPhamResponse> same(String slug);
+
+	void delete(String slug);
 
 }

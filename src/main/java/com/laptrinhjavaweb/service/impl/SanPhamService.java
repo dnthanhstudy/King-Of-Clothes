@@ -8,6 +8,12 @@ import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.SanPhamRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
+import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.converter.SanPhamConverter;
+import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.repository.SanPhamRepository;
+import com.laptrinhjavaweb.response.PageableResponse;
+import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
@@ -46,15 +52,6 @@ public class SanPhamService implements ISanPhamService{
 	@Autowired
 	private IBienTheService bienTheService;
 
-	@Autowired
-	private BienTheConverter bienTheConverter;
-
-	@Autowired
-	private AnhSanPhamConverter anhSanPhamConverter;
-
-	@Autowired
-	private ThuocTinhConverter thuocTinhConverter;
-
 	@Override
 	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
 		Map<String, Object> results = new HashMap<>();
@@ -64,7 +61,7 @@ public class SanPhamService implements ISanPhamService{
 		if(pageCurrent == null && limit == null) {
 			isAll = true;
 			Pageable wholePage = Pageable.unpaged();
-			page = sanPhamRepository.findAll(wholePage);
+			page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE,wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
 			if(param != null || params != null || slug != null) {
@@ -78,7 +75,7 @@ public class SanPhamService implements ISanPhamService{
 						listSanPhamEntity.add(sanPhamEntity);
 					}
 				}else{
-					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slug(slug);
+					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
 				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();
@@ -87,7 +84,7 @@ public class SanPhamService implements ISanPhamService{
 				page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntity);
 
 			}else {
-				page = sanPhamRepository.findAll(pageable);
+				page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE, pageable);
 			}
 		}
 		listSanPhamResponse = page.getContent().stream().map(
@@ -171,5 +168,28 @@ public class SanPhamService implements ISanPhamService{
 		}catch(Exception ex) {
 			throw new RuntimeException("Error");
 		}
+	}
+
+	@Override
+	public List<SanPhamResponse> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public List<SanPhamResponse> same(String slug) {
+		List<SanPhamResponse> results = sanPhamRepository.same(slug)
+														.stream().map(item -> sanPhamConvert.convertToResponse(item))
+														.collect(Collectors.toList());
+		return results;
+	}
+
+	@Override
+	public void delete(String slug) {
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
+		sanPhamEntity.setTrangThai("INACTIVE");
+		sanPhamRepository.save(sanPhamEntity);
 	}
 }

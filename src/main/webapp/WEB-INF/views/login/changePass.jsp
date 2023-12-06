@@ -81,7 +81,7 @@
         var matKhau = $("#matKhau").val();
 
         if (!restToken || !matKhau) {
-            showError("Please fill in all information completely.");
+            showError("Vui lòng điền đầy đủ mọi thông tin !");
             return;
         }
         $.ajax({
@@ -92,10 +92,11 @@
                 matKhau: matKhau
             },
             success: function(response) {
-                showSuccess("Change password success !");
+                window.location.href = '/login';
+                showSuccess("Đổi mật khẩu thành công!");
             },
             error: function(xhr, textStatus, error) {
-                showError("The code is incorrect or expired !");
+                showError("Mã không chính xác hoặc đã hết hạm. Hãy kiểm tra lại..!");
             }
         });
     }

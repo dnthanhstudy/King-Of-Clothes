@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class KhachHangEntity extends BaseEntity{
 	
 	@Column(name = "mota")
 	private String moTa;
-	
+
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<HoaDonEntity> hoaDonEntities  = new ArrayList<>();
 	

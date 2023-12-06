@@ -13,4 +13,6 @@ public class SendEmailRequest {
     private String message;
 
     private String subject;
+
+    private String email;
 }

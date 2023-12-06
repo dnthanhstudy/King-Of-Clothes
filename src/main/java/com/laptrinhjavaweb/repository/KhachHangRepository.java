@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface KhachHangRepository extends JpaRepository<KhachHangEntity, Long>, KhachHangRepositoryCustom {
 
-    Page<KhachHangEntity> findAllByTrangThai(String trangThai, Pageable pageable);
+    Page<KhachHangEntity> findAllByTrangThaiNot(String trangThai, Pageable pageable);
 
     KhachHangEntity findBySoDienThoaiOrEmailAndTrangThai(String soDienThoai, String email, String trangThai);
 

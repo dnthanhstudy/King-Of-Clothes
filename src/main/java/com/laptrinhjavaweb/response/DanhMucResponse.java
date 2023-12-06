@@ -16,4 +16,6 @@ public class DanhMucResponse {
 	private String slug;
 	
 	private String ten;
+
+	private String trangThai;
 }

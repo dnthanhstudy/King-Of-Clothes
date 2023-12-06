@@ -4,10 +4,8 @@ import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.KhachHangConverter;
 import com.laptrinhjavaweb.converter.TimKiemSanPhamConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
-import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
@@ -22,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +44,9 @@ public class KhachHangService implements IKhachHangService {
     @Autowired
     private TimKiemSanPhamConverter timKiemSanPhamConverter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai) {
         KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmailAndTrangThai(sodienThoai, email, trangThai);
@@ -55,19 +57,8 @@ public class KhachHangService implements IKhachHangService {
         return result;
     }
 
-//    @Override
-//    public List<KhacHangResponse> getDsKhachHang() {
-//        List<KhachHangEntity> entity = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE);
-//
-//        List<KhacHangResponse> result = entity.stream().map(
-//                item ->
-//                        khachHangConverter.convertToResponse(item)
-//        ).collect(Collectors.toList());
-//        return result;
-//    }
-
     @Override
-    public Map<String, Object> pagingOrSearchOrFindAll(String param, Integer pageCurrent, Integer limit) {
+    public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String param ) {
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<KhachHangEntity> page = null;
@@ -75,7 +66,7 @@ public class KhachHangService implements IKhachHangService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = khachHangRepository.findAllByTrangThai(SystemConstant.ACTICE, wholePage);
+            page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -87,7 +78,7 @@ public class KhachHangService implements IKhachHangService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
 
             }else {
-                page = khachHangRepository.findAll(pageable);
+                page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listKhachHangResponse = page.getContent().stream().map(
@@ -112,11 +103,11 @@ public class KhachHangService implements IKhachHangService {
         KhachHangEntity khachHangEntity = khachHangRepository.findByMa(ma);
 
         if (khachHangEntity != null) {
-            khachHangEntity.setTen(khachHangRequest.getTen());
-            khachHangEntity.setEmail(khachHangRequest.getEmail());
-            khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai());
+            khachHangEntity.setTen(khachHangRequest.getTen().trim());
+            khachHangEntity.setEmail(khachHangRequest.getEmail().trim());
+            khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai().trim());
             khachHangEntity.setNgaySinh(khachHangRequest.getNgaySinh());
-            khachHangEntity.setMoTa(khachHangRequest.getMoTa());
+            khachHangEntity.setMoTa(khachHangRequest.getMoTa().trim());
             khachHangEntity.setGioiTinh(khachHangRequest.getGioiTinh());
 
             khachHangRepository.save(khachHangEntity);
@@ -218,5 +209,29 @@ public class KhachHangService implements IKhachHangService {
         return results;
     }
 
+    @Override
+    public KhacHangResponse register(KhachHangRequest khachHangRequest) {
+        String xacNhanMatKhau = khachHangRequest.getXacNhanMatKhau();
 
+        if (xacNhanMatKhau == null || !khachHangRequest.getMatKhau().equals(xacNhanMatKhau.trim())) {
+            return null;
+        }
+
+        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
+                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
+        );
+        if (khachHangEntity != null) {
+            return null;
+        }
+
+        String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
+        khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
+        khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
+        khachHangEntity.setMatKhau(newPassword);
+        khachHangRepository.save(khachHangEntity);
+
+        KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
+        result.setId(khachHangEntity.getId());
+        return result;
+    }
 }

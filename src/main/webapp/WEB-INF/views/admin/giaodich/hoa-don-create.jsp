@@ -86,17 +86,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-                    <div class="group123">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
-                             viewBox="0 0 512 512">
-                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                            <style>svg {
-                                fill: #ebeef4
-                            }</style>
-                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-                        </svg>
-                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">
-                    </div>
+<%--                    <div class="group123">--%>
+<%--                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"--%>
+<%--                             viewBox="0 0 512 512">--%>
+<%--                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->--%>
+<%--                            <style>svg {--%>
+<%--                                fill: #ebeef4--%>
+<%--                            }</style>--%>
+<%--                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>--%>
+<%--                        </svg>--%>
+<%--                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">--%>
+<%--                    </div>--%>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
@@ -115,6 +115,7 @@
                                     <div class="row" id="list-products">
 
                                     </div>
+                                    <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
                                 </div>
                             </div>
                         </div>
@@ -826,14 +827,16 @@
     }
     setInterval(time, 1000);
 
-    $.ajax({
-        url: "/api/san-pham",
-        method: "GET",
-        dataType: "json",
-        success: (response) => {
-            let html = '';
-            $.each(response.data, (index, item) => {
-                html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
+    let pageCurrent = 1;
+    function loadAllProduct() {
+        $.ajax({
+            url: "/api/san-pham/pagination?page=" + pageCurrent + "&limit=12",
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
                         <div class="card mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
@@ -850,15 +853,29 @@
                             </div>
                         </div>
                     </div>`;
-            })
-            $('#list-products').html(html);
-        },
-        error: (error) => {
-            console.log(error);
-        }
-    });
+                })
+                $('#list-products').html(html);
+                $('#pagination').twbsPagination({
+                    visiblePages: 5,
+                    totalPages: response.meta.totalPage,
+                    startPage: response.meta.pageCurrent,
+                    onPageClick: function (event, page) {
+                        if (page !== pageCurrent) {
+                            event.preventDefault();
+                            pageCurrent = page;
+                            loadAllProduct();
+                        }
+                    },
+                });
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+    loadAllProduct();
 
-    $('#btn-add-customer').on('click', ()=>{
+        $('#btn-add-customer').on('click', ()=>{
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
         $.each(dataForm, (index, value) => {

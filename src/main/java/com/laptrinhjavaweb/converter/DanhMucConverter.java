@@ -1,11 +1,11 @@
 package com.laptrinhjavaweb.converter;
 
+import com.laptrinhjavaweb.entity.DanhMucEntity;
+import com.laptrinhjavaweb.response.DanhMucResponse;
+import com.laptrinhjavaweb.resquest.DanhMucRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.laptrinhjavaweb.entity.DanhMucEntity;
-import com.laptrinhjavaweb.response.DanhMucResponse;
 
 @Component
 public class DanhMucConverter {
@@ -16,5 +16,10 @@ public class DanhMucConverter {
 	public DanhMucResponse convertToResponse(DanhMucEntity entity) {
 		DanhMucResponse response = modelMapper.map(entity, DanhMucResponse.class);
 		return response;
+	}
+
+	public DanhMucEntity convertToEntity(DanhMucRequest request){
+		DanhMucEntity entity = modelMapper.map(request, DanhMucEntity.class);
+		return entity;
 	}
 }

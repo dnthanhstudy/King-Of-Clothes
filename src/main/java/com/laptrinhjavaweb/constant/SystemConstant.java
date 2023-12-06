@@ -8,5 +8,7 @@ public class SystemConstant {
 
     public static final String DELETE = "DELETE";
 
+    public static final String ROLE_STAFF = "STAFF";
+
     public static final String path = "F:/Workspace/DATN/base-project-web/src/main/webapp/assets/images";
 }
