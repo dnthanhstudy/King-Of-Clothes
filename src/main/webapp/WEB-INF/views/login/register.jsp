@@ -86,8 +86,7 @@
 
                                 <div class="js-form-message form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required=""
-                                               data-msg="Please accept our Terms and Conditions.">
+                                        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" >
                                         <label class="custom-control-label text-muted" for="termsCheckbox"> I accept the <a href="#">Terms and Conditions</a></label>
                                     </div>
                                 </div>
@@ -136,6 +135,7 @@
         let email = $("#email").val();
         let matKhau = $("#matKhau").val();
         let xacNhanMatKhau = $("#xacNhanMatKhau").val();
+        let termsCheckbox = $("#termsCheckbox").prop("checked");
 
         if ($("#ten").val() === "") {
             showError("User name không được để trống");
@@ -167,6 +167,10 @@
             return false;
         } else if (xacNhanMatKhau !== matKhau) {
             showError("Mật khẩu và xác nhận mật khẩu không khớp");
+            return false;
+        }
+        if (!termsCheckbox) {
+            showError("Bạn phải đồng ý với các điều khoản và điều kiện");
             return false;
         }
         return true;

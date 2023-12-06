@@ -213,29 +213,6 @@ public class KhachHangService implements IKhachHangService {
         return results;
     }
 
-//    @Override
-//    @Transactional
-//    public KhacHangResponse register(KhachHangRequest khachHangRequest) {
-//        KhachHangEntity entity = khachHangRepository.findBySoDienThoaiOrEmail(
-//                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
-//        );
-//        if (entity != null) {
-//            throw new ClientError("Số điện thoại hoặc email đã tồn tại");
-//        }
-//
-//        KhachHangEntity khachHangEntity = new KhachHangEntity();
-//        khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
-//        String encodedPassword = passwordEncoder.encode(khachHangRequest.getMatKhau());
-//        khachHangEntity.setMatKhau(encodedPassword);
-//        khachHangEntity.setTen(khachHangRequest.getTen());
-//        khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai());
-//        khachHangEntity.setEmail(khachHangRequest.getEmail());
-//        khachHangRepository.save(khachHangEntity);
-//
-//        KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
-//        return result;
-//    }
-
     @Override
     public KhacHangResponse register(KhachHangRequest khachHangRequest) {
         String xacNhanMatKhau = khachHangRequest.getXacNhanMatKhau();
