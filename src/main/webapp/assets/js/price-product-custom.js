@@ -3,3 +3,8 @@ $('.product-price-origin').each(function(index, item) {
     res = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(res);
     $(item).html(res);
 });
+
+$('.percent').each(function(index, item) {
+    let res = $(item).html().slice(0, -2);
+    $(item).html(res);
+});

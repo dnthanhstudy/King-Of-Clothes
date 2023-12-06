@@ -1,28 +1,27 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.converter.SanPhamConverter;
+import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.repository.SanPhamRepository;
+import com.laptrinhjavaweb.response.PageableResponse;
+import com.laptrinhjavaweb.response.SanPhamResponse;
+import com.laptrinhjavaweb.response.ThuocTinhResponse;
+import com.laptrinhjavaweb.resquest.*;
+import com.laptrinhjavaweb.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.laptrinhjavaweb.constant.SystemConstant;
-import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
-import com.laptrinhjavaweb.converter.BienTheConverter;
-import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.*;
-import com.laptrinhjavaweb.response.ThuocTinhResponse;
-import com.laptrinhjavaweb.resquest.*;
-import com.laptrinhjavaweb.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
-import org.springframework.stereotype.Service;
-
-import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
-import com.laptrinhjavaweb.response.PageableResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SanPhamService implements ISanPhamService{
@@ -44,15 +43,6 @@ public class SanPhamService implements ISanPhamService{
 
 	@Autowired
 	private IBienTheService bienTheService;
-
-	@Autowired
-	private BienTheConverter bienTheConverter;
-
-	@Autowired
-	private AnhSanPhamConverter anhSanPhamConverter;
-
-	@Autowired
-	private ThuocTinhConverter thuocTinhConverter;
 
 	@Override
 	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
