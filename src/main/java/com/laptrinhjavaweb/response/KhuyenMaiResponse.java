@@ -17,6 +17,8 @@ public class KhuyenMaiResponse {
 
     private String loai;
 
+    private String giaTri;
+
     private Date ngayBatDau;
 
     private Date ngayKetThuc;
