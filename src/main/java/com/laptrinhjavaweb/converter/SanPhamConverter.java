@@ -59,7 +59,7 @@ public class SanPhamConverter {
 			KhuyenMaiEntity khuyenMaiEntity = khuyenMaiSanPhamEntity.getKhuyenMai();
 			String loaiGiammGia = null;
 			Double giaBan = null;
-			Double giaTri = Double.parseDouble(khuyenMaiEntity.getGiaTri());
+			Double giaTri = khuyenMaiEntity.getGiaTri();
 			if(khuyenMaiEntity.getLoai().equals("1")){
 				loaiGiammGia = "%";
 				giaBan = entity.getGia() * ((100 - giaTri) / 100);
