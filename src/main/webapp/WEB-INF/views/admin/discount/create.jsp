@@ -115,11 +115,24 @@
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Thêm sản phẩm</h5>
-                                                                        <button type="button" class="close"
-                                                                                data-dismiss="modal">
-                                                                            <span>&times;</span>
-                                                                        </button>
+                                                                        <h5 class="modal-title">Danh sách sản phẩm</h5>
+                                                                        <div class="group123 ">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
+                                                                                 viewBox="0 0 512 512">
+                                                                                <style>svg {
+                                                                                    fill: #ebeef4
+                                                                                }</style>
+                                                                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                                                            </svg>
+                                                                            <input placeholder="Tìm sản phẩm" type="search" class="inputghichu w-100" id="searchButton">
+                                                                        </div>
+                                                                        <div>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal">
+                                                                                <span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <div class="d-flex justify-content-between">
@@ -185,7 +198,7 @@
 <script>
     var generatedNumbers = new Set();
     let pageCurrent = 1;
-    let limit = 5;
+
     ///pagination?page='+ pageCurrent+'&limit='+limit,
     var genMa = "KOCS"+generateNumber();
     $("#maKM").val(genMa);
@@ -304,5 +317,62 @@
             generatedNumbers.add(randomNumber);
             return randomNumber;
         }
+    $(document).ready(function() {
+        var searchButton = $('#searchButton');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                value = searchButton.val();
+                if (value.isBlank){
+                    loadKhuyenMai();
+                }else{
+                    loadSearch(value);
+                }
+            }
+        });
+    });
+    var limit = 100;
+    function loadSearch(value) {
+        $.ajax({
+            url: '/api/san-pham/search?q='+value+'&limit='+limit,
+            method: 'GET',
+            success: function (response) {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<tr>
+                                 <td>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
+                                    </div>
+                                </td>
+                                <td>\${item.ten}</td>
+                                <td>\${item.gia}</td>
+                                <td>\${item.danhMuc.ten}</td>
+                                <td>\${item.thuongHieu.ten}</td>
+                           </tr>`;
+                })
+                $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
 
 </script>

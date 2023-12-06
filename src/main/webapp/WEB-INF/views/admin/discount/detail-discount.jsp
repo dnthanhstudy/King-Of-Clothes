@@ -130,7 +130,7 @@
             var ngayTaoFMT = formatMicrosoftJSONDate(data.ngayTao);
             $("#ngayBatDauFMT").text(ngayBatDauFMT);
             $("#ngayketThucFMT").text(ngayKetThucFMT);
-            $("#giaTriGiam").text(data.soLuong);
+            $("#giaTriGiam").text(data.giaTri);
             $("#soLuong").text(data.soLuong);
             var dsSanPhamKhuyenMai = data.listSanPham;
             console.log(dsSanPhamKhuyenMai)

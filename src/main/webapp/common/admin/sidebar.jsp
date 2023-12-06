@@ -27,7 +27,7 @@
             <li class="nav-label first">Main Menu</li>
 
             <li>
-                    <a class="has-arrow ai-icon" href="/admin/dashboards" aria-expanded="false">
+                    <a class="has-arrow" href="/admin/dashboards" aria-expanded="false">
                         <i class="flaticon-144-layout"></i>
                         <span class="nav-text">Dashboard</span>
                     </a>
@@ -76,8 +76,8 @@
             </li>
         </ul>
         <div class="copyright">
-            <p><strong>Zenix Crypto Admin Dashboard</strong> © 2021 All Rights Reserved</p>
-            <p class="fs-12">Made with <span class="heart"></span> by DexignZone</p>
+            <p><strong>KOC Admin Dashboard</strong> © 2021 All Rights Reserved</p>
+            <p class="fs-12">Made with <span class="heart"></span> by KOC Teams</p>
         </div>
     </div>
 </div>
