@@ -32,4 +32,5 @@ public class KhacHangResponse {
     private String moTa;
 
     private String trangThai;
+
 }

@@ -1,16 +1,12 @@
 package com.laptrinhjavaweb.resquest;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class KhachHangRequest {
 
     private  String ma;
@@ -28,6 +24,4 @@ public class KhachHangRequest {
     private Date ngaySinh;
 
     private String moTa;
-
-    private String xacNhanMatKhau;
 }
