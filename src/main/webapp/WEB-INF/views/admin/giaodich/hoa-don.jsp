@@ -44,7 +44,7 @@
                                 <div class="row my-2">
                                     <div class="col">
                                         <strong>Lưu ý cho shop:</strong>
-                                        <span>Hi </span>
+                                        <span id="luuy"></span>
                                     </div>
                                 </div>
                             </div>
@@ -522,6 +522,8 @@
               $("#tiensp").text(convertVND(data.tongTienHdct))
               $("#tienship").text(convertVND(data.tienShip))
               $("#tienhang").text(convertVND(data.tongTien))
+              $("#luuy").text(data.moTa)
+              // $("#luuy").text(data.mota)
                let cart = $("#cart")
                cart.empty();
                let html = "";
@@ -562,7 +564,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Số lượng</span>
-                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="\${item.soLuong}">
+                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="\${item.soLuong}" disabled >
                             </div>
                         </div>
                     </div>

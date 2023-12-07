@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
+
 <head>
     <title>${product.ten}</title>
 </head>
@@ -83,7 +84,7 @@
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control bg-secondary text-center" value="1">
+                    <input type="text" class="form-control bg-secondary text-center" id="quantity" value="1">
                     <div class="input-group-btn">
                         <button class="btn btn-primary btn-plus">
                             <i class="fa fa-plus"></i>
@@ -237,7 +238,34 @@
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script>
 
+    function checkedRadio() {
+        var allGroupsChecked = true;
+        var checkedGroups = {}; // Để lưu trữ những nhóm đã được chọn
+
+        $('.khung input[type="radio"]').each(function() {
+            var groupName = $(this).attr('name');
+            if ($(this).is(':checked')) {
+                checkedGroups[groupName] = true; // Đánh dấu nhóm đã được chọn
+            }
+        });
+
+        // Kiểm tra xem có bất kỳ nhóm nào chưa được chọn hay không
+        $('.khung input[type="radio"]').each(function() {
+            var groupName = $(this).attr('name');
+            if (!checkedGroups[groupName]) {
+                allGroupsChecked = false;
+                return false; // Thoát khỏi vòng lặp nếu có nhóm chưa được chọn
+            }
+        });
+
+        return allGroupsChecked;
+    }
     $("#addCart").click(function () {
+        let checkallRadio = checkedRadio();
+        if (!checkallRadio){
+            showError("Bạn phải chọn đầy đủ loại")
+            return;
+        }
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
         if (idkh==-1){
             window.location.href = "/login?is_not_login";
@@ -249,8 +277,16 @@
             arrData.push($(this).val());
         });
 
+        var spcosan = <c:out value="${product.soLuong}" />;
+        var quantity = $("#quantity").val();
+        console.log(spcosan)
+        console.log(quantity)
+        if (quantity>spcosan){
+            showError("Số lượng của cửa hàng không đủ");
+            return;
+        }
         $.ajax({
-            url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(","),
+            url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
             method: 'GET',
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")

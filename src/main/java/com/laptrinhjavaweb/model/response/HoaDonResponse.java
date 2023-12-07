@@ -30,7 +30,7 @@ public interface HoaDonResponse {
     @Value("#{target.tongTien}")
     Double getTongTien();
 
-    @Value("#{target.tienKhachTraOnline}")
+    @Value("#{target.tienKhachTra}")
     Double getTienKhachTra();
     @Value("#{target.phuongThucThanhToan}")
     String getPhuongThucThanhToan();
@@ -44,5 +44,7 @@ public interface HoaDonResponse {
 
     @Value("#{target.sodienthoai}")
     String getSoDienThoai();
+
+
 
 }

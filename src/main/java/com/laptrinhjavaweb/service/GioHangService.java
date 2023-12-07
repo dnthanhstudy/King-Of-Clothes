@@ -20,7 +20,7 @@ public interface GioHangService {
 //
 //    List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh);
 //
-    String themVaoGioHang(Long idkh, Long bienTheId);
+    String themVaoGioHang(Long idkh, Long bienTheId,Integer quantity);
     GioHangResponse updateGioHangChiTiet(Long idghct, Long bienTheId);
 
     String xoaGioHangChiTiet(Long idghct);

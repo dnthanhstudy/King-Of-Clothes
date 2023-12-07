@@ -18,4 +18,7 @@ public class ThongTinNhanHangRequest {
     private Long idkh;
     private Long ttgh;
     private Double phiship;
+    private String luuy;
+    private String idVi;
+    private Double tongTien;
 }

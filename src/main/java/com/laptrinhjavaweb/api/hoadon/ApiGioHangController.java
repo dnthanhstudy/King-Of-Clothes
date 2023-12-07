@@ -51,12 +51,13 @@ public class ApiGioHangController {
     @GetMapping("/addcart")
     public String themSanPhamVaoGio(
             @RequestParam("data") String params,
-            @RequestParam("idkh") Long idkh
+            @RequestParam("idkh") Long idkh,
+            @RequestParam("quantity") Integer quantity
 
     ) {
        List<Long> ds = convertStringToLongList(params);
         BienTheResponse bienThe = bienTheService.findByIdGiaTriThuocTinh(ds);
-        return gioHangService.themVaoGioHang(idkh,bienThe.getId());
+        return gioHangService.themVaoGioHang(idkh,bienThe.getId(),quantity);
     }
     @GetMapping("/updateCart")
     public GioHangResponse updateGioHangChiTiet(

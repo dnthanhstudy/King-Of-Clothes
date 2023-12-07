@@ -52,7 +52,7 @@ public class GioHangServiceImpl implements GioHangService {
             if (gioHangChiTiet==null){
                 return new ResponseObject("Không có giỏ hàng chi tiết này");
             }
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong() + request.getSoLuong());
+            gioHangChiTiet.setSoLuong(request.getSoLuong());
             gioHangChiTiet = gioHangChiTietRepository.save(gioHangChiTiet);
             request.setSoLuong(gioHangChiTiet.getSoLuong());
             request.setTongTien(gioHangChiTiet.getTongTien());
@@ -103,7 +103,7 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     @Transactional
-    public String themVaoGioHang(Long idkh, Long idBienThe) {
+    public String themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
         BienTheEntity bienThe = bienTheRepository.findById(idBienThe).orElse(null);
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         assert khachHang != null;
@@ -121,7 +121,7 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTiet.setSoLuong(1);
             gioHangChiTiet.setTrangThai("ACTIVE");
         }else {
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
+            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
         }
         gioHangChiTietRepository.save(gioHangChiTiet);
         return "Đã thêm vào giỏ";

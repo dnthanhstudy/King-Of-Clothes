@@ -65,4 +65,8 @@ public interface HoaDonChiTietResponse {
     Double getTienShip();
     @Value("#{target.hoaDon.tongTien}")
     Double getTongTien();
+
+    @Value("#{target.hoaDon.moTa}")
+    String getMoTa();
+
 }

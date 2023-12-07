@@ -272,7 +272,7 @@
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
                                             <i class="fa fa-plus"></i>
@@ -311,6 +311,12 @@
     });
     $(document).on("click", '.cancelbutton', function () {
         $(this).closest(".show").removeClass('show');
+    });
+    $(document).on("input", '.slthis', function () {
+
+        let idghct = $(this).attr("data-idghct");
+
+         thayDoiSoLuong(idghct,0);
     });
     $(document).on("click", '.xacnhanthuoctinh', function () {
         let getGiaTri = $(this).val();
@@ -359,25 +365,38 @@
     }
 
     function thayDoiSoLuong(idghct, sl) {
-        let soLuongHienTai = parseInt($("#soluong-" + idghct).val()) + sl;
-        console.log(soLuongHienTai)
-        if (soLuongHienTai == 0) {
-            showError("Số lượng hiện tại không thể nhỏ hơn 0");
-            return;
+        let slgValue = $("#soluong-" + idghct).val().trim(); // Lấy giá trị từ input và loại bỏ các khoảng trắng ở đầu và cuối chuỗi
+
+        // Kiểm tra nếu giá trị nhập vào là rỗng hoặc không phải là số
+        let soLuongHienTai;
+        if (slgValue === '' ) {
+            soLuongHienTai = 1; // Gán giá trị mặc định là 1
+        }else if (isNaN(slgValue)){
+            soLuongHienTai = 1; // Gán giá trị mặc định là 1
+            $("#soluong-" + idghct).val(1)
+        }else {
+            soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên
+            if (soLuongHienTai<1){
+                showError("Số lượng không thể bé hơn 0");
+                return;
+            }
+            $("#soluong-" + idghct).val(soLuongHienTai)
         }
+
+        // Gọi API với giá trị soLuongHienTai
+
+        console.log(soLuongHienTai);
+
         $.ajax({
             url: '/api/user/giohang/thaydoisoluong',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
                 idGhct: idghct,
-                soLuong: sl
+                soLuong: soLuongHienTai
             }),
             success: async function (req) {
-                //   await ghct();
                 var data = req.data;
-                console.log(data)
-                $("#soluong-" + idghct).val(data.soLuong);
                 $("#tongtien-" + data.idGhct).text(data.tongTien);
                 tongTienTheoGhct(dsCheckbox);
             },
@@ -386,6 +405,7 @@
             }
         });
     }
+
 
     function muahang() {
         var listsp = getValByCheckbox();

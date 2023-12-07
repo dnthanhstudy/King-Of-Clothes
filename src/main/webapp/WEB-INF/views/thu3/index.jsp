@@ -64,12 +64,13 @@
 <script>
 
     var maGiaoHangIndex ;
-    function loadTrangThaiGiaoHang(maGiaoHang,trangThai) {
-        $.ajax({
+   async function loadTrangThaiGiaoHang(maGiaoHang,trangThai) {
+      await  $.ajax({
             url: '/api/thu3/dstrangthai/'+maGiaoHang,
             method: 'GET',
             contentType: 'application/json',
             success: function (response) {
+                console.log(response)
                 var ds = $("#dsTrangThaiGiaoHang");
                 ds.empty();
                 var dstrangthai = $("#thaydoitrangthai");
@@ -107,15 +108,16 @@
             }
         });
     }
-    $(document).on("click",".searchTrangThai",function() {
+    $(document).on("click",".searchTrangThai",async function() {
         let maGiaoHang = $(this).val();
         maGiaoHangIndex= maGiaoHang;
         let diaChi = $(this).attr("data-diachi");
         let idhd = $(this).attr("data-idhd");
         let trangthai = $(this).attr("data-trangthai");
-        $(".ghtc").val(idhd)
         $("#dc").text(diaChi)
-        loadTrangThaiGiaoHang(maGiaoHang,trangthai)
+      await  loadTrangThaiGiaoHang(maGiaoHang,trangthai)
+        $(".ghtc").val(idhd)
+
     });
     function thayDoiTrangThai(trangthai) {
         let idhd = $(".ghtc:first").val()
@@ -138,7 +140,7 @@
             contentType: 'application/json',
             success: function (response) {
                 $("#tenTrangThai").val("")
-                loadTrangThaiGiaoHang(maGiaoHangIndex)
+                loadTrangThaiGiaoHang(maGiaoHangIndex,'Đang giao hàng')
                 showSuccess("Thêm thành công")
             },
             error: function (xhr, status, error) {
@@ -161,6 +163,7 @@
                         pageLength: 10,
                         responsive:true,
                         data: response,
+                        order:[3,"desc"],
                         columns: [
                             {
                                 data: null,
@@ -174,7 +177,7 @@
                             {
                                 data: 'thoiGianDat',
                                 render: function(data, type, row) {
-                                    return `<span>\${getFormattedDate(data)} </span>`;
+                                    return `<span>\${formatDateInput(data)} </span>`;
                                 }
                             },
                             { data: 'tenNguoiNhan' },
@@ -193,7 +196,6 @@
 
 
                         ],
-                        // order: [[11, 'desc']],
                     })
 
                     //

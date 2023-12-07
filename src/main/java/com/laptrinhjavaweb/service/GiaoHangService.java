@@ -12,7 +12,7 @@ public interface GiaoHangService {
 
     List<HoaDonChiTietResponse> dsHoaDonChiTiet(Long idkh);
 
-    HoaDonEntity thanhToan(Long idkh, Long idttgh, String pttt,Double phiShip);
+    HoaDonEntity thanhToan(Long idkh, Long idttgh, String pttt,Double phiShip,String moTa,Double tongTien);
 
     ThongTinDatHangRequest datHangGiaoHangNhanh(Long idhd);
 }
