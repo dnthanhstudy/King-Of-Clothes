@@ -48,7 +48,6 @@ public class SanPhamConverter {
 	@Autowired
 	private KhuyenMaiConvert khuyenMaiConvert;
 
-
 	public SanPhamResponse convertToResponse(SanPhamEntity entity) {
 		SanPhamResponse response = modelMapper.map(entity, SanPhamResponse.class);
 		response.setDanhMuc(danhMucConverter.convertToResponse(entity.getDanhMuc()));
@@ -69,6 +68,7 @@ public class SanPhamConverter {
 			}
 			response.setGiaBan(giaBan);
 			response.setKhuyenMaiHienThiResponse(khuyenMaiHienThiResponse);
+
 		}
 		response.setThuocTinh(thuocTinhResponses);
 		response.setAnh(anhSanPhamResponses);
