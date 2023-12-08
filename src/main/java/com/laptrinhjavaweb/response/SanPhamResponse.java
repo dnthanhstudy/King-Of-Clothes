@@ -37,15 +37,7 @@ public class SanPhamResponse {
 
 	private List<AnhSanPhamResponse> anh;
 
-	private Boolean isCoupon;
-
 	private Double giaBan;
 
-	private Double giaTri;
-
-	private String loaiGiamGia;
-
-	private Integer soLuongKhuyenMai;
-
-	private String expired;
+	private KhuyenMaiHienThiResponse khuyenMaiHienThiResponse;
 }

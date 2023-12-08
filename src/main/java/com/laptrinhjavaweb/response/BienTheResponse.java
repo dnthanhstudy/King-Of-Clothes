@@ -18,4 +18,8 @@ public class BienTheResponse {
 	private String hinhAnh;
 	
 	private Integer soLuong;
+
+	private Double giaBan;
+
+	private KhuyenMaiHienThiResponse khuyenMaiHienThiResponse;
 }

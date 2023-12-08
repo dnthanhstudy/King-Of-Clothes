@@ -47,17 +47,14 @@
             </div>
         </div>
 
-        <div class="col-lg-7 col-md-7 col-sm-12">
+        <div class="col-lg-7 col-md-7 col-sm-12" id="product">
             <div class="khung">
                 <h3 class="font-weight-semi-bold product-name">${product.ten}</h3>
-                <c:set var="coupon" value="false"/>
-                <c:if test="${product.isCoupon}">
+                <c:if test="${not empty product.khuyenMaiHienThiResponse}">
                     <p>Kết thúc sau:
-                        <span class="expire">${product.expired}</span>
+                        <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
                     </p>
-                    <c:set var="coupon" value="true"/>
                 </c:if>
-
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -68,22 +65,21 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4 product-price product-price-origin">
+                <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd">
                     ${product.gia}
                 </h3>
-                <div class="mb-3 coupon">
-                    <c:if test="${coupon}">
-                        <del class="product-price-origin">${product.giaBan}</del>
-                        <c:if test="${product.loaiGiamGia eq '%'}">
-                            <span class="percent">${product.giaTri}</span>
-                            <span>${product.loaiGiamGia} Giảm</span>
+                <div class="mb-3">
+                    <c:if test="${not empty product.khuyenMaiHienThiResponse}">
+                        <del class="product-price-custom-vnd product-buy">${product.giaBan}</del>
+                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
+                            <span class="product-price-custom-percent coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                            <span class="coupon-type">% Giảm</span>
                         </c:if>
 
-                        <c:if test="${product.loaiGiamGia eq 'VNĐ'}">
-                            <span class="product-price-origin">${product.giaTri}</span>
-                            <span> Giảm</span>
+                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '0'}">
+                            <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                            <span class="coupon-type"> Giảm</span>
                         </c:if>
-
                     </c:if>
                 </div>
                 <c:forEach var="item" items="${product.thuocTinh}">
@@ -92,15 +88,15 @@
                         <form class="d-flex flex-wrap" id="form-${item.ten}">
                             <c:forEach var="itemGiaTri" items="${item.giaTriThuocTinh}">
                                 <div class="form-check mr-3 mb-2">
-                                    <input type="radio" name="thuoctinh-${item.ten}" class="form-check-input"
+                                    <input type="radio" name="giatrithuoctinh" id="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-input"
                                            value="${itemGiaTri.id}">
-                                    <label class="form-check-label">${itemGiaTri.giaTri}</label>
+                                    <label for="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-label">${itemGiaTri.giaTri}</label>
                                 </div>
                             </c:forEach>
                         </form>
                     </div>
                 </c:forEach>
-
+                <input type="hidden" value="${f:length(product.thuocTinh)}" id="len-attribute">
                 <p class="text-dark font-weight-medium mb-0 mr-3">Thương hiệu: ${product.thuongHieu.ten}</p>
 
                 <div class="d-flex align-items-center pt-2 mb-4">
@@ -118,7 +114,7 @@
                             </button>
                         </div>
                     </div>
-                    <p class="text-dark mb-0 mr-3">${product.soLuong} sản phẩm có sẵn</p>
+                    <p class="text-dark mb-0 mr-3 product-quantity">${product.soLuong} sản phẩm có sẵn</p>
                 </div>
                 <div class="d-flex align-items-center pt-2">
                     <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To
@@ -273,7 +269,7 @@
                             <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6 class="product-price-origin">${item.gia}</h6>
+                                    <h6 class="product-price-custom-vnd">${item.gia}</h6>
                                 </div>
                             </div>
                         </div>
@@ -284,10 +280,13 @@
     </div>
 </div>
 </div>
+<script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
+<script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
     var totalSeconds = null;
+
     function formatToTime() {
-        if(totalSeconds === null){
+        if (totalSeconds === null) {
             const input = $('.expire').text();
             var parts = input.split('-').map(Number);
             var days = parts[0];
@@ -312,11 +311,8 @@
         $('.expire').html(result);
         totalSeconds--;
     }
-    setInterval(formatToTime, 1000);
 
-</script>
-<script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
-<script>
+    setInterval(formatToTime, 1000);
 
     $("#addCart").click(function () {
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
