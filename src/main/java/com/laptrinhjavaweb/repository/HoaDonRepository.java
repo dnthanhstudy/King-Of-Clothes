@@ -1,8 +1,8 @@
 package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
+import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long> {
+public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaDonRepositoryCustom {
     @Query("select hd from HoaDonEntity hd order by hd.ngayDat desc")
     List<HoaDonEntity> dsHoaDon();
 

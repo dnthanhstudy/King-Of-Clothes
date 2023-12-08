@@ -1,15 +1,13 @@
 package com.laptrinhjavaweb.service.impl.banhang;
 
 
+import com.laptrinhjavaweb.converter.CaLamConverter;
+import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
-import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
-import com.laptrinhjavaweb.repository.GioHangRepository;
-import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
-import com.laptrinhjavaweb.repository.HoaDonRepository;
-import com.laptrinhjavaweb.repository.KhachHangRepository;
-import com.laptrinhjavaweb.repository.ThongTinMuaHangRepository;
+import com.laptrinhjavaweb.repository.*;
+import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import com.laptrinhjavaweb.utils.ResponseObject;
@@ -26,6 +24,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     GioHangRepository gioHangRepository;
+
     @Autowired
     HoaDonRepository hoaDonRepository;
 
@@ -34,6 +33,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     GioHangChiTietRepository gioHangChiTietRepository;
+
+    @Autowired
+    private CaLamRepository caLamRepository;
+
+    @Autowired
+    private CaLamConverter caLamConverter;
 
 //    @Autowired
 //    BienTheRepository bienTheRepository;
@@ -117,6 +122,36 @@ public class HoaDonServiceImpl implements HoaDonService {
         hoaDonRepository.delete(hoaDon);
          int sl =  gioHangChiTietRepository.layLaiDsGioHangChiTiet(idkh);
         return new ResponseObject("Thành công");
+    }
+
+    @Override
+    public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
+        CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
+        CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
+        List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
+//        Double tongTienMat = listHoaDon.stream().filter(
+//                item -> item.getPhuongThucThanhToan().equals("Tiền mặt")
+//        ).mapToDouble(item -> item.getTongTienHang()).sum();
+//        Double tongTienChuyenKhoan = listHoaDon.stream().filter(
+//                item -> item.getPhuongThucThanhToan().equals("Chuyển khoản")
+//        ).mapToDouble(item -> item.getTongTienHang()).sum();
+
+        Double tongTienMat = 0.0;
+        Double tongTienChuyenKhoan = 0.0;
+        for (HoaDonEntity hoaDonEntity : listHoaDon) {
+            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
+                tongTienMat += hoaDonEntity.getTongTienHang();
+            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
+                tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
+            }
+        }
+
+        result.setTongHoaDon(listHoaDon.size());
+        result.setTongTienMat(tongTienMat);
+        result.setTongTienChuyenKhoan(tongTienChuyenKhoan);
+        result.setTongTienTrongCa(result.getTongTienMat() + result.getTongTienChuyenKhoan());
+        result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
+        return result;
     }
 
 

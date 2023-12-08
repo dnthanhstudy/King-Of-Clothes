@@ -38,7 +38,8 @@
                         <c:forEach var="item" items="${product.anh}">
                             <div class="card product-item border-0">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img alt="Ảnh sản phẩm" class="img-fluid w-100" src="/assets/images/sanpham/${item.hinhAnh}"/>
+                                    <img alt="Ảnh sản phẩm" class="img-fluid w-100"
+                                         src="/assets/images/sanpham/${item.hinhAnh}"/>
                                 </div>
                             </div>
                         </c:forEach>
@@ -47,9 +48,14 @@
             </div>
         </div>
 
-        <div class="col-lg-7 col-md-7 col-sm-12">
+        <div class="col-lg-7 col-md-7 col-sm-12" id="product">
             <div class="khung">
                 <h3 class="font-weight-semi-bold product-name">${product.ten}</h3>
+                <c:if test="${not empty product.khuyenMaiHienThiResponse}">
+                    <p>Kết thúc sau:
+                        <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
+                    </p>
+                </c:if>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -60,41 +66,61 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4 product-price product-price-origin">${product.gia}</h3>
+                <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd">
+                    ${product.gia}
+                </h3>
+                <div class="mb-3">
+                    <c:if test="${not empty product.khuyenMaiHienThiResponse}">
+                        <del class="product-price-custom-vnd product-buy">${product.giaBan}</del>
+                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
+                            <span class="product-price-custom-percent coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                            <span class="coupon-type">% Giảm</span>
+                        </c:if>
+
+                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '0'}">
+                            <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                            <span class="coupon-type"> Giảm</span>
+                        </c:if>
+                    </c:if>
+                </div>
                 <c:forEach var="item" items="${product.thuocTinh}">
                     <div class="d-flex align-items-center mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">${item.ten}:</p>
                         <form class="d-flex flex-wrap" id="form-${item.ten}">
                             <c:forEach var="itemGiaTri" items="${item.giaTriThuocTinh}">
                                 <div class="form-check mr-3 mb-2">
-                                    <input type="radio" name="thuoctinh-${item.ten}" class="form-check-input" value="${itemGiaTri.id}">
-                                    <label class="form-check-label">${itemGiaTri.giaTri}</label>
+                                    <input type="radio" name="giatrithuoctinh" id="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-input"
+                                           value="${itemGiaTri.id}">
+                                    <label for="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-label">${itemGiaTri.giaTri}</label>
                                 </div>
                             </c:forEach>
                         </form>
                     </div>
                 </c:forEach>
-
+                <input type="hidden" value="${f:length(product.thuocTinh)}" id="len-attribute">
                 <p class="text-dark font-weight-medium mb-0 mr-3">Thương hiệu: ${product.thuongHieu.ten}</p>
 
                 <div class="d-flex align-items-center pt-2 mb-4">
-                    <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p><div class="input-group quantity mr-3" style="width: 130px;">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
+                    <p class="text-dark font-weight-medium mb-0 mr-3">Quantity:</p>
+                    <div class="input-group quantity mr-3" style="width: 130px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-minus">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
                     <input type="text" class="form-control bg-secondary text-center" id="quantity" value="1">
-                    <div class="input-group-btn">
-                        <button class="btn btn-primary btn-plus">
-                            <i class="fa fa-plus"></i>
-                        </button>
+                        <div class="input-group-btn">
+                            <button class="btn btn-primary btn-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                    <p class="text-dark mb-0 mr-3">${product.soLuong} sản phẩm có sẵn</p>
+                    <p class="text-dark mb-0 mr-3 product-quantity">${product.soLuong} sản phẩm có sẵn</p>
                 </div>
                 <div class="d-flex align-items-center pt-2">
-                    <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                    <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                        Cart
+                    </button>
                     <button class="btn btn-primary px-3 ms-3" onclick="muaNgay()">Mua ngay</button>
 
                 </div>
@@ -131,7 +157,8 @@
                         <h6>Bảng size bên shop :</h6>
                         <p>Size S: Dành cho người nặng từ 35kg - 41kg < 1m50</p>
                         <p>Size M: Dành cho người nặng từ 42kg - 53kg < 1m63</p>
-                        <p>Size L: Dành cho người nặng từ 54kg - 60kg < 1m70</p><p>Size XL: Dành cho người nặng từ 61kg - 69kg < 1m75</p>
+                        <p>Size L: Dành cho người nặng từ 54kg - 60kg < 1m70</p>
+                        <p>Size XL: Dành cho người nặng từ 61kg - 69kg < 1m75</p>
                         <p>Size XXL: Dành cho người nặng từ 70kg - 76kg < 1m80</p>
                     </div>
                     <div class="col-lg-6">
@@ -141,7 +168,8 @@
                         <p>- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.</p>
                         <p>- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).</p>
                         <p>- Giao hàng toàn quốc, thanh toán khi nhận hàng.</p>
-                        <p>📌 LƯU Ý:  Khi quý khách có gặp bất kì vấn đề gì về sản phẩm và vận chuyển đừng vội đánh giá mà hãy liên hệ Shop để đc hỗ trợ 1 cách tốt nhất nhé.</p>
+                        <p>📌 LƯU Ý: Khi quý khách có gặp bất kì vấn đề gì về sản phẩm và vận chuyển đừng vội đánh giá
+                            mà hãy liên hệ Shop để đc hỗ trợ 1 cách tốt nhất nhé.</p>
                     </div>
 
                 </div>
@@ -151,7 +179,8 @@
                     <div class="col-md-6">
                         <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
                         <div class="media mb-4">
-                            <img src="<c:url value='/template/web/img/user.jpg'/>" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                            <img src="<c:url value='/template/web/img/user.jpg'/>" alt="Image"
+                                 class="img-fluid mr-3 mt-1" style="width: 45px;">
                             <div class="media-body">
                                 <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
                                 <div class="text-primary mb-2">
@@ -161,7 +190,8 @@
                                     <i class="fas fa-star-half-alt"></i>
                                     <i class="far fa-star"></i>
                                 </div>
-                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
+                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at.
+                                    Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
                             </div>
                         </div>
                     </div>
@@ -173,23 +203,38 @@
                             <div class="rating">
                                 <input type="radio" id="star-1" name="star-radio" value="star-1">
                                 <label for="star-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path pathLength="360"
+                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                    </svg>
                                 </label>
                                 <input type="radio" id="star-2" name="star-radio" value="star-1">
                                 <label for="star-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path pathLength="360"
+                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                    </svg>
                                 </label>
                                 <input type="radio" id="star-3" name="star-radio" value="star-1">
                                 <label for="star-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path pathLength="360"
+                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                    </svg>
                                 </label>
                                 <input type="radio" id="star-4" name="star-radio" value="star-1">
                                 <label for="star-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path pathLength="360"
+                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                    </svg>
                                 </label>
                                 <input type="radio" id="star-5" name="star-radio" value="star-1">
                                 <label for="star-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path pathLength="360"
+                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+                                    </svg>
                                 </label>
                             </div>
                         </div>
@@ -219,12 +264,13 @@
                     <a href="/san-pham/${item.slug}" class="text-decoration-none">
                         <div class="card product-item border-0 hovers">
                             <div class="card-header  product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" style="height:350px" alt="">
+                                <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}"
+                                     style="height:350px" alt="">
                             </div>
                             <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6 class="product-price-origin">${item.gia}</h6>
+                                    <h6 class="product-price-custom-vnd">${item.gia}</h6>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +282,38 @@
 </div>
 </div>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
+<script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
+    var totalSeconds = null;
+
+    function formatToTime() {
+        if (totalSeconds === null) {
+            const input = $('.expire').text();
+            var parts = input.split('-').map(Number);
+            var days = parts[0];
+
+            var hours = parts[1];
+            var minutes = parts[2];
+            var seconds = parts[3];
+            totalSeconds = days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
+        }
+
+        var date = new Date(totalSeconds * 1000);
+
+        var formattedHours = ("0" + date.getUTCHours()).slice(-2);
+        var formattedMinutes = ("0" + date.getUTCMinutes()).slice(-2);
+        var formattedSeconds = ("0" + date.getUTCSeconds()).slice(-2);
+
+        var result = ("0" + date.getUTCDate()).slice(-2) + "d " +
+            formattedHours + "h : " +
+            formattedMinutes + "p : " +
+            formattedSeconds + "s";
+
+        $('.expire').html(result);
+        totalSeconds--;
+    }
+
+    setInterval(formatToTime, 1000);
 
     function checkedRadio() {
         var allGroupsChecked = true;
@@ -263,7 +340,7 @@
     $("#addCart").click( function () {
 
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-        if (idkh==-1){
+        if (idkh == -1) {
             window.location.href = "/login?is_not_login";
         }
         let checkallRadio = checkedRadio();
@@ -273,7 +350,7 @@
         }
         // Người dùng đã đăng nhập, thực hiện gửi Ajax request
         let arrData = [];
-        $("input[type=radio]:checked").each(function() {
+        $("input[type=radio]:checked").each(function () {
             arrData.push($(this).val());
         });
 
@@ -289,11 +366,10 @@
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
             }
         });
-
     });
 
    async function muaNgay() {
