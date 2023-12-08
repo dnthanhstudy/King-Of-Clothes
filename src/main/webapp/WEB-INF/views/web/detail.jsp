@@ -50,11 +50,7 @@
         <div class="col-lg-7 col-md-7 col-sm-12" id="product">
             <div class="khung">
                 <h3 class="font-weight-semi-bold product-name">${product.ten}</h3>
-                <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                    <p>Kết thúc sau:
-                        <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
-                    </p>
-                </c:if>
+
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -65,20 +61,29 @@
                     </div>
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
+                <c:if test="${not empty product.khuyenMaiHienThiResponse}">
+                    <p>Kết thúc sau:
+                        <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
+                    </p>
+                </c:if>
                 <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd">
-                    ${product.gia}
+                  ${product.giaBan}
                 </h3>
                 <div class="mb-3">
                     <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                        <del class="product-price-custom-vnd product-buy">${product.giaBan}</del>
+                        <del class="product-price-custom-vnd product-buy">${product.gia}</del>
                         <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
-                            <span class="product-price-custom-percent coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
-                            <span class="coupon-type">% Giảm</span>
+                            <div class="badge rounded-pill text-bg-danger">
+                                <span class="product-price-custom-percent coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                                <span class="coupon-type">% Giảm</span>
+                            </div>
                         </c:if>
 
                         <c:if test="${product.khuyenMaiHienThiResponse.loai eq '0'}">
-                            <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
-                            <span class="coupon-type"> Giảm</span>
+                            <div class="badge rounded-pill text-bg-danger">
+                                <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                                <span class="coupon-type"> Giảm</span>
+                            </div>
                         </c:if>
                     </c:if>
                 </div>
