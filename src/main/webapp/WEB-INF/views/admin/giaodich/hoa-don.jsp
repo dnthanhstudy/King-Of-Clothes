@@ -44,7 +44,7 @@
                                 <div class="row my-2">
                                     <div class="col">
                                         <strong>Lưu ý cho shop:</strong>
-                                        <span>abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</span>
+                                        <span>Hi </span>
                                     </div>
                                 </div>
                             </div>
@@ -348,16 +348,16 @@
                                 <div class="col-8"></div>
                                 <div class="col-4">
                                     <div class="d-flex justify-content-between">
-                                        <h6>Tiền ship:</h6>
-                                        <h6>25.000 VND</h6>
+                                        <h6>Tiền sản phẩm:</h6>
+                                        <h6 id="tiensp">500.000 VND</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <h6>Tiền sản phẩm:</h6>
-                                        <h6>500.000 VND</h6>
+                                        <h6>Tiền ship:</h6>
+                                        <h6 id="tienship">25.000 VND</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6>Tổng tiền hàng:</h6>
-                                        <h6>525.000 VND</h6>
+                                        <h6 id="tienhang">525.000 VND</h6>
                                     </div>
                                 </div>
                             </div>
@@ -465,6 +465,8 @@
         </div>
     </div>
 </section>
+<%--<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>--%>
+
 <script>
     loadDsHoaDon()
   function loadDsHoaDon() {
@@ -500,11 +502,11 @@
                 </tr>
          `)
       })
-      $("#tblHoaDon").dataTable({
-          destroy: true,
-          stripeClasses: ['w-100'],
-          paging:false
-      })
+      // $("#tblHoaDon").dataTable({
+      //     destroy: true,
+      //     stripeClasses: ['w-100'],
+      //     paging:false
+      // })
   }
    function chiTietHoaDon(idhd) {
        $.ajax({
@@ -517,6 +519,9 @@
               $("#tennguoinhan").text(data.tenNguoiNhan)
               $("#sodienthoai").text(data.soDienThoai)
               $("#diachi").text(data.diaChiNguoiNhan)
+              $("#tiensp").text(convertVND(data.tongTienHdct))
+              $("#tienship").text(convertVND(data.tienShip))
+              $("#tienhang").text(convertVND(data.tongTien))
                let cart = $("#cart")
                cart.empty();
                let html = "";
@@ -549,7 +554,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Đơn giá</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.giaTien}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(item.giaTien)}</h5>
                             </div>
                         </div>
                     </div>
@@ -565,7 +570,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Thành tiền</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black" >\${item.tongTienHdct}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black" >\${convertVND(item.tongTienHdct)}</h5>
                             </div>
                         </div>
                     </div>

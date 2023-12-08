@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -36,5 +37,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='DANGGIAOHANG' order by hd.ngayGiaoHang")
     List<HoaDonResponse> dsHoaDonDangGiao();
+
+    HoaDonEntity findByMaGiaoHang(String maGiaoHang);
+    @Modifying
+    @Query("update HoaDonEntity hd set hd.trangThai=:trangthai where hd.maGiaoHang=:magiaohang")
+    void thayDoiTrangThaiGiaoHangTheoMaGiaoHang(@Param("magiaohang")String maGiaoHang,@Param("trangthai")String trangThai);
 
 }

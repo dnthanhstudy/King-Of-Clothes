@@ -57,13 +57,10 @@ public class KhachHangAPI {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody KhachHangRequest khachHangRequest) {
+    @ResponseBody
+    public ResponseEntity<?> registerUser(@RequestBody KhachHangRequest khachHangRequest) {
         KhacHangResponse result = khachHangService.register(khachHangRequest);
-        if (result != null) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Đăng ký không thành công", HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
 

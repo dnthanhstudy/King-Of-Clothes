@@ -10,4 +10,6 @@ public interface Thu3Service {
     List<TrangThaiGiaoHangResponse> dsTrangThaiDangGiao(String maGiaoHang);
 
     List<HoaDonResponse> dsHoaDonDangGiao();
+
+    String themTrangThaiGiaoHang(String maGiaoHang,String tenTrangThai);
 }

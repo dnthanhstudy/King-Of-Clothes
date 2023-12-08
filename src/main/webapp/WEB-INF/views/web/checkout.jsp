@@ -161,90 +161,7 @@
                 </div>
             </div>
             <div id="hdct">
-                <div class="row mt-3" style="border-bottom: 1px solid #dedede">
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="/template/web/img/anh2.png" class="img-fluid rounded-start " alt="...">
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Áo polo nam aelimited</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: Trắng,Size M</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">300000</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">2</h6>
-                    </div>
-                    <div class="col-1 mt-3">
-                        <h6 class="card-title">600000</h6>
-                    </div>
-                </div>
-                <div class="row mt-3" style="border-bottom: 1px solid #dedede">
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="/template/web/img/anh2.png" class="img-fluid rounded-start " alt="...">
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Áo polo nam aelimited</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: Trắng,Size M</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">300000</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">2</h6>
-                    </div>
-                    <div class="col-1 mt-3">
-                        <h6 class="card-title">600000</h6>
-                    </div>
-                </div>
-                <div class="row mt-3" style="border-bottom: 1px solid #dedede">
-                    <div class="col-5">
-                        <div class="mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-2">
-                                    <img src="/template/web/img/anh2.png" class="img-fluid rounded-start " alt="...">
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Áo polo nam aelimited</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: Trắng,Size M</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">300000</h6>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <h6 class="card-title">2</h6>
-                    </div>
-                    <div class="col-1 mt-3">
-                        <h6 class="card-title">600000</h6>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -462,7 +379,7 @@
             data: data,
             success: function(response) {
                 dsthongtinmuahang()
-              //  getAddressDefault()
+                getAddressDefault()
                 showSuccess(response.data);
             },
             error: function(xhr, status, error) {
@@ -488,6 +405,7 @@
                 showSuccess(response.data);
             },
             error: function(xhr, status, error) {
+                showError("Lỗi ")
                 console.log('Có lỗi xảy ra: ' + error);
             }
         });

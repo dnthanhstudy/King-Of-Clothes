@@ -92,6 +92,7 @@
                     <div class="col-12 col-sm-7">
                         <input type="date" id="ngaySinh" name="ngaySinh" class="form-control">
                     </div>
+                    <input type="hidden" id="moTa" name="moTa" class="form-control">
                 </div>
             </div>
             <div class="col-4 text-center mt-5">
@@ -148,7 +149,6 @@
                 $('#soDienThoai').val(req.soDienThoai);
                 $('#email').val(req.email);
                 var date = new Date(req.ngaySinh);
-                console.log(moment(date).format('YYYY-MM-DD'))
                 $('#ngaySinh').val(moment(date).format('YYYY-MM-DD'));
                 $('.gioiTinh').each((index, item) => {
                     if($(item).val() === req.gioiTinh){

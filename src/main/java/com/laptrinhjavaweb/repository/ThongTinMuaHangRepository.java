@@ -25,4 +25,7 @@ public interface ThongTinMuaHangRepository extends JpaRepository<ThongTinMuaHang
 
     @Query("select tt from ThongTinMuaHangEntity tt where tt.id =:idtt")
     ThongTinMuaHangResponse getThongTinMuaHangByIdTT(@Param("idtt")Long idThongTinMuaHang);
+    @Query(value = "update thongtinmuahang set trangthai = 'DEFAULT' WHERE id =:idtt",nativeQuery = true)
+    @Modifying
+    void setDefault(@Param("idtt")Long idtt);
 }
