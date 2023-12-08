@@ -35,9 +35,33 @@
                     <tbody >
                     <tr>
                         <td>1</td>
-                        <td>Hd01</td>
+                        <td>HD01</td>
                         <td>Tuấn</td>
                         <td>73</td>
+                        <td>50</td>
+                        <td>Chi tiết</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>HD02</td>
+                        <td>Lan</td>
+                        <td>15</td>
+                        <td>10</td>
+                        <td>Chi tiết</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>HD03</td>
+                        <td>An</td>
+                        <td>45</td>
+                        <td>35</td>
+                        <td>Chi tiết</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>HD04</td>
+                        <td>Tuấn Nam</td>
+                        <td>75</td>
                         <td>50</td>
                         <td>Chi tiết</td>
                     </tr>

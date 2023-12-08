@@ -77,9 +77,9 @@
                 <div class="col-9">
                     <h4>Danh sách hóa đơn</h4>
                 </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-outline-success">Tạo hoá đơn</button>
-                </div>
+<%--                <div class="col-3">--%>
+<%--                    <button type="button" class="btn btn-outline-success">Tạo hoá đơn</button>--%>
+<%--                </div>--%>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
@@ -98,28 +98,84 @@
                     </tr>
                     </thead>
                     <tbody >
+                    <tr>
+                        <td>1</td>
+                        <td>HD01</td>
+                        <td>An</td>
+                        <td>12/11/2023</td>
+                        <td>1.500.000 VNĐ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đã thanh toán</td>
+                        <td>Chi tiết</td>
+
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>HD02</td>
+                        <td>Tuấn Anh</td>
+                        <td>11/11/2023</td>
+                        <td>500.000 VNĐ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đã thanh toán</td>
+                        <td>Chi tiết</td>
+
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>HD03</td>
+                        <td>Thùy</td>
+                        <td>12/10/2023</td>
+                        <td>350.000 VNĐ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đã thanh toán</td>
+                        <td>Chi tiết</td>
+
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>HD04</td>
+                        <td>Thủy</td>
+                        <td>01/11/2023</td>
+                        <td>450.000 VNĐ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đã thanh toán</td>
+                        <td>Chi tiết</td>
+
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>HD05</td>
+                        <td>Nam Anh</td>
+                        <td>29/11/2023</td>
+                        <td>655.000 VNĐ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đã thanh toán</td>
+                        <td>Chi tiết</td>
+
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <nav class="mt-2">
-            <ul class="pagination pagination-gutter pagination-primary  no-bg">
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-left"></i></a>
-                </li>
-                <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                <li class="page-item page-indicator">
-                    <a class="page-link" href="javascript:void(0)">
-                        <i class="la la-angle-right"></i></a>
-                </li>
-            </ul>
-        </nav>
+<%--        <nav class="mt-2">--%>
+<%--            <ul class="pagination pagination-gutter pagination-primary  no-bg">--%>
+<%--                <li class="page-item page-indicator">--%>
+<%--                    <a class="page-link" href="javascript:void(0)">--%>
+<%--                        <i class="la la-angle-left"></i></a>--%>
+<%--                </li>--%>
+<%--                <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>--%>
+<%--                </li>--%>
+<%--                <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>--%>
+<%--                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>--%>
+<%--                <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>--%>
+<%--                <li class="page-item page-indicator">--%>
+<%--                    <a class="page-link" href="javascript:void(0)">--%>
+<%--                        <i class="la la-angle-right"></i></a>--%>
+<%--                </li>--%>
+<%--            </ul>--%>
+<%--        </nav>--%>
+        <ul id="pagination" class="d-flex justify-content-center"></ul>
 
     </div>
 </div>
