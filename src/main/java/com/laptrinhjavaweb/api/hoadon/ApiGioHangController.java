@@ -49,7 +49,7 @@ public class ApiGioHangController {
     }
 
     @GetMapping("/addcart")
-    public String themSanPhamVaoGio(
+    public Long themSanPhamVaoGio(
             @RequestParam("data") String params,
             @RequestParam("idkh") Long idkh,
             @RequestParam("quantity") Integer quantity

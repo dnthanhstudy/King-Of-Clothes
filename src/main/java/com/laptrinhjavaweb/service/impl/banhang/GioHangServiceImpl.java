@@ -103,7 +103,7 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     @Transactional
-    public String themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
+    public Long themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
         BienTheEntity bienThe = bienTheRepository.findById(idBienThe).orElse(null);
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         assert khachHang != null;
@@ -118,13 +118,13 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTiet = new GioHangChiTietEntity();
             gioHangChiTiet.setBienThe(bienThe);
             gioHangChiTiet.setGioHang(khachHang.getGioHangEntities());
-            gioHangChiTiet.setSoLuong(1);
+            gioHangChiTiet.setSoLuong(quantity);
             gioHangChiTiet.setTrangThai("ACTIVE");
         }else {
             gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
         }
-        gioHangChiTietRepository.save(gioHangChiTiet);
-        return "Đã thêm vào giỏ";
+      gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
+        return gioHangChiTiet.getBienThe().getId();
     }
 
     @Override

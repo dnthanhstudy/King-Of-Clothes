@@ -95,7 +95,7 @@
                 </div>
                 <div class="d-flex align-items-center pt-2">
                     <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
-                    <button class="btn btn-primary px-3 ms-3">Mua ngay</button>
+                    <button class="btn btn-primary px-3 ms-3" onclick="muaNgay()">Mua ngay</button>
 
                 </div>
             </div>
@@ -260,17 +260,17 @@
 
         return allGroupsChecked;
     }
-    $("#addCart").click(function () {
+    $("#addCart").click( function () {
+
+        const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+        if (idkh==-1){
+            window.location.href = "/login?is_not_login";
+        }
         let checkallRadio = checkedRadio();
         if (!checkallRadio){
             showError("Bạn phải chọn đầy đủ loại")
             return;
         }
-        const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-        if (idkh==-1){
-            window.location.href = "/login?is_not_login";
-        }
-
         // Người dùng đã đăng nhập, thực hiện gửi Ajax request
         let arrData = [];
         $("input[type=radio]:checked").each(function() {
@@ -279,8 +279,6 @@
 
         var spcosan = <c:out value="${product.soLuong}" />;
         var quantity = $("#quantity").val();
-        console.log(spcosan)
-        console.log(quantity)
         if (quantity>spcosan){
             showError("Số lượng của cửa hàng không đủ");
             return;
@@ -298,4 +296,37 @@
 
     });
 
+   async function muaNgay() {
+       const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+       if (idkh==-1){
+           window.location.href = "/login?is_not_login";
+       }
+       let checkallRadio = checkedRadio();
+       if (!checkallRadio){
+           showError("Bạn phải chọn đầy đủ loại")
+           return;
+       }
+       // Người dùng đã đăng nhập, thực hiện gửi Ajax request
+       let arrData = [];
+       $("input[type=radio]:checked").each(function() {
+           arrData.push($(this).val());
+       });
+
+       var spcosan = <c:out value="${product.soLuong}" />;
+       var quantity = $("#quantity").val();
+       if (quantity>spcosan){
+           showError("Số lượng của cửa hàng không đủ");
+           return;
+       }
+       $.ajax({
+           url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
+           method: 'GET',
+           success: function (req) {
+               window.location.href="/cart?idbienthe="+req;
+           },
+           error: function(xhr, status, error) {
+               console.log('Có lỗi xảy ra: ' + error);
+           }
+       });
+    }
 </script>
