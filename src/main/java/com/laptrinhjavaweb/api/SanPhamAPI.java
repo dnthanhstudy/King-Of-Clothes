@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -91,6 +92,12 @@ public class SanPhamAPI {
 	public ResponseEntity<?> delete(@PathVariable(name = "slug") String slug){
 		sanPhamService.delete(slug);
 		return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+	}
+
+	@GetMapping("/random")
+	public ResponseEntity<?> randomProduct(){
+		List<SanPhamResponse> results = sanPhamService.random(null,null, null, 1, null, 6);
+		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
 }
