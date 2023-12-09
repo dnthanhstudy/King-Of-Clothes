@@ -31,26 +31,26 @@
                     <div class="card-body">
                         <div class="text-center">
                             <div class="mb-5">
-                                <h1 class="display-4">Change password?</h1>
-                                <p>Enter the code you were provided to change your password.</p>
-                                <p>The code is valid in 5 minutes</p>
+                                <h1 class="display-4">Đổi mật khẩu?</h1>
+                                <p>Nhập mã bạn được cung cấp để thay đổi mật khẩu.</p>
+                                <p>Mã có giá trị trong 5 phút</p>
                             </div>
                         </div>
 
                         <!-- Form Group -->
                         <div class="js-form-message form-group">
-                            <label class="input-label">Code:</label>
-                            <input required type="text" id="restToken" placeholder="Code" class="form-control form-control-lg"/>
-                            <label class="input- mt-3">New Password</label>
-                            <input required type="password" id="matKhau" placeholder="New Password" class="form-control form-control-lg"/>
+                            <label class="input-label">Mã code:</label>
+                            <input required type="text" id="restToken" placeholder="Mã code" class="form-control form-control-lg"/>
+                            <label class="input- mt-3">Mật khẩu mới</label>
+                            <input required type="password" id="matKhau" placeholder="Mật khẩu mới" class="form-control form-control-lg"/>
                         </div>
                         <!-- End Form Group -->
 
-                        <button onclick="restPassword()" class="btn btn-lg btn-block btn-primary">Submit</button>
+                        <button onclick="restPassword()" class="btn btn-lg btn-block btn-primary">Xác nhận</button>
                     </div>
                 </div>
                 <div class="text-center">
-                    <small class="text-cap mb-4">Trusted by the world's best teams</small>
+                    <small class="text-cap mb-4">Được tin cậy bởi các đội tốt nhất thế giới</small>
 
                     <div class="w-85 mx-auto">
                         <div class="row justify-content-between">

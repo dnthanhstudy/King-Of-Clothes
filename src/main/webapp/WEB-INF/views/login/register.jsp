@@ -31,37 +31,37 @@
                     <div class="card-body">
                         <div class="text-center">
                             <div class="mb-5">
-                                <h1 class="display-4">Create your account</h1>
-                                <p>Already have an account? <a href="/login">Sign in here</a></p>
+                                <h1 class="display-4">Tạo tài khoản của bạn</h1>
+                                <p>Bạn có sẵn sàng để tạo một tai khoản? <a href="/login">Đăng nhập tại đây</a></p>
                             </div>
 
-                            <span class="divider text-muted mb-4">OR</span>
+                            <span class="divider text-muted mb-4">Hoặc</span>
                         </div>
                         <div>
                             <form action="" id="formRegister">
                                 <div class="form-row">
                                     <div class="col-sm-6">
-                                        <label class="input-label">Username</label>
+                                        <label class="input-label">Tên khách hàng</label>
                                         <div class="js-form-message form-group">
-                                            <input type="text" class="form-control form-control-lg" name="ten" id="ten" placeholder="Username">
+                                            <input type="text" class="form-control form-control-lg" name="ten" id="ten" placeholder="Tên khách hàng">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <label class="input-label">Phone</label>
+                                        <label class="input-label">Số điện thoại</label>
                                         <div class="js-form-message form-group">
-                                            <input type="text" class="form-control form-control-lg" name="soDienThoai" id="soDienThoai" placeholder="Phone">
+                                            <input type="text" class="form-control form-control-lg" name="soDienThoai" id="soDienThoai" placeholder="Số điện thoại">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="js-form-message form-group">
-                                    <label class="input-label">Your email</label>
+                                    <label class="input-label">Địa chỉ email</label>
                                     <input type="email" class="form-control form-control-lg" name="email" id="email" placeholder="email@gmail.com">
                                 </div>
 
                                 <div class="js-form-message form-group">
-                                    <label class="input-label">Password</label>
+                                    <label class="input-label">Mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="matKhau" id="matKhau" placeholder="*************">
                                         <div class="js-toggle-password-target-1 input-group-append">
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="js-form-message form-group">
-                                    <label class="input-label">Confirm password</label>
+                                    <label class="input-label">Xác nhận mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="xacNhanMatKhau" id="xacNhanMatKhau" placeholder="*************">
                                         <div class="js-toggle-password-target-2 input-group-append">
@@ -87,17 +87,17 @@
                                 <div class="js-form-message form-group">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" >
-                                        <label class="custom-control-label text-muted" for="termsCheckbox"> I accept the <a href="#">Terms and Conditions</a></label>
+                                        <label class="custom-control-label text-muted" for="termsCheckbox">Tôi chấp nhận <a href="#">Các điều khoản và điều kiện</a></label>
                                     </div>
                                 </div>
-                                <button id="them" class="btn btn-lg btn-block btn-primary mb-2">Create an account</button>
+                                <button id="them" class="btn btn-lg btn-block btn-primary mb-2">Tạo tài khoản</button>
                             </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <small class="text-cap mb-4">Trusted by the world's best teams</small>
+                    <small class="text-cap mb-4">Được tin cậy bởi các đội tốt nhất thế giới</small>
 
                     <div class="w-85 mx-auto">
                         <div class="row justify-content-between">
