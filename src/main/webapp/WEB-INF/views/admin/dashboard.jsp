@@ -83,7 +83,7 @@
                                   fill="#EB8153"/>
                         </svg>
                         <h4 class="text-danger-emphasis"><i>Số đơn hàng đã xác nhận</i></h4>
-                        <h2 class="text-black mb-2 font-w600">300</h2>
+                        <h2 class="text-black mb-2 font-w600">300 <span> đơn hàng</span></h2>
 
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         </svg>
                         <h4 class="text-danger-emphasis"><i>Số đơn hàng cần xác nhận</i></h4>
 
-                        <h2 class="text-black mb-2 font-w600">125</h2><span> đơn hàng</span>
+                        <h2 class="text-black mb-2 font-w600">125 <span> đơn hàng</span></h2>
                     </div>
                 </div>
             </div>

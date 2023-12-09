@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.repository.KhuyenMaiSanPhamRepository;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
 import com.laptrinhjavaweb.response.AnhSanPhamResponse;
+import com.laptrinhjavaweb.response.KhuyenMaiHienThiResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
@@ -44,6 +45,8 @@ public class SanPhamConverter {
 	@Autowired
 	private KhuyenMaiSanPhamRepository khuyenMaiSanPhamRepository;
 
+	@Autowired
+	private KhuyenMaiConvert khuyenMaiConvert;
 
 	public SanPhamResponse convertToResponse(SanPhamEntity entity) {
 		SanPhamResponse response = modelMapper.map(entity, SanPhamResponse.class);
@@ -55,24 +58,17 @@ public class SanPhamConverter {
 				item -> thuocTinhConverter.convertToResponse(item)).collect(Collectors.toList());
 		KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThai(entity.getId(), SystemConstant.ACTICE);
 		if(khuyenMaiSanPhamEntity != null){
-			response.setIsCoupon(true);
-			KhuyenMaiEntity khuyenMaiEntity = khuyenMaiSanPhamEntity.getKhuyenMai();
-			String loaiGiammGia = null;
+			KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = khuyenMaiConvert.convertToHienThiResponse(khuyenMaiSanPhamEntity.getKhuyenMai());
 			Double giaBan = null;
-			Double giaTri = khuyenMaiEntity.getGiaTri();
-			if(khuyenMaiEntity.getLoai().equals("1")){
-				loaiGiammGia = "%";
+			Double giaTri = Double.parseDouble(khuyenMaiHienThiResponse.getGiaTri());
+			if(khuyenMaiHienThiResponse.getLoai().equals("1")){
 				giaBan = entity.getGia() * ((100 - giaTri) / 100);
 			}else{
-				loaiGiammGia = "VNĐ";
 				giaBan = entity.getGia() - giaTri;
 			}
-
-			response.setGiaTri(giaTri);
-			response.setSoLuongKhuyenMai(khuyenMaiEntity.getSoLuong());
-			response.setLoaiGiamGia(loaiGiammGia);
 			response.setGiaBan(giaBan);
-			response.setExpired(DateUtil.findDifference(khuyenMaiEntity.getNgayBatDau() , khuyenMaiEntity.getNgayKetThuc()));
+			response.setKhuyenMaiHienThiResponse(khuyenMaiHienThiResponse);
+
 		}
 		response.setThuocTinh(thuocTinhResponses);
 		response.setAnh(anhSanPhamResponses);

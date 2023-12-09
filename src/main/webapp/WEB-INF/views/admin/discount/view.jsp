@@ -408,8 +408,12 @@
                 console.log(response);
                 var khuyenMai = $('#cardKhuyenMai');
                 khuyenMai.empty();
-                var count = response.data.length;
-                $("#tongKM").text(count);
+                if (response.data && response.data.length !== undefined) {
+                    var count = response.data.length;
+                    $("#tongKM").text(count);
+                } else {
+                    $("#tongKM").text("0");
+                }
                 response.data.forEach(function (item) {
                     var ngayBatDauFMT = formatMicrosoftJSONDate(item.ngayBatDau);
                     var ngayKetThucFMT = formatMicrosoftJSONDate(item.ngayKetThuc);
@@ -419,7 +423,7 @@
                     var trangThaiStr = "";
                     var textColor = "";
                     var textFront = "text-info";
-                    if (item.trangThai == "DELETE") {
+                    if (item.trangThai == "INACTIVE") {
                         trangThaiStr = "Đã dừng";
                         textColor = "bgl-danger";
                         textFront = "text-danger";
