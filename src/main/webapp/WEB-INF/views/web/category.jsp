@@ -87,9 +87,9 @@
                                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                                 <div class="d-flex justify-content-center">
                                                     <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                                        <h6><del class="product-price-custom-vnd product-buy">${item.gia} </del></h6>
+                                                        <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
                                                     </c:if>
-                                                    <h6 class="product-price-custom-vnd"> ${item.giaBan}</h6>
+                                                    <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
                                                 </div>
                                             </div>
                                         </div>
