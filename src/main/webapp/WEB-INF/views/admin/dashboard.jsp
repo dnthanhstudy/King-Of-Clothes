@@ -44,9 +44,9 @@
                             <path d="M44.385 36.5066C45.015 35.8766 45.3983 35.0316 45.3983 34.08C45.3983 32.1916 43.8633 30.655 41.9733 30.655H36.8133V37.52H41.9733C42.91 37.52 43.77 37.12 44.385 36.5066Z"
                                   fill="#FFAB2D"></path>
                         </svg>
-                        <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng online</i></h4>
+                        <h5 class="text-danger-emphasis"><i>Doanh thu bán hàng online</i></h5>
 
-                        <h2 class="text-black mb-2 font-w600">$168,331.09</h2>
+                        <h4 class="text-black mb-2 font-w600">168.331.000 đ</h4>
                     </div>
                 </div>
             </div>
@@ -65,9 +65,9 @@
                             <path d="M44.385 36.5066C45.015 35.8766 45.3983 35.0316 45.3983 34.08C45.3983 32.1916 43.8633 30.655 41.9733 30.655H36.8133V37.52H41.9733C42.91 37.52 43.77 37.12 44.385 36.5066Z"
                                   fill="#FFAB2D"></path>
                         </svg>
-                        <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng offline</i></h4>
+                        <h5 class="text-danger-emphasis"><i>Doanh thu bán hàng offline</i></h5>
 
-                        <h2 class="text-black mb-2 font-w600">$24,098</h2>
+                        <h4 class="text-black mb-2 font-w600">24.098.000 đ</h4>
 
                     </div>
                 </div>
@@ -82,8 +82,8 @@
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
                                   fill="#EB8153"/>
                         </svg>
-                        <h4 class="text-danger-emphasis"><i>Số đơn hàng đã xác nhận</i></h4>
-                        <h2 class="text-black mb-2 font-w600">300 <span> đơn hàng</span></h2>
+                        <h5 class="text-danger-emphasis"><i>Số đơn hàng đã xác nhận</i></h5>
+                        <h4 class="text-black mb-2 font-w600">300 <span> đơn hàng</span></h4>
 
                     </div>
                 </div>
@@ -97,9 +97,9 @@
                             <path d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"
                                   fill="#FF782C"/>
                         </svg>
-                        <h4 class="text-danger-emphasis"><i>Số đơn hàng cần xác nhận</i></h4>
+                        <h5 class="text-danger-emphasis"><i>Số đơn hàng cần xác nhận</i></h5>
 
-                        <h2 class="text-black mb-2 font-w600">125 <span> đơn hàng</span></h2>
+                        <h4 class="text-black mb-2 font-w600">125 <span> đơn hàng</span></h4>
                     </div>
                 </div>
             </div>
