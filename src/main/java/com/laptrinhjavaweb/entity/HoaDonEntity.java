@@ -73,6 +73,9 @@ public class HoaDonEntity extends BaseEntity{
 	@Column(name = "tienship")
 	private Double tienShip;
 
+	@Column(name = "loai")
+	private String loai;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;

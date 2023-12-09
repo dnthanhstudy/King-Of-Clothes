@@ -841,13 +841,36 @@
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start" alt="...">
+                                         class="img-fluid rounded-start w-100" style="height: 100px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h6 class="card-title line-clamp-2">\${item.ten}</h6>
                                         <p class="card-text" style="color: #EB8153">\${item.gia}</p>
-                                        <input type="checkbox" class="card-checkbox" style="display: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label class="ms-2">Size:</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">M</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <label class="ms-2">Màu:</label>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">Đen</label>
                                     </div>
                                 </div>
                             </div>
@@ -935,22 +958,22 @@
     }
 
 
-    function toggleCheckbox(card) {
-        var checkbox = card.querySelector('.card-checkbox');
-        checkbox.checked = !checkbox.checked;
-
-        // Thay đổi màu nền của phần nội dung bên trong thẻ card khi được chọn hoặc hủy chọn
-        var cardBody = card.querySelector('.card-body');
-        if (checkbox.checked) {
-            cardBody.style.backgroundColor = '#e0e0e0'; // Màu khi được chọn
-            console.log('Card được chọn:', card.querySelector('.card-title').textContent);
-            // Thêm các hành động khác khi card được chọn
-        } else {
-            cardBody.style.backgroundColor = '#ffffff'; // Màu khi bị hủy chọn
-            console.log('Card bị hủy chọn:', card.querySelector('.card-title').textContent);
-            // Thêm các hành động khác khi card bị hủy chọn
-        }
-    }
+    // function toggleCheckbox(card) {
+    //     var checkbox = card.querySelector('.card-checkbox');
+    //     checkbox.checked = !checkbox.checked;
+    //
+    //     // Thay đổi màu nền của phần nội dung bên trong thẻ card khi được chọn hoặc hủy chọn
+    //     var cardBody = card.querySelector('.card-body');
+    //     if (checkbox.checked) {
+    //         cardBody.style.backgroundColor = '#e0e0e0'; // Màu khi được chọn
+    //         console.log('Card được chọn:', card.querySelector('.card-title').textContent);
+    //         // Thêm các hành động khác khi card được chọn
+    //     } else {
+    //         cardBody.style.backgroundColor = '#ffffff'; // Màu khi bị hủy chọn
+    //         console.log('Card bị hủy chọn:', card.querySelector('.card-title').textContent);
+    //         // Thêm các hành động khác khi card bị hủy chọn
+    //     }
+    // }
 </script>
 
 </body>
