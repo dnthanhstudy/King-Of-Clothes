@@ -12,7 +12,7 @@ public interface SanPhamRepositoryCustom {
 	List<Long> filters(Map<String, Object> params);
 
 	List<SanPhamEntity> random(
-			Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
+			Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
 			Integer limit);
 
 	List<SanPhamEntity> same(String slug);
