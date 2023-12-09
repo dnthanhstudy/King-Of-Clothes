@@ -34,7 +34,10 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "thongtinchitiet", columnDefinition = "TEXT")
 	private String thongTinChiTiet;
-	
+
+	@Column(name = "sanphambanchay")
+	private Integer sanPhamBanChay;
+
 	@Column(name = "sanphammoi")
 	private Integer sanPhamMoi;
 	

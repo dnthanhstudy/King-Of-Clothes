@@ -41,15 +41,18 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	}
 
 	@Override
-	public List<SanPhamEntity> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
+	public List<SanPhamEntity> random(Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
+									  Integer limit) {
 		String sql = "SELECT * FROM sanpham WHERE ";
 		if(sanPhamMoi != null){
+			sql += "sanphambanchay = 1";
+		}else if(sanPhamMoi != null){
 			sql += "sanmhammoi = 1";
 		}else if(sanPhamNhieuLuotXem != null){
 			sql += "sapnhamnhieuluotxem = 1";
 		}else if(sanPhamPhoBien != null){
 			sql += "sanphamnoibat = 1";
-		}else{
+		}else {
 			sql += "sanphamphobien = 1";
 		}
 		sql += " ORDER BY ngaytao DESC, RAND() LIMIT " + limit;

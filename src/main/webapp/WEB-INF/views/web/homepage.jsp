@@ -11,7 +11,6 @@
     <title>Trang chủ</title>
 </head>
 <body>
-    <!-- Featured Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -40,7 +39,7 @@
             </div>
         </div>
     </div>
-    <!-- Featured End -->
+
     <div class="container-fluid py-5">
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.popularProduct"/></span></h2>
@@ -49,6 +48,63 @@
             <div class="col">
                 <div class="owl-carousel related-carousel">
                     <c:forEach items="${productPopular}" var="item">
+                        <a href="/san-pham/${item.slug}" class="text-decoration-none">
+                            <div class="card product-item border-0 hovers">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" style="height:350px" alt="">
+                                </div>
+                                <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">${item.ten}</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6 class="product-price-custom-vnd">${item.gia}</h6>
+                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
+                                            <del class="product-price-custom-vnd product-buy">${item.giaBan}</del>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Sản phẩm nổi bật</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    <c:forEach items="${productOutstanding}" var="item">
+                        <a href="/san-pham/${item.slug}" class="text-decoration-none">
+                            <div class="card product-item border-0 hovers">
+                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                    <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}" style="height:350px" alt="">
+                                </div>
+                                <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
+                                    <h6 class="text-truncate mb-3">${item.ten}</h6>
+                                    <div class="d-flex justify-content-center">
+                                        <h6 class="product-price-custom-vnd">${item.gia}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Sản phẩm bán chạy</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    <c:forEach items="${productSeller}" var="item">
                         <a href="/san-pham/${item.slug}" class="text-decoration-none">
                             <div class="card product-item border-0 hovers">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
@@ -131,7 +187,8 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>
+<%--            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>--%>
+                <h2 class="section-title px-5"><span class="px-2">Gợi ý hôm nay</span></h2>
         </div>
         <div class="row px-xl-5 pb-3" id="product-home-page">
         </div>
@@ -141,6 +198,7 @@
         </div>
     </div>
     <!-- Products End -->
+    <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
     <script src="<c:url value='/assets/api/web/home-page.js'/>"></script>
 </body>
 </html>
