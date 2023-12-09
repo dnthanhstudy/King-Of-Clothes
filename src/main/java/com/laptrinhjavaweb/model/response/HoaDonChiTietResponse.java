@@ -33,9 +33,11 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.soLuong}")
     Integer getSoLuong();
 
-    @Value("#{target.bienThe.gia}")
+    @Value("#{target.giaTien}")
     BigDecimal getGiaTien();
 
+    @Value("#{target.giaTienKm}")
+    BigDecimal getGiaTienKm();
 
 
     @Value("#{target.bienThe.sanPham.danhMuc.ten}")

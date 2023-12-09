@@ -46,5 +46,4 @@ public interface HoaDonResponse {
     String getSoDienThoai();
 
 
-
 }

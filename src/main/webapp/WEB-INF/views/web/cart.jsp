@@ -42,7 +42,20 @@
 
             </div>
             <div>
-                <div class="row mt-2" style="border-bottom: 1px solid #dedede;height: 75px">
+                <div class="row mt-2" style="">
+                    <div class="col-5">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2 mt-3">
+                        <strong>Số tiền giảm : </strong>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <span><strong id="sotiengiam">0 ₫</strong></span>
+                    </div>
+                    <div class="col-1">
+                    </div>
+<%--                    --%>
                     <div class="col-5">
                     </div>
                     <div class="col-2">
@@ -262,7 +275,8 @@
         </div>
     </div>
     <div class="col-2">
-                    <span id="giatienbienthe-\${sp.idGhct}">\${sp.giaTien}₫</span>
+                    <b id="giatienbienthe-\${sp.idGhct}">\${sp.giaTienKm}₫</b>
+                    <p><del id="giatienbienthe-\${sp.idGhct}">\${sp.giaTien}₫</del></p>
                 </div>
  <div class="col-2">
                     <span>
@@ -282,7 +296,7 @@
                     </span>
                 </div>
     <div class="col-2">
-        <span id="tongtien-\${sp.idGhct}">\${sp.tongTien}</span>
+        <b id="tongtien-\${sp.idGhct}">\${sp.tongTien}₫</b>
     </div>
     <div class="col-1">
         <a>Xóa</a>
@@ -397,7 +411,7 @@
             }),
             success: async function (req) {
                 var data = req.data;
-                $("#tongtien-" + data.idGhct).text(data.tongTien);
+                $("#tongtien-" + data.idGhct).text(data.tongTien+"₫");
                 tongTienTheoGhct(dsCheckbox);
             },
             error: function (xhr, status, error) {

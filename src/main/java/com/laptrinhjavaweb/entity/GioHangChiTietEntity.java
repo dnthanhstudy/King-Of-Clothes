@@ -12,6 +12,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
 @Entity
 @Table(name = "giohangchitiet")
 @Getter
@@ -38,12 +44,46 @@ public class GioHangChiTietEntity extends BaseEntity{
 	@Column(name = "soluong")
 	private Integer soLuong;
 
+	public Double getGiaTien(){
+		if (bienThe.getGia()==null){
+			return bienThe.getSanPham().getGia()*soLuong;
+		}else return bienThe.getGia();
+	}
+
+	public Double getGiaTienKm(){
+		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
+		LocalDate ngayHienTai = LocalDate.now();
+
+		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = dsKhuyenMai.stream()
+				.filter(khuyenMai -> {
+					Date ngayBatDau = khuyenMai.getKhuyenMai().getNgayBatDau();
+					Date ngayKetThuc = khuyenMai.getKhuyenMai().getNgayKetThuc();
+
+					LocalDate localNgayBatDau = ngayBatDau.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate localNgayKetThuc = ngayKetThuc.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+					return !localNgayBatDau.isAfter(ngayHienTai) && !localNgayKetThuc.isBefore(ngayHienTai);
+				})
+				.findFirst();
+
+		if (khuyenMaiHopLeOptional.isPresent()) {
+			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
+			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
+			Double giaTri = Double.parseDouble(khuyenMai.getGiaTri());
+			if (khuyenMai.getLoai().equals("1"))
+				return getGiaTien()*giaTri;
+			return getGiaTien()-giaTri;
+		} else {
+			return getGiaTien();
+		}
+
+
+	}
+
 	@JsonProperty("getTongTien")
 	public Double getTongTien(){
-		if (bienThe.getGia()==null){
-			return sanPham.getGia()*soLuong;
-		}
-		return bienThe.getGia()*soLuong;
+		return getGiaTienKm()*soLuong;
+
 	}
 	public String getHinhAnh() {
 		return bienThe.getHinhAnh()==null?
