@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ChiTieuRepository extends JpaRepository<ChiTieuEntity, Long> {
-    @Query(value = "SELECT id,ngaysua, ngaytao, nguoisua, nguoitao, trangthai, loaichitieu,sotien, idvidientu  FROM duantotnghiep.chitieu where idvidientu = ?1", nativeQuery = true)
+    @Query(value = "SELECT id,ngaysua, ngaytao, nguoisua, nguoitao, trangthai, loaichitieu,sotien, idvidientu  FROM duantotnghiep.chitieu WHERE idvidientu = ?1 ORDER BY ngaytao DESC", nativeQuery = true)
     List<ChiTieuEntity> findByIdVi(Long id);
 }

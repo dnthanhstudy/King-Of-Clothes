@@ -103,11 +103,7 @@
                         loaiChiTieuStr = "Nạp tiền";
                     }
                     var ngayTaoFMT = new Date(item.ngayTao);
-                    var formattedDate = ngayTaoFMT.toLocaleDateString('en-GB', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric'
-                    });
+
                     var card = `
                         <div>
                             <div class="d-flex justify-content-between p-3" style="border-bottom: 1px solid #dedede;">
@@ -141,5 +137,30 @@
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+    function formatTimestamp(timestamp) {
+        // Create a new Date object using the timestamp
+        var date = new Date(timestamp);
+
+        // Extract hours, minutes, seconds, day, month, and year
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var day = date.getDate();
+        var month = date.getMonth() + 1; // Months are zero-based, so add 1
+        var year = date.getFullYear();
+
+        // Add leading zeros if needed
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        month = month < 10 ? '0' + month : month;
+        day = day < 10 ? '0' + day : day;
+
+        // Format the values
+        var formattedDate = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+
+        return formattedDate;
+    }
+
 
 </script>

@@ -140,7 +140,7 @@
 
 
 
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<%--<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>--%>
 <script src="<c:url value='/template/admin/vendor/global/global.min.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/chart.js/Chart.bundle.min.js'/>"></script>
@@ -151,7 +151,7 @@
 <!-- Apex Chart -->
 <script src="<c:url value='/template/admin/vendor/apexchart/apexchart.js'/>"></script>
 <!-- Dashboard 1 -->
-<script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>
+<%--<script src="<c:url value='/template/admin/js/dashboard/dashboard-1.js'/>"></script>--%>
 <script src="<c:url value='/template/admin/paging/jquery.twbsPagination.js'/>"></script>
 <script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script src="<c:url value='/template/admin/vendor/owl-carousel/owl.carousel.js'/>"></script>
