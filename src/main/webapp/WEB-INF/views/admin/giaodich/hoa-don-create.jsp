@@ -59,6 +59,30 @@
                                 </div>
                             </div>
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                <div class="col-2">
+                                    <h5>Size:</h5>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">M</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                <div class="col-2">
+                                    <h5>Màu:</h5>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">Xanh</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
                                 <h5>Thương hiệu: </h5>
                             </div>
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
