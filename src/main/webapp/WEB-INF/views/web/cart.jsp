@@ -42,20 +42,8 @@
 
             </div>
             <div>
+
                 <div class="row mt-2" style="">
-                    <div class="col-5">
-                    </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-2 mt-3">
-                        <strong>Số tiền giảm : </strong>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <span><strong id="sotiengiam">0 ₫</strong></span>
-                    </div>
-                    <div class="col-1">
-                    </div>
-<%--                    --%>
                     <div class="col-5">
                     </div>
                     <div class="col-2">
@@ -68,6 +56,20 @@
                     </div>
                     <div class="col-1">
                     </div>
+<%--                    --%>
+                    <div class="col-5">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2 mt-3">
+                        <strong>Số tiền giảm : </strong>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <span><strong id="sotiengiam">0 ₫</strong></span>
+                    </div>
+                    <div class="col-1">
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -222,6 +224,20 @@
         return html;
     }
 
+    function setGiaTien(giaTien,giaTienKm,idGhct) {
+        var html = '';
+        if (!giaTienKm){
+            html+=  `
+            <b id="giatienbienthe-km-\${sp.idGhct}">\${giaTien}₫</b>
+            `
+        }else{
+            html+=`
+            <b id="giatienbienthe-km-\${idGhct}">\${giaTienKm}₫</b>
+            <p><del id="giatienbienthe-\${idGhct}">\${giaTien}₫</del></p>
+            `
+        }
+        return html;
+    }
     async function ghct() {
         await $.ajax({
             url: '/api/user/giohang/' + idkh,
@@ -237,6 +253,8 @@
                 }else{
                     data.forEach(async function (sp){
                         const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
+                        const htmlGiaTien = setGiaTien(sp.giaTien,sp.giaTienKm,sp.idGhct);
+                        console.log(htmlGiaTien)
                         const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
                         var html =
                             `
@@ -248,11 +266,13 @@
                 <div class="mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-lg-3">
+<a href="/san-pham/\${sp.slugSanPham}">
                             <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">
+</a>
                         </div>
-<div class="col-lg-9">
+                        <div class="col-lg-9">
                             <div class="card-body">
-                                <h5 class="card-title line-clamp-1">\${sp.tenSanPham}</h5>
+                                <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>
                                 <div class="btn-group">
                                                     <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
                                                         Phân loại hàng
@@ -275,8 +295,7 @@
         </div>
     </div>
     <div class="col-2">
-                    <b id="giatienbienthe-\${sp.idGhct}">\${sp.giaTienKm}₫</b>
-                    <p><del id="giatienbienthe-\${sp.idGhct}">\${sp.giaTien}₫</del></p>
+                    \${htmlGiaTien}
                 </div>
  <div class="col-2">
                     <span>
@@ -349,8 +368,9 @@
             method: 'GET',
             success: function (req) {
                 $("#tenbienthe-"+idghct).text(req.tenBienThe);
-                $("#giatienbienthe-"+idghct).text(req.giaTien);
-                $("#tongtien-"+idghct).text(req.giaTien);
+                $("#giatienbienthe-"+idghct).text(req.giaTienKm+"₫");
+                $("#giatienbienthe-km-"+idghct).text(req.giaTien+"₫");
+                $("#tongtien-"+idghct).text(req.giaTien+"₫");
                 tongTienTheoGhct(dsCheckbox);
                 showSuccess("Thành công");
             },
@@ -485,8 +505,9 @@
             contentType: 'application/json',
             success: function (req) {
                 var data = req.data;
-                $("#thanhtien").html(data + "₫");
-                $("#tongthanhtoan").html(data + "₫");
+                $("#thanhtien").html(data.tongTien + "₫");
+                $("#tongthanhtoan").html(data.tongTienThuc + "₫");
+                $("#sotiengiam").html(data.soTienGiam + "₫");
                 $("#totalproduct").html(listCheckbox.length);
             },
             error: function (xhr, status, error) {

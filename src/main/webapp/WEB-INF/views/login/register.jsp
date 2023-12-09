@@ -38,7 +38,7 @@
                             <span class="divider text-muted mb-4">OR</span>
                         </div>
                         <div>
-                            <form id="registerForm">
+                            <form action="" id="formRegister">
                                 <div class="form-row">
                                     <div class="col-sm-6">
                                         <label class="input-label">Username</label>
@@ -64,17 +64,33 @@
                                     <label class="input-label">Password</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="matKhau" id="matKhau" placeholder="*************">
+                                        <div class="js-toggle-password-target-1 input-group-append">
+                                            <a class="input-group-text" href="javascript:;">
+                                                <i class="js-toggle-passowrd-show-icon-1 tio-visible-outlined"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="js-form-message form-group">
+                                    <label class="input-label">Confirm password</label>
+                                    <div class="input-group input-group-merge">
+                                        <input type="password" class="js-toggle-password form-control form-control-lg" name="xacNhanMatKhau" id="xacNhanMatKhau" placeholder="*************">
+                                        <div class="js-toggle-password-target-2 input-group-append">
+                                            <a class="input-group-text" href="javascript:;">
+                                                <i class="js-toggle-passowrd-show-icon-2 tio-visible-outlined"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="js-form-message form-group">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required=""
-                                               data-msg="Please accept our Terms and Conditions.">
+                                        <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" >
                                         <label class="custom-control-label text-muted" for="termsCheckbox"> I accept the <a href="#">Terms and Conditions</a></label>
                                     </div>
                                 </div>
-                                <button onclick="registerUser()" class="btn btn-lg btn-block btn-primary mb-2">Create an account</button>
+                                <button id="them" class="btn btn-lg btn-block btn-primary mb-2">Create an account</button>
                             </form>
                         </div>
                     </div>
@@ -118,6 +134,8 @@
         let soDienThoai = $("#soDienThoai").val();
         let email = $("#email").val();
         let matKhau = $("#matKhau").val();
+        let xacNhanMatKhau = $("#xacNhanMatKhau").val();
+        let termsCheckbox = $("#termsCheckbox").prop("checked");
 
         if ($("#ten").val() === "") {
             showError("User name không được để trống");
@@ -144,39 +162,51 @@
             showError("Mật khẩu phải có ít nhất 6 ký tự");
             return false;
         }
+        if (xacNhanMatKhau === "") {
+            showError("Xác nhận mật khẩu không được để trống");
+            return false;
+        } else if (xacNhanMatKhau !== matKhau) {
+            showError("Mật khẩu và xác nhận mật khẩu không khớp");
+            return false;
+        }
+        if (!termsCheckbox) {
+            showError("Bạn phải đồng ý với các điều khoản và điều kiện");
+            return false;
+        }
         return true;
     }
 
-    function registerUser() {
-        var ten = $("#ten").val();
-        var email = $("#email").val();
-        var soDienThoai = $("#soDienThoai").val();
-        var matKhau = $("#matKhau").val();
-
+    $('#them').on('click', (e) => {
+        e.preventDefault();
         if (validateForm()) {
+            let data = getDataFromForm();
             $.ajax({
-                type: "POST",
-                contentType: "application/json",
                 url: "/api/khach-hang/register",
-                data: JSON.stringify({
-                    "ten": ten,
-                    "email": email,
-                    "soDienThoai": soDienThoai,
-                    "matKhau": matKhau
-                }),
-                success: function (data) {
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
                     window.location.href = '/login';
                     console.log("success");
                 },
-                error: function (error) {
-                    console.log("Registration failed: " + error.responseText);
+                error: (error) => {
                     showError(error.responseJSON.error);
                 }
             });
         }
+    });
+
+    function getDataFromForm() {
+        let dataFromForm = $("#formRegister").serializeArray();
+        let data = {};
+        $.each(dataFromForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        return data;
     }
-
-
 </script>
 </body>
 </html>

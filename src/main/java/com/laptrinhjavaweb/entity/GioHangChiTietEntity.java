@@ -69,21 +69,27 @@ public class GioHangChiTietEntity extends BaseEntity{
 		if (khuyenMaiHopLeOptional.isPresent()) {
 			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
 			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
-			Double giaTri = Double.parseDouble(khuyenMai.getGiaTri());
+			Double giaTri = khuyenMai.getGiaTri();
 			if (khuyenMai.getLoai().equals("1"))
-				return getGiaTien()*giaTri;
+			{
+				return getGiaTien() * (100 - giaTri) / 100;
+			}
+
+// Tính giá sau khi giảm giá
 			return getGiaTien()-giaTri;
 		} else {
-			return getGiaTien();
+			return null;
 		}
 
 
 	}
 
-	@JsonProperty("getTongTien")
 	public Double getTongTien(){
-		return getGiaTienKm()*soLuong;
-
+		Double giaTienKm = getGiaTienKm();
+		if (giaTienKm==null){
+			return getGiaTien()*soLuong;
+		}
+		return giaTienKm*soLuong;
 	}
 	public String getHinhAnh() {
 		return bienThe.getHinhAnh()==null?

@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienGioHangResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,11 +21,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
 
     GioHangChiTietEntity findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(Long bienTheId,Long khachHangId,String trangThai);
 
-    @Query(value = "SELECT SUM(sp.gia*ghct.soluong) FROM giohangchitiet ghct  \n" +
-            "            JOIN ( SELECT bt.id AS id,CASE WHEN bt.gia IS NULL THEN sp.gia ELSE bt.gia END AS gia\n" +
-            "            FROM bienthe bt JOIN sanpham sp ON sp.id = bt.idsanpham) sp ON sp.id = ghct.idbienthe\n" +
-            "            WHERE ghct.id in(:lstghct)",nativeQuery = true)
-    BigDecimal tongTienTheoGioHangChiTiet(@Param("lstghct") List<Long> lstghct);
+    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam FROM vw_giohangchitiet_summary WHERE id IN (:lstghct)", nativeQuery = true)
+    TongTienGioHangResponse tongTienTheoGioHangChiTiet(@Param("lstghct") List<Long> lstghct);
 
     @Query(value = "SELECT * FROM giohangchitiet WHERE id IN (:dsghct)",nativeQuery = true)
     List<GioHangChiTietEntity> dsGioHangChiTiet(@Param("dsghct") List<Long> dsghct);
@@ -34,7 +32,7 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
             "set ghct.trangthai = 'ACTIVE' \n" +
             "where ghct.trangthai = 'PENDING' AND idkhachhang =:idkh",nativeQuery = true)
     @Modifying
-    int layLaiDsGioHangChiTiet(@Param("idkh")Long idkh);
+    Integer layLaiDsGioHangChiTiet(@Param("idkh")Long idkh);
 
     @Query(value ="select ghct from GioHangChiTietEntity ghct where ghct.id =:idghct")
     GioHangResponse getGioHangChiTietResponse(@Param("idghct")Long idghct);

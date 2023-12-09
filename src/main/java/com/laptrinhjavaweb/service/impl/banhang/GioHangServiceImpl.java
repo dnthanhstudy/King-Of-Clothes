@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienGioHangResponseClass;
 import com.laptrinhjavaweb.repository.BienTheRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
@@ -22,7 +23,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class GioHangServiceImpl implements GioHangService {
 
@@ -67,8 +71,8 @@ public class GioHangServiceImpl implements GioHangService {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
     @Override
-    public BigDecimal tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
-        return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
+    public TongTienGioHangResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
+        return new TongTienGioHangResponseClass(gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct));
     }
 
     @Override
@@ -85,8 +89,6 @@ public class GioHangServiceImpl implements GioHangService {
         hoaDon = hoaDonRepository.save(hoaDon);
         hoaDon.setMa("HD"+hoaDon.getId());
         hoaDonRepository.save(hoaDon);
-//        GioHang gioHang = gioHangRepository.findGioHangByIdkh(khachHang.getGioHang().getId());
-//        List<GioHangChiTietEntity> dsGioHangChiTiet = gioHangChiTietRepository.dsGioHangChiTietByIdKh(khachHang.getId());
         for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();
             HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();

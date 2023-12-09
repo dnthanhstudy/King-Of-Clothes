@@ -27,6 +27,7 @@ public class CaLamConverter {
 
     public CaLamResponse convertToResponse(CaLamEntity entity){
         CaLamResponse response = modelMapper.map(entity, CaLamResponse.class);
+        response.setMaNhanVien(entity.getNhanVien().getMa());
         return response;
     }
 }

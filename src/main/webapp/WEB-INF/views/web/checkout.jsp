@@ -679,7 +679,8 @@
                         <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: \${custom.tenBienThe}</h6>
                     </div>
                     <div class="col-2 mt-3">
-                        <h6 class="card-title">\${custom.giaTien}</h6>
+                        <h6 class="card-title">\${custom.giaTienKm}</h6>
+                        <p class="card-title"><del>\${custom.giaTien}</del></p>
                     </div>
                     <div class="col-2 mt-3">
                         <h6 class="card-title">\${custom.soLuong}</h6>
@@ -723,7 +724,7 @@
 
         $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
     }
-    tongThanhToan();
+        tongThanhToan();
     function datHang(){
         if ($(".sotiengiaohang").text().length === 0) {
             showError("Bạn chưa chọn địa chỉ giao hàng");

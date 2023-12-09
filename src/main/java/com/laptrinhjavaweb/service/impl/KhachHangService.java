@@ -214,25 +214,28 @@ public class KhachHangService implements IKhachHangService {
     }
 
     @Override
-    @Transactional
     public KhacHangResponse register(KhachHangRequest khachHangRequest) {
-        KhachHangEntity entity = khachHangRepository.findBySoDienThoaiOrEmail(
-                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
-        );
-        if (entity != null) {
-            throw new ClientError("Số điện thoại hoặc email đã tồn tại");
+        String xacNhanMatKhau = khachHangRequest.getXacNhanMatKhau();
+
+        if (xacNhanMatKhau == null || !khachHangRequest.getMatKhau().equals(xacNhanMatKhau.trim())) {
+            return null;
         }
 
-        KhachHangEntity khachHangEntity = new KhachHangEntity();
+        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
+                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
+        );
+        if (khachHangEntity != null) {
+            return null;
+        }
+
+        String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
+        khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
-        String encodedPassword = passwordEncoder.encode(khachHangRequest.getMatKhau());
-        khachHangEntity.setMatKhau(encodedPassword);
-        khachHangEntity.setTen(khachHangRequest.getTen());
-        khachHangEntity.setSoDienThoai(khachHangRequest.getSoDienThoai());
-        khachHangEntity.setEmail(khachHangRequest.getEmail());
+        khachHangEntity.setMatKhau(newPassword);
         khachHangRepository.save(khachHangEntity);
 
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
+        result.setId(khachHangEntity.getId());
         return result;
     }
 }

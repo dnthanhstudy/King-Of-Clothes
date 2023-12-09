@@ -28,7 +28,7 @@
                 <strong>Giờ hiện tại: </strong> <span id="thoiGian"></span>
             </div>
             <div class="col-3">
-                <h6 ><strong>Nhân viên:</strong> Dinh Anh Tuan</h6>
+                <h6 id="ma"><strong>Nhân viên:</strong> Dinh Anh Tuan</h6>
             </div>
         </div>
         <div class="card card-body mt-3" >
@@ -145,6 +145,22 @@
         $('#thoiGian').text(new Date().toLocaleString());
     }
     setInterval(time, 1000);
+
+    var ma = $("#ma").val();
+
+    $.ajax({
+        url: '/api/ca-lam/ket-ca?ma=' + ma + '&ngay=' + ngayTao,
+        method: 'GET',
+        dataType: 'json',
+        success: function (req) {
+
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    });
+
+
 </script>
 </body>
 </html>

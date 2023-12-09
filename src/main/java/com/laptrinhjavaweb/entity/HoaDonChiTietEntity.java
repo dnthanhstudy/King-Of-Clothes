@@ -48,15 +48,14 @@ public class HoaDonChiTietEntity extends BaseEntity{
 		}else return bienThe.getGia();
 	}
 
-
-	public Double getGiaTienKm(){
+	private Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){
 		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
 		LocalDate ngayHienTai = LocalDate.now();
 
-		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = dsKhuyenMai.stream()
-				.filter(khuyenMai -> {
-					Date ngayBatDau = khuyenMai.getKhuyenMai().getNgayBatDau();
-					Date ngayKetThuc = khuyenMai.getKhuyenMai().getNgayKetThuc();
+		return dsKhuyenMai.stream()
+				.filter(khuyenMai1 -> {
+					Date ngayBatDau = khuyenMai1.getKhuyenMai().getNgayBatDau();
+					Date ngayKetThuc = khuyenMai1.getKhuyenMai().getNgayKetThuc();
 
 					LocalDate localNgayBatDau = ngayBatDau.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					LocalDate localNgayKetThuc = ngayKetThuc.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -64,22 +63,29 @@ public class HoaDonChiTietEntity extends BaseEntity{
 					return !localNgayBatDau.isAfter(ngayHienTai) && !localNgayKetThuc.isBefore(ngayHienTai);
 				})
 				.findFirst();
-
+	}
+	public Double getGiaTienKm(){
+		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = getKhuyenMai();
 		if (khuyenMaiHopLeOptional.isPresent()) {
 			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
 			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
-			Double giaTri = Double.parseDouble(khuyenMai.getGiaTri());
+			Double giaTri = khuyenMai.getGiaTri();
 			if (khuyenMai.getLoai().equals("1"))
-				return getGiaTien()*giaTri;
+			{
+				return getGiaTien() * (100 - giaTri) / 100;
+			}
 			return getGiaTien()-giaTri;
 		} else {
 			return null;
 		}
-
-
 	}
+
 	public Double getTongTien(){
-		return getGiaTien()*soLuong;
+		Double giaTienKm = getGiaTienKm();
+		if (giaTienKm==null){
+			return getGiaTien()*soLuong;
+		}
+		return giaTienKm*soLuong;
 	}
 	public String getHinhAnh() {
 		return bienThe.getHinhAnh()==null?
