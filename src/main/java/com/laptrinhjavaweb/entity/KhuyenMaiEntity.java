@@ -5,15 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "khuyenmai")
@@ -33,7 +28,7 @@ public class KhuyenMaiEntity extends BaseEntity {
 	private String loai;
 	
 	@Column(name = "giatri")
-	private String giaTri;
+	private Double giaTri;
 	
 	@Column(name = "mota", columnDefinition = "TEXT")
 	private String moTa;

@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.entity.KhuyenMaiEntity;
 import com.laptrinhjavaweb.response.KhuyenMaiHienThiResponse;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;
 import com.laptrinhjavaweb.response.KhuyenMaiSanPhamResponse;
+import com.laptrinhjavaweb.resquest.KhuyenMaiRequest;
 import com.laptrinhjavaweb.utils.DateUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,14 @@ public class KhuyenMaiConvert {
         response.setListSanPham(list);
         return response;
     }
+    public KhuyenMaiEntity convertToEntity(KhuyenMaiRequest request) {
+        KhuyenMaiEntity entity = modelMapper.map(request, KhuyenMaiEntity.class);
+        return entity;
+    }
 
     public KhuyenMaiHienThiResponse convertToHienThiResponse(KhuyenMaiEntity entity) {
         KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = modelMapper.map(entity, KhuyenMaiHienThiResponse.class);
-        String giaTri = entity.getGiaTri();
+        String giaTri = String.valueOf(entity.getGiaTri());
         khuyenMaiHienThiResponse.setGiaTri(giaTri);
         khuyenMaiHienThiResponse.setExpired(DateUtil.findDifference(entity.getNgayBatDau() , entity.getNgayKetThuc()));
         return khuyenMaiHienThiResponse;

@@ -100,6 +100,70 @@
                     <tbody >
                     <tr>
                         <td>1</td>
+<<<<<<< HEAD
+                        <td>HD121</td>
+                        <td>Trần Nhật Minh</td>
+                        <td>01/12/2023</td>
+                        <td>400.000đ</td>
+                        <td>Tiền mặt</td>
+                        <td>Hoàn tất</td>
+                        <td>
+                            <button class="btn btn-primary">Chỉnh sửa</button>
+                            <button class="btn btn-danger">Hủy</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>HD122</td>
+                        <td>Hoàng Anh</td>
+                        <td>01/12/2023</td>
+                        <td>500.000đ</td>
+                        <td>Tiền mặt</td>
+                        <td>Hoàn tất</td>
+                        <td>
+                            <button class="btn btn-primary">Chỉnh sửa</button>
+                            <button class="btn btn-danger">Hủy</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>HD123</td>
+                        <td>Vũ Ngọc Huyền</td>
+                        <td>01/12/2023</td>
+                        <td>250.000đ</td>
+                        <td>Chuyển khoản</td>
+                        <td>Hoàn tất</td>
+                        <td>
+                            <button class="btn btn-primary">Chỉnh sửa</button>
+                            <button class="btn btn-danger">Hủy</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>HD124</td>
+                        <td>Cao Minh Ngọc</td>
+                        <td>01/12/2023</td>
+                        <td>660.000đ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đang giao</td>
+                        <td>
+                            <button class="btn btn-primary">Chỉnh sửa</button>
+                            <button class="btn btn-danger">Hủy</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>HD125</td>
+                        <td>Cao Minh Ngọc</td>
+                        <td>01/12/2023</td>
+                        <td>660.000đ</td>
+                        <td>Tiền mặt</td>
+                        <td>Đang giao</td>
+                        <td>
+                            <button class="btn btn-primary">Chỉnh sửa</button>
+                            <button class="btn btn-danger">Hủy</button>
+                        </td>
+=======
                         <td>HD01</td>
                         <td>An</td>
                         <td>12/11/2023</td>
@@ -152,6 +216,7 @@
                         <td>Đã thanh toán</td>
                         <td>Chi tiết</td>
 
+>>>>>>> tuan
                     </tr>
                     </tbody>
                 </table>

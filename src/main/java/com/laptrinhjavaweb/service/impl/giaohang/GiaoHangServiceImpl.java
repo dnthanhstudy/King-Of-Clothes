@@ -1,17 +1,21 @@
 package com.laptrinhjavaweb.service.impl.giaohang;
 
 
+import com.laptrinhjavaweb.entity.ChiTieuEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.ThongTinMuaHangEntity;
+import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.ThongTinMuaHangResponse;
+import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
+import com.laptrinhjavaweb.repository.ViDienTuRepository;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.ThongTinMuaHangService;
 import com.laptrinhjavaweb.support.supportgiaohang.DateUtil;
@@ -42,6 +46,13 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
     @Autowired
     private GioHangChiTietRepository gioHangChiTietRepository;
+
+
+    @Autowired
+    private ViDienTuRepository viDienTuRepository;
+
+    @Autowired
+    private ChiTieuRepository chiTieuRepository;
     private String diaChiBuuCuc ="Số 97 Thiên hiền , Phường Mỹ Đình 1, QUận Nam Từ Liêm , Hà Nội, Vietnam";
 
     private ThongTinDatHangRequest getThongTinDatHangRequest (List<SanPhamGhnApi> dssp,
@@ -122,7 +133,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
     @Override
     @Transactional
-    public HoaDonEntity thanhToan(Long idkh,Long idttgh ,String pttt,Double phiShip) {
+    public HoaDonEntity thanhToan(Long idkh,Long idttgh ,String pttt,Double phiShip,String mota,Double tongTien) {
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).get();
         ThongTinMuaHangEntity thongTinMuaHang = thongTinMuaHangService.findById(idttgh);
         HoaDonEntity hoaDon = hoaDonRepository.findHoaDonMoiDat(khachHang.getId());
@@ -135,7 +146,22 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setPhuongThucThanhToan(pttt);
         hoaDon.setTienShip(phiShip);
         hoaDon.setNgayThanhToan(DateUtil.dateNow());
+        hoaDon.setMoTa(mota);
         hoaDon.setTongTienHang(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()).doubleValue());
+        if (pttt.equals("THANHTOANNHANHANG")){
+            hoaDon.setTienKhachTra(tongTien);
+        }else{
+            hoaDon.setTienKhachTra(0D);
+        }
+        if (pttt.equals("VIDIENTU")){
+            ViDienTuEntity viDienTuEntity = viDienTuRepository.findByKhachHang(khachHang.getId());
+             ChiTieuEntity chiTieu  = new ChiTieuEntity();
+             chiTieu.setLoaiChiTieu(0);
+             chiTieu.setSoTien(tongTien);
+             chiTieu.setViDienTu(viDienTuEntity);
+             chiTieuRepository.save(chiTieu);
+             viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()-tongTien);
+        }
         int parameter = gioHangChiTietRepository.updateTrangThaiDaDatThanhCong(khachHang.getId());
         return hoaDonRepository.save(hoaDon);
     }

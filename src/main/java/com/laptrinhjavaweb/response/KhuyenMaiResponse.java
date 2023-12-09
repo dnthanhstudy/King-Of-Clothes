@@ -17,7 +17,7 @@ public class KhuyenMaiResponse {
 
     private String loai;
 
-    private String giaTri;
+    private Double giaTri;
 
     private Date ngayBatDau;
 
@@ -30,6 +30,10 @@ public class KhuyenMaiResponse {
     private String trangThai;
 
     private Date ngayTao;
+
+    private String nguoiTao;
+
+    private String moTa;
 
     private List<KhuyenMaiSanPhamResponse> listSanPham;
 }

@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienGioHangResponseClass;
 import com.laptrinhjavaweb.repository.BienTheRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
@@ -22,7 +23,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class GioHangServiceImpl implements GioHangService {
 
@@ -52,7 +56,7 @@ public class GioHangServiceImpl implements GioHangService {
             if (gioHangChiTiet==null){
                 return new ResponseObject("Không có giỏ hàng chi tiết này");
             }
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong() + request.getSoLuong());
+            gioHangChiTiet.setSoLuong(request.getSoLuong());
             gioHangChiTiet = gioHangChiTietRepository.save(gioHangChiTiet);
             request.setSoLuong(gioHangChiTiet.getSoLuong());
             request.setTongTien(gioHangChiTiet.getTongTien());
@@ -67,8 +71,8 @@ public class GioHangServiceImpl implements GioHangService {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
     @Override
-    public BigDecimal tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
-        return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
+    public TongTienGioHangResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
+        return new TongTienGioHangResponseClass(gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct));
     }
 
     @Override
@@ -85,8 +89,6 @@ public class GioHangServiceImpl implements GioHangService {
         hoaDon = hoaDonRepository.save(hoaDon);
         hoaDon.setMa("HD"+hoaDon.getId());
         hoaDonRepository.save(hoaDon);
-//        GioHang gioHang = gioHangRepository.findGioHangByIdkh(khachHang.getGioHang().getId());
-//        List<GioHangChiTietEntity> dsGioHangChiTiet = gioHangChiTietRepository.dsGioHangChiTietByIdKh(khachHang.getId());
         for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();
             HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();
@@ -103,7 +105,7 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     @Transactional
-    public String themVaoGioHang(Long idkh, Long idBienThe) {
+    public Long themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
         BienTheEntity bienThe = bienTheRepository.findById(idBienThe).orElse(null);
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         assert khachHang != null;
@@ -118,13 +120,13 @@ public class GioHangServiceImpl implements GioHangService {
             gioHangChiTiet = new GioHangChiTietEntity();
             gioHangChiTiet.setBienThe(bienThe);
             gioHangChiTiet.setGioHang(khachHang.getGioHangEntities());
-            gioHangChiTiet.setSoLuong(1);
+            gioHangChiTiet.setSoLuong(quantity);
             gioHangChiTiet.setTrangThai("ACTIVE");
         }else {
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
+            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
         }
-        gioHangChiTietRepository.save(gioHangChiTiet);
-        return "Đã thêm vào giỏ";
+      gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
+        return gioHangChiTiet.getBienThe().getId();
     }
 
     @Override

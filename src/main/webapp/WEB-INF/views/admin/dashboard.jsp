@@ -76,7 +76,7 @@
                     <div class="card-body text-center">
                         <svg class="mb-3 currency-icon" xmlns="http://www.w3.org/2000/svg" width="80"   fill="none"  height="80" viewBox="0 0 512 512">
                             <circle cx="40" cy="40" r="40" fill="white"></circle>
-                           <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z " fill="#EB8153"/></svg>
+                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z " fill="#EB8153"/></svg>
                         <h4 class="text-danger-emphasis"><i>Số hàng tồn kho</i></h4>
 
                         <h2 class="text-black mb-2 font-w600">555</h2>
@@ -86,14 +86,14 @@
         </div>
         <div class="row mt-5">
             <h5>Thống kê sản phẩm</h5>
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
-                    <p class="highcharts-description">
-                        Basic line chart showing trends in a dataset. This chart includes the
-                        <code>series-label</code> module, which adds a label to each line for
-                        enhanced readability.
-                    </p>
-                </figure>
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                <p class="highcharts-description">
+                    Basic line chart showing trends in a dataset. This chart includes the
+                    <code>series-label</code> module, which adds a label to each line for
+                    enhanced readability.
+                </p>
+            </figure>
         </div>
         <div class="row mt-3">
             <div class="col-xl-6 col-xxl-12">

@@ -1,8 +1,10 @@
 package com.laptrinhjavaweb.api.hoadon;
 
+import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
+import com.laptrinhjavaweb.service.Thu3Service;
 import com.laptrinhjavaweb.support.supportgiaohang.ApiResponse;
 import com.laptrinhjavaweb.support.supportgiaohang.ConvertJson;
 import com.laptrinhjavaweb.support.supportgiaohang.PreviewGiaoHang;
@@ -31,6 +33,9 @@ public class ApiGiaoHangController {
 
     @Autowired
     private HoaDonService hoaDonService;
+
+    @Autowired
+    private Thu3Service thu3Service;
     @Value("${tokenghn.string}")
     private String tokenghn;
     @Value("${urlgiaohang.string}")
@@ -71,7 +76,7 @@ public class ApiGiaoHangController {
     }
 
     @GetMapping("/datHang/{idhd}")
-    public ResponseEntity<?> datHang(@PathVariable(name = "idhd") Long idhd) {
+    public PreviewGiaoHang datHang(@PathVariable(name = "idhd") Long idhd) {
         final String uri = urlGiaoHang + "/create";
 
         // Tạo HttpHeaders và đặt các header
@@ -89,8 +94,12 @@ public class ApiGiaoHangController {
                 , new ParameterizedTypeReference<ApiResponse<PreviewGiaoHang>>() {
                 }
         );
+        HoaDonEntity hoaDon = hoaDonService.findById(idhd);
+        hoaDon.setMaGiaoHang(responseEntity.getMaHoaDon());
+        hoaDonService.saveHoaDon(hoaDon);
+
         // Xử lý khi yêu cầu thành công
-        return ResponseEntity.ok(responseEntity);
+        return responseEntity;
     }
 
     @GetMapping("/hdct/{idkh}")

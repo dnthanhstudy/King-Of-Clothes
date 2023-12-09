@@ -1,30 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 14-10-2023
-  Time: 11:24 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <title>Thêm khuyến mại</title>
 <section>
     <div class="content-body">
         <div class="container-fluid">
-            <!-- <div class="row page-titles mx-0">
-                <div class="col-sm-6 p-md-0">
-                    <div class="welcome-text">
-                        <h4>Hi, welcome back!</h4>
-                        <p class="mb-0">Validation</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Validation</a></li>
-                    </ol>
-                </div>
-            </div> -->
-            <!-- row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -37,51 +15,43 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-username">Loại khuyến mãi
+                                                <label class="col-lg-2 col-form-label" for="">Tên khuyến mãi
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <div class="basic-form">
-                                                        <form>
-                                                            <div class="form-group mb-0">
-                                                                <label class="radio-inline mr-3"><input type="radio" name="optradio"> Mã giảm giá hóa đơn</label>
-                                                                <label class="radio-inline mr-3"><input type="radio" name="optradio"> Mã giảm giá sản phẩm</label>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                    <input type="text" class="form-control" id="tenKM" name="val-text"
+                                                           placeholder="Nhập vào">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Tên khuyến mãi
-                                                    <span class="text-danger">*</span>
+                                                <label class="col-lg-2 col-form-label" for="">Mã khuyến mãi <span
+                                                        class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="val-text" name="val-text" placeholder="Nhập vào">
+                                                    <input type="text" class="form-control" id="maKM" name="val-text"
+                                                           placeholder="Nhập vào">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Mã khuyến mãi <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="val-email" name="val-text" placeholder="Nhập vào">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-datetime-local">Thời gian sử dụng mã
+                                                <label class="col-lg-2 col-form-label" for="">Thời gian sử dụng mã
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-3">
-                                                    <input type="datetime-local" class="form-control" id="val-password" name="val-datetime-local" placeholder="Choose a safe one..">
+                                                    <input type="datetime-local" class="form-control" id="ngayBatDau"
+                                                           name="val-datetime-local">
                                                 </div>
                                                 <div class="col-lg-3">
-                                                    <input type="datetime-local" class="form-control" id="val-password" name="val-datetime-local" placeholder="Choose a safe one..">
+                                                    <input type="datetime-local" class="form-control" id="ngayKetThuc"
+                                                           name="val-datetime-local">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Mô tả thêm <span class="text-danger"></span>
+                                                <label class="col-lg-2 col-form-label">Mô tả thêm <span
+                                                        class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <textarea class="form-control" id="val-suggestions" name="val-text" rows="2" placeholder="..."></textarea>
+                                                    <textarea class="form-control" id="moTa" name="val-text" rows="2"
+                                                              placeholder="..."></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,102 +69,103 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-username">Loại giảm giá | Mức giảm
+                                                <label class="col-lg-2 col-form-label" for="val-username">Loại giảm giá
+                                                    | Mức giảm
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <form action="#">
                                                         <div class="input-group mb-3">
                                                             <div class="input-group-prepend">
-                                                                <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Theo phần trăm</button>
-                                                                <div class="dropdown-menu">
-                                                                    <a class="dropdown-item">Theo mức tiền</a>
-                                                                </div> -->
-                                                                <select id="inputState" class="form-control default-select ">
+                                                                <select class="form-control default-select"
+                                                                        id="loaiGiamGia">
                                                                     <option selected="">Chọn loại</option>
-                                                                    <option >Theo phần trăm</option>
-                                                                    <option>Theo mức tiền</option>
+                                                                    <option value="1">Theo phần trăm</option>
+                                                                    <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="text" class="form-control" id="val-text" name="val-text" placeholder="Nhập giá trị">
+                                                            <input type="text" class="form-control" id="giaTriGiam"
+                                                                   name="val-text" placeholder="Nhập giá trị">
                                                         </div>
 
 
                                                     </form>
                                                 </div>
-                                                <!-- <div class="col-lg-3">
-                                                    <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Nhập giá trị">
-                                                </div> -->
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Mức giảm tối đa <span class="text-danger"></span>
+                                                <label class="col-lg-2 col-form-label" for="">Số lượng
+                                                    <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="val-text" name="val-text" placeholder="Nhập vào">
+                                                    <input type="text" class="form-control" id="soLuong" name="val-text"
+                                                           placeholder="Nhập vào">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Giá trị đơn hàng tối thiểu <span class="text-danger"></span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="val-text" name="val-text" placeholder="Nhập vào">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Tổng số lượng sử dụng <span class="text-danger"></span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="val-text" name="val-text" placeholder="Nhập vào">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-text">Sản phẩm áp dụng <span class="text-danger"></span>
+                                                <label class="col-lg-2 col-form-label" for="">Sản phẩm áp dụng <span
+                                                        class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <div class="col-lg-12 ml-auto">
-                                                        <button type="button" class="btn btn-primary light mb-2" data-toggle="modal" data-target=".bd-example-modal-lg">Thêm sản phẩm</button>
-                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <button type="button" class="btn btn-primary light mb-2"
+                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                            Thêm sản phẩm
+                                                        </button>
+                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1"
+                                                             role="dialog" aria-hidden="true" id="modalSanPham">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Thêm sản phẩm</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                                        </button>
+                                                                        <h5 class="modal-title">Danh sách sản phẩm</h5>
+                                                                        <div class="group123 ">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
+                                                                                 viewBox="0 0 512 512">
+                                                                                <style>svg {
+                                                                                    fill: #ebeef4
+                                                                                }</style>
+                                                                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                                                            </svg>
+                                                                            <input placeholder="Tìm sản phẩm" type="search" class="inputghichu w-100" id="searchButton">
+                                                                        </div>
+                                                                        <div>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal">
+                                                                                <span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <table id="example5" class="display" style="min-width: 845px">
-                                                                            <thead>
-                                                                            <tr>
-                                                                                <th>
-                                                                                    <div class="custom-control custom-checkbox ml-2">
+                                                                        <div class="d-flex justify-content-between">
+                                                                            <hr>
+                                                                            <table class="table table-hover table-striped">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th scope="col"><div class="custom-control custom-checkbox ml-2">
                                                                                         <input type="checkbox" class="custom-control-input" id="checkAll" required="">
                                                                                         <label class="custom-control-label" for="checkAll"></label>
-                                                                                    </div>
-                                                                                </th>
-                                                                                <th>Tên sản phẩm</th>
-                                                                                <th>Mã SP</th>
-                                                                                <th>Số lượng</th>
-                                                                                <th>Giá tiền</th>
-                                                                            </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                            <tr>
-                                                                                <td>
-                                                                                    <div class="custom-control custom-checkbox ml-2">
-                                                                                        <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                                                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>Áo khoác coolmate</td>
-                                                                                <td>Cool999</td>
-                                                                                <td>99</td>
-                                                                                <td>200.000VNĐ</td>
-                                                                            </tr>
-                                                                            </tbody>
-                                                                        </table>
+                                                                                    </div></th>
+                                                                                    <th scope="col">Tên SP</th>
+                                                                                    <th scope="col">Giá</th>
+                                                                                    <th scope="col">Danh muc</th>
+                                                                                    <th scope="col">Thương hiệu</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody class="tbody-product">
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div>
+                                                                            <ul id="pagination" class="d-flex justify-content-center"></ul>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Đóng</button>
-                                                                        <button type="button" class="btn btn-primary">Xác nhận</button>
+                                                                        <button type="button"
+                                                                                class="btn btn-danger light"
+                                                                                data-dismiss="modal">Đóng
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-primary" id="getValue" data-dismiss="modal">
+                                                                            Xác nhận
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -205,9 +176,8 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-lg-4 ml-auto">
-                                                    <a href="project-list.html" class="btn btn-success">Xác nhận</a>
-                                                    <a href="project-list.html" class="btn btn-danger">Hủy</a>
-                                                    <!-- <button type="button" class="btn btn-primary">Xác nhận</button> -->
+                                                    <a href="#" class="btn btn-success" id="addDiscount">Xác nhận</a>
+                                                    <a href="/admin/khuyen-mai" class="btn btn-danger">Hủy</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,3 +194,185 @@
         </div>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    var generatedNumbers = new Set();
+    let pageCurrent = 1;
+
+    ///pagination?page='+ pageCurrent+'&limit='+limit,
+    var genMa = "KOCS"+generateNumber();
+    $("#maKM").val(genMa);
+    function loadKhuyenMai() {
+        $.ajax({
+            url: '/api/san-pham',
+            method: 'GET',
+            success: function (response) {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<tr>
+                                 <td>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
+                                    </div>
+                                </td>
+                                <td>\${item.ten}</td>
+                                <td>\${item.gia}</td>
+                                <td>\${item.danhMuc.ten}</td>
+                                <td>\${item.thuongHieu.ten}</td>
+                           </tr>`;
+                })
+                $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+    loadKhuyenMai();
+
+    var checkedValues = [];
+    $("#getValue").click(function (){
+        checkedValues = []
+        $('.form-check-input:checked').each(function () {
+            checkedValues.push($(this).val());
+        });
+        $('#modalSanPham').modal('hide');
+        console.log(checkedValues);
+    })
+
+    $("#addDiscount").click(function () {
+        var maKM = $("#maKM").val();
+        var tenKM = $("#tenKM").val();
+        var loaiGiamGia = $('#loaiGiamGia option:selected').val();
+        var ngayBatDau = $("#ngayBatDau").val();
+        var ngayKetThuc = $("#ngayKetThuc").val();
+        var soLuong = $("#soLuong").val();
+        var giaTriGiam = $("#giaTriGiam").val();
+        var moTa = $("#moTa").val();
+        var ngayBatDauFMT = convertDateFormat(ngayBatDau);
+        var ngayKetThucFMT = convertDateFormat(ngayKetThuc);
+        var listSanPham = [];
+        for (var x in checkedValues) {
+            listSanPham.push(checkedValues[x]);
+        }
+        var km = {
+            ma: maKM,
+            ten: tenKM,
+            loai: loaiGiamGia,
+            soLuong: soLuong,
+            giaTri: giaTriGiam,
+            ngayBatDau: ngayBatDauFMT,
+            ngayKetThuc: ngayKetThucFMT,
+            trangThai: "ACTIVE",
+            moTa: moTa,
+            listSanPham: listSanPham,
+        }
+        console.log(km);
+        $.ajax({
+            url: '/api/khuyen-mai/create',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(km),
+            success: function (response) {
+                window.location.href = "/admin/khuyen-mai";
+                showSuccess("Them thanh cong");
+                // console.log(response)
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    })
+
+    function convertDateFormat(inputDate) {
+        var date = new Date(inputDate);
+
+        return date;
+    }
+
+        function generateNumber() {
+            var randomNumber;
+            do {
+                randomNumber = Math.floor(Math.random() * 999) + 1;
+                randomNumber = randomNumber.toString().padStart(3, '0');
+            } while (generatedNumbers.has(randomNumber));
+
+            generatedNumbers.add(randomNumber);
+            return randomNumber;
+        }
+    $(document).ready(function() {
+        var searchButton = $('#searchButton');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                value = searchButton.val();
+                if (value.isBlank){
+                    loadKhuyenMai();
+                }else{
+                    loadSearch(value);
+                }
+            }
+        });
+    });
+    var limit = 100;
+    function loadSearch(value) {
+        $.ajax({
+            url: '/api/san-pham/search?q='+value+'&limit='+limit,
+            method: 'GET',
+            success: function (response) {
+                let html = '';
+                $.each(response.data, (index, item) => {
+                    html += `<tr>
+                                 <td>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
+                                    </div>
+                                </td>
+                                <td>\${item.ten}</td>
+                                <td>\${item.gia}</td>
+                                <td>\${item.danhMuc.ten}</td>
+                                <td>\${item.thuongHieu.ten}</td>
+                           </tr>`;
+                })
+                $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+</script>

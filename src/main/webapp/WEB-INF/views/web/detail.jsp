@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
+
 <head>
     <title>${product.ten}</title>
 </head>
@@ -112,7 +113,7 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
+                    <input type="text" class="form-control bg-secondary text-center" id="quantity" value="1">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
@@ -125,7 +126,7 @@
                     <button class="btn btn-secondary px-3" id="addCart"><i class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart
                     </button>
-                    <button class="btn btn-primary px-3 ms-3">Mua ngay</button>
+                    <button class="btn btn-primary px-3 ms-3" onclick="muaNgay()">Mua ngay</button>
 
                 </div>
             </div>
@@ -319,20 +320,53 @@
 
     setInterval(formatToTime, 1000);
 
-    $("#addCart").click(function () {
+    function checkedRadio() {
+        var allGroupsChecked = true;
+        var checkedGroups = {}; // Để lưu trữ những nhóm đã được chọn
+
+        $('.khung input[type="radio"]').each(function() {
+            var groupName = $(this).attr('name');
+            if ($(this).is(':checked')) {
+                checkedGroups[groupName] = true; // Đánh dấu nhóm đã được chọn
+            }
+        });
+
+        // Kiểm tra xem có bất kỳ nhóm nào chưa được chọn hay không
+        $('.khung input[type="radio"]').each(function() {
+            var groupName = $(this).attr('name');
+            if (!checkedGroups[groupName]) {
+                allGroupsChecked = false;
+                return false; // Thoát khỏi vòng lặp nếu có nhóm chưa được chọn
+            }
+        });
+
+        return allGroupsChecked;
+    }
+    $("#addCart").click( function () {
+
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
         if (idkh == -1) {
             window.location.href = "/login?is_not_login";
         }
-
+        let checkallRadio = checkedRadio();
+        if (!checkallRadio){
+            showError("Bạn phải chọn đầy đủ loại")
+            return;
+        }
         // Người dùng đã đăng nhập, thực hiện gửi Ajax request
         let arrData = [];
         $("input[type=radio]:checked").each(function () {
             arrData.push($(this).val());
         });
 
+        var spcosan = <c:out value="${product.soLuong}" />;
+        var quantity = $("#quantity").val();
+        if (quantity>spcosan){
+            showError("Số lượng của cửa hàng không đủ");
+            return;
+        }
         $.ajax({
-            url: '/api/user/giohang/addcart?idkh=' + idkh + '&data=' + arrData.join(","),
+            url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
             method: 'GET',
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")
@@ -343,4 +377,37 @@
         });
     });
 
+   async function muaNgay() {
+       const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+       if (idkh==-1){
+           window.location.href = "/login?is_not_login";
+       }
+       let checkallRadio = checkedRadio();
+       if (!checkallRadio){
+           showError("Bạn phải chọn đầy đủ loại")
+           return;
+       }
+       // Người dùng đã đăng nhập, thực hiện gửi Ajax request
+       let arrData = [];
+       $("input[type=radio]:checked").each(function() {
+           arrData.push($(this).val());
+       });
+
+       var spcosan = <c:out value="${product.soLuong}" />;
+       var quantity = $("#quantity").val();
+       if (quantity>spcosan){
+           showError("Số lượng của cửa hàng không đủ");
+           return;
+       }
+       $.ajax({
+           url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
+           method: 'GET',
+           success: function (req) {
+               window.location.href="/cart?idbienthe="+req;
+           },
+           error: function(xhr, status, error) {
+               console.log('Có lỗi xảy ra: ' + error);
+           }
+       });
+    }
 </script>

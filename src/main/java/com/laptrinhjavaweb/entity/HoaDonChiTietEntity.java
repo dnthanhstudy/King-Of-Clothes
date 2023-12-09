@@ -6,6 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "hoadonchitiet")
@@ -36,14 +42,54 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
 
-	public Double getTongTien(){
+	public Double getGiaTien(){
 		if (bienThe.getGia()==null){
 			return bienThe.getSanPham().getGia()*soLuong;
+		}else return bienThe.getGia();
+	}
+
+	private Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){
+		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
+		LocalDate ngayHienTai = LocalDate.now();
+
+		return dsKhuyenMai.stream()
+				.filter(khuyenMai1 -> {
+					Date ngayBatDau = khuyenMai1.getKhuyenMai().getNgayBatDau();
+					Date ngayKetThuc = khuyenMai1.getKhuyenMai().getNgayKetThuc();
+
+					LocalDate localNgayBatDau = ngayBatDau.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					LocalDate localNgayKetThuc = ngayKetThuc.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+					return !localNgayBatDau.isAfter(ngayHienTai) && !localNgayKetThuc.isBefore(ngayHienTai);
+				})
+				.findFirst();
+	}
+	public Double getGiaTienKm(){
+		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = getKhuyenMai();
+		if (khuyenMaiHopLeOptional.isPresent()) {
+			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
+			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
+			Double giaTri = khuyenMai.getGiaTri();
+			if (khuyenMai.getLoai().equals("1"))
+			{
+				return getGiaTien() * (100 - giaTri) / 100;
+			}
+			return getGiaTien()-giaTri;
+		} else {
+			return null;
 		}
-		return bienThe.getGia()*soLuong;
+	}
+
+	public Double getTongTien(){
+		Double giaTienKm = getGiaTienKm();
+		if (giaTienKm==null){
+			return getGiaTien()*soLuong;
+		}
+		return giaTienKm*soLuong;
 	}
 	public String getHinhAnh() {
 		return bienThe.getHinhAnh()==null?
 				bienThe.getSanPham().getAnhSanPhamEntities().get(0).getHinhAnh(): bienThe.getHinhAnh();
 	}
+
 }
