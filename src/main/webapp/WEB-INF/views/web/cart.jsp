@@ -42,7 +42,8 @@
 
             </div>
             <div>
-                <div class="row mt-2" style="border-bottom: 1px solid #dedede;height: 75px">
+
+                <div class="row mt-2" style="">
                     <div class="col-5">
                     </div>
                     <div class="col-2">
@@ -55,6 +56,20 @@
                     </div>
                     <div class="col-1">
                     </div>
+                    <%--                    --%>
+                    <div class="col-5">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2 mt-3">
+                        <strong>Số tiền giảm : </strong>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <span><strong id="sotiengiam">0 ₫</strong></span>
+                    </div>
+                    <div class="col-1">
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -209,6 +224,20 @@
         return html;
     }
 
+    function setGiaTien(giaTien,giaTienKm,idGhct) {
+        var html = '';
+        if (!giaTienKm){
+            html+=  `
+            <b id="giatienbienthe-km-\${sp.idGhct}">\${giaTien}₫</b>
+            `
+        }else{
+            html+=`
+            <b id="giatienbienthe-km-\${idGhct}">\${giaTienKm}₫</b>
+            <p><del id="giatienbienthe-\${idGhct}">\${giaTien}₫</del></p>
+            `
+        }
+        return html;
+    }
     async function ghct() {
         await $.ajax({
             url: '/api/user/giohang/' + idkh,
@@ -224,6 +253,8 @@
                 }else{
                     data.forEach(async function (sp){
                         const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
+                        const htmlGiaTien = setGiaTien(sp.giaTien,sp.giaTienKm,sp.idGhct);
+                        console.log(htmlGiaTien)
                         const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
                         var html =
                             `
@@ -231,15 +262,17 @@
     <div class="col-5">
                                <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                    <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
-<label class="form-check-label"">
+            <label class="form-check-label"">
                 <div class="mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-lg-3">
+<a href="/san-pham/\${sp.slugSanPham}">
                             <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">
+</a>
                         </div>
-<div class="col-lg-9">
+                        <div class="col-lg-9">
                             <div class="card-body">
-                                <h5 class="card-title line-clamp-1">\${sp.tenSanPham}</h5>
+                                <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>
                                 <div class="btn-group">
                                                     <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
                                                         Phân loại hàng
@@ -262,7 +295,7 @@
         </div>
     </div>
     <div class="col-2">
-                    <span id="giatienbienthe-\${sp.idGhct}">\${sp.giaTien}₫</span>
+                    \${htmlGiaTien}
                 </div>
  <div class="col-2">
                     <span>
@@ -272,7 +305,7 @@
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
                                             <i class="fa fa-plus"></i>
@@ -280,9 +313,9 @@
                                     </div>
                                 </div>
                     </span>
-</div>
+                </div>
     <div class="col-2">
-        <span id="tongtien-\${sp.idGhct}">\${sp.tongTien}</span>
+        <b id="tongtien-\${sp.idGhct}">\${sp.tongTien}₫</b>
     </div>
     <div class="col-1">
         <a>Xóa</a>
@@ -312,6 +345,12 @@
     $(document).on("click", '.cancelbutton', function () {
         $(this).closest(".show").removeClass('show');
     });
+    $(document).on("input", '.slthis', function () {
+
+        let idghct = $(this).attr("data-idghct");
+
+        thayDoiSoLuong(idghct,0);
+    });
     $(document).on("click", '.xacnhanthuoctinh', function () {
         let getGiaTri = $(this).val();
         let activeGetGiaTri = $(`.\${getGiaTri}.active`);
@@ -329,8 +368,9 @@
             method: 'GET',
             success: function (req) {
                 $("#tenbienthe-"+idghct).text(req.tenBienThe);
-                $("#giatienbienthe-"+idghct).text(req.giaTien);
-                $("#tongtien-"+idghct).text(req.giaTien);
+                $("#giatienbienthe-"+idghct).text(req.giaTienKm+"₫");
+                $("#giatienbienthe-km-"+idghct).text(req.giaTien+"₫");
+                $("#tongtien-"+idghct).text(req.giaTien+"₫");
                 tongTienTheoGhct(dsCheckbox);
                 showSuccess("Thành công");
             },
@@ -359,26 +399,39 @@
     }
 
     function thayDoiSoLuong(idghct, sl) {
-        let soLuongHienTai = parseInt($("#soluong-" + idghct).val()) + sl;
-        console.log(soLuongHienTai)
-        if (soLuongHienTai == 0) {
-            showError("Số lượng hiện tại không thể nhỏ hơn 0");
-            return;
+        let slgValue = $("#soluong-" + idghct).val().trim(); // Lấy giá trị từ input và loại bỏ các khoảng trắng ở đầu và cuối chuỗi
+
+        // Kiểm tra nếu giá trị nhập vào là rỗng hoặc không phải là số
+        let soLuongHienTai;
+        if (slgValue === '' ) {
+            soLuongHienTai = 1; // Gán giá trị mặc định là 1
+        }else if (isNaN(slgValue)){
+            soLuongHienTai = 1; // Gán giá trị mặc định là 1
+            $("#soluong-" + idghct).val(1)
+        }else {
+            soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên
+            if (soLuongHienTai<1){
+                showError("Số lượng không thể bé hơn 0");
+                return;
+            }
+            $("#soluong-" + idghct).val(soLuongHienTai)
         }
+
+        // Gọi API với giá trị soLuongHienTai
+
+        console.log(soLuongHienTai);
+
         $.ajax({
             url: '/api/user/giohang/thaydoisoluong',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
                 idGhct: idghct,
-                soLuong: sl
+                soLuong: soLuongHienTai
             }),
             success: async function (req) {
-                //   await ghct();
                 var data = req.data;
-                console.log(data)
-                $("#soluong-" + idghct).val(data.soLuong);
-                $("#tongtien-" + data.idGhct).text(data.tongTien);
+                $("#tongtien-" + data.idGhct).text(data.tongTien+"₫");
                 tongTienTheoGhct(dsCheckbox);
             },
             error: function (xhr, status, error) {
@@ -386,6 +439,7 @@
             }
         });
     }
+
 
     function muahang() {
         var listsp = getValByCheckbox();
@@ -451,8 +505,9 @@
             contentType: 'application/json',
             success: function (req) {
                 var data = req.data;
-                $("#thanhtien").html(data + "₫");
-                $("#tongthanhtoan").html(data + "₫");
+                $("#thanhtien").html(data.tongTien + "₫");
+                $("#tongthanhtoan").html(data.tongTienThuc + "₫");
+                $("#sotiengiam").html(data.soTienGiam + "₫");
                 $("#totalproduct").html(listCheckbox.length);
             },
             error: function (xhr, status, error) {

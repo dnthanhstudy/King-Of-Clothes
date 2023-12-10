@@ -85,9 +85,6 @@
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
                                 <h5>Thương hiệu: </h5>
                             </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <h5>Vị trí: </h5>
-                            </div>
                         </div>
                     </div>
 
@@ -129,7 +126,7 @@
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button class="btn btn-success">Thêm sản phẩm vào giỏ hàng</button>
@@ -864,17 +861,17 @@
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
                     if(item.khuyenMaiHienThi !== null){
-                        htmlcoupon = ` <p class="card-text product-price product-origin" style="color: #000">\${item.gia}</p>
-                                        <p class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</p>`;
+                        htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+                                        <h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
                     }else{
-                        htmlcoupon = `<p class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</p>`;
+                        htmlcoupon = `<h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
                     }
                     html += `<div class="col-lg-4">
-                        <div class="card card-item-product mb-3" style="max-width: 540px;">
+                        <div class="card card-item-product mb-3" style=" height: 250px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 100px"  alt="...">
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 150px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -882,13 +879,13 @@
                     html += htmlcoupon;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
-                    let htmlThuocTinh = `<div class="row">`;
+                    let htmlThuocTinh = `<div class="row mt-2">`;
                     $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
-                        htmlThuocTinh += `<div class="col-2">
-                                            <label class="ms-2">\${itemThuocTinh.ten}</label>
+                        htmlThuocTinh += `<div class="col-3">
+                                            <label class="ms-3">\${itemThuocTinh.ten} :</label>
                                           </div>
 
-                                          <div class="col-10 d-flex">`;
+                                          <div class="col-9 d-flex">`;
 
                         $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
                             htmlThuocTinh += `<div class="form-check mr-3 mb-2">
