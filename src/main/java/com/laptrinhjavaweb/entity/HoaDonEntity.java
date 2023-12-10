@@ -159,4 +159,7 @@ public class HoaDonEntity extends BaseEntity{
 		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Đã thanh toán":"Thanh toán khi nhận hàng";
 	}
 
+	public String getPhuongThuc(){
+		return phuongThucThanhToan;
+	}
 }

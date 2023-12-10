@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %><%--
   Created by IntelliJ IDEA.
   User: MMC
   Date: 10/27/2023
@@ -126,12 +126,13 @@
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
                         Chọn sản phẩm
                     </button>
+
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Chọn sản phẩm</h5>
+                                    <button class="btn btn-success">Thêm sản phẩm vào giỏ hàng</button>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
@@ -671,7 +672,7 @@
                     <div class="card card-body" style="border-radius: 10px; height: 593px">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5><strong>Nhân viên:</strong> Khánh Linh</h5>
+                                <h5><strong>Nhân viên:</strong><%=SecurityUtils.getPrincipal().getTen()%></h5>
                             </div>
                             <div class="col-lg-6 text-right">
                                 <h5 id="thoiGian"></h5>
@@ -860,48 +861,61 @@
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
-                    html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
-                        <div class="card mb-3" style="max-width: 540px;">
+                    const lenAttrbute = item.thuocTinh.length;
+                    let htmlcoupon = '';
+                    if(item.khuyenMaiHienThi !== null){
+                        htmlcoupon = ` <p class="card-text product-price product-origin" style="color: #000">\${item.gia}</p>
+                                        <p class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</p>`;
+                    }else{
+                        htmlcoupon = `<p class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</p>`;
+                    }
+                    html += `<div class="col-lg-4">
+                        <div class="card card-item-product mb-3" style="max-width: 540px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start w-100" style="height: 100px"  alt="...">
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 100px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>
-                                        <p class="card-text" style="color: #EB8153">\${item.gia}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label class="ms-2">Size:</label>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label class="ms-2">Màu:</label>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">Đen</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
+                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
+                    html += htmlcoupon;
+                    html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
+
+                    let htmlThuocTinh = `<div class="row">`;
+                    $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                        htmlThuocTinh += `<div class="col-2">
+                                            <label class="ms-2">\${itemThuocTinh.ten}</label>
+                                          </div>
+
+                                          <div class="col-10 d-flex">`;
+
+                        $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                            htmlThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                <input name="giatrithuoctinh-thuoctinh-\${itemThuocTinh.id}" id="\${itemGiaTriThuocTinh.id}" type="radio" class="form-check-input"
+                                                       value="\${itemGiaTriThuocTinh.id}">
+                                                <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
+                                               </div>`;
+
+
+                        })
+                        htmlThuocTinh += `</div>`;
+                    })
+                    htmlThuocTinh += `</div></div></div>`;
+
+                    html += htmlThuocTinh;
                 })
                 $('#list-products').html(html);
+
+                $('.product-price').each(function(index, item) {
+                    let res = $(item).html();
+                    if(res.indexOf("đ") === -1){
+                        let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                        $(item).html(formattedValue);
+                    }
+                });
+
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -914,6 +928,48 @@
                         }
                     },
                 });
+
+                $("#list-products").on("change", "input[type='radio']", function () {
+                    const lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+
+                    if (lenChecked === lenOfAttribute) {
+                        let attributeId = [];
+                        $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
+                            attributeId.push(parseInt($(this).val()));
+                        })
+                        $.ajax({
+                            url: "/api/bien-the",
+                            method: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(attributeId),
+                            success: (response) => {
+                                $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                if (response.hinhAnh !== null) {
+                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                }
+                                if (response.khuyenMaiHienThiResponse !== null) {
+                                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+                                }
+
+                                $(this).closest('.card-item-product').find('.product-price').each(function(index, item) {
+                                    let res = $(item).html();
+                                    if(res.indexOf("đ") === -1){
+                                        let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                                        $(item).html(formattedValue);
+                                    }
+                                });
+
+                            },
+                            error: (error) => {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
             },
             error: (error) => {
                 console.log(error);
@@ -922,7 +978,7 @@
     }
     loadAllProduct();
 
-        $('#btn-add-customer').on('click', ()=>{
+    $('#btn-add-customer').on('click', ()=>{
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
         $.each(dataForm, (index, value) => {
@@ -980,24 +1036,6 @@
             }
         });
     }
-
-
-    // function toggleCheckbox(card) {
-    //     var checkbox = card.querySelector('.card-checkbox');
-    //     checkbox.checked = !checkbox.checked;
-    //
-    //     // Thay đổi màu nền của phần nội dung bên trong thẻ card khi được chọn hoặc hủy chọn
-    //     var cardBody = card.querySelector('.card-body');
-    //     if (checkbox.checked) {
-    //         cardBody.style.backgroundColor = '#e0e0e0'; // Màu khi được chọn
-    //         console.log('Card được chọn:', card.querySelector('.card-title').textContent);
-    //         // Thêm các hành động khác khi card được chọn
-    //     } else {
-    //         cardBody.style.backgroundColor = '#ffffff'; // Màu khi bị hủy chọn
-    //         console.log('Card bị hủy chọn:', card.querySelector('.card-title').textContent);
-    //         // Thêm các hành động khác khi card bị hủy chọn
-    //     }
-    // }
 </script>
 
 </body>
