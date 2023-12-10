@@ -90,10 +90,6 @@ public class SanPhamService implements ISanPhamService{
 		listSanPhamResponse = page.getContent().stream().map(
 				item -> sanPhamConvert.convertToResponse(item)
 		).collect(Collectors.toList());
-
-		if(listSanPhamResponse.isEmpty()) {
-			return null;
-		}
 		results.put("data", listSanPhamResponse);
 		if(!isAll) {
 			PageableResponse pageableResponse = new PageableResponse();

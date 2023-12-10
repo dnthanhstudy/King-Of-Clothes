@@ -35,7 +35,8 @@
                 </div>
             </div>
         </div>
-        <div class="card mt-4" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        <p id="iemty"></p>
+        <div class="card mt-4" id="cardDM" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         padding: 20px; background-color: #fff">
             <div class="row col-12">
                 <h4>Danh sách danh mục</h4>
@@ -122,11 +123,20 @@
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                var tbody = $('#tbody-danhmuc tbody');
-                tbody.empty();
-                var index = 0;
-                response.data.forEach(function(item) {
-                    var row = `
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy danh mục nào như thế !")
+                    $('#cardDM').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#cardDM').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    var tbody = $('#tbody-danhmuc tbody');
+                    tbody.empty();
+                    var index = 0;
+                    response.data.forEach(function (item) {
+                        var row = `
                             <tr>
                                  <td>\${++index}</td>
                                 <td>\${item.ten}</td>
@@ -139,24 +149,25 @@
                                    </button>
                                 </td>
                             </tr>`;
-                    tbody.append(row);
-                });
-                $('#pagination').twbsPagination({
-                    first: "First",
-                    prev: "Previous",
-                    next: "Next",
-                    last: "Last",
-                    visiblePages: 5,
-                    totalPages: response.meta.totalPage,
-                    startPage: response.meta.pageCurrent,
-                    onPageClick: function (event, page) {
-                        if(page !== pageCurrent){
-                            event.preventDefault();
-                            pageCurrent = page;
-                            searchDanhMuc()
-                        }
-                    },
-                });
+                        tbody.append(row);
+                    });
+                    $('#pagination').twbsPagination({
+                        first: "First",
+                        prev: "Previous",
+                        next: "Next",
+                        last: "Last",
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                searchDanhMuc()
+                            }
+                        },
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 console.log('Lỗi khi lấy danh sách danh mục: ' + error);

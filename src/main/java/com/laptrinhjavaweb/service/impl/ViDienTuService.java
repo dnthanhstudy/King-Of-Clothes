@@ -2,8 +2,10 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.converter.ViDienTuConvert;
 import com.laptrinhjavaweb.entity.ChiTieuEntity;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.repository.ChiTieuRepository;
+import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.ViDienTuRepository;
 import com.laptrinhjavaweb.response.ViDienTuResponse;
 import com.laptrinhjavaweb.service.IViDienTuService;
@@ -22,12 +24,21 @@ public class ViDienTuService implements IViDienTuService {
     ChiTieuRepository chiTieuRepository;
     @Autowired
     private ViDienTuConvert viDienTuConvert;
+    @Autowired
+    private KhachHangRepository khachHangRepository;
 
     @Override
     public ViDienTuResponse findByIdKhachHang(Long idkh) {
         ViDienTuEntity entity = viDienTuRepository.findByKhachHang(idkh);
-        ViDienTuResponse response = viDienTuConvert.convertToResponse(entity);
-        return response;
+        if(entity == null){
+            ViDienTuEntity viDienTu = new ViDienTuEntity();
+            KhachHangEntity khachHangEntity = khachHangRepository.findById(idkh).orElse(null);
+            viDienTu.setKhachHang(khachHangEntity);
+            viDienTu.setSoTien(0.0);
+            entity = viDienTuRepository.save(viDienTu);
+        }
+            ViDienTuResponse response = viDienTuConvert.convertToResponse(entity);
+            return response;
     }
 
     @Override

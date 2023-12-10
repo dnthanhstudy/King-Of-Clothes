@@ -37,7 +37,9 @@
                 <input placeholder="Tìm sản phẩm" id="searchAll" type="search" class="inputghichu w-100">
         </div>
 
-        <div class="card mt-4" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        <p class="mt-3" id="iemty"></p>
+
+        <div class="card mt-4" id="cardSP" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         padding: 20px; background-color: #fff">
             <div class="row col-12">
                 <h4>Danh sách sản phẩm</h4>
@@ -88,7 +90,7 @@
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
                                 <td>
-                                    <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
+                                    <a href="/admin/san-pham/edit/\${item.slug}" class="btn btn-warning">Sửa</a>
                                     <button class="btn btn-danger btn-delete-san-pham" value="\${item.slug}">Xóa</button>
                                 </td>
                             </tr>`;
@@ -126,9 +128,18 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
-                let html = '';
-                $.each(response.data, (index, item) => {
-                    html += `<tr>
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy sản phẩm nào như thế !")
+                    $('#cardSP').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#cardSP').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    let html = '';
+                    $.each(response.data, (index, item) => {
+                        html += `<tr>
                                 <td>\${index+1}</td>
                                 <td>
                                     <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;">
@@ -142,27 +153,28 @@
                                     <button class="btn btn-danger btn-delete-san-pham" value="\${item.slug}">Xóa</button>
                                 </td>
                             </tr>`;
-                })
-                $('.tbody-product').html(html);
+                    })
+                    $('.tbody-product').html(html);
 
-                console.log(response);
-                $('#pagination').twbsPagination({
-                    first: "First",
-                    prev: "Previous",
-                    next: "Next",
-                    last: "Last",
-                    visiblePages: 5,
-                    totalPages: response.meta.totalPage,
-                    startPage: response.meta.pageCurrent,
-                    onPageClick: function (event, page) {
-                        if(page !== pageCurrent){
-                            event.preventDefault();
-                            pageCurrent = page;
-                            console.log(response.meta.totalPage);
-                            searchSanPham()
-                        }
-                    },
-                });
+                    console.log(response);
+                    $('#pagination').twbsPagination({
+                        first: "First",
+                        prev: "Previous",
+                        next: "Next",
+                        last: "Last",
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                console.log(response.meta.totalPage);
+                                searchSanPham()
+                            }
+                        },
+                    });
+                }
             },
             error: (error) => {
                 console.log(error);
