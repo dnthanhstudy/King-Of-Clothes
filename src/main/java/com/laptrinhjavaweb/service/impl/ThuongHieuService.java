@@ -67,10 +67,6 @@ public class ThuongHieuService implements IThuongHieuService {
         listThuongHieuResponse = page.getContent().stream().map(
                 item -> thuongHieuConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-
-        if(listThuongHieuResponse.isEmpty()) {
-            return null;
-        }
         results.put("data", listThuongHieuResponse);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();

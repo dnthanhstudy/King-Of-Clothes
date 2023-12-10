@@ -547,7 +547,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Tên sản phẩm</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.tenSanPham}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-1">\${item.tenSanPham}</h5>
                                 <div class="text-success" >\${item.tenBienThe}</div>
                             </div>
                         </div>

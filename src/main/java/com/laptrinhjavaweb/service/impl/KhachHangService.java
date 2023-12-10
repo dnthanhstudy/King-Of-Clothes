@@ -88,10 +88,6 @@ public class KhachHangService implements IKhachHangService {
         listKhachHangResponse = page.getContent().stream().map(
                 item -> khachHangConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-
-        if(listKhachHangResponse.isEmpty()) {
-            return null;
-        }
         results.put("data", listKhachHangResponse);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();

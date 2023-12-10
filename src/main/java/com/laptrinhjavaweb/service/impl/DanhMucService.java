@@ -71,10 +71,6 @@ public class DanhMucService implements IDanhMucService {
         listDanhMucResponse = page.getContent().stream().map(
                 item -> danhMucConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-
-        if(listDanhMucResponse.isEmpty()) {
-            return null;
-        }
         results.put("data", listDanhMucResponse);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();
