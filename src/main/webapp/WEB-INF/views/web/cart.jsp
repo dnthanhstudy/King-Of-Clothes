@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-1">
                     </div>
-<%--                    --%>
+                    <%--                    --%>
                     <div class="col-5">
                     </div>
                     <div class="col-2">
@@ -349,7 +349,7 @@
 
         let idghct = $(this).attr("data-idghct");
 
-         thayDoiSoLuong(idghct,0);
+        thayDoiSoLuong(idghct,0);
     });
     $(document).on("click", '.xacnhanthuoctinh', function () {
         let getGiaTri = $(this).val();

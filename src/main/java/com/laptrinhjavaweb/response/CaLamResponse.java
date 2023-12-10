@@ -26,6 +26,4 @@ public class CaLamResponse {
     private Double tongTienChuyenKhoan;
 
     private Double tongTienTrongCa;
-
-    private Double tongTienKetCa;
 }
