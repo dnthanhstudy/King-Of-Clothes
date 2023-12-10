@@ -89,9 +89,11 @@
             <figure class="highcharts-figure">
                 <div id="container"></div>
                 <p class="highcharts-description">
-                    Basic line chart showing trends in a dataset. This chart includes the
-                    <code>series-label</code> module, which adds a label to each line for
-                    enhanced readability.
+                    A basic column chart comparing estimated corn and wheat production
+                    in some countries.
+
+                    The chart is making use of the axis crosshair feature, to highlight
+                    the hovered country.
                 </p>
             </figure>
         </div>
@@ -210,7 +212,6 @@
 </div>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
