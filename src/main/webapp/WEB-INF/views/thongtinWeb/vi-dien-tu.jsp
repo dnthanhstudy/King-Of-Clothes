@@ -101,8 +101,8 @@
                     } else{
                         loaiChiTieuStr = "Nạp tiền";
                     }
-                    var ngayTaoFMT = new Date(item.ngayTao);
-
+                    var ngayTaoFMT = formatTimestamp(item.ngayTao);
+                    console.log(ngayTaoFMT);
                     var card = `
                         <div>
                             <div class="d-flex justify-content-between p-3" style="border-bottom: 1px solid #dedede;">
@@ -113,13 +113,13 @@
                                         </div>
                                         <div class="col">
                                             <span class="fs-5">\${loaiChiTieuStr}</span>
-                                            <p class="fs-6">\${formattedDate}</p>
+                                            <p class="fs-6">\${ngayTaoFMT}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <span class="fs-4">\${soTienFMT}₫</span>
-                                    <p><a href="#" class="text-decoration-none">Chi tiết</a></p>
+
                                 </div>
                             </div>
                         </div>
@@ -137,27 +137,15 @@
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
     function formatTimestamp(timestamp) {
-        // Create a new Date object using the timestamp
+        // Create a Date object from the timestamp
         var date = new Date(timestamp);
-
-        // Extract hours, minutes, seconds, day, month, and year
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var seconds = date.getSeconds();
-        var day = date.getDate();
-        var month = date.getMonth() + 1; // Months are zero-based, so add 1
+        var day = date.getDate().toString().padStart(2, '0');
+        var month = (date.getMonth() + 1).toString().padStart(2, '0');
         var year = date.getFullYear();
-
-        // Add leading zeros if needed
-        hours = hours < 10 ? '0' + hours : hours;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        month = month < 10 ? '0' + month : month;
-        day = day < 10 ? '0' + day : day;
-
-        // Format the values
-        var formattedDate = `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
-
+        var hours = date.getHours().toString().padStart(2, '0');
+        var minutes = date.getMinutes().toString().padStart(2, '0');
+        // Format the date into "HH:MM dd-MM-yyyy" format
+        var formattedDate = hours + ':' + minutes + ' ' + day + '/' + month + '/' + year;
         return formattedDate;
     }
 
