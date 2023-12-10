@@ -21,6 +21,9 @@ function loadProduct() {
                 let htmlCoupon = '';
                 let coupon = item.khuyenMaiHienThiResponse;
                 if(coupon !== null){
+                    htmlCoupon = `<h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                  <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>`;
+                }else{
                     htmlCoupon = `<h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>`;
                 }
                 html += `<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
@@ -32,7 +35,6 @@ function loadProduct() {
                                     <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                         <h6 class="text-truncate mb-3">${item.ten}</h6>
                                         <div class="d-flex justify-content-center">
-                                              <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
                                               ${htmlCoupon}
                                         </div>
                                     </div>

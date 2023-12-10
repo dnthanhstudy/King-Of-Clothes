@@ -167,8 +167,7 @@
             console.log(req)
             $('#maNhanVien').text(req.maNhanVien);
             const dateTimeStr = new Date(req.ngayTao).toLocaleString()
-            const result = (dateTimeStr.split(", ")[1]).split(":").join("/")
-            console.log(result)
+
             $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
             $('#soTienDauCa').text(req.soTienDauCa);
             $('#soTienCuoiCa').text(req.soTienCuoiCa);
@@ -178,11 +177,10 @@
             $('#tongHoaDon').text(req.tongHoaDon);
             $('#tongTienTrongCa').text(req.tongTienTrongCa);
 
-
             var soTienBanGiao = parseFloat($('#tongTienKetCa').val()) || 0;
-            var tienChenhLech = req.soTienCuoiCa - soTienBanGiao;
-
-            $('#tienChenhLech').text(tienChenhLech);
+            // var tienChenhLech = req.soTienCuoiCa - soTienBanGiao;
+            //
+            // $('#tienChenhLech').text(tienChenhLech);
         },
         error: function (xhr, status, error) {
             console.log(error);

@@ -45,17 +45,4 @@ public class LoginController {
     public String changePassword(){
         return "login/changePass";
     }
-
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            MyUserResponse myUserResponse = (MyUserResponse) auth.getPrincipal();
-            if(myUserResponse.getMaChucVu().equals("STAFF") || myUserResponse.getMaChucVu().equals("ADMIN")){
-                nhanVienService.dongCa(myUserResponse.getMa());
-            }
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/login";
-    }
 }

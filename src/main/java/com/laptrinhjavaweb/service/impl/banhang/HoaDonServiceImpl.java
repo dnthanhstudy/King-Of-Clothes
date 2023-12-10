@@ -133,9 +133,9 @@ public class HoaDonServiceImpl implements HoaDonService {
         Double tongTienMat = 0.0;
         Double tongTienChuyenKhoan = 0.0;
         for (HoaDonEntity hoaDonEntity : listHoaDon) {
-            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
+            if(hoaDonEntity.getPhuongThuc().equals("Tiền mặt")){
                 tongTienMat += hoaDonEntity.getTongTienHang();
-            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
+            }else if(hoaDonEntity.getPhuongThuc().equals("Chuyển khoản")){
                 tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
             }
         }
