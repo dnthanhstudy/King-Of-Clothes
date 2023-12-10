@@ -66,15 +66,15 @@
                         <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
                     </p>
                 </c:if>
-                <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd">
+                <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
                   ${product.giaBan}
                 </h3>
                 <div class="mb-3">
                     <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                        <del class="product-price-custom-vnd product-buy">${product.gia}</del>
+                        <del class="product-price-custom-vnd product-origin">${product.gia}</del>
                         <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
                             <div class="badge rounded-pill text-bg-danger">
-                                <span class="product-price-custom-percent coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                                <span class="product-price-custom-percent coupon-value ">${product.khuyenMaiHienThiResponse.giaTri}</span>
                                 <span class="coupon-type">% Giảm</span>
                             </div>
                         </c:if>
