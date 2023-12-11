@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.model.response;
 
-public interface TongTienGioHangResponse {
+public interface TongTienResponse {
     Double getGiaGoc();
     Double getGiaGiam();
 }
