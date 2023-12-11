@@ -13,17 +13,27 @@
             <div class="">
                 <div class="card card-body card-tabs text-center">
                     <div class="row">
-                        <div class="col-9">
-                            <ul class="nav nav-tabs style-2">
-                                <li class="nav-item">
-                                    <a href="#navpills-1" class="nav-link active" data-toggle="tab"
-                                       aria-expanded="false">Tất cả
-                                        <span class="badge badge-pill shadow-primary badge-primary" id="tongKM">0</span></a>
-                                </li>
-                            </ul>
-
-                        </div>
-                        <div class="col-3"><a href="/admin/khuyen-mai/create" class="btn btn-success">+ Tạo mới</a>
+                        <div class="hstack gap-3">
+                            <div class="p-2">
+                                <ul class="nav nav-tabs style-2">
+                                    <li class="nav-item">
+                                        <a href="#navpills-1" class="nav-link active" data-toggle="tab"
+                                           aria-expanded="false">Tất cả
+                                            <span class="badge badge-pill shadow-primary badge-primary" id="tongKM">0</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                           <div class="p-2 ms-auto">
+                               <div class="p-2">
+                                   <a href="/admin/khuyen-mai/create" type="button" class="buttonImport text-decoration-none" id="importButton" onclick="importFile()">
+                                       <span class="button__text1">Tạo mới</span>
+                                       <span class="button__icon1">
+                                           <svg xmlns="http://www.w3.org/2000/svg" class="svgImport" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style>
+                                                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+                                       </span>
+                                   </a>
+                               </div>
+                            </div>
                         </div>
                     </div>
 
