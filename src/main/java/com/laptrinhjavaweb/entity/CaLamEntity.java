@@ -30,6 +30,9 @@ public class CaLamEntity extends BaseEntity{
 	@Column(name = "tienchenhlech")
 	private Double tienChenhLech;
 
+	@Column(name = "tienmatbangiao")
+	private Double tienMatBanGiao;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;

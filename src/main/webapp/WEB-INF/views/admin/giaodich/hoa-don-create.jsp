@@ -129,7 +129,7 @@
                         <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button class="btn btn-success">Thêm sản phẩm vào giỏ hàng</button>
+                                    <button class="btn btn-primary">Thêm sản phẩm vào hóa đơn</button>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>

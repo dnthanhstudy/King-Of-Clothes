@@ -6,6 +6,8 @@ import lombok.Setter;
 @Getter @Setter
 public class CaLamRequest {
 
+    private Long id;
+
     private Double soTienDauCa;
 
     private Double soTienCuoiCa;
@@ -15,4 +17,6 @@ public class CaLamRequest {
     private String ghiChu;
 
     private Double tienChenhLech;
+
+    private Double tienMatBanGiao;
 }

@@ -65,7 +65,7 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <hr>
-                <table class="table table-hover" id="tblHoaDon" >
+                <table class="table table-hover" >
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
@@ -83,7 +83,6 @@
                 </table>
             </div>
         </div>
-        <ul id="pagination" class="d-flex justify-content-center"></ul>
 
     </div>
 </div>

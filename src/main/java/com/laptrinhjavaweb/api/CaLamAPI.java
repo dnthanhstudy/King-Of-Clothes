@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.api;
 
+import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
@@ -56,6 +57,12 @@ public class CaLamAPI {
             @RequestParam(name = "ma") String maNhanVien
     ){
         CaLamResponse result = hoaDonService.findAllByMaNhanVienAndHoaDon(ngay, maNhanVien);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @PutMapping("/{ma}")
+    public ResponseEntity<?> updateCaLam(@PathVariable("ma") String ma, @RequestBody CaLamRequest caLamRequest) {
+        CaLamResponse result = caLamService.update(ma, caLamRequest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
