@@ -2,13 +2,13 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaDonRepositoryCustom {
@@ -16,13 +16,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     List<HoaDonEntity> dsHoaDon();
 
 
-    @Query(value = "SELECT SUM(COALESCE(bt.gia, sp.gia) * hdct.soluong) AS total\n" +
-            "FROM hoadon hd\n" +
-            "left JOIN hoadonchitiet hdct ON hdct.idhoadon = hd.id\n" +
-            "left JOIN bienthe bt ON bt.id = hdct.idbienthe\n" +
-            "left JOIN sanpham sp ON sp.id = bt.idsanpham\n" +
-            "WHERE hd.id =:idhd",nativeQuery = true)
-    BigDecimal tongTienByHoaDon(@Param("idhd")Long idhd);
+    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam FROM vw_hoadonchitiet_summary WHERE idhoadon =:idhd", nativeQuery = true)
+    TongTienResponse tongTienByHoaDon(@Param("idhd")Long idhd);
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
     HoaDonEntity findHoaDonMoiDat(@Param("idkh") Long idkh);
 

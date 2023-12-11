@@ -43,8 +43,10 @@
                                 </div>
                                 <div class="row my-2">
                                     <div class="col">
-                                        <strong>Lưu ý cho shop:</strong>
-                                        <span id="luuy"></span>
+                                        <div class="form-group">
+                                            <label for="luuy">Lưu ý cho shop</label>
+                                            <textarea class="form-control" id="luuy" rows="3"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -522,8 +524,15 @@
               $("#tiensp").text(convertVND(data.tongTienHdct))
               $("#tienship").text(convertVND(data.tienShip))
               $("#tienhang").text(convertVND(data.tongTien))
-              $("#luuy").text(data.moTa)
-              // $("#luuy").text(data.mota)
+               var luuy = $("#luuy");
+               luuy.val(data.moTa);
+               if (data.trangThaiHoaDon != "Chờ nhận đơn") {
+                   console.log("Hi")
+                   luuy.prop('readonly', true); // Sử dụng prop() để thiết lập thuộc tính readOnly
+               } else {
+                   luuy.prop('readonly', false);
+               }
+
                let cart = $("#cart")
                cart.empty();
                let html = "";
@@ -556,6 +565,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Đơn giá</span>
+                                <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(item.giaTienKm)}</h5>
                                 <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(item.giaTien)}</h5>
                             </div>
                         </div>
@@ -616,8 +626,13 @@
 
    }
    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+       let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+       // if (trangThai === 'DANHANDON' || trangThai === 'HUYDON') {
+           var luuy = $("#luuy").val();
+           parameter += `&luuy=\${encodeURIComponent(luuy)}`;
+       // }
        $.ajax({
-           url: `/api/hoadon/thaydoitrangthai?idhd=\${idhd}&trangthai=\${trangThai}`,
+           url: `/api/hoadon/thaydoitrangthai`+parameter,
            method: 'GET',
            success: function (req) {
                showMessageHoaDon(trangThai);

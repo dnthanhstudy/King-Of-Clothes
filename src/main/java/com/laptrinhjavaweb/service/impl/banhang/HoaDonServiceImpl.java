@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -75,8 +76,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public BigDecimal tongTienTheoHoaDon(Long idhd) {
-        return hoaDonRepository.tongTienByHoaDon(idhd);
+    public TongTienResponseClass tongTienTheoHoaDon(Long idhd) {
+        return new TongTienResponseClass(hoaDonRepository.tongTienByHoaDon(idhd));
     }
 
     @Override
@@ -93,6 +94,21 @@ public class HoaDonServiceImpl implements HoaDonService {
             hoaDon.setTrangThai(trangThai);
             hoaDonRepository.save(hoaDon);
                 return "Thay đổi trạng thái thành công";
+        }catch (Exception e){
+            return "Có lỗi xảy ra";
+        }
+    }
+
+    @Override
+    public String thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy) {
+        try{
+            HoaDonEntity hoaDon = hoaDonRepository.findById(idhd).orElse(null);
+            assert hoaDon != null;
+            // TrangThaiHoaDonEnum
+            hoaDon.setTrangThai(trangThai);
+            hoaDon.setMoTa(luuy);
+            hoaDonRepository.save(hoaDon);
+            return "Thay đổi trạng thái thành công";
         }catch (Exception e){
             return "Có lỗi xảy ra";
         }

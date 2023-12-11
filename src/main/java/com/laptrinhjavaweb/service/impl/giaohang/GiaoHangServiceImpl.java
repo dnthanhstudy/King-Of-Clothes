@@ -6,10 +6,10 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.ThongTinMuaHangEntity;
 import com.laptrinhjavaweb.entity.ViDienTuEntity;
-import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.ThongTinMuaHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
@@ -25,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +146,8 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setTienShip(phiShip);
         hoaDon.setNgayThanhToan(DateUtil.dateNow());
         hoaDon.setMoTa(mota);
-        hoaDon.setTongTienHang(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()).doubleValue());
+        TongTienResponseClass responseClass = new TongTienResponseClass(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()));
+        hoaDon.setTongTienHang(responseClass.getTongTienThuc());
         if (pttt.equals("THANHTOANNHANHANG")){
             hoaDon.setTienKhachTra(tongTien);
         }else{
@@ -162,7 +162,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
              chiTieuRepository.save(chiTieu);
              viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()-tongTien);
         }
-        int parameter = gioHangChiTietRepository.updateTrangThaiDaDatThanhCong(khachHang.getId());
+        int parameter = gioHangChiTietRepository.configHoaDonChiTietKhiDatHang(hoaDon.getId(),khachHang.getId());
         return hoaDonRepository.save(hoaDon);
     }
 

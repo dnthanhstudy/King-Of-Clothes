@@ -68,17 +68,18 @@ public class ApiHoaDonController {
 
 
     @GetMapping("/thaydoitrangthai")
-    public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,@RequestParam("trangthai")String trangThai){
-        hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai);
+    public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,
+                                   @RequestParam("trangthai")String trangThai,
+                                   @RequestParam(value = "luuy",required = false,defaultValue = "")String luuy
+    ){
+        hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
             thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đang được vận chuyển");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
             thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đơn hàng đã huỷ");
-
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
             thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đã nhận hàng");
-
         }
        return  "Thay đổi trạng thái thành công";
     }

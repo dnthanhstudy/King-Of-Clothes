@@ -52,8 +52,17 @@ public class GioHangChiTietEntity extends BaseEntity{
 
 	public Double getGiaTienKm(){
 		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
+		System.out.println(bienThe.getMa());
+//		for (KhuyenMaiSanPhamEntity km: dsKhuyenMai
+//		) {
+//			System.out.println(km);
+//		}
+//		if (dsKhuyenMai != null && !dsKhuyenMai.isEmpty()) {
+//			return null;
+//		}
 		LocalDate ngayHienTai = LocalDate.now();
 
+		assert dsKhuyenMai != null;
 		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = dsKhuyenMai.stream()
 				.filter(khuyenMai -> {
 					Date ngayBatDau = khuyenMai.getKhuyenMai().getNgayBatDau();

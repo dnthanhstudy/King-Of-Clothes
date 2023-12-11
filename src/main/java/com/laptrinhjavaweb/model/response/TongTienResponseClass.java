@@ -10,11 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TongTienGioHangResponseClass {
+public class TongTienResponseClass {
     private Double tongTien;
     private Double tongTienDaGiam;
 
-    public TongTienGioHangResponseClass(TongTienGioHangResponse response) {
+    public TongTienResponseClass(TongTienResponse response) {
         this.tongTien = response.getGiaGoc();
         this.tongTienDaGiam = response.getGiaGiam();
     }

@@ -8,7 +8,7 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
-import com.laptrinhjavaweb.model.response.TongTienGioHangResponseClass;
+import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.BienTheRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
@@ -22,10 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class GioHangServiceImpl implements GioHangService {
@@ -71,8 +68,8 @@ public class GioHangServiceImpl implements GioHangService {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
     @Override
-    public TongTienGioHangResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
-        return new TongTienGioHangResponseClass(gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct));
+    public TongTienResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
+        return new TongTienResponseClass(gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct));
     }
 
     @Override

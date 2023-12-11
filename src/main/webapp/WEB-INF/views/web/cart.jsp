@@ -226,9 +226,10 @@
 
     function setGiaTien(giaTien,giaTienKm,idGhct) {
         var html = '';
+        console.log(giaTienKm)
         if (!giaTienKm){
             html+=  `
-            <b id="giatienbienthe-km-\${sp.idGhct}">\${giaTien}₫</b>
+            <b id="giatienbienthe-km-\${idGhct}">\${giaTien}₫</b>
             `
         }else{
             html+=`
@@ -252,9 +253,9 @@
                     `)
                 }else{
                     data.forEach(async function (sp){
+                        console.log(sp)
                         const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
                         const htmlGiaTien = setGiaTien(sp.giaTien,sp.giaTienKm,sp.idGhct);
-                        console.log(htmlGiaTien)
                         const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
                         var html =
                             `
