@@ -696,7 +696,7 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body">
-                                        <h6 class="card-title line-clamp-1">\${custom.tenSanPham}</h6>
+                                        <h6 class="card-title line-clamp-2">\${custom.tenSanPham}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -726,16 +726,13 @@
         });
     }
 
-    var tongTienThuc ;
     function tongTienTheoHoaDon(idhd){
          $.ajax({
             url: 'api/user/giaohang/tongtienhd/'+idhd,
             method: 'GET',
             success: function (req) {
                 let data = req.data;
-                tongTienThuc = data.tongTienThuc;
-                console.log(data)
-                setTienHienThi(data.tongTien,data.soTienGiam,tongTienThuc);
+                setTienHienThi(data.giaGoc,data.giaGiam,data.thucTe);
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")

@@ -9,6 +9,7 @@ import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.ThongTinMuaHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponse;
 import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
@@ -146,8 +147,8 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setTienShip(phiShip);
         hoaDon.setNgayThanhToan(DateUtil.dateNow());
         hoaDon.setMoTa(mota);
-        TongTienResponseClass responseClass = new TongTienResponseClass(hoaDonRepository.tongTienByHoaDon(hoaDon.getId()));
-        hoaDon.setTongTienHang(responseClass.getTongTienThuc());
+        TongTienResponse response = hoaDonRepository.tongTienByHoaDon(hoaDon.getId());
+        hoaDon.setTongTienHang(response.getThucTe());
         if (pttt.equals("THANHTOANNHANHANG")){
             hoaDon.setTienKhachTra(tongTien);
         }else{

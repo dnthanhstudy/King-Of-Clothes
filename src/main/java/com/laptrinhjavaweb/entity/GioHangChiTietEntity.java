@@ -52,7 +52,6 @@ public class GioHangChiTietEntity extends BaseEntity{
 
 	public Double getGiaTienKm(){
 		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
-		System.out.println(bienThe.getMa());
 //		for (KhuyenMaiSanPhamEntity km: dsKhuyenMai
 //		) {
 //			System.out.println(km);

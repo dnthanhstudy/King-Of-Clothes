@@ -16,7 +16,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     List<HoaDonEntity> dsHoaDon();
 
 
-    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam FROM vw_hoadonchitiet_summary WHERE idhoadon =:idhd", nativeQuery = true)
+    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam ," +
+            "sum(thucte) as thucte FROM vw_hoadonchitiet_summary WHERE idhoadon =:idhd", nativeQuery = true)
     TongTienResponse tongTienByHoaDon(@Param("idhd")Long idhd);
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
     HoaDonEntity findHoaDonMoiDat(@Param("idkh") Long idkh);

@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponse;
 import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
@@ -76,8 +77,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public TongTienResponseClass tongTienTheoHoaDon(Long idhd) {
-        return new TongTienResponseClass(hoaDonRepository.tongTienByHoaDon(idhd));
+    public TongTienResponse tongTienTheoHoaDon(Long idhd) {
+        return hoaDonRepository.tongTienByHoaDon(idhd);
     }
 
     @Override
