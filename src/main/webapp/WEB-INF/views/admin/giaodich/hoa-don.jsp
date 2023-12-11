@@ -44,7 +44,7 @@
                                 <div class="row my-2">
                                     <div class="col">
                                         <strong>Lưu ý cho shop:</strong>
-                                        <span>Hi </span>
+                                        <span id="luuy"></span>
                                     </div>
                                 </div>
                             </div>
@@ -522,6 +522,8 @@
               $("#tiensp").text(convertVND(data.tongTienHdct))
               $("#tienship").text(convertVND(data.tienShip))
               $("#tienhang").text(convertVND(data.tongTien))
+              $("#luuy").text(data.moTa)
+              // $("#luuy").text(data.mota)
                let cart = $("#cart")
                cart.empty();
                let html = "";
@@ -545,7 +547,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Tên sản phẩm</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.tenSanPham}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-1">\${item.tenSanPham}</h5>
                                 <div class="text-success" >\${item.tenBienThe}</div>
                             </div>
                         </div>
@@ -562,7 +564,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Số lượng</span>
-                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="\${item.soLuong}">
+                                <input type="text" class="form-control w-50" style="text-align: center; height: 30px" value="\${item.soLuong}" disabled >
                             </div>
                         </div>
                     </div>
@@ -606,9 +608,9 @@
            <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANGGIAOHANG')">Đang giao hàng</button>
           `);
        }else if (trangThaiHoaDon=='Đang giao hàng'){
-           trangThaiHtml.append(`
-                    <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANHANG')">Đã nhận hàng</button>
-      `);
+           // trangThaiHtml.append(`
+           //          <button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="thayDoiTrangThaiHoaDon(\${idhd},'DANHANHANG')">Đã nhận hàng</button>
+      // `);
        }
 
 

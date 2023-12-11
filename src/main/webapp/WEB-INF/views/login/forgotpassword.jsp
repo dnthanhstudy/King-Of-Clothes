@@ -33,31 +33,31 @@
                         <!-- Form -->
                             <div class="text-center">
                                 <div class="mb-5">
-                                    <h1 class="display-4">Forgot password?</h1>
-                                    <p>Enter the email address you used when you joined and we'll send you instructions to reset your password.</p>
+                                    <h1 class="display-4">Quên mật khẩu?</h1>
+                                    <p>Nhập địa chỉ email bạn đã sử dụng khi tham gia và chúng tôi sẽ gửi cho bạn hướng dẫn để đặt lại mật khẩu.</p>
                                 </div>
                             </div>
 
                             <!-- Form Group -->
                             <div class="js-form-message form-group">
-                                <label class="input-label" for="email">Your email</label>
+                                <label class="input-label" for="email">Nhập địa chỉ email</label>
 
                                 <input required
                                        type="email"
                                        id="email"
                                        name="email"
-                                       placeholder="Enter your email address" class="form-control form-control-lg">
+                                       placeholder="Nhập địa chỉ email" class="form-control form-control-lg">
                             </div>
                             <!-- End Form Group -->
 
-                            <button  onclick="quenMatKhau()" class="btn btn-lg btn-block btn-primary">Submit</button>
+                            <button  onclick="quenMatKhau()" class="btn btn-lg btn-block btn-primary">Gửi</button>
 
                             <div class="d-flex justify-content-between mt-2">
                                 <a class="btn btn-link" href="/login">
-                                    <i class="tio-chevron-left"></i> Back to Sign in
+                                    <i class="tio-chevron-left"></i> Quay lại đăng nhập
                                 </a>
                                 <a class="btn btn-link" href="/changePassword">
-                                    <i class="tio-chevron-left"></i> Change Password
+                                    <i class="tio-chevron-left"></i> Đổi mật khẩu
                                 </a>
                             </div>
                         <!-- End Form -->
@@ -67,7 +67,7 @@
 
                 <!-- Footer -->
                 <div class="text-center">
-                    <small class="text-cap mb-4">Trusted by the world's best teams</small>
+                    <small class="text-cap mb-4">Được tin cậy bởi các đội tốt nhất thế giới</small>
 
                     <div class="w-85 mx-auto">
                         <div class="row justify-content-between">

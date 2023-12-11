@@ -68,7 +68,8 @@ public class SanPhamConverter {
 			}
 			response.setGiaBan(giaBan);
 			response.setKhuyenMaiHienThiResponse(khuyenMaiHienThiResponse);
-
+		}else{
+			response.setGiaBan(entity.getGia());
 		}
 		response.setThuocTinh(thuocTinhResponses);
 		response.setAnh(anhSanPhamResponses);

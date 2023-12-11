@@ -82,7 +82,7 @@ public class ThongTinDatHangRequest {
             cod_amount = 0L;
             payment_type_id=1L;
         }else {
-            cod_amount = hoaDon.getTongTien().longValue();
+            cod_amount = hoaDon.getTongTienHang().longValue();
             payment_type_id=2L;
         }
     }

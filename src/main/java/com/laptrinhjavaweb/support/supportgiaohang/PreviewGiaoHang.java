@@ -17,7 +17,7 @@ import java.util.Date;
 @ToString
 public class PreviewGiaoHang {
 
-    private String order_code; // Mã hoá đơn
+    private String order_code; // Mã giao hàng
 
     public String getMaHoaDon(){
         return order_code;
@@ -34,6 +34,9 @@ public class PreviewGiaoHang {
         return "Không biết";
     }
 
+    public Date getThoiGianDuKienNhan(){
+        return expected_delivery_time;
+    }
     public Double getTongPhiGiao(){
         return total_fee;
     }

@@ -34,7 +34,10 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "thongtinchitiet", columnDefinition = "TEXT")
 	private String thongTinChiTiet;
-	
+
+	@Column(name = "sanphambanchay")
+	private Integer sanPhamBanChay;
+
 	@Column(name = "sanphammoi")
 	private Integer sanPhamMoi;
 	
@@ -75,4 +78,7 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<ThuocTinhEntity> thuocTinhEntities = new ArrayList<>();
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
 }

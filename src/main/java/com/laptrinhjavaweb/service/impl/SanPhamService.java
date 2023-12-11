@@ -90,10 +90,6 @@ public class SanPhamService implements ISanPhamService{
 		listSanPhamResponse = page.getContent().stream().map(
 				item -> sanPhamConvert.convertToResponse(item)
 		).collect(Collectors.toList());
-
-		if(listSanPhamResponse.isEmpty()) {
-			return null;
-		}
 		results.put("data", listSanPhamResponse);
 		if(!isAll) {
 			PageableResponse pageableResponse = new PageableResponse();
@@ -171,8 +167,9 @@ public class SanPhamService implements ISanPhamService{
 	}
 
 	@Override
-	public List<SanPhamResponse> random(Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien, Integer limit) {
-		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
+	public List<SanPhamResponse> random(Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
+										Integer limit) {
+		List<SanPhamResponse> results = sanPhamRepository.random(sanPhamBanChay, sanPhamMoi, sanPhamNhieuLuotXem, sanPhamNoiBat, sanPhamPhoBien, limit)
 														.stream().map(item -> sanPhamConvert.convertToResponse(item))
 														.collect(Collectors.toList());
 		return results;

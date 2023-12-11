@@ -36,9 +36,6 @@ public class NhanVienAPI {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "3") Integer limit){
         Map<String, Object> results = nhanVienService.pagingOrSearchOrFindAll(page, limit, null, param);
-    	if(results == null){
-            return new ResponseEntity<>(new MessageResponse("Không tìm thấy kết quả phù hợp"), HttpStatus.OK);
-        }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 

@@ -6,6 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cập nhật khách hàng</title>
+</head>
+<body>
 <div class="content-body">
     <div class="container-fluid">
         <div class="card card-body">
@@ -91,18 +101,19 @@
         let email = $("#email").val();
         let ngaySinh = $("#ngaySinh").val();
 
-        if ($("#moTa").val() === "") {
-            showError("Mô tả không được để trống");
-            isValid = false;
-        }
         if (ngaySinh === "") {
             showError("Ngày sinh không được để trống");
             isValid = false;
         } else {
             let selectedDate = new Date(ngaySinh);
             let currentDate = new Date();
-            if (selectedDate > currentDate) {
-                showError("Ngày sinh không được lớn hơn ngày hiện tại");
+
+            // Kiểm tra xem ngày sinh có lớn hơn hoặc bằng 15 tuổi không
+            let ageLimitDate = new Date();
+            ageLimitDate.setFullYear(currentDate.getFullYear() - 15);
+
+            if (selectedDate > currentDate || selectedDate > ageLimitDate) {
+                showError("Ngày sinh không hợp lệ. Phải lớn hơn hoặc bằng 15 tuổi");
                 isValid = false;
             }
         }
@@ -163,18 +174,18 @@
         if (validateForm()) {
             let data = getDataFromForm();
             $.ajax({
-            url: "/api/khach-hang/" + ma,
-            method: "PUT",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                window.location.href = '/admin/khach-hang';
-                console.log("success");
-            },
-            error: (error) => {
-                showError("fail")
-            }
+                url: "/api/khach-hang/" + ma,
+                method: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    window.location.href = '/admin/khach-hang';
+                    console.log("success");
+                },
+                error: (error) => {
+                    showError("fail")
+                }
             });
         }
     });
@@ -190,4 +201,6 @@
         return data;
     }
 </script>
+</body>
+</html>
 

@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col">
                         <label>Họ và tên:</label>
-                        <input type="text" name="ten" id="tennv" class="form-control" >
+                        <input type="text" name="ten" id="ten" class="form-control" >
                     </div>
                     <div class="col">
                         <label>Địa chỉ email:</label>
@@ -37,30 +37,30 @@
                 <div class="row mt-3">
                     <div class="col">
                         <label>Địa chỉ thường chú:</label>
-                        <input type="text" name="diaChi"  id="diachi" class="form-control" >
+                        <input type="text" name="diaChi"  id="diaChi" class="form-control" >
                     </div>
                     <div class="col">
                         <label>Số điện thoại:</label>
-                        <input type="text" id="sdt" name="soDienThoai" class="form-control" >
+                        <input type="text" id="soDienThoai" name="soDienThoai" class="form-control" >
                     </div>
                     <div class="col">
                         <label>Số CCCD:</label>
-                        <input type="text" name="canCuocCongDan" id="cccd" class="form-control" >
+                        <input type="text" name="canCuocCongDan" id="canCuocCongDan" class="form-control" >
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col">
                         <label  class="form-label">Ngày sinh:</label>
-                        <input type="date" name="ngaySinh" class="form-control" id="ngaysinh" >
+                        <input type="date" name="ngaySinh" class="form-control" id="ngaySinh" >
                     </div>
                     <div class="col">
                         <label class="form-label">Ngày cấp:</label>
-                        <input type="date" name="ngayCap" class="form-control" id="ngaycap">
+                        <input type="date" name="ngayCap" class="form-control" id="ngayCap">
                     </div>
                     <div class="col">
                         <label>Giới tính:</label>
-                        <select class="form-select" id="gioitinh" name="gioiTinh">
+                        <select class="form-select" id="gioiTinh" name="gioiTinh">
                             <option value="Nam" selected>Nam</option>
                             <option value="Nữ">Nữ</option>
                         </select>
@@ -115,26 +115,102 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    function isValidPhoneNumber(soDienThoai) {
+        return /^[0-9]{10}$/.test(soDienThoai);
+    }
 
+    function isValidCCCDNumber(canCuocCongDan) {
+        return /^[0-9]{12}$/.test(canCuocCongDan);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateForm(){
+        let ten = $("#ten").val();
+        let email = $("#email").val();
+        let diaChi = $("#diaChi").val();
+        let soDienThoai = $("#soDienThoai").val();
+        let canCuocCongDan = $("#canCuocCongDan").val();
+        let ngaySinh = $("#ngaySinh").val();
+        let ngayCap = $("#ngayCap").val();
+
+        if (ten === "") {
+            showError("Họ và tên không được để trống");
+            return false;
+        }
+        if (email === "") {
+            showError("Email không được để trống");
+            return false;
+        }else if (!isValidEmail(email)) {
+            showError("Địa chỉ email không hợp lệ");
+            return false;
+        }
+        if (diaChi === "") {
+            showError("Địa chỉ thường chú không được để trống");
+            return false;
+        }
+        if (soDienThoai === "") {
+            showError("Số điện thoại không được để trống");
+            return false;
+        } else if (!isValidPhoneNumber(soDienThoai)) {
+            showError("Số điện thoại không hợp lệ");
+            return false;
+        }
+        if (canCuocCongDan === "") {
+            showError("Số căn cước công dân không được để trống");
+            return false;
+        } else if (!isValidCCCDNumber(canCuocCongDan)) {
+            showError("Số căn cước công dân không hợp lệ");
+            return false;
+        }
+        if (ngaySinh === "") {
+            showError("Ngày sinh không được để trống");
+            return false;
+        } else  {
+            let selectedDate = new Date(ngaySinh);
+            let currentDate = new Date();
+            if (selectedDate > currentDate) {
+                showError("Ngày sinh không được lớn hơn ngày hiện tại");
+                return false;
+            }
+        }
+        if (ngayCap === "") {
+            showError("Ngày cấp không được để trống");
+            return false;
+        } else  {
+            let selectedDate = new Date(ngayCap);
+            let currentDate = new Date();
+            if (selectedDate > currentDate) {
+                showError("Ngày cấp không được lớn hơn ngày hiện tại");
+                return false;
+            }
+        }
+
+        return true;
+    }
     $('#them').on('click', (e) => {
         e.preventDefault();
-        let data = getDataFromForm();
-        console.log(data);
-        $.ajax({
-            url: "/api/nhan-vien",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                window.location.href = '/admin/nhan-vien';
-                console.log("success");
-            },
-            error: (error) => {
-                showError(error.responseJSON.error);
-            }
-        });
-    })
+        if (validateForm()) {
+            let data = getDataFromForm();
+            console.log(data);
+            $.ajax({
+                url: "/api/nhan-vien",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    window.location.href = '/admin/nhan-vien';
+                    console.log("success");
+                },
+                error: (error) => {
+                    showError(error.responseJSON.error);
+                }
+            });
+        }
+    });
 
     function getDataFromForm() {
         let dataFromForm = $("#form-submit-nhan-vien").serializeArray();
@@ -148,29 +224,6 @@
         data['base64'] = image.base64;
         return data;
     }
-
-    // function updateChucVuSelect() {
-    //     $.ajax({
-    //         url: '/api/chuc-vu',
-    //         method: 'GET',
-    //         success: function (req) {
-    //             var select = $("#selectChucVu");
-    //             select.html('');
-    //             let html = '';
-    //             $.each(req, (index, value)=>{
-    //                 const ten = value.ten;
-    //                 const ma = value.ma;
-    //                 html += '<option value="'+ ma +'">' + ten + '</option>';
-    //             })
-    //             select.append(html);
-    //         },
-    //         error: function (xhr, status, error) {
-    //             showError("Lỗi khi cập nhật select chức vụ");
-    //         }
-    //     });
-    // }
-    // updateChucVuSelect();
-
 
 </script>
 </body>

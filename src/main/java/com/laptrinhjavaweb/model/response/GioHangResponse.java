@@ -24,8 +24,13 @@ public interface GioHangResponse {
     @Value("#{target.soLuong}")
     Integer getSoLuong();
 
-    @Value("#{target.bienThe.gia}")
+    @Value("#{target.giaTien}")
     BigDecimal getGiaTien();
+
+    @Value("#{target.giaTienKm}")
+    BigDecimal getGiaTienKm();
+
+
     @Value("#{target.bienThe.sanPham.danhMuc.ten}")
     String getTenDanhMuc();
     @Value("#{target.bienThe.ten}")

@@ -163,10 +163,6 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         listKhuyenMaiResponses = page.getContent().stream().map(
                 item -> khuyenMaiConvert.convertToResponse(item)
         ).collect(Collectors.toList());
-
-        if(listKhuyenMaiResponses.isEmpty()) {
-            return null;
-        }
         results.put("data", listKhuyenMaiResponses);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();

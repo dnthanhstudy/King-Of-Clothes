@@ -73,6 +73,9 @@ public class HoaDonEntity extends BaseEntity{
 	@Column(name = "tienship")
 	private Double tienShip;
 
+	@Column(name = "loai")
+	private String loai;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;
@@ -108,8 +111,11 @@ public class HoaDonEntity extends BaseEntity{
 			super.setTrangThai("DANGVANCHUYEN");
 		}else if (trangThai==TrangThaiHoaDonEnum.DANHANHANG){
 			super.setTrangThai("DANHANHANG");
+		}else if (trangThai==TrangThaiHoaDonEnum.HUYDON){
+			super.setTrangThai("HUYDON");
 		}
 	}
+
 	@Override
 	public String getTrangThai() {
 		String tt = super.getTrangThai();
@@ -124,9 +130,6 @@ public class HoaDonEntity extends BaseEntity{
 		diaChi = thongTinMuaHang.getDiaChi();
 		sodienthoai = thongTinMuaHang.getSoDienThoai();
 		tenNguoiNhan = thongTinMuaHang.getTen();
-//		StringBuilder stringBuilder = new StringBuilder();
-//		stringBuilder.append(thongTinMuaHang.getIdXa()).append(" ").append(thongTinMuaHang.getIdHuyen()).append(" ").append(thongTinMuaHang.getIdThanhPho());
-//		diaChiId = stringBuilder.toString();
 	}
 
 	public Double getTongTienHang() {
@@ -151,8 +154,12 @@ public class HoaDonEntity extends BaseEntity{
 		return getTienShip()+tongTienHang;
 	}
 
+
 	public String getPhuongThucThanhToan() {
 		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Đã thanh toán":"Thanh toán khi nhận hàng";
 	}
 
+	public String getPhuongThuc(){
+		return phuongThucThanhToan;
+	}
 }

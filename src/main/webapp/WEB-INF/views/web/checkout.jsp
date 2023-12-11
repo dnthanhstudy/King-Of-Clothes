@@ -186,7 +186,7 @@
                             <h6 class="mt-2">Lời nhắn:</h6>
                         </div>
                         <div class="col-10">
-                            <input type="text" class="form-control w-75" placeholder="Lưu ý cho shop">
+                            <input type="text" class="form-control w-75" id="luuychoshop" placeholder="Lưu ý cho shop">
                         </div>
                     </div>
                 </div>
@@ -237,7 +237,8 @@
                 <div class="form-check ms-3 my-3" id="mbBankRadio">
                     <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="mbb" checked>
                     <label class="form-check-label" for="exampleRadios1">
-                        <img src="/template/web/img/cashinwallet-dd94.png" style="width: 70px;height: 70px" alt=""> Ví điện tử
+                        <img src="/template/web/img/cashinwallet-dd94.png" style="width: 70px;height: 70px" alt=""> Ví điện tử :
+                        <b id="soduvi">22000 VND</b>
                     </label>
                 </div>
                 <div class="form-check ms-3 my-3" id="vpBankRadio">
@@ -678,7 +679,8 @@
                         <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: \${custom.tenBienThe}</h6>
                     </div>
                     <div class="col-2 mt-3">
-                        <h6 class="card-title">\${custom.giaTien}</h6>
+                        <h6 class="card-title">\${custom.giaTienKm}</h6>
+                        <p class="card-title"><del>\${custom.giaTien}</del></p>
                     </div>
                     <div class="col-2 mt-3">
                         <h6 class="card-title">\${custom.soLuong}</h6>
@@ -722,7 +724,7 @@
 
         $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
     }
-    tongThanhToan();
+        tongThanhToan();
     function datHang(){
         if ($(".sotiengiaohang").text().length === 0) {
             showError("Bạn chưa chọn địa chỉ giao hàng");
@@ -733,18 +735,60 @@
             var payment = $('input[name="payment"]:checked').val();
             if (payment==="paypal"){
                 callPayPal();
+            }else{
+                thanhtoanvi();
             }
         }else{
             thanhToanNhanHang();
         }
     }
-    function thanhToanNhanHang(){
+    function thanhtoanvi() {
+       let tongThanhToan = $("#tongthanhtoan").text();
+        var tongThanhToanStr = Number(tongThanhToan.slice(0, tongThanhToan.length - 1));
+        if (sotienvi<tongThanhToanStr){
+            showError("Số tiền trong ví không đủ,vui lòng nạp thêm");
+            return;
+        }
         var idttmh = $("#idttmuahang").val();
         var tienship = $(".sotiengiaohang:first").text();
         var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
         $.ajax({
-            url: `api/hoadon/dathangnhanhang?idkh=\${idkh}&ttgh=\${idttmh}&phiship=`+tienshipSubstring,
-            method: 'GET',
+            url: `api/hoadon/datvidientu`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                idkh: parseInt(idkh),
+                ttgh: parseInt(idttmh),
+                phiship: parseFloat(tienshipSubstring),
+                luuy: $("#luuychoshop").val(),
+                tongTien:tongThanhToanStr
+            }),
+            success: function (req) {
+                showSuccess("Thanh toán thành công");
+                window.location.href = "/pay/success"
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    function thanhToanNhanHang(){
+        var idttmh = $("#idttmuahang").val();
+        var tienship = $(".sotiengiaohang:first").text();
+        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
+        let tongThanhToan = $("#tongthanhtoan").text();
+        var tongThanhToanStr = Number(tongThanhToan.slice(0, tongThanhToan.length - 1));
+        $.ajax({
+            url: `api/hoadon/dathangnhanhang`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                idkh: parseInt(idkh),
+                ttgh: parseInt(idttmh),
+                phiship: parseFloat(tienshipSubstring),
+                luuy: $("#luuychoshop").val(),
+                tongTien:tongThanhToanStr
+            }),
             success: function (req) {
                 showSuccess("Thanh toán thành công");
                 window.location.href = "/pay/success"
@@ -765,4 +809,21 @@
         $("#tienship").val(tienshipSubstring)
         $("#submidpaypal").click();
     }
+    var idVi;
+    var sotienvi ;
+    function soDuVi(){
+        $.ajax({
+            url: '/api/vi-dien-tu/'+idkh,
+            method: 'GET',
+            success: function(data) {
+                idVi = data.id;
+                sotienvi  = data.soTien;
+                $("#soduvi").text(convertVND(data.soTien));
+            },
+            error: function(xhr, status, error) {
+                alert('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+    soDuVi();
 </script>

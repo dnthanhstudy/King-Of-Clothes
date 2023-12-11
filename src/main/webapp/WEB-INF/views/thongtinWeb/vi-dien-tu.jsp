@@ -79,6 +79,7 @@
             console.log(data);
             idVi = data.id;
             $("#soDuVi").text(formatNumber(data.soTien));
+            $("#lichSuButton").trigger("click")
         },
         error: function(xhr, status, error) {
             alert('Có lỗi xảy ra: ' + error);

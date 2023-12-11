@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface TrangThaiGiaoHangRepository extends JpaRepository<TrangThaiGiaoHangEntity,Long> {
 
-    @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.maGiaoHang=:magiaohang")
+    @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.maGiaoHang=:magiaohang order by ttgh.ngayTao desc ")
     List<TrangThaiGiaoHangResponse> getTrangThaiDonHangByMaGiaoHang(@Param("magiaohang") String maGiaoHang);
 }

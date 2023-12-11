@@ -21,8 +21,9 @@ public class HomePageController {
     @GetMapping("/trang-chu")
     public ModelAndView homePage(){
         ModelAndView mav = new ModelAndView("web/homepage");
-        mav.addObject("productOutstanding", sanPhamService.random(null, null, 1, null, 6));
-        mav.addObject("productPopular", sanPhamService.random(null, null, null, 1, 6));
+        mav.addObject("productOutstanding", sanPhamService.random(null,null, null, 1, null, 6));
+        mav.addObject("productPopular", sanPhamService.random(null,null, null, null, 1, 6));
+        mav.addObject("productSeller", sanPhamService.random(1,null, null, null, 1, 6));
         return mav;
     }
 

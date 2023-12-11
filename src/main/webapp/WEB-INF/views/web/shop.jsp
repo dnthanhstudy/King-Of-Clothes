@@ -110,7 +110,14 @@
                                             <div class="card-body border-left border-right border text-center p-0 pt-4 pb-3">
                                                 <h6 class="text-truncate mb-3">${item.ten}</h6>
                                                 <div class="d-flex justify-content-center">
-                                                    <h6 class="product-price-custom-vnd">${item.gia}</h6>
+                                                    <c:if test="${empty item.khuyenMaiHienThiResponse}">
+                                                        <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                                    </c:if>
+
+                                                    <c:if test="${not empty item.khuyenMaiHienThiResponse}">
+                                                        <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                                        <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>

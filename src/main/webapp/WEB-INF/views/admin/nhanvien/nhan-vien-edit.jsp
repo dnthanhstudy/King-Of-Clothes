@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sửa nhân viên</title>
+    <title>Cập nhật nhân viên</title>
 </head>
 <body>
 <div class="content-body">
@@ -126,25 +126,104 @@
 
     getNhanVienDetail();
 
+
+    function isValidPhoneNumber(soDienThoai) {
+        return /^[0-9]{10}$/.test(soDienThoai);
+    }
+
+    function isValidCCCDNumber(canCuocCongDan) {
+        return /^[0-9]{12}$/.test(canCuocCongDan);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateForm(){
+        let ten = $("#ten").val();
+        let email = $("#email").val();
+        let diaChi = $("#diaChi").val();
+        let soDienThoai = $("#soDienThoai").val();
+        let canCuocCongDan = $("#canCuocCongDan").val();
+        let ngaySinh = $("#ngaySinh").val();
+        let ngayCap = $("#ngayCap").val();
+
+        if (ten === "") {
+            showError("Họ và tên không được để trống");
+            return false;
+        }
+        if (email === "") {
+            showError("Email không được để trống");
+            return false;
+        }else if (!isValidEmail(email)) {
+            showError("Địa chỉ email không hợp lệ");
+            return false;
+        }
+        if (diaChi === "") {
+            showError("Địa chỉ thường chú không được để trống");
+            return false;
+        }
+        if (soDienThoai === "") {
+            showError("Số điện thoại không được để trống");
+            return false;
+        } else if (!isValidPhoneNumber(soDienThoai)) {
+            showError("Số điện thoại không hợp lệ");
+            return false;
+        }
+        if (canCuocCongDan === "") {
+            showError("Số căn cước công dân không được để trống");
+            return false;
+        } else if (!isValidCCCDNumber(canCuocCongDan)) {
+            showError("Số căn cước công dân không hợp lệ");
+            return false;
+        }
+        if (ngaySinh === "") {
+            showError("Ngày sinh không được để trống");
+            return false;
+        } else  {
+            let selectedDate = new Date(ngaySinh);
+            let currentDate = new Date();
+            if (selectedDate > currentDate) {
+                showError("Ngày sinh không được lớn hơn ngày hiện tại");
+                return false;
+            }
+        }
+        if (ngayCap === "") {
+            showError("Ngày cấp không được để trống");
+            return false;
+        } else  {
+            let selectedDate = new Date(ngayCap);
+            let currentDate = new Date();
+            if (selectedDate > currentDate) {
+                showError("Ngày cấp không được lớn hơn ngày hiện tại");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     $('#updateButton').on('click', (e) => {
         e.preventDefault();
-        let data = getDataFromForm();
-        var url = window.location.pathname.split("/");
-        var ma = url[url.length - 1];
-        $.ajax({
-            url: "/api/nhan-vien/" + ma,
-            method: "PUT",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                window.location.href = '/admin/nhan-vien';
-                console.log("success");
-            },
-            error: (error) => {
-                showError("fail")
-            }
-        });
+        if (validateForm()) {
+            let data = getDataFromForm();
+            var url = window.location.pathname.split("/");
+            var ma = url[url.length - 1];
+            $.ajax({
+                url: "/api/nhan-vien/" + ma,
+                method: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    window.location.href = '/admin/nhan-vien';
+                    console.log("success");
+                },
+                error: (error) => {
+                    showError("fail")
+                }
+            });
+        }
     })
 
     function getDataFromForm() {

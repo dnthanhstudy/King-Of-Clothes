@@ -23,7 +23,13 @@ public class CaLamEntity extends BaseEntity{
 	
 	@Column(name = "sotiencuoica")
 	private Double soTienCuoiCa;
-	
+
+	@Column(name = "ghichu")
+	private String ghiChu;
+
+	@Column(name = "tienchenhlech")
+	private Double tienChenhLech;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;

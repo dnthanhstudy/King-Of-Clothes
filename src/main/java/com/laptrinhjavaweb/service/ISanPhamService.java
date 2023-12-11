@@ -18,7 +18,7 @@ public interface ISanPhamService {
 	SanPhamResponse save(SanPhamRequest sanPhamRequest);
 
 	List<SanPhamResponse> random(
-			Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
+			Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
 			Integer limit);
 
 	List<SanPhamResponse> same(String slug);

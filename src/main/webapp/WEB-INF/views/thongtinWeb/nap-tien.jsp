@@ -153,8 +153,7 @@
 
     function xacNhanThanhToan() {
         var price = $("#naptienmy").text();
-        var price1 = $("#naptienviet").text();
-        console.log("Amount in USD: " + price);
+        var price1 = $("#naptienviet").text().replaceAll(".","");
         window.location.href = "/pay/naptien?price=" + price + "&idvi=" + idVi + "&tienviet=" + price1;
     }
 

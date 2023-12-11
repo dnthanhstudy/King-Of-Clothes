@@ -92,7 +92,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             // TrangThaiHoaDonEnum
             hoaDon.setTrangThai(trangThai);
             hoaDonRepository.save(hoaDon);
-            return "Thay đổi trạng thái thành công";
+                return "Thay đổi trạng thái thành công";
         }catch (Exception e){
             return "Có lỗi xảy ra";
         }
@@ -129,19 +129,13 @@ public class HoaDonServiceImpl implements HoaDonService {
         CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
         CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
         List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
-//        Double tongTienMat = listHoaDon.stream().filter(
-//                item -> item.getPhuongThucThanhToan().equals("Tiền mặt")
-//        ).mapToDouble(item -> item.getTongTienHang()).sum();
-//        Double tongTienChuyenKhoan = listHoaDon.stream().filter(
-//                item -> item.getPhuongThucThanhToan().equals("Chuyển khoản")
-//        ).mapToDouble(item -> item.getTongTienHang()).sum();
 
         Double tongTienMat = 0.0;
         Double tongTienChuyenKhoan = 0.0;
         for (HoaDonEntity hoaDonEntity : listHoaDon) {
-            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
+            if(hoaDonEntity.getPhuongThuc().equals("Tiền mặt")){
                 tongTienMat += hoaDonEntity.getTongTienHang();
-            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
+            }else if(hoaDonEntity.getPhuongThuc().equals("Chuyển khoản")){
                 tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
             }
         }
@@ -153,38 +147,4 @@ public class HoaDonServiceImpl implements HoaDonService {
         result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
         return result;
     }
-
-
-//    @Override
-//    public List<HoaDonEntity> getDsHoaDon1() {
-//        return hoaDonRepository.findAll();
-//    }
-
-//    @Override
-//    public HoaDonEntity saveOrUpdate(HoaDonEntity hoaDon) {
-//        return hoaDonRepository.save(hoaDon);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        hoaDonRepository.deleteById(id);
-//    }
-
-    // tuấn
-//    @Override
-//    public List<HoaDonDTO> getDsHoaDon() {
-//        List<HoaDon> listHD = hoaDonRepository.findAll();
-//        List<HoaDonDTO> listHDDTO = listHD.stream().map(
-//                item ->
-//                     hoaDonConverter.convertToDTO(item)
-//                ).collect(Collectors.toList());
-//        return listHDDTO;
-//    }
-//
-//    @Override
-//    public String getCurrentDateTime() {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-//        Date date = new Date();
-//        return dateFormat.format(date);
-//    }
 }
