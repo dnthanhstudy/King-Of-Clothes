@@ -64,11 +64,12 @@
                 </div>
                 <c:if test="${not empty product.khuyenMaiHienThiResponse}">
                     <p>Kết thúc sau:
-                        <span class="expire">${product.khuyenMaiHienThiResponse.expired}</span>
+                        <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
+                        <span class="finish"></span>
                     </p>
                 </c:if>
                 <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
-                  ${product.giaBan}
+                    ${product.giaBan}
                 </h3>
                 <div class="mb-3">
                     <c:if test="${not empty product.khuyenMaiHienThiResponse}">
@@ -94,9 +95,11 @@
                         <form class="d-flex flex-wrap" id="form-${item.ten}">
                             <c:forEach var="itemGiaTri" items="${item.giaTriThuocTinh}">
                                 <div class="form-check mr-3 mb-2">
-                                    <input type="radio" name="giatrithuoctinh" id="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-input"
+                                    <input type="radio" name="giatrithuoctinh" id="giatrithuoctinh-${itemGiaTri.giaTri}"
+                                           class="form-check-input"
                                            value="${itemGiaTri.id}">
-                                    <label for="giatrithuoctinh-${itemGiaTri.giaTri}" class="form-check-label">${itemGiaTri.giaTri}</label>
+                                    <label for="giatrithuoctinh-${itemGiaTri.giaTri}"
+                                           class="form-check-label">${itemGiaTri.giaTri}</label>
                                 </div>
                             </c:forEach>
                         </form>
@@ -113,7 +116,7 @@
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
-                    <input type="text" class="form-control bg-secondary text-center" id="quantity" value="1">
+                        <input type="text" class="form-control bg-secondary text-center" id="quantity" value="1">
                         <div class="input-group-btn">
                             <button class="btn btn-primary btn-plus">
                                 <i class="fa fa-plus"></i>
@@ -289,42 +292,33 @@
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
-    var totalSeconds = null;
+    var x = setInterval(function () {
+        var finish = parseInt($('#product-finish').val());
+        var now = new Date().getTime();
+        console.log(finish);
+        console.log(now);
+        var distance = finish - now;
 
-    function formatToTime() {
-        if (totalSeconds === null) {
-            const input = $('.expire').text();
-            var parts = input.split('-').map(Number);
-            var days = parts[0];
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            var hours = parts[1];
-            var minutes = parts[2];
-            var seconds = parts[3];
-            totalSeconds = days * 24 * 60 * 60 + hours * 60 * 60 + minutes * 60 + seconds;
+        $('.finish').text(days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ");
+
+        if (distance < 0) {
+            clearInterval(x);
+            $('.finish').text("EXPIRED");
+            // call api update trạng thái của khuyến mại sản phẩm (expired nhé)
         }
-
-        var date = new Date(totalSeconds * 1000);
-
-        var formattedHours = ("0" + date.getUTCHours()).slice(-2);
-        var formattedMinutes = ("0" + date.getUTCMinutes()).slice(-2);
-        var formattedSeconds = ("0" + date.getUTCSeconds()).slice(-2);
-
-        var result = ("0" + date.getUTCDate()).slice(-2) + "d " +
-            formattedHours + "h : " +
-            formattedMinutes + "p : " +
-            formattedSeconds + "s";
-
-        $('.expire').html(result);
-        totalSeconds--;
-    }
-
-    setInterval(formatToTime, 1000);
+    }, 1000);
 
     function checkedRadio() {
         var allGroupsChecked = true;
         var checkedGroups = {}; // Để lưu trữ những nhóm đã được chọn
 
-        $('.khung input[type="radio"]').each(function() {
+        $('.khung input[type="radio"]').each(function () {
             var groupName = $(this).attr('name');
             if ($(this).is(':checked')) {
                 checkedGroups[groupName] = true; // Đánh dấu nhóm đã được chọn
@@ -332,7 +326,7 @@
         });
 
         // Kiểm tra xem có bất kỳ nhóm nào chưa được chọn hay không
-        $('.khung input[type="radio"]').each(function() {
+        $('.khung input[type="radio"]').each(function () {
             var groupName = $(this).attr('name');
             if (!checkedGroups[groupName]) {
                 allGroupsChecked = false;
@@ -342,14 +336,15 @@
 
         return allGroupsChecked;
     }
-    $("#addCart").click( function () {
+
+    $("#addCart").click(function () {
 
         const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
         if (idkh == -1) {
             window.location.href = "/login?is_not_login";
         }
         let checkallRadio = checkedRadio();
-        if (!checkallRadio){
+        if (!checkallRadio) {
             showError("Bạn phải chọn đầy đủ loại")
             return;
         }
@@ -361,12 +356,12 @@
 
         var spcosan = <c:out value="${product.soLuong}" />;
         var quantity = $("#quantity").val();
-        if (quantity>spcosan){
+        if (quantity > spcosan) {
             showError("Số lượng của cửa hàng không đủ");
             return;
         }
         $.ajax({
-            url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
+            url: '/api/user/giohang/addcart?idkh=' + idkh + '&data=' + arrData.join(",") + "&quantity=" + quantity,
             method: 'GET',
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")
@@ -377,37 +372,37 @@
         });
     });
 
-   async function muaNgay() {
-       const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-       if (idkh==-1){
-           window.location.href = "/login?is_not_login";
-       }
-       let checkallRadio = checkedRadio();
-       if (!checkallRadio){
-           showError("Bạn phải chọn đầy đủ loại")
-           return;
-       }
-       // Người dùng đã đăng nhập, thực hiện gửi Ajax request
-       let arrData = [];
-       $("input[type=radio]:checked").each(function() {
-           arrData.push($(this).val());
-       });
+    async function muaNgay() {
+        const idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+        if (idkh == -1) {
+            window.location.href = "/login?is_not_login";
+        }
+        let checkallRadio = checkedRadio();
+        if (!checkallRadio) {
+            showError("Bạn phải chọn đầy đủ loại")
+            return;
+        }
+        // Người dùng đã đăng nhập, thực hiện gửi Ajax request
+        let arrData = [];
+        $("input[type=radio]:checked").each(function () {
+            arrData.push($(this).val());
+        });
 
-       var spcosan = <c:out value="${product.soLuong}" />;
-       var quantity = $("#quantity").val();
-       if (quantity>spcosan){
-           showError("Số lượng của cửa hàng không đủ");
-           return;
-       }
-       $.ajax({
-           url: '/api/user/giohang/addcart?idkh='+idkh+'&data=' + arrData.join(",")+"&quantity="+quantity,
-           method: 'GET',
-           success: function (req) {
-               window.location.href="/cart?idbienthe="+req;
-           },
-           error: function(xhr, status, error) {
-               console.log('Có lỗi xảy ra: ' + error);
-           }
-       });
+        var spcosan = <c:out value="${product.soLuong}" />;
+        var quantity = $("#quantity").val();
+        if (quantity > spcosan) {
+            showError("Số lượng của cửa hàng không đủ");
+            return;
+        }
+        $.ajax({
+            url: '/api/user/giohang/addcart?idkh=' + idkh + '&data=' + arrData.join(",") + "&quantity=" + quantity,
+            method: 'GET',
+            success: function (req) {
+                window.location.href = "/cart?idbienthe=" + req;
+            },
+            error: function (xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
     }
 </script>

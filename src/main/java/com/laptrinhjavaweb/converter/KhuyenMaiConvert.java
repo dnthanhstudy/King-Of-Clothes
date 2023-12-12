@@ -5,7 +5,6 @@ import com.laptrinhjavaweb.response.KhuyenMaiHienThiResponse;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;
 import com.laptrinhjavaweb.response.KhuyenMaiSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhuyenMaiRequest;
-import com.laptrinhjavaweb.utils.DateUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,7 +36,7 @@ public class KhuyenMaiConvert {
         KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = modelMapper.map(entity, KhuyenMaiHienThiResponse.class);
         String giaTri = String.valueOf(entity.getGiaTri());
         khuyenMaiHienThiResponse.setGiaTri(giaTri);
-        khuyenMaiHienThiResponse.setExpired(DateUtil.findDifference(entity.getNgayBatDau() , entity.getNgayKetThuc()));
+        khuyenMaiHienThiResponse.setNgayKetThuc(entity.getNgayKetThuc().getTime());
         return khuyenMaiHienThiResponse;
     }
 }

@@ -17,7 +17,7 @@ public class KhuyenMaiHienThiResponse {
 
     private Integer soLuong;
 
-    private String expired;
+    private long ngayKetThuc;
 
     private Double gia;
 }
