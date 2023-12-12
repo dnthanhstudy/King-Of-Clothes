@@ -27,55 +27,18 @@
     padding: 20px; background-color: #fff">
                     <h4>Thông tin hóa đơn</h4>
                     <hr>
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover" id="tblHoaDon" >
                         <thead>
-                        <tr class="table-warning">
-                            <th scope="col">Mã hàng</th>
-                            <th scope="col">Tên hàng </th>
-                            <th scope="col">Số lượng</th>
-                            <th scope="col">Đơn giá</th>
-                            <th scope="col">Giảm giá</th>
-                            <th scope="col">Giá bán</th>
-                            <th scope="col">Thành tiền</th>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Mã Hóa đơn</th>
+                            <th scope="col">Khách hàng</th>
+                            <th scope="col">Ngày mua</th>
+                            <th scope="col">Tổng tiền hàng</th>
+                            <th scope="col">Phương thức</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td>SP01</td>
-                            <td>Aos polo nam aelimited</td>
-                            <td>3</td>
-                            <td>300000</td>
-                            <td></td>
-                            <td>300000</td>
-                            <td><b>900000</b></td>
-                        </tr>
-                        <tr>
-                            <td>SP01</td>
-                            <td>Aos polo nam aelimited</td>
-                            <td>3</td>
-                            <td>300000</td>
-                            <td></td>
-                            <td>300000</td>
-                            <td><b>900000</b></td>
-                        </tr>
-                        <tr>
-                            <td>SP01</td>
-                            <td>Aos polo nam aelimited</td>
-                            <td>3</td>
-                            <td>300000</td>
-                            <td></td>
-                            <td>300000</td>
-                            <td><b>900000</b></td>
-                        </tr>
-                        <tr>
-                            <td>SP01</td>
-                            <td>Aos polo nam aelimited</td>
-                            <td>3</td>
-                            <td>300000</td>
-                            <td></td>
-                            <td>300000</td>
-                            <td><b>900000</b></td>
-                        </tr>
+                        <tbody >
                         </tbody>
                     </table>
                 </div>
@@ -154,16 +117,6 @@
             dataType: 'json',
             success: function (req) {
                 $("#ma").val(req.ma);
-                $("#ten").val(req.ten);
-                $("#soDienThoai").val(req.soDienThoai);
-                $("#email").val(req.email);
-                $("#diaChi").val(req.diaChi);
-                $("#gioiTinh").val(req.gioiTinh);
-                $("#ngaySinh").val(formatDateInput(req.ngaySinh));
-                $("#canCuocCongDan").val(req.canCuocCongDan);
-                $("#ngayCap").val(formatDateInput(req.ngayCap));
-                $("#tenChucVu").val(req.chucVu.ten);
-                $("#anh").attr('src', "/assets/images/nhanvien/" + req.anh);
             },
             error: function (xhr, status, error) {
                 console.log(error);

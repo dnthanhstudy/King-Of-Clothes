@@ -867,7 +867,7 @@
                         htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
                     html += `<div class="col-lg-6">
-                        <div class="card card-item-product mb-3" style=" height: 305px">
+                        <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
