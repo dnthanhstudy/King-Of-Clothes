@@ -35,4 +35,10 @@ public class SliderAPI {
         Map<String, Object> results = sliderService.pagingOrFindAll(page, limit);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{image}")
+    public ResponseEntity<?> delete(@PathVariable(name = "image") String image){
+        sliderService.delete(image);
+        return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+    }
 }

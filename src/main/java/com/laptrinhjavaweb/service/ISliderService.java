@@ -12,4 +12,6 @@ public interface ISliderService {
 
     SliderResponse save(SliderRequest sliderRequest);
 
+    void delete(String image);
+
 }

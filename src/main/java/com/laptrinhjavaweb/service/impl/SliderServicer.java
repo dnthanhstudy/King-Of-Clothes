@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SliderConverter;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.SliderEntity;
 import com.laptrinhjavaweb.repository.SliderRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
@@ -86,5 +87,12 @@ public class SliderServicer implements ISliderService {
         sliderRepository.save(sliderEntity);
         SliderResponse result = sliderConverter.convertToResponse(sliderEntity);
         return result;
+    }
+
+    @Override
+    public void delete(String image) {
+        SliderEntity sliderEntity = sliderRepository.findByImage(image);
+        sliderEntity.setTrangThai("INACTIVE");
+        sliderRepository.save(sliderEntity);
     }
 }

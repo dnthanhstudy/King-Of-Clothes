@@ -65,6 +65,7 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger" value="" >Sửa</button>
+                                    <button type="button" class="btn btn-danger btn-delete" value="\${item.image}" >Xóa</button>
                                 </td>
                             </tr>`;
                     tbody.append(row);
@@ -151,6 +152,28 @@
         data['base64'] = image.base64;
         return data;
     }
+
+    $('#slider').on('click', (e) => {
+        if($(e.target).hasClass('btn-delete')){
+            let image = $(e.target).val();
+            showConfirm("Bạn có muốn xóa?", image)
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: '/api/slider/' + image,
+                            method: 'DELETE',
+                            success: function (req) {
+                                loadSlider();
+                                showSuccess("Delete success");
+                            },
+                            error: function (xhr, status, error) {
+                                showError("Delete fail");
+                            }
+                        });
+                    }
+                })
+        }
+    })
 </script>
 </body>
 </html>

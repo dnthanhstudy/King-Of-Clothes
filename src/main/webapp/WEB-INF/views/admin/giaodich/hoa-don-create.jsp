@@ -119,7 +119,7 @@
 <%--                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">--%>
 <%--                    </div>--%>
                     <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
-                    <button class="btn btn-primary">Thêm hóa đơn</button>
+                    <button class="btn btn-primary btn-add-invoice">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
@@ -1059,7 +1059,14 @@
             }
         });
     }
+
+    $('.btn-add-invoice').on('click', ()=>{
+        showSuccess ("Tạo hóa đơn thành công");
+         window.location.href = "/admin/giao-dich/create";
+    });
 </script>
+
+
 
 </body>
 </html>
