@@ -8,9 +8,9 @@
                 <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">K.O.C</span>SHOP</h1>
             </a>
             <h5 class=" font-weight-semi-bold mb-4"><s:message code="web.footer.thongtin1"/></h5>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i><s:message code="web.footer.thongtin6"/></p>
-            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>KOC2003@gmail.com</p>
-            <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+84 987654321</p>
+            <p class="mb-2 store-address"><i class="fa fa-map-marker-alt text-primary mr-3"></i></p>
+            <p class="mb-2 store-email"><i class="fa fa-envelope text-primary mr-3"></i></p>
+            <p class="mb-2 store-phone"><i class="fa fa-phone-alt text-primary mr-3"></i></p>
         </div>
         <div class="col-lg-8 col-md-12">
             <div class="row">
@@ -68,6 +68,20 @@
 </div>
 <!-- Footer End -->
 
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script>
+    $.ajax({
+        url: "/api/cua-hang/thong-tin",
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            $('.store-address').append(response.DIA_CHI);
+            $('.store-email').append(response.EMAIL);
+            $('.store-phone').append(response.SO_DIEN_THOAI);
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    });
+</script>
