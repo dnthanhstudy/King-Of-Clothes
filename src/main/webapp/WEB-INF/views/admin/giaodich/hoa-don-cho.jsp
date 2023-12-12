@@ -12,7 +12,7 @@
     <title>Thêm Hóa Đơn</title>
 </head>
 <body>
-<%--xem chi tiết--%>
+
 <div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px " data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header mt-3 ms-3">
         <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
