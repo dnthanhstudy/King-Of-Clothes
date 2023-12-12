@@ -36,9 +36,8 @@ public class SliderAPI {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{image}")
-    public ResponseEntity<?> delete(@PathVariable(name = "image") String image){
-        sliderService.delete(image);
-        return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable(name = "id") Long id){
+        sliderService.delete(id);
     }
 }

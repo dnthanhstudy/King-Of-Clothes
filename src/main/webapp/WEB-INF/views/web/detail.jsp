@@ -301,9 +301,7 @@
 <script>
     var x = setInterval(function () {
         var finish = parseInt($('#product-finish').val());
-        var now = new Date().getTime();
-        console.log(finish);
-        console.log(now);
+        var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
         var distance = finish - now;
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
