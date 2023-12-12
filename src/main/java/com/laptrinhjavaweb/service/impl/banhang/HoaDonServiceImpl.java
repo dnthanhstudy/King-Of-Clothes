@@ -6,8 +6,11 @@ import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponseClass;
+import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
+import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
+import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
+import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -17,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     ThongTinMuaHangRepository thongTinMuaHangRepository;
+
+    @Autowired
+    TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
     
 //    @Autowired
 //    HoaDonConverter hoaDonConverter;
@@ -142,6 +147,23 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
+    public AllThongTinHoaDon allThongTinHoaDon(String maHoaDon) {
+        HoaDonEntity hoaDon = hoaDonRepository.findByMa(maHoaDon);
+        TongTienResponse tongTienResponse = hoaDonRepository.tongTienByHoaDon(hoaDon.getId());
+        ThongTinHoaDonResponse hoaDonResponse = hoaDonRepository.getHoaDonResponse(maHoaDon);
+        List<HDCTResponse> dsHoaDonChiTiet = hoaDonChiTietRepository.dsHoaDonChiTietResponse(maHoaDon);
+        List<TrangThaiGiaoHangResponse> dsTrangThaiGiaoHang = trangThaiGiaoHangRepository.getTrangThaiDonHangByMaHD(maHoaDon);
+
+      AllThongTinHoaDon thongTinHoaDon = new AllThongTinHoaDon();
+      thongTinHoaDon.setTongTien(tongTienResponse);
+      thongTinHoaDon.setHoaDon(hoaDonResponse);
+      thongTinHoaDon.setDsHoaDonChiTiet(dsHoaDonChiTiet);
+      thongTinHoaDon.setTrangThaiGiaoHang(dsTrangThaiGiaoHang);
+      return thongTinHoaDon;
+    }
+
+
+    @Override
     public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
         CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
         CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
@@ -170,6 +192,7 @@ public class HoaDonServiceImpl implements HoaDonService {
         result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
         return result;
     }
+
 
 
 //    @Override
