@@ -45,20 +45,23 @@
             return false;
         })
 
-        // $('#input-search-product').on('keypress', (e) => {
-        //     if (e.which === 13) {
-        //         console.log(123);
-        //         e.preventDefault();
-        //         const search = $(e.target).val();
-        //         window.location = 'search?q=' + search;
-        //     }
-        // })
-        //
-        // $('#icon-search-product').on('click', (e) => {
-        //     e.preventDefault();
-        //     const search = $('#input-search-product').val();
-        //     window.location = 'search?q=' + search;
-        // })
+        $('#input-search-product').on('keypress', (e) => {
+            if (e.which === 13) {
+                console.log(123);
+                e.preventDefault();
+                const search = $(e.target).val();
+                $('#search-filter').val(search);
+                window.location = 'search?q=' + search;
+            }
+        })
+
+
+        $('#icon-search-product').on('click', (e) => {
+            e.preventDefault();
+            const search = $('#input-search-product').val();
+            $('#search-filter').val(search);
+            window.location = 'search?q=' + search;
+        })
 
         let histories = [];
         const customerCodeWhenLogin = $('#customer-code').val();
