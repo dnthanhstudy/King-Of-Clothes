@@ -860,7 +860,7 @@
                 $.each(response.data, (index, item) => {
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
-                    if(item.khuyenMaiHienThi !== null){
+                    if(item.khuyenMaiHienThiResponse !== null){
                         htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
                                         <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }else{
@@ -884,7 +884,6 @@
                         htmlThuocTinh += `<div class="col-3">
                                             <label class="ms-3">\${itemThuocTinh.ten} :</label>
                                           </div>
-
                                           <div class="col-9 d-flex">`;
 
                         $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
@@ -893,14 +892,12 @@
                                                        value="\${itemGiaTriThuocTinh.id}">
                                                 <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
                                                </div>`;
-
-
                         })
                         htmlThuocTinh += `</div>`;
                     })
                     htmlThuocTinh += `</div>
                                         <div class="text-right">
-                                             <button class="btn btn-outline-info me-4">Mua ngay</button>
+                                             <button class="btn btn-outline-info me-4 btn-buy-product">Mua ngay</button>
                                         </div>
                                         <div class="data-server">
                                              <input type="hidden" id="product-id" value="\${item.id}">
@@ -933,10 +930,11 @@
                     },
                 });
 
-                $("#list-products").on("change", "input[type='radio']", function () {
-                    const lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+                let variantId = null;
 
+                $("#list-products").on("change", "input[type='radio']", function () {
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
                     if (lenChecked === lenOfAttribute) {
                         let attributeId = [];
                         $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
@@ -949,6 +947,7 @@
                             dataType: "json",
                             data: JSON.stringify(attributeId),
                             success: (response) => {
+                                variantId = response.id;
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
@@ -966,7 +965,6 @@
                                         $(item).html(formattedValue);
                                     }
                                 });
-
                             },
                             error: (error) => {
                                 console.log(error);
@@ -974,6 +972,25 @@
                         });
                     }
                 });
+
+                $('.btn-buy-product').on('click', function (){
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    if(variantId !== null || lenOfAttribute === 0){
+                        let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
+                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.',''));
+                        let productId = $(this).closest('.card-item-product').find('#product-id').val();
+
+                        let data = {};
+                        data['idProduct'] = productId;
+                        data['idBienThe'] = variantId;
+                        data['gia'] = productBuy;
+
+                        console.log(data);
+                        variantId = null;
+                    }else{
+                        showError("Vui lòng chọn sản phẩm");
+                    }
+                })
             },
             error: (error) => {
                 console.log(error);
