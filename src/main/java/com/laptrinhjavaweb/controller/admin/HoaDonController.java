@@ -37,7 +37,7 @@ public class HoaDonController {
         return "admin/giaodich/hoa-don-create";
     }
 
-    @GetMapping("/create")
+    @GetMapping()
     public String hoadoncho(){
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
         if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
