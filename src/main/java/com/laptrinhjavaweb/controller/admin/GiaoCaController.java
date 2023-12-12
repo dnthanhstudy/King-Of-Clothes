@@ -29,4 +29,8 @@ public class GiaoCaController {
         return "admin/giaoca/thong-ke-giao-ca";
     }
 
+    @GetMapping("/chi-tiet-ca-lam/{id}")
+    public String chitiet(){
+        return "admin/giaoca/chi-tiet-ca-lam";
+    }
 }

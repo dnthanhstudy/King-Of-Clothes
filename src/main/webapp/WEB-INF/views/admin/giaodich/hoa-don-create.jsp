@@ -129,7 +129,7 @@
                         <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button class="btn btn-primary">Thêm sản phẩm vào hóa đơn</button>
+                                    <h4 class="">Chọn sản phẩm</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
@@ -862,16 +862,16 @@
                     let htmlcoupon = '';
                     if(item.khuyenMaiHienThi !== null){
                         htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
-                                        <h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
+                                        <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }else{
-                        htmlcoupon = `<h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
+                        htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
-                    html += `<div class="col-lg-4">
-                        <div class="card card-item-product mb-3" style=" height: 250px">
+                    html += `<div class="col-lg-6">
+                        <div class="card card-item-product mb-3" style=" height: 305px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 150px"  alt="...">
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -898,7 +898,14 @@
                         })
                         htmlThuocTinh += `</div>`;
                     })
-                    htmlThuocTinh += `</div></div></div>`;
+                    htmlThuocTinh += `</div>
+                                        <div class="text-right">
+                                             <button class="btn btn-outline-info me-4">Mua ngay</button>
+                                        </div>
+                                        <div class="data-server">
+                                             <input type="hidden" id="product-id" value="\${item.id}">
+                                        </div>
+                                    </div></div>`;
 
                     html += htmlThuocTinh;
                 })

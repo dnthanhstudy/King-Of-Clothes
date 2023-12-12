@@ -6,8 +6,6 @@ import lombok.Setter;
 @Getter @Setter
 public class CaLamRequest {
 
-    private Long id;
-
     private Double soTienDauCa;
 
     private Double soTienCuoiCa;

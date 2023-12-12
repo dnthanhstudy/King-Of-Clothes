@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.api;
 
-import com.laptrinhjavaweb.entity.CaLamEntity;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
@@ -13,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/ca-lam")
@@ -61,8 +62,25 @@ public class CaLamAPI {
     }
 
     @PutMapping("/{ma}")
-    public ResponseEntity<?> updateCaLam(@PathVariable("ma") String ma, @RequestBody CaLamRequest caLamRequest) {
-        CaLamResponse result = caLamService.update(ma, caLamRequest);
+    public ResponseEntity<?> updateCaLam(@PathVariable("ma") String maNhanVien, @RequestBody CaLamRequest caLamRequest) {
+        CaLamResponse result = caLamService.update(maNhanVien, caLamRequest);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> pagination(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                                        @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
+    ){
+        Map<String, Object> results = caLamService.pagingOrFindAll(page, limit);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
+    @GetMapping("/{ma}")
+    public ResponseEntity<?> findByID(@PathVariable Long id) {
+        CaLamResponse result = caLamService.getDetail(id);
+        if (result == null) {
+            return new ResponseEntity<>("Ca làm không tồn tại", HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
