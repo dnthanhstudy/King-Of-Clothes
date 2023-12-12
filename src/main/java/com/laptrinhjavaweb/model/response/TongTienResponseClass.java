@@ -11,8 +11,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TongTienResponseClass {
-    private Double tongTien;
-    private Double tongTienDaGiam;
+    private Double tongTien;//Giá chưa giảm
+    private Double tongTienDaGiam; //Giá đã giảm
 
     public TongTienResponseClass(TongTienResponse response) {
         this.tongTien = response.getGiaGoc();
@@ -20,8 +20,11 @@ public class TongTienResponseClass {
     }
 
     public Double getSoTienGiam(){
+        if (tongTienDaGiam==null){
+            return null;
+        }
         return tongTien-tongTienDaGiam;
-    }
+    } //Giảm bao nhiêu
 
     public Double getTongTienThuc(){
         return tongTienDaGiam==null?tongTien:tongTienDaGiam;

@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
+import com.laptrinhjavaweb.model.response.TongTienResponse;
 import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.repository.BienTheRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
@@ -68,8 +69,8 @@ public class GioHangServiceImpl implements GioHangService {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
     @Override
-    public TongTienResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
-        return new TongTienResponseClass(gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct));
+    public TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
+        return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
     }
 
     @Override

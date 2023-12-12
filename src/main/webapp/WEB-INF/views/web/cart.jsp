@@ -110,7 +110,7 @@
                         <div class="col-6">
                             Tổng thanh toán (<span id="totalproduct">0</span> sản phẩm): <span class="text-danger"
                                                                                                style="font-size: 25px"
-                                                                                               id="tongthanhtoan">0₫</span>
+                                                                                               id="tongtienthuc">0₫</span>
                         </div>
                         <div class="col-6 text-right">
                             <button class="btn text-light w-75" onclick="muahang()" style="background-color: #C3817B">
@@ -229,12 +229,12 @@
         console.log(giaTienKm)
         if (!giaTienKm){
             html+=  `
-            <b id="giatienbienthe-km-\${idGhct}">\${giaTien}₫</b>
+            <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTien)}</b>
             `
         }else{
             html+=`
-            <b id="giatienbienthe-km-\${idGhct}">\${giaTienKm}₫</b>
-            <p><del id="giatienbienthe-\${idGhct}">\${giaTien}₫</del></p>
+            <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTienKm)}</b>
+            <p><del id="giatienbienthe-\${idGhct}">\${convertVND(giaTien)}</del></p>
             `
         }
         return html;
@@ -253,7 +253,6 @@
                     `)
                 }else{
                     data.forEach(async function (sp){
-                        console.log(sp)
                         const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
                         const htmlGiaTien = setGiaTien(sp.giaTien,sp.giaTienKm,sp.idGhct);
                         const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
@@ -316,7 +315,7 @@
                     </span>
                 </div>
     <div class="col-2">
-        <b id="tongtien-\${sp.idGhct}">\${sp.tongTien}₫</b>
+        <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>
     </div>
     <div class="col-1">
         <a>Xóa</a>
@@ -432,7 +431,7 @@
             }),
             success: async function (req) {
                 var data = req.data;
-                $("#tongtien-" + data.idGhct).text(data.tongTien+"₫");
+                $("#tongtien-" + data.idGhct).text(convertVND(data.tongTien));
                 tongTienTheoGhct(dsCheckbox);
             },
             error: function (xhr, status, error) {
@@ -494,9 +493,11 @@
     }
 
     function tongTienTheoGhct(listCheckbox) {
+        console.log(listCheckbox)
         if (listCheckbox.length == 0) {
             $("#thanhtien").html(0 + "₫");
             $("#tongthanhtoan").html(0 + "₫");
+            $("#sotiengiam").html(0 + "₫");
             $("#totalproduct").html(0);
             return;
         }
@@ -505,10 +506,12 @@
             method: 'GET',
             contentType: 'application/json',
             success: function (req) {
+                console.log(req)
                 var data = req.data;
-                $("#thanhtien").html(data.tongTien + "₫");
-                $("#tongthanhtoan").html(data.tongTienThuc + "₫");
-                $("#sotiengiam").html(data.soTienGiam + "₫");
+                $("#thanhtien").html(convertVND(data.giaGoc));
+                $("#tongthanhtoan").html( convertVND(data.giaGoc));
+                $("#sotiengiam").html(convertVND(!data.giaGiam?0:data.giaGiam));
+                $("#tongtienthuc").html(convertVND(data.thucTe));
                 $("#totalproduct").html(listCheckbox.length);
             },
             error: function (xhr, status, error) {

@@ -20,7 +20,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
 
     GioHangChiTietEntity findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(Long bienTheId,Long khachHangId,String trangThai);
 
-    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam FROM vw_giohangchitiet_summary WHERE id IN (:lstghct)", nativeQuery = true)
+    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam," +
+            " sum(thucte) as thucte FROM vw_giohangchitiet_summary WHERE id IN (:lstghct)", nativeQuery = true)
     TongTienResponse tongTienTheoGioHangChiTiet(@Param("lstghct") List<Long> lstghct);
 
     @Query(value = "SELECT * FROM giohangchitiet WHERE id IN (:dsghct)",nativeQuery = true)

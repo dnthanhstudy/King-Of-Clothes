@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
+import com.laptrinhjavaweb.model.response.TongTienResponse;
 import com.laptrinhjavaweb.model.response.TongTienResponseClass;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
@@ -14,7 +15,7 @@ public interface GioHangService {
     List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH);
 
 //    BigDecimal tongTien(Long idKH);
-    TongTienResponseClass tongTienTheoGioHangChiTiet(List<Long> lstGhct);
+    TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct);
 
     ResponseObject datHang(Long idkh, List<Long> dsghct);
 //
