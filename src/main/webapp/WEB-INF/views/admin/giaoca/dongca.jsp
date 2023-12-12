@@ -87,26 +87,28 @@
             <div class=" hstack gap-3">
                 <h5 class="font-weight-bold" style="color: #EB8153">Cuối ca</h5>
                 <div class=" ms-auto">
-                    <span class="text-cyan">Tiền mặt:</span><span class="text-cyan ms-1" id="soTienCuoiCa"></span><span class="text-cyan ms-1">đ</span>
+                    <span class="text-cyan">Tiền cuối ca:</span><span class="text-cyan ms-1" id="soTienCuoiCa"></span><span class="text-cyan ms-1">đ</span>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-4">
                     <span class="text-danger">* </span>Tiền mặt bàn giao thực tế:
                     <div class="input-wrapper1 mt-4">
-                        <input class="input-box1" id="tongTienKetCa" type="text" placeholder="Nhập số tiền">
+                        <input class="input-box1" id="tienMatBanGiao" name="tienMatBanGiao" type="text" placeholder="Nhập số tiền">
                         <span class="underline1"></span>
                     </div>
 
                 </div>
                 <div class="col-4">
                     Số tiền chêch lệch:
-                    <div class="mt-4" id="tienChenhLech">0</div>
+                    <div class="mt-4">
+                        <span id="tienChenhLech">0</span> đ
+                    </div>
                 </div>
                 <div class="col-4">
                     Ghi chú:
                     <div class="input-wrapper1 mt-4">
-                        <input class="input-box1 " type="text" placeholder="Nhập ghi chú">
+                        <input class="input-box1" id="ghiChu" name="ghiChu" type="text" placeholder="Nhập ghi chú">
                         <span class="underline1"></span>
                     </div>
                 </div>
@@ -116,7 +118,7 @@
 
         <div class="row">
             <div class="text-right">
-                <button class="btn"  style="background-color: #A6edab; color: #00852d">Đóng ca và in phiếu giao</button>
+                <button class="btn" id="dongCa"  style="background-color: #A6edab; color: #00852d">Đóng ca và in phiếu giao</button>
             </div>
         </div>
 
@@ -151,42 +153,86 @@
         return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
     }
 
-    $('#tongTienKetCa').on('input', function () {
-        var soTienBanGiao = parseFloat($(this).val()) || 0;
+    $('#tienMatBanGiao').on('input', function () {
+        var soTienBanGiao = parseFloat($('#tienMatBanGiao').val()) || 0;
         var soTienCuoiCa = parseFloat($('#soTienCuoiCa').text()) || 0;
         var tienChenhLech = soTienCuoiCa - soTienBanGiao;
-
         $('#tienChenhLech').text(tienChenhLech);
     });
 
+    function updateUiWithInitialData(req) {
+        $('#maNhanVien').text(req.maNhanVien);
+        $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
+        $('#soTienDauCa').text(req.soTienDauCa);
+        $('#soTienCuoiCa').text(req.soTienCuoiCa);
+        $('#tongTienMat').text(req.tongTienMat);
+        $('#tongTienMat1').text(req.tongTienMat);
+        $('#tongTienChuyenKhoan').text(req.tongTienChuyenKhoan);
+        $('#tongHoaDon').text(req.tongHoaDon);
+        $('#tongTienTrongCa').text(req.tongTienTrongCa);
+    }
+
     $.ajax({
-        url: '/api/ca-lam/ket-ca?ngay=' + formatDate(new Date())  + '&ma=' + ma,
+        url: '/api/ca-lam/ket-ca?ngay=' + formatDate(new Date()) + '&ma=' + ma,
         method: 'GET',
         dataType: 'json',
         success: function (req) {
-            console.log(req)
-            $('#maNhanVien').text(req.maNhanVien);
-            const dateTimeStr = new Date(req.ngayTao).toLocaleString()
-
-            $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
-            $('#soTienDauCa').text(req.soTienDauCa);
-            $('#soTienCuoiCa').text(req.soTienCuoiCa);
-            $('#tongTienMat').text(req.tongTienMat);
-            $('#tongTienMat1').text(req.tongTienMat);
-            $('#tongTienChuyenKhoan').text(req.tongTienChuyenKhoan);
-            $('#tongHoaDon').text(req.tongHoaDon);
-            $('#tongTienTrongCa').text(req.tongTienTrongCa);
-
-            var soTienBanGiao = parseFloat($('#tongTienKetCa').val()) || 0;
-            // var tienChenhLech = req.soTienCuoiCa - soTienBanGiao;
-            //
-            // $('#tienChenhLech').text(tienChenhLech);
+            updateUiWithInitialData(req);
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
     });
 
+    function validate(){
+        var ghiChu = $("#ghiChu").val();
+        var tienMatBanGiao = $("#tienMatBanGiao").val();
+
+        if (tienMatBanGiao === "") {
+            showError("Tiên mặt bàn giao không được để trống");
+            return false;
+        }
+        if (isNaN(parseFloat(tienMatBanGiao))) {
+            showError("Tiền mặt bàn giao phải là số");
+            return false;
+        }
+        if (ghiChu === "") {
+            showError("Ghi chú không được để trống");
+            return false;
+        }
+        return true;
+    }
+
+    $('#dongCa').on('click', function (e) {
+
+        var soTienCuoiCa = $("#soTienCuoiCa").text();
+        var tienChenhLech = $("#tienChenhLech").text();
+        var ghiChu = $("#ghiChu").val();
+        var tienMatBanGiao = $("#tienMatBanGiao").val();
+
+        var data = {
+            "soTienCuoiCa": soTienCuoiCa,
+            "tienChenhLech": tienChenhLech,
+            "tienMatBanGiao": tienMatBanGiao,
+            "ghiChu": ghiChu
+        };
+        if (validate()) {
+            $.ajax({
+                url: "/api/ca-lam/" + ma,
+                method: "PUT",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log("Success");
+                    window.location.href = "/logout";
+                },
+                error: function (error) {
+                    showError(error);
+                }
+            });
+        }
+    })
 
 </script>
 </body>

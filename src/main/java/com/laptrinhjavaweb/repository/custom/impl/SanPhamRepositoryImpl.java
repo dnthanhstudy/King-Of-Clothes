@@ -1,9 +1,6 @@
 package com.laptrinhjavaweb.repository.custom.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -79,22 +76,25 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	}
 
 	private String buildSQL(Map<String, Object> params) {
-		String queryFinal = "SELECT distinct sanpham.id FROM thuoctinh"
-				+ " JOIN giatrithuoctinh ON thuoctinh.id = giatrithuoctinh.idthuoctinh"
-				+ " JOIN sanpham ON sanpham.id = thuoctinh.idsanpham"
-				+ " JOIN thuonghieu ON thuonghieu.id = sanpham.idthuonghieu";
+		String queryFinal = "SELECT distinct sanpham.id FROM sanpham ";
+
+		Set<String> joinSQL = new HashSet<>();
 		List<String> whereSQL = new ArrayList<>();
 		List<String> inSlugSQL = new ArrayList<>();
 		List<String> inGiaTriSQL = new ArrayList<>();
 		params.forEach((k, v) -> {
 			String query = null;
 			if(k.equals("thuong-hieu")) {
-				query = "thuonghieu.slug" + "=" + v;
+				joinSQL.add("JOIN thuonghieu ON thuonghieu.id = sanpham.idthuonghieu");
+				query = "thuonghieu.slug" + "='" + v + "'";
 			}
 			else if(k.equals("gia")) {
 				List<String> gias = Arrays.asList(v.toString().split(","));
 				query = "sanpham.gia >= " + Double.parseDouble(gias.get(0)) + " and sanpham.gia <= " + Double.parseDouble(gias.get(1));
 			}else {
+				joinSQL.add("JOIN thuoctinh ON thuoctinh.id = thuoctinh.idsanpham " +
+							"JOIN giatrithuoctinh ON thuoctinh.id = giatrithuoctinh.idthuoctinh");
+
 				inSlugSQL.add(k);
 				List<String> strs = Arrays.asList(v.toString().split(","));
 				inGiaTriSQL.addAll(strs);
@@ -120,7 +120,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			sqlInGiaTri = "giatrithuoctinh.giatri IN " + sqlInGiaTri;
 			whereSQL.add(sqlInGiaTri);
 		}
-		queryFinal = queryFinal + " WHERE " + String.join(" AND ", whereSQL);
+		queryFinal = queryFinal + String.join(" ", joinSQL) + " WHERE " + String.join(" AND ", whereSQL);
 		System.out.println(queryFinal);
 		return queryFinal;
 	}

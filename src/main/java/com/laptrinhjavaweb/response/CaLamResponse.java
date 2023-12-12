@@ -13,6 +13,8 @@ public class CaLamResponse {
 
     private Date ngayTao;
 
+    private Date ngaySua;
+
     private Double soTienCuoiCa;
 
     private Double soTienDauCa;
@@ -26,4 +28,10 @@ public class CaLamResponse {
     private Double tongTienChuyenKhoan;
 
     private Double tongTienTrongCa;
+
+    private String ghiChu;
+
+    private Double tienChenhLech;
+
+    private Double tienMatBanGiao;
 }

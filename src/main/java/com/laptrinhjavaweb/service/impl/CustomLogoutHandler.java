@@ -26,7 +26,7 @@ public class CustomLogoutHandler implements LogoutHandler {
                 MyUserResponse myUserResponse = (MyUserResponse) authentication.getPrincipal();
                 if(myUserResponse.getMaChucVu().equals("STAFF") || myUserResponse.getMaChucVu().equals("ADMIN")){
                     nhanVienService.dongCa(myUserResponse.getMa());
-                    url = "/login";
+                    url = "/login?is_logout";
                 }else{
                     url = "/trang-chu";
                 }

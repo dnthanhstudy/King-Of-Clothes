@@ -118,6 +118,8 @@
 <%--                        </svg>--%>
 <%--                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">--%>
 <%--                    </div>--%>
+                    <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
+                    <button class="btn btn-primary">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
@@ -129,7 +131,7 @@
                         <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button class="btn btn-success">Thêm sản phẩm vào giỏ hàng</button>
+                                    <h4 class="">Chọn sản phẩm</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
@@ -860,18 +862,18 @@
                 $.each(response.data, (index, item) => {
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
-                    if(item.khuyenMaiHienThi !== null){
+                    if(item.khuyenMaiHienThiResponse !== null){
                         htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
-                                        <h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
+                                        <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }else{
-                        htmlcoupon = `<h5 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h5>`;
+                        htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
-                    html += `<div class="col-lg-4">
-                        <div class="card card-item-product mb-3" style=" height: 250px">
+                    html += `<div class="col-lg-6">
+                        <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 150px"  alt="...">
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -884,7 +886,6 @@
                         htmlThuocTinh += `<div class="col-3">
                                             <label class="ms-3">\${itemThuocTinh.ten} :</label>
                                           </div>
-
                                           <div class="col-9 d-flex">`;
 
                         $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
@@ -893,12 +894,17 @@
                                                        value="\${itemGiaTriThuocTinh.id}">
                                                 <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
                                                </div>`;
-
-
                         })
                         htmlThuocTinh += `</div>`;
                     })
-                    htmlThuocTinh += `</div></div></div>`;
+                    htmlThuocTinh += `</div>
+                                        <div class="text-right">
+                                             <button class="btn btn-outline-info me-4 btn-buy-product">Mua ngay</button>
+                                        </div>
+                                        <div class="data-server">
+                                             <input type="hidden" id="product-id" value="\${item.id}">
+                                        </div>
+                                    </div></div>`;
 
                     html += htmlThuocTinh;
                 })
@@ -926,10 +932,11 @@
                     },
                 });
 
-                $("#list-products").on("change", "input[type='radio']", function () {
-                    const lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+                let variantId = null;
 
+                $("#list-products").on("change", "input[type='radio']", function () {
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
                     if (lenChecked === lenOfAttribute) {
                         let attributeId = [];
                         $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
@@ -942,6 +949,7 @@
                             dataType: "json",
                             data: JSON.stringify(attributeId),
                             success: (response) => {
+                                variantId = response.id;
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
@@ -959,7 +967,6 @@
                                         $(item).html(formattedValue);
                                     }
                                 });
-
                             },
                             error: (error) => {
                                 console.log(error);
@@ -967,6 +974,25 @@
                         });
                     }
                 });
+
+                $('.btn-buy-product').on('click', function (){
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    if(variantId !== null || lenOfAttribute === 0){
+                        let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
+                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.',''));
+                        let productId = $(this).closest('.card-item-product').find('#product-id').val();
+
+                        let data = {};
+                        data['idProduct'] = productId;
+                        data['idBienThe'] = variantId;
+                        data['gia'] = productBuy;
+
+                        console.log(data);
+                        variantId = null;
+                    }else{
+                        showError("Vui lòng chọn sản phẩm");
+                    }
+                })
             },
             error: (error) => {
                 console.log(error);

@@ -78,6 +78,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
+                console.log(response);
                 let html = '';
                 $.each(response.data, (index, item) => {
                     html += `<tr>
@@ -97,7 +98,6 @@
                 })
                 $('.tbody-product').html(html);
 
-                console.log(response);
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,

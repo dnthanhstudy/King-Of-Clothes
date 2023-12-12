@@ -24,10 +24,6 @@
         <div class="col-lg-3 col-6 text-right">
             <a href="?lang=vi" class="btn border" >Việt</a>
             <a href="?lang=en" class="btn border" >Anh</a>
-            <a href="" class="btn border">
-                <i class="fas fa-heart text-primary"></i>
-                <span class="">0</span>
-            </a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="">0</span>

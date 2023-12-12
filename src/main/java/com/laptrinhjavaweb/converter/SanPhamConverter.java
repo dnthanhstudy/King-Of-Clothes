@@ -10,7 +10,6 @@ import com.laptrinhjavaweb.response.KhuyenMaiHienThiResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
-import com.laptrinhjavaweb.utils.DateUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

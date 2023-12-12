@@ -32,11 +32,12 @@
             showError("Vui lòng đăng nhập tài khoản của bạn")
         </script>
     </c:if>
-    <c:if test="${param.logout != null}">
+    <c:if test="${param.is_logout != null}">
         <script>
-            window.location.href = "/trang-chu";
+            showSuccess("Đăng xuất thành công");
         </script>
     </c:if>
+
     <div class="container py-5 py-sm-7">
 
 
