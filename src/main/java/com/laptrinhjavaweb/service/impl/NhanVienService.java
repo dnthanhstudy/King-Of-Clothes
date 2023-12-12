@@ -18,7 +18,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -140,7 +139,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = SystemConstant.path + nhanVienRequest.getAnh();
+        String path = SystemConstant.path + "/nhanvien/"  + nhanVienRequest.getAnh();
         if (nhanVienRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

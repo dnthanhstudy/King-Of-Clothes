@@ -12,4 +12,13 @@ import lombok.Setter;
 public class SliderRequest {
 
     private String image;
+
+    private String base64;
+
+    public String getBase64() {
+        if(base64 != null){
+            return base64.split(",")[1];
+        }
+        return base64;
+    }
 }
