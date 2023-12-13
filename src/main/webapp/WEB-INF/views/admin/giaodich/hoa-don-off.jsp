@@ -58,8 +58,14 @@
         <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         padding: 20px; background-color: #fff">
             <div class="row ">
-                <div class="col-9">
-                    <h4>Danh sách hóa đơn</h4>
+                <div class="col">
+                    <div class="d-flex justify-content-between">
+                        <h4>Danh sách hóa đơn</h4>
+                        <select name="" id="" class="form-control" style="width: 150px">
+                            <option value="">Chờ thanh toán</option>
+                            <option value="">Đã thanh toán</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <hr>
