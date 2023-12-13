@@ -50,6 +50,11 @@ public class DashboardController {
         return "admin/setting/lich-su-tich-diem";
     }
 
+    @GetMapping("/slider")
+    public String slider() {
+        return "admin/setting/slider";
+    }
+
 }
 
 

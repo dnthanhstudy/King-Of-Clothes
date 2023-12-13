@@ -23,10 +23,6 @@
         <div class="col-lg-3 col-6 text-right">
             <a href="?lang=vi" class="btn border" >Việt</a>
             <a href="?lang=en" class="btn border" >Anh</a>
-            <a href="" class="btn border">
-                <i class="fas fa-heart text-primary"></i>
-                <span class="">0</span>
-            </a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="">0</span>
@@ -49,20 +45,23 @@
             return false;
         })
 
-        // $('#input-search-product').on('keypress', (e) => {
-        //     if (e.which === 13) {
-        //         console.log(123);
-        //         e.preventDefault();
-        //         const search = $(e.target).val();
-        //         window.location = 'search?q=' + search;
-        //     }
-        // })
-        //
-        // $('#icon-search-product').on('click', (e) => {
-        //     e.preventDefault();
-        //     const search = $('#input-search-product').val();
-        //     window.location = 'search?q=' + search;
-        // })
+        $('#input-search-product').on('keypress', (e) => {
+            if (e.which === 13) {
+                console.log(123);
+                e.preventDefault();
+                const search = $(e.target).val();
+                $('#search-filter').val(search);
+                window.location = 'search?q=' + search;
+            }
+        })
+
+
+        $('#icon-search-product').on('click', (e) => {
+            e.preventDefault();
+            const search = $('#input-search-product').val();
+            $('#search-filter').val(search);
+            window.location = 'search?q=' + search;
+        })
 
         let histories = [];
         const customerCodeWhenLogin = $('#customer-code').val();

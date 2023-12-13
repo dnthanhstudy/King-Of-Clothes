@@ -116,7 +116,7 @@
 
 
 <div class="container-fluid bg-secondary mb-5">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 180px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3">Check Out</h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href="">Home</a></p>
@@ -209,14 +209,26 @@
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-9"></div>
-                <div class="col-3">
+                <div class="col-7"></div>
+                <div class="col-5">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-6">
+                            <span>Tổng tiền sản phẩm : </span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <b id="tongtiensp">1.827.500₫</b>
+                        </div>
+                        <div class="col-6">
+                            <span>Số tiền đã giảm : </span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span class="soTienDaGiam">1.827.500₫</span>
+                        </div>
+                        <div class="col-5">
                             <span>Tổng số tiền (<span id="tongsanpham"></span> sản phẩm):</span>
                         </div>
-                        <div class="col-4 text-right">
-                            <span class="tongtienghct">1.827.500₫</span>
+                        <div class="col-7 text-right">
+                            <b class="tongtienghct">1.827.500₫</b>
                         </div>
                     </div>
                 </div>
@@ -589,7 +601,7 @@
             method: 'GET',
             success: async function (data) {
                 $("#thoigiandukien").text(convertMilisToDate(data.expected_delivery_time))
-                $(".sotiengiaohang").text(data.total_fee+"₫");
+                $(".sotiengiaohang").text(convertVND(data.total_fee));
                 tongThanhToan();
             },
             error: function(xhr, status, error) {
@@ -644,6 +656,20 @@
             }
         });
     }
+    function loadGiaTien(giaTien,giaTienKm) {
+        let html = '';
+        if (giaTienKm){
+            html+=`
+            <h6 class="card-title">\${convertVND(giaTienKm)}</h6>
+                        <p class="card-title"><del>\${convertVND(giaTien)}</del></p>
+            `
+        }else{
+            html+=`
+            <h6 class="card-title">\${convertVND(giaTien)}</h6>
+            `
+        }
+        return html;
+    }
     function ghct(){
         $.ajax({
             url: '/api/hoadon/chuanbidat/'+idkh,
@@ -659,6 +685,7 @@
                 tbody.empty();
                 tongTienTheoHoaDon(data[0].idhd);
                 data.forEach(function (custom) {
+                    let htmlGiaTien = loadGiaTien(custom.giaTien,custom.giaTienKm);
                     var html = `
                         <div class="row mt-3" style="border-bottom: 1px solid #dedede">
                     <div class="col-5">
@@ -669,7 +696,7 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body">
-                                        <h6 class="card-title line-clamp-1">\${custom.tenSanPham}</h6>
+                                        <h6 class="card-title line-clamp-2">\${custom.tenSanPham}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -679,14 +706,13 @@
                         <h6 class="card-title" style="border: 1px solid #dedede;padding: 5px">Loại: \${custom.tenBienThe}</h6>
                     </div>
                     <div class="col-2 mt-3">
-                        <h6 class="card-title">\${custom.giaTienKm}</h6>
-                        <p class="card-title"><del>\${custom.giaTien}</del></p>
+                        \${htmlGiaTien}
                     </div>
                     <div class="col-2 mt-3">
                         <h6 class="card-title">\${custom.soLuong}</h6>
                     </div>
                     <div class="col-1 mt-3">
-                        <h6 class="card-title">\${custom.tongTienHdct}</h6>
+                        <h6 class="card-title">\${convertVND(custom.tongTienHdct)}</h6>
                     </div>
                 </div>
                     `;
@@ -701,28 +727,35 @@
     }
 
     function tongTienTheoHoaDon(idhd){
-        $.ajax({
+         $.ajax({
             url: 'api/user/giaohang/tongtienhd/'+idhd,
             method: 'GET',
             success: function (req) {
-                $(".tongtienghct").html(req.data+"₫");
+                let data = req.data;
+                setTienHienThi(data.giaGoc,data.giaGiam,data.thucTe);
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
             }
         });
     }
+    function setTienHienThi(tongTienSP,soTienGiam,tongTienThuc){
+        $("#tongtiensp").html(convertVND(tongTienSP));
+        $(".soTienDaGiam").html(convertVND(soTienGiam));
+        $(".tongtienghct").html(convertVND(tongTienThuc));
+
+    }
+    function getPriceElement(element) {
+        let priceString = $(element).text().split(" ")[0].replaceAll(".", "");
+        return parseFloat(priceString); // Chuyển đổi chuỗi thành số float
+    }
     ghct()
     function tongThanhToan() {
-        var tongtien = $(".tongtienghct:first").text(); // Lấy giá trị từ phần tử đầu tiên
-        var tienship = $(".sotiengiaohang:first").text(); // Lấy giá trị từ phần tử đầu tiên
+        var tongtien = getPriceElement(".tongtienghct:first");
+        var tienship = getPriceElement(".sotiengiaohang:first");
 
-        // Lấy chuỗi từ đầu đến length - 1
-        var tongtienSubstring = Number(tongtien.slice(0, tongtien.length - 1));
-        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
-
-
-        $("#tongthanhtoan").html(tongtienSubstring + tienshipSubstring + "₫");
+        //
+        $("#tongthanhtoan").html(convertVND(tongtien + tienship));
     }
         tongThanhToan();
     function datHang(){
@@ -772,23 +805,24 @@
             }
         });
     }
-    function thanhToanNhanHang(){
+    function getThongTin() {
         var idttmh = $("#idttmuahang").val();
-        var tienship = $(".sotiengiaohang:first").text();
-        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
-        let tongThanhToan = $("#tongthanhtoan").text();
-        var tongThanhToanStr = Number(tongThanhToan.slice(0, tongThanhToan.length - 1));
+        var tienship = getPriceElement(".sotiengiaohang:first");
+        let tongThanhToan = getPriceElement("#tongthanhtoan");
+        return JSON.stringify({
+            idkh: parseInt(idkh),
+            ttgh: parseInt(idttmh),
+            phiship: tienship,
+            luuy: $("#luuychoshop").val(),
+            tongTien:tongThanhToan
+        });
+    }
+    function thanhToanNhanHang(){
         $.ajax({
             url: `api/hoadon/dathangnhanhang`,
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({
-                idkh: parseInt(idkh),
-                ttgh: parseInt(idttmh),
-                phiship: parseFloat(tienshipSubstring),
-                luuy: $("#luuychoshop").val(),
-                tongTien:tongThanhToanStr
-            }),
+            data: getThongTin(),
             success: function (req) {
                 showSuccess("Thanh toán thành công");
                 window.location.href = "/pay/success"

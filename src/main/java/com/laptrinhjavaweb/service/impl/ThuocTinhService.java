@@ -29,7 +29,7 @@ public class ThuocTinhService implements IThuocTinhService{
 		List<FilterResponse> results = new ArrayList<>();
 		List<String> slugs = thuocTinhRepository.findAllDistinctSlug();
 		for (String slug : slugs) {
-			List<ThuocTinhEntity> thuocTinhEntities = thuocTinhRepository.findAllBySlug(slug);
+			List<ThuocTinhEntity> thuocTinhEntities = thuocTinhRepository.findTop5BySlug(slug);
 			FilterResponse filterResponse = thuocTinhConvert.convertToFilterResponse(thuocTinhEntities);
 			results.add(filterResponse);
 		}

@@ -14,7 +14,7 @@
 
 <!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
-    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 180px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3"><s:message code="web.navbar.product"/></h1>
         <div class="d-inline-flex">
             <p class="m-0"><a href=""><s:message code="web.navbar.home"/></a></p>
@@ -30,9 +30,10 @@
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-12">
-            <!-- Price Start -->
-            <form method="GET" id="filter">
-                <div class="border-bottom mb-4 pb-4">
+            <c:set var="priceFilter" value="not-filter" />
+            <c:set var="brandFilter" value="not-filter" />
+            <div id="filter">
+                <div id="gia" class="border-bottom mb-4 pb-4">
                     <h5 class="font-weight-semi-bold mb-4"><s:message code="web.product.price"/></h5>
                     <div>
                         <div class="mb-3">
@@ -50,20 +51,59 @@
                     </div>
                 </div>
 
+                <div id="brands" class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Lọc theo thương hiệu</h5>
+                    <div>
+                        <c:forEach items="${brandsProduct}" var="brand">
+                            <div class="mb-3">
+                                <button value="${brand.slug}" name="thuong-hieu" class="btn btn-primary">${brand.ten}</button>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
+
                 <c:forEach items="${filterProduct}" var="filter">
-                    <div class="border-bottom mb-4 pb-4">
+                    <div id="${filter.ma}" class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Lọc theo ${filter.ten}</h5>
                         <div>
                             <c:forEach items="${filter.giaTri}" var="giaTri" varStatus="loop">
                                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                    <input name="${filter.ma}" value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
-                                    <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                    <c:if test="${empty attributeChecked}">
+                                        <input name="${filter.ma}" value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                        <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                    </c:if>
+
+                                    <c:if test="${not empty attributeChecked}">
+                                        <c:set var="isChecked" value="false" />
+                                        <c:set var="loopBreak" value="false" />
+
+                                        <c:forEach items="${attributeChecked}" var="checked">
+                                            <c:if test="${checked.key eq 'gia'}">
+                                                <c:set var="priceFilter" value="${checked.value}" />
+                                            </c:if>
+
+                                            <c:if test="${checked.key eq 'thuong-hieu'}">
+                                                <c:set var="brandFilter" value="${checked.value}" />
+                                            </c:if>
+
+                                            <c:forEach items="${f:split(checked.value, ',')}" var="val">
+                                                <c:if test="${val == giaTri && checked.key == filter.ma && not loopBreak}">
+                                                    <c:set var="isChecked" value="true" />
+                                                    <c:set var="loopBreak" value="true" />
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:forEach>
+                                        <input ${isChecked ? 'checked' : ''} name="${filter.ma}" value="${giaTri}" type="checkbox" class="custom-control-input" id="${filter.ma}-${loop.count}">
+                                        <label for="${filter.ma}-${loop.count}" class="custom-control-label">${giaTri}</label>
+                                    </c:if>
                                 </div>
                             </c:forEach>
                         </div>
                     </div>
                 </c:forEach>
-            </form>
+            </div>
+            <input id="price-filter" type="hidden" name="gia" value="${priceFilter}">
+            <input id="brand-filter" type="hidden" name="thuong-hieu" value="${brandFilter}">
         </div>
         <!-- Shop Sidebar End -->
 
@@ -117,8 +157,10 @@
     </div>
 </div>
 <!-- Shop End -->
+<script>
+    $('#form-submit-product')[0].scrollIntoView({ behavior: 'smooth' });
+</script>
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
-<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script>
     const urlString = window.location.href;
     let paramString = urlString.split('?')[1];
@@ -135,8 +177,8 @@
         startPage: currentPage,
         onPageClick: function (event, page) {
             if (currentPage != page) {
-                $('#page-product').val(page);
                 $('#search-product').val(param);
+                $('#page-product').val(page);
                 $('#limit-product').val(limit);
                 $('#form-submit-product').submit();
             }

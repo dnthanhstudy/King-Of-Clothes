@@ -43,8 +43,10 @@
                                 </div>
                                 <div class="row my-2">
                                     <div class="col">
-                                        <strong>Lưu ý cho shop:</strong>
-                                        <span id="luuy"></span>
+                                        <div class="form-group">
+                                            <label for="luuy">Lưu ý cho shop</label>
+                                            <textarea class="form-control" id="luuy" rows="3"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -474,7 +476,6 @@
           url: '/api/hoadon/dshoadon',
           method: 'GET',
           success: function (req) {
-              console.log(req);
               loadTable(req.data)
 
           },
@@ -508,26 +509,47 @@
       //     paging:false
       // })
   }
+  function htmlGiaTien(giaTien,giaTienKm) {
+        let html = '';
+        if(!giaTienKm){
+            html+=
+                `
+            <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTien)}</h5>
+                `
+        }else{
+            html+=`
+            <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTienKm)}</h5>
+            <h5 class="mb-0 pt-1 font-w500 text-black"><del>\${convertVND(giaTien)}</del></h5>
+            `
+        }
+        return html;
+  }
    function chiTietHoaDon(idhd) {
        $.ajax({
            url: '/api/hdct/'+idhd,
            method: 'GET',
            success: function (req) {
                var data  = req.data[0];
-               console.log(data)
               $("#makh").text(data.maKhachHang)
               $("#tennguoinhan").text(data.tenNguoiNhan)
               $("#sodienthoai").text(data.soDienThoai)
               $("#diachi").text(data.diaChiNguoiNhan)
-              $("#tiensp").text(convertVND(data.tongTienHdct))
+              $("#tiensp").text(convertVND(data.tongTienSanPham))
               $("#tienship").text(convertVND(data.tienShip))
               $("#tienhang").text(convertVND(data.tongTien))
-              $("#luuy").text(data.moTa)
-              // $("#luuy").text(data.mota)
+               var luuy = $("#luuy");
+               luuy.val(data.moTa);
+               if (data.trangThaiHoaDon != "Chờ nhận đơn") {
+                   luuy.prop('readonly', true); // Sử dụng prop() để thiết lập thuộc tính readOnly
+               } else {
+                   luuy.prop('readonly', false);
+               }
+
                let cart = $("#cart")
                cart.empty();
                let html = "";
                 req.data.forEach(function (item,index) {
+                    let htmlGia = htmlGiaTien(item.giaTien,item.giaTienKm);
                     html+=`
                      <div class="card">
                         <div class="project-info">
@@ -539,7 +561,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Mã biến thể</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black" >\${item.maBienThe}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black" ><a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">\${item.maBienThe}</a></h5>
                             </div>
                         </div>
                     </div>
@@ -547,8 +569,10 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Tên sản phẩm</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-1">\${item.tenSanPham}</h5>
+                            <a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">
+                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.tenSanPham}</h5>
                                 <div class="text-success" >\${item.tenBienThe}</div>
+                            </a>
                             </div>
                         </div>
                     </div>
@@ -556,7 +580,7 @@
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
                                 <span>Đơn giá</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(item.giaTien)}</h5>
+                                \${htmlGia}
                             </div>
                         </div>
                     </div>
@@ -616,8 +640,13 @@
 
    }
    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+       let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+       // if (trangThai === 'DANHANDON' || trangThai === 'HUYDON') {
+           var luuy = $("#luuy").val();
+           parameter += `&luuy=\${encodeURIComponent(luuy)}`;
+       // }
        $.ajax({
-           url: `/api/hoadon/thaydoitrangthai?idhd=\${idhd}&trangthai=\${trangThai}`,
+           url: `/api/hoadon/thaydoitrangthai`+parameter,
            method: 'GET',
            success: function (req) {
                showMessageHoaDon(trangThai);

@@ -2,22 +2,38 @@ actionPriceFilter();
 
 $("#filter").on("change", "input[type='checkbox']", function(){
     const priceFilter = $('#price-filter').val();
-    filterAndPageable(1, 9, priceFilter);
+    const brandFilter = $('#brand-filter').val();
+    filterAndPageable(1, 9, priceFilter, brandFilter);
+});
+
+$("#brands").on("click", "button", function(e){
+    e.preventDefault();
+    const brandFilter = $(this).val();
+    $('#brand-filter').val(brandFilter);
+    const priceFilter = $('#price-filter').val();
+    filterAndPageable(1, 9, priceFilter, brandFilter);
 });
 
 $("#gia").on("click", "button", function(e){
     e.preventDefault();
     const priceFilter = $(this).val();
-    $('#price-filter').val($(this).val());
-    filterAndPageable(1, 9, priceFilter);
+    $('#price-filter').val(priceFilter);
+    const brandFilter = $('#brand-filter').val();
+    filterAndPageable(1, 9, priceFilter, brandFilter);
 });
 
-function filterAndPageable(page, limit, priceFilter){
+function filterAndPageable(page, limit, priceFilter, brandFilter){
+    $('.value-server').html('');
     let filters = getCheckedWhenFilter();
     if(priceFilter !== 'not-filter'){
         let inputEle = `<input type="hidden" value="${priceFilter}" name="gia"/>`;
         $('.value-server').append(inputEle);
     }
+    if(brandFilter !== 'not-filter'){
+        let inputEle = `<input type="hidden" value="${brandFilter}" name="thuong-hieu"/>`;
+        $('.value-server').append(inputEle);
+    }
+
     Object.keys(filters).map(function(key) {
         let name = key;
         let value = filters[key].join(",");
@@ -46,11 +62,23 @@ function getCheckedWhenFilter(){
 
 function actionPriceFilter(){
     const priceFilter = $('#price-filter').val();
+    const brandFilter = $('#brand-filter').val();
     if(priceFilter !== 'not-filter'){
         let prices = $('#gia button');
         prices.each(function () {
             var value = $(this).val();
             if(value === priceFilter){
+                $(this).addClass('btn-secondary');
+                return false;
+            }
+        });
+    }
+
+    if(brandFilter !== 'not-filter'){
+        let brands = $('#brands button');
+        brands.each(function () {
+            var value = $(this).val();
+            if(value === brandFilter){
                 $(this).addClass('btn-secondary');
                 return false;
             }

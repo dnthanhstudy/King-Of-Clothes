@@ -15,4 +15,6 @@ public class CaLamRequest {
     private String ghiChu;
 
     private Double tienChenhLech;
+
+    private Double tienMatBanGiao;
 }

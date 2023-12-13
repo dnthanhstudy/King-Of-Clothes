@@ -9,5 +9,5 @@ import com.laptrinhjavaweb.repository.custom.ThuocTinhRepositoryCustom;
 
 public interface ThuocTinhRepository extends JpaRepository<ThuocTinhEntity, Long>, ThuocTinhRepositoryCustom {
 
-	List<ThuocTinhEntity> findAllBySlug(String slug);
+	List<ThuocTinhEntity> findTop5BySlug(String slug);
 }

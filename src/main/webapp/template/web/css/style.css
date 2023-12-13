@@ -4044,6 +4044,10 @@ input[type="button"].btn-block {
   padding-left: 0;
 }
 
+.navbar-nav a.active {
+  color: #D19C97;
+}
+
 .navbar-nav .dropdown-menu {
   position: static;
   float: none;
