@@ -11,4 +11,10 @@ public class CaLamRequest {
     private Double soTienCuoiCa;
 
     private String maNhanVien;
+
+    private String ghiChu;
+
+    private Double tienChenhLech;
+
+    private Double tienMatBanGiao;
 }

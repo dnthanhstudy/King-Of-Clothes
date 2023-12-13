@@ -56,10 +56,14 @@
                                 <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">${item.ten}</h6>
                                     <div class="d-flex justify-content-center">
-                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia} </del></h6>
+                                        <c:if test="${empty item.khuyenMaiHienThiResponse}">
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
                                         </c:if>
-                                        <h6 class="product-price-custom-vnd"> ${item.giaBan}</h6>
+
+                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
+                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +76,7 @@
 
     <div class="container-fluid py-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm nổi bật</span></h2>
+            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.OutstandingProduct"/></span></h2>
         </div>
         <div class="row px-xl-5">
             <div class="col">
@@ -86,10 +90,14 @@
                                 <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">${item.ten}</h6>
                                     <div class="d-flex justify-content-center">
-                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia} </del></h6>
+                                        <c:if test="${empty item.khuyenMaiHienThiResponse}">
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
                                         </c:if>
-                                        <h6 class="product-price-custom-vnd"> ${item.giaBan}</h6>
+
+                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
+                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +110,7 @@
 
     <div class="container-fluid py-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">Sản phẩm bán chạy</span></h2>
+            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>
         </div>
         <div class="row px-xl-5">
             <div class="col">
@@ -116,10 +124,14 @@
                                 <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3">${item.ten}</h6>
                                     <div class="d-flex justify-content-center">
-                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia} </del></h6>
+                                        <c:if test="${empty item.khuyenMaiHienThiResponse}">
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
                                         </c:if>
-                                        <h6 class="product-price-custom-vnd"> ${item.giaBan}</h6>
+
+                                        <c:if test="${not empty item.khuyenMaiHienThiResponse}">
+                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -194,7 +206,7 @@
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
 <%--            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>--%>
-                <h2 class="section-title px-5"><span class="px-2">Gợi ý hôm nay</span></h2>
+                <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.SuggestionToday"/></span></h2>
         </div>
         <div class="row px-xl-5 pb-3" id="product-home-page">
         </div>

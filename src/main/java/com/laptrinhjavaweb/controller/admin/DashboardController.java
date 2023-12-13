@@ -2,6 +2,8 @@ package com.laptrinhjavaweb.controller.admin;
 
 import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.security.utils.SecurityUtils;
+import com.laptrinhjavaweb.service.INhanVienService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class DashboardController {
 
+    @Autowired
+    private INhanVienService nhanVienService;
+
     @GetMapping("/dashboards")
     public String dashboard() {
+        MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
+        nhanVienService.moCa(myUserResponse.getMa());
         return "admin/dashboard";
     }
 
@@ -41,6 +48,11 @@ public class DashboardController {
     @GetMapping("/lich-su-tich-diem")
     public String lstd() {
         return "admin/setting/lich-su-tich-diem";
+    }
+
+    @GetMapping("/slider")
+    public String slider() {
+        return "admin/setting/slider";
     }
 
 }

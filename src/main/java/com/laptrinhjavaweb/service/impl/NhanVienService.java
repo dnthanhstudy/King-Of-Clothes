@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.NhanVienConverter;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
+import com.laptrinhjavaweb.repository.ChucVuRepository;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
@@ -17,7 +18,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +35,9 @@ public class NhanVienService implements INhanVienService {
 
     @Autowired
     private UploadFileUtils uploadFileUtils;
+
+    @Autowired
+    private ChucVuRepository chucVuRepository;
 
     @Override
     public NhanVienResponse findByMaAndTrangThai(String ma, String trangThai) {
@@ -60,7 +63,7 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
-        nhanVienEntity.getChucVu().setMa("STAFF");
+        nhanVienEntity.setChucVu(chucVuRepository.findByMa("STAFF"));
         nhanVienEntity.setTrangThai("INACTIVE");
 
         nhanVienRepository.save(nhanVienEntity);
@@ -125,10 +128,6 @@ public class NhanVienService implements INhanVienService {
         listNhanVienResponse = page.getContent().stream().map(
                 item -> nhanVienConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-
-        if(listNhanVienResponse.isEmpty()) {
-            return null;
-        }
         results.put("data", listNhanVienResponse);
         if(!isAll) {
             PageableResponse pageableResponse = new PageableResponse();
@@ -140,7 +139,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = SystemConstant.path + nhanVienRequest.getAnh();
+        String path = SystemConstant.path + "/nhanvien/"  + nhanVienRequest.getAnh();
         if (nhanVienRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

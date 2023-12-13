@@ -1,5 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Khách hàng</title>
+</head>
+<body>
 <div class="content-body">
     <div class="container-fluid">
         <h4 style="margin-top: 0;
@@ -51,8 +61,9 @@
             </div>
         </div>
 
+        <p id="iemty"></p>
 
-        <div class="card">
+        <div class="card" id="cardKH">
             <div class="card-body">
                 <div class="">
                     <table class="table table-hover table-striped" id="tblKhachHang">
@@ -65,7 +76,6 @@
                             <th scope="col">Email</th>
                             <th scope="col">Giới tính</th>
                             <th scope="col">Ngày sinh</th>
-                            <th scope="col">Mô tả</th>
                             <th scope="col">ACTION</th>
                         </tr>
                         </thead>
@@ -77,6 +87,7 @@
             </div>
         </div>
         <ul id="pagination" class="d-flex justify-content-center"></ul>
+
     </div>
 </div>
 
@@ -101,7 +112,6 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
-                                 <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -154,11 +164,20 @@
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                var tbody = $('#tblKhachHang tbody');
-                tbody.empty();
-                var index = 0;
-                response.data.forEach(function(item) {
-                    var row = `
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy khách hàng nào như thế !")
+                    $('#cardKH').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#cardKH').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    var tbody = $('#tblKhachHang tbody');
+                    tbody.empty();
+                    var index = 0;
+                    response.data.forEach(function (item) {
+                        var row = `
                             <tr>
                                 <td>\${++index}</td>
                                 <td>\${item.ma}</td>
@@ -167,7 +186,6 @@
                                  <td>\${item.email}</td>
                                  <td>\${item.gioiTinh}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
-                                 <td>\${item.moTa}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -184,27 +202,29 @@
                                  </td>
                             </tr>
                         `;
-                    tbody.append(row);
-                });
-                $('#pagination').twbsPagination({
-                    first: "First",
-                    prev: "Previous",
-                    next: "Next",
-                    last: "Last",
-                    visiblePages: 5,
-                    totalPages: response.meta.totalPage,
-                    startPage: response.meta.pageCurrent,
-                    onPageClick: function (event, page) {
-                        if(page !== pageCurrent){
-                            event.preventDefault();
-                            pageCurrent = page;
-                            searchKhachHang()
-                        }
-                    },
-                });
+                        tbody.append(row);
+                    });
+                    $('#pagination').twbsPagination({
+                        first: "First",
+                        prev: "Previous",
+                        next: "Next",
+                        last: "Last",
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                searchKhachHang()
+                            }
+                        },
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 console.log('Lỗi khi lấy danh sách khách hàng: ' + error);
+                showError("Không tìm thấy khách hàng nào như thế!")
             }
         });
     }
@@ -220,21 +240,21 @@
         if($(e.target).hasClass('btn-delete-khach-hang')){
             let ma = $(e.target).val();
             showConfirm("Bạn có muốn xóa?", ma)
-                    .then((confirmed) => {
-                        if (confirmed) {
-                            $.ajax({
-                                url: '/api/khach-hang/' + ma,
-                                method: 'DELETE',
-                                success: function (req) {
-                                    loadKhacHang();
-                                    showSuccess("Delete success");
-                                },
-                                error: function (xhr, status, error) {
-                                    showError("Delete fail");
-                                }
-                            });
-                        }
-                    })
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: '/api/khach-hang/' + ma,
+                            method: 'DELETE',
+                            success: function (req) {
+                                loadKhacHang();
+                                showSuccess("Delete success");
+                            },
+                            error: function (xhr, status, error) {
+                                showError("Delete fail");
+                            }
+                        });
+                    }
+                })
         }
     })
 
@@ -301,7 +321,7 @@
                     processData: false,
                     success: function (response) {
                         showSuccess("Import success");
-                       loadKhacHang()
+                        loadKhacHang()
                     },
                     error: function () {
                         showError("Import Fail");
@@ -314,3 +334,6 @@
     }
 
 </script>
+</body>
+</html>
+

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %><%--
   Created by IntelliJ IDEA.
   User: MMC
   Date: 10/27/2023
@@ -59,10 +59,31 @@
                                 </div>
                             </div>
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <h5>Thương hiệu: </h5>
+                                <div class="col-2">
+                                    <h5>Size:</h5>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">M</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <h5>Vị trí: </h5>
+                                <div class="col-2">
+                                    <h5>Màu:</h5>
+                                </div>
+                                <div class="col-10">
+                                    <div class="form-check mr-3 mb-2">
+                                        <input type="radio" class="form-check-input"
+                                               value="">
+                                        <label class="form-check-label">Xanh</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                <h5>Thương hiệu: </h5>
                             </div>
                         </div>
                     </div>
@@ -97,17 +118,20 @@
 <%--                        </svg>--%>
 <%--                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">--%>
 <%--                    </div>--%>
+                    <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
+                    <button class="btn btn-primary btn-add-invoice">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
                         Chọn sản phẩm
                     </button>
+
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
+                        <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Chọn sản phẩm</h5>
+                                    <h4 class="">Chọn sản phẩm</h4>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
@@ -647,7 +671,7 @@
                     <div class="card card-body" style="border-radius: 10px; height: 593px">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5><strong>Nhân viên:</strong> Khánh Linh</h5>
+                                <h5><strong>Nhân viên:</strong><%=SecurityUtils.getPrincipal().getTen()%></h5>
                             </div>
                             <div class="col-lg-6 text-right">
                                 <h5 id="thoiGian"></h5>
@@ -836,48 +860,65 @@
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
-                    html += `<div class="col-lg-4" onclick="toggleCheckbox(this)">
-                        <div class="card mb-3" style="max-width: 540px;">
+                    const lenAttrbute = item.thuocTinh.length;
+                    let htmlcoupon = '';
+                    if(item.khuyenMaiHienThiResponse !== null){
+                        htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+                                        <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                    }else{
+                        htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                    }
+                    html += `<div class="col-lg-6">
+                        <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
-                                         class="img-fluid rounded-start w-100" style="height: 100px"  alt="...">
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>
-                                        <p class="card-text" style="color: #EB8153">\${item.gia}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label class="ms-2">Size:</label>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                    <label class="ms-2">Màu:</label>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">Đen</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
+                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
+                    html += htmlcoupon;
+                    html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
+
+                    let htmlThuocTinh = `<div class="row mt-2">`;
+                    $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                        htmlThuocTinh += `<div class="col-3">
+                                            <label class="ms-3">\${itemThuocTinh.ten} :</label>
+                                          </div>
+                                          <div class="col-9 d-flex">`;
+
+                        $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                            htmlThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                <input name="giatrithuoctinh-thuoctinh-\${itemThuocTinh.id}" id="\${itemGiaTriThuocTinh.id}" type="radio" class="form-check-input"
+                                                       value="\${itemGiaTriThuocTinh.id}">
+                                                <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
+                                               </div>`;
+                        })
+                        htmlThuocTinh += `</div>`;
+                    })
+                    htmlThuocTinh += `</div>
+                                        <div class="text-right">
+                                             <button class="btn btn-outline-info me-4 btn-buy-product">Mua ngay</button>
+                                        </div>
+                                        <div class="data-server">
+                                             <input type="hidden" id="product-id" value="\${item.id}">
+                                        </div>
+                                    </div></div>`;
+
+                    html += htmlThuocTinh;
                 })
                 $('#list-products').html(html);
+
+                $('.product-price').each(function(index, item) {
+                    let res = $(item).html();
+                    if(res.indexOf("đ") === -1){
+                        let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                        $(item).html(formattedValue);
+                    }
+                });
+
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -890,6 +931,68 @@
                         }
                     },
                 });
+
+                let variantId = null;
+
+                $("#list-products").on("change", "input[type='radio']", function () {
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+                    if (lenChecked === lenOfAttribute) {
+                        let attributeId = [];
+                        $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
+                            attributeId.push(parseInt($(this).val()));
+                        })
+                        $.ajax({
+                            url: "/api/bien-the",
+                            method: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(attributeId),
+                            success: (response) => {
+                                variantId = response.id;
+                                $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                if (response.hinhAnh !== null) {
+                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                }
+                                if (response.khuyenMaiHienThiResponse !== null) {
+                                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+                                }
+
+                                $(this).closest('.card-item-product').find('.product-price').each(function(index, item) {
+                                    let res = $(item).html();
+                                    if(res.indexOf("đ") === -1){
+                                        let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                                        $(item).html(formattedValue);
+                                    }
+                                });
+                            },
+                            error: (error) => {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
+
+                $('.btn-buy-product').on('click', function (){
+                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                    if(variantId !== null || lenOfAttribute === 0){
+                        let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
+                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.',''));
+                        let productId = $(this).closest('.card-item-product').find('#product-id').val();
+
+                        let data = {};
+                        data['idProduct'] = productId;
+                        data['idBienThe'] = variantId;
+                        data['gia'] = productBuy;
+
+                        console.log(data);
+                        variantId = null;
+                    }else{
+                        showError("Vui lòng chọn sản phẩm");
+                    }
+                })
             },
             error: (error) => {
                 console.log(error);
@@ -898,7 +1001,7 @@
     }
     loadAllProduct();
 
-        $('#btn-add-customer').on('click', ()=>{
+    $('#btn-add-customer').on('click', ()=>{
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
         $.each(dataForm, (index, value) => {
@@ -957,24 +1060,13 @@
         });
     }
 
-
-    // function toggleCheckbox(card) {
-    //     var checkbox = card.querySelector('.card-checkbox');
-    //     checkbox.checked = !checkbox.checked;
-    //
-    //     // Thay đổi màu nền của phần nội dung bên trong thẻ card khi được chọn hoặc hủy chọn
-    //     var cardBody = card.querySelector('.card-body');
-    //     if (checkbox.checked) {
-    //         cardBody.style.backgroundColor = '#e0e0e0'; // Màu khi được chọn
-    //         console.log('Card được chọn:', card.querySelector('.card-title').textContent);
-    //         // Thêm các hành động khác khi card được chọn
-    //     } else {
-    //         cardBody.style.backgroundColor = '#ffffff'; // Màu khi bị hủy chọn
-    //         console.log('Card bị hủy chọn:', card.querySelector('.card-title').textContent);
-    //         // Thêm các hành động khác khi card bị hủy chọn
-    //     }
-    // }
+    $('.btn-add-invoice').on('click', ()=>{
+        showSuccess ("Tạo hóa đơn thành công");
+         window.location.href = "/admin/giao-dich/create";
+    });
 </script>
+
+
 
 </body>
 </html>

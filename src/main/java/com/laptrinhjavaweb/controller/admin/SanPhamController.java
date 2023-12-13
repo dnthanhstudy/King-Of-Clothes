@@ -18,7 +18,7 @@ public class SanPhamController {
         return "admin/sanpham/san-pham-create";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{slug}")
     public String updateSP() {
         return "admin/sanpham/san-pham-edit";
     }

@@ -6,7 +6,6 @@ $("#product").on("change", "input[type='radio']", function () {
         $('#product input[type="radio"]:checked').each(function () {
             attributeId.push(parseInt($(this).val()));
         })
-        console.log(attributeId);
         $.ajax({
             url: "/api/bien-the",
             method: "POST",
@@ -14,20 +13,16 @@ $("#product").on("change", "input[type='radio']", function () {
             dataType: "json",
             data: JSON.stringify(attributeId),
             success: (response) => {
-                if (response.gia !== null) {
-                    $('.product-price').text(response.gia);
-                }
+                $('.product-origin').text(response.gia);
 
                 if (response.hinhAnh !== null) {
                     $('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
                 }
-
                 if (response.soLuong !== null) {
                     $('.product-quantity').text(response.soLuong)
                 }
-
                 if (response.khuyenMaiHienThiResponse !== null) {
-                    $('.coupon-value').text(response.khuyenMaiHienThiResponse.giaTri)
+                    $('.product-buy').text(response.giaBan)
                 }
 
                 $('.product-price-custom-vnd').each(function(index, item) {

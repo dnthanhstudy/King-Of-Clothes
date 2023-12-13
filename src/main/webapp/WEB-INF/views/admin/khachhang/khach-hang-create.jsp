@@ -88,18 +88,19 @@
         let email = $("#email").val();
         let ngaySinh = $("#ngaySinh").val();
 
-        if ($("#moTa").val() === "") {
-            showError("Mô tả không được để trống");
-            isValid = false;
-        }
         if (ngaySinh === "") {
             showError("Ngày sinh không được để trống");
             isValid = false;
         } else {
             let selectedDate = new Date(ngaySinh);
             let currentDate = new Date();
-            if (selectedDate > currentDate) {
-                showError("Ngày sinh không được lớn hơn ngày hiện tại");
+
+            // Kiểm tra xem ngày sinh có lớn hơn hoặc bằng 15 tuổi không
+            let ageLimitDate = new Date();
+            ageLimitDate.setFullYear(currentDate.getFullYear() - 15);
+
+            if (selectedDate > currentDate || selectedDate > ageLimitDate) {
+                showError("Ngày sinh không hợp lệ. Phải lớn hơn hoặc bằng 15 tuổi");
                 isValid = false;
             }
         }

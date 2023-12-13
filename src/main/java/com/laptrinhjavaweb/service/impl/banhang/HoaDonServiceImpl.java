@@ -163,24 +163,46 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
 
-    @Override
+//    @Override
+//    public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
+//        CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
+//        CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
+//        List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
+////        Double tongTienMat = listHoaDon.stream().filter(
+////                item -> item.getPhuongThucThanhToan().equals("Tiền mặt")
+////        ).mapToDouble(item -> item.getTongTienHang()).sum();
+////        Double tongTienChuyenKhoan = listHoaDon.stream().filter(
+////                item -> item.getPhuongThucThanhToan().equals("Chuyển khoản")
+////        ).mapToDouble(item -> item.getTongTienHang()).sum();
+//
+//        Double tongTienMat = 0.0;
+//        Double tongTienChuyenKhoan = 0.0;
+//        for (HoaDonEntity hoaDonEntity : listHoaDon) {
+//            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
+//                tongTienMat += hoaDonEntity.getTongTienHang();
+//            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
+//                tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
+//            }
+//        }
+//
+//        result.setTongHoaDon(listHoaDon.size());
+//        result.setTongTienMat(tongTienMat);
+//        result.setTongTienChuyenKhoan(tongTienChuyenKhoan);
+//        result.setTongTienTrongCa(result.getTongTienMat() + result.getTongTienChuyenKhoan());
+//        result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
+//        return result;
+//    }
     public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
         CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
         CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
         List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
-//        Double tongTienMat = listHoaDon.stream().filter(
-//                item -> item.getPhuongThucThanhToan().equals("Tiền mặt")
-//        ).mapToDouble(item -> item.getTongTienHang()).sum();
-//        Double tongTienChuyenKhoan = listHoaDon.stream().filter(
-//                item -> item.getPhuongThucThanhToan().equals("Chuyển khoản")
-//        ).mapToDouble(item -> item.getTongTienHang()).sum();
 
         Double tongTienMat = 0.0;
         Double tongTienChuyenKhoan = 0.0;
         for (HoaDonEntity hoaDonEntity : listHoaDon) {
-            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
+            if(hoaDonEntity.getPhuongThuc().equals("Tiền mặt")){
                 tongTienMat += hoaDonEntity.getTongTienHang();
-            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
+            }else if(hoaDonEntity.getPhuongThuc().equals("Chuyển khoản")){
                 tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
             }
         }
@@ -193,38 +215,4 @@ public class HoaDonServiceImpl implements HoaDonService {
         return result;
     }
 
-
-
-//    @Override
-//    public List<HoaDonEntity> getDsHoaDon1() {
-//        return hoaDonRepository.findAll();
-//    }
-
-//    @Override
-//    public HoaDonEntity saveOrUpdate(HoaDonEntity hoaDon) {
-//        return hoaDonRepository.save(hoaDon);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        hoaDonRepository.deleteById(id);
-//    }
-
-    // tuấn
-//    @Override
-//    public List<HoaDonDTO> getDsHoaDon() {
-//        List<HoaDon> listHD = hoaDonRepository.findAll();
-//        List<HoaDonDTO> listHDDTO = listHD.stream().map(
-//                item ->
-//                     hoaDonConverter.convertToDTO(item)
-//                ).collect(Collectors.toList());
-//        return listHDDTO;
-//    }
-//
-//    @Override
-//    public String getCurrentDateTime() {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-//        Date date = new Date();
-//        return dateFormat.format(date);
-//    }
 }

@@ -78,4 +78,7 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<ThuocTinhEntity> thuocTinhEntities = new ArrayList<>();
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
 }

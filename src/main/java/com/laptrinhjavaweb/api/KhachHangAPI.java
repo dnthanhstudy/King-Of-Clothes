@@ -33,9 +33,6 @@ public class KhachHangAPI {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
         Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(page, limit, param);
-        if(results == null){
-            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-        }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
@@ -59,11 +56,10 @@ public class KhachHangAPI {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody KhachHangRequest khachHangRequest) {
         KhacHangResponse result = khachHangService.register(khachHangRequest);
-        if (result != null) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Đăng ký không thành công", HttpStatus.BAD_REQUEST);
+        if(result == null){
+            throw new ClientError("Số điện thoại hoặc email đã tồn tại");
         }
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{ma}")

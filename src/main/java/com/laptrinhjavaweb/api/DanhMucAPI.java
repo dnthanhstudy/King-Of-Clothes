@@ -39,9 +39,6 @@ public class DanhMucAPI {
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
         Map<String, Object> results = danhMucService.pagingOrSearchOrFindAll(page, limit, param);
-        if(results == null){
-            return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-        }
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 

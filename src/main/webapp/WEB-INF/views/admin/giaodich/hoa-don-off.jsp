@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: asus
-  Date: 11/21/2023
-  Time: 2:10 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -29,16 +23,6 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style>
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </a>
-            </div>
-            <div class="p-2">
-                <button type="button" class="buttonImport"  >
-                    <span class="button__text1">Import</span>
-                    <span class="button__icon1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgImport" viewBox="0 0 512 512">
-                                        <path d="M128 64c0-35.3 28.7-64 64-64H352V128c0 17.7 14.3 32 32 32H512V448c0 35.3-28.7 64-64 64H192c-35.3 0-64-28.7-64-64V336H302.1l-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39H128V64zm0 224v48H24c-13.3 0-24-10.7-24-24s10.7-24 24-24H128zM512 128H384V0L512 128z"/>
-                                    </svg>
-                                </span>
-                </button>
             </div>
             <div class="p-2">
                 <button type="button" class="buttonExport" id="exportButton">
@@ -77,14 +61,11 @@
                 <div class="col-9">
                     <h4>Danh sách hóa đơn</h4>
                 </div>
-<%--                <div class="col-3">--%>
-<%--                    <button type="button" class="btn btn-outline-success">Tạo hoá đơn</button>--%>
-<%--                </div>--%>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <hr>
-                <table class="table table-hover" id="tblHoaDon" >
+                <table class="table table-hover" >
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
@@ -98,149 +79,10 @@
                     </tr>
                     </thead>
                     <tbody >
-                    <tr>
-                        <td>1</td>
-<<<<<<< HEAD
-                        <td>HD121</td>
-                        <td>Trần Nhật Minh</td>
-                        <td>01/12/2023</td>
-                        <td>400.000đ</td>
-                        <td>Tiền mặt</td>
-                        <td>Hoàn tất</td>
-                        <td>
-                            <button class="btn btn-primary">Chỉnh sửa</button>
-                            <button class="btn btn-danger">Hủy</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>HD122</td>
-                        <td>Hoàng Anh</td>
-                        <td>01/12/2023</td>
-                        <td>500.000đ</td>
-                        <td>Tiền mặt</td>
-                        <td>Hoàn tất</td>
-                        <td>
-                            <button class="btn btn-primary">Chỉnh sửa</button>
-                            <button class="btn btn-danger">Hủy</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>HD123</td>
-                        <td>Vũ Ngọc Huyền</td>
-                        <td>01/12/2023</td>
-                        <td>250.000đ</td>
-                        <td>Chuyển khoản</td>
-                        <td>Hoàn tất</td>
-                        <td>
-                            <button class="btn btn-primary">Chỉnh sửa</button>
-                            <button class="btn btn-danger">Hủy</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>HD124</td>
-                        <td>Cao Minh Ngọc</td>
-                        <td>01/12/2023</td>
-                        <td>660.000đ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đang giao</td>
-                        <td>
-                            <button class="btn btn-primary">Chỉnh sửa</button>
-                            <button class="btn btn-danger">Hủy</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>HD125</td>
-                        <td>Cao Minh Ngọc</td>
-                        <td>01/12/2023</td>
-                        <td>660.000đ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đang giao</td>
-                        <td>
-                            <button class="btn btn-primary">Chỉnh sửa</button>
-                            <button class="btn btn-danger">Hủy</button>
-                        </td>
-=======
-                        <td>HD01</td>
-                        <td>An</td>
-                        <td>12/11/2023</td>
-                        <td>1.500.000 VNĐ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đã thanh toán</td>
-                        <td>Chi tiết</td>
-
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>HD02</td>
-                        <td>Tuấn Anh</td>
-                        <td>11/11/2023</td>
-                        <td>500.000 VNĐ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đã thanh toán</td>
-                        <td>Chi tiết</td>
-
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>HD03</td>
-                        <td>Thùy</td>
-                        <td>12/10/2023</td>
-                        <td>350.000 VNĐ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đã thanh toán</td>
-                        <td>Chi tiết</td>
-
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>HD04</td>
-                        <td>Thủy</td>
-                        <td>01/11/2023</td>
-                        <td>450.000 VNĐ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đã thanh toán</td>
-                        <td>Chi tiết</td>
-
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>HD05</td>
-                        <td>Nam Anh</td>
-                        <td>29/11/2023</td>
-                        <td>655.000 VNĐ</td>
-                        <td>Tiền mặt</td>
-                        <td>Đã thanh toán</td>
-                        <td>Chi tiết</td>
-
->>>>>>> tuan
-                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-<%--        <nav class="mt-2">--%>
-<%--            <ul class="pagination pagination-gutter pagination-primary  no-bg">--%>
-<%--                <li class="page-item page-indicator">--%>
-<%--                    <a class="page-link" href="javascript:void(0)">--%>
-<%--                        <i class="la la-angle-left"></i></a>--%>
-<%--                </li>--%>
-<%--                <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>--%>
-<%--                </li>--%>
-<%--                <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>--%>
-<%--                <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>--%>
-<%--                <li class="page-item page-indicator">--%>
-<%--                    <a class="page-link" href="javascript:void(0)">--%>
-<%--                        <i class="la la-angle-right"></i></a>--%>
-<%--                </li>--%>
-<%--            </ul>--%>
-<%--        </nav>--%>
-        <ul id="pagination" class="d-flex justify-content-center"></ul>
 
     </div>
 </div>
