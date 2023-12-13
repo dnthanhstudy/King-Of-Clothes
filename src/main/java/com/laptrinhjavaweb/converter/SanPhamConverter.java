@@ -5,10 +5,7 @@ import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
 import com.laptrinhjavaweb.repository.KhuyenMaiSanPhamRepository;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
-import com.laptrinhjavaweb.response.AnhSanPhamResponse;
-import com.laptrinhjavaweb.response.KhuyenMaiHienThiResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
-import com.laptrinhjavaweb.response.ThuocTinhResponse;
+import com.laptrinhjavaweb.response.*;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,9 @@ public class SanPhamConverter {
 	
 	@Autowired
 	private ThuocTinhConverter thuocTinhConverter;
+
+	@Autowired
+	private BienTheConverter bienTheConverter;
 	
 	@Autowired
 	private DanhMucConverter danhMucConverter;
@@ -55,6 +55,8 @@ public class SanPhamConverter {
 				item -> anhSanPhamConverter.convertToResponse(item)).collect(Collectors.toList());
 		List<ThuocTinhResponse> thuocTinhResponses = entity.getThuocTinhEntities().stream().map(
 				item -> thuocTinhConverter.convertToResponse(item)).collect(Collectors.toList());
+		List<BienTheResponse> bienTheResponses = entity.getBienTheEntities().stream().map(
+				item -> bienTheConverter.convertToResponse(item)).collect(Collectors.toList());
 		KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThai(entity.getId(), SystemConstant.ACTICE);
 		if(khuyenMaiSanPhamEntity != null){
 			KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = khuyenMaiConvert.convertToHienThiResponse(khuyenMaiSanPhamEntity.getKhuyenMai());
@@ -71,6 +73,7 @@ public class SanPhamConverter {
 			response.setGiaBan(entity.getGia());
 		}
 		response.setThuocTinh(thuocTinhResponses);
+		response.setBienThe(bienTheResponses);
 		response.setAnh(anhSanPhamResponses);
 		return response;
 	}

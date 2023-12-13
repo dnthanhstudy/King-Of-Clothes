@@ -36,14 +36,6 @@ public class SliderServicer implements ISliderService {
     @Autowired
     private SliderConverter sliderConverter;
 
-    public void saveImage(SliderRequest sliderRequest) {
-        String path = SystemConstant.path + "/slider/"  + sliderRequest.getImage();
-        if (sliderRequest.getBase64() != null) {
-            byte[] bytes = Base64.decodeBase64(sliderRequest.getBase64().getBytes());
-            uploadFileUtils.writeOrUpdate(path, bytes);
-        }
-    }
-
     @Override
     public Map<String, Object> pagingOrFindAll(Integer pageCurrent, Integer limit ){
         Map<String, Object> results = new HashMap<>();
@@ -83,16 +75,23 @@ public class SliderServicer implements ISliderService {
             saveImage(sliderRequest);
         }
         sliderEntity = sliderConverter.convertToEntity(sliderRequest);
-
         sliderRepository.save(sliderEntity);
         SliderResponse result = sliderConverter.convertToResponse(sliderEntity);
         return result;
     }
 
     @Override
-    public void delete(String image) {
-        SliderEntity sliderEntity = sliderRepository.findByImage(image);
+    public void delete(Long id) {
+        SliderEntity sliderEntity = sliderRepository.findById(id).get();
         sliderEntity.setTrangThai("INACTIVE");
         sliderRepository.save(sliderEntity);
+    }
+
+    public void saveImage(SliderRequest sliderRequest) {
+        String path = SystemConstant.path + "/slider/"  + sliderRequest.getImage();
+        if (sliderRequest.getBase64() != null) {
+            byte[] bytes = Base64.decodeBase64(sliderRequest.getBase64().getBytes());
+            uploadFileUtils.writeOrUpdate(path, bytes);
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.laptrinhjavaweb.controller;
 
+import com.laptrinhjavaweb.response.CuaHangResponse;
 import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.response.FilterResponse;
 import com.laptrinhjavaweb.response.ThuongHieuResponse;
+import com.laptrinhjavaweb.service.ICuaHangService;
 import com.laptrinhjavaweb.service.IDanhMucService;
 import com.laptrinhjavaweb.service.IThuocTinhService;
 import com.laptrinhjavaweb.service.IThuongHieuService;
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.EnumMap;
 import java.util.List;
 
 @ControllerAdvice
@@ -24,6 +27,9 @@ public class GlobalControllerAdvice {
 
     @Autowired
     private IThuongHieuService thuongHieuService;
+
+    @Autowired
+    private ICuaHangService cuaHangService;
 
     @ModelAttribute
     public void filterResponse(Model model){
@@ -41,5 +47,11 @@ public class GlobalControllerAdvice {
     public void thuongHieuResponse(Model model){
         List<ThuongHieuResponse> results = thuongHieuService.findAllByTrangThai();
         model.addAttribute("brandsProduct", results);
+    }
+
+    @ModelAttribute
+    public void cuaHangResponse(Model model){
+        EnumMap<CuaHangResponse, Object> results = cuaHangService.findAllInformation();
+        model.addAttribute("storeInformation", results);
     }
 }

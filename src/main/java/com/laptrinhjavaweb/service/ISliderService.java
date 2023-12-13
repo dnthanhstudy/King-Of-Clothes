@@ -7,11 +7,10 @@ import java.util.Map;
 
 public interface ISliderService {
 
-
     Map<String, Object> pagingOrFindAll(Integer pageCurrent, Integer limit );
 
     SliderResponse save(SliderRequest sliderRequest);
 
-    void delete(String image);
+    void delete(Long id);
 
 }
