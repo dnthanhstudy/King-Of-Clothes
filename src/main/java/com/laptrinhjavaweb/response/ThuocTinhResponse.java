@@ -15,6 +15,8 @@ public class ThuocTinhResponse {
 	private Long id;
 
 	private String ten;
+
+	private String slug;
 	
 	private List<GiaTriThuocTinhResponse> giaTriThuocTinh;
 }

@@ -14,6 +14,8 @@ public class BienTheResponse {
 	private Long id;
 
 	private Double gia;
+
+	private String ten;
 	
 	private String hinhAnh;
 	

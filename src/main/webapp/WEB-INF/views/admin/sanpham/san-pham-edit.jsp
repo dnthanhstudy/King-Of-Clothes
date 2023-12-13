@@ -29,7 +29,7 @@
                     <label class="form-label">Chọn hình ảnh</label>
                     <input type="file" id="uploadImage"/>
                     <div class="list-images mt-4">
-
+                        <p>HAHAHH</p>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                         <input name="soLuong" type="text" class="form-control" id="so-luong"/>
                     </div>
 
-                    <div class="col-6 mt-4">
+                    <div class="col-6 mt-4" id="danh-muc">
                         <select class="form-select" name="danhMucSlug">
                             <option value="" selected>Vui lòng chọn danh mục</option>
                             <c:forEach var="item" items="${categoriesProduct}">
@@ -63,7 +63,7 @@
                         </select>
                     </div>
 
-                    <div class="col-6 mt-4">
+                    <div class="col-6 mt-4" id="thuong-hieu">
                         <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
                             <c:forEach var="item" items="${brandsProduct}">
@@ -94,6 +94,7 @@
                                 <p class="card-text card-text-none-attribute">
                                     Chưa có thuộc tính
                                 </p>
+                                <p class="thuoc-tinh"></p>
                             </div>
                         </div>
                     </div>
@@ -123,30 +124,6 @@
                                             </button>
                                         </div>
                                     </div>
-
-                                    <div class="col-4">
-                                        <div class="dropdown">
-                                            <button
-                                                    class="btn btn-info dropdown-toggle"
-                                                    type="button"
-                                                    data-bs-toggle="dropdown"
-                                                    aria-expanded="false"
-                                            >
-                                                Thuộc tính
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#"
-                                                    >Something else here</a
-                                                    >
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                                 <table class="table table-bordered table-variant">
                                     <thead>
@@ -157,7 +134,9 @@
                                         <th class="text-center" scope="col">Chọn hình ảnh</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="table-variant-body" id="variants"></tbody>
+                                    <tbody class="table-variant-body" id="variants">
+
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -229,10 +208,90 @@
 <script>
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
+
+
+    function detailSP() {
+        var url = window.location.pathname.split("/");
+        var slug = url[url.length - 1];
+        console.log(slug);
+        $.ajax({
+            url: '/api/san-pham/' + slug,
+            method: 'GET',
+            dataType: 'json',
+            success: function (req) {
+                $("#slug").val(req.slug);
+                $("#ten").val(req.ten);
+                $("#gia").val(req.gia);
+                $("#so-luong").val(req.soLuong);
+                $("#motasanpham").val(req.moTa);
+                $("#chitietsanpham").val(req.thongTinChiTiet);
+                $("#danh-muc select").val(req.danhMuc.slug)
+                $("#thuong-hieu select").val(req.thuongHieu.slug)
+                let htmlImage = '';
+                $.each(req.anh, (index, item) => {
+                    htmlImage += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
+                })
+                $(".list-images").append(htmlImage)
+
+                let htmlThuocTinh = '';
+                if(req.thuocTinh.length > 0){
+                    $('.card-text-none-attribute').hide()
+                }
+                $.each(req.thuocTinh, (index, item) => {
+                    htmlThuocTinh += `<div class="product-has-attribute mb-3" data-slug="\${item.slug}">
+                                            <div class="name-attribute">
+                                              <button type="button" class="btn btn-success position-relative">
+                                                  \${item.ten}
+                                                <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                    <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
+                                                </span>
+                                              </button>
+                                            </div><div class="list-value-attribute mt-3">`;
+                        $.each(item.giaTriThuocTinh, (index, item1) => {
+                            htmlThuocTinh += `
+                                                <button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
+                                                         \${item1.giaTri}
+                                                    <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                       <i class="fa fa-trash-o btn-remove-children-trash" aria-hidden="true"></i>
+                                                    </span>
+                                                </button>
+
+                                           `;
+                        })
+                        htmlThuocTinh += `  </div><div class="input-group mt-3">
+                                              <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị">
+                                          </div>
+                                            </div> `;
+                })
+                $(".thuoc-tinh").append(htmlThuocTinh)
+
+                let htmlBienThe = '';
+                $.each(req.bienThe, (index, item) => {
+                    htmlBienThe += `
+                        <tr>
+                              <td class="text-center name-variant">\${item.ten}</td>
+                              <td>
+                                <input type="text" value="\${item.gia}" class="form-control price-variant">
+                              </td>
+                              <td>
+                                <input type="text"  value="\${item.soLuong}" class="form-control quantity-variant">
+                              </td>
+                              <td>
+                                <input class="form-control image-variant"  type="file">`;
+                    htmlBienThe += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="image-variant mt-2 hinhanhbase64" style="width: 150px;" />
+                             </td>
+                            </tr>`;
+                })
+                $("#variants").append(htmlBienThe)
+                console.log(htmlBienThe)
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+                alert('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+    detailSP();
 </script>
-<script src="<c:url value='/assets/js/toastify.js'/>"></script>
-<script src="<c:url value='/assets/js/defined.js'/>"></script>
-<script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
-<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>
 </html>

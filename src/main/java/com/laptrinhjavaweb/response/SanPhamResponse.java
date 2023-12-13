@@ -35,6 +35,8 @@ public class SanPhamResponse {
 	
 	private List<ThuocTinhResponse> thuocTinh;
 
+	private List<BienTheResponse> bienThe;
+
 	private List<AnhSanPhamResponse> anh;
 
 	private Double giaBan;
