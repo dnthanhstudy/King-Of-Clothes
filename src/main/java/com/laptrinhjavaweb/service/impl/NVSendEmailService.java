@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 @Service
-public class SendEmailService implements ISendEmailService {
+public class NVSendEmailService implements ISendEmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -55,7 +55,7 @@ public class SendEmailService implements ISendEmailService {
         if (nhanVienEntity != null) {
             String newPassword = generateRandomPassword();
             LocalDateTime now = LocalDateTime.now();
-            LocalDateTime expireTime = now.plusMinutes(1);
+            LocalDateTime expireTime = now.plusMinutes(3);
             nhanVienEntity.setRestToken(newPassword);
             nhanVienEntity.setExpireTime(expireTime);
             nhanVienRepository.save(nhanVienEntity);
@@ -88,4 +88,14 @@ public class SendEmailService implements ISendEmailService {
         }
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return nhanVienRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean isValidResetToken(String resetToken) {
+        NhanVienEntity nhanVienEntity = nhanVienRepository.findByRestToken(resetToken);
+        return nhanVienEntity != null;
+    }
 }

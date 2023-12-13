@@ -96,7 +96,7 @@
                 showSuccess("Đổi mật khẩu thành công!");
             },
             error: function(xhr, textStatus, error) {
-                showError("Mã không chính xác hoặc đã hết hạm. Hãy kiểm tra lại..!");
+                showError("Mã không chính xác hoặc đã hết hạn. Hãy kiểm tra lại..!");
             }
         });
     }

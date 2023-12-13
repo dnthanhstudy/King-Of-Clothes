@@ -213,8 +213,8 @@
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: (response) => {
-                    console.log("success");
                     window.location.href = '/admin/thuong-hieu';
+                    showSuccess("Thêm thành công")
                 },
                 error: (error) => {
                     showError(error.responseJSON.error);
@@ -233,11 +233,10 @@
                             url: '/api/thuong-hieu/' + slug,
                             method: 'DELETE',
                             success: function (req) {
-                                loadThuongHieu();
-                                showSuccess("Delete success");
+                                showSuccess("Xóa thành công");
                             },
                             error: function (xhr, status, error) {
-                                showError("Delete fail");
+                                showError("Xóa thất bại");
                             }
                         });
                     }

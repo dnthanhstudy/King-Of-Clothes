@@ -21,5 +21,7 @@ public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>,
 
     NhanVienEntity findByEmail(String email);
 
-    NhanVienEntity findByRestToken(String email);
+    NhanVienEntity findByRestToken(String restToken);
+
+    boolean existsByEmail(String email);
 }

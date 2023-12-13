@@ -18,6 +18,11 @@ public interface KhachHangRepository extends JpaRepository<KhachHangEntity, Long
 
     KhachHangEntity findByMa(String ma);
 
+    KhachHangEntity findByEmail(String email);
+
+    KhachHangEntity findByRestToken(String restToken);
+
     List<KhachHangEntity> findAllByMaContainingOrTenContainingOrEmailContainingOrSoDienThoaiContainingOrGioiTinhContainingOrMoTaContainingAndTrangThai(String ma, String ten, String email, String soDienThoai, String gioiTinh, String moTa, String trangThai);
 
+    boolean existsByEmail(String email);
 }

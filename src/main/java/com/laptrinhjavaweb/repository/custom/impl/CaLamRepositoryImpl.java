@@ -16,8 +16,8 @@ public class CaLamRepositoryImpl implements CaLamRepositoryCustom {
     @Override
     public CaLamEntity findByCurrentDateAndMaNhanVien(String ngay, String maNhanVien) {
         String sql = "SELECT calam.* FROM calam JOIN nhanvien on calam.idnhanvien = nhanvien.id " +
-                "WHERE DATE(calam.ngaytao) = '" + ngay  + "' AND nhanvien.ma = '" + maNhanVien + "'";
+                "WHERE DATE(calam.ngaytao) = '" + ngay  + "' AND nhanvien.ma = '" + maNhanVien + "' ORDER BY ngaytao DESC";
         Query query = entityManager.createNativeQuery(sql, CaLamEntity.class);
-        return (CaLamEntity) query.getSingleResult();
+        return (CaLamEntity) query.getResultList().get(0);
     }
 }
