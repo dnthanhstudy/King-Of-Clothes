@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 @Repository
 public class CaLamRepositoryImpl implements CaLamRepositoryCustom {
+
     @PersistenceContext
     private EntityManager entityManager;
 

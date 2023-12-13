@@ -49,7 +49,7 @@
                 </ul>
             </li>
 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+            <li class="shift"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                 <i class="flaticon-381-network"></i>
                 <span class="nav-text">Giao ca</span>
             </a>
@@ -123,7 +123,53 @@
                             </ul>
                         </li>`;
         $('#menu').html(html);
+    }else if(role === "ADMIN"){
+        const html = `  <li class="nav-label first">Main Menu</li>
+                        <li>
+                                <a class="has-arrow" href="/admin/dashboards" aria-expanded="false">
+                                    <i class="flaticon-144-layout"></i>
+                                    <span class="nav-text">Dashboard</span>
+                                </a>
+                        </li>
+                        <li>
+                                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                    <i class="flaticon-061-puzzle"></i>
+                                    <span class="nav-text">Quản lý</span>
+                                </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/admin/nhan-vien">Nhân viên</a></li>
+                                <li><a href="/admin/khach-hang">Khách hàng</a></li>
+                                <li><a href="/admin/danh-muc">Danh mục</a></li>
+                                <li><a href="/admin/thuong-hieu">Thương hiệu</a></li>
+                                <li><a href="/admin/san-pham">Sản phẩm</a></li>
+                                <li><a href="/admin/khuyen-mai">Khuyến mại</a></li>
+                                <li><a href="/admin/slider">Slider</a></li>
+                                <li><a href="/admin/giao-ca/thong-ke-giao-ca">Thống kê giao ca</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                                <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                    <i class="flaticon-044-file"></i>
+                                    <span class="nav-text">Giao dịch</span>
+                                </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/admin/giao-dich/hoa-don">Hóa đơn</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                                <i class="flaticon-381-settings-2"></i>
+                                <span class="nav-text">Setting</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/admin/setting/profile">Profile</a></li>
+                                <li><a href="/admin/setting/tich-diem">Tích điểm</a></li>
+                            </ul>
+                        </li>`;
+        $('#menu').html(html);
     }
+
 </script>
 </body>
 </html>

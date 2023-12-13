@@ -31,9 +31,9 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> filters(Map<String, Object> params) {
+	public List<SanPhamEntity> filters(Map<String, Object> params) {
 		String sql = buildSQL(params);
-		Query query = entityManager.createNativeQuery(sql);
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
 		return query.getResultList();
 	}
 
@@ -76,7 +76,18 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	}
 
 	private String buildSQL(Map<String, Object> params) {
-		String queryFinal = "SELECT distinct sanpham.id FROM sanpham ";
+		String queryFinal = "SELECT subquery.* FROM " +
+				"(  SELECT " +
+				"        sanpham.*, " +
+				"        CASE " +
+				"            WHEN khuyenmai.loai = 1 and khuyenmaisanpham.trangthai = 'ACTIVE' THEN sanpham.gia * (1 - khuyenmai.giatri / 100) " +
+				"            WHEN khuyenmai.loai = 2 and khuyenmaisanpham.trangthai = 'ACTIVE' THEN sanpham.gia - khuyenmai.giatri " +
+				"            ELSE sanpham.gia " +
+				"        END AS giakhuyenmai " +
+				"    FROM sanpham " +
+				"    JOIN khuyenmaisanpham ON sanpham.id = khuyenmaisanpham.idsanpham " +
+				"    JOIN khuyenmai ON khuyenmai.id = khuyenmaisanpham.idkhuyenmai" +
+				") AS subquery ";
 
 		Set<String> joinSQL = new HashSet<>();
 		List<String> whereSQL = new ArrayList<>();
@@ -90,9 +101,9 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			}
 			else if(k.equals("gia")) {
 				List<String> gias = Arrays.asList(v.toString().split(","));
-				query = "sanpham.gia >= " + Double.parseDouble(gias.get(0)) + " and sanpham.gia <= " + Double.parseDouble(gias.get(1));
+				query = "giakhuyenmai >= " + Double.parseDouble(gias.get(0))+ " AND " + " giakhuyenmai <= " + Double.parseDouble(gias.get(1));
 			}else {
-				joinSQL.add("JOIN thuoctinh ON thuoctinh.id = thuoctinh.idsanpham " +
+				joinSQL.add("JOIN thuoctinh ON sanpham.id = thuoctinh.idsanpham " +
 							"JOIN giatrithuoctinh ON thuoctinh.id = giatrithuoctinh.idthuoctinh");
 
 				inSlugSQL.add(k);

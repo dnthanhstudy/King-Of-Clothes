@@ -933,6 +933,7 @@
                 });
 
                 let variantId = null;
+                let couponId = null;
 
                 $("#list-products").on("change", "input[type='radio']", function () {
                     let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
@@ -950,6 +951,7 @@
                             data: JSON.stringify(attributeId),
                             success: (response) => {
                                 variantId = response.id;
+                                couponId = response.khuyenMaiHienThiResponse.id;
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
@@ -983,12 +985,16 @@
                         let productId = $(this).closest('.card-item-product').find('#product-id').val();
 
                         let data = {};
+                        data['soLuong'] = 1;
                         data['idProduct'] = productId;
                         data['idBienThe'] = variantId;
+                        data['idKhuyenMai'] = couponId;
                         data['gia'] = productBuy;
+                        data['thanhTien'] = productBuy;
 
                         console.log(data);
                         variantId = null;
+                        couponId = null;
                     }else{
                         showError("Vui lòng chọn sản phẩm");
                     }

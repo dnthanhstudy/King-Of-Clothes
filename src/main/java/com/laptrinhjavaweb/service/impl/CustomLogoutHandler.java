@@ -25,9 +25,11 @@ public class CustomLogoutHandler implements LogoutHandler {
             if (authentication != null) {
                 MyUserResponse myUserResponse = (MyUserResponse) authentication.getPrincipal();
                 if(myUserResponse.getMaChucVu().equals("STAFF") || myUserResponse.getMaChucVu().equals("ADMIN")){
-                    nhanVienService.dongCa(myUserResponse.getMa());
+                    if(myUserResponse.getMaChucVu().equals("STAFF")){
+                        nhanVienService.dongCa(myUserResponse.getMa());
+                    }
                     url = "/login?is_logout";
-                }else{
+                }else if(myUserResponse.getMaChucVu().equals("CUSTOMER")){
                     url = "/trang-chu";
                 }
                 new SecurityContextLogoutHandler().logout(request, response, authentication);

@@ -9,9 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChucVuRequest {
+public class ChucVuRequest{
 
     private String ma;
 
     private String ten;
+
+    private String trangThai = "ACTIVE";
 }
