@@ -6,4 +6,6 @@ import com.laptrinhjavaweb.resquest.HoaDonResquest;
 public interface IHoaDonService {
 
     HoaDonResponse save(HoaDonResquest hoaDonResquest);
+
+    HoaDonResponse findByMa(String ma);
 }
