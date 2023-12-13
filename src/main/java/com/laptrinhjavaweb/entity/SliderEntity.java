@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Slider extends BaseEntity{
+public class SliderEntity extends BaseEntity{
 
     @Column(name = "image")
     private String image;
