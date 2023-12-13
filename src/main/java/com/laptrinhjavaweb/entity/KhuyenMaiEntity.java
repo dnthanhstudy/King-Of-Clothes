@@ -50,4 +50,6 @@ public class KhuyenMaiEntity extends BaseEntity {
 	
 	@OneToMany(mappedBy = "khuyenMai", fetch = FetchType.LAZY)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
+
+
 }

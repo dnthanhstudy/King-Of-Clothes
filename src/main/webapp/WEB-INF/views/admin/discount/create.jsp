@@ -69,7 +69,7 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-username">Loại giảm giá
+                                                <label class="col-lg-2 col-form-label" for="val-username">Loại giảm
                                                     | Mức giảm
                                                 </label>
                                                 <div class="col-lg-6">
@@ -78,8 +78,7 @@
                                                             <div class="input-group-prepend">
                                                                 <select class="form-control default-select"
                                                                         id="loaiGiamGia">
-                                                                    <option selected="">Chọn loại</option>
-                                                                    <option value="1">Theo phần trăm</option>
+                                                                    <option value="1" selected>Theo phần trăm</option>
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
@@ -285,21 +284,24 @@
             listSanPham: listSanPham,
         }
         console.log(km);
-        $.ajax({
-            url: '/api/khuyen-mai/create',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(km),
-            success: function (response) {
-                window.location.href = "/admin/khuyen-mai";
-                showSuccess("Them thanh cong");
-                // console.log(response)
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-    })
+        if (validateForm()) {
+            $.ajax({
+                url: '/api/khuyen-mai/create',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(km),
+                success: function (response) {
+                    window.location.href = "/admin/khuyen-mai";
+                    showSuccess("Them thanh cong");
+                    // console.log(response)
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    });
 
     function convertDateFormat(inputDate) {
         var date = new Date(inputDate);
@@ -307,9 +309,9 @@
         return date;
     }
 
-        function generateNumber() {
-            var randomNumber;
-            do {
+    function generateNumber() {
+        var randomNumber;
+        do {
                 randomNumber = Math.floor(Math.random() * 999) + 1;
                 randomNumber = randomNumber.toString().padStart(3, '0');
             } while (generatedNumbers.has(randomNumber));
@@ -320,21 +322,25 @@
     $(document).ready(function() {
         var searchButton = $('#searchButton');
         pageCurrent = 1;
-        searchButton.on('keydown', function(event) {
+        searchButton.on('keydown', function (event) {
             if (event.which === 13) {
                 value = searchButton.val();
-                if (value.isBlank){
+                if (value.isBlank) {
                     loadKhuyenMai();
-                }else{
+                } else {
                     loadSearch(value);
                 }
             }
         });
+        $('#ngayBatDau').attr('min', getCurrentDatetime());
+        $('#ngayKetThuc').attr('min', getCurrentDatetime());
+        $("#ngayBatDau").val(getCurrentDatetime());
     });
     var limit = 100;
+
     function loadSearch(value) {
         $.ajax({
-            url: '/api/san-pham/search?q='+value+'&limit='+limit,
+            url: '/api/san-pham/search?q=' + value + '&limit=' + limit,
             method: 'GET',
             success: function (response) {
                 let html = '';
@@ -373,6 +379,81 @@
                 console.log(error);
             }
         });
+    }
+
+    function getCurrentDatetime() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
+        var day = today.getDate().toString().padStart(2, '0');
+        var hours = today.getHours().toString().padStart(2, '0');
+        var minutes = today.getMinutes().toString().padStart(2, '0');
+        return `\${year}-\${month}-\${day}T\${hours}:\${minutes}`;
+    }
+
+    function validateForm() {
+        let isValid = true;
+        let ngayBatDau = $("#ngayBatDau").val();
+        let ngayKetThuc = $("#ngayKetThuc").val();
+        let loaiGiamGia = $('#loaiGiamGia option:selected').val();
+        let giaTriGiam = $("#giaTriGiam").val();
+        let soLuong = $("#soLuong").val();
+
+        if(checkedValues.length == 0){
+            showError("Vui lòng chọn sản phảm!");
+            isValid = false;
+        }
+
+        if(soLuong ===""){
+            showError("Số lượng trống. Vui lòng nhập giá trị!");
+            isValid = false;
+        }else{
+            if(soLuong < 0 ){
+                showError("Số lượng không hợp lệ. Vui lòng nhập số lượng > 0!");
+                isValid = false;
+            }
+        }
+        if(giaTriGiam === ""){
+            showError("Giá trị giảm trống. Vui lòng nhập giá trị!");
+            isValid = false;
+        }else{
+            if(loaiGiamGia == 1){
+                if(giaTriGiam <=0 || giaTriGiam >= 100){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 0 & < 100!");
+                    isValid = false;
+                }
+            }else{
+                if(giaTriGiam <= 1000){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 1000!");
+                    isValid = false;
+                }
+            }
+        }
+        if (ngayKetThuc === "") {
+            showError("Ngày kết thúc trống. Vui lòng chọn giá trị");
+            isValid = false;
+        } else {
+            if (ngayBatDau > ngayKetThuc) {
+                showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày kết thúc > ngày bắt đầu");
+                isValid = false;
+            }
+        }
+        if (ngayBatDau === "") {
+            showError("Ngày bắt đầu trống. Vui lòng chọn giá trị");
+            isValid = false;
+        }else{
+            let ngayBD = new Date(ngayBatDau);
+            let currentDate = new Date();
+            if(ngayBD < currentDate){
+                showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
+                isValid = false;
+            }
+        }
+        if ($("#tenKM").val() === "") {
+            showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
+            isValid = false;
+        }
+        return isValid;
     }
 
 </script>
