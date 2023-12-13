@@ -11,6 +11,7 @@ import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
+import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -122,7 +123,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh, String trangThai) {
-        return hoaDonRepository.findAllByKhachHang_IdAndTrangThai(idkh,trangThai);
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiAndLoai(idkh,trangThai,"Online");
     }
 
     @Override
@@ -134,7 +135,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<HoaDonResponse> dsHoadon() {
-        return hoaDonRepository.findAllByTrangThaiNotContains(hoaDonRepository.findAllByTrangThaiNotContains("CHUANBIDATHANG").toString());
+        return hoaDonRepository.findAllByTrangThaiNotContainsAndLoai(TrangThaiHoaDon.CHUANBIDATHANG,"Online");
     }
 
     @Override
@@ -162,8 +163,14 @@ public class HoaDonServiceImpl implements HoaDonService {
       return thongTinHoaDon;
     }
 
+    @Override
+    public AllThongKeResponse allThongKe(String thoiGian) {
+//        HoaDonRepository
+        return null;
+    }
 
-//    @Override
+
+    //    @Override
 //    public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
 //        CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
 //        CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
