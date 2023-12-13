@@ -1,13 +1,5 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
-import com.laptrinhjavaweb.converter.BienTheConverter;
-import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
-import com.laptrinhjavaweb.response.PageableResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SanPhamConverter;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
@@ -185,4 +177,5 @@ public class SanPhamService implements ISanPhamService{
 		sanPhamEntity.setTrangThai("INACTIVE");
 		sanPhamRepository.save(sanPhamEntity);
 	}
+
 }

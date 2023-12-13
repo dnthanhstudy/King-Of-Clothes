@@ -5,17 +5,18 @@ import com.laptrinhjavaweb.entity.ChiTieuEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.ThongTinMuaHangEntity;
+import com.laptrinhjavaweb.entity.TrangThaiGiaoHangEntity;
 import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.request.ThongTinDatHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.ThongTinMuaHangResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponseClass;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
+import com.laptrinhjavaweb.repository.TrangThaiGiaoHangRepository;
 import com.laptrinhjavaweb.repository.ViDienTuRepository;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.ThongTinMuaHangService;
@@ -53,6 +54,9 @@ public class GiaoHangServiceImpl implements GiaoHangService {
 
     @Autowired
     private ChiTieuRepository chiTieuRepository;
+
+    @Autowired
+    private TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
     private String diaChiBuuCuc ="Số 97 Thiên hiền , Phường Mỹ Đình 1, QUận Nam Từ Liêm , Hà Nội, Vietnam";
 
     private ThongTinDatHangRequest getThongTinDatHangRequest (List<SanPhamGhnApi> dssp,
@@ -163,6 +167,10 @@ public class GiaoHangServiceImpl implements GiaoHangService {
              chiTieuRepository.save(chiTieu);
              viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()-tongTien);
         }
+        TrangThaiGiaoHangEntity trangThaiGiaoHang = new TrangThaiGiaoHangEntity();
+        trangThaiGiaoHang.setHoaDon(hoaDon);
+        trangThaiGiaoHang.setTenTrangThai("Đặt hàng");
+        trangThaiGiaoHangRepository.save(trangThaiGiaoHang);
         int parameter = gioHangChiTietRepository.configHoaDonChiTietKhiDatHang(hoaDon.getId(),khachHang.getId());
         return hoaDonRepository.save(hoaDon);
     }

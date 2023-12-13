@@ -14,51 +14,32 @@
     <div class="khung">
         <div class="row">
             <div class="col-4">
-                <span class="fs-3">Địa chỉ nhận hàng</span>
-                <p class="fs-5 mt-4">Anh Tuấn <span>(0384082003)</span></p>
-                <p class="">Thái Bình</p>
+                <span class="fs-4">Thông tin nhận hàng</span>
+                <p class="fs-5 mt-4">Người nhận:
+                    <strong id="tennguoinhan"></strong>
+                </p>
+                <p class="">Số điện thoại:
+                    <span id="sodienthoai"></span>
+                </p>
+                <p class="" >
+                    <span>Địa chỉ: </span>
+                    <span id="diachi"></span>
+                </p>
             </div>
             <div class="col-8" style="border-left: 1px solid #dedede">
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <span>09:25 07-08-2023</span>
-                    </div>
-                    <div class="col-9">
-                        <strong>Đã giao</strong><br>
-                        <span>Đơn hàng đã được giao thành công</span><br>
-                        <span>Người nhận hàng: Anh Tuấn</span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <span>08:35 07-08-2023</span>
-                    </div>
-                    <div class="col-9">
-                        <strong>Đang giao hàng</strong><br>
-                        <span>Đơn hàng đang trên đường giao đến bạn</span><br>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <span>13:10 03-08-2023</span>
-                    </div>
-                    <div class="col-9">
-                        <strong>Đang được chuẩn bị</strong><br>
-                        <span>Shop đang chuẩn bị hàng</span><br>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-3">
-                        <span>16:15 02-08-2023</span>
-                    </div>
-                    <div class="col-9">
-                        <strong>Đặt hàng thành công</strong><br>
-                        <span>Shop đang chuẩn bị hàng</span><br>
-                        <span></span>
-                    </div>
-                </div>
+                <span class="fs-4">Trạng thái đơn hàng</span>
+                <div  id="dstrangthai"></div>
+<%--                <div class="row mt-3">--%>
+<%--                    <div class="col-3">--%>
+<%--                        <span>09:25 07-08-2023</span>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-9">--%>
+<%--                        <strong>Đã giao</strong><br>--%>
+<%--                        <span>Đơn hàng đã được giao thành công</span><br>--%>
+<%--                        <span>Người nhận hàng: Anh Tuấn</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
             </div>
         </div>
         <div class="row">
@@ -66,30 +47,30 @@
         </div>
     </div>
     <div class="khung mt-3">
-        <div class="row mt-3">
-            <div class="col-2">
-                <img src="/assets/images/sanpham/0PQldf.jpg" width="90%" alt="">
-            </div>
-            <div class="col-10">
-                <h4>Áo</h4>
-                <div class="d-flex justify-content-between">
-                    <span>Phân loại: Đen|L </span>
-                    <span class="text-danger">300000₫</span></span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span>x1 </span>
-                </div>
-            </div>
+        <div class="row mt-3" id="dshdct">
+<%--            <div class="col-2">--%>
+<%--                <img src="/assets/images/sanpham/0PQldf.jpg" width="90%" alt="">--%>
+<%--            </div>--%>
+<%--            <div class="col-10">--%>
+<%--                <h4>Áo</h4>--%>
+<%--                <div class="d-flex justify-content-between">--%>
+<%--                    <span>Phân loại: Đen|L </span>--%>
+<%--                    <span class="text-danger">300000₫</span></span>--%>
+<%--                </div>--%>
+<%--                <div class="d-flex justify-content-between">--%>
+<%--                    <span>x1 </span>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
         <div class="row mt-5">
-            <div class="col-8"></div>
-            <div class="col-4">
+            <div class="col-7"></div>
+            <div class="col-5">
                 <div class="row d-flex justify-content-between">
                     <div class="col">
                        Tổng tiền hàng:
                     </div>
                     <div class="col text-right">
-                        <span class="text-danger">300000₫</span>
+                        <span class="text-danger" id="giaGoc"></span><span class="text-danger">đ</span>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-between">
@@ -97,7 +78,16 @@
                         Phí vận chuyển:
                     </div>
                     <div class="col text-right">
-                        <span class="text-danger">17000₫</span>
+                        <span class="text-danger" id="tienShip"></span><span class="text-danger">đ</span>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-between">
+                    <div class="col">
+                        Tổng tiền giảm giá:
+                    </div>
+                    <div class="col text-right">
+                        <span class="text-danger">-</span>
+                        <span class="text-danger" id="giaGiam"></span><span class="text-danger">đ</span>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-between">
@@ -105,11 +95,125 @@
                         Thành tiền:
                     </div>
                     <div class="col text-right">
-                        <span class="text-danger" style="font-size: 25px">317000₫</span>
+                        <span class="text-danger" style="font-size: 25px" id="tienKhachTra"></span><span class="text-danger">đ</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // // Lấy đối tượng URLSearchParams từ URL hiện tại
+        const urlParams = new URLSearchParams(window.location.search);
+
+        // Lấy giá trị của tham số "paramName" từ URL
+        const paramValue = urlParams.get('mahd');
+        function getMaHoaDon() {
+            return paramValue;
+        }
+
+        function loadChiTietHoaDon(){
+            $.ajax({
+                url: '/api/hoadon/alltt?mahoadon='+getMaHoaDon(),
+                method: 'GET',
+                success: function(data) {
+                    console.log(data)
+                    getHoaDon(data.hoaDon);
+                    getTrangThaiGiaoHang(data.trangThaiGiaoHang);
+                    getTongTien(data.tongTien);
+                    getHDCT(data.dsHoaDonChiTiet);
+                },
+                error: function(xhr, status, error) {
+                    alert('Có lỗi xảy ra: ' + error);
+                }
+            });
+        }
+        loadChiTietHoaDon();
+
+        function getHoaDon(hoaDon) {
+            $("#tennguoinhan").text(hoaDon.nguoiNhan)
+            $("#sodienthoai").text(hoaDon.soDienThoai)
+            $("#diachi").text(hoaDon.diaChi)
+        }
+        function getTrangThaiGiaoHang(listTrangThai) {
+
+            let dsTrangThai = $("#dstrangthai");
+            dsTrangThai.empty();
+            if (listTrangThai.length == 0){
+                dsTrangThai.append(
+                    `
+                    <div class="row mt-3">
+                    <div class="col-3">
+                    </div>
+                    <div class="col-9">
+                        <span>Shop đang chuẩn bị hàng</span><br>
+                    </div>
+                </div>
+                    `);
+            }else{
+                listTrangThai.forEach(function (item) {
+                    let ngayTaoFMT = formatTimestamp(item.ngayTao)
+                    dsTrangThai.append(
+                        `
+                    <div class="row mt-3">
+                    <div class="col-3">
+                        <span>\${ngayTaoFMT}</span>
+                    </div>
+                    <div class="col-9">
+                        <span>\${item.tenTrangThai}</span><br>
+                    </div>
+                </div>
+                    `
+                    );
+                })
+            }
+
+        }
+        function getHDCT(listHdct) {
+            let dsHoaDonChiTiet = $("#dshdct");
+            listHdct.forEach(function (item) {
+                let tenFMT = formatNumber(item.tongTienHdct);
+                dsHoaDonChiTiet.append(
+                    `<div class="row mt-3">
+                                <div class="col-2">
+                                    <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
+                                </div>
+                                <div class="col-10">
+                                    <h5>\${item.tenSanPham}</h5>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Phân loại: \${item.tenBienThe} </span>
+                                        <span class="text-danger">\${tenFMT}₫</span></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>x\${item.soLuong} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>`
+                );
+            })
+        };
+        function getTongTien(tongTien){
+            $("#giaGoc").text(formatNumber(tongTien.giaGoc));
+            $("#giaGiam").text(formatNumber(tongTien.giaGiam));
+            $("#tienShip").text(formatNumber(tongTien.tienShip));
+            $("#tienKhachTra").text(formatNumber(tongTien.tienKhachTra));
+        };
+        function formatTimestamp(timestamp) {
+            // Create a Date object from the timestamp
+            var date = new Date(timestamp);
+            var day = date.getDate().toString().padStart(2, '0');
+            var month = (date.getMonth() + 1).toString().padStart(2, '0');
+            var year = date.getFullYear();
+            var hours = date.getHours().toString().padStart(2, '0');
+            var minutes = date.getMinutes().toString().padStart(2, '0');
+            // Format the date into "HH:MM dd-MM-yyyy" format
+            var formattedDate = hours + ':' + minutes + ' ' + day + '-' + month + '-' + year;
+            return formattedDate;
+        }
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    </script>
+
 </body>
 </html>

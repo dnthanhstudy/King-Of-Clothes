@@ -641,10 +641,8 @@
    }
    function thayDoiTrangThaiHoaDon(idhd,trangThai){
        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
-       // if (trangThai === 'DANHANDON' || trangThai === 'HUYDON') {
            var luuy = $("#luuy").val();
            parameter += `&luuy=\${encodeURIComponent(luuy)}`;
-       // }
        $.ajax({
            url: `/api/hoadon/thaydoitrangthai`+parameter,
            method: 'GET',

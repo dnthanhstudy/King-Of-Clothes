@@ -6,12 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>, NhanVienRepositoryCustom {
 
 
-    Page<NhanVienEntity> findAllByTrangThaiNotAndChucVu_Ma(String trangThai, String chucVu, Pageable pageable);
+    Page<NhanVienEntity> findAllByTrangThaiNotAndAndMaNot(String trangThai, String ma, Pageable pageable);
 
     NhanVienEntity findByMaAndTrangThai(String ma, String trangThai);
 

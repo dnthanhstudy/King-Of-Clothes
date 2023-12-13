@@ -2,7 +2,8 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
+import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,15 +13,16 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaDonRepositoryCustom {
+//    @Query("select hd from HoaDonEntity hd order by hd.ngayDat desc")
+//    List<HoaDonEntity> dsHoaDon();
 
-    HoaDonEntity findByMa(String ma);
+    @Query("select hd from HoaDonEntity hd where hd.ma=:mahd")
+    ThongTinHoaDonResponse getHoaDonResponse(@Param("mahd")String idhd);
 
-    @Query("select hd from HoaDonEntity hd order by hd.ngayDat desc")
-    List<HoaDonEntity> dsHoaDon();
+    HoaDonEntity findByMa(String maHoaDon);
 
 
-    @Query(value = "SELECT SUM(giagoc) as giagoc, SUM(giagiam) as giagiam ," +
-            "sum(thucte) as thucte FROM vw_hoadonchitiet_summary WHERE idhoadon =:idhd", nativeQuery = true)
+    @Query(value = "select * from vw_hoadonchitiet_summary where idhoadon =:idhd", nativeQuery = true)
     TongTienResponse tongTienByHoaDon(@Param("idhd")Long idhd);
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
     HoaDonEntity findHoaDonMoiDat(@Param("idkh") Long idkh);

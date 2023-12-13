@@ -1,8 +1,7 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.model.request.ThayDoiSoLuongGioHangRequest;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponseClass;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 

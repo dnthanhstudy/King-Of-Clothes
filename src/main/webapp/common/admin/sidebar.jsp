@@ -79,7 +79,7 @@
             </li>
         </ul>
         <div class="copyright">
-            <p><strong>KOC Admin Dashboard</strong> © 2021 All Rights Reserved</p>
+            <p><strong>KOC Admin Dashboard</strong> © 2023 All Rights Reserved</p>
             <p class="fs-12">Made with <span class="heart"></span> by KOC Teams</p>
         </div>
     </div>
