@@ -61,6 +61,7 @@
                         method: "GET",
                         dataType: "json",
                     });
+                    let mahd = res.data[0].maHoaDon;
                     let html = `<div class="col-12 mt-3">
                                 <div class="khung">
                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">
@@ -106,7 +107,7 @@
                                 </div>
                                 <div class="my-2 text-right">
                                     <button class="btn btn-danger me-2" >Hủy đơn</button>
-                                    <button class="btn btn-secondary" >Xem đơn hàng</button>
+                                    <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
                                 </div>
                             </div>
                         </div>
