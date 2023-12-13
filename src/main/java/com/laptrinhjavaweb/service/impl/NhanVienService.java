@@ -64,8 +64,8 @@ public class NhanVienService implements INhanVienService {
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
         nhanVienEntity.setChucVu(chucVuRepository.findByMa("STAFF"));
+        nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
-
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
