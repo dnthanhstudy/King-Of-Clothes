@@ -5,9 +5,11 @@ import com.laptrinhjavaweb.converter.NhanVienConverter;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.ChucVuRepository;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.INhanVienService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
@@ -103,6 +105,8 @@ public class NhanVienService implements INhanVienService {
 
     @Override
     public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param ){
+        MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
+        String ma = myUserResponse.getMa();
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<NhanVienEntity> page = null;
@@ -110,11 +114,11 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
-                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.searchs(param);
+                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.searchs(param, ma);
                 int sizeOflistNhanVienEntity = listNhanVienEntity.size();
                 int start = (int) pageable.getOffset();
                 int end = Math.min((start + pageable.getPageSize()), sizeOflistNhanVienEntity);
@@ -122,7 +126,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(

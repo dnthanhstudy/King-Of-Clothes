@@ -293,7 +293,7 @@
     var value="";
     function loadKhuyenMai() {
         $.ajax({
-            url: "/api/khuyen-mai/pagination?page="+pageCurrent+"&q="+value,
+            url: "/api/khuyen-mai/pagination?page="+pageCurrent,
             method: 'GET',
             success: function (response) {
                 console.log(response);
@@ -468,12 +468,7 @@
         searchButton.on('keydown', function(event) {
             if (event.which === 13) {
                 value = searchButton.val();
-                if (value.trim().length === 0) {
-                    loadKhuyenMai();
-                }else{
                     loadSearchKM(value);
-                }
-
             }
         });
     });
@@ -583,20 +578,21 @@
                         `;
                         khuyenMai.append(card);
                     });
-                    var totalPageRes = response.meta.totalPage;
+                    console.log(response);
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
                         next: "Next",
                         last: "Last",
                         visiblePages: 5,
-                        totalPages: totalPageRes,
+                        totalPages: response.meta.totalPage,
                         startPage: response.meta.pageCurrent,
                         onPageClick: function (event, page) {
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                loadSearchKM(value);
+                                console.log(response.meta.totalPage);
+                                loadSearchKM()
                             }
                         },
                     });
