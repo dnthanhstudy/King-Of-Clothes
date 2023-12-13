@@ -21,4 +21,6 @@ public class SliderRequest {
         }
         return base64;
     }
+
+    private String trangThai = "ACTIVE";
 }

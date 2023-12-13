@@ -19,7 +19,7 @@
 
         <div class="card card-body hstack gap-3 mt-4">
             <div class="p-2">
-                <a class="Btnaddkh" type="button" href="/admin/giao-dich/create" style="text-decoration: none">Add
+                <a id="create-hoa-don" class="Btnaddkh" type="button" style="text-decoration: none">Add
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style>
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </a>
@@ -83,8 +83,31 @@
                 </table>
             </div>
         </div>
-
     </div>
 </div>
+<script>
+    $('#create-hoa-don').on('click', function (e){
+        e.preventDefault();
+        let data = {};
+        data['maNhanVien'] = ma;
+        data['trangThai'] = "TREO";
+        data['loai'] = "Offline";
+
+        $.ajax({
+            url: "/api/hoa-don-off",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                showSuccess("Thêm hóa thành công");
+                window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    })
+</script>
 </body>
 </html>

@@ -89,6 +89,7 @@
                             </tr>`;
                     tbody.append(row);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -115,7 +116,8 @@
             }
         });
     }
-    loadDanhMuc();
+
+    loadDanhMuc()
 
     function searchDanhMuc(){
         $.ajax({
@@ -151,6 +153,7 @@
                             </tr>`;
                         tbody.append(row);
                     });
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -159,13 +162,19 @@
                         visiblePages: 5,
                         totalPages: response.meta.totalPage,
                         startPage: response.meta.pageCurrent,
+
                         onPageClick: function (event, page) {
-                            if (page !== pageCurrent) {
+                            if(page !== pageCurrent){
                                 event.preventDefault();
                                 pageCurrent = page;
-                                searchDanhMuc()
+                                if(param != ''){
+                                    searchDanhMuc(param)
+                                }else{
+                                    loadDanhMuc();
+                                }
                             }
                         },
+
                     });
                 }
             },
@@ -179,6 +188,9 @@
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         param = $('#searchAll').val();
+        if(pageCurrent > 1){
+            pageCurrent = 1;
+        }
         searchDanhMuc();
     })
 

@@ -20,4 +20,6 @@ public class ThuocTinhRequest {
     private List<String> giaTris;
 
     private Long idSanPham;
+
+    private String trangThai = "ACTIVE";
 }

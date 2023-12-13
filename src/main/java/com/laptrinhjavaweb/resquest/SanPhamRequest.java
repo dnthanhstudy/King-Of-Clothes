@@ -42,4 +42,6 @@ public class SanPhamRequest {
     private Integer sanPhamNoiBat;
 
     private Integer sanPhamPhoBien;
+
+    private String trangThai = "ACTIVE";
 }

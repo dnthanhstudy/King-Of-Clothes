@@ -69,11 +69,7 @@ public class SanPhamService implements ISanPhamService{
 				if(param != null) {
 					listSanPhamEntity = sanPhamRepository.seachs(param);
 				}else if(params != null && !params.isEmpty()){
-					List<Long> ids = sanPhamRepository.filters(params);
-					for (Long id : ids) {
-						SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
-						listSanPhamEntity.add(sanPhamEntity);
-					}
+					listSanPhamEntity = sanPhamRepository.filters(params);
 				}else{
 					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
 				}

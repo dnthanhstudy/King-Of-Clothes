@@ -12,6 +12,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaDonRepositoryCustom {
+
+    HoaDonEntity findByMa(String ma);
+
     @Query("select hd from HoaDonEntity hd order by hd.ngayDat desc")
     List<HoaDonEntity> dsHoaDon();
 

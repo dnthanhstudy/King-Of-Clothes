@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BienTheRequest {
+public class BienTheRequest{
 
     private String ten;
 
@@ -29,4 +29,6 @@ public class BienTheRequest {
         }
         return base64;
     }
+
+    private String trangThai = "ACTIVE";
 }
