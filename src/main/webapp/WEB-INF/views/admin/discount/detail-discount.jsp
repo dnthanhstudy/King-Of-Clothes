@@ -67,7 +67,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span></div>
+                                    <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span><span class="text-black ml-1 font-w550" id="loai"></span></div>
                                     <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
                                     <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550">00</span></div>
                                     <div class="mb-3">
@@ -88,7 +88,10 @@
                             </div>
                             <br>
                             <div>
-                                <div id="cardBtn"></div>
+                                    <div class="form-group row">
+                                        <div id="cardBtn">
+                                    </div>
+                                </div>
 
                             </div>
 
@@ -130,7 +133,12 @@
             var ngayTaoFMT = formatMicrosoftJSONDate(data.ngayTao);
             $("#ngayBatDauFMT").text(ngayBatDauFMT);
             $("#ngayketThucFMT").text(ngayKetThucFMT);
-            $("#giaTriGiam").text(data.giaTri);
+            $("#giaTriGiam").text(formatNumber(data.giaTri));
+            if(data.loai == 1){
+                $("#loai").text("%");
+            }else{
+                $("#loai").text("đ");
+            }
             $("#soLuong").text(data.soLuong);
             var dsSanPhamKhuyenMai = data.listSanPham;
             console.log(dsSanPhamKhuyenMai)
@@ -149,29 +157,32 @@
 
             })
             $('.tbody-product').html(html);
-            var card = `
-                <div class="form-group row">
+            var cardBtn = $('#cardBtn');
+            cardBtn.empty();
+            if(data.trangThai != "EXPIRED"){
+                var card1 = `
                     <div class="col-lg-3 ml-right">
-                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật khuyến mại</a>
+                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật</a>
                     </div>
+                `;
+                cardBtn.append(card1);
+            }
+            var card2 = `
                     <div class="col-lg-3 ml-right">
                         <a class="btn btn-danger btn-delete-khuyen-mai " data-ma="\${data.ma}">Xóa khuyến mại</a>
                     </div>
-                </div>
                 `;
-            var cardBtn = $('#cardBtn');
-            cardBtn.empty();
-            cardBtn.append(card);
+            cardBtn.append(card2);
             var trangThaiStr = "";
             var badgeColor = "";
-            if(data.trangThai == 0){
-                trangThaiStr = "Đã dừng";
+            if(data.trangThai == "EXPIRED"){
+                trangThaiStr = "Đã kết thúc";
                 badgeColor = "badge-danger";
-            }else if(data.trangThai == 2){
+            }else if(data.trangThai == "UPCOMING"){
                 trangThaiStr = "Sắp diễn ra";
                 badgeColor ="badge-warning";
             }else{
-                trangThaiStr = "Hoạt động";
+                trangThaiStr = "Đang diễn ra";
                 badgeColor="badge-success";
             }
             var cardTrangThai = $('#cardTrangThai');
@@ -220,5 +231,8 @@
                 })
         }
     });
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 
 </script>

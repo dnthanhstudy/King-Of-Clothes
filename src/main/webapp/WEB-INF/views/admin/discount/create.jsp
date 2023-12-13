@@ -133,28 +133,24 @@
                                                                             </div>
 
                                                                         </div>
-                                                                    <div style="max-height: 600px; overflow-y: scroll;">
+                                                                    <div style="max-height: 550px; overflow-y: scroll;">
                                                                         <div class="modal-body">
                                                                             <div class="d-flex justify-content-between">
                                                                                 <hr>
                                                                                 <table class="table table-hover table-striped">
-    <%--                                                                                <thead>--%>
-    <%--                                                                                   --%>
-    <%--                                                                                </thead>--%>
-                                                                                    <tbody >
-                                                                                        <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
-                                                                                            <tr>
-                                                                                                <th scope="col"><div class="custom-control custom-checkbox ml-2">
-                                                                                                    <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                                                                    <label class="custom-control-label" for="checkAll"></label>
-                                                                                                </div></th>
-                                                                                                <th scope="col">Tên SP</th>
-                                                                                                <th scope="col">Giá</th>
-                                                                                                <th scope="col">Danh muc</th>
-                                                                                                <th scope="col">Thương hiệu</th>
-                                                                                            </tr>
-                                                                                            <div class="tbody-product"></div>
-                                                                                        </div>
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th scope="col"><div class="custom-control custom-checkbox ml-2">
+                                                                                                <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                                                                <label class="custom-control-label" for="checkAll"></label>
+                                                                                            </div></th>
+                                                                                            <th scope="col">Tên SP</th>
+                                                                                            <th scope="col">Giá</th>
+                                                                                            <th scope="col">Danh muc</th>
+                                                                                            <th scope="col">Thương hiệu</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody class="tbody-product">
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -200,8 +196,6 @@
     </div>
 </section>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script>
     var generatedNumbers = new Set();
     let pageCurrent = 1;
@@ -466,15 +460,6 @@
         }
         return isValid;
     }
-    document.querySelectorAll('#nav-tab>[data-bs-toggle="tab"]').forEach(el => {
-        el.addEventListener('shown.bs.tab', () => {
-            const target = el.getAttribute('data-bs-target')
-            const scrollElem = document.querySelector(`${target} [data-bs-spy="scroll"]`)
-            bootstrap.ScrollSpy.getOrCreateInstance(scrollElem).refresh()
-        })
-    })
-    const scrollSpy = new bootstrap.ScrollSpy(document.body, {
-        target: '#navbar-example'
-    })
+
 
 </script>
