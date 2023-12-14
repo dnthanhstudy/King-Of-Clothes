@@ -13,7 +13,8 @@
 </head>
 <body>
 <%--xem chi tiết--%>
-<div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px " data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+<div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px "
+     data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header mt-3 ms-3">
         <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -22,12 +23,18 @@
         <div class="row">
             <nav class="mt-3">
                 <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung</button>
-                    <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mô tả sản phẩm</button>
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
+                    </button>
+                    <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                            aria-selected="false">Mô tả sản phẩm
+                    </button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                     tabindex="0">
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <img src="/template/web/img/anh2.png" class="img-fluid" alt="...">
@@ -89,17 +96,22 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                     tabindex="0"></div>
             </div>
         </div>
     </div>
     <div class="offcanvas-footer">
-            <div class="row p-5">
-                <div class="text-right">
-                    <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close" style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua</button>
-                    <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close" style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong</button>
-                </div>
+        <div class="row p-5">
+            <div class="text-right">
+                <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close"
+                        style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
+                </button>
+                <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close"
+                        style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
+                </button>
             </div>
+        </div>
     </div>
 </div>
 <section>
@@ -107,17 +119,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-<%--                    <div class="group123">--%>
-<%--                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"--%>
-<%--                             viewBox="0 0 512 512">--%>
-<%--                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->--%>
-<%--                            <style>svg {--%>
-<%--                                fill: #ebeef4--%>
-<%--                            }</style>--%>
-<%--                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>--%>
-<%--                        </svg>--%>
-<%--                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu w-25">--%>
-<%--                    </div>--%>
                     <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
                     <button class="btn btn-primary btn-add-invoice">Thêm hóa đơn</button>
                 </div>
@@ -139,7 +140,7 @@
                                     <div class="row" id="list-products">
 
                                     </div>
-                                    <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
+                                    <ul class="pagination d-flex justify-content-center" id="pagination"></ul>
                                 </div>
                             </div>
                         </div>
@@ -149,501 +150,11 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-8">
-                    <div style="max-height: 500px; overflow-y: scroll;">
-                        <div class="card card-body mb-2" style="border-radius: 10px;">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">6</h5>
-                                        </div>
-                                    </div>
-                                </div>
+                    <p id="invoice-non">Thêm sản phẩm vào hóa đơn nào!!!</p>
+                    <div id="invoice" style="max-height: 500px; overflow-y: scroll;">
 
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP06</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="2">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">250000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">500000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="">Xóa</a>
-                                                <a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-body mb-2" style="border-radius: 10px;">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">5</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP05</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="2">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">250000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">500000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-body mb-2" style="border-radius: 10px;">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">4</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP04</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="2">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">250000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">500000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-body mb-2" style="border-radius: 10px">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">3</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP03</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nữ aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="1">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">150000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-body mb-2" style="border-radius: 10px">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">2</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP02</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo sơ mi nam aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="3">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">100000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">300000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card card-body mb-2" style="border-radius: 10px">
-                            <div class="row">
-                                <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>#</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">1</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Mã sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">SP01</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tên sản phẩm</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">Áo polo nam aelimited</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
-                                    <div class="d-flex align-items-center">
-                                        <div class="ml-2">
-                                            <span>Số lượng</span>
-                                            <div class="input-group w-75">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <input type="text" class="form-control" style="text-align: center" value="1">
-                                                <button class="btn text-light " style="background-color: #EB8153"><i
-                                                        class="fa fa-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex align-items-center">
-
-                                        <div class="ml-2">
-                                            <span>Đơn giá</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">500000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                    <div class="d-flex project-status align-items-center">
-                                        <div class="ml-2">
-                                            <span>Tổng tiền</span>
-                                            <h5 class="mb-0 pt-1 font-w500 text-black">500000</h5>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                    <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z"
-                                                          stroke="#575757" stroke-width="2" stroke-linecap="round"
-                                                          stroke-linejoin="round"></path>
-                                                </svg>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="javascript:void(0);">Xóa</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Xem chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="card card-body mt-3" style="border-radius: 10px">
+                    <div id="invoice-money-quantity" class="card card-body mt-3" style="border-radius: 10px">
                         <div class="row">
                             <div class="col-8">
                                 <div class="group123">
@@ -660,8 +171,19 @@
                             </div>
                             <div class="col-4">
                                 <div class="d-flex justify-content-between">
-                                    <h4><strong>Tổng tiền hàng:</strong> <span>11</span></h4>
-                                    <h4 class="text-right">24500000</h4>
+                                    <div>
+                                        <h4 class="text-right">
+                                            <strong>Tổng tiền hàng:</strong>
+                                            <span class="invoice-total">245000</span>
+                                        </h4>
+                                    </div>
+
+                                    <div>
+                                        <h4 class="text-right">
+                                            <strong>Tổng số lượng sản phẩm:</strong>
+                                            <span id="invoice-quantity">11</span>
+                                        </h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -671,7 +193,8 @@
                     <div class="card card-body" style="border-radius: 10px; height: 593px">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5><strong>Nhân viên:</strong><%=SecurityUtils.getPrincipal().getTen()%></h5>
+                                <h5><strong>Nhân viên:</strong><%=SecurityUtils.getPrincipal().getTen()%>
+                                </h5>
                             </div>
                             <div class="col-lg-6 text-right">
                                 <h5 id="thoiGian"></h5>
@@ -688,7 +211,8 @@
                                         }</style>
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                     </svg>
-                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100" id="search-customer">
+                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100"
+                                           id="search-customer">
                                     <input type="text" hidden value="" id="code-customer">
                                 </div>
                             </div>
@@ -748,7 +272,8 @@
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn" id="btn-add-customer" style="background-color: #A6edab; color: #00852d">
+                                                <button class="btn" id="btn-add-customer"
+                                                        style="background-color: #A6edab; color: #00852d">
                                                     Add
                                                 </button>
                                             </div>
@@ -769,7 +294,7 @@
                                 <h5>Tổng tiền hàng:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5>2450000</h5>
+                                <h5 class="invoice-total">2450000</h5>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -802,7 +327,7 @@
                                 <h5><strong>Khách cần trả:</strong></h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5 style="color: #EB8153"><strong>2450000</strong></h5>
+                                <h5 style="color: #EB8153"><strong class="invoice-total">2450000</strong></h5>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -843,15 +368,19 @@
     </div>
 </section>
 
-
 <script>
+    const currentUrl = window.location.href;
+    const results = currentUrl.split('/');
+    const maHoaDon = results[results.length - 1];
 
-    function time(){
+    function time() {
         $('#thoiGian').text(new Date().toLocaleString());
     }
+
     setInterval(time, 1000);
 
     let pageCurrent = 1;
+
     function loadAllProduct() {
         $.ajax({
             url: "/api/san-pham/pagination?page=" + pageCurrent + "&limit=12",
@@ -862,10 +391,10 @@
                 $.each(response.data, (index, item) => {
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
-                    if(item.khuyenMaiHienThiResponse !== null){
+                    if (item.khuyenMaiHienThiResponse !== null) {
                         htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
                                         <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
-                    }else{
+                    } else {
                         htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
                     html += `<div class="col-lg-6">
@@ -910,11 +439,14 @@
                 })
                 $('#list-products').html(html);
 
-                $('.product-price').each(function(index, item) {
+                $('.product-price').each(function (index, item) {
                     let res = $(item).html();
-                    if(res.indexOf("đ") === -1){
+                    if (res.indexOf("đ") === -1) {
                         let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                        let formattedValue = new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        }).format(numericValue);
                         $(item).html(formattedValue);
                     }
                 });
@@ -961,11 +493,14 @@
                                     $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
                                 }
 
-                                $(this).closest('.card-item-product').find('.product-price').each(function(index, item) {
+                                $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
                                     let res = $(item).html();
-                                    if(res.indexOf("đ") === -1){
+                                    if (res.indexOf("đ") === -1) {
                                         let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                                        let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                                        let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                            style: 'currency',
+                                            currency: 'VND'
+                                        }).format(numericValue);
                                         $(item).html(formattedValue);
                                     }
                                 });
@@ -977,25 +512,35 @@
                     }
                 });
 
-                $('.btn-buy-product').on('click', function (){
+                $('.btn-buy-product').on('click', function () {
                     let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                    if(variantId !== null || lenOfAttribute === 0){
+                    if (variantId !== null || lenOfAttribute === 0) {
                         let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
-                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.',''));
-                        let productId = $(this).closest('.card-item-product').find('#product-id').val();
+                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
+                        let productId = parseInt($(this).closest('.card-item-product').find('#product-id').val());
 
                         let data = {};
+                        data['maHoaDon'] = maHoaDon;
                         data['soLuong'] = 1;
-                        data['idProduct'] = productId;
+                        data['idSanPham'] = productId;
                         data['idBienThe'] = variantId;
                         data['idKhuyenMai'] = couponId;
                         data['gia'] = productBuy;
                         data['thanhTien'] = productBuy;
 
-                        console.log(data);
-                        variantId = null;
-                        couponId = null;
-                    }else{
+                        addProductInvoice(data,
+                            function (response) {
+                                variantId = null;
+                                couponId = null;
+                                $('#list-products').find('input[type=radio]').prop('checked', false);
+                                showSuccess("Thêm sản phẩm vào hóa đơn thành công");
+                                loadHoaDon()
+                            },
+                            function (error) {
+                                console.log(error)
+                            }
+                        );
+                    } else {
                         showError("Vui lòng chọn sản phẩm");
                     }
                 })
@@ -1005,9 +550,10 @@
             }
         });
     }
+
     loadAllProduct();
 
-    $('#btn-add-customer').on('click', ()=>{
+    $('#btn-add-customer').on('click', () => {
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
         $.each(dataForm, (index, value) => {
@@ -1034,13 +580,12 @@
         });
     })
 
-
     let customers = [];
     $.ajax({
         url: '/api/khach-hang',
         dataType: "json",
-        success: function (response){
-            $.each(response, function (index, item){
+        success: function (response) {
+            $.each(response, function (index, item) {
                 let customer = {
                     "value": item.soDienThoai,
                     "ten": item.ten,
@@ -1050,12 +595,12 @@
             })
             loadSuggestions(customers);
         },
-        error: function (error){
+        error: function (error) {
             console.log(error);
         }
     });
 
-    function loadSuggestions(options){
+    function loadSuggestions(options) {
         $('#search-customer').autocomplete({
             lookup: options,
             onSelect: function (suggestion) {
@@ -1066,13 +611,123 @@
         });
     }
 
-    $('.btn-add-invoice').on('click', ()=>{
-        showSuccess ("Tạo hóa đơn thành công");
-         window.location.href = "/admin/giao-dich/create";
+    $('.btn-add-invoice').on('click', () => {
+        showSuccess("Tạo hóa đơn thành công");
+        window.location.href = "/admin/giao-dich/create";
     });
+
+    loadHoaDon();
+
+    function loadHoaDon() {
+        $.ajax({
+            url: "/api/hoa-don-off/" + maHoaDon,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                let totalInvoice = 0;
+                let toatlQuantity = 0;
+                let html = '';
+                if (response.hoaDonChiTiet.length > 0) {
+                    $.each(response.hoaDonChiTiet, (index, item) => {
+                        totalInvoice += item.thanhTien;
+                        toatlQuantity += item.soLuong;
+                        html += `<div class="card card-body mb-2" style="border-radius: 10px;">
+                                    <div class="row">
+                                        <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>\${++index}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tên sản phẩm</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-2">\${item.tenSanPham}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Số lượng</span>
+                                                    <div class="input-group w-50">
+                                                        <button class="btn text-light" id="btn-add-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
+                                                        <input type="text" class="form-control" style="text-align: center" value="\${item.soLuong}"/>
+                                                        <button class="btn text-light" id="btn-remove-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex align-items-center">
+
+                                                <div class="ml-2">
+                                                    <span>Đơn giá</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">\${item.gia}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex project-status align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tổng tiền</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black">\${item.thanhTien}</h5>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="">Xóa</a>
+                                                        <a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="" id="invoice-detail" value="\${item.id}}">
+                                `;
+
+                        $('#invoice-non').hide();
+                        $('#invoice-money-quantity').show();
+
+                        $('#invoice').html(html);
+                        $('.invoice-total').text(totalInvoice);
+                        $('#invoice-quantity').text(toatlQuantity);
+                    })
+                } else {
+                    $('#invoice-money-quantity').hide();
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+
+    function addProductInvoice(data, successCallback, errorCallback) {
+        $.ajax({
+            url: "/api/hoa-don-chi-tiet",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: (response) => {
+                successCallback(response);
+            },
+            error: (error) => {
+                errorCallback(error);
+            }
+        });
+    }
 </script>
-
-
-
 </body>
 </html>

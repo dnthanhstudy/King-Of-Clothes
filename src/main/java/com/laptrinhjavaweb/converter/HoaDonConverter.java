@@ -2,11 +2,16 @@ package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class HoaDonConverter {
@@ -16,6 +21,9 @@ public class HoaDonConverter {
 
     @Autowired
     private NhanVienRepository nhanVienRepository;
+
+    @Autowired
+    private HoaDonChiTietConverter hoaDonChiTietConverter;
 
     public HoaDonEntity convertToEntity(HoaDonResquest resquest){
         HoaDonEntity entity = modelMapper.map(resquest, HoaDonEntity.class);
@@ -30,6 +38,11 @@ public class HoaDonConverter {
         }else{
             response.setKhachHang(entity.getKhachHang().getTen() + "-" + entity.getKhachHang().getSoDienThoai());
         }
+        List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream().map(
+                item -> hoaDonChiTietConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+
+        response.setHoaDonChiTiet(hoaDonChiTiet);
         return response;
     }
 }

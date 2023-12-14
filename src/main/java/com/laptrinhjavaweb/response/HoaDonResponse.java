@@ -15,13 +15,11 @@ public class HoaDonResponse {
 
     private String khachHang;
 
-    private List<SanPhamResponse> sanPham;
-
     private Double tongTienHang;
 
     private Double tienKhachTra;
 
     private Double tienThua;
 
-    private Double tienGiamGia;
+    private List<HoaDonChiTietResponse> hoaDonChiTiet;
 }

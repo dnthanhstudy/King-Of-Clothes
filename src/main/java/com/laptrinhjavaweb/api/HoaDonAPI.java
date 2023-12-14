@@ -6,10 +6,7 @@ import com.laptrinhjavaweb.service.IHoaDonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/hoa-don-off")
@@ -21,6 +18,12 @@ public class HoaDonAPI {
     @PostMapping
     public ResponseEntity<?> created(@RequestBody HoaDonResquest hoaDonResquest){
         HoaDonResponse result = hoaDonService.save(hoaDonResquest);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{ma}")
+    public ResponseEntity<?> detail(@PathVariable("ma") String ma){
+        HoaDonResponse result = hoaDonService.findByMa(ma);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
