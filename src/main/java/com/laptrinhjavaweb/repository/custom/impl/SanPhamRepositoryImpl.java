@@ -21,8 +21,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SanPhamEntity> seachs(String param) {
-		String sql = "FROM SanPhamEntity WHERE ten LIKE '%" + param + "%' OR mota LIKE '%" + param
-				+ "%' OR thongtinchitiet LIKE '%" + param
+		String sql = "FROM SanPhamEntity WHERE ten LIKE '%" + param
 				+ "%' OR thuongHieu.ten LIKE '%" + param
 				+ "%' OR danhMuc.ten LIKE '%" + param + "%'";
 		Query query = entityManager.createQuery(sql, SanPhamEntity.class);

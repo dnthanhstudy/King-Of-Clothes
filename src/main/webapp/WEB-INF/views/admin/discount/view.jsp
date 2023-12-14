@@ -397,6 +397,7 @@
                         `;
                     khuyenMai.append(card);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -409,7 +410,11 @@
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadKhuyenMai();
+                            if(value != ''){
+                                loadSearchKM(value)
+                            }else{
+                                loadKhuyenMai();
+                            }
                         }
                     },
                 });
@@ -468,6 +473,9 @@
         searchButton.on('keydown', function(event) {
             if (event.which === 13) {
                 value = searchButton.val();
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
+                }
                     loadSearchKM(value);
             }
         });
@@ -579,6 +587,7 @@
                         khuyenMai.append(card);
                     });
                     console.log(response);
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -591,8 +600,11 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                console.log(response.meta.totalPage);
-                                loadSearchKM()
+                                if(value != ''){
+                                    loadSearchKM(value)
+                                }else{
+                                    loadKhuyenMai();
+                                }
                             }
                         },
                     });

@@ -56,7 +56,7 @@ public class KHSendEmailService implements ISendEmailService {
         if (khachHangEntity != null) {
             String newPassword = generateRandomPassword();
             LocalDateTime now = LocalDateTime.now();
-            LocalDateTime expireTime = now.plusMinutes(3);
+            LocalDateTime expireTime = now.plusMinutes(1);
             khachHangEntity.setRestToken(newPassword);
             khachHangEntity.setExpireTime(expireTime);
             khachHangRepository.save(khachHangEntity);

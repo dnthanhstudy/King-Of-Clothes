@@ -130,6 +130,7 @@
                         `;
                     tbody.append(row);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -204,6 +205,7 @@
                         `;
                         tbody.append(row);
                     });
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -216,7 +218,11 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                searchKhachHang()
+                                if(param != ''){
+                                    searchKhachHang(param)
+                                }else{
+                                    loadKhacHang();
+                                }
                             }
                         },
                     });
@@ -233,6 +239,9 @@
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         param = $('#searchAll').val();
+        if(pageCurrent > 1){
+            pageCurrent = 1;
+        }
         searchKhachHang();
     })
 

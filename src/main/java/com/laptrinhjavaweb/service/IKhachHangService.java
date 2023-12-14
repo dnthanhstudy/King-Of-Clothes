@@ -30,4 +30,6 @@ public interface IKhachHangService {
     List<TimKiemSanPhamResponse> histosies(String ma);
 
     KhacHangResponse register(KhachHangRequest khachHangRequest);
+
+    KhacHangResponse changePassword(KhachHangRequest khachHangRequest);
 }
