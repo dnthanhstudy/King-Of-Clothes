@@ -98,7 +98,8 @@ $(".table-variant").on("click", function (e) {
         $(eleClick).change(function (event) {
             var reader = new FileReader();
             var file = $(this)[0].files[0];
-            reader.onload = function (e) {};
+            reader.onload = function (e) {
+            };
             reader.readAsDataURL(file);
             const className = eleClick.attr("class");
             const lastClass = className.substr(className.lastIndexOf(" ") + 1);
@@ -110,7 +111,8 @@ $(".table-variant").on("click", function (e) {
 $("#uploadImage").change(function (event) {
     var reader = new FileReader();
     var file = $(this)[0].files[0];
-    reader.onload = function (e) {};
+    reader.onload = function (e) {
+    };
     reader.readAsDataURL(file);
     openImage(this);
 });
@@ -135,12 +137,12 @@ function generateVariant() {
     let attrs = [];
     for (const [attr, values] of Object.entries(attributes)) {
         if (values.length > 0) {
-            attrs.push(values.map((v) => ({ [attr]: v })));
+            attrs.push(values.map((v) => ({[attr]: v})));
         }
     }
 
     attrs = attrs.reduce((a, b) =>
-        a.flatMap((d) => b.map((e) => ({ ...d, ...e })))
+        a.flatMap((d) => b.map((e) => ({...d, ...e})))
     );
 
     displayVarinatsOnTable(attrs);
@@ -290,8 +292,8 @@ let attributes = [];
 $.ajax({
     url: '/api/filter',
     dataType: "json",
-    success: function (response){
-        $.each(response, function (index, item){
+    success: function (response) {
+        $.each(response, function (index, item) {
             let attribute = {
                 "value": item.ten,
                 "slug": item.ma
@@ -301,12 +303,12 @@ $.ajax({
         console.log(attributes);
         loadSuggestions(attributes);
     },
-    error: function (error){
+    error: function (error) {
         console.log(error);
     }
 });
 
-function loadSuggestions(options){
+function loadSuggestions(options) {
     $('.input-name-atrribute').autocomplete({
         lookup: options,
         onSelect: function (suggestion) {

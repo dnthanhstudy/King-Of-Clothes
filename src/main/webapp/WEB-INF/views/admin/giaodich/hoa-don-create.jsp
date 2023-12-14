@@ -729,19 +729,23 @@
                         $('.btn-add-product').on('click', function (){
                             let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
                             quantity += 1;
+
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity)
                         })
 
                         $('.btn-remove-product').on('click', function (){
                             let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
                             quantity -= 1;
+
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity)
                         })
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
                     $('.invoice-total').text(0);
                     $('#money-change').text(0);
-
-
                 }
             },
             error: (error) => {
@@ -761,6 +765,21 @@
             },
             error: (error) => {
                 errorCallback(error);
+            }
+        });
+    }
+
+    function updateQuantity(id, quantity){
+        $.ajax({
+            url: "/api/hoa-don-chi-tiet",
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(quantity),
+            success: (response) => {
+                showSuccess("Cập nhật số lượng hóa đơn thành công")
+            },
+            error: (error) => {
+                console.log(error)
             }
         });
     }
