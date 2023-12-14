@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class KhuyenMaiRequest {
+public class KhuyenMaiRequest{
 
     private String ma;
 
@@ -24,9 +24,9 @@ public class KhuyenMaiRequest {
 
     private Integer soLuong;
 
-    private String trangThai;
-
     private String moTa;
 
     List<String> listSanPham;
+
+    private String trangThai = "ACTIVE";
 }

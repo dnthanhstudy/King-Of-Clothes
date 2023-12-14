@@ -31,11 +31,14 @@ public class HomePageController {
     public ModelAndView danhMuc(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
-            @PathVariable(name = "slug") String slug
+            @PathVariable(name = "slug") String slug,
+            @RequestParam Map<String, Object> filters
     ){
+        deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/category");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, slug);
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, slug);
         mav.addObject("mapProduct", results);
+        mav.addObject("attributeChecked", filters);
         return mav;
     }
 
@@ -43,16 +46,16 @@ public class HomePageController {
     public ModelAndView shop(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
-            @RequestParam Map<String, Object> params
+            @RequestParam Map<String, Object> filters
     ){
-        deleteKeyFromMap(params);
+        deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/shop");
         Map<String, Object> results = new HashMap<>();
-        if(params == null || params.isEmpty()){
+        if(filters == null || filters.isEmpty()){
             results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, null);
         }else{
-            results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, params, null);
-            mav.addObject("attributeChecked", params);
+            results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, null);
+            mav.addObject("attributeChecked", filters);
         }
         mav.addObject("mapProduct", results);
         return mav;
@@ -62,11 +65,14 @@ public class HomePageController {
     public ModelAndView search(
             @RequestParam(name = "q") String param,
             @RequestParam(name = "page", defaultValue = "1") Integer page,
-            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit
+            @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
+            @RequestParam Map<String, Object> filters
     ){
+        deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/search");
-        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
+        Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, filters, null);
         mav.addObject("mapProduct", results);
+        mav.addObject("attributeChecked", filters);
         return mav;
     }
 
@@ -117,6 +123,7 @@ public class HomePageController {
     private void deleteKeyFromMap(Map<String, Object> params){
         params.remove("page");
         params.remove("limit");
+        params.remove("q");
     }
 }
 

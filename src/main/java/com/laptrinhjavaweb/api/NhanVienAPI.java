@@ -1,10 +1,7 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.exception.ClientError;
-import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.MessageResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
-import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
 import com.laptrinhjavaweb.service.INhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;

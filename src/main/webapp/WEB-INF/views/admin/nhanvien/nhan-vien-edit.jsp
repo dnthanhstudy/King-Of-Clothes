@@ -69,6 +69,12 @@
                         <option value="Nữ" id="nuOption">Nữ</option>
                     </select>
                 </div>
+                <div class="col">
+                    <label>Chức vụ:</label>
+                    <select class="form-select" id="selectChucVu" name="maChucVu">
+
+                    </select>
+                </div>
 
             </div>
 
@@ -93,6 +99,26 @@
 </div>
 
 <script>
+
+    function updateChucVuSelect() {
+        $.ajax({
+            url: '/api/chuc-vu',
+            method: 'GET',
+            success: function (response) {
+                let htmlSelect = '';
+                $.each(response, (index, item) => {
+                    htmlSelect +=  `<option value="\${item.ma}">\${item.ten}</option>`
+                })
+                $("#selectChucVu").append(htmlSelect)
+            },
+            error: function (xhr, status, error) {
+                showError("Lỗi khi cập nhật select chức vụ");
+            }
+        });
+    }
+
+    updateChucVuSelect();
+
     function getNhanVienDetail() {
         var url = window.location.pathname.split("/");
         var ma = url[url.length - 1];
@@ -116,6 +142,13 @@
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
                 $("#thumbimage").attr('src', "/assets/images/nhanvien/" + req.anh);
+
+                $("#selectChucVu option").each(function(i){
+                    $(this).prop('selected', $(this).val() === (req.chucVu && req.chucVu.ma));
+                    if($(this).val() === req.chucVu.ma){
+                        $(this).prop("selected", true);
+                    }
+                });
             },
             error: function (xhr, status, error) {
                 console.log(error);

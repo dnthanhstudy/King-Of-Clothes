@@ -20,20 +20,30 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SanPhamEntity> seachs(String param) {
-		String sql = "FROM SanPhamEntity WHERE ten LIKE '%" + param + "%' OR mota LIKE '%" + param
-				+ "%' OR thongtinchitiet LIKE '%" + param
-				+ "%' OR thuongHieu.ten LIKE '%" + param
-				+ "%' OR danhMuc.ten LIKE '%" + param + "%'";
-		Query query = entityManager.createQuery(sql, SanPhamEntity.class);
-        return query.getResultList();
+	public List<SanPhamEntity> seachs(String param, Map<String, Object> filters) {
+		String sql = buildSQL(filters, " JOIN danhmuc ON danhmuc.id = subquery.iddanhmuc ", null) + " AND (" +
+				" subquery.ten LIKE '%" + param + "%'" +
+				" OR subquery.thongtinchitiet LIKE '%" + param + "%'" +
+				" OR danhmuc.ten LIKE '%" + param + "%'" +
+				" )";
+		System.out.println("SQL serach " + sql);
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Long> filters(Map<String, Object> params) {
-		String sql = buildSQL(params);
-		Query query = entityManager.createNativeQuery(sql);
+	public List<SanPhamEntity> filters(Map<String, Object> params) {
+		String sql = buildSQL(params, null, null);
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<SanPhamEntity> categories(String slug, Map<String, Object> fliters) {
+		String sql = buildSQL(fliters, " JOIN danhmuc ON danhmuc.id = subquery.iddanhmuc ", " danhmuc.slug = '" + slug + "'");
+		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		System.out.println("SQL categories " + sql);
 		return query.getResultList();
 	}
 
@@ -63,11 +73,11 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 				" FROM sanpham AS sp1" +
 				" WHERE EXISTS " +
 				"(" +
-							"    SELECT sp2.*" +
-							"    FROM sanpham AS sp2 " +
-							"    WHERE sp2.slug = '" + slug + "'" +
-							"        AND (sp1.iddanhmuc = sp2.iddanhmuc OR sp1.idthuonghieu = sp2.idthuonghieu" +
-							"   		)" +
+				"    SELECT sp2.*" +
+				"    FROM sanpham AS sp2 " +
+				"    WHERE sp2.slug = '" + slug + "'" +
+				"        AND (sp1.iddanhmuc = sp2.iddanhmuc OR sp1.idthuonghieu = sp2.idthuonghieu" +
+				"   		)" +
 				"        		AND sp1.id <> sp2.id" +
 				")" +
 				"ORDER BY ngaytao DESC, RAND() LIMIT 4";
@@ -75,8 +85,19 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		return query.getResultList();
 	}
 
-	private String buildSQL(Map<String, Object> params) {
-		String queryFinal = "SELECT distinct sanpham.id FROM sanpham ";
+	private String buildSQL(Map<String, Object> params, String joinDanhMuc, String queryDanhMuc) {
+		String queryFinal = "SELECT subquery.* FROM " +
+				"(  SELECT " +
+				"        sanpham.*, " +
+				"        CASE " +
+				"            WHEN khuyenmai.loai = 1 and khuyenmaisanpham.trangthai = 'ACTIVE' THEN sanpham.gia * (1 - khuyenmai.giatri / 100) " +
+				"            WHEN khuyenmai.loai = 2 and khuyenmaisanpham.trangthai = 'ACTIVE' THEN sanpham.gia - khuyenmai.giatri " +
+				"            ELSE sanpham.gia " +
+				"        END AS giakhuyenmai " +
+				"    FROM sanpham " +
+				"    JOIN khuyenmaisanpham ON sanpham.id = khuyenmaisanpham.idsanpham " +
+				"    JOIN khuyenmai ON khuyenmai.id = khuyenmaisanpham.idkhuyenmai" +
+				") AS subquery ";
 
 		Set<String> joinSQL = new HashSet<>();
 		List<String> whereSQL = new ArrayList<>();
@@ -85,15 +106,15 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		params.forEach((k, v) -> {
 			String query = null;
 			if(k.equals("thuong-hieu")) {
-				joinSQL.add("JOIN thuonghieu ON thuonghieu.id = sanpham.idthuonghieu");
+				joinSQL.add("JOIN thuonghieu ON thuonghieu.id = subquery.idthuonghieu");
 				query = "thuonghieu.slug" + "='" + v + "'";
 			}
 			else if(k.equals("gia")) {
 				List<String> gias = Arrays.asList(v.toString().split(","));
-				query = "sanpham.gia >= " + Double.parseDouble(gias.get(0)) + " and sanpham.gia <= " + Double.parseDouble(gias.get(1));
+				query = "giakhuyenmai >= " + Double.parseDouble(gias.get(0))+ " AND " + " giakhuyenmai <= " + Double.parseDouble(gias.get(1));
 			}else {
-				joinSQL.add("JOIN thuoctinh ON thuoctinh.id = thuoctinh.idsanpham " +
-							"JOIN giatrithuoctinh ON thuoctinh.id = giatrithuoctinh.idthuoctinh");
+				joinSQL.add("JOIN thuoctinh ON subquery.id = thuoctinh.idsanpham " +
+						"JOIN giatrithuoctinh ON thuoctinh.id = giatrithuoctinh.idthuoctinh");
 
 				inSlugSQL.add(k);
 				List<String> strs = Arrays.asList(v.toString().split(","));
@@ -120,7 +141,16 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 			sqlInGiaTri = "giatrithuoctinh.giatri IN " + sqlInGiaTri;
 			whereSQL.add(sqlInGiaTri);
 		}
-		queryFinal = queryFinal + String.join(" ", joinSQL) + " WHERE " + String.join(" AND ", whereSQL);
+		if(joinDanhMuc != null){
+			joinSQL.add(joinDanhMuc);
+		}
+		if(queryDanhMuc != null){
+			whereSQL.add(queryDanhMuc);
+		}
+		queryFinal = queryFinal + String.join(" ", joinSQL) + " WHERE subquery.trangthai = 'ACTIVE' AND 1 = 1 ";
+		if(!whereSQL.isEmpty()){
+			queryFinal = queryFinal + " AND " + String.join(" AND ", whereSQL);
+		}
 		System.out.println(queryFinal);
 		return queryFinal;
 	}

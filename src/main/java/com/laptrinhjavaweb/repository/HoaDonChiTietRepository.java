@@ -20,6 +20,9 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTietEnti
 
     @Query("select hdct from HoaDonChiTietEntity hdct where hdct.hoaDon.trangThai = 'CHUANBIDATHANG' and hdct.hoaDon.khachHang.id=:idkh")
     List<HoaDonChiTietResponse> getHoaDonMoiTaoByIdkh(@Param("idkh")Long idkh);
+
+    HoaDonChiTietEntity findByHoaDon_maAndSanPham_idAndBienThe_id(String maHoaDon, Long idSanPham, Long idKhuyeMai);
+
     @Query("select hdct from HoaDonChiTietEntity hdct where hdct.hoaDon.ma=:mahd")
     List<HDCTResponse> dsHoaDonChiTietResponse(@Param("mahd")String maHoaDon);
 }

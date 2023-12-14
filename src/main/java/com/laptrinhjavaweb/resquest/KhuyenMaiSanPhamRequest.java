@@ -7,7 +7,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class KhuyenMaiSanPhamRequest {
+public class KhuyenMaiSanPhamRequest{
+
     KhuyenMaiRequest khuyenMaiRequest;
+
     List<String> listSanPham;
+
+    private String trangThai = "ACTIVE";
 }

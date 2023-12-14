@@ -1,13 +1,5 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
-import com.laptrinhjavaweb.converter.BienTheConverter;
-import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
-import com.laptrinhjavaweb.response.PageableResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SanPhamConverter;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
@@ -53,7 +45,7 @@ public class SanPhamService implements ISanPhamService{
 	private IBienTheService bienTheService;
 
 	@Override
-	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
+	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> fliters, String slug) {
 		Map<String, Object> results = new HashMap<>();
 		Boolean isAll = false;
 		Page<SanPhamEntity> page = null;
@@ -64,18 +56,14 @@ public class SanPhamService implements ISanPhamService{
 			page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE,wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-			if(param != null || params != null || slug != null) {
+			if(param != null || fliters != null || slug != null) {
 				List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
 				if(param != null) {
-					listSanPhamEntity = sanPhamRepository.seachs(param);
-				}else if(params != null && !params.isEmpty()){
-					List<Long> ids = sanPhamRepository.filters(params);
-					for (Long id : ids) {
-						SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
-						listSanPhamEntity.add(sanPhamEntity);
-					}
+					listSanPhamEntity = sanPhamRepository.seachs(param, fliters);
+				}else if(slug != null){
+					listSanPhamEntity = sanPhamRepository.categories(slug, fliters);
 				}else{
-					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
+					listSanPhamEntity = sanPhamRepository.filters(fliters);
 				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();
@@ -189,4 +177,5 @@ public class SanPhamService implements ISanPhamService{
 		sanPhamEntity.setTrangThai("INACTIVE");
 		sanPhamRepository.save(sanPhamEntity);
 	}
+
 }

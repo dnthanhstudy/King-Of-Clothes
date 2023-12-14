@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,8 +29,8 @@ public class HoaDonController {
         return "admin/giaodich/hoa-don-off";
     }
 
-    @GetMapping("/create")
-    public String themhoadon(){
+    @GetMapping("/hoa-don-off/create/{ma}")
+    public String themhoadon(@PathVariable("ma") String ma){
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
         if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
             return "redirect:/admin/giao-ca/mo-ca?is_not_opened_shift";

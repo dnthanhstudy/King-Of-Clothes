@@ -162,9 +162,8 @@
     $('#form-submit-product')[0].scrollIntoView({ behavior: 'smooth' });
 </script>
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
-<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script>
-    let currentPage = ${mapProduct.meta.pageCurrent};
+    let pageCurrent = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
     let limit = 9;
@@ -172,17 +171,18 @@
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
-        startPage: currentPage,
+        startPage: pageCurrent,
         onPageClick: function (event, page) {
-            if (currentPage != page) {
+            if (pageCurrent != page) {
                 const priceFilter = $('#price-filter').val();
                 const brandFilter = $('#brand-filter').val();
-                filterAndPageable(page, limit, priceFilter, brandFilter);
+                filterAndPageable(page, limit, null, priceFilter, brandFilter);
             }
         }
     });
 
 </script>
+<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 </body>
 </html>

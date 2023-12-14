@@ -58,7 +58,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
-    
+
 //    @Autowired
 //    HoaDonConverter hoaDonConverter;
 
@@ -102,7 +102,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             // TrangThaiHoaDonEnum
             hoaDon.setTrangThai(trangThai);
             hoaDonRepository.save(hoaDon);
-                return "Thay đổi trạng thái thành công";
+            return "Thay đổi trạng thái thành công";
         }catch (Exception e){
             return "Có lỗi xảy ra";
         }
@@ -145,7 +145,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     public ResponseObject huyDatHang(Long idkh) {
         HoaDonEntity hoaDon = hoaDonRepository.findHoaDonMoiDat(idkh);
         hoaDonRepository.delete(hoaDon);
-         int sl =  gioHangChiTietRepository.layLaiDsGioHangChiTiet(idkh);
+        int sl =  gioHangChiTietRepository.layLaiDsGioHangChiTiet(idkh);
         return new ResponseObject("Thành công");
     }
 
@@ -157,12 +157,12 @@ public class HoaDonServiceImpl implements HoaDonService {
         List<HDCTResponse> dsHoaDonChiTiet = hoaDonChiTietRepository.dsHoaDonChiTietResponse(maHoaDon);
         List<TrangThaiGiaoHangResponse> dsTrangThaiGiaoHang = trangThaiGiaoHangRepository.getTrangThaiDonHangByMaHD(maHoaDon);
 
-      AllThongTinHoaDon thongTinHoaDon = new AllThongTinHoaDon();
-      thongTinHoaDon.setTongTien(tongTienResponse);
-      thongTinHoaDon.setHoaDon(hoaDonResponse);
-      thongTinHoaDon.setDsHoaDonChiTiet(dsHoaDonChiTiet);
-      thongTinHoaDon.setTrangThaiGiaoHang(dsTrangThaiGiaoHang);
-      return thongTinHoaDon;
+        AllThongTinHoaDon thongTinHoaDon = new AllThongTinHoaDon();
+        thongTinHoaDon.setTongTien(tongTienResponse);
+        thongTinHoaDon.setHoaDon(hoaDonResponse);
+        thongTinHoaDon.setDsHoaDonChiTiet(dsHoaDonChiTiet);
+        thongTinHoaDon.setTrangThaiGiaoHang(dsTrangThaiGiaoHang);
+        return thongTinHoaDon;
     }
 
     @Override

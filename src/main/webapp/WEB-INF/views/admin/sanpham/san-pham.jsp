@@ -97,7 +97,7 @@
                             </tr>`;
                 })
                 $('.tbody-product').html(html);
-
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -121,7 +121,7 @@
         });
     }
 
-    function searchSanPham(){
+    function searchSanPham(param){
         $.ajax({
             url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent,
             method: "GET",
@@ -157,6 +157,7 @@
                     $('.tbody-product').html(html);
 
                     console.log(response);
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -169,8 +170,11 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                console.log(response.meta.totalPage);
-                                searchSanPham()
+                                if(param != ''){
+                                    searchSanPham(param)
+                                }else{
+                                    loadAllProduct();
+                                }
                             }
                         },
                     });
@@ -182,11 +186,19 @@
         });
     }
 
-    $('#searchButton').on('click', (e) =>{
-        e.preventDefault();
-        param = $('#searchAll').val();
-        searchSanPham();
-    })
+    $(document).ready(function() {
+        var searchButton = $('#searchAll');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                param = searchButton.val();
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
+                }
+                searchSanPham(param);
+            }
+        });
+    });
 
 
 
@@ -211,6 +223,40 @@
                 })
         }
     })
+
+
+    $(document).ready(function() {
+        // Xác định thẻ table và thẻ th
+        var table = $("table");
+        var th = table.find("th");
+        // Bắt đầu sắp xếp khi thẻ th được nhấp
+        th.click(function() {
+            var table = $(this).parents("table").eq(0);
+            var rows = table.find('tr:gt(0)').toArray().sort(compare($(this).index()));
+
+            // Đảm bảo sắp xếp theo chiều tăng hoặc giảm dần
+            this.asc = !this.asc;
+            if (!this.asc) {
+                rows = rows.reverse();
+            }
+            // Sắp xếp các dòng
+            for (var i = 0; i < rows.length; i++) {
+                table.append(rows[i]);
+            }
+        });
+        // Hàm so sánh để sắp xếp dữ liệu
+        function compare(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index);
+                var valB = getCellValue(b, index);
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB);
+            };
+        }
+        // Lấy giá trị của ô cụ thể trong dòng
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).text();
+        }
+    });
 </script>
 </body>
 </html>

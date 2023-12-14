@@ -145,6 +145,9 @@
                     </div>
                     <div class="col-12 pb-1">
                         <ul class="pagination d-flex justify-content-center" id="pagination"></ul>
+                        <div class="value-server">
+
+                        </div>
                         <input type="hidden" value="" id="page-product" name="page"/>
                         <input type="hidden" value="" id="limit-product" name="limit"/>
                     </div>
@@ -159,23 +162,24 @@
 </script>
 <script src="<c:url value='/template/web/paging/jquery.twbsPagination.js'/>"></script>
 <script>
-    let currentPage = ${mapProduct.meta.pageCurrent};
+    let pageCurrent = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
     let limit = 9;
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
-        startPage: currentPage,
+        startPage: pageCurrent,
         onPageClick: function (event, page) {
-            if (currentPage != page) {
-                $('#page-product').val(page);
-                $('#limit-product').val(limit);
-                $('#form-submit-product').submit();
+            if (pageCurrent != page) {
+                const priceFilter = $('#price-filter').val();
+                const brandFilter = $('#brand-filter').val();
+                filterAndPageable(page, limit, null, priceFilter, brandFilter);
             }
         }
     });
 </script>
+<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 </body>
 </html>

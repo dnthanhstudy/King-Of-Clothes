@@ -515,12 +515,12 @@
         if(!giaTienKm){
             html+=
                 `
-            <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTien)}</h5>
+            <h6 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTien)}</h6>
                 `
         }else{
             html+=`
-            <h5 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTienKm)}</h5>
-            <h5 class="mb-0 pt-1 font-w500 text-black"><del>\${convertVND(giaTien)}</del></h5>
+            <h6 class="mb-0 pt-1 font-w500 text-black">\${convertVND(giaTienKm)}</h6>
+            <h6 class="mb-0 pt-1 font-w500 text-black"><del>\${convertVND(giaTien)}</del></h6>
             `
         }
         return html;
@@ -571,7 +571,7 @@
                             <div class="ml-2">
                                 <span>Tên sản phẩm</span>
                             <a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">
-                                <h5 class="mb-0 pt-1 font-w500 text-black">\${item.tenSanPham}</h5>
+                                <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-2">\${item.tenSanPham}</h5>
                                 <div class="text-success" >\${item.tenBienThe}</div>
                             </a>
                             </div>

@@ -47,8 +47,9 @@ public class SanPhamAPI {
 	public ResponseEntity<?> search(
 			@RequestParam(name = "q") String param,
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
-			@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
+			@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit,
+			@RequestParam Map<String, Object> filters){
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, filters, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
@@ -56,8 +57,9 @@ public class SanPhamAPI {
 	public ResponseEntity<?> categories(
 			@PathVariable(name = "slug") String slug,
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
-			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, slug);
+			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
+			@RequestParam Map<String, Object> filters){
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, slug);
 		if(results == null) {
 			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
 		}
@@ -66,10 +68,10 @@ public class SanPhamAPI {
 
 	@GetMapping("/filter")
 	public ResponseEntity<?> filter(
-			@RequestParam Map<String, Object> params,
+			@RequestParam Map<String, Object> filters,
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, params, null);
+		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, null);
 		if(results == null) {
 			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
 		}

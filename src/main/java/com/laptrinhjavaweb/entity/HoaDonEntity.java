@@ -1,26 +1,16 @@
 package com.laptrinhjavaweb.entity;
 
-import java.util.Date;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
-
-import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "hoadon")
@@ -113,6 +103,10 @@ public class HoaDonEntity extends BaseEntity{
 			super.setTrangThai("DANHANHANG");
 		}else if (trangThai==TrangThaiHoaDonEnum.HUYDON){
 			super.setTrangThai("HUYDON");
+		}else if(trangThai == TrangThaiHoaDonEnum.TREO){
+			super.setTrangThai("TREO");
+		} else if(trangThai == TrangThaiHoaDonEnum.DANGCHOTHANHTOAN){
+			super.setTrangThai("DANGCHOTHANHTOAN");
 		}
 	}
 

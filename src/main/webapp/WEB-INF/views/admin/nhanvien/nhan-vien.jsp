@@ -121,6 +121,7 @@
                     nhanVien.append(card);
 
                 })
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -237,6 +238,7 @@
                         nhanVien.append(card);
 
                     })
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -249,7 +251,11 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                searchNhanVien()
+                                if(param != ''){
+                                    searchNhanVien(param)
+                                }else{
+                                    loadNhanVien();
+                                }
                             }
                         },
                     });
@@ -264,6 +270,9 @@
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         param = $('#searchAll').val();
+        if(pageCurrent > 1){
+            pageCurrent = 1;
+        }
         searchNhanVien();
     })
 </script>
