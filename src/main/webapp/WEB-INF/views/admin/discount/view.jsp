@@ -567,8 +567,8 @@
                                             </svg>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                           <a class="dropdown-item btn-delete-khuyen-mai" data-ma="\${item.ma}">Xóa khuyến mại</a>
-                                            <a class="dropdown-item" href="/admin/khuyen-mai/edit/\${item.ma}" >Chỉnh sửa</a>
+                                            <div id="cardBtn"></div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -577,6 +577,23 @@
                     </div>
                         `;
                         khuyenMai.append(card);
+                        var cardBtn = $('#cardBtn');
+                        cardBtn.empty();
+                        if(item.trangThai != "EXPIRED"){
+                            var card1 = `
+                    <div class="col-lg-3 ml-right">
+                        <a class="dropdown-item" href="/admin/khuyen-mai/edit/\${item.ma}" >Chỉnh sửa</a>
+                    </div>
+                `;
+                            cardBtn.append(card1);
+                        }
+                        var card2 = `
+                    <div class="col-lg-3 ml-right">
+                        <a class="dropdown-item btn-delete-khuyen-mai" data-ma="\${item.ma}">Xóa khuyến mại</a>
+                    </div>
+                `;
+                        cardBtn.append(card2);
+
                     });
                     console.log(response);
                     $('#pagination').twbsPagination({

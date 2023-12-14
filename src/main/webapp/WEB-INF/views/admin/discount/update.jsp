@@ -156,8 +156,8 @@
                                                         <div class="input-group mb-3">
                                                             <div class="input-group-prepend">
                                                                 <select  class="form-control default-select" id="trangThai" name="trangThai">
-                                                                    <option value="ACTIVE">Hoạt động</option>
-                                                                    <option value="INACTIVE">Dừng hoạt động</option>
+                                                                    <option value="ACTIVE">Đang diễn ra</option>
+                                                                    <option value="EXPIRED">Đã kết thúc</option>
                                                                     <option value="UPCOMING">Sắp diễn ra</option>
                                                                 </select>
                                                             </div>
