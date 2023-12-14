@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.converter.HoaDonChiTietConverter;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
+import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.resquest.HoaDonChiTietRequest;
 import com.laptrinhjavaweb.service.IHoaDonChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         entity.setSoLuong(soLuong);
         entity.setThanhTien(entity.getGia() * soLuong);
         hoaDonChiTietRepository.save(entity);
+    }
+
+    @Override
+    public HoaDonChiTietResponse findById(Long id) {
+        HoaDonChiTietEntity hoaDonChiTietEntity = hoaDonChiTietRepository.findById(id).get();
+        return hoaDonChiTietConverter.convertToResponse(hoaDonChiTietEntity);
     }
 }

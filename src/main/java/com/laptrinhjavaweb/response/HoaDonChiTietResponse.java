@@ -3,21 +3,17 @@ package com.laptrinhjavaweb.response;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class HoaDonChiTietResponse {
 
     private Long id;
 
-    private Long idBienThe;
-
-    private Long idHoaDon;
-
-    private Long idSanPham;
-
     private String tenSanPham;
 
-    private Long idKhuyenMai;
+    private String image;
 
     private Integer soLuong;
 
@@ -25,5 +21,11 @@ public class HoaDonChiTietResponse {
 
     private Double thanhTien;
 
-    private String trangThai = "ACTIVE";
+    private List<ThuocTinhResponse> thuocTinh;
+
+    private List<Long> giaTriThuocTinhChecked;
+
+    private Long idBienThe;
+
+    private String tenThuongHieu;
 }
