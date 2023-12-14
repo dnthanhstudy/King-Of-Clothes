@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class HoaDonService implements IHoaDonService {
 
@@ -37,5 +40,21 @@ public class HoaDonService implements IHoaDonService {
         HoaDonEntity entity = hoaDonRepository.findByMa(ma);
         HoaDonResponse result = hoaDonConverter.convertToResponse(entity);
         return result;
+    }
+
+    @Override
+    public List<HoaDonResponse> findByMaStatus(String trangThai) {
+        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThai(trangThai);
+        List<HoaDonResponse> result = list.stream().map(
+                item -> hoaDonConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return result;
+    }
+
+    @Override
+    public HoaDonResponse update(HoaDonResquest hoaDonResquest) {
+        HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
+        HoaDonEntity result = hoaDonRepository.save(entity);
+        return hoaDonConverter.convertToResponse(result);
     }
 }
