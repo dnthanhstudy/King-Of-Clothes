@@ -104,7 +104,7 @@
                                                         class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <div class="col-lg-12 ml-auto">
+                                                    <div class="col-lg-12 ml-auto" style="padding-left: 0px;">
                                                         <button type="button" class="btn btn-primary light mb-2"
                                                                 data-toggle="modal" data-target=".bd-example-modal-lg">
                                                             Thêm sản phẩm

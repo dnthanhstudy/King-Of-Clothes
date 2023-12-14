@@ -144,10 +144,8 @@
                 $("#thumbimage").attr('src', "/assets/images/nhanvien/" + req.anh);
 
                 $("#selectChucVu option").each(function(i){
-                    console.log(req.chucVu.ma);
-                    console.log($(this).val());
                     if($(this).val() === req.chucVu.ma){
-                        $(this).attr('selected', true);
+                        $(this).prop("selected", true);
                     }
                 });
             },

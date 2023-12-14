@@ -157,7 +157,7 @@
                                                             <div class="input-group-prepend">
                                                                 <select  class="form-control default-select" id="trangThai" name="trangThai">
                                                                     <option value="ACTIVE">Đang diễn ra</option>
-                                                                    <option value="EXPIRED">Đã kết thúc</option>
+                                                                    <option value="EXPIRED">Kết thúc khuyến mại</option>
                                                                     <option value="UPCOMING">Sắp diễn ra</option>
                                                                 </select>
                                                             </div>
@@ -271,6 +271,7 @@
         }
         console.log(km)
         if (validateForm()) {
+
             $.ajax({
                 url: '/api/khuyen-mai/update/'+maKM,
                 method: 'PUT',
