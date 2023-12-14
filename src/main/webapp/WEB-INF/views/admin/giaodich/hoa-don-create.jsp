@@ -351,7 +351,7 @@
                                 <h5>Tiền thừa trả khách:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5>10000</h5>
+                                <h5 id="money-change">10000</h5>
                             </div>
                         </div>
                         <div class="row mt-auto">
@@ -706,6 +706,8 @@
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
+                    $('.invoice-total').text(0);
+                    $('#money-change').text(0);
                 }
             },
             error: (error) => {

@@ -47,11 +47,10 @@
 
         $('#input-search-product').on('keypress', (e) => {
             if (e.which === 13) {
-                console.log(123);
                 e.preventDefault();
                 const search = $(e.target).val();
                 $('#search-filter').val(search);
-                window.location = 'search?q=' + search;
+                window.location.href = '/search?q=' + search;
             }
         })
 
@@ -60,7 +59,7 @@
             e.preventDefault();
             const search = $('#input-search-product').val();
             $('#search-filter').val(search);
-            window.location = 'search?q=' + search;
+            window.location.href = '/search?q=' + search;
         })
 
         let histories = [];

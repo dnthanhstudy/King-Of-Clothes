@@ -147,6 +147,9 @@
                     <div class="col-12 pb-1">
                         <ul class="pagination d-flex justify-content-center" id="pagination" ></ul>
                         <input type="hidden" value="" id="search-product" name="q"/>
+                        <div class="value-server">
+
+                        </div>
                         <input type="hidden" value="" id="page-product" name="page"/>
                         <input type="hidden" value="" id="limit-product" name="limit"/>
                     </div>
@@ -167,24 +170,24 @@
     let queryString = new URLSearchParams(paramString);
     let param = queryString.get('q');
     $('#input-search-product').val(param);
-    let currentPage = ${mapProduct.meta.pageCurrent};
+    let pageCurrent = ${mapProduct.meta.pageCurrent};
     let totalPages = ${mapProduct.meta.totalPage};
 
     let limit = 9;
     $('#pagination').twbsPagination({
         totalPages: totalPages,
         visiblePages: 5,
-        startPage: currentPage,
+        startPage: pageCurrent,
         onPageClick: function (event, page) {
-            if (currentPage != page) {
-                $('#search-product').val(param);
-                $('#page-product').val(page);
-                $('#limit-product').val(limit);
-                $('#form-submit-product').submit();
+            if (pageCurrent != page) {
+                const priceFilter = $('#price-filter').val();
+                const brandFilter = $('#brand-filter').val();
+                filterAndPageable(page, limit, param, priceFilter, brandFilter);
             }
         }
     });
 </script>
+<script src="<c:url value='/assets/js/filter-web.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 </body>
 </html>
