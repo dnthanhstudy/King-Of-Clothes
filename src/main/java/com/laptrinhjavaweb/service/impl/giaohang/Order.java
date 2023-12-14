@@ -20,6 +20,9 @@ public class Order {
     private Long idttmuahang;
 
     private Double phiShip;
+    private Double tienKhachTra;
+    private String mota;
+    private Long idhd;
 
     public void convertVnd(Double tien){
         price = tien/23000;

@@ -65,6 +65,8 @@
                         <select name="" id="" class="form-control" style="width: 150px">
                             <option value="">Chờ thanh toán</option>
                             <option value="">Đã thanh toán</option>
+                            <option value="">Treo</option>
+                            <option value="">Đã xóa</option>
                         </select>
                     </div>
                 </div>

@@ -729,5 +729,6 @@
         });
     }
 </script>
+<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 </body>
 </html>

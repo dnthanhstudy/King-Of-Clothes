@@ -153,11 +153,11 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setMoTa(mota);
         TongTienResponse response = hoaDonRepository.tongTienByHoaDon(hoaDon.getId());
         hoaDon.setTongTienHang(response.getThucTe());
-        if (pttt.equals("THANHTOANNHANHANG")){
+//        if (pttt.equals("THANHTOANNHANHANG")){
             hoaDon.setTienKhachTra(tongTien);
-        }else{
-            hoaDon.setTienKhachTra(0D);
-        }
+//        }else{
+//            hoaDon.setTienKhachTra(0D);
+//        }
         if (pttt.equals("VIDIENTU")){
             ViDienTuEntity viDienTuEntity = viDienTuRepository.findByKhachHang(khachHang.getId());
              ChiTieuEntity chiTieu  = new ChiTieuEntity();

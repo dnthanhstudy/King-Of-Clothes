@@ -85,6 +85,7 @@ public class GioHangServiceImpl implements GioHangService {
         hoaDon.setTrangThai(TrangThaiHoaDon.CHUANBIDATHANG);
         hoaDon = hoaDonRepository.save(hoaDon);
         hoaDon.setMa("HD"+hoaDon.getId());
+        hoaDon.setLoai("Online");
         hoaDonRepository.save(hoaDon);
         for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();

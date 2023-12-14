@@ -144,6 +144,7 @@
                 $("#thumbimage").attr('src', "/assets/images/nhanvien/" + req.anh);
 
                 $("#selectChucVu option").each(function(i){
+                    $(this).prop('selected', $(this).val() === (req.chucVu && req.chucVu.ma));
                     if($(this).val() === req.chucVu.ma){
                         $(this).prop("selected", true);
                     }

@@ -21,6 +21,8 @@ public class TrangThaiGiaoHangEntity extends BaseEntity{
 
     @Column(name = "tentrangthai")
     private String tenTrangThai;
+    @Column(name = "trangthaihoadon")
+    private String trangThaiHoaDon;
     @ManyToOne
     @JoinColumn(name = "magiaohang")
     private HoaDonEntity hoaDon;
