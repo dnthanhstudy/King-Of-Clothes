@@ -210,9 +210,9 @@
                                         }</style>
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                     </svg>
-                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100"
+                                    <input placeholder="Tìm khách hàng" type="text" class="inputghichu w-100"
                                            id="search-customer">
-                                    <input type="text" hidden value="" id="code-customer">
+                                    <input type="hidden" value="" id="code-customer">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -380,7 +380,7 @@
 
     loadHoaDon();
 
-    $('.btn-add-invoice').on('click', function (e){
+    $('.btn-add-invoice').on('click', function (e) {
         e.preventDefault();
         let data = {};
         data['maNhanVien'] = ma;
@@ -606,17 +606,18 @@
 
     let customers = [];
     $.ajax({
-        url: '/api/khach-hang',
+        url: '/api/khach-hang/all',
+        method: "GET",
         dataType: "json",
         success: function (response) {
-            $.each(response, function (index, item) {
+            $.each(response.data, function (index, item) {
                 let customer = {
-                    "value": item.soDienThoai,
-                    "ten": item.ten,
+                    "value": item.soDienThoai + " - " + item.ten,
                     "id": item.id
                 }
                 customers.push(customer);
             })
+            //console.log(customers)
             loadSuggestions(customers);
         },
         error: function (error) {
@@ -627,9 +628,9 @@
     function loadSuggestions(options) {
         $('#search-customer').autocomplete({
             lookup: options,
+            minChars: 0,
             onSelect: function (suggestion) {
                 $('#code-customer').val(suggestion.id);
-                console.log($('#code-customer').val())
                 $('#search-customer').val(suggestion.value + " - " + suggestion.ten);
             }
         });
@@ -644,6 +645,11 @@
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = '';
+                if(response.tienThua === null){
+                    $('#money-change').text(0);
+                }else{
+                    $('#money-change').text(response.tienThua);
+                }
                 if (response.hoaDonChiTiet.length > 0) {
                     $.each(response.hoaDonChiTiet, (index, item) => {
                         totalInvoice += item.thanhTien;
@@ -672,9 +678,9 @@
                                                 <div class="ml-2">
                                                     <span>Số lượng</span>
                                                     <div class="input-group w-75 action">
-                                                        <button class="btn text-light btn-add-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
+                                                        <button class="btn text-light btn-remove-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
                                                         <input type="text" class="form-control invoice-detail-quantity" style="text-align: center" value="\${item.soLuong}"/>
-                                                        <button class="btn text-light btn-remove-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
+                                                        <button class="btn text-light btn-add-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -721,31 +727,39 @@
                         $('.invoice-total').text(totalInvoice);
                         $('#invoice-quantity').text(toatlQuantity);
 
-                        $('.invoice-detail-seen').on('click', function (){
+                        $('.invoice-detail-seen').on('click', function () {
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             console.log(invoiceDetailId);
                         })
 
-                        $('.btn-add-product').on('click', function (){
-                            let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
+                        $('.btn-add-product').on('click', function () {
+                            let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
                             quantity += 1;
-
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity)
                         })
 
-                        $('.btn-remove-product').on('click', function (){
-                            let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
+                        $('.btn-remove-product').on('click', function () {
+                            let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
                             quantity -= 1;
-
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity)
                         })
+
+                        // $('.invoice-detail-quantity').on('input', function () {
+                        //     let quantity = parseInt($(this.val()));
+                        //     if (isNaN(quantity) || quantity < 1 || !Number.isInteger(quantity)) {
+                        //         showError("Số lượng sản phẩm không hợp lệ. Xin kiểm tra lại")
+                        //     }else{
+                        //         let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                        //         updateQuantity(invoiceDetailId, quantity)
+                        //     }
+                        // });
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
                     $('.invoice-total').text(0);
-                    $('#money-change').text(0);
+
                 }
             },
             error: (error) => {
@@ -769,14 +783,15 @@
         });
     }
 
-    function updateQuantity(id, quantity){
+    function updateQuantity(id, quantity) {
         $.ajax({
-            url: "/api/hoa-don-chi-tiet",
+            url: "/api/hoa-don-chi-tiet/" + id,
             method: "PUT",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(quantity),
             success: (response) => {
                 showSuccess("Cập nhật số lượng hóa đơn thành công")
+                loadHoaDon()
             },
             error: (error) => {
                 console.log(error)

@@ -41,7 +41,7 @@ public class HoaDonConverter {
         List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream().map(
                 item -> hoaDonChiTietConverter.convertToResponse(item)
         ).collect(Collectors.toList());
-
+        response.setTenNhanVien(entity.getNhanVien().getTen());
         response.setHoaDonChiTiet(hoaDonChiTiet);
         return response;
     }

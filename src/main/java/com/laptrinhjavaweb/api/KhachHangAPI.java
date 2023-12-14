@@ -44,6 +44,12 @@ public class KhachHangAPI {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> findÁll(){
+        Map<String, Object> results = khachHangService.pagingOrSearchOrFindAll(null, null, null);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<?> created(@RequestBody KhachHangRequest request){
         KhacHangResponse result = khachHangService.insert(request);

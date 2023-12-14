@@ -300,7 +300,6 @@ $.ajax({
             }
             attributes.push(attribute);
         })
-        console.log(attributes);
         loadSuggestions(attributes);
     },
     error: function (error) {
