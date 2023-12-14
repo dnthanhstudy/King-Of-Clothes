@@ -15,4 +15,6 @@ public interface IHoaDonService {
 
 
     HoaDonResponse update(HoaDonResquest hoaDonResquest);
+
+    String delete(String ma);
 }

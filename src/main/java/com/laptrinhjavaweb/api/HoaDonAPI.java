@@ -40,4 +40,10 @@ public class HoaDonAPI {
         HoaDonResponse result = hoaDonService.update(hoaDonResquest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+    //  delete hoa don theo ma, xoa db
+    @DeleteMapping("/{ma}")
+    public ResponseEntity<?> delete(@PathVariable("ma") String ma){
+        String result = hoaDonService.delete(ma);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

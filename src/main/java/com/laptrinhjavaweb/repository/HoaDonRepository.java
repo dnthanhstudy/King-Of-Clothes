@@ -4,7 +4,6 @@ import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
-import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -49,5 +48,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 //    DoanhThuBanHangResponse doanhThuBanHang();
 
     List<HoaDonEntity> findAllByTrangThai(String trangThai);
+
+
+    @Modifying
+    @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")
+    void deleteHoaDon(@Param("id") Long id);
 
 }
