@@ -216,11 +216,15 @@ function getImageOfProduct() {
         let image = {hinhAnh, base64};
         attrImages.push(image);
     });
+    if(attrImages.length === 0){
+        return [];
+    }
     return attrImages;
 }
 
 function getAttributeValues() {
     let arrayAttributes = [];
+    let isFlag = true;
     $(".product-has-attribute").each(function () {
         var slug = $(this).data("slug");
         var ten = $(this).find(".name-attribute button").text().trim();
@@ -237,8 +241,17 @@ function getAttributeValues() {
             ten: ten,
             giaTris: giaTris,
         });
+
+        if (giaTris.length === 0) {
+            isFlag = false;
+            return false;
+        }
     });
-    return arrayAttributes;
+    if (isFlag) {
+        return arrayAttributes;
+    }else{
+        return [];
+    }
 }
 
 function getVariants() {
