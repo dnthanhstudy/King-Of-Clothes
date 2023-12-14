@@ -21,6 +21,8 @@ public class KhachHangRequest{
 
     private String matKhau;
 
+    private String matKhauMoi;
+
     private Date ngaySinh;
 
     private String moTa;

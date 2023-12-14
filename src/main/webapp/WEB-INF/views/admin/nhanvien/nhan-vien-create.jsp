@@ -65,6 +65,12 @@
                             <option value="Nữ">Nữ</option>
                         </select>
                     </div>
+                    <div class="col">
+                        <label>Chức vụ:</label>
+                        <select class="form-select" id="selectChucVu" name="maChucVu">
+
+                        </select>
+                    </div>
 
                 </div>
 
@@ -224,6 +230,26 @@
         data['base64'] = image.base64;
         return data;
     }
+
+    function updateChucVuSelect() {
+        $.ajax({
+            url: '/api/chuc-vu',
+            method: 'GET',
+            success: function (response) {
+                let htmlSelect = '';
+                $.each(response, (index, item) => {
+                    htmlSelect +=  `<option value="\${item.ma}">\${item.ten}</option>`
+                })
+                $("#selectChucVu").append(htmlSelect)
+            },
+            error: function (xhr, status, error) {
+                showError("Lỗi khi cập nhật select chức vụ");
+            }
+        });
+    }
+    updateChucVuSelect();
+
+
 
 </script>
 </body>

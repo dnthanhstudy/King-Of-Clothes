@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.NhanVienConverter;
+import com.laptrinhjavaweb.entity.ChucVuEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.ChucVuRepository;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
@@ -65,7 +66,6 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
-        nhanVienEntity.setChucVu(chucVuRepository.findByMa("STAFF"));
         nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
         nhanVienRepository.save(nhanVienEntity);
@@ -95,6 +95,9 @@ public class NhanVienService implements INhanVienService {
             nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
             nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
+
+            ChucVuEntity chucVuEntity = chucVuRepository.findByMa(nhanVienRequest.getMaChucVu());
+            nhanVienEntity.setChucVu(chucVuEntity);
             
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);

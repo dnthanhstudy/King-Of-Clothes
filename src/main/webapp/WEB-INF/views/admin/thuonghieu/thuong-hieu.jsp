@@ -89,6 +89,7 @@
                             </tr>`;
                     tbody.append(row);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -151,6 +152,7 @@
                             </tr>`;
                         tbody.append(row);
                     });
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
@@ -159,13 +161,19 @@
                         visiblePages: 5,
                         totalPages: response.meta.totalPage,
                         startPage: response.meta.pageCurrent,
+
                         onPageClick: function (event, page) {
-                            if (page !== pageCurrent) {
+                            if(page !== pageCurrent){
                                 event.preventDefault();
                                 pageCurrent = page;
-                                searchThuongHieu()
+                                if(param != ''){
+                                    searchThuongHieu(param)
+                                }else{
+                                    loadThuongHieu();
+                                }
                             }
                         },
+
                     });
                 }
             },
@@ -179,6 +187,9 @@
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         param = $('#searchAll').val();
+        if(pageCurrent > 1){
+            pageCurrent = 1;
+        }
         searchThuongHieu();
     })
 
@@ -243,6 +254,39 @@
                 })
         }
     })
+
+    $(document).ready(function() {
+        // Xác định thẻ table và thẻ th
+        var table = $("table");
+        var th = table.find("th");
+        // Bắt đầu sắp xếp khi thẻ th được nhấp
+        th.click(function() {
+            var table = $(this).parents("table").eq(0);
+            var rows = table.find('tr:gt(0)').toArray().sort(compare($(this).index()));
+
+            // Đảm bảo sắp xếp theo chiều tăng hoặc giảm dần
+            this.asc = !this.asc;
+            if (!this.asc) {
+                rows = rows.reverse();
+            }
+            // Sắp xếp các dòng
+            for (var i = 0; i < rows.length; i++) {
+                table.append(rows[i]);
+            }
+        });
+        // Hàm so sánh để sắp xếp dữ liệu
+        function compare(index) {
+            return function(a, b) {
+                var valA = getCellValue(a, index);
+                var valB = getCellValue(b, index);
+                return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB);
+            };
+        }
+        // Lấy giá trị của ô cụ thể trong dòng
+        function getCellValue(row, index) {
+            return $(row).children('td').eq(index).text();
+        }
+    });
 </script>
 </body>
 </html>

@@ -31,4 +31,11 @@ public class HoaDonService implements IHoaDonService {
         HoaDonResponse result = hoaDonConverter.convertToResponse(entity);
         return result;
     }
+
+    @Override
+    public HoaDonResponse findByMa(String ma) {
+        HoaDonEntity entity = hoaDonRepository.findByMa(ma);
+        HoaDonResponse result = hoaDonConverter.convertToResponse(entity);
+        return result;
+    }
 }

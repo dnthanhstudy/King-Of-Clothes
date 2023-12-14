@@ -1,23 +1,27 @@
-package com.laptrinhjavaweb.resquest;
+package com.laptrinhjavaweb.response;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class HoaDonChiTietRequest{
+public class HoaDonChiTietResponse {
 
-    private String maHoaDon;
-
-    private Long idSanPham;
+    private Long id;
 
     private Long idBienThe;
 
+    private Long idHoaDon;
+
+    private Long idSanPham;
+
+    private String tenSanPham;
+
     private Long idKhuyenMai;
 
-    private Double gia;
-
     private Integer soLuong;
+
+    private Double gia;
 
     private Double thanhTien;
 

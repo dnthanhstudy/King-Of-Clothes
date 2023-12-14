@@ -55,7 +55,7 @@ public class NVSendEmailService implements ISendEmailService {
         if (nhanVienEntity != null) {
             String newPassword = generateRandomPassword();
             LocalDateTime now = LocalDateTime.now();
-            LocalDateTime expireTime = now.plusMinutes(3);
+            LocalDateTime expireTime = now.plusMinutes(1);
             nhanVienEntity.setRestToken(newPassword);
             nhanVienEntity.setExpireTime(expireTime);
             nhanVienRepository.save(nhanVienEntity);

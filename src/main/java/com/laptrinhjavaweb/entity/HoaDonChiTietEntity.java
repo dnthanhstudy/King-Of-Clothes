@@ -28,7 +28,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	private Double gia;
 	
 	@Column(name = "thanhtien")
-	private Double thanhtien;
+	private Double thanhTien;
 
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
@@ -50,6 +50,10 @@ public class HoaDonChiTietEntity extends BaseEntity{
 		if (bienThe.getGia()==null){
 			return bienThe.getSanPham().getGia()*soLuong;
 		}else return bienThe.getGia();
+	}
+
+	public KhuyenMaiEntity getKM(){
+		return this.khuyenMai;
 	}
 
 	private Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){

@@ -29,7 +29,6 @@
                     <label class="form-label">Chọn hình ảnh</label>
                     <input type="file" id="uploadImage"/>
                     <div class="list-images mt-4">
-                        <p>HAHAHH</p>
                     </div>
                 </div>
 
