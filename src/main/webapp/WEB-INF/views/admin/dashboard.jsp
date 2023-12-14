@@ -7,14 +7,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dashboards</title>
+    <title>Trang chủ</title>
 </head>
 <body>
 <div class="content-body">
     <div class="container-fluid">
-        <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center">
-            <h2 class="font-w600 title mb-2 mr-auto ">Dashboard</h2>
-
+        <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center row">
+            <div class="col-3"><h2 class="font-w600 title mb-2 mr-auto ">Trang chủ</h2></div>
+            <div class="col-7"></div>
+            <div class="col-2">
+                <select id="cbbthongke">
+                    <option value="1">Ngày</option>
+                    <option value="2">Tuần</option>
+                    <option value="3">Tháng</option>
+                    <option value="4">Năm</option>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="col-xl-3 col-sm-6 m-t35">
@@ -34,7 +42,7 @@
                         </svg>
                         <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng online hôm nay</i></h4>
 
-                        <h2 class="text-black mb-2 font-w600">$168,331.09</h2>
+                        <h2 class="text-black mb-2 font-w600" id="doanhthuonline">$168,331.09</h2>
                     </div>
                 </div>
             </div>
@@ -55,7 +63,7 @@
                         </svg>
                         <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng offline hôm nay</i></h4>
 
-                        <h2 class="text-black mb-2 font-w600">$24,098</h2>
+                        <h2 class="text-black mb-2 font-w600" id="doanhthuoffline">$24,098</h2>
 
                     </div>
                 </div>
@@ -66,7 +74,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="mb-3 currency-icon" fill="none" width="80" height="80" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"  fill="#FFAB2D"/>
                         </svg>
                         <h4 class="text-danger-emphasis"><i>Tổng sản phẩm đã bán</i></h4>
-                        <h2 class="text-black mb-2 font-w600">370</h2>
+                        <h2 class="text-black mb-2 font-w600" id="tongsanphamdaban">370</h2>
 
                     </div>
                 </div>
@@ -77,9 +85,9 @@
                         <svg class="mb-3 currency-icon" xmlns="http://www.w3.org/2000/svg" width="80"   fill="none"  height="80" viewBox="0 0 512 512">
                             <circle cx="40" cy="40" r="40" fill="white"></circle>
                             <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z " fill="#EB8153"/></svg>
-                        <h4 class="text-danger-emphasis"><i>Số hàng tồn kho</i></h4>
+                        <h4 class="text-danger-emphasis"><i>Số lượng khuyến mãi đã bán</i></h4>
 
-                        <h2 class="text-black mb-2 font-w600">555</h2>
+                        <h2 class="text-black mb-2 font-w600" id="soluongkhuyenmai">555</h2>
                     </div>
                 </div>
             </div>
@@ -89,85 +97,23 @@
             <figure class="highcharts-figure">
                 <div id="container"></div>
                 <p class="highcharts-description">
-                    A basic column chart comparing estimated corn and wheat production
-                    in some countries.
-
-                    The chart is making use of the axis crosshair feature, to highlight
-                    the hovered country.
+                    Dựa vào biểu đồ có thể biết được
+                    <code>xu hướng</code> của sản phẩm, từ đó có thể đem lại lợi nhuận của cửa hàng
                 </p>
             </figure>
+
         </div>
         <div class="row mt-3">
             <div class="col-xl-6 col-xxl-12">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 ">
                         <div class="card">
                             <div class="card-header border-0 pb-0">
-                                <h4 class="mb-0 text-black fs-20">Top 10 khách hàng mua nhiều nhất</h4>
-                                <select class="form-control" style="height: 35px; width: 70px">
-                                    <option>Ngày</option>
-                                    <option>Tháng</option>
-                                    <option>Năm</option>
-                                </select>
+                                <h4 class="mb-0 text-black fs-20">Danh sách sản phẩm bán được nhiều nhất</h4>
                             </div>
                             <div class="card-body p-3">
                                 <div class="table-responsive">
-                                    <table class="table text-center bg-info-hover tr-rounded order-tbl">
-                                        <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Tên khách hàng</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Tổng đơn hàng</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Đinh Anh Tuấn</td>
-                                            <td>0384082003</td>
-                                            <td>12</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Đinh Anh Tuấn</td>
-                                            <td>0384082003</td>
-                                            <td>15</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Đinh Anh Tuấn</td>
-                                            <td>0384082003</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Đinh Anh Tuấn</td>
-                                            <td>0384082003</td>
-                                            <td>11</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer border-0 p-0 caret">
-                                <a href="" class="btn-link"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 m-t25">
-                        <div class="card">
-                            <div class="card-header border-0 pb-0">
-                                <h4 class="mb-0 text-black fs-20">Top 5 sản phẩm được mua nhiều nhắt</h4>
-                                <select class="form-control" style="height: 35px; width: 70px">
-                                    <option>Ngày</option>
-                                    <option>Tháng</option>
-                                    <option>Năm</option>
-                                </select>
-                            </div>
-                            <div class="card-body p-3">
-                                <div class="table-responsive">
-                                    <table class="table text-center bg-info-hover tr-rounded order-tbl">
+                                    <table class="table text-center bg-info-hover tr-rounded order-tbl" id="tbldsbannhieunhat">
                                         <thead>
                                         <tr>
                                             <th>STT</th>
@@ -205,13 +151,99 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-sm-6 m-t25">
+                        <div class="card">
+                            <div class="card-header border-0 pb-0">
+                                <h4 class="mb-0 text-black fs-20">Danh sách khách hàng mua nhiều nhất</h4>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="table-responsive">
+                                    <table class="table text-center bg-info-hover tr-rounded order-tbl" id="dskhachhang">
+                                        <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Tổng đơn hàng</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Đinh Anh Tuấn</td>
+                                            <td>0384082003</td>
+                                            <td>12</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Đinh Tuấn Anh</td>
+                                            <td>0389478937</td>
+                                            <td>9</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer border-0 p-0 caret">
+                                <a href="" class="btn-link"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $('#cbbthongke').on('change', function() {
+       loadThongKe($(this).val())
+    });
+    loadThongKe(2);
+    function loadThongKe(val) {
+        $.ajax({
+            url: '/api/hoadon/thongke?thoigian='+val,
+            method: 'GET',
+            success: function (req) {
+                console.log(req)
+                setElementThongKe(req.doanhThuBanHang);
+                setElementDanhSachSanPham(req.dsSanPhamBanChayNhat)
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
+    function setElementThongKe(item) {
+        $("#doanhthuonline").text(convertVND(item.doanhThuOnline))
+        $("#doanhthuoffline").text(convertVND(item.doanhThuOffline))
+        $("#tongsanphamdaban").text(checknull(item.tongSoSanPhamDaBan))
+        $("#soluongkhuyenmai").text(checknull(item.soLuongKhuyenMaiDaBan))
+    }
+    function setElementDanhSachSanPham(data) {
+        let tbody = $("#tbldsbannhieunhat tbody");
+        tbody.empty();
+        data.forEach(function (item,index) {
+            tbody.append(`
+            <tr>
+                <td>\${index+1}</td>
+                <td>\${item.ten}</td>
+                <td>\${item.tong}</td>
+            </tr>
+            `);
+        })
+    }
+    function checknull(val) {
+        if (!val){
+            return 0;
+        }else{
+            return val;
+        }
+    }
 
+</script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>

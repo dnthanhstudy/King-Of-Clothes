@@ -29,6 +29,9 @@
     </style>
     <script>
         function convertVND(number){
+            if (!number){
+                number = 0;
+            }
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         }
         function getFormattedDate(longDate) {
