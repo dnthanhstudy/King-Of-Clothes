@@ -343,7 +343,7 @@
                 });
             },
             error: function (xhr, status, error) {
-                alert('Lỗi khi lấy danh sách : ' + error);
+                console.log(error);
             }
         });
     }
@@ -376,10 +376,10 @@
                             success: function (req) {
                                 console.log(req);
                                 loadKhuyenMai();
-                                showSuccess("Delete success");
+                                showSuccess("Xoá thành công!");
                             },
                             error: function (xhr, status, error) {
-                                showError("Delete fail");
+                                showError("Xóa thất bại");
                             }
                         });
                     }
@@ -601,7 +601,7 @@
                 }
             },
             error: function (xhr, status, error) {
-                alert('Lỗi khi lấy danh sách : ' + error);
+                console.log(error);
             }
         });
     }

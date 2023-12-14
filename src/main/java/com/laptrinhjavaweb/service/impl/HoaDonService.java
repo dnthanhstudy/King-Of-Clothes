@@ -1,9 +1,12 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.converter.HoaDonConverter;
+import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
+import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
+import com.laptrinhjavaweb.repository.TrangThaiGiaoHangRepository;
 import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
@@ -23,6 +26,12 @@ public class HoaDonService implements IHoaDonService {
 
     @Autowired
     private HoaDonRepository hoaDonRepository;
+
+    @Autowired
+    private HoaDonChiTietRepository hoaDonChiTietRepository;
+
+    @Autowired
+    private TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
 
     @Override
     @Transactional
@@ -56,5 +65,24 @@ public class HoaDonService implements IHoaDonService {
         HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
         HoaDonEntity result = hoaDonRepository.save(entity);
         return hoaDonConverter.convertToResponse(result);
+    }
+
+    @Override
+    @Transactional
+    public String delete(String ma) {
+        HoaDonEntity entity = hoaDonRepository.findByMa(ma);
+        if(entity!= null){
+            List<HoaDonChiTietEntity> listHDCT = entity.getHoaDonChiTietEntities();
+                if(!listHDCT.isEmpty()){
+                    for (HoaDonChiTietEntity hdct: listHDCT) {
+                        hoaDonChiTietRepository.deleteHoaDonCT(hdct.getId());
+                    }
+                }
+
+            trangThaiGiaoHangRepository.deleteByHoaDonId(entity);
+            hoaDonRepository.deleteHoaDon(entity.getId());
+            return "Xóa thành công";
+        }
+        return "Không tìm thấy hoá đơn";
     }
 }

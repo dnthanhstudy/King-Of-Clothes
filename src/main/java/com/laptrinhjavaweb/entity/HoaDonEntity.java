@@ -78,7 +78,7 @@ public class HoaDonEntity extends BaseEntity{
 	@JoinColumn(name = "idlydohuydon")
 	private LyDoHuyDonEntity lyDoHuyDon;
 
-	@OneToMany(mappedBy = "hoaDon")
+	@OneToMany(mappedBy = "hoaDon",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TrangThaiGiaoHangEntity> trangThaiGiaoHangs;
 
 	@OneToMany(mappedBy = "hoaDon")

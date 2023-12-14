@@ -107,7 +107,6 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         if (km != null) {
             KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
             khuyenMaiEntity.setId(km.getId());
-            System.out.println("Thong tin 2: "+khuyenMaiEntity.getTrangThai());
             KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
             List<KhuyenMaiSanPhamEntity> list = km.getKhuyenMaiSanPhamEntities();
             for (KhuyenMaiSanPhamEntity kmsp:list
@@ -194,7 +193,6 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     public KhuyenMaiEntity updateStatus(KhuyenMaiEntity khuyenMaiEntity) {
         if (!(khuyenMaiEntity.getTrangThai().equals("EXPIRED"))){
             Date currentDate = new Date();
-            System.out.println("Thong tin: "+khuyenMaiEntity.getTrangThai());
             if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && khuyenMaiEntity.getTrangThai()!="EXPIRED"){
                 khuyenMaiEntity.setTrangThai("ACTIVE");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
