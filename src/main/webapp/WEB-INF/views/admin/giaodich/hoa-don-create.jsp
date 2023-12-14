@@ -14,98 +14,101 @@
 <body>
 <div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px "
      data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header mt-3 ms-3">
-        <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="row">
-            <nav class="mt-3">
-                <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
-                    </button>
-                    <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
-                            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                            aria-selected="false">Mô tả sản phẩm
-                    </button>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
-                     tabindex="0">
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <img src="/template/web/img/anh2.png" class="img-fluid" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row p-2">
-                                <div class="col-3">
-                                    <h5>Giá bán:</h5>
-                                </div>
-                                <div class="col-9">
-                                    <h4 class="text-cyan">250,000</h4>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-3">
-                                    <h5>Số lượng:</h5>
-                                </div>
-                                <div class="col-3">
-                                    <span>0</span>
-                                </div>
-                                <div class="col-6">
-                                    <h5></h5>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-2">
-                                    <h5>Size:</h5>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-2">
-                                    <h5>Màu:</h5>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">Xanh</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <h5>Thương hiệu: </h5>
-                            </div>
-                        </div>
+    <div>
+        <div class="offcanvas-header mt-3 ms-3">
+            <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row">
+                <nav class="mt-3">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
+                        </button>
+                        <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">Mô tả sản phẩm
+                        </button>
                     </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                         tabindex="0">
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <img src="/template/web/img/anh2.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row p-2">
+                                    <div class="col-3">
+                                        <h5>Giá bán:</h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <h4 class="text-cyan">250,000</h4>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <div class="col-3">
+                                        <h5>Số lượng:</h5>
+                                    </div>
+                                    <div class="col-3">
+                                        <span>0</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5></h5>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <div class="col-2">
+                                        <h5>Size:</h5>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="form-check mr-3 mb-2">
+                                            <input type="radio" class="form-check-input"
+                                                   value="">
+                                            <label class="form-check-label">M</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <div class="col-2">
+                                        <h5>Màu:</h5>
+                                    </div>
+                                    <div class="col-10">
+                                        <div class="form-check mr-3 mb-2">
+                                            <input type="radio" class="form-check-input"
+                                                   value="">
+                                            <label class="form-check-label">Xanh</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <h5>Thương hiệu: </h5>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                         tabindex="0"></div>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                     tabindex="0"></div>
+            </div>
+        </div>
+        <div class="offcanvas-footer">
+            <div class="row p-5">
+                <div class="text-right">
+                    <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close"
+                            style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
+                    </button>
+                    <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close"
+                            style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="offcanvas-footer">
-        <div class="row p-5">
-            <div class="text-right">
-                <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close"
-                        style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
-                </button>
-                <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close"
-                        style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
-                </button>
-            </div>
-        </div>
-    </div>
+
 </div>
 <section>
     <div class="content-body" style="background-color: #fff">
@@ -125,9 +128,20 @@
                         <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="">Chọn sản phẩm</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                    <h4>Chọn sản phẩm</h4>
+                                    <div class="group123 ms-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
+                                             viewBox="0 0 512 512">
+                                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                            <style>svg {
+                                                fill: #ebeef4
+                                            }</style>
+                                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                        </svg>
+                                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu" style="width: 500px">
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                                 </div>
                                 <div class="modal-body" style="height: 700px; overflow-y: scroll;">
                                     <div class="row" id="list-products">
@@ -354,7 +368,6 @@
         </div>
     </div>
 </section>
-<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script>
     const currentUrl = window.location.href;
     const results = currentUrl.split('/');
@@ -448,7 +461,7 @@
                         htmlThuocTinh += `</div>`;
                     })
                     htmlThuocTinh += `</div>
-                                        <div class="text-right">
+                                        <div class="text-right mt-auto mb-2">
                                              <button class="btn me-4 btn-buy-product" style="background-color: #EB8153; color: #fff">Mua ngay</button>
                                         </div>
                                         <div class="data-server">
@@ -719,6 +732,7 @@
                         $('.invoice-detail-seen').on('click', function (){
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             console.log(invoiceDetailId);
+
                         })
 
                         $('.btn-add-product').on('click', function (){
@@ -761,5 +775,6 @@
     }
 
 </script>
+
 </body>
 </html>
