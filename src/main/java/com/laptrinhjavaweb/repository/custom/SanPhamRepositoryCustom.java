@@ -9,7 +9,7 @@ public interface SanPhamRepositoryCustom {
 	
 	List<SanPhamEntity> seachs(String param);
 
-	List<Long> filters(Map<String, Object> params);
+	List<SanPhamEntity> filters(Map<String, Object> params);
 
 	List<SanPhamEntity> random(
 			Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,

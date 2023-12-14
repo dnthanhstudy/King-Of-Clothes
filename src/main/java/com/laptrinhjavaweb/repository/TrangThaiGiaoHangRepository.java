@@ -14,4 +14,6 @@ public interface TrangThaiGiaoHangRepository extends JpaRepository<TrangThaiGiao
 
     @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.maGiaoHang=:magiaohang order by ttgh.ngayTao desc ")
     List<TrangThaiGiaoHangResponse> getTrangThaiDonHangByMaGiaoHang(@Param("magiaohang") String maGiaoHang);
+    @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.ma=:mahd order by ttgh.ngayTao desc,ttgh.ngaySua desc ")
+    List<TrangThaiGiaoHangResponse> getTrangThaiDonHangByMaHD(@Param("mahd") String maGiaoHang);
 }

@@ -138,7 +138,7 @@
         let termsCheckbox = $("#termsCheckbox").prop("checked");
 
         if ($("#ten").val() === "") {
-            showError("User name không được để trống");
+            showError("Họ và tên không được để trống");
             return false;
         }
         if (soDienThoai === "") {
@@ -188,7 +188,6 @@
                 data: JSON.stringify(data),
                 success: (response) => {
                     window.location.href = '/login';
-                    console.log("success");
                 },
                 error: (error) => {
                     showError(error.responseJSON.error);

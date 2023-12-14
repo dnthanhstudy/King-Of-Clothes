@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class KhachHangRequest {
+public class KhachHangRequest{
 
     private String ma;
 
@@ -21,9 +21,13 @@ public class KhachHangRequest {
 
     private String matKhau;
 
+    private String matKhauMoi;
+
     private Date ngaySinh;
 
     private String moTa;
 
     private String xacNhanMatKhau;
+
+    private String trangThai = "ACTIVE";
 }

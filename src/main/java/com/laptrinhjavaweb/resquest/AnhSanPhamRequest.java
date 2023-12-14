@@ -23,4 +23,6 @@ public class AnhSanPhamRequest {
         }
         return base64;
     }
+
+    private String trangThai = "ACTIVE";
 }

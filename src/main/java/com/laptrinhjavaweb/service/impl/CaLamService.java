@@ -86,9 +86,6 @@ public class CaLamService implements ICaLamService {
     @Override
     public CaLamResponse getDetail(Long id) {
         CaLamEntity caLamEntity = caLamRepository.findById(id).orElse(null);
-        if (caLamEntity == null) {
-            return null;
-        }
         return caLamConverter.convertToResponse(caLamEntity);
     }
 }

@@ -50,11 +50,11 @@ public class KhuyenMaiAPI {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
     @GetMapping("/pagination")
-    public ResponseEntity<?> pagination(@RequestParam(name = "q", required = false) String param,
+    public ResponseEntity<?> pagination(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
                                         @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
     ){
-        Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, null, null);
+        Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit,null, null, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 }

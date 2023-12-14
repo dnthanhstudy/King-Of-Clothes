@@ -157,4 +157,13 @@ public class KhachHangAPI {
         List<TimKiemSanPhamResponse> results = khachHangService.histosies(ma);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
+    @PutMapping("/doi-mat-khau")
+    public ResponseEntity<?> changePass(@RequestBody KhachHangRequest khachHangRequest) {
+        KhacHangResponse result = khachHangService.changePassword(khachHangRequest);
+        if(result == null){
+            throw new ClientError("Mật khẩu cũ không đúng!");
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

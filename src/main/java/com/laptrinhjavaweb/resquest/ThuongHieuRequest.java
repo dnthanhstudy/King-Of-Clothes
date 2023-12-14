@@ -13,4 +13,6 @@ public class ThuongHieuRequest {
     private String slug;
 
     private String ten;
+
+    private String trangThai = "ACTIVE";
 }

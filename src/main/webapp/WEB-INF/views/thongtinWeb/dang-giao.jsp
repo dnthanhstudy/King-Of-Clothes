@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div class="my-2 text-right">
-                                    <button class="btn btn-secondary" >Xem đơn hàng</button>
+                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang">Xem đơn hàng</a>
                                 </div>
                             </div>
                         </div>

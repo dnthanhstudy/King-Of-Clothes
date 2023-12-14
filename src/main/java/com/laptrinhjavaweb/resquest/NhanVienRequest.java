@@ -36,12 +36,12 @@ public class NhanVienRequest {
 
     private String soDienThoai;
 
-    private String trangThai;
-
     public String getBase64() {
         if(base64 != null){
             return base64.split(",")[1];
         }
         return base64;
     }
+
+    private String trangThai = "ACTIVE";
 }

@@ -14,4 +14,6 @@ public class QuyDoiDiemRequest {
     private Integer diem;
 
     private String loai;
+
+    private String trangThai = "ACTIVE";
 }

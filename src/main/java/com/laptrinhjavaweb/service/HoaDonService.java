@@ -3,12 +3,12 @@ package com.laptrinhjavaweb.service;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponseClass;
+import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
+import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface HoaDonService {
@@ -37,4 +37,8 @@ public interface HoaDonService {
     ResponseObject huyDatHang(Long idkh);
 
     CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien);
+
+    AllThongTinHoaDon allThongTinHoaDon(String maHoaDon);
+
+    AllThongKeResponse allThongKe(String thoiGian);
 }

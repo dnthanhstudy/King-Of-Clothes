@@ -15,4 +15,6 @@ public class SendEmailRequest {
     private String subject;
 
     private String email;
+
+    private String trangThai = "ACTIVE";
 }

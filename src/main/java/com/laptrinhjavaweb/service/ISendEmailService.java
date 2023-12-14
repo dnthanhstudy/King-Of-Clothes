@@ -10,4 +10,8 @@ public interface ISendEmailService {
     SendMailResponse processPasswordReset(String email);
 
     String resetPasswordByToken(String restToken, String matKhau);
+
+    boolean existsByEmail(String email);
+
+    boolean isValidResetToken(String resetToken);
 }

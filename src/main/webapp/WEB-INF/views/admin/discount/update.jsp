@@ -217,12 +217,16 @@
     });
 
     function displayDateFormat(inputDate) {
-        var ngayTaoDate = new Date(inputDate);
-        var ngayTaoDateString = ngayTaoDate.toISOString().slice(0, 16);
-        return ngayTaoDateString;
+        var today = new Date(inputDate);
+        var year = today.getFullYear();
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
+        var day = today.getDate().toString().padStart(2, '0');
+        var hours = today.getHours().toString().padStart(2, '0');
+        var minutes = today.getMinutes().toString().padStart(2, '0');
+        return `\${year}-\${month}-\${day}T\${hours}:\${minutes}`;
     }
 
-    var checkedValues = [];
+    var checkedValues = listSlugSanPham;
     $("#getValue").click(function (){
         checkedValues = []
         $('.form-check-input:checked').each(function () {
@@ -261,19 +265,21 @@
             listSanPham: checkedValues,
         }
         console.log(km)
-        $.ajax({
-            url: '/api/khuyen-mai/update/'+maKM,
-            method: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify(km),
-            success: function(response) {
-                window.location.href = "/admin/khuyen-mai";
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
-        });
-    })
+        if (validateForm()) {
+            $.ajax({
+                url: '/api/khuyen-mai/update/'+maKM,
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(km),
+                success: function(response) {
+                    window.location.href = "/admin/khuyen-mai";
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+    });
 
     function convertDateFormat(inputDate) {
         var date = new Date(inputDate);
@@ -316,4 +322,69 @@
         });
     }
     loadKhuyenMai();
+
+    function validateForm() {
+        let isValid = true;
+        let ngayBatDau = $("#ngayBatDau").val();
+        let ngayKetThuc = $("#ngayKetThuc").val();
+        let loaiGiamGia = $('#loaiGiamGia option:selected').val();
+        let giaTriGiam = $("#giaTriGiam").val();
+        let soLuong = $("#soLuong").val();
+
+        if(checkedValues.length == 0){
+            showError("Vui lòng chọn sản phảm!");
+            isValid = false;
+        }
+
+        if(soLuong ===""){
+            showError("Số lượng trống. Vui lòng nhập giá trị!");
+            isValid = false;
+        }else{
+            if(soLuong < 0 ){
+                showError("Số lượng không hợp lệ. Vui lòng nhập số lượng > 0!");
+                isValid = false;
+            }
+        }
+        if(giaTriGiam === ""){
+            showError("Giá trị giảm trống. Vui lòng nhập giá trị!");
+            isValid = false;
+        }else{
+            if(loaiGiamGia == 1){
+                if(giaTriGiam <=0 || giaTriGiam >= 100){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 0 & < 100!");
+                    isValid = false;
+                }
+            }else{
+                if(giaTriGiam <= 1000){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 1000!");
+                    isValid = false;
+                }
+            }
+        }
+        if (ngayKetThuc === "") {
+            showError("Ngày kết thúc trống. Vui lòng chọn giá trị");
+            isValid = false;
+        } else {
+            if (ngayBatDau > ngayKetThuc) {
+                showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày kết thúc > ngày bắt đầu");
+                isValid = false;
+            }
+        }
+        if (ngayBatDau === "") {
+            showError("Ngày bắt đầu trống. Vui lòng chọn giá trị");
+            isValid = false;
+        }else{
+            // let ngayBD = new Date(ngayBatDau);
+            // let currentDate = new Date();
+            // if(ngayBD < currentDate){
+            //     showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
+            //     isValid = false;
+            // }
+        }
+        if ($("#tenKM").val() === "") {
+            showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
+            isValid = false;
+        }
+        return isValid;
+    }
 </script>

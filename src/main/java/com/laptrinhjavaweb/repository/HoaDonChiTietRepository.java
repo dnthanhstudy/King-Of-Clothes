@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
+import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +20,9 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTietEnti
 
     @Query("select hdct from HoaDonChiTietEntity hdct where hdct.hoaDon.trangThai = 'CHUANBIDATHANG' and hdct.hoaDon.khachHang.id=:idkh")
     List<HoaDonChiTietResponse> getHoaDonMoiTaoByIdkh(@Param("idkh")Long idkh);
+
+    HoaDonChiTietEntity findByHoaDon_maAndSanPham_idAndBienThe_id(String maHoaDon, Long idSanPham, Long idKhuyeMai);
+
+    @Query("select hdct from HoaDonChiTietEntity hdct where hdct.hoaDon.ma=:mahd")
+    List<HDCTResponse> dsHoaDonChiTietResponse(@Param("mahd")String maHoaDon);
 }

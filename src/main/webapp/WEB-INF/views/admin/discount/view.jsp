@@ -293,7 +293,7 @@
     var value="";
     function loadKhuyenMai() {
         $.ajax({
-            url: "/api/khuyen-mai/pagination?page="+pageCurrent+"&q="+value,
+            url: "/api/khuyen-mai/pagination?page="+pageCurrent,
             method: 'GET',
             success: function (response) {
                 console.log(response);
@@ -322,9 +322,13 @@
                         trangThaiStr = "Sắp diễn ra";
                         textColor = "bgl-warning";
                         textFront = "text-warning";
+                    }else if (item.trangThai == "EXPIRED") {
+                        trangThaiStr = "Đã kết thúc";
+                        textColor = "bgl-success";
+                        textFront = "text-success";
                     } else {
-                        trangThaiStr = "Hoạt động";
-                        textColor = "bgl-info";
+                        trangThaiStr = "Đang diễn ra";
+                        textColor = "bgl-primary";
                     }
                     var card = `
                        <div class="card"  style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -393,6 +397,7 @@
                         `;
                     khuyenMai.append(card);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",
@@ -405,7 +410,11 @@
                         if(page !== pageCurrent){
                             event.preventDefault();
                             pageCurrent = page;
-                            loadKhuyenMai();
+                            if(value != ''){
+                                loadSearchKM(value)
+                            }else{
+                                loadKhuyenMai();
+                            }
                         }
                     },
                 });
@@ -464,12 +473,10 @@
         searchButton.on('keydown', function(event) {
             if (event.which === 13) {
                 value = searchButton.val();
-                if (value.trim().length === 0) {
-                    loadKhuyenMai();
-                }else{
-                    loadSearchKM(value);
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
                 }
-
+                    loadSearchKM(value);
             }
         });
     });
@@ -579,20 +586,25 @@
                         `;
                         khuyenMai.append(card);
                     });
-                    var totalPageRes = response.meta.totalPage;
+                    console.log(response);
+                    $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
                         prev: "Previous",
                         next: "Next",
                         last: "Last",
                         visiblePages: 5,
-                        totalPages: totalPageRes,
+                        totalPages: response.meta.totalPage,
                         startPage: response.meta.pageCurrent,
                         onPageClick: function (event, page) {
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                loadSearchKM(value);
+                                if(value != ''){
+                                    loadSearchKM(value)
+                                }else{
+                                    loadKhuyenMai();
+                                }
                             }
                         },
                     });

@@ -224,8 +224,8 @@
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: function (response) {
-                    console.log("Success");
                     window.location.href = "/logout";
+                    showSuccess("Đóng ca thành công")
                 },
                 error: function (error) {
                     showError(error);

@@ -1,13 +1,5 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.converter.AnhSanPhamConverter;
-import com.laptrinhjavaweb.converter.BienTheConverter;
-import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.converter.ThuocTinhConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
-import com.laptrinhjavaweb.response.PageableResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SanPhamConverter;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
@@ -69,11 +61,7 @@ public class SanPhamService implements ISanPhamService{
 				if(param != null) {
 					listSanPhamEntity = sanPhamRepository.seachs(param);
 				}else if(params != null && !params.isEmpty()){
-					List<Long> ids = sanPhamRepository.filters(params);
-					for (Long id : ids) {
-						SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).get();
-						listSanPhamEntity.add(sanPhamEntity);
-					}
+					listSanPhamEntity = sanPhamRepository.filters(params);
 				}else{
 					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
 				}
@@ -189,4 +177,5 @@ public class SanPhamService implements ISanPhamService{
 		sanPhamEntity.setTrangThai("INACTIVE");
 		sanPhamRepository.save(sanPhamEntity);
 	}
+
 }

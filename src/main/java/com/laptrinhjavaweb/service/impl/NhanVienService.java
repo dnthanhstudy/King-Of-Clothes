@@ -2,12 +2,15 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.NhanVienConverter;
+import com.laptrinhjavaweb.entity.ChucVuEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
 import com.laptrinhjavaweb.repository.ChucVuRepository;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
+import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.INhanVienService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import com.laptrinhjavaweb.utils.UploadFileUtils;
@@ -63,9 +66,8 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
-        nhanVienEntity.setChucVu(chucVuRepository.findByMa("STAFF"));
+        nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
-
         nhanVienRepository.save(nhanVienEntity);
         NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
         return result;
@@ -93,6 +95,9 @@ public class NhanVienService implements INhanVienService {
             nhanVienEntity.setGioiTinh(nhanVienRequest.getGioiTinh());
             nhanVienEntity.setCanCuocCongDan(nhanVienRequest.getCanCuocCongDan().trim());
             nhanVienEntity.setNgayCap(nhanVienRequest.getNgayCap());
+
+            ChucVuEntity chucVuEntity = chucVuRepository.findByMa(nhanVienRequest.getMaChucVu());
+            nhanVienEntity.setChucVu(chucVuEntity);
             
             nhanVienRepository.save(nhanVienEntity);
             NhanVienResponse result = nhanVienConverter.convertToResponse(nhanVienEntity);
@@ -103,6 +108,8 @@ public class NhanVienService implements INhanVienService {
 
     @Override
     public Map<String, Object> pagingOrSearchOrFindAll(Integer pageCurrent, Integer limit, String role, String param ){
+        MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
+        String ma = myUserResponse.getMa();
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
         Page<NhanVienEntity> page = null;
@@ -110,11 +117,11 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
-                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.searchs(param);
+                List<NhanVienEntity> listNhanVienEntity = nhanVienRepository.searchs(param, ma);
                 int sizeOflistNhanVienEntity = listNhanVienEntity.size();
                 int start = (int) pageable.getOffset();
                 int end = Math.min((start + pageable.getPageSize()), sizeOflistNhanVienEntity);
@@ -122,7 +129,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAllByTrangThaiNotAndChucVu_Ma(SystemConstant.DELETE, role, pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(

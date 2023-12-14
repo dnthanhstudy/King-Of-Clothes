@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class CaLamRequest {
+public class CaLamRequest{
 
     private Double soTienDauCa;
 
@@ -17,4 +17,6 @@ public class CaLamRequest {
     private Double tienChenhLech;
 
     private Double tienMatBanGiao;
+
+    private String trangThai = "ACTIVE";
 }

@@ -1,15 +1,5 @@
 package com.laptrinhjavaweb.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
-import com.laptrinhjavaweb.model.enumentity.TrangThaiTTMHEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +9,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -49,7 +42,7 @@ public abstract class BaseEntity {
 	@Column(name = "nguoisua", insertable = false)
 	private String nguoiSua;
 
-	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'", insertable = false)
+	@Column(name = "trangthai", columnDefinition = "varchar(255) default 'ACTIVE'")
 	private String trangThai;
 
 	public void setTrangThai(String trangThai) {

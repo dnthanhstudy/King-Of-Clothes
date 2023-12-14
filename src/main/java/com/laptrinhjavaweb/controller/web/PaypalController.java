@@ -66,20 +66,18 @@ public class PaypalController {
     public String home() {
         return "paypal/index";
     }
+    private Order order;
 
     @PostMapping("")
     public String payment(@ModelAttribute Order order) {
-//        Order order = new Order();
-//        order.setPrice(10);
-//        order.setDescription("Test payment");
-//        order.setMethod("paypal");
-//        order.setCurrency("USD");
-//        order.setIntent("sale");
+
+        System.out.println("hello");
         System.out.println(order);
+        this.order = order;
         try {
             Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
                     order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-                    "http://localhost:8080/" + SUCCESS_URL+"/"+order.getIdkh()+"/"+order.getIdttmuahang()+"/"+order.getPhiShip());
+                    "http://localhost:8080/" + SUCCESS_URL+"/"+order.getIdkh()+"/"+order.getIdttmuahang());
             for(Links link:payment.getLinks()) {
                 if(link.getRel().equals("approval_url")) {
                     return "redirect:"+link.getHref();
@@ -98,21 +96,20 @@ public class PaypalController {
         return "cancel";
     }
 
-    @GetMapping(value = "/success/{idkh}/{ttgh}/{phiship}")
+    @GetMapping(value = "/success/{idkh}/{ttgh}")
     public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,
                              @PathVariable(name = "idkh")Long idkh,
-                             @PathVariable(name = "ttgh")Long ttgh,
-                             @PathVariable(name = "phiship")Double phiship
+                             @PathVariable(name = "ttgh")Long ttgh
     ) {
         try {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-               HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN",phiship,"Chuyển khoản",0D);
+                HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN",order.getPhiShip(),"Chuyển khoản",order.getTienKhachTra());
                 if (hoaDon==null){
                     return "web/403";
                 }
-      //          taoHangGiaoHangNhanh(hoaDon);
+                //          taoHangGiaoHangNhanh(hoaDon);
                 return "paypal/success";
             }
         } catch (PayPalRESTException e) {
@@ -145,11 +142,11 @@ public class PaypalController {
 
     @GetMapping("/naptien")
     public String test(@RequestParam(name = "price") Double price,@RequestParam(name = "idvi")Long idvi
-    ,@RequestParam(name = "tienviet")Double tiennap
-                       ) {
+            ,@RequestParam(name = "tienviet")Double tiennap
+    ) {
         Order order = new Order();
         order.setPrice(price);
-       // order.setPrice(10);
+        // order.setPrice(10);
         order.setDescription("Test payment");
         order.setMethod("paypal");
         order.setCurrency("USD");
