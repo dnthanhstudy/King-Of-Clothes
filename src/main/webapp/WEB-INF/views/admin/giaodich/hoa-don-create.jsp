@@ -16,7 +16,7 @@
      data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div>
         <div class="offcanvas-header mt-3 ms-3">
-            <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
+            <h4 class="offcanvas-title font-weight-bold" id="tenSanPham"></h4>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -37,7 +37,7 @@
                          tabindex="0">
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <img src="/template/web/img/anh2.png" class="img-fluid" alt="...">
+                                <img src="" id="image" class="img-fluid" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="row p-2">
@@ -45,46 +45,52 @@
                                         <h5>Giá bán:</h5>
                                     </div>
                                     <div class="col-9">
-                                        <h4 class="text-cyan">250,000</h4>
+                                        <h4 class="text-cyan" id="gia"></h4>
                                     </div>
                                 </div>
                                 <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
                                     <div class="col-3">
                                         <h5>Số lượng:</h5>
                                     </div>
+                                    <div class="col-9">
+                                        <span id="soLuong"></span>
+                                    </div>
+
+                                </div>
+                                <div class="thuoc-tinh">
+
+                                </div>
+<%--                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">--%>
+<%--                                    <div class="col-2">--%>
+<%--                                        <h5>Size:</h5>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-10">--%>
+<%--                                        <div class="form-check mr-3 mb-2">--%>
+<%--                                            <input type="radio" class="form-check-input"--%>
+<%--                                                   value="">--%>
+<%--                                            <label class="form-check-label">M</label>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">--%>
+<%--                                    <div class="col-2">--%>
+<%--                                        <h5>Màu:</h5>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="col-10">--%>
+<%--                                        <div class="form-check mr-3 mb-2">--%>
+<%--                                            <input type="radio" class="form-check-input"--%>
+<%--                                                   value="">--%>
+<%--                                            <label class="form-check-label">Xanh</label>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
                                     <div class="col-3">
-                                        <span>0</span>
+                                        <h5>Thương hiệu:</h5>
                                     </div>
-                                    <div class="col-6">
-                                        <h5></h5>
+                                    <div class="col-9">
+                                        <span id="tenThuongHieu"></span>
                                     </div>
-                                </div>
-                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                    <div class="col-2">
-                                        <h5>Size:</h5>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="form-check mr-3 mb-2">
-                                            <input type="radio" class="form-check-input"
-                                                   value="">
-                                            <label class="form-check-label">M</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                    <div class="col-2">
-                                        <h5>Màu:</h5>
-                                    </div>
-                                    <div class="col-10">
-                                        <div class="form-check mr-3 mb-2">
-                                            <input type="radio" class="form-check-input"
-                                                   value="">
-                                            <label class="form-check-label">Xanh</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                    <h5>Thương hiệu: </h5>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +104,10 @@
         <div class="offcanvas-footer">
             <div class="row p-5">
                 <div class="text-right">
-                    <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close"
+                    <button class="btn btn-light me-3" data-bs-dismiss="offcanvas" aria-label="Close"
                             style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
                     </button>
-                    <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close"
+                    <button class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"
                             style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
                     </button>
                 </div>
@@ -732,6 +738,40 @@
                         $('.invoice-detail-seen').on('click', function (){
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             console.log(invoiceDetailId);
+
+                            $.ajax({
+                                url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                method: "GET",
+                                dataType: "json",
+                                success: (response) => {
+                                    $("#tenSanPham").text(response.tenSanPham);
+                                    $("#gia").text(response.gia);
+                                    $("#soLuong").text(response.soLuong);
+                                    $("#tenThuongHieu").text(response.tenThuongHieu);
+                                    $("#image").attr('src', '/assets/images/sanpham/' + response.image);
+                                    const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
+                                    let htmlThuocTinh = '';
+                                    $.each(response.thuocTinh, (index, item) => {
+                                        htmlThuocTinh += `<div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px"><div class="col-3"><h5>\${item.ten}:</h5></div>
+                                                                    <div class="col-9 d-flex"> `
+
+                                        let htmlGiaTriThuocTinh = '';
+                                        $.each(item.giaTriThuocTinh, (index, item1) => {
+                                            let checked = giaTriThuocTinhChecked.includes(item1.id) ? "checked" : "";
+                                            htmlGiaTriThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                                        <input type="radio" class="form-check-input"
+                                                                               value="\${item1.id}"  \${checked}>
+                                                                        <label class="form-check-label">\${item1.giaTri}</label>
+                                                                    </div>`
+
+                                        })
+                                        htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + '</div></div>';
+                                    })
+                                    $(".thuoc-tinh").html(htmlThuocTinh)
+                                },
+                                error: (error) => {
+                                }
+                            })
 
                         })
 
