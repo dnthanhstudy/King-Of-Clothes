@@ -476,6 +476,7 @@
           url: '/api/hoadon/dshoadon',
           method: 'GET',
           success: function (req) {
+              console.log(req)
               loadTable(req.data)
 
           },

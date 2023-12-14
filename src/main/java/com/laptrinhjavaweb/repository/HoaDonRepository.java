@@ -28,7 +28,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
     HoaDonEntity findHoaDonMoiDat(@Param("idkh") Long idkh);
 
-    @Query("select hd from HoaDonEntity hd where hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANG') and hd.trangThai='Online'")
+    @Query("select hd from HoaDonEntity hd where hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANG') and hd.loai='Online'")
     List<HoaDonResponse> dsHoaDonOnline();
 
     List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiAndLoai(Long idkh,String trangThai,String loai);
@@ -37,7 +37,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     List<HoaDonResponse> findAllByTrangThaiNotContainsAndLoai(String trangThai,String loai);
 
-    @Query("select hd from HoaDonEntity hd where hd.loai='Online' hd.trangThai in ('DANGGIAOHANG','DANHANHANG','HUYDON')" +
+    @Query("select hd from HoaDonEntity hd where hd.loai='Online' and hd.trangThai in ('DANGGIAOHANG','DANHANHANG','HUYDON')" +
             " order by hd.ngayGiaoHang")
     List<HoaDonResponse> dsHoaDonDangGiao();
 
@@ -46,6 +46,6 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query("update HoaDonEntity hd set hd.trangThai=:trangthai where hd.maGiaoHang=:magiaohang")
     void thayDoiTrangThaiGiaoHangTheoMaGiaoHang(@Param("magiaohang")String maGiaoHang,@Param("trangthai")String trangThai);
 
-    DoanhThuBanHangResponse doanhThuBanHang();
+//    DoanhThuBanHangResponse doanhThuBanHang();
 
 }
