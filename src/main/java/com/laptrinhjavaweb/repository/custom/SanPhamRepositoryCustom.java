@@ -7,9 +7,11 @@ import com.laptrinhjavaweb.entity.SanPhamEntity;
 
 public interface SanPhamRepositoryCustom {
 	
-	List<SanPhamEntity> seachs(String param);
+	List<SanPhamEntity> seachs(String param, Map<String, Object> filters);
 
 	List<SanPhamEntity> filters(Map<String, Object> params);
+
+	List<SanPhamEntity> categories(String slug, Map<String, Object> fliters);
 
 	List<SanPhamEntity> random(
 			Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,

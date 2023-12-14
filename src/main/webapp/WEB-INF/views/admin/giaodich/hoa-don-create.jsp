@@ -12,7 +12,6 @@
     <title>Thêm Hóa Đơn</title>
 </head>
 <body>
-<%--xem chi tiết--%>
 <div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px "
      data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header mt-3 ms-3">
@@ -53,16 +52,10 @@
                                     <h5>Số lượng:</h5>
                                 </div>
                                 <div class="col-3">
-                                    <div class="input-group">
-                                        <button class="btn text-light " style="background-color: #EB8153"><i
-                                                class="fa fa-minus"></i></button>
-                                        <input type="text" class="form-control" style="text-align: center" value="1">
-                                        <button class="btn text-light " style="background-color: #EB8153"><i
-                                                class="fa fa-plus"></i></button>
-                                    </div>
+                                    <span>0</span>
                                 </div>
                                 <div class="col-6">
-                                    <h5><span>Tồn: 101</span> <span class="ms-4">| Có thể bán: 101</span></h5>
+                                    <h5></h5>
                                 </div>
                             </div>
                             <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
@@ -115,12 +108,12 @@
     </div>
 </div>
 <section>
-    <div class="content-body" style="background-color: #f2eded">
+    <div class="content-body" style="background-color: #fff">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-                    <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
-                    <button class="btn btn-primary btn-add-invoice">Thêm hóa đơn</button>
+                    <a class="btn" href="/admin/giao-dich/hoa-don-off" style="background-color: #dedede">Danh sách hóa đơn chờ thanh toán</a>
+                    <button class="btn btn-add-invoice" style="background-color: #dedede">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
@@ -170,18 +163,12 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-center">
                                     <div>
                                         <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
-                                            <span class="invoice-total">245000</span>
-                                        </h4>
-                                    </div>
-
-                                    <div>
-                                        <h4 class="text-right">
-                                            <strong>Tổng số lượng sản phẩm:</strong>
                                             <span id="invoice-quantity">11</span>
+                                            <span class="invoice-total ms-4">245000</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -351,7 +338,7 @@
                                 <h5>Tiền thừa trả khách:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5>10000</h5>
+                                <h5 id="money-change">10000</h5>
                             </div>
                         </div>
                         <div class="row mt-auto">
@@ -367,19 +354,53 @@
         </div>
     </div>
 </section>
-
+<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 <script>
     const currentUrl = window.location.href;
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
 
-    function time() {
-        $('#thoiGian').text(new Date().toLocaleString());
-    }
+    let pageCurrent = 1;
 
     setInterval(time, 1000);
 
-    let pageCurrent = 1;
+    loadAllProduct();
+
+    loadHoaDon();
+
+    $('.btn-add-invoice').on('click', function (e){
+        e.preventDefault();
+        let data = {};
+        data['maNhanVien'] = ma;
+        data['trangThai'] = "TREO";
+        data['loai'] = "Offline";
+
+        $.ajax({
+            url: "/api/hoa-don-off",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                showSuccess("Thêm hóa thành công");
+                window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    })
+
+    function time() {
+        var currentDate = new Date();
+        var formattedTime = ('0' + currentDate.getDate()).slice(-2) + '/'
+            + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '/'
+            + currentDate.getFullYear() + ' '
+            + ('0' + currentDate.getHours()).slice(-2) + ':'
+            + ('0' + currentDate.getMinutes()).slice(-2)+ ':'
+            + ('0' + currentDate.getSeconds()).slice(-2);
+        $('#thoiGian').text(formattedTime);
+    }
 
     function loadAllProduct() {
         $.ajax({
@@ -428,7 +449,7 @@
                     })
                     htmlThuocTinh += `</div>
                                         <div class="text-right">
-                                             <button class="btn btn-outline-info me-4 btn-buy-product">Mua ngay</button>
+                                             <button class="btn me-4 btn-buy-product" style="background-color: #EB8153; color: #fff">Mua ngay</button>
                                         </div>
                                         <div class="data-server">
                                              <input type="hidden" id="product-id" value="\${item.id}">
@@ -551,8 +572,6 @@
         });
     }
 
-    loadAllProduct();
-
     $('#btn-add-customer').on('click', () => {
         let dataForm = $('#form-data-customer').serializeArray();
         let data = {};
@@ -611,13 +630,6 @@
         });
     }
 
-    $('.btn-add-invoice').on('click', () => {
-        showSuccess("Tạo hóa đơn thành công");
-        window.location.href = "/admin/giao-dich/create";
-    });
-
-    loadHoaDon();
-
     function loadHoaDon() {
         $.ajax({
             url: "/api/hoa-don-off/" + maHoaDon,
@@ -631,7 +643,7 @@
                     $.each(response.hoaDonChiTiet, (index, item) => {
                         totalInvoice += item.thanhTien;
                         toatlQuantity += item.soLuong;
-                        html += `<div class="card card-body mb-2" style="border-radius: 10px;">
+                        html += `<div class="card card-body mb-2 card-body-invoice-detail" style="border-radius: 10px;">
                                     <div class="row">
                                         <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
@@ -641,7 +653,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                        <div class="col-xl-4 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
                                                     <span>Tên sản phẩm</span>
@@ -650,14 +662,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
                                                     <span>Số lượng</span>
-                                                    <div class="input-group w-50">
-                                                        <button class="btn text-light" id="btn-add-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
-                                                        <input type="text" class="form-control" style="text-align: center" value="\${item.soLuong}"/>
-                                                        <button class="btn text-light" id="btn-remove-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
+                                                    <div class="input-group w-100 action">
+                                                        <button class="btn text-light btn-add-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
+                                                        <input type="text" class="form-control invoice-detail-quantity" style="text-align: center" value="\${item.soLuong}"/>
+                                                        <button class="btn text-light btn-remove-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -687,14 +699,14 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item" href="">Xóa</a>
-                                                        <a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
+                                                        <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
                                 </div>
-                                <input type="hidden" name="" id="invoice-detail" value="\${item.id}}">
                                 `;
 
                         $('#invoice-non').hide();
@@ -703,9 +715,28 @@
                         $('#invoice').html(html);
                         $('.invoice-total').text(totalInvoice);
                         $('#invoice-quantity').text(toatlQuantity);
+
+                        $('.invoice-detail-seen').on('click', function (){
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            console.log(invoiceDetailId);
+                        })
+
+                        $('.btn-add-product').on('click', function (){
+                            let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
+                            quantity += 1;
+                        })
+
+                        $('.btn-remove-product').on('click', function (){
+                            let quantity = parseInt($(this).closest('.action').find(invoice-detail-quantity).val());
+                            quantity -= 1;
+                        })
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
+                    $('.invoice-total').text(0);
+                    $('#money-change').text(0);
+
+
                 }
             },
             error: (error) => {
@@ -728,7 +759,7 @@
             }
         });
     }
+
 </script>
-<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
 </body>
 </html>

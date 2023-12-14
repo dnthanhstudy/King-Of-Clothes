@@ -1,9 +1,9 @@
 actionPriceFilter();
-
+const q = $('#input-search-product').val();
 $("#filter").on("change", "input[type='checkbox']", function(){
     const priceFilter = $('#price-filter').val();
     const brandFilter = $('#brand-filter').val();
-    filterAndPageable(1, 9, priceFilter, brandFilter);
+    filterAndPageable(1, 9, q, priceFilter, brandFilter);
 });
 
 $("#brands").on("click", "button", function(e){
@@ -11,7 +11,7 @@ $("#brands").on("click", "button", function(e){
     const brandFilter = $(this).val();
     $('#brand-filter').val(brandFilter);
     const priceFilter = $('#price-filter').val();
-    filterAndPageable(1, 9, priceFilter, brandFilter);
+    filterAndPageable(1, 9, q, priceFilter, brandFilter);
 });
 
 $("#gia").on("click", "button", function(e){
@@ -19,10 +19,10 @@ $("#gia").on("click", "button", function(e){
     const priceFilter = $(this).val();
     $('#price-filter').val(priceFilter);
     const brandFilter = $('#brand-filter').val();
-    filterAndPageable(1, 9, priceFilter, brandFilter);
+    filterAndPageable(1, 9, q, priceFilter, brandFilter);
 });
 
-function filterAndPageable(page, limit, priceFilter, brandFilter){
+function filterAndPageable(page, limit, q, priceFilter, brandFilter){
     $('.value-server').html('');
     let filters = getCheckedWhenFilter();
     if(priceFilter !== 'not-filter'){
@@ -40,6 +40,9 @@ function filterAndPageable(page, limit, priceFilter, brandFilter){
         let inputEle = `<input type="hidden" value="${value}" name="${name}"/>`;
         $('.value-server').append(inputEle);
     })
+    if(q !== null && q !== '' && q !== undefined){
+        $('#search-product').val(q);
+    }
     $('#page-product').val(page);
     $('#limit-product').val(limit);
     $('#form-submit-product').submit();

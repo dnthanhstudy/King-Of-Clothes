@@ -1,10 +1,8 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.exception.ClientError;
-import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.response.NhanVienResponse;
 import com.laptrinhjavaweb.resquest.NhanVienRequest;
-import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import com.laptrinhjavaweb.service.INhanVienService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
