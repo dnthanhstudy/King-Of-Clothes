@@ -62,11 +62,11 @@
                 <div class="col">
                     <div class="d-flex justify-content-between">
                         <h4>Danh sách hóa đơn</h4>
-                        <select name="" id="" class="form-control" style="width: 150px">
+                        <select name="" id="trangThai" class="form-control" style="width: 150px">
                             <option value="">Chờ thanh toán</option>
                             <option value="">Đã thanh toán</option>
-                            <option value="">Treo</option>
-                            <option value="">Đã xóa</option>
+                            <option value="TREO">Treo</option>
+                            <option value="">Đã hủy</option>
                         </select>
                     </div>
                 </div>
@@ -74,20 +74,21 @@
             <hr>
             <div class="d-flex justify-content-between">
                 <hr>
-                <table class="table table-hover" >
+                <table class="table table-hover" id="tblHoaDonOff">
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa đơn</th>
                         <th scope="col">Khách hàng</th>
-                        <th scope="col">Ngày đặt</th>
+                        <th scope="col">Nhân viên</th>
+                        <th scope="col">Ngày mua</th>
                         <th scope="col">Tổng tiền hàng</th>
-                        <th scope="col">Phương thức</th>
-                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Tiền khách trả</th>
+                        <th scope="col">Tiền thừa</th>
                         <th scope="col">Thao tác</th>
                     </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                     </tbody>
                 </table>
             </div>
@@ -117,6 +118,46 @@
             }
         });
     })
+
+    var trangThai = $('#trangThai option:selected').val();
+
+    $(document).ready(function(){
+        $("#trangThai").change(function(){
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: "/api/hoa-don-off/find-by-status?trangThai=" + selectedValue,
+                method: "GET",
+                success: (response) => {
+                    var tbody = $('#tblHoaDonOff tbody');
+                    tbody.empty();
+                    var index = 0;
+                    response.forEach(function(item) {
+                        console.log(response)
+                        var row = `
+                            <tr>
+                                <td>\${++index}</td>
+                                <td>\${item.ma}</td>
+                                 <td>\${item.khachHang}</td>
+                                 <td>\${item.tenNhanVien}</td>
+                                 <td>\${getFormattedDate(item.ngayTao)}</td>
+                                 <td>\${item.tongTienHang}</td>
+                                 <td>\${item.tienKhachTra}</td>
+                                 <td>\${item.tienThua}</td>
+                                 <td>
+                                    <button class="btn">Detail</button>
+                                 </td>
+                            </tr>
+                        `;
+                        tbody.append(row);
+                    });
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
 </script>
 </body>
 </html>

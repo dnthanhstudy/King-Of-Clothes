@@ -205,7 +205,6 @@
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
 </script>
-<script src="<c:url value='/assets/js/toastify.js'/>"></script>
 <script src="<c:url value='/assets/js/defined.js'/>"></script>
 <script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
 <script src="<c:url value='/assets/api/admin/product.js'/>"></script>
