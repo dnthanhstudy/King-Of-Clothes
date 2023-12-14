@@ -48,4 +48,6 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
 //    DoanhThuBanHangResponse doanhThuBanHang();
 
+    List<HoaDonEntity> findAllByTrangThai(String trangThai);
+
 }
