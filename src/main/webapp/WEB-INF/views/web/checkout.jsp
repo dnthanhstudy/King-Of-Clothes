@@ -153,10 +153,10 @@
                 <div class="col-2">
                     <span>Đơn giá</span>
                 </div>
-                <div class="col-2">
+                <div class="col-1">
                     <span>Số lượng</span>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <span>Thành tiền</span>
                 </div>
             </div>
@@ -271,8 +271,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-9"></div>
-                <div class="col-3" id="vn">
+                <div class="col-8"></div>
+                <div class="col-4" id="vn">
                     <div class="row my-3">
                         <div class="col-6">
                             <span>Tổng tiền hàng</span>
@@ -301,7 +301,7 @@
                         <button class="btn w-75 ms-5 text-light" style="background-color: #C3817B;" onclick="datHang()">Đặt hàng</button>
                     </div>
                 </div>
-                <div class="col-3" id="dola" style="display: none">
+                <div class="col-4" id="dola" style="display: none">
                     <div class="row my-3">
                         <div class="col-6">
                             <span>Tổng tiền hàng</span>
@@ -764,10 +764,10 @@
                     <div class="col-2 mt-3">
                         \${htmlGiaTien}
                     </div>
-                    <div class="col-2 mt-3">
+                    <div class="col-1 mt-3">
                         <h6 class="card-title">\${custom.soLuong}</h6>
                     </div>
-                    <div class="col-1 mt-3">
+                    <div class="col-2 mt-3">
                         <h6 class="card-title">\${convertVND(custom.tongTienHdct)}</h6>
                     </div>
                 </div>
