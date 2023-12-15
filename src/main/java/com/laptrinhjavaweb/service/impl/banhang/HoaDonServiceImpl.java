@@ -12,6 +12,8 @@ import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
+import com.laptrinhjavaweb.model.response.thongke.QueryDoanhThu;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -164,9 +166,31 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public AllThongKeResponse allThongKe(String thoiGian) {
-//        HoaDonRepository
-        return null;
+    public AllThongKeResponse allThongKe(Integer thoiGian) {
+        AllThongKeResponse response = new AllThongKeResponse();
+        switch (thoiGian){
+            case 1:{
+                response.setDoanhThuBanHang(hoaDonRepository.doanhThuNgay());
+                response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoNgay());
+                break;
+            }
+            case 2:{
+                response.setDoanhThuBanHang(hoaDonRepository.doanhThuTuan());
+                response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoTuan());
+                break;
+            }case 3:{
+                response.setDoanhThuBanHang(hoaDonRepository.doanhThuThang());
+                response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoThang());
+
+                break;
+            }case 4:{
+                response.setDoanhThuBanHang(hoaDonRepository.doanhThuNam());
+                response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoNam());
+                break;
+            }
+        }
+
+        return response;
     }
 
 
