@@ -118,22 +118,30 @@ public class HoaDonService implements IHoaDonService {
         return hoaDonConverter.convertToResponse(result);
     }
 
-    @Override
-    @Transactional
-    public String delete(String ma) {
-        HoaDonEntity entity = hoaDonRepository.findByMa(ma);
-        if(entity!= null){
-            List<HoaDonChiTietEntity> listHDCT = entity.getHoaDonChiTietEntities();
-                if(!listHDCT.isEmpty()){
-                    for (HoaDonChiTietEntity hdct: listHDCT) {
-                        hoaDonChiTietRepository.deleteHoaDonCT(hdct.getId());
-                    }
-                }
+//    @Override
+//    @Transactional
+//    public String delete(String ma) {
+//        HoaDonEntity entity = hoaDonRepository.findByMa(ma);
+//        if(entity!= null){
+//            List<HoaDonChiTietEntity> listHDCT = entity.getHoaDonChiTietEntities();
+//                if(!listHDCT.isEmpty()){
+//                    for (HoaDonChiTietEntity hdct: listHDCT) {
+//                        hoaDonChiTietRepository.deleteHoaDonCT(hdct.getId());
+//                    }
+//                }
+//
+//            trangThaiGiaoHangRepository.deleteByHoaDonId(entity);
+//            hoaDonRepository.deleteHoaDon(entity.getId());
+//            return "Xóa thành công";
+//        }
+//        return "Không tìm thấy hoá đơn";
+//    }
 
-            trangThaiGiaoHangRepository.deleteByHoaDonId(entity);
-            hoaDonRepository.deleteHoaDon(entity.getId());
-            return "Xóa thành công";
-        }
-        return "Không tìm thấy hoá đơn";
+    @Override
+    public void delete(String ma) {
+        HoaDonEntity hoaDonEntity = hoaDonRepository.findByMa(ma);
+        hoaDonEntity.setTrangThai("HUYDON");
+        hoaDonRepository.save(hoaDonEntity);
     }
+
 }

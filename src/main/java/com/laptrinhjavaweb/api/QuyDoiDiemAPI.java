@@ -29,4 +29,15 @@ public class QuyDoiDiemAPI {
         List<QuyDoiDiemResponse> results = quyDoiDiemService.saveOrUpdate(requests);
         return new ResponseEntity<>(results, HttpStatus.CREATED);
     }
+
+    @GetMapping("/diem-to-tien")
+    public double DiemQuyRaTien(@RequestParam int diem) {
+        return quyDoiDiemService.DiemQuyRaTien(diem);
+    }
+
+    // API quy đổi tiền ra điểm
+    @GetMapping("/tien-to-diem")
+    public double TienQuyDiem(@RequestParam double tien) {
+        return quyDoiDiemService.TienQuyDiem(tien);
+    }
 }

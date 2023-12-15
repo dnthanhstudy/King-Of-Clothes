@@ -51,7 +51,7 @@
                     <div class="col-lg-2">
                         <span style="color: white; background-color: #c17a74; border: 1px solid #c17a74; padding: 5px">Điểm</span>
                     </div>
-                    <input type="hidden" value="Tiền quy ra điểm" name="loai">
+                    <input type="hidden" value="TIENQUYDIEM" name="loai">
                 </div>
             </form>
 
@@ -82,7 +82,7 @@
                     <div class="col-lg-2">
                         <span style="color: white; background-color: #3AB54B; border: 1px solid #3AB54B; padding: 5px">VND</span>
                     </div>
-                    <input type="hidden" value="Điểm quy ra tiền" name="loai">
+                    <input type="hidden" value="DIEMQUYTIEN" name="loai">
                 </div>
             </form>
 
@@ -107,7 +107,7 @@
                 } else {
                     $.each(req, (index, item) => {
                         console.log(item)
-                        if (item.loai === 'Tiền quy ra điểm') {
+                        if (item.loai === 'TIENQUYDIEM') {
                             $("#tien-quy-ra-diem input[name='id']").val(item.id),
                             $("#tien-quy-ra-diem input[name='tien']").val(item.tien),
                             $("#tien-quy-ra-diem input[name='diem']").val(item.diem),

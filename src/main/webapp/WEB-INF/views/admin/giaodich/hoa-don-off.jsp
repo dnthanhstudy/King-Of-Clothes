@@ -64,8 +64,8 @@
                         <h4>Danh sách hóa đơn</h4>
                         <select name="" id="trangThai" class="form-control" style="width: 150px">
                             <option value="TREO">Chờ thanh toán</option>
-                            <option value="">Đã thanh toán</option>
-                            <option value="">Đã hủy</option>
+                            <option value="THANHCONG">Đã thanh toán</option>
+                            <option value="HUYDON">Đã hủy</option>
                         </select>
                     </div>
                 </div>
@@ -163,8 +163,9 @@
         });
     });
 
+
     $('.tbody-hoadon').on('click', (e) => {
-        if ($(e.target).hasClass('btn-delete')) {
+        if($(e.target).hasClass('btn-delete')){
             let ma = $(e.target).val();
             showConfirm("Bạn có muốn xóa?", ma)
                 .then((confirmed) => {
@@ -173,7 +174,6 @@
                             url: '/api/hoa-don-off/' + ma,
                             method: 'DELETE',
                             success: function (req) {
-                                console.log(req);
                                 getHoaDon(trangThai);
                                 showSuccess("Xoá thành công!");
                             },
@@ -184,8 +184,7 @@
                     }
                 })
         }
-    });
-
+    })
 </script>
 </body>
 </html>
