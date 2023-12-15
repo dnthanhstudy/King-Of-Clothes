@@ -12,4 +12,8 @@ public class HoaDonResquest{
     private String trangThai = "ACTIVE";
 
     private String loai;
+
+    private Double tienKhachTra;
+
+    private Double tongTienHang;
 }

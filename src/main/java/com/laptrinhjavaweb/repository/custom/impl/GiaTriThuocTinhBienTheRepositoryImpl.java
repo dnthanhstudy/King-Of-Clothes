@@ -17,18 +17,22 @@ import com.laptrinhjavaweb.utils.ConnectionUtils;
 public class GiaTriThuocTinhBienTheRepositoryImpl implements GiaTriThuocTinhBienTheRepositoryCustom {
 	@Override
 	public Long findBienThe(List<Long> giaTriThuocTinhs) {
-		Long bienTheId = null;
+		List<Long> bienThes= new ArrayList<>();
 		String query = buildQuery(giaTriThuocTinhs);
 		try (Connection conn = ConnectionUtils.getConection();
 			 Statement stmt = conn.createStatement();
 			 ResultSet rs = stmt.executeQuery(query);) {
 			while (rs.next()) {
-				bienTheId = rs.getLong("idbienthe");
+				Long bienTheId = rs.getLong("idbienthe");
+				bienThes.add(bienTheId);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return bienTheId;
+		if(bienThes.isEmpty() || bienThes.size() > 1){
+			return null;
+		}
+		return bienThes.get(0);
 	}
 
 	private String buildQuery(List<Long> giaTriThuocTinhsId) {

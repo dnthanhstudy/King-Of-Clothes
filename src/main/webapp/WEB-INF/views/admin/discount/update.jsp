@@ -43,7 +43,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-3">
-                                                    <input type="datetime-local" class="form-control" id="ngayBatDau" name="val-datetime-local" >
+                                                    <input type="datetime-local" class="form-control" id="ngayBatDau" name="val-datetime-local" readonly >
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <input type="datetime-local" class="form-control" id="ngayKetThuc" name="val-datetime-local">
@@ -109,25 +109,30 @@
                                                                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="d-flex justify-content-between">
-                                                                            <hr>
-                                                                            <table class="table table-hover table-striped">
-                                                                                <thead>
-                                                                                <tr>
-                                                                                    <th scope="col"><div class="custom-control custom-checkbox ml-2">
-                                                                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                                                        <label class="custom-control-label" for="checkAll"></label>
-                                                                                    </div></th>
-                                                                                    <th scope="col">Tên SP</th>
-                                                                                    <th scope="col">Giá</th>
-                                                                                    <th scope="col">Danh muc</th>
-                                                                                    <th scope="col">Thương hiệu</th>
-                                                                                </tr>
-                                                                                </thead>
-                                                                                <tbody class="tbody-product">
-                                                                                </tbody>
-                                                                            </table>
+                                                                    <div style="max-height: 550px; overflow-y: scroll;">
+                                                                        <div class="modal-body">
+                                                                            <div class="d-flex justify-content-between">
+                                                                                <hr>
+                                                                                <table class="table table-hover table-striped">
+                                                                                    <thead>
+                                                                                    <tr>
+                                                                                        <th scope="col"><div class="custom-control custom-checkbox ml-2">
+                                                                                            <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                                                            <label class="custom-control-label" for="checkAll"></label>
+                                                                                        </div></th>
+                                                                                        <th scope="col">Tên SP</th>
+                                                                                        <th scope="col">Giá</th>
+                                                                                        <th scope="col">Danh muc</th>
+                                                                                        <th scope="col">Thương hiệu</th>
+                                                                                    </tr>
+                                                                                    </thead>
+                                                                                    <tbody class="tbody-product">
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div>
+                                                                                <ul id="pagination" class="d-flex justify-content-center"></ul>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
@@ -151,8 +156,8 @@
                                                         <div class="input-group mb-3">
                                                             <div class="input-group-prepend">
                                                                 <select  class="form-control default-select" id="trangThai" name="trangThai">
-                                                                    <option value="ACTIVE">Hoạt động</option>
-                                                                    <option value="INACTIVE">Dừng hoạt động</option>
+                                                                    <option value="ACTIVE">Đang diễn ra</option>
+                                                                    <option value="EXPIRED">Kết thúc khuyến mại</option>
                                                                     <option value="UPCOMING">Sắp diễn ra</option>
                                                                 </select>
                                                             </div>
@@ -266,6 +271,7 @@
         }
         console.log(km)
         if (validateForm()) {
+
             $.ajax({
                 url: '/api/khuyen-mai/update/'+maKM,
                 method: 'PUT',

@@ -5,16 +5,6 @@ const isEmpty = "Không được để trống. Vui lòng kiểm tra lại";
 const attributeExsits = "Thuộc tính này đã tồn tại. Xin vui lòng kiểm tra lại";
 const valueExsits = "Phần tử bạn thêm đã tồn tại. Xin vui lòng kiểm tra lại";
 
-function messageNotication(text, bg) {
-    Toastify({
-        text: text,
-        duration: 4000,
-        style: {
-            background: bg,
-        },
-        close: true,
-    }).showToast();
-}
 
 // Function generate name to slug
 function customNameToSlug(name) {

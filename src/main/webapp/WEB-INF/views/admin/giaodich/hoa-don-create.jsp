@@ -12,115 +12,93 @@
     <title>Thêm Hóa Đơn</title>
 </head>
 <body>
-<%--xem chi tiết--%>
 <div class="offcanvas offcanvas-end w-50" style="border-bottom-left-radius: 30px;border-top-left-radius: 30px "
      data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header mt-3 ms-3">
-        <h4 class="offcanvas-title font-weight-bold" id="staticBackdropLabel">Áo polo nam aelimited</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="row">
-            <nav class="mt-3">
-                <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
-                    </button>
-                    <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
-                            data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
-                            aria-selected="false">Mô tả sản phẩm
-                    </button>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
-                     tabindex="0">
-                    <div class="row mt-3">
-                        <div class="col-md-4">
-                            <img src="/template/web/img/anh2.png" class="img-fluid" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row p-2">
-                                <div class="col-3">
-                                    <h5>Giá bán:</h5>
-                                </div>
-                                <div class="col-9">
-                                    <h4 class="text-cyan">250,000</h4>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-3">
-                                    <h5>Số lượng:</h5>
-                                </div>
-                                <div class="col-3">
-                                    <div class="input-group">
-                                        <button class="btn text-light " style="background-color: #EB8153"><i
-                                                class="fa fa-minus"></i></button>
-                                        <input type="text" class="form-control" style="text-align: center" value="1">
-                                        <button class="btn text-light " style="background-color: #EB8153"><i
-                                                class="fa fa-plus"></i></button>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5><span>Tồn: 101</span> <span class="ms-4">| Có thể bán: 101</span></h5>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-2">
-                                    <h5>Size:</h5>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">M</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <div class="col-2">
-                                    <h5>Màu:</h5>
-                                </div>
-                                <div class="col-10">
-                                    <div class="form-check mr-3 mb-2">
-                                        <input type="radio" class="form-check-input"
-                                               value="">
-                                        <label class="form-check-label">Xanh</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
-                                <h5>Thương hiệu: </h5>
-                            </div>
-                        </div>
+    <div>
+        <div class="offcanvas-header mt-3 ms-3">
+            <h4 class="offcanvas-title font-weight-bold" id="tenSanPham"></h4>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="row">
+                <nav class="mt-3">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                                type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
+                        </button>
+                        <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                aria-selected="false">Mô tả sản phẩm
+                        </button>
                     </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+                         tabindex="0">
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <img src="" id="image" class="img-fluid" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row p-2">
+                                    <div class="col-3">
+                                        <h5>Giá bán:</h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <h4 class="text-cyan" id="gia"></h4>
+                                    </div>
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <div class="col-3">
+                                        <h5>Số lượng:</h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <span id="soLuong"></span>
+                                    </div>
 
+                                </div>
+                                <div class="thuoc-tinh">
+
+                                </div>
+                                <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                    <div class="col-3">
+                                        <h5>Thương hiệu:</h5>
+                                    </div>
+                                    <div class="col-9">
+                                        <span id="tenThuongHieu"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
+                         tabindex="0"></div>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                     tabindex="0"></div>
+            </div>
+        </div>
+        <div class="offcanvas-footer">
+            <div class="row p-5">
+                <div class="text-right">
+                    <button class="btn btn-light me-3" data-bs-dismiss="offcanvas" aria-label="Close"
+                            style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
+                    </button>
+                    <button class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"
+                            style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="offcanvas-footer">
-        <div class="row p-5">
-            <div class="text-right">
-                <button class="btn btn-light me-3 " data-bs-dismiss="offcanvas" aria-label="Close"
-                        style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
-                </button>
-                <button class="btn text-light " data-bs-dismiss="offcanvas" aria-label="Close"
-                        style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
-                </button>
-            </div>
-        </div>
-    </div>
+
 </div>
 <section>
-    <div class="content-body" style="background-color: #f2eded">
+    <div class="content-body" style="background-color: #fff">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-                    <a class="btn btn-info" href="/admin/giao-dich/hoa-don-off">Danh sách hóa đơn chờ thanh toán</a>
-                    <button class="btn btn-primary btn-add-invoice">Thêm hóa đơn</button>
+                    <a class="btn" href="/admin/giao-dich/hoa-don-off" style="background-color: #dedede">Danh sách hóa đơn chờ thanh toán</a>
+                    <button class="btn btn-add-invoice" style="background-color: #dedede">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-success float-right" data-bs-toggle="modal" data-bs-target="#exampleModal"> +
@@ -132,11 +110,23 @@
                         <div class="modal-dialog  modal-fullscreen">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="">Chọn sản phẩm</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                    <h4>Chọn sản phẩm</h4>
+                                    <div class="group123 ms-5">
+                                        <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
+                                             viewBox="0 0 512 512">
+                                            <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                            <style>svg {
+                                                fill: #ebeef4
+                                            }</style>
+                                            <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                        </svg>
+                                        <input placeholder="Tìm hàng hóa" type="search" id="searchAll" class="inputghichu" style="width: 500px">
+                                    </div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                                 </div>
                                 <div class="modal-body" style="height: 700px; overflow-y: scroll;">
+                                    <p class="mt-3" id="iemty"></p>
                                     <div class="row" id="list-products">
 
                                     </div>
@@ -170,18 +160,12 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-center">
                                     <div>
                                         <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
-                                            <span class="invoice-total">245000</span>
-                                        </h4>
-                                    </div>
-
-                                    <div>
-                                        <h4 class="text-right">
-                                            <strong>Tổng số lượng sản phẩm:</strong>
                                             <span id="invoice-quantity">11</span>
+                                            <span class="invoice-total ms-4">245000</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -211,9 +195,9 @@
                                         }</style>
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                     </svg>
-                                    <input placeholder="Tìm khách hàng" type="search" class="inputghichu w-100"
+                                    <input placeholder="Tìm khách hàng" type="text" class="inputghichu w-100"
                                            id="search-customer">
-                                    <input type="text" hidden value="" id="code-customer">
+                                    <input type="hidden" value="" id="code-customer">
                                 </div>
                             </div>
                             <div class="col-3">
@@ -351,7 +335,7 @@
                                 <h5>Tiền thừa trả khách:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5>10000</h5>
+                                <h5 id="money-change">10000</h5>
                             </div>
                         </div>
                         <div class="row mt-auto">
@@ -373,13 +357,47 @@
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
 
-    function time() {
-        $('#thoiGian').text(new Date().toLocaleString());
-    }
-
     setInterval(time, 1000);
 
+    let param = '';
     let pageCurrent = 1;
+    loadAllProduct();
+
+    loadHoaDon();
+
+    $('.btn-add-invoice').on('click', function (e) {
+        e.preventDefault();
+        let data = {};
+        data['maNhanVien'] = ma;
+        data['trangThai'] = "TREO";
+        data['loai'] = "Offline";
+
+        $.ajax({
+            url: "/api/hoa-don-off",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                showSuccess("Thêm hóa thành công");
+                window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    })
+
+    function time() {
+        var currentDate = new Date();
+        var formattedTime = ('0' + currentDate.getDate()).slice(-2) + '/'
+            + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '/'
+            + currentDate.getFullYear() + ' '
+            + ('0' + currentDate.getHours()).slice(-2) + ':'
+            + ('0' + currentDate.getMinutes()).slice(-2)+ ':'
+            + ('0' + currentDate.getSeconds()).slice(-2);
+        $('#thoiGian').text(formattedTime);
+    }
 
     function loadAllProduct() {
         $.ajax({
@@ -427,8 +445,8 @@
                         htmlThuocTinh += `</div>`;
                     })
                     htmlThuocTinh += `</div>
-                                        <div class="text-right">
-                                             <button class="btn btn-outline-info me-4 btn-buy-product">Mua ngay</button>
+                                        <div class="text-right mt-auto mb-2">
+                                             <button class="btn me-4 btn-buy-product" style="background-color: #EB8153; color: #fff">Mua ngay</button>
                                         </div>
                                         <div class="data-server">
                                              <input type="hidden" id="product-id" value="\${item.id}">
@@ -450,7 +468,7 @@
                         $(item).html(formattedValue);
                     }
                 });
-
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -459,7 +477,11 @@
                         if (page !== pageCurrent) {
                             event.preventDefault();
                             pageCurrent = page;
-                            loadAllProduct();
+                            if(param != ''){
+                                searchSanPham(param)
+                            }else{
+                                loadAllProduct();
+                            }
                         }
                     },
                 });
@@ -551,7 +573,206 @@
         });
     }
 
-    loadAllProduct();
+
+    function searchSanPham(param){
+        $.ajax({
+            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit=12",
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: (response) => {
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy sản phẩm nào như thế !")
+                    $('#list-products').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#list-products').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    let html = '';
+                    $.each(response.data, (index, item) => {
+                        const lenAttrbute = item.thuocTinh.length;
+                        let htmlcoupon = '';
+                        if (item.khuyenMaiHienThiResponse !== null) {
+                            htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+                                        <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                        } else {
+                            htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                        }
+                        html += `<div class="col-lg-6">
+                        <div class="card card-item-product mb-3" style=" height: 375px">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
+                        html += htmlcoupon;
+                        html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
+
+                        let htmlThuocTinh = `<div class="row mt-2">`;
+                        $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                            htmlThuocTinh += `<div class="col-3">
+                                            <label class="ms-3">\${itemThuocTinh.ten} :</label>
+                                          </div>
+                                          <div class="col-9 d-flex">`;
+
+                            $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                                htmlThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                <input name="giatrithuoctinh-thuoctinh-\${itemThuocTinh.id}" id="\${itemGiaTriThuocTinh.id}" type="radio" class="form-check-input"
+                                                       value="\${itemGiaTriThuocTinh.id}">
+                                                <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
+                                               </div>`;
+                            })
+                            htmlThuocTinh += `</div>`;
+                        })
+                        htmlThuocTinh += `</div>
+                                        <div class="text-right mt-auto mb-2">
+                                             <button class="btn me-4 btn-buy-product" style="background-color: #EB8153; color: #fff">Mua ngay</button>
+                                        </div>
+                                        <div class="data-server">
+                                             <input type="hidden" id="product-id" value="\${item.id}">
+                                        </div>
+                                    </div></div>`;
+
+                        html += htmlThuocTinh;
+                    })
+                    $('#list-products').html(html);
+
+                    $('.product-price').each(function (index, item) {
+                        let res = $(item).html();
+                        if (res.indexOf("đ") === -1) {
+                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                            let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }).format(numericValue);
+                            $(item).html(formattedValue);
+                        }
+                    });
+                    $('#pagination').twbsPagination('destroy');
+                    $('#pagination').twbsPagination({
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                if(param != ''){
+                                    searchSanPham(param)
+                                }else{
+                                    loadAllProduct();
+                                }
+                            }
+                        },
+                    });
+
+                    let variantId = null;
+                    let couponId = null;
+
+                    $("#list-products").on("change", "input[type='radio']", function () {
+                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                        const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+                        if (lenChecked === lenOfAttribute) {
+                            let attributeId = [];
+                            $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
+                                attributeId.push(parseInt($(this).val()));
+                            })
+                            $.ajax({
+                                url: "/api/bien-the",
+                                method: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(attributeId),
+                                success: (response) => {
+                                    variantId = response.id;
+                                    couponId = response.khuyenMaiHienThiResponse.id;
+                                    $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                    if (response.hinhAnh !== null) {
+                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                    }
+                                    if (response.khuyenMaiHienThiResponse !== null) {
+                                        $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+                                    }
+
+                                    $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
+                                        let res = $(item).html();
+                                        if (res.indexOf("đ") === -1) {
+                                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                                            let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(numericValue);
+                                            $(item).html(formattedValue);
+                                        }
+                                    });
+                                },
+                                error: (error) => {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    });
+
+                    $('.btn-buy-product').on('click', function () {
+                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                        if (variantId !== null || lenOfAttribute === 0) {
+                            let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
+                            let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
+                            let productId = parseInt($(this).closest('.card-item-product').find('#product-id').val());
+
+                            let data = {};
+                            data['maHoaDon'] = maHoaDon;
+                            data['soLuong'] = 1;
+                            data['idSanPham'] = productId;
+                            data['idBienThe'] = variantId;
+                            data['idKhuyenMai'] = couponId;
+                            data['gia'] = productBuy;
+                            data['thanhTien'] = productBuy;
+
+                            addProductInvoice(data,
+                                function (response) {
+                                    variantId = null;
+                                    couponId = null;
+                                    $('#list-products').find('input[type=radio]').prop('checked', false);
+                                    showSuccess("Thêm sản phẩm vào hóa đơn thành công");
+                                    loadHoaDon()
+                                },
+                                function (error) {
+                                    console.log(error)
+                                }
+                            );
+                        } else {
+                            showError("Vui lòng chọn sản phẩm");
+                        }
+                    })
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        var searchButton = $('#searchAll');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                param = searchButton.val();
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
+                }
+                searchSanPham(param);
+            }
+        });
+    });
+
 
     $('#btn-add-customer').on('click', () => {
         let dataForm = $('#form-data-customer').serializeArray();
@@ -582,17 +803,18 @@
 
     let customers = [];
     $.ajax({
-        url: '/api/khach-hang',
+        url: '/api/khach-hang/all',
+        method: "GET",
         dataType: "json",
         success: function (response) {
-            $.each(response, function (index, item) {
+            $.each(response.data, function (index, item) {
                 let customer = {
-                    "value": item.soDienThoai,
-                    "ten": item.ten,
+                    "value": item.soDienThoai + " - " + item.ten,
                     "id": item.id
                 }
                 customers.push(customer);
             })
+            //console.log(customers)
             loadSuggestions(customers);
         },
         error: function (error) {
@@ -603,20 +825,13 @@
     function loadSuggestions(options) {
         $('#search-customer').autocomplete({
             lookup: options,
+            minChars: 0,
             onSelect: function (suggestion) {
                 $('#code-customer').val(suggestion.id);
-                console.log($('#code-customer').val())
-                $('#search-customer').val(suggestion.value + " - " + suggestion.ten);
+                $('#search-customer').val(suggestion.value);
             }
         });
     }
-
-    $('.btn-add-invoice').on('click', () => {
-        showSuccess("Tạo hóa đơn thành công");
-        window.location.href = "/admin/giao-dich/create";
-    });
-
-    loadHoaDon();
 
     function loadHoaDon() {
         $.ajax({
@@ -627,11 +842,16 @@
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = '';
+                if(response.tienThua === null){
+                    $('#money-change').text(0);
+                }else{
+                    $('#money-change').text(response.tienThua);
+                }
                 if (response.hoaDonChiTiet.length > 0) {
                     $.each(response.hoaDonChiTiet, (index, item) => {
                         totalInvoice += item.thanhTien;
                         toatlQuantity += item.soLuong;
-                        html += `<div class="card card-body mb-2" style="border-radius: 10px;">
+                        html += `<div class="card card-body mb-2 card-body-invoice-detail" style="border-radius: 10px;">
                                     <div class="row">
                                         <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
@@ -641,7 +861,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                        <div class="col-xl-4 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
                                                     <span>Tên sản phẩm</span>
@@ -650,14 +870,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
                                                     <span>Số lượng</span>
-                                                    <div class="input-group w-50">
-                                                        <button class="btn text-light" id="btn-add-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
-                                                        <input type="text" class="form-control" style="text-align: center" value="\${item.soLuong}"/>
-                                                        <button class="btn text-light" id="btn-remove-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
+                                                    <div class="input-group w-100 action">
+                                                        <button class="btn text-light btn-remove-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
+                                                        <input type="text" class="form-control invoice-detail-quantity" style="text-align: center" value="\${item.soLuong}"/>
+                                                        <button class="btn text-light btn-add-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -687,14 +907,14 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item" href="">Xóa</a>
-                                                        <a class="dropdown-item" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
+                                                        <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
                                 </div>
-                                <input type="hidden" name="" id="invoice-detail" value="\${item.id}}">
                                 `;
 
                         $('#invoice-non').hide();
@@ -703,9 +923,85 @@
                         $('#invoice').html(html);
                         $('.invoice-total').text(totalInvoice);
                         $('#invoice-quantity').text(toatlQuantity);
+
+                        $('.invoice-detail-seen').on('click', function () {
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            console.log(invoiceDetailId);
+                            $.ajax({
+                                url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                method: "GET",
+                                dataType: "json",
+                                success: (response) => {
+                                    $("#tenSanPham").text(response.tenSanPham);
+                                    $("#gia").text(response.gia);
+                                    $("#soLuong").text(response.soLuong);
+                                    $("#tenThuongHieu").text(response.tenThuongHieu);
+                                    $("#image").attr('src', '/assets/images/sanpham/' + response.image);
+                                    const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
+                                    let htmlThuocTinh = '';
+                                    $.each(response.thuocTinh, (index, item) => {
+                                        htmlThuocTinh += `<div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px"><div class="col-3"><h5>\${item.ten}:</h5></div>
+                                                                    <div class="col-9 d-flex"> `
+
+                                        let htmlGiaTriThuocTinh = '';
+                                        $.each(item.giaTriThuocTinh, (index, item1) => {
+                                            let checked = giaTriThuocTinhChecked.includes(item1.id) ? "checked" : "";
+                                            htmlGiaTriThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                                        <input type="radio" class="form-check-input"
+                                                                               value="\${item1.id}"  \${checked}>
+                                                                        <label class="form-check-label">\${item1.giaTri}</label>
+                                                                    </div>`
+
+                                        })
+                                        htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + '</div></div>';
+                                    })
+                                    $(".thuoc-tinh").html(htmlThuocTinh)
+                                },
+                                error: (error) => {
+                                }
+                            })
+
+                        })
+
+                        $('.btn-add-product').on('click', function () {
+                            let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
+                            quantity += 1;
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity)
+                        })
+
+                        $('.btn-remove-product').on('click', function () {
+                            let quantityElement = $(this).closest('.action').find('.invoice-detail-quantity');
+                            let quantity = parseInt(quantityElement.val());
+                            if (quantity === 1) {
+                                showError("Số lượng không thể nhỏ hơn 1. Không thể giảm thêm nữa.")
+                                return;
+                            }
+                            quantity -= 1;
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity);
+                        });
+
+                        $('.invoice-detail-quantity').on('input', function () {
+                            let inputValue = $(this).val();
+                            if (!(/^\d+$/.test(inputValue))) {
+                                inputValue = inputValue.replace(/[^\d]/g, '');
+                                $(this).val(inputValue);
+                            }
+                            let quantity = parseInt(inputValue);
+                            if (isNaN(quantity) || quantity === 0) {
+                                quantity = 1;
+                                $(this).val(quantity);
+                            }
+
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity);
+                        });
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
+                    $('.invoice-total').text(0);
+
                 }
             },
             error: (error) => {
@@ -728,7 +1024,24 @@
             }
         });
     }
+
+    function updateQuantity(id, quantity) {
+        $.ajax({
+            url: "/api/hoa-don-chi-tiet/" + id,
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(quantity),
+            success: (response) => {
+                showSuccess("Cập nhật số lượng hóa đơn thành công")
+                loadHoaDon()
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });
+    }
+
 </script>
-<script src="<c:url value='/template/autocomplete/jquery.autocomplete.js'/>"></script>
+
 </body>
 </html>

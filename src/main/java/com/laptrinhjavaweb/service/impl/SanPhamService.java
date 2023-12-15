@@ -45,7 +45,7 @@ public class SanPhamService implements ISanPhamService{
 	private IBienTheService bienTheService;
 
 	@Override
-	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug) {
+	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> fliters, String slug) {
 		Map<String, Object> results = new HashMap<>();
 		Boolean isAll = false;
 		Page<SanPhamEntity> page = null;
@@ -56,14 +56,14 @@ public class SanPhamService implements ISanPhamService{
 			page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE,wholePage);
 		}else {
 			Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-			if(param != null || params != null || slug != null) {
+			if(param != null || fliters != null || slug != null) {
 				List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
 				if(param != null) {
-					listSanPhamEntity = sanPhamRepository.seachs(param);
-				}else if(params != null && !params.isEmpty()){
-					listSanPhamEntity = sanPhamRepository.filters(params);
+					listSanPhamEntity = sanPhamRepository.seachs(param, fliters);
+				}else if(slug != null){
+					listSanPhamEntity = sanPhamRepository.categories(slug, fliters);
 				}else{
-					listSanPhamEntity = sanPhamRepository.findByDanhMuc_slugAndTrangThai(slug, SystemConstant.ACTICE);
+					listSanPhamEntity = sanPhamRepository.filters(fliters);
 				}
 				int sizeOfListSanPhamEntity = listSanPhamEntity.size();
 				int start = (int) pageable.getOffset();

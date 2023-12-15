@@ -145,6 +145,9 @@
 
                 $("#selectChucVu option").each(function(i){
                     $(this).prop('selected', $(this).val() === (req.chucVu && req.chucVu.ma));
+                    if($(this).val() === req.chucVu.ma){
+                        $(this).prop("selected", true);
+                    }
                 });
             },
             error: function (xhr, status, error) {

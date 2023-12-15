@@ -48,6 +48,11 @@ public class DashboardController {
         return "admin/setting/slider";
     }
 
+
+    @GetMapping("/xuat-hoa-don")
+    public String xuathoadon() {
+        return "admin/xuat-hoa-don";
+    }
 }
 
 
