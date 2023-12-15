@@ -2,12 +2,15 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -112,6 +115,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     DoanhThuBanHangResponse doanhThuNam();
 
     List<HoaDonEntity> findAllByTrangThai(String trangThai);
+
+//    Page<HoaDonEntity> findAllByTrangThai(String trangThai, Pageable pageable);
 
     @Modifying
     @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")

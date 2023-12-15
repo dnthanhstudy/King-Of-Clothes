@@ -112,7 +112,7 @@
                                 <div class="modal-header">
                                     <h4>Chọn sản phẩm</h4>
                                     <div class="group123 ms-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
+                                        <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
                                              viewBox="0 0 512 512">
                                             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                             <style>svg {
@@ -120,12 +120,13 @@
                                             }</style>
                                             <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                         </svg>
-                                        <input placeholder="Tìm hàng hóa" type="search" class="inputghichu" style="width: 500px">
+                                        <input placeholder="Tìm hàng hóa" type="search" id="searchAll" class="inputghichu" style="width: 500px">
                                     </div>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                                 </div>
                                 <div class="modal-body" style="height: 700px; overflow-y: scroll;">
+                                    <p class="mt-3" id="iemty"></p>
                                     <div class="row" id="list-products">
 
                                     </div>
@@ -356,10 +357,10 @@
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
 
-    let pageCurrent = 1;
-
     setInterval(time, 1000);
 
+    let param = '';
+    let pageCurrent = 1;
     loadAllProduct();
 
     loadHoaDon();
@@ -467,7 +468,7 @@
                         $(item).html(formattedValue);
                     }
                 });
-
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -476,7 +477,11 @@
                         if (page !== pageCurrent) {
                             event.preventDefault();
                             pageCurrent = page;
-                            loadAllProduct();
+                            if(param != ''){
+                                searchSanPham(param)
+                            }else{
+                                loadAllProduct();
+                            }
                         }
                     },
                 });
@@ -567,6 +572,207 @@
             }
         });
     }
+
+
+    function searchSanPham(param){
+        $.ajax({
+            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit=12",
+            method: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: (response) => {
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy sản phẩm nào như thế !")
+                    $('#list-products').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#list-products').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    let html = '';
+                    $.each(response.data, (index, item) => {
+                        const lenAttrbute = item.thuocTinh.length;
+                        let htmlcoupon = '';
+                        if (item.khuyenMaiHienThiResponse !== null) {
+                            htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+                                        <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                        } else {
+                            htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                        }
+                        html += `<div class="col-lg-6">
+                        <div class="card card-item-product mb-3" style=" height: 375px">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                         class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
+                        html += htmlcoupon;
+                        html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
+
+                        let htmlThuocTinh = `<div class="row mt-2">`;
+                        $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                            htmlThuocTinh += `<div class="col-3">
+                                            <label class="ms-3">\${itemThuocTinh.ten} :</label>
+                                          </div>
+                                          <div class="col-9 d-flex">`;
+
+                            $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                                htmlThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                <input name="giatrithuoctinh-thuoctinh-\${itemThuocTinh.id}" id="\${itemGiaTriThuocTinh.id}" type="radio" class="form-check-input"
+                                                       value="\${itemGiaTriThuocTinh.id}">
+                                                <label for="\${itemGiaTriThuocTinh.id}" class="form-check-label">\${itemGiaTriThuocTinh.giaTri}</label>
+                                               </div>`;
+                            })
+                            htmlThuocTinh += `</div>`;
+                        })
+                        htmlThuocTinh += `</div>
+                                        <div class="text-right mt-auto mb-2">
+                                             <button class="btn me-4 btn-buy-product" style="background-color: #EB8153; color: #fff">Mua ngay</button>
+                                        </div>
+                                        <div class="data-server">
+                                             <input type="hidden" id="product-id" value="\${item.id}">
+                                        </div>
+                                    </div></div>`;
+
+                        html += htmlThuocTinh;
+                    })
+                    $('#list-products').html(html);
+
+                    $('.product-price').each(function (index, item) {
+                        let res = $(item).html();
+                        if (res.indexOf("đ") === -1) {
+                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                            let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }).format(numericValue);
+                            $(item).html(formattedValue);
+                        }
+                    });
+                    $('#pagination').twbsPagination('destroy');
+                    $('#pagination').twbsPagination({
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                if(param != ''){
+                                    searchSanPham(param)
+                                }else{
+                                    loadAllProduct();
+                                }
+                            }
+                        },
+                    });
+
+                    let variantId = null;
+                    let couponId = null;
+
+                    $("#list-products").on("change", "input[type='radio']", function () {
+                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                        const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+                        if (lenChecked === lenOfAttribute) {
+                            let attributeId = [];
+                            $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
+                                attributeId.push(parseInt($(this).val()));
+                            })
+                            $.ajax({
+                                url: "/api/bien-the",
+                                method: "POST",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(attributeId),
+                                success: (response) => {
+                                    variantId = response.id;
+                                    couponId = response.khuyenMaiHienThiResponse.id;
+                                    $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                    if (response.hinhAnh !== null) {
+                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                    }
+                                    if (response.khuyenMaiHienThiResponse !== null) {
+                                        $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+                                    }
+
+                                    $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
+                                        let res = $(item).html();
+                                        if (res.indexOf("đ") === -1) {
+                                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                                            let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(numericValue);
+                                            $(item).html(formattedValue);
+                                        }
+                                    });
+                                },
+                                error: (error) => {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    });
+
+                    $('.btn-buy-product').on('click', function () {
+                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+                        if (variantId !== null || lenOfAttribute === 0) {
+                            let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
+                            let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
+                            let productId = parseInt($(this).closest('.card-item-product').find('#product-id').val());
+
+                            let data = {};
+                            data['maHoaDon'] = maHoaDon;
+                            data['soLuong'] = 1;
+                            data['idSanPham'] = productId;
+                            data['idBienThe'] = variantId;
+                            data['idKhuyenMai'] = couponId;
+                            data['gia'] = productBuy;
+                            data['thanhTien'] = productBuy;
+
+                            addProductInvoice(data,
+                                function (response) {
+                                    variantId = null;
+                                    couponId = null;
+                                    $('#list-products').find('input[type=radio]').prop('checked', false);
+                                    showSuccess("Thêm sản phẩm vào hóa đơn thành công");
+                                    loadHoaDon()
+                                },
+                                function (error) {
+                                    console.log(error)
+                                }
+                            );
+                        } else {
+                            showError("Vui lòng chọn sản phẩm");
+                        }
+                    })
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        var searchButton = $('#searchAll');
+        pageCurrent = 1;
+        searchButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                param = searchButton.val();
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
+                }
+                searchSanPham(param);
+            }
+        });
+    });
+
 
     $('#btn-add-customer').on('click', () => {
         let dataForm = $('#form-data-customer').serializeArray();
@@ -765,21 +971,32 @@
                         })
 
                         $('.btn-remove-product').on('click', function () {
-                            let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
+                            let quantityElement = $(this).closest('.action').find('.invoice-detail-quantity');
+                            let quantity = parseInt(quantityElement.val());
+                            if (quantity === 1) {
+                                showError("Số lượng không thể nhỏ hơn 1. Không thể giảm thêm nữa.")
+                                return;
+                            }
                             quantity -= 1;
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
-                            updateQuantity(invoiceDetailId, quantity)
-                        })
+                            updateQuantity(invoiceDetailId, quantity);
+                        });
 
-                        // $('.invoice-detail-quantity').on('input', function () {
-                        //     let quantity = parseInt($(this.val()));
-                        //     if (isNaN(quantity) || quantity < 1 || !Number.isInteger(quantity)) {
-                        //         showError("Số lượng sản phẩm không hợp lệ. Xin kiểm tra lại")
-                        //     }else{
-                        //         let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
-                        //         updateQuantity(invoiceDetailId, quantity)
-                        //     }
-                        // });
+                        $('.invoice-detail-quantity').on('input', function () {
+                            let inputValue = $(this).val();
+                            if (!(/^\d+$/.test(inputValue))) {
+                                inputValue = inputValue.replace(/[^\d]/g, '');
+                                $(this).val(inputValue);
+                            }
+                            let quantity = parseInt(inputValue);
+                            if (isNaN(quantity) || quantity === 0) {
+                                quantity = 1;
+                                $(this).val(quantity);
+                            }
+
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            updateQuantity(invoiceDetailId, quantity);
+                        });
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
