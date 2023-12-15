@@ -5,11 +5,13 @@ import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import com.laptrinhjavaweb.service.ISanPhamService;
+import com.laptrinhjavaweb.utils.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +51,7 @@ public class SanPhamAPI {
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit,
 			@RequestParam Map<String, Object> filters){
+		MapUtils.deleteKeyFromMap(filters);
 		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, filters, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
@@ -59,9 +62,12 @@ public class SanPhamAPI {
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit,
 			@RequestParam Map<String, Object> filters){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, slug);
-		if(results == null) {
-			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
+		MapUtils.deleteKeyFromMap(filters);
+		Map<String, Object> results = new HashMap<>();
+		if(filters == null || filters.isEmpty()){
+			results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, null, null);
+		}else{
+			results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, null);
 		}
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
@@ -72,9 +78,6 @@ public class SanPhamAPI {
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			@RequestParam(name = "limit", required = false, defaultValue = "2") Integer limit){
 		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, null);
-		if(results == null) {
-			return new ResponseEntity<>("Không tìm thấy kết quả phù hợp!", HttpStatus.OK);
-		}
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
