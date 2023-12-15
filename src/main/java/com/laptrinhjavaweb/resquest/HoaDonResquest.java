@@ -7,9 +7,23 @@ import lombok.Setter;
 @Setter
 public class HoaDonResquest{
 
+    private Long id;
+
+    private String ma;
+
     private String maNhanVien;
 
     private String trangThai = "ACTIVE";
 
+    private String phuongThucThanhToan;
+
     private String loai;
+
+    private Double tienKhachTra;
+
+    private Double tongTienHang;
+
+    private Double tienGiamGia;
+
+    private String maKhachHang;
 }

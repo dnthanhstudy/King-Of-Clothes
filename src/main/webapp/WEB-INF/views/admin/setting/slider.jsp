@@ -69,6 +69,7 @@
                             </tr>`;
                     tbody.append(row);
                 });
+                $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     first: "First",
                     prev: "Previous",

@@ -24,6 +24,7 @@
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </a>
             </div>
+
             <div class="p-2">
                 <button type="button" class="buttonExport" id="exportButton">
                     <span class="button__text">Export</span>
@@ -58,27 +59,35 @@
         <div class="card" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         padding: 20px; background-color: #fff">
             <div class="row ">
-                <div class="col-9">
-                    <h4>Danh sách hóa đơn</h4>
+                <div class="col">
+                    <div class="d-flex justify-content-between">
+                        <h4>Danh sách hóa đơn</h4>
+                        <select name="" id="trangThai" class="form-control" style="width: 150px">
+                            <option value="TREO">Chờ thanh toán</option>
+                            <option value="">Đã thanh toán</option>
+                            <option value="">Đã hủy</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <hr>
             <div class="d-flex justify-content-between">
                 <hr>
-                <table class="table table-hover" >
+                <table class="table table-hover" id="tblHoaDonOff">
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa đơn</th>
                         <th scope="col">Khách hàng</th>
-                        <th scope="col">Ngày đặt</th>
+                        <th scope="col">Nhân viên</th>
+                        <th scope="col">Ngày mua</th>
                         <th scope="col">Tổng tiền hàng</th>
-                        <th scope="col">Phương thức</th>
-                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Tiền khách trả</th>
+                        <th scope="col">Tiền thừa</th>
                         <th scope="col">Thao tác</th>
                     </tr>
                     </thead>
-                    <tbody >
+                    <tbody class="tbody-hoadon">
                     </tbody>
                 </table>
             </div>
@@ -108,6 +117,75 @@
             }
         });
     })
+
+    var trangThai = $('#trangThai option:selected').val();
+    function getHoaDon(value){
+        $.ajax({
+            url: "/api/hoa-don-off/find-by-status?trangThai=" + value,
+            method: "GET",
+            success: (response) => {
+                var tbody = $('#tblHoaDonOff tbody');
+                tbody.empty();
+                var index = 0;
+                response.forEach(function(item) {
+                    console.log(response)
+                    var row = `
+                            <tr>
+                                <td>\${++index}</td>
+                                <td>\${item.ma}</td>
+                                 <td>\${item.khachHang}</td>
+                                 <td>\${item.tenNhanVien}</td>
+                                 <td>\${getFormattedDate(item.ngayTao)}</td>
+                                 <td>\${item.tongTienHang}</td>
+                                 <td>\${item.tienKhachTra}</td>
+                                 <td>\${item.tienThua}</td>
+                                 <td>
+                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info">Chi tiết</a>
+                                    <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                 </td>
+                            </tr>
+                        `;
+                    tbody.append(row);
+                });
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+
+    }
+    getHoaDon(trangThai);
+
+    $(document).ready(function(){
+        $("#trangThai").change(function(){
+            var selectedValue = $(this).val();
+            getHoaDon(selectedValue);
+        });
+    });
+
+    $('.tbody-hoadon').on('click', (e) => {
+        if ($(e.target).hasClass('btn-delete')) {
+            let ma = $(e.target).val();
+            showConfirm("Bạn có muốn xóa?", ma)
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: '/api/hoa-don-off/' + ma,
+                            method: 'DELETE',
+                            success: function (req) {
+                                console.log(req);
+                                getHoaDon(trangThai);
+                                showSuccess("Xoá thành công!");
+                            },
+                            error: function (xhr, status, error) {
+                                showError("Xóa thất bại");
+                            }
+                        });
+                    }
+                })
+        }
+    });
+
 </script>
 </body>
 </html>

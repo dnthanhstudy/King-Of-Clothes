@@ -15,7 +15,7 @@
 <body>
 <div class="menu">
     <ul class="nav justify-content-center">
-        <li class="nav-item ms-3">
+        <li class="nav-item">
             <a class="nav-link " href="/web/all">Tất cả</a>
         </li>
         <li class="nav-item ms-5">
@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                                 <div class="my-2 text-right">
-                                    <button class="btn btn-secondary" >Xem đơn hàng</button>
+                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang">Xem đơn hàng</a>
                                 </div>
                             </div>
                         </div>

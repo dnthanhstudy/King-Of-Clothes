@@ -2,7 +2,7 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.model.response.GioHangResponse;
-import com.laptrinhjavaweb.model.response.TongTienResponse;
+import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

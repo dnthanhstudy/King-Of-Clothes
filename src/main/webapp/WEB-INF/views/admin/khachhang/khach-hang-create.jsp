@@ -136,7 +136,7 @@
             data: JSON.stringify(data),
             success: (response) => {
                 window.location.href = '/admin/khach-hang';
-                console.log("success");
+                showSuccess("Thêm thành công")
             },
             error: (error) => {
                 showError(error.responseJSON.error);

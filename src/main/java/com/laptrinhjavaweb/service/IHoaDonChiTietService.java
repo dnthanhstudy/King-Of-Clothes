@@ -10,4 +10,6 @@ public interface IHoaDonChiTietService {
     void update(Long id, Integer soLuong);
 
     HoaDonChiTietResponse findById(Long id);
+
+    void delete(Long id);
 }

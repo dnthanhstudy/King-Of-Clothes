@@ -48,4 +48,9 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         HoaDonChiTietEntity hoaDonChiTietEntity = hoaDonChiTietRepository.findById(id).get();
         return hoaDonChiTietConverter.convertToResponse(hoaDonChiTietEntity);
     }
+
+    @Override
+    public void delete(Long id) {
+        hoaDonChiTietRepository.deleteById(id);
+    }
 }

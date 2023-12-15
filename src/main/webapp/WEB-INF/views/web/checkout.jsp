@@ -153,10 +153,10 @@
                 <div class="col-2">
                     <span>Đơn giá</span>
                 </div>
-                <div class="col-2">
+                <div class="col-1">
                     <span>Số lượng</span>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <span>Thành tiền</span>
                 </div>
             </div>
@@ -246,14 +246,14 @@
                 </div>
             </div>
             <div class="row" style="border-bottom: 1px solid #dedede;">
-                <div class="form-check ms-3 my-3" id="mbBankRadio">
+                <div class="form-check ms-3 my-3" id="vidientuRadio">
                     <input class="form-check-input" type="radio" name="payment" id="exampleRadios1" value="mbb" checked>
                     <label class="form-check-label" for="exampleRadios1">
                         <img src="/template/web/img/cashinwallet-dd94.png" style="width: 70px;height: 70px" alt=""> Ví điện tử :
                         <b id="soduvi">22000 VND</b>
                     </label>
                 </div>
-                <div class="form-check ms-3 my-3" id="vpBankRadio">
+                <div class="form-check ms-3 my-3" id="palpalRadio">
                     <input class="form-check-input" type="radio" name="payment" id="exampleRadios2" value="paypal">
                     <label class="form-check-label" for="exampleRadios2">
                         <img src="/template/web/img/pp.png" style="width: 80px;height: 70px" alt=""> PayPal
@@ -271,8 +271,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-9"></div>
-                <div class="col-3">
+                <div class="col-8"></div>
+                <div class="col-4" id="vn">
                     <div class="row my-3">
                         <div class="col-6">
                             <span>Tổng tiền hàng</span>
@@ -301,6 +301,35 @@
                         <button class="btn w-75 ms-5 text-light" style="background-color: #C3817B;" onclick="datHang()">Đặt hàng</button>
                     </div>
                 </div>
+                <div class="col-4" id="dola" style="display: none">
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <span>Tổng tiền hàng</span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span id="tongtiendola">1800000₫</span>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <span>Phí vận chuyển</span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span id="shipdola">27500₫</span>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-6">
+                            <span>Tổng thanh toán:</span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <span style="font-size: 30px; color: #C3817B" id="tongthanhtoandola">1.827.500₫</span>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <button class="btn w-75 ms-5 text-light" style="background-color: #C3817B;" onclick="datHang()">Đặt hàng</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -311,15 +340,21 @@
     <input type="hidden" name="intent" value="sale">
     <input type="hidden" name="currency" value="USD">
     <input type="hidden" name="description" value="Product Description">
-    <input type="hidden" name="price"  value="10.00">
+    <input type="hidden" name="price"  value="10.00" id="price">
     <input type="hidden" name="idkh"  value="<%=SecurityUtils.getPrincipal().getId()%>">
     <input type="hidden" name="idttmuahang" value="" id="idttmuahang">
     <input type="hidden" name="phiShip" value="" id="tienship">
+    <input type="hidden" name="tienKhachTra" value="" id="tienKhachTra">
+    <input type="hidden" name="mota" value="" id="mota">
+    <input type="hidden" name="idhd" value="" id="idhd">
     <button id="submidpaypal" type="submit">Pay with PayPal</button>
 </form>
 <script>
     var loaiDatHang = 1;
     let idkh =  <%=SecurityUtils.getPrincipal().getId()%>;
+    if (idkh==-1){
+        window.location.href= "/login?is_not_login";
+    }
     // Ẩn thanh toán khi nhận hàng khi load lại trang
     document.querySelector(".thanhtoan").style.display = "none";
 
@@ -328,19 +363,38 @@
         // Ẩn Thanh toán khi nhận hàng
         document.querySelector(".thanhtoan").style.display = "none";
         // Hiển thị radio của MB Bank và VP Bank
-        document.getElementById("mbBankRadio").style.display = "block";
-        document.getElementById("vpBankRadio").style.display = "block";
+        document.getElementById("vidientuRadio").style.display = "block";
+        document.getElementById("palpalRadio").style.display = "block";
         loaiDatHang = 1;
+        if ($('input[name=payment]:checked').val() === "mbb") {
+            $("#dola").hide();
+            $("#vn").show();
+        } else {
+            $("#dola").show();
+            $("#vn").hide();
+        }
     });
     //click thanh toán khi nhaanh hàng
     document.getElementById("codButton").addEventListener("click", function() {
         // Hiển thị thanh toán khi nhận hàng
         document.querySelector(".thanhtoan").style.display = "block";
         // Ẩn radio MB Bank và VP Bank
-        document.getElementById("mbBankRadio").style.display = "none";
-        document.getElementById("vpBankRadio").style.display = "none";
+        document.getElementById("vidientuRadio").style.display = "none";
+        document.getElementById("palpalRadio").style.display = "none";
         loaiDatHang = 2;
+
+        $("#dola").hide(); // Hiển thị phần tử có id="dola"
+        $("#vn").show();   // Ẩn phần tử có id="vn"
     });
+
+    $("#vidientuRadio").click(function () {
+        $("#dola").hide(); // Hiển thị phần tử có id="dola"
+        $("#vn").show();   // Ẩn phần tử có id="vn"
+    })
+    $("#palpalRadio").click(function () {
+        $("#dola").show(); // Hiển thị phần tử có id="dola"
+        $("#vn").hide();   // Ẩn phần tử có id="vn"
+    })
 
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
     var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
@@ -355,11 +409,11 @@
         idtt = -1;
         $("#tennguoinhanform").val('');
         $("#sdtform").val('');
-            $("#thanhpho").val(1).trigger('change.select2')
-            $("#quanhuyen").val(1).trigger('change.select2')
-            $("#xa").val(1).trigger('change.select2')
-            $("#sonha").val('')
-            $("#defaultform").prop('checked', true);
+        $("#thanhpho").val(1).trigger('change.select2')
+        $("#quanhuyen").val(1).trigger('change.select2')
+        $("#xa").val(1).trigger('change.select2')
+        $("#sonha").val('')
+        $("#defaultform").prop('checked', true);
     }
     function hoanThanh(){
         if (idtt==-1){
@@ -683,7 +737,9 @@
                 }
                 var tbody = $("#hdct");
                 tbody.empty();
-                tongTienTheoHoaDon(data[0].idhd);
+                let idhd = data[0].idhd;
+                $("#idhd").val(idhd)
+                tongTienTheoHoaDon(idhd);
                 data.forEach(function (custom) {
                     let htmlGiaTien = loadGiaTien(custom.giaTien,custom.giaTienKm);
                     var html = `
@@ -708,10 +764,10 @@
                     <div class="col-2 mt-3">
                         \${htmlGiaTien}
                     </div>
-                    <div class="col-2 mt-3">
+                    <div class="col-1 mt-3">
                         <h6 class="card-title">\${custom.soLuong}</h6>
                     </div>
-                    <div class="col-1 mt-3">
+                    <div class="col-2 mt-3">
                         <h6 class="card-title">\${convertVND(custom.tongTienHdct)}</h6>
                     </div>
                 </div>
@@ -727,7 +783,7 @@
     }
 
     function tongTienTheoHoaDon(idhd){
-         $.ajax({
+        $.ajax({
             url: 'api/user/giaohang/tongtienhd/'+idhd,
             method: 'GET',
             success: function (req) {
@@ -755,9 +811,57 @@
         var tienship = getPriceElement(".sotiengiaohang:first");
 
         //
-        $("#tongthanhtoan").html(convertVND(tongtien + tienship));
+        let tongthanhtoan = tongtien + tienship;
+        $("#tongthanhtoan").text(convertVND(tongthanhtoan));
+        $("#tienship").val(tienship);
+        $("#tienKhachTra").val(tongthanhtoan);
+
+        getPriceMy(tongtien, tienship, tongthanhtoan).then(result => {
+            $("#price").val(result.tongThanhToan)
+            $("#tongtiendola").text(convertDola(result.tongTien));
+            $("#tongthanhtoandola").text(convertDola(result.tongThanhToan));
+            $("#shipdola").text(convertDola(result.tienShip));
+        }).catch(error => {
+            console.error('Lỗi: ', error);
+        });
     }
-        tongThanhToan();
+
+    function convertDola(val) {
+        const roundedValue = Number(val).toFixed(2); // Làm tròn đến 2 chữ số sau dấu thập phân
+        return "$" + roundedValue; // Thêm dấu "$" vào trước giá trị
+    }
+
+
+
+    function getPriceMy(tongTien,tienShip,tongThanhToan) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/api/convert/test',
+                method: 'GET',
+                success: function(data) {
+                    tongTien = tongTien / data;
+                    tienShip = tienShip / data
+                    tongThanhToan = tongThanhToan / data
+
+                    const resultObject = {
+                        tongTien: tongTien,
+                        tienShip: tienShip,
+                        tongThanhToan: tongThanhToan
+                    };
+
+
+                    resolve(resultObject);
+                },
+                error: function(xhr, status, error) {
+                    showError('Có lỗi xảy ra: ' + error);
+                    reject(error);
+                }
+            });
+        });
+    }
+
+
+    // tongThanhToan();
     function datHang(){
         if ($(".sotiengiaohang").text().length === 0) {
             showError("Bạn chưa chọn địa chỉ giao hàng");
@@ -776,26 +880,17 @@
         }
     }
     function thanhtoanvi() {
-       let tongThanhToan = $("#tongthanhtoan").text();
-        var tongThanhToanStr = Number(tongThanhToan.slice(0, tongThanhToan.length - 1));
-        if (sotienvi<tongThanhToanStr){
+        let tongThanhToan = getPriceElement("#tongthanhtoan");
+        if (sotienvi<tongThanhToan){
             showError("Số tiền trong ví không đủ,vui lòng nạp thêm");
             return;
         }
-        var idttmh = $("#idttmuahang").val();
-        var tienship = $(".sotiengiaohang:first").text();
-        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
+
         $.ajax({
             url: `api/hoadon/datvidientu`,
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({
-                idkh: parseInt(idkh),
-                ttgh: parseInt(idttmh),
-                phiship: parseFloat(tienshipSubstring),
-                luuy: $("#luuychoshop").val(),
-                tongTien:tongThanhToanStr
-            }),
+            data: getThongTin(),
             success: function (req) {
                 showSuccess("Thanh toán thành công");
                 window.location.href = "/pay/success"
@@ -833,14 +928,15 @@
         });
     }
     function callPayPal(){
-        var tien = $("#tongthanhtoan").text();
-        var tienshipSubstring = Number(tien.slice(0, tien.length - 1));
-
-        $("input[name='price']").val(tienshipSubstring/23000);
-        var tienship = $(".sotiengiaohang:first").text(); // Lấy giá trị từ phần tử đầu tiên
-
-        var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
-        $("#tienship").val(tienshipSubstring)
+        // var tien = $("#tongthanhtoan").text();
+        // var tienshipSubstring = Number(tien.slice(0, tien.length - 1));
+        //
+        // $("input[name='price']").val(tienshipSubstring/23000);
+        // var tienship = $(".sotiengiaohang:first").text(); // Lấy giá trị từ phần tử đầu tiên
+        //
+        // var tienshipSubstring = Number(tienship.slice(0, tienship.length - 1));
+        // $("#tienship").val(tienshipSubstring)
+        $("input[name='mota']").val($("#luuychoshop").val());
         $("#submidpaypal").click();
     }
     var idVi;

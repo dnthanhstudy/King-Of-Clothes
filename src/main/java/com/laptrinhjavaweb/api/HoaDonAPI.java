@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/hoa-don-off")
 public class HoaDonAPI {
@@ -24,6 +26,18 @@ public class HoaDonAPI {
     @GetMapping("/{ma}")
     public ResponseEntity<?> detail(@PathVariable("ma") String ma){
         HoaDonResponse result = hoaDonService.findByMa(ma);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+//    tìm kiếm theo trạng thái
+    @GetMapping("/find-by-status")
+    public ResponseEntity<?> findByStatus(@RequestParam String trangThai){
+        List<HoaDonResponse> result = hoaDonService.findByMaStatus(trangThai);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+//  update hoa don theo ma
+    @PutMapping()
+    public ResponseEntity<?> update(@RequestBody HoaDonResquest hoaDonResquest){
+        HoaDonResponse result = hoaDonService.update(hoaDonResquest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

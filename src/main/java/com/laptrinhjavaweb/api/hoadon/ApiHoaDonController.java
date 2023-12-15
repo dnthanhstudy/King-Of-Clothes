@@ -3,6 +3,8 @@ package com.laptrinhjavaweb.api.hoadon;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
 import com.laptrinhjavaweb.model.request.ThongTinNhanHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
+import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
+import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.service.Thu3Service;
@@ -38,6 +40,15 @@ public class ApiHoaDonController {
     ApiGiaoHangController giaoHangController;
     @Autowired
     Thu3Service thu3Service;
+
+    @GetMapping("/alltt")
+    public AllThongTinHoaDon allThongTinHoaDon(@RequestParam("mahoadon") String maHoaDon){
+        return hoaDonService.allThongTinHoaDon(maHoaDon);
+    }
+    @GetMapping("/thongke")
+    public Object allThongKe(@RequestParam("thoigian") Integer thoiGian){
+        return hoaDonService.allThongKe(thoiGian);
+    }
 
     @GetMapping("/findall")
     public List<HoaDonResponse> findAllHoaDon(){

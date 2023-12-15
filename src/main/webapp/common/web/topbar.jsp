@@ -21,8 +21,8 @@
             </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="?lang=vi" class="btn border" >Việt</a>
-            <a href="?lang=en" class="btn border" >Anh</a>
+            <a href="?lang=vi" class="btn border" ><img src="/template/web/img/vietnam.jpg" style="width: 30px" alt=""></a>
+            <a href="?lang=en" class="btn border" ><img src="/template/web/img/my.jpg"  style="width: 30px" alt=""></a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="">0</span>

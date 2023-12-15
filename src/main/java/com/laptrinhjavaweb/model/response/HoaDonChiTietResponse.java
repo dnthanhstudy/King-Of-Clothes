@@ -11,6 +11,9 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.id}")
     Long getIdHdct();
 
+    @Value("#{target.hoaDon.ma}")
+    String getMaHoaDon();
+
     @Value("#{target.bienThe.sanPham.ten}")
     String getTenSanPham();
 

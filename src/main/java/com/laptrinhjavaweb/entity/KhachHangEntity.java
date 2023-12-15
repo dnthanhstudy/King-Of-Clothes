@@ -49,6 +49,12 @@ public class KhachHangEntity extends BaseEntity{
 	@Column(name = "mota")
 	private String moTa;
 
+	@Column(name = "expiretime")
+	private LocalDateTime expireTime ;
+
+	@Column(name = "resttoken")
+	private String restToken;
+
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<HoaDonEntity> hoaDonEntities  = new ArrayList<>();
 	

@@ -1,7 +1,8 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
-import com.laptrinhjavaweb.repository.NhanVienRepository;
+import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.service.ISendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 
 @Service
-public class SendEmailService implements ISendEmailService {
+public class KHSendEmailService implements ISendEmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
 
     @Autowired
-    private NhanVienRepository nhanVienRepository;
+    private KhachHangRepository khachHangRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -43,23 +44,23 @@ public class SendEmailService implements ISendEmailService {
 
     @Override
     public String generateRandomPassword() {
-        java.util.Random random = new Random();
+        Random random = new Random();
         int password = 100000 + random.nextInt(900000);
         return String.valueOf(password);
     }
 
     @Override
     public SendMailResponse processPasswordReset(String email) {
-        NhanVienEntity nhanVienEntity = nhanVienRepository.findByEmail(email);
+        KhachHangEntity khachHangEntity = khachHangRepository.findByEmail(email);
 
-        if (nhanVienEntity != null) {
+        if (khachHangEntity != null) {
             String newPassword = generateRandomPassword();
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime expireTime = now.plusMinutes(1);
-            nhanVienEntity.setRestToken(newPassword);
-            nhanVienEntity.setExpireTime(expireTime);
-            nhanVienRepository.save(nhanVienEntity);
-            sendPasswordResetEmail(nhanVienEntity.getEmail(), newPassword);
+            khachHangEntity.setRestToken(newPassword);
+            khachHangEntity.setExpireTime(expireTime);
+            khachHangRepository.save(khachHangEntity);
+            sendPasswordResetEmail(khachHangEntity.getEmail(), newPassword);
             return SendMailResponse.builder().status("Thành công").build();
         } else {
             throw new NoSuchElementException("Không tìm thấy người dùng với email: " + email);
@@ -69,18 +70,18 @@ public class SendEmailService implements ISendEmailService {
 
     @Override
     public String resetPasswordByToken(String restToken, String matKhau) {
-        NhanVienEntity nhanVienEntity = nhanVienRepository.findByRestToken(restToken);
+        KhachHangEntity khachHangEntity = khachHangRepository.findByRestToken(restToken);
 
-        if (nhanVienEntity != null) {
+        if (khachHangEntity != null) {
             LocalDateTime now = LocalDateTime.now();
-            if (nhanVienEntity.getExpireTime() != null && nhanVienEntity.getExpireTime().isBefore(now)) {
+            if (khachHangEntity.getExpireTime() != null && khachHangEntity.getExpireTime().isBefore(now)) {
                 return "Mã code đã hết hạn.";
             }
             String newPassword = passwordEncoder.encode(matKhau);
-            nhanVienEntity.setMatKhau(newPassword);
-            nhanVienEntity.setRestToken(null);
-            nhanVienEntity.setExpireTime(null);
-            nhanVienRepository.save(nhanVienEntity);
+            khachHangEntity.setMatKhau(newPassword);
+            khachHangEntity.setRestToken(null);
+            khachHangEntity.setExpireTime(null);
+            khachHangRepository.save(khachHangEntity);
 
             return "Đổi mật khẩu thành công.";
         } else {
@@ -88,4 +89,14 @@ public class SendEmailService implements ISendEmailService {
         }
     }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return khachHangRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean isValidResetToken(String resetToken) {
+        KhachHangEntity khachHangEntity = khachHangRepository.findByRestToken(resetToken);
+        return khachHangEntity != null;
+    }
 }
