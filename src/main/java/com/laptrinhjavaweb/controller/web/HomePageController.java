@@ -1,6 +1,7 @@
 package com.laptrinhjavaweb.controller.web;
 
 import com.laptrinhjavaweb.response.SanPhamResponse;
+import com.laptrinhjavaweb.service.IKhuyenMaiService;
 import com.laptrinhjavaweb.service.ISanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,14 @@ public class HomePageController {
 
     @Autowired
     private ISanPhamService sanPhamService;
+
+    @Autowired
+    private IKhuyenMaiService khuyenMaiService;
+
+    public HomePageController(IKhuyenMaiService khuyenMaiService) {
+        this.khuyenMaiService = khuyenMaiService;
+        khuyenMaiService.updateDS();
+    }
 
     @GetMapping("/trang-chu")
     public ModelAndView homePage(){

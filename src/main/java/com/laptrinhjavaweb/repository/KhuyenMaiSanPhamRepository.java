@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KhuyenMaiSanPhamRepository extends JpaRepository<KhuyenMaiSanPhamEntity, Long> {
 
-    KhuyenMaiSanPhamEntity findBySanPham_idAndTrangThai(Long idSanPham, String trangThai);
+    KhuyenMaiSanPhamEntity findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(Long idSanPham, String trangThai1, Long idSanPham2, String trangThai2);
 }

@@ -4,10 +4,7 @@ import com.laptrinhjavaweb.response.CuaHangResponse;
 import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.response.FilterResponse;
 import com.laptrinhjavaweb.response.ThuongHieuResponse;
-import com.laptrinhjavaweb.service.ICuaHangService;
-import com.laptrinhjavaweb.service.IDanhMucService;
-import com.laptrinhjavaweb.service.IThuocTinhService;
-import com.laptrinhjavaweb.service.IThuongHieuService;
+import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +28,9 @@ public class GlobalControllerAdvice {
     @Autowired
     private ICuaHangService cuaHangService;
 
+    @Autowired
+    private IKhuyenMaiService khuyenMaiService;
+
     @ModelAttribute
     public void filterResponse(Model model){
         List<FilterResponse> results = thuocTinhService.filter();
@@ -53,5 +53,9 @@ public class GlobalControllerAdvice {
     public void cuaHangResponse(Model model){
         EnumMap<CuaHangResponse, Object> results = cuaHangService.findAllInformation();
         model.addAttribute("storeInformation", results);
+    }
+    @ModelAttribute
+    public void updateKM(){
+        khuyenMaiService.updateDS();
     }
 }
