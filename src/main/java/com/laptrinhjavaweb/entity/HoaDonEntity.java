@@ -154,6 +154,10 @@ public class HoaDonEntity extends BaseEntity{
 				phuongThucThanhToan.equals("VIDIENTU")?"Ví điện tử":"Thanh toán khi nhận hàng";
 	}
 
+	public Boolean getLoaiThanhToan(){
+		return phuongThucThanhToan.equals("CHUYENKHOAN")||phuongThucThanhToan.equals("VIDIENTU");
+	}
+
 	public String getPhuongThuc(){
 		return phuongThucThanhToan;
 	}

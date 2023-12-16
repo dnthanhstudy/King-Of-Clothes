@@ -80,7 +80,7 @@
                                         <div class="mb-3">Sản phẩm khuyến mại:</div>
 
                                         <table class="table table-hover table-striped">
-                                            <tbody class="tbody-product">
+                                            <tbody class="tbody-product-select">
                                             <div id="cardSanPham">
 
                                             </div>
@@ -142,14 +142,20 @@
             $("#giaTriGiam").text(formatNumber(data.giaTri));
             var thongKe = data.thongKe;
 
-            $("#soLuongSuDung").text(thongKe.soLuongSuDung);
-            if(thongKe.soTienGiam == null){
+
+            if(thongKe.soLuongSuDung === null){
                 $("#soLuongSuDung").text("0");
+            }else{
+                $("#soLuongSuDung").text(thongKe.soLuongSuDung);
+            }
+
+            if(thongKe.soTienThuDuoc === null){
+                $("#soTienThuDuoc").text("0");
             }else{
                 $("#soTienThuDuoc").text(formatNumber(thongKe.soTienThuDuoc));
             }
-            if(thongKe.soTienGiam == null){
-                $("#soLuongSuDung").text("0");
+            if(thongKe.soTienGiam === null){
+                $("#soTienGiam").text("0");
             }else{
                 $("#soTienGiam").text(formatNumber(thongKe.soTienGiam));
             }
@@ -175,12 +181,12 @@
                             </tr>`
 
             })
-            $('.tbody-product').html(html);
+            $('.tbody-product-select').html(html);
             var cardBtn = $('#cardBtn');
             cardBtn.empty();
             if(data.trangThai != "EXPIRED"){
                 var card1 = `
-                    <div class="col-lg-3 ml-right">
+                    <div class="col-lg-3 ml-right mb-3">
                         <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật</a>
                     </div>
                 `;

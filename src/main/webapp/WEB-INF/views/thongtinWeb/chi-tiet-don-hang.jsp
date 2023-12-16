@@ -178,7 +178,7 @@
                                     <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
-                                    <h5>\${item.tenSanPham}</h5>
+                                    <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>
                                     <div class="d-flex justify-content-between">
                                         <span>Phân loại: \${item.tenBienThe} </span>
                                         <span class="text-danger">\${tenFMT}₫</span></span>

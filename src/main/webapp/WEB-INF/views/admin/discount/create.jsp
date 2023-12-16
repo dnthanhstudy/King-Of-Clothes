@@ -446,14 +446,15 @@
         if (ngayBatDau === "") {
             showError("Ngày bắt đầu trống. Vui lòng chọn giá trị");
             isValid = false;
-        }else{
-            let ngayBD = new Date(ngayBatDau);
-            let currentDate = new Date();
-            if(ngayBD < currentDate){
-                showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
-                isValid = false;
-            }
         }
+        // else{
+        //     let ngayBD = new Date(ngayBatDau);
+        //     let currentDate = new Date();
+        //     if(ngayBD < currentDate){
+        //         showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
+        //         isValid = false;
+        //     }
+        // }
         if ($("#tenKM").val() === "") {
             showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
             isValid = false;

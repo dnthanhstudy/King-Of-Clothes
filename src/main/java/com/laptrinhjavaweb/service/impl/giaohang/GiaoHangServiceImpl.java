@@ -149,7 +149,9 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         hoaDon.setThongTinDatHang(thongTinMuaHang);
         hoaDon.setPhuongThucThanhToan(pttt);
         hoaDon.setTienShip(phiShip);
-        hoaDon.setNgayThanhToan(DateUtil.dateNow());
+        if (hoaDon.getLoaiThanhToan()){
+            hoaDon.setNgayThanhToan(DateUtil.dateNow());
+        }
         hoaDon.setMoTa(mota);
         TongTienResponse response = hoaDonRepository.tongTienByHoaDon(hoaDon.getId());
         hoaDon.setTongTienHang(response.getThucTe());

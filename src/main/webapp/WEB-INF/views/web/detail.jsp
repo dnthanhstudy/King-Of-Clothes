@@ -370,6 +370,7 @@
             method: 'GET',
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")
+                getSoLuongGioHang(idkh);
             },
             error: function (xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
