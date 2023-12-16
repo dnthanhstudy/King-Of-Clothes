@@ -60,6 +60,7 @@
 
             return day + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
         }
+
         function showConfirm(message, id) {
             return new Promise((resolve) => {
                 Swal.fire({
