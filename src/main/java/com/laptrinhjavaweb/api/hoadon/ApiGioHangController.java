@@ -37,19 +37,27 @@ public class ApiGioHangController {
         return gioHangService.dsGioHangChiTietByIdKh(idkh);
     }
 
+    @GetMapping("/tongsptronggio")
+    public Long tongBienTheTrongGioHang(@RequestParam(name = "id",required = false,defaultValue = "-1")Long idkh){
+        if (idkh==-1){
+            return 0L;
+        }
+        return  gioHangService.tongSoSanPhamTrongGioHang(idkh);
+    }
+
     @PostMapping("/thaydoisoluong")
     public ResponseObject totalGioHangByKhachHang(@RequestBody ThayDoiSoLuongGioHangRequest request){
         return gioHangService.thayDoiSoLuong(request);
     }
     @PostMapping("/dathang/{idkh}")
-    public ResponseObject datHang(@PathVariable(name = "idkh") Long idkh
+    public String datHang(@PathVariable(name = "idkh") Long idkh
             ,@RequestBody Map<String, Object> requestBody){
         List<Long> dsghct = (List<Long>) requestBody.get("dsghct");
         return gioHangService.datHang(idkh,dsghct);
     }
 
     @GetMapping("/addcart")
-    public Long themSanPhamVaoGio(
+    public String themSanPhamVaoGio(
             @RequestParam("data") String params,
             @RequestParam("idkh") Long idkh,
             @RequestParam("quantity") Integer quantity

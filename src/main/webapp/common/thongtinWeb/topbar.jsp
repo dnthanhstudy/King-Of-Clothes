@@ -26,11 +26,16 @@
             <a href="?lang=en" class="btn border" ><img src="/template/web/img/my.jpg"  style="width: 30px" alt=""></a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="">0</span>
+                <span class="" id="soLuongGioHang">0</span>
             </a>
         </div>
     </div>
 </div>
 <input type="hidden" id="customer-code" value="<%=SecurityUtils.getPrincipal().getMa()%>">
 <input class="ma-chuc-vu" type="hidden" value="<%=SecurityUtils.getPrincipal().getMaChucVu()%>">
+<input type="hidden" id="customer-id" value="<%=SecurityUtils.getPrincipal().getId()%>">
 <!-- Topbar End -->
+<script>
+    const customerIdWhenLogin = $('#customer-id').val();
+    getSoLuongGioHang(customerIdWhenLogin);
+</script>

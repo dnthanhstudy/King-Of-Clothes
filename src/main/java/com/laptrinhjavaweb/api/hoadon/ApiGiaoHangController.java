@@ -97,6 +97,7 @@ public class ApiGiaoHangController {
         HoaDonEntity hoaDon = hoaDonService.findById(idhd);
         hoaDon.setMaGiaoHang(responseEntity.getMaHoaDon());
         hoaDon.setNgayDuKienGiaoHang(responseEntity.getThoiGianDuKienNhan());
+
         hoaDonService.saveHoaDon(hoaDon);
 
         // Xử lý khi yêu cầu thành công

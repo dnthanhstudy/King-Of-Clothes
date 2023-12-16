@@ -170,12 +170,7 @@
                 <div class="col-7"></div>
                 <div class="col-5">
                     <div class="row">
-                        <div class="col-6">
-                            <span><i class='bx bxs-coupon bx-tada bx-flip-vertical' style='color:#b29898' ></i> Voucher</span>
-                        </div>
-                        <div class="col-6 text-right">
-                            <span class=" text-cyan">Chọn Voucher</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -355,6 +350,7 @@
     if (idkh==-1){
         window.location.href= "/login?is_not_login";
     }
+
     // Ẩn thanh toán khi nhận hàng khi load lại trang
     document.querySelector(".thanhtoan").style.display = "none";
 
@@ -580,6 +576,7 @@
             url: '/api/user/ttgh/findThongTinMuaHangById/'+value,
             method: 'GET',
             success: async function (req) {
+                console.log(req)
                 var data = req.data;
                 $("#idttmuahang").val(data.id);
                 $("#tennguoinhan").html(
@@ -645,10 +642,13 @@
             }
         });
     }
-    function convertMilisToDate(milis){
-        var date =  new Date(milis);
-        return date.getDay()+ " Th"+date.getMonth()
+    function convertMilisToDate(milis) {
+        var date = new Date(milis);
+        var day = date.getDate(); // Lấy ngày trong tháng
+        var month = date.getMonth() + 1; // Lấy tháng, lưu ý cộng thêm 1 vì tháng bắt đầu từ 0
+        return day + " Th" + month;
     }
+
     function getSoTienVanChuyen(idtt) {
         $.ajax({
             url: 'api/user/giaohang/phiship?idttgh='+idtt+'&idkh='+idkh,
@@ -660,6 +660,7 @@
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
+                $("#thoigiandukien").text("Giao hàng nhanh không hỗ trợ")
                 $(".sotiengiaohang").text("");
                 $("#tongthanhtoan").text("");
             }
@@ -864,7 +865,7 @@
     // tongThanhToan();
     function datHang(){
         if ($(".sotiengiaohang").text().length === 0) {
-            showError("Bạn chưa chọn địa chỉ giao hàng");
+            showError("Giao hàng nhanh không hỗ trợ địa chỉ của bạn,vui lòng đổi địa chỉ !");
             return;
         }
 

@@ -54,27 +54,33 @@
                             </div>
                             <div class="d-flex flex-wrap align-items-center">
 
-<%--                                <div class="d-flex align-items-center mb-4">--%>
-<%--                                    <div class="text-center border-bx mr-3">--%>
-<%--                                        <span>Doanh thu</span>--%>
-<%--                                        <p class="mb-0 pt-1 font-w600 text-black">505,785,000 VNĐ</p>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="text-center border-bx">--%>
-<%--                                        <span>Tổng tiền đã giảm giá:</span>--%>
-<%--                                        <p class="mb-0 pt-1 font-w600 text-black">458,388 VNĐ</p>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="text-center border-bx mr-3">
+                                        <span>Tổng tiền thu được</span>
+                                        <p class="mb-0 pt-1 font-w600 text-black">
+                                            <span id="soTienThuDuoc"></span>
+                                            <span>đ</span>
+                                        </p>
+                                    </div>
+                                    <div class="text-center border-bx">
+                                        <span>Tổng tiền đã giảm giá:</span>
+                                        <p class="mb-0 pt-1 font-w600 text-black">
+                                            <span id="soTienGiam"></span>
+                                            <span>đ</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span><span class="text-black ml-1 font-w550" id="loai"></span></div>
                                     <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
-                                    <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550">00</span></div>
+                                    <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550" id="soLuongSuDung">00</span></div>
                                     <div class="mb-3">
                                         <div class="mb-3">Sản phẩm khuyến mại:</div>
 
                                         <table class="table table-hover table-striped">
-                                            <tbody class="tbody-product">
+                                            <tbody class="tbody-product-select">
                                             <div id="cardSanPham">
 
                                             </div>
@@ -134,6 +140,25 @@
             $("#ngayBatDauFMT").text(ngayBatDauFMT);
             $("#ngayketThucFMT").text(ngayKetThucFMT);
             $("#giaTriGiam").text(formatNumber(data.giaTri));
+            var thongKe = data.thongKe;
+
+
+            if(thongKe.soLuongSuDung === null){
+                $("#soLuongSuDung").text("0");
+            }else{
+                $("#soLuongSuDung").text(thongKe.soLuongSuDung);
+            }
+
+            if(thongKe.soTienThuDuoc === null){
+                $("#soTienThuDuoc").text("0");
+            }else{
+                $("#soTienThuDuoc").text(formatNumber(thongKe.soTienThuDuoc));
+            }
+            if(thongKe.soTienGiam === null){
+                $("#soTienGiam").text("0");
+            }else{
+                $("#soTienGiam").text(formatNumber(thongKe.soTienGiam));
+            }
             if(data.loai == 1){
                 $("#loai").text("%");
             }else{
@@ -156,12 +181,12 @@
                             </tr>`
 
             })
-            $('.tbody-product').html(html);
+            $('.tbody-product-select').html(html);
             var cardBtn = $('#cardBtn');
             cardBtn.empty();
             if(data.trangThai != "EXPIRED"){
                 var card1 = `
-                    <div class="col-lg-3 ml-right">
+                    <div class="col-lg-3 ml-right mb-3">
                         <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật</a>
                     </div>
                 `;

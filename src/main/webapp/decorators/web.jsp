@@ -105,6 +105,30 @@
                 title: message
             })
         }
+        function getFormattedDate(longDate) {
+            date = new Date(longDate);
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+
+            return day + '-' + month + '-' + year;
+        }
+        function getSoLuongGioHang(customerIdWhenLogin){
+            $.ajax({
+                url: '/api/user/giohang/tongsptronggio?id='+customerIdWhenLogin,
+                dataType: "json",
+                success: function (response){
+                    $("#soLuongGioHang").text(response);
+                },
+                error: function (error){
+                    console.log(error);
+                }
+            });
+        };
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
     </script>
 
 </head>

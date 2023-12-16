@@ -35,6 +35,7 @@ public class ViDienTuService implements IViDienTuService {
             KhachHangEntity khachHangEntity = khachHangRepository.findById(idkh).orElse(null);
             viDienTu.setKhachHang(khachHangEntity);
             viDienTu.setSoTien(0.0);
+            viDienTu.setTrangThai("ACTIVE");
             entity = viDienTuRepository.save(viDienTu);
         }
             ViDienTuResponse response = viDienTuConvert.convertToResponse(entity);

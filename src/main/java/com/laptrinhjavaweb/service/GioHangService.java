@@ -16,13 +16,15 @@ public interface GioHangService {
 //    BigDecimal tongTien(Long idKH);
     TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct);
 
-    ResponseObject datHang(Long idkh, List<Long> dsghct);
+    String datHang(Long idkh, List<Long> dsghct);
 //
 //    List<List<GioHangResponse>> dsGioHangChiaTheoSanPham(Long idKh);
 //
-    Long themVaoGioHang(Long idkh, Long bienTheId,Integer quantity);
+    String themVaoGioHang(Long idkh, Long bienTheId,Integer quantity);
     GioHangResponse updateGioHangChiTiet(Long idghct, Long bienTheId);
 
     String xoaGioHangChiTiet(Long idghct);
+
+    Long tongSoSanPhamTrongGioHang(Long idkh);
 
 }
