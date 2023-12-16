@@ -14,6 +14,7 @@ import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.QueryDoanhThu;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
@@ -27,8 +28,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -80,6 +81,16 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
+    public List<DanhSachHoaDonResponse> dsHoaDonResponse() {
+        return hoaDonRepository.dsHoaDon();
+    }
+
+    @Override
+    public List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate) {
+        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
+    }
+
+    @Override
     public HoaDonEntity findById(Long idhd) {
         return hoaDonRepository.findById(idhd).orElse(null);
     }
@@ -108,6 +119,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Override
     public List<HoaDonResponse> dsHoaDonOnline() {
         return hoaDonRepository.dsHoaDonOnline();
+    }
+
+    @Override
+    public List<HoaDonResponse> dsHoaDonOnline(String trangThai, String ten) {
+        return hoaDonRepository.dsHoaDonOnline(trangThai,ten);
     }
 
     @Override
@@ -143,7 +159,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             }
 
             if (trangThai.equals(TrangThaiHoaDon.DANHANHANG)&&!hoaDon.getLoaiThanhToan()){
-                hoaDon.setNgayThanhToan(new Date());
+                hoaDon.setNgayThanhToan(new java.util.Date());
             }
             hoaDon.setTrangThai(trangThai);
             hoaDon.setMoTa(luuy);

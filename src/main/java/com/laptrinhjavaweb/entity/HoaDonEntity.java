@@ -129,9 +129,6 @@ public class HoaDonEntity extends BaseEntity{
 		tenNguoiNhan = thongTinMuaHang.getTen();
 	}
 
-	public Double getTongTienHang() {
-		return tongTienHang;
-	}
 	public Double getTongTien() {
 		try {
 			return tongTienHang+tienShip;
@@ -151,9 +148,12 @@ public class HoaDonEntity extends BaseEntity{
 		return getTienShip()+tongTienHang;
 	}
 
+	public String pttt(){
+		return phuongThucThanhToan;
+	}
 
 	public String getPhuongThucThanhToan() {
-		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Đã thanh toán":
+		return phuongThucThanhToan.equals("CHUYENKHOAN")?"Paypal":
 				phuongThucThanhToan.equals("VIDIENTU")?"Ví điện tử":"Thanh toán khi nhận hàng";
 	}
 
