@@ -25,4 +25,6 @@ public interface KhuyenMaiRepository extends JpaRepository<KhuyenMaiEntity, Long
     @Query(value = "SELECT sum(soluong) as soluongsudung, sum(thanhtien) as sotienthuduoc, sum(sotiengiam) as sotiengiam FROM hoadonchitiet WHERE idkhuyenmai = :id", nativeQuery = true)
     List<Object[]> thongKeKM(@Param("id") Long id);
 
+
+
 }
