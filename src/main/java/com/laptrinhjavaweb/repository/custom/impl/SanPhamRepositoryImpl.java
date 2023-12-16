@@ -37,6 +37,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	public List<SanPhamEntity> filters(Map<String, Object> params) {
 		String sql = buildSQL(params, null, null, null);
 		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
+		System.out.println("SQL FILTER: " + sql);
 		return query.getResultList();
 	}
 
@@ -132,7 +133,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		}
 		String sqlInGiaTri = null;
 		if(!inGiaTriSQL.isEmpty()) {
-			sqlInGiaTri = inGiaTriSQL.stream().map(x -> "'" + x + "'").collect(Collectors.joining(", ", "(", ")"));
+			sqlInGiaTri = inGiaTriSQL.stream().map(x -> "N'" + x + "'").collect(Collectors.joining(", ", "(", ")"));
 		}
 		if(sqlInSlug != null) {
 			sqlInSlug = "thuoctinh.slug IN "+ sqlInSlug;
@@ -150,7 +151,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		}
 		queryFinal.append(String.join(" ", joinSQL) + " WHERE subquery.trangthai = 'ACTIVE' AND 1 = 1 ");
 		if(!whereSQL.isEmpty()){
-			queryFinal.append(queryFinal + " AND " + String.join(" AND ", whereSQL));
+			queryFinal.append(" AND " + String.join(" AND ", whereSQL));
 		}
 		if(querySearch != null){
 			queryFinal.append(querySearch);
