@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.repository.KhuyenMaiRepository;
 import com.laptrinhjavaweb.repository.KhuyenMaiSanPhamRepository;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
+import com.laptrinhjavaweb.response.ThongKeKhuyenMaiResponse;
 import com.laptrinhjavaweb.resquest.KhuyenMaiRequest;
 import com.laptrinhjavaweb.service.IKhuyenMaiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +140,9 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     public KhuyenMaiResponse findByMa(String ma) {
         KhuyenMaiEntity entity = khuyenMaiRepository.findByMa(ma);
         KhuyenMaiResponse response = khuyenMaiConvert.convertToResponse(entity);
+//        ThongKeKhuyenMaiResponse thongKe = khuyenMaiRepository.thongKeKM(entity.getId());
+        ThongKeKhuyenMaiResponse thongKe = getThongKe(entity.getId());
+        response.setThongKe(thongKe);
         return response;
     }
 
@@ -209,7 +213,34 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     khuyenMaiSanPhamRepository.save(kmsp);
                 }
             }
+            ThongKeKhuyenMaiResponse thongKe = getThongKe(khuyenMaiEntity.getId());
+            if(thongKe.getSoLuongSuDung() == khuyenMaiEntity.getSoLuong()){
+                khuyenMaiEntity.setTrangThai("EXPIRED");
+                List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
+                for (KhuyenMaiSanPhamEntity kmsp:list ) {
+                    kmsp.setTrangThai("EXPIRED");
+                    khuyenMaiSanPhamRepository.save(kmsp);
+                }
+            }
         }
         return khuyenMaiEntity;
+    }
+    public ThongKeKhuyenMaiResponse getThongKe(Long id){
+        List<Object[]> result = khuyenMaiRepository.thongKeKM(id);
+        ThongKeKhuyenMaiResponse thongKe = new ThongKeKhuyenMaiResponse();
+
+        if (!result.isEmpty()) {
+            Object[] row = result.get(0);
+
+            // Check for null values before casting to avoid NullPointerException
+            Integer soluongsudung = (row[0] != null) ? ((Number) row[0]).intValue() : null;
+            Double sotienthuduoc = (row[1] != null) ? ((Number) row[1]).doubleValue() : null;
+            Double sotiengiam = (row[2] != null) ? ((Number) row[2]).doubleValue() : null;
+
+            thongKe = new ThongKeKhuyenMaiResponse(soluongsudung, sotienthuduoc, sotiengiam);
+
+            // Use the response as needed
+        }
+        return thongKe;
     }
 }
