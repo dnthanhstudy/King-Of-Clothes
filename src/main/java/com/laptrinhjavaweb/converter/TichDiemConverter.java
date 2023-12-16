@@ -30,7 +30,6 @@ public class TichDiemConverter {
 
     public TichDiemEntity convertToEntity(TichDiemRequest request){
         TichDiemEntity entity = modelMapper.map(request, TichDiemEntity.class);
-        entity.setKhachHang(khachHangRepository.findByMa(request.getTenKhachHang()));
         return entity;
     }
 }

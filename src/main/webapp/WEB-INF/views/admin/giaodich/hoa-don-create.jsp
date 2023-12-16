@@ -1099,9 +1099,7 @@
         data['phuongThucThanhToan'] = "TIENMAT";
         data['tongTienHang'] = tongTienHang;
         data['tienKhachTra'] = tienKhachTra;
-
         data['tienThua'] = tienThua;
-
         data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
         data['maNhanVien'] = ma;
 
@@ -1125,9 +1123,13 @@
                     } else {
                         window.location.href = "/admin/giao-dich/hoa-don-off";
                         showSuccess("Thanh toán hóa đơn thành công");
+
                     }
             })
-        }
+    }
+    function paymentInvoice(maKhachHang) {
+
+    }
 
 
 </script>
