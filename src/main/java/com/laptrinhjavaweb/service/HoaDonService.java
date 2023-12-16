@@ -6,17 +6,24 @@ import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface HoaDonService {
 
     void saveHoaDon(HoaDonEntity hoaDon);
+
+    List<DanhSachHoaDonResponse> dsHoaDonResponse();
+
+    List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate);
+
 
     HoaDonEntity findById(Long idhd);
 
@@ -29,6 +36,7 @@ public interface HoaDonService {
 
     List<HoaDonResponse> dsHoaDonOnline();
 
+    List<HoaDonResponse> dsHoaDonOnline(String trangThai,String ten);
     String thayDoiTrangThaiHoaDon(Long idhd, String trangThai);
     HoaDonEntity thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy);
 

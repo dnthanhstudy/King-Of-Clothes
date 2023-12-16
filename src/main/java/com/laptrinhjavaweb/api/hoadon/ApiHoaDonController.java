@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.model.request.ThongTinNhanHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.service.GiaoHangService;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -56,6 +58,20 @@ public class ApiHoaDonController {
         return hoaDonService.allThongKe(thoiGian);
     }
 
+    @GetMapping("/dshoadonresponse")
+    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
+                                                       @RequestParam(value = "endDate")Date endDate,
+                                                       @RequestParam(value = "trangThai")String trangThai,
+                                                       @RequestParam(value = "phuongThucThanhToan")String phuongThucThanhToan
+
+    ){
+        if (startDate==null&&endDate==null){
+            return hoaDonService.dsHoaDonResponse();
+        }
+
+        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
+    }
+
     @GetMapping("/findall")
     public List<HoaDonResponse> findAllHoaDon(){
         return hoaDonService.dsHoadon();
@@ -78,11 +94,16 @@ public class ApiHoaDonController {
     }
 
 
-    @GetMapping("/dshoadon")
-    public ResponseObject dsHoaDonOnline(){
-        return new ResponseObject(hoaDonService.dsHoaDonOnline());
-    }
+//    @GetMapping("/dshoadon")
+//    public ResponseObject dsHoaDonOnline(){
+//        return new ResponseObject(hoaDonService.dsHoaDonOnline());
+//    }
 
+    @GetMapping("/dshoadon")
+    public List<HoaDonResponse> dsHoaDonOnline(@RequestParam(name = "ten",required = false,defaultValue = "")String ten,
+                                               @RequestParam(name = "trangthai",required = false,defaultValue = "")String trangThai){
+        return hoaDonService.dsHoaDonOnline(trangThai,ten);
+    }
 
     @GetMapping("/thaydoitrangthai")
     public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,

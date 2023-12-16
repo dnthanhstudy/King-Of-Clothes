@@ -554,8 +554,13 @@
             method: 'GET',
             success: async function (req) {
 
+                console.log(req)
                 var data = req.data;
-                dsthongtinmuahang();
+               await dsthongtinmuahang();
+                const radio = document.querySelector(`input[type='radio'][name='diaChiNhanHang'][value='\${data.id}']`);
+                if (radio) {
+                    radio.checked = true;
+                }
                 if (!data){
                     setShipNull();
                     return;
@@ -589,7 +594,8 @@
                    \${data.tenNguoiNhan}(\${data.sdt})
                    `
                 );
-                $("#defaultdc").html(data.trangThai);
+                $("#diachi").html(data.diaChi);
+                $("#defaultdc").text(data.trangThai=="DEFAULT"?"Mặc định":"");
                 getSoTienVanChuyen(data.id)
 
             },
@@ -680,7 +686,6 @@
                 diachi.empty();
                 var data=  req.data;
                 if (!data){
-                    console.log("Hi")
                     return;
                 }
                 $("#tongsanpham").html(data.length);
