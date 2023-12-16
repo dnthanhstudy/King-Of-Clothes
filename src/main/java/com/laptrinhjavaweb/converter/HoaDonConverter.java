@@ -1,6 +1,8 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
+import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.NhanVienRepository;
 import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.HoaDonResponse;
@@ -23,10 +25,17 @@ public class HoaDonConverter {
     private NhanVienRepository nhanVienRepository;
 
     @Autowired
+    private KhachHangRepository khachHangRepository;
+
+    @Autowired
     private HoaDonChiTietConverter hoaDonChiTietConverter;
 
     public HoaDonEntity convertToEntity(HoaDonResquest resquest){
         HoaDonEntity entity = modelMapper.map(resquest, HoaDonEntity.class);
+        if(resquest.getMaKhachHang() != null){
+            KhachHangEntity khachHangEntity = khachHangRepository.findByMa(resquest.getMaKhachHang());
+            entity.setKhachHang(khachHangEntity);
+        }
         entity.setNhanVien(nhanVienRepository.findByMa(resquest.getMaNhanVien()));
         return entity;
     }
@@ -34,9 +43,11 @@ public class HoaDonConverter {
     public HoaDonResponse convertToResponse(HoaDonEntity entity){
         HoaDonResponse response = modelMapper.map(entity, HoaDonResponse.class);
         if(entity.getKhachHang() == null){
-            response.setKhachHang("Khách lẻ");
+            response.setTenKhachHang("Khách lẻ");
+            response.setSoDienThoaiKhachHang("");
         }else{
-            response.setKhachHang(entity.getKhachHang().getTen() + "-" + entity.getKhachHang().getSoDienThoai());
+            response.setTenKhachHang(entity.getKhachHang().getTen());
+            response.setTenKhachHang(entity.getKhachHang().getSoDienThoai());
         }
         List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream().map(
                 item -> hoaDonChiTietConverter.convertToResponse(item)

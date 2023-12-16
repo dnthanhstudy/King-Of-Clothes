@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.response.MyUserResponse;
 import com.laptrinhjavaweb.security.utils.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -49,8 +50,8 @@ public class DashboardController {
     }
 
 
-    @GetMapping("/xuat-hoa-don")
-    public String xuathoadon() {
+    @GetMapping("/hoa-don/printf/{ma}")
+    public String xuathoadon(@PathVariable("ma") String ma) {
         return "admin/xuat-hoa-don";
     }
 }

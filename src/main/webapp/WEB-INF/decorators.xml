@@ -59,6 +59,6 @@
     </decorator>
 
     <decorator name="xuat-hoa-don" page="xuat-hoa-don.jsp">
-        <pattern>/admin/xuat-hoa-don</pattern>
+        <pattern>/admin/hoa-don/printf/**</pattern>
     </decorator>
 </decorators>

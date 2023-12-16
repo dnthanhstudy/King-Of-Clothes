@@ -23,7 +23,8 @@
             <div class="row">
                 <nav class="mt-3">
                     <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size: 20px">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-home"
                                 type="button" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin chung
                         </button>
                         <button class="nav-link ms-3" id="nav-profile-tab" data-bs-toggle="tab"
@@ -45,7 +46,7 @@
                                         <h5>Giá bán:</h5>
                                     </div>
                                     <div class="col-9">
-                                        <h4 class="text-cyan" id="gia"></h4>
+                                        <span class="text-cyan fs-4" id="gia"></span> <span class="text-cyan">đ</span>
                                     </div>
                                 </div>
                                 <div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px">
@@ -97,7 +98,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-8">
-                    <a class="btn" href="/admin/giao-dich/hoa-don-off" style="background-color: #dedede">Danh sách hóa đơn chờ thanh toán</a>
+                    <a class="btn" href="/admin/giao-dich/hoa-don-off" style="background-color: #dedede">Danh sách hóa
+                        đơn chờ thanh toán</a>
                     <button class="btn btn-add-invoice" style="background-color: #dedede">Thêm hóa đơn</button>
                 </div>
                 <div class="col-4">
@@ -112,7 +114,8 @@
                                 <div class="modal-header">
                                     <h4>Chọn sản phẩm</h4>
                                     <div class="group123 ms-5">
-                                        <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon " aria-hidden="true"
+                                        <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon "
+                                             aria-hidden="true"
                                              viewBox="0 0 512 512">
                                             <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                             <style>svg {
@@ -120,9 +123,11 @@
                                             }</style>
                                             <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                                         </svg>
-                                        <input placeholder="Tìm hàng hóa" type="search" id="searchAll" class="inputghichu" style="width: 500px">
+                                        <input placeholder="Tìm hàng hóa" type="search" id="searchAll"
+                                               class="inputghichu" style="width: 500px">
                                     </div>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
 
                                 </div>
                                 <div class="modal-body" style="height: 700px; overflow-y: scroll;">
@@ -165,7 +170,7 @@
                                         <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
                                             <span id="invoice-quantity">11</span>
-                                            <span class="invoice-total ms-4">245000</span>
+                                            <span class="invoice-total ms-4">0</span> đ
                                         </h4>
                                     </div>
                                 </div>
@@ -278,30 +283,30 @@
                                 <h5>Tổng tiền hàng:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5 class="invoice-total">2450000</h5>
+                                <span class="invoice-total fs-5">0</span> đ
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <h5>Giảm giá:</h5>
+                                <h5>Số điểm khách hàng sử dụng:</h5>
                             </div>
                             <div class="col-2"></div>
                             <div class="col-4 text-right">
                                 <div class="input-wrapper1">
-                                    <input class="input-box1" type="text" placeholder="Nhập số tiền">
+                                    <input id="input-point" disabled class="input-box1" type="text"
+                                           placeholder="Nhập số điểm">
                                     <span class="underline1"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <h5>Thanh toán bằng điểm:</h5>
-
+                                <h5>Số tiền giảm:</h5>
                             </div>
                             <div class="col-2"></div>
                             <div class="col-4 text-right">
                                 <div class="input-wrapper1">
-                                    <input class="input-box1" type="text" placeholder="Nhập số điểm">
+                                    <span id="discount">0</span> đ
                                     <span class="underline1"></span>
                                 </div>
                             </div>
@@ -311,7 +316,7 @@
                                 <h5><strong>Khách cần trả:</strong></h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5 style="color: #EB8153"><strong class="invoice-total">2450000</strong></h5>
+                                <span style="color: #EB8153"><strong class="invoice-total fs-5">0</strong></span> <span style="color: #EB8153">đ</span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -319,13 +324,13 @@
                                 <h5><strong>Khách thanh toán:</strong></h5>
                                 <select class="form-select" aria-label="Default select example">
                                     <option value="1">Tiền mặt</option>
-                                    <option value="2">Chuyển khoản</option>
                                 </select>
                             </div>
                             <div class="col-2"></div>
                             <div class="col-4 text-right">
                                 <div class="input-wrapper1">
-                                    <input class="input-box1" type="text" placeholder="Nhập số tiền">
+                                    <input id="invoice-customer-payment" class="input-box1" type="text"
+                                           placeholder="Nhập số tiền">
                                     <span class="underline1"></span>
                                 </div>
                             </div>
@@ -335,12 +340,13 @@
                                 <h5>Tiền thừa trả khách:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <h5 id="money-change">10000</h5>
+                                <span id="money-change" class="fs-5">0</span> đ
                             </div>
                         </div>
                         <div class="row mt-auto">
                             <div class="col-12">
-                                <button class="btn w-100 text-light" style="background-color: #EB8153;">Thanh toán
+                                <button id="btn-paymant-invoice" class="btn w-100 text-light"
+                                        style="background-color: #EB8153;">Thanh toán
                                 </button>
                             </div>
                         </div>
@@ -388,13 +394,46 @@
         });
     })
 
+    $('#btn-add-customer').on('click', () => {
+        let dataForm = $('#form-data-customer').serializeArray();
+        let data = {};
+        $.each(dataForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        $.ajax({
+            url: "/api/khach-hang",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                console.log(response);
+                $('#exampleModal1').removeClass('show');
+                $('.modal-backdrop').addClass('d-none');
+                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
+                $('#code-customer').val(response.ma);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    })
+
+
+
+    $('#btn-paymant-invoice').on('click', function () {
+        paymentInvoice();
+    })
+
     function time() {
         var currentDate = new Date();
         var formattedTime = ('0' + currentDate.getDate()).slice(-2) + '/'
             + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '/'
             + currentDate.getFullYear() + ' '
             + ('0' + currentDate.getHours()).slice(-2) + ':'
-            + ('0' + currentDate.getMinutes()).slice(-2)+ ':'
+            + ('0' + currentDate.getMinutes()).slice(-2) + ':'
             + ('0' + currentDate.getSeconds()).slice(-2);
         $('#thoiGian').text(formattedTime);
     }
@@ -477,9 +516,9 @@
                         if (page !== pageCurrent) {
                             event.preventDefault();
                             pageCurrent = page;
-                            if(param != ''){
+                            if (param != '') {
                                 searchSanPham(param)
-                            }else{
+                            } else {
                                 loadAllProduct();
                             }
                         }
@@ -573,20 +612,19 @@
         });
     }
 
-
-    function searchSanPham(param){
+    function searchSanPham(param) {
         $.ajax({
             url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit=12",
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
-                if(response.data.length === 0){
+                if (response.data.length === 0) {
                     $('#iemty').removeClass('d-none')
                     $('#iemty').text("Không tìm thấy sản phẩm nào như thế !")
                     $('#list-products').addClass('d-none');
                     $('#pagination').addClass('d-none');
-                }else {
+                } else {
                     $('#iemty').addClass('d-none')
                     $('#list-products').removeClass('d-none');
                     $('#pagination').removeClass('d-none');
@@ -662,9 +700,9 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                if(param != ''){
+                                if (param != '') {
                                     searchSanPham(param)
-                                }else{
+                                } else {
                                     loadAllProduct();
                                 }
                             }
@@ -773,34 +811,6 @@
         });
     });
 
-
-    $('#btn-add-customer').on('click', () => {
-        let dataForm = $('#form-data-customer').serializeArray();
-        let data = {};
-        $.each(dataForm, (index, value) => {
-            let propertyName = value.name;
-            let propertyValue = value.value;
-            data[propertyName] = propertyValue;
-        });
-        $.ajax({
-            url: "/api/khach-hang",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                console.log(response);
-                $('#exampleModal1').removeClass('show');
-                $('.modal-backdrop').addClass('d-none');
-                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
-                $('#code-customer').val(response.ma);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
-    })
-
     let customers = [];
     $.ajax({
         url: '/api/khach-hang/all',
@@ -810,7 +820,7 @@
             $.each(response.data, function (index, item) {
                 let customer = {
                     "value": item.soDienThoai + " - " + item.ten,
-                    "id": item.id
+                    "ma": item.ma
                 }
                 customers.push(customer);
             })
@@ -827,7 +837,7 @@
             lookup: options,
             minChars: 0,
             onSelect: function (suggestion) {
-                $('#code-customer').val(suggestion.id);
+                $('#code-customer').val(suggestion.ma);
                 $('#search-customer').val(suggestion.value);
             }
         });
@@ -842,9 +852,9 @@
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = '';
-                if(response.tienThua === null){
+                if (response.tienThua === null) {
                     $('#money-change').text(0);
-                }else{
+                } else {
                     $('#money-change').text(response.tienThua);
                 }
                 if (response.hoaDonChiTiet.length > 0) {
@@ -883,11 +893,10 @@
                                             </div>
                                         </div>
                                         <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
-                                            <div class="d-flex align-items-center">
-
+                                            <div class="d-flex  align-items-center">
                                                 <div class="ml-2">
-                                                    <span>Đơn giá</span>
-                                                    <h5 class="mb-0 pt-1 font-w500 text-black">\${item.gia}</h5>
+                                                    <span>Đơn giá</span><br>
+                                                    <span class="mb-0 pt-1 fs-5 font-w500 text-black">\${item.gia}</span> đ
                                                 </div>
                                             </div>
                                         </div>
@@ -895,7 +904,7 @@
                                             <div class="d-flex project-status align-items-center">
                                                 <div class="ml-2">
                                                     <span>Tổng tiền</span>
-                                                    <h5 class="mb-0 pt-1 font-w500 text-black">\${item.thanhTien}</h5>
+                                                    <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${item.thanhTien}</span> đ
                                                 </div>
                                                 <div class="dropdown">
                                                     <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
@@ -906,7 +915,7 @@
                                                         </svg>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="">Xóa</a>
+                                                        <a class="dropdown-item invoice-detail-delete" href="">Xóa</a>
                                                         <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
                                                     </div>
                                                 </div>
@@ -920,13 +929,12 @@
                         $('#invoice-non').hide();
                         $('#invoice-money-quantity').show();
 
-                        $('#invoice').html(html);
+                        $('#invoice').html(html + `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
                         $('.invoice-total').text(totalInvoice);
                         $('#invoice-quantity').text(toatlQuantity);
 
                         $('.invoice-detail-seen').on('click', function () {
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
-                            console.log(invoiceDetailId);
                             $.ajax({
                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
                                 method: "GET",
@@ -953,7 +961,7 @@
                                                                     </div>`
 
                                         })
-                                        htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + '</div></div>';
+                                        htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + `</div></div>`;
                                     })
                                     $(".thuoc-tinh").html(htmlThuocTinh)
                                 },
@@ -997,6 +1005,23 @@
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity);
                         });
+
+                        $('.invoice-detail-delete').on('click', function () {
+                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            $.ajax({
+                                url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                method: "DELETE",
+                                contentType: "application/json; charset=utf-8",
+                                data: JSON.stringify(invoiceDetailId),
+                                success: (response) => {
+                                    showSuccess("Xóa sản phẩm thành công");
+                                    loadHoaDon()
+                                },
+                                error: (error) => {
+                                }
+                            })
+
+                        })
                     })
                 } else {
                     $('#invoice-money-quantity').hide();
@@ -1040,6 +1065,70 @@
             }
         });
     }
+
+
+    function validateForm() {
+        let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
+        let tongTienHang = parseFloat($('.invoice-total:first').text());
+
+        if (isNaN(tienKhachTra)) {
+            tienKhachTra = 0;
+        }
+        let tienThua = tienKhachTra - tongTienHang;
+        tienThua = Math.max(0, tienThua);
+        $('#money-change').text(tienThua);
+    }
+
+    $('#invoice-customer-payment').on('input', validateForm);
+
+    function paymentInvoice() {
+        let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
+        let tongTienHang = parseFloat($('.invoice-total:first').text());
+        let tienThua = tienKhachTra - tongTienHang;
+
+        if (isNaN(tienKhachTra) || tienKhachTra < tongTienHang) {
+            showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
+            return;
+        }
+
+        let data = {};
+        data['id'] = parseInt($('.invoice-id').val());
+        data['ma'] = maHoaDon;
+        data['loai'] = "OFFLINE";
+        data['trangThai'] = "THANHCONG";
+        data['phuongThucThanhToan'] = "TIENMAT";
+        data['tongTienHang'] = tongTienHang;
+        data['tienKhachTra'] = tienKhachTra;
+
+        data['tienThua'] = tienThua;
+
+        data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
+        data['maNhanVien'] = ma;
+
+            showConfirm("Bạn có muốn in hóa đơn hay không?")
+            .then((confirmed) => {
+                    $.ajax({
+                        url: "/api/hoa-don-off",
+                        method: "PUT",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: (response) => {
+                            console.log(response)
+                        },
+                        error: (error) => {
+                            console.log(error)
+                        }
+                    });
+                    if (confirmed) {
+                        window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
+                    } else {
+                        window.location.href = "/admin/giao-dich/hoa-don-off";
+                        showSuccess("Thanh toán hóa đơn thành công");
+                    }
+            })
+        }
+
 
 </script>
 

@@ -84,8 +84,10 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 				"ORDER BY ngaytao DESC, RAND() LIMIT 4";
 		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
 		return query.getResultList();
-	}private String buildSQL(Map<String, Object> params, String joinDanhMuc, String queryDanhMuc, String search) {
-		String queryFinal = "SELECT subquery.* FROM " +
+	}
+
+	private String buildSQL(Map<String, Object> params, String joinDanhMuc, String queryDanhMuc, String querySearch) {
+		StringBuffer queryFinal = new StringBuffer("SELECT subquery.* FROM " +
 				"(  SELECT " +
 				"        sanpham.*, " +
 				"        CASE " +
@@ -96,7 +98,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 				"    FROM sanpham " +
 				"    LEFT JOIN khuyenmaisanpham ON sanpham.id = khuyenmaisanpham.idsanpham " +
 				"    LEFT JOIN khuyenmai ON khuyenmai.id = khuyenmaisanpham.idkhuyenmai" +
-				") AS subquery ";
+				") AS subquery ");
 
 		Set<String> joinSQL = new HashSet<>();
 		List<String> whereSQL = new ArrayList<>();
@@ -146,12 +148,15 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		if(queryDanhMuc != null){
 			whereSQL.add(queryDanhMuc);
 		}
-		queryFinal = queryFinal + String.join(" ", joinSQL) + " WHERE subquery.trangthai = 'ACTIVE' AND 1 = 1 ";
+		queryFinal.append(String.join(" ", joinSQL) + " WHERE subquery.trangthai = 'ACTIVE' AND 1 = 1 ");
 		if(!whereSQL.isEmpty()){
-			queryFinal = queryFinal + " AND " + String.join(" AND ", whereSQL);
+			queryFinal.append(queryFinal + " AND " + String.join(" AND ", whereSQL));
 		}
-		queryFinal = queryFinal + " GROUP BY subquery.id ";
+		if(querySearch != null){
+			queryFinal.append(querySearch);
+		}
+		queryFinal.append(" GROUP BY subquery.id ");
 		System.out.println(queryFinal);
-		return queryFinal;
+		return queryFinal.toString();
 	}
 }

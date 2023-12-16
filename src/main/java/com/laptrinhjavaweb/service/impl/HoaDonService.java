@@ -71,46 +71,6 @@ public class HoaDonService implements IHoaDonService {
         return result;
     }
 
-//    @Override
-//    public Map<String, Object> pagingOrSearchOrFindByMaStatus(Integer pageCurrent, Integer limit, String param, String trangThai) {
-//        Map<String, Object> results = new HashMap<>();
-//        Boolean isAll = false;
-//        Page<HoaDonEntity> page = null;
-//        List<HoaDonResponse> listHoaDonResponse = list.stream().map(
-//                item -> hoaDonConverter.convertToResponse(item)
-//        ).collect(Collectors.toList());
-//        if (pageCurrent == null && limit == null) {
-//            isAll = true;
-//            Pageable wholePage = Pageable.unpaged();
-//            page = hoaDonRepository.findAllByTrangThai(trangThai, wholePage);
-//
-//        } else {
-//            Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-//            if (param != null) {
-//                List<KhachHangEntity> listKhachHangEntity = khachHangRepository.searchs(param);
-//                int sizeOflistKhachHangEntity = listKhachHangEntity.size();
-//                int start = (int) pageable.getOffset();
-//                int end = Math.min((start + pageable.getPageSize()), sizeOflistKhachHangEntity);
-//                List<KhachHangEntity> pageContent = listKhachHangEntity.subList(start, end);
-//                page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
-//
-//            } else {
-//                page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
-//            }
-//        }
-//        listKhachHangResponse = page.getContent().stream().map(
-//                item -> khachHangConverter.convertToResponse(item)
-//        ).collect(Collectors.toList());
-//        results.put("data", listKhachHangResponse);
-//        if (!isAll) {
-//            PageableResponse pageableResponse = new PageableResponse();
-//            pageableResponse.setPageCurrent(pageCurrent);
-//            pageableResponse.setTotalPage(page.getTotalPages());
-//            results.put("meta", pageableResponse);
-//        }
-//        return results;
-//    }
-
     @Override
     public HoaDonResponse update(HoaDonResquest hoaDonResquest) {
         HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
@@ -136,4 +96,5 @@ public class HoaDonService implements IHoaDonService {
         }
         return "Không tìm thấy hoá đơn";
     }
+
 }

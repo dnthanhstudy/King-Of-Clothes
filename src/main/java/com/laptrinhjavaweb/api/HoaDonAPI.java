@@ -35,7 +35,7 @@ public class HoaDonAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 //  update hoa don theo ma
-    @PutMapping("/{ma}")
+    @PutMapping()
     public ResponseEntity<?> update(@RequestBody HoaDonResquest hoaDonResquest){
         HoaDonResponse result = hoaDonService.update(hoaDonResquest);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -46,4 +46,5 @@ public class HoaDonAPI {
         String result = hoaDonService.delete(ma);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
 }

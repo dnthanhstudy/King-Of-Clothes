@@ -64,8 +64,7 @@
                         <h4>Danh sách hóa đơn</h4>
                         <select name="" id="trangThai" class="form-control" style="width: 150px">
                             <option value="TREO">Chờ thanh toán</option>
-                            <option value="">Đã thanh toán</option>
-                            <option value="">Đã hủy</option>
+                            <option value="THANHCONG">Đã thanh toán</option>
                         </select>
                     </div>
                 </div>
@@ -133,20 +132,34 @@
                             <tr>
                                 <td>\${++index}</td>
                                 <td>\${item.ma}</td>
-                                 <td>\${item.khachHang}</td>
+                                 <td>\${item.tenKhachHang}</td>
                                  <td>\${item.tenNhanVien}</td>
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
                                  <td>\${item.tongTienHang}</td>
                                  <td>\${item.tienKhachTra}</td>
                                  <td>\${item.tienThua}</td>
                                  <td>
-                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info">Chi tiết</a>
-                                    <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
+                                     <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                    <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
                                  </td>
                             </tr>
                         `;
                     tbody.append(row);
                 });
+                if (value === "TREO") {
+                    $(".detail").hide();
+                } else {
+                    $(".detail").show();
+                }
+                if (value === "THANHCONG") {
+                    $(".btn-delete").hide();
+                    $(".create").hide();
+
+                } else {
+                    $(".btn-delete").show();
+                    $(".create").show();
+                }
             },
             error: (error) => {
                 console.log(error);
@@ -156,15 +169,15 @@
     }
     getHoaDon(trangThai);
 
-    $(document).ready(function(){
-        $("#trangThai").change(function(){
+    $(document).ready(function () {
+        $("#trangThai").change(function () {
             var selectedValue = $(this).val();
             getHoaDon(selectedValue);
         });
     });
 
     $('.tbody-hoadon').on('click', (e) => {
-        if ($(e.target).hasClass('btn-delete')) {
+        if ($(e.target).hasClass('btn-delete') && !$(e.target).is(":hidden")) {
             let ma = $(e.target).val();
             showConfirm("Bạn có muốn xóa?", ma)
                 .then((confirmed) => {
@@ -173,7 +186,6 @@
                             url: '/api/hoa-don-off/' + ma,
                             method: 'DELETE',
                             success: function (req) {
-                                console.log(req);
                                 getHoaDon(trangThai);
                                 showSuccess("Xoá thành công!");
                             },
@@ -184,8 +196,7 @@
                     }
                 })
         }
-    });
-
+    })
 </script>
 </body>
 </html>

@@ -30,4 +30,9 @@ public class HoaDonChiTietAPI {
     public void update(@PathVariable("id") Long id, @RequestBody Integer soLuong){
         hoaDonChiTietService.update(id, soLuong);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id){
+        hoaDonChiTietService.delete(id);
+    }
 }

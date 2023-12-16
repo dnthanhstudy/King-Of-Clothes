@@ -16,15 +16,16 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="<c:url value='/assets/js/read-price.js'/>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
     <script>
         function convertVND(number){
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         }
-        function showConfirm(message, id) {
+        function showConfirm(message) {
             return new Promise((resolve) => {
                 Swal.fire({
-                    title: 'Bạn chắc chắn?',
+                    title: 'In hóa đơn',
                     text: message,
                     icon: 'warning',
                     showCancelButton: true,
@@ -40,6 +41,7 @@
                 });
             });
         }
+
         function showSuccess(message){
             const Toast = Swal.mixin({
                 toast: true,
@@ -58,6 +60,7 @@
                 title: message
             })
         }
+
         function showError(message){
             const Toast = Swal.mixin({
                 toast: true,

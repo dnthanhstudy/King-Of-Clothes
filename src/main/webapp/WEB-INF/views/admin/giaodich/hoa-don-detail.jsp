@@ -57,12 +57,10 @@
                          <table class="table table-hover table-striped">
                              <thead>
                              <tr class="table-warning">
-                                 <th scope="col">Mã hàng</th>
-                                 <th scope="col">Tên hàng </th>
+                                 <th scope="col">STT</th>
+                                 <th scope="col">Tên sản phẩm </th>
                                  <th scope="col">Số lượng</th>
                                  <th scope="col">Đơn giá</th>
-                                 <th scope="col">Giảm giá</th>
-                                 <th scope="col">Giá bán</th>
                                  <th scope="col">Thành tiền</th>
                              </tr>
                              </thead>
@@ -72,36 +70,6 @@
                                  <td>Aos polo nam aelimited</td>
                                  <td>3</td>
                                  <td>300000</td>
-                                 <td></td>
-                                 <td>300000</td>
-                                 <td><b>900000</b></td>
-                             </tr>
-                             <tr>
-                                 <td>SP01</td>
-                                 <td>Aos polo nam aelimited</td>
-                                 <td>3</td>
-                                 <td>300000</td>
-                                 <td></td>
-                                 <td>300000</td>
-                                 <td><b>900000</b></td>
-                             </tr>
-                             <tr>
-                                 <td>SP01</td>
-                                 <td>Aos polo nam aelimited</td>
-                                 <td>3</td>
-                                 <td>300000</td>
-                                 <td></td>
-                                 <td>300000</td>
-                                 <td><b>900000</b></td>
-                             </tr>
-                             <tr>
-                                 <td>SP01</td>
-                                 <td>Aos polo nam aelimited</td>
-                                 <td>3</td>
-                                 <td>300000</td>
-                                 <td></td>
-                                 <td>300000</td>
-                                 <td><b>900000</b></td>
                              </tr>
                              </tbody>
                          </table>
@@ -211,5 +179,206 @@
          </div>
      </div>
  </section>
+
+
+ <script>
+     const currentUrl = window.location.href;
+     const results = currentUrl.split('/');
+     const maHoaDon = results[results.length - 1];
+
+     loadHoaDon();
+
+     function loadHoaDon() {
+         $.ajax({
+             url: "/api/hoa-don-off/" + maHoaDon,
+             method: "GET",
+             dataType: "json",
+             success: (response) => {
+                 let totalInvoice = 0;
+                 let toatlQuantity = 0;
+                 let html = '';
+                 if (response.tienThua === null) {
+                     $('#money-change').text(0);
+                 } else {
+                     $('#money-change').text(response.tienThua);
+                 }
+                 if (response.hoaDonChiTiet.length > 0) {
+                     $.each(response.hoaDonChiTiet, (index, item) => {
+                         totalInvoice += item.thanhTien;
+                         toatlQuantity += item.soLuong;
+                         html += `<div class="card card-body mb-2 card-body-invoice-detail" style="border-radius: 10px;">
+                                    <div class="row">
+                                        <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>\${++index}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tên sản phẩm</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-2">\${item.tenSanPham}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Số lượng</span>
+                                                    <div class="input-group w-100 action">
+                                                        <button class="btn text-light btn-remove-product" style="background-color: #EB8153"><i class="fa fa-minus"></i></button>
+                                                        <input type="text" class="form-control invoice-detail-quantity" style="text-align: center" value="\${item.soLuong}"/>
+                                                        <button class="btn text-light btn-add-product" style="background-color: #EB8153"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex  align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Đơn giá</span><br>
+                                                    <span class="mb-0 pt-1 fs-5 font-w500 text-black">\${item.gia}</span> đ
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex project-status align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tổng tiền</span>
+                                                    <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${item.thanhTien}</span> đ
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        </svg>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item invoice-detail-delete" href="">Xóa</a>
+                                                        <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
+                                </div>
+                                `;
+
+                         $('#invoice-non').hide();
+                         $('#invoice-money-quantity').show();
+
+                         $('#invoice').html(html + `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
+                         $('.invoice-total').text(totalInvoice);
+                         $('#invoice-quantity').text(toatlQuantity);
+
+                         $('.invoice-detail-seen').on('click', function () {
+                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                             $.ajax({
+                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                 method: "GET",
+                                 dataType: "json",
+                                 success: (response) => {
+                                     $("#tenSanPham").text(response.tenSanPham);
+                                     $("#gia").text(response.gia);
+                                     $("#soLuong").text(response.soLuong);
+                                     $("#tenThuongHieu").text(response.tenThuongHieu);
+                                     $("#image").attr('src', '/assets/images/sanpham/' + response.image);
+                                     const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
+                                     let htmlThuocTinh = '';
+                                     $.each(response.thuocTinh, (index, item) => {
+                                         htmlThuocTinh += `<div class="row mt-3" style="border-bottom: 1px solid #dedede; padding: 10px"><div class="col-3"><h5>\${item.ten}:</h5></div>
+                                                                    <div class="col-9 d-flex"> `
+
+                                         let htmlGiaTriThuocTinh = '';
+                                         $.each(item.giaTriThuocTinh, (index, item1) => {
+                                             let checked = giaTriThuocTinhChecked.includes(item1.id) ? "checked" : "";
+                                             htmlGiaTriThuocTinh += `<div class="form-check mr-3 mb-2">
+                                                                        <input type="radio" class="form-check-input"
+                                                                               value="\${item1.id}"  \${checked}>
+                                                                        <label class="form-check-label">\${item1.giaTri}</label>
+                                                                    </div>`
+
+                                         })
+                                         htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + `</div></div>`;
+                                     })
+                                     $(".thuoc-tinh").html(htmlThuocTinh)
+                                 },
+                                 error: (error) => {
+                                 }
+                             })
+
+                         })
+
+                         $('.btn-add-product').on('click', function () {
+                             let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
+                             quantity += 1;
+                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                             updateQuantity(invoiceDetailId, quantity)
+                         })
+
+                         $('.btn-remove-product').on('click', function () {
+                             let quantityElement = $(this).closest('.action').find('.invoice-detail-quantity');
+                             let quantity = parseInt(quantityElement.val());
+                             if (quantity === 1) {
+                                 showError("Số lượng không thể nhỏ hơn 1. Không thể giảm thêm nữa.")
+                                 return;
+                             }
+                             quantity -= 1;
+                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                             updateQuantity(invoiceDetailId, quantity);
+                         });
+
+                         $('.invoice-detail-quantity').on('input', function () {
+                             let inputValue = $(this).val();
+                             if (!(/^\d+$/.test(inputValue))) {
+                                 inputValue = inputValue.replace(/[^\d]/g, '');
+                                 $(this).val(inputValue);
+                             }
+                             let quantity = parseInt(inputValue);
+                             if (isNaN(quantity) || quantity === 0) {
+                                 quantity = 1;
+                                 $(this).val(quantity);
+                             }
+
+                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                             updateQuantity(invoiceDetailId, quantity);
+                         });
+
+                         $('.invoice-detail-delete').on('click', function () {
+                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                             $.ajax({
+                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                 method: "DELETE",
+                                 contentType: "application/json; charset=utf-8",
+                                 data: JSON.stringify(invoiceDetailId),
+                                 success: (response) => {
+                                     showSuccess("Xóa sản phẩm thành công");
+                                     loadHoaDon()
+                                 },
+                                 error: (error) => {
+                                 }
+                             })
+
+                         })
+                     })
+                 } else {
+                     $('#invoice-money-quantity').hide();
+                     $('.invoice-total').text(0);
+
+                 }
+             },
+             error: (error) => {
+                 console.log(error);
+             }
+         });
+     }
+ </script>
 </body>
 </html>

@@ -103,6 +103,7 @@
 
                 <!-- Footer -->
                 <div class="text-center">
+                    <small class="text-cap mb-4"><a href="/trang-chu" class="text-decoration-none">Bỏ qua</a></small>
                     <small class="text-cap mb-4">Được tin cậy bởi các đội tốt nhất thế giới</small>
 
                     <div class="w-85 mx-auto">
