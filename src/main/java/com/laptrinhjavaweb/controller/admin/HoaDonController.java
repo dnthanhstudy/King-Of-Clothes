@@ -38,17 +38,12 @@ public class HoaDonController {
         return "admin/giaodich/hoa-don-create";
     }
 
-    @GetMapping("/hoa-don-cho")
-    public String hoadoncho(){
+    @GetMapping("/detail/{ma}")
+    public String detailhoadon(){
         MyUserResponse myUserResponse = SecurityUtils.getPrincipal();
         if(myUserResponse.getTrangThai().equals("INACTIVE") && myUserResponse.getMaChucVu().equals("STAFF")){
             return "redirect:/admin/giao-ca/mo-ca?is_not_opened_shift";
         }
-        return "admin/giaodich/hoa-don-cho";
-    }
-
-    @GetMapping("/detail")
-    public String detailhoadon(){
         return "admin/giaodich/hoa-don-detail";
     }
 

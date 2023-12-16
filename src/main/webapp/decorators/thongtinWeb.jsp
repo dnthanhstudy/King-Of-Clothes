@@ -100,6 +100,23 @@
                 link.classList.add('active');
             });
         });
+        function genderTrangThaiHd(idhd,mahd,val) {
+            if (val=="Huỷ đơn"){
+                return `
+                <div class="my-2 text-right">
+                                    <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
+                                </div>
+                `
+            }else{
+                return `
+                <div class="my-2 text-right">
+                                    <button class="btn btn-danger me-2 huydonttweb" onclick="thayDoiTrangThaiHoaDon(\${idhd},'HUYDON')">Hủy đơn</button>
+                                    <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
+                                </div>
+                `
+            }
+        }
+
     </script>
 
 </head>

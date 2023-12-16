@@ -297,7 +297,7 @@
                 data: JSON.stringify(km),
                 success: function (response) {
                     window.location.href = "/admin/khuyen-mai";
-                    showSuccess("Them thanh cong");
+                    showSuccess("Thêm thành công");
                     // console.log(response)
                 },
                 error: function (xhr, status, error) {

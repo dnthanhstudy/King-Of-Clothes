@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.controller.web;
 
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.service.ISanPhamService;
+import com.laptrinhjavaweb.utils.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class HomePageController {
             @PathVariable(name = "slug") String slug,
             @RequestParam Map<String, Object> filters
     ){
-        deleteKeyFromMap(filters);
+        MapUtils.deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/category");
         Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, null, filters, slug);
         mav.addObject("mapProduct", results);
@@ -48,7 +49,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam Map<String, Object> filters
     ){
-        deleteKeyFromMap(filters);
+        MapUtils.deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/shop");
         Map<String, Object> results = new HashMap<>();
         if(filters == null || filters.isEmpty()){
@@ -68,7 +69,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam Map<String, Object> filters
     ){
-        deleteKeyFromMap(filters);
+        MapUtils.deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/search");
         Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, filters, null);
         mav.addObject("mapProduct", results);
@@ -118,12 +119,6 @@ public class HomePageController {
     @GetMapping("/test")
     public String test(){
         return  "web/test";
-    }
-
-    private void deleteKeyFromMap(Map<String, Object> params){
-        params.remove("page");
-        params.remove("limit");
-        params.remove("q");
     }
 }
 

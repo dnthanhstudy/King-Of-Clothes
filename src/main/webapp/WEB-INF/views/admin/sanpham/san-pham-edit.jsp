@@ -246,8 +246,8 @@
                                                 </span>
                                               </button>
                                             </div><div class="list-value-attribute mt-3">`;
-                        $.each(item.giaTriThuocTinh, (index, item1) => {
-                            htmlThuocTinh += `
+                    $.each(item.giaTriThuocTinh, (index, item1) => {
+                        htmlThuocTinh += `
                                                 <button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
                                                          \${item1.giaTri}
                                                     <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -256,8 +256,8 @@
                                                 </button>
 
                                            `;
-                        })
-                        htmlThuocTinh += `  </div><div class="input-group mt-3">
+                    })
+                    htmlThuocTinh += `  </div><div class="input-group mt-3">
                                               <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị">
                                           </div>
                                             </div> `;

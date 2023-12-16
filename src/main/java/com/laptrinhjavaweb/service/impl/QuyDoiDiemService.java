@@ -39,16 +39,36 @@ public class QuyDoiDiemService implements IQuyDoiDiemService {
         List<QuyDoiDiemResponse> resuluts = requests.stream().map(
                 item -> {
                     QuyDoiDiemEntity entity = quyDoiDiemConverter.convertToEntity(item);
-                    if(item.getLoai().equals("Tiền quy ra điểm")){
-                        entity.setLoai("Tiền quy ra điểm");
+                    if(item.getLoai().equals("TIENQUYDIEM")){
+                        entity.setLoai("TIENQUYDIEM");
                     }else{
-                        entity.setLoai("Điểm quy ra tiền");
+                        entity.setLoai("DIEMQUYTIEN");
                     }
                     quyDoiDiemRepository.save(entity);
                     return quyDoiDiemConverter.convertToResponse(entity);
                 }
         ).collect(Collectors.toList());
         return resuluts;
+    }
+
+    public double DiemQuyRaTien(int diem) {
+        List<QuyDoiDiemEntity> quyDoiDiemEntities = quyDoiDiemRepository.findAll();
+        QuyDoiDiemEntity quyDoiDiem = quyDoiDiemEntities.stream()
+                .filter(entity -> entity.getLoai().equals("DIEMQUYTIEN"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy quy đổi điểm ra tiền"));
+
+        return diem * quyDoiDiem.getTien() / quyDoiDiem.getDiem();
+    }
+
+    public double TienQuyDiem(double tien) {
+        List<QuyDoiDiemEntity> quyDoiDiemEntities = quyDoiDiemRepository.findAll();
+        QuyDoiDiemEntity quyDoiDiem = quyDoiDiemEntities.stream()
+                .filter(entity -> entity.getLoai().equals("TIENQUYDIEM"))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy quy đổi tiền ra điểm"));
+
+        return tien * quyDoiDiem.getDiem() / quyDoiDiem.getTien();
     }
 
 }

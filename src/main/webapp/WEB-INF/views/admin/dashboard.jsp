@@ -389,15 +389,20 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                 <div class="container-fluid">
-                    <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center row">
-                        <div class="col-8"></div>
-                        <div class="col-2">
+        <div class="form-head mb-sm-5 mb-3 d-flex justify-content-between">
+            <div class="mb-3">
+            <div class="col-3"><h2 class="font-w600 title mb-2 mr-auto ">Trang chủ</h2></div>
+            </div>
+            <div class="col-7"></div>
+                <h5 class="mt-3 me-2">Thống kê theo: </h5>
+                <div>
                             <select id="cbbthongke" class="form-control">
-                                <option value="1">Ngày</option>
-                                <option value="2">Tuần</option>
-                                <option value="3">Tháng</option>
-                                <option value="4">Năm</option>
-                            </select>
+                    <option value="1">Ngày</option>
+                    <option value="2">Tuần</option>
+                    <option value="3">Tháng</option>
+                    <option value="4">Năm</option>
+                </select>
+                </div>
                         </div>
                     </div>
                     <div class="row">

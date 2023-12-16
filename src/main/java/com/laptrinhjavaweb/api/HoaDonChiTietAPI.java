@@ -25,4 +25,14 @@ public class HoaDonChiTietAPI {
         HoaDonChiTietResponse results = hoaDonChiTietService.findById(id);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    public void update(@PathVariable("id") Long id, @RequestBody Integer soLuong){
+        hoaDonChiTietService.update(id, soLuong);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id){
+        hoaDonChiTietService.delete(id);
+    }
 }

@@ -1,12 +1,24 @@
 $(".btn-add-product").on("click", function (event) {
     event.preventDefault();
     let data = getDataFromForm();
-    data["thuocTinh"] = getAttributeValues();
-    data["bienThe"] = getVariants();
     data["anh"] = getImageOfProduct();
-
-    console.log(data);
-
+    if (data["anh"].length === 0) {
+        showError("Vui lòng chọn hình ảnh của sản phẩm");
+        return false;
+    }
+    let hasEmptyGiaTris = false;
+    data["thuocTinh"] = getAttributeValues();
+    $.each(data["thuocTinh"], function (index, item) {
+        if (item.giaTris.length === 0) {
+            showError("Vui lòng nhập giá trị thuộc tính" );
+            hasEmptyGiaTris = true;
+            return false;
+        }
+    });
+    if (hasEmptyGiaTris) {
+        return false;
+    }
+    data["bienThe"] = getVariants();
     $.ajax({
         url: "/api/san-pham",
         method: "POST",

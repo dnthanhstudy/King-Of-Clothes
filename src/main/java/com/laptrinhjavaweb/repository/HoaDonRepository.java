@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.repository;
 
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
@@ -10,6 +11,8 @@ import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,12 +24,6 @@ import java.sql.Date;
 import java.util.List;
 
 public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaDonRepositoryCustom {
-//    @Query("select hd from HoaDonEntity hd order by hd.ngayDat desc")
-//    List<HoaDonEntity> dsHoaDon();
-
-//    @Procedure(name = "SP_ThongKe")
-//    DoanhThuBanHangResponse thongKeDoanhThu(@Param("selectType") Integer selectType);
-
 
     @Modifying
     @Transactional
@@ -44,10 +41,16 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' order by hd.ngayDat")
     List<DanhSachHoaDonResponse> dsHoaDon();
-    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.ngayDat>=:startdate and hd.ngayDat<=:enddate" +
-            " and (:trangthai='' or hd.trangThai=:trangthai) and (:pttt='' or hd.phuongThucThanhToan=:pttt)" +
+    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.ngayDat >= :startdate and hd.ngayDat <= :enddate " +
+            " and (:trangthai = '' or hd.trangThai = :trangthai or :pttt = '' or hd.phuongThucThanhToan = :pttt) and hd.loai = 'Online' " +
             " order by hd.ngayDat desc")
-    List<DanhSachHoaDonResponse> dsHoaDon(@Param("pttt") String pttt,@Param("trangthai") String trangThai,@Param("startdate") Date startDate,@Param("enddate")Date endDate);
+    List<DanhSachHoaDonResponse> dsHoaDon(
+            @Param("pttt") String pttt,
+            @Param("trangthai") String trangThai,
+            @Param("startdate") Date startDate,
+            @Param("enddate") Date endDate
+    );
+
     @Query(value = "select * from vw_hoadonchitiet_summary where idhoadon =:idhd", nativeQuery = true)
     TongTienResponse tongTienByHoaDon(@Param("idhd")Long idhd);
     @Query("select hd from HoaDonEntity hd where hd.trangThai ='CHUANBIDATHANG' and hd.khachHang.id=:idkh ")
@@ -55,15 +58,23 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     @Query("select hd from HoaDonEntity hd where hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANG') and hd.loai='Online' order by hd.ngayDat desc")
     List<HoaDonResponse> dsHoaDonOnline();
-    @Query("select hd from HoaDonEntity hd where (:trangthai ='' or hd.trangThai =:trangthai) and hd.loai='Online'" +
-            "and (:ten='' or hd.ma=:ten or hd.khachHang.ma=:ten or hd.khachHang.ten=:ten or hd.tenNguoiNhan=:ten or " +
-            "hd.sodienthoai=:ten or hd.trangThai=:ten or hd.phuongThucThanhToan=:ten) and hd.trangThai not in('HUYDON','DANHANHANG','CHUANBIDATHANG')" +
-            " order by hd.ngayDat desc")
-    List<HoaDonResponse> dsHoaDonOnline(@Param("trangthai") String trangThai,@Param("ten")String ten);
+    @Query("select hd from HoaDonEntity hd where " +
+            "(:trangthai = '' or hd.trangThai = :trangthai) " +
+            "and hd.loai = 'Online' " +
+            "and (:ten = '' " +
+            "or hd.ma = :ten " +
+            "or hd.khachHang.ma = :ten " +
+            "or hd.khachHang.ten = :ten " +
+            "or hd.tenNguoiNhan = :ten " +
+            "or hd.sodienthoai = :ten " +
+            "or hd.phuongThucThanhToan = :ten) " +
+            "and hd.trangThai not in ('HUYDON', 'DANHANHANG', 'CHUANBIDATHANG') " +
+            "order by hd.ngayDat desc")
+    List<HoaDonResponse> dsHoaDonOnline(@Param("trangthai") String trangThai, @Param("ten") String ten);
 
     List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiAndLoai(Long idkh,String trangThai,String loai);
 
-    List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(Long idkh,List<String> trangThais);
+    List<HoaDonResponse> findAllByKhachHang_IdAndTrangThaiNotInAndLoaiOrderByNgayDat(Long idkh,List<String> trangThais,String loai);
 
     List<HoaDonResponse> findAllByTrangThaiNotContainsAndLoai(String trangThai,String loai);
 
@@ -146,5 +157,13 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     @Query(value = "select * from vw_doanhthunam", nativeQuery = true)
     DoanhThuBanHangResponse doanhThuNam();
+
+    List<HoaDonEntity> findAllByTrangThai(String trangThai);
+
+//    Page<HoaDonEntity> findAllByTrangThai(String trangThai, Pageable pageable);
+
+    @Modifying
+    @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")
+    void deleteHoaDon(@Param("id") Long id);
 
 }

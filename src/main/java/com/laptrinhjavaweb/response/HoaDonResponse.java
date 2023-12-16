@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.response;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -13,13 +14,21 @@ public class HoaDonResponse {
 
     private String ma;
 
-    private String khachHang;
+    private String tenKhachHang;
+
+    private String soDienThoaiKhachHang;
 
     private Double tongTienHang;
 
     private Double tienKhachTra;
 
+    private Double tienGiamGia;
+
     private Double tienThua;
 
     private List<HoaDonChiTietResponse> hoaDonChiTiet;
+
+    private Date ngayTao;
+
+    private String tenNhanVien;
 }

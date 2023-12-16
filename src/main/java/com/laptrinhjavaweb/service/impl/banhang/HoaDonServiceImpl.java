@@ -87,7 +87,8 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate) {
-        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
+        return hoaDonRepository.dsHoaDon();
+//        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
     }
 
     @Override
@@ -179,7 +180,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     public List<HoaDonResponse> dsHoaDonDaMua(Long idkh) {
         List<String> dsTrangThai = new ArrayList<>();
         dsTrangThai.add(TrangThaiHoaDon.CHUANBIDATHANG);
-        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(idkh,dsTrangThai);
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInAndLoaiOrderByNgayDat(idkh,dsTrangThai,"Online");
     }
 
     @Override
