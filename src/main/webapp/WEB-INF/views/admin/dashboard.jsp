@@ -372,8 +372,6 @@
             </div>
         </div>
 
-
-        <h1>Trang chủ</h1>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
@@ -396,16 +394,19 @@
             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
                  tabindex="0">
                 <div class="container-fluid">
-                    <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center row">
-                        <div class="col-8"></div>
-                        <div class="col-2">
-                            <select id="cbbthongke" class="form-control">
-                                <option value="1">Ngày</option>
-                                <option value="2">Tuần</option>
-                                <option value="3">Tháng</option>
-                                <option value="4">Năm</option>
-                            </select>
+                    <div class="form-head mb-sm-5 mb-3">
+                        <div class="d-flex justify-content-end">
+                            <h5 class="mt-3 me-2">Thống kê theo: </h5>
+                            <div>
+                                <select id="cbbthongke" class="form-control">
+                                    <option value="1">Ngày</option>
+                                    <option value="2">Tuần</option>
+                                    <option value="3">Tháng</option>
+                                    <option value="4">Năm</option>
+                                </select>
+                            </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 m-t35">
@@ -500,36 +501,17 @@
                                         </div>
                                         <div class="card-body p-3">
                                             <div class="table-responsive">
-                                                <table class="table text-center bg-info-hover tr-rounded order-tbl"
+                                                <table class="table  bg-info-hover tr-rounded order-tbl"
                                                        id="tbldsbannhieunhat">
                                                     <thead>
-                                                    <tr>
-                                                        <th>STT</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Tổng sản phẩm</th>
-                                                    </tr>
+                                                        <tr class="text-center">
+                                                            <th>STT</th>
+                                                            <th>Tên sản phẩm</th>
+                                                            <th>Tổng sản phẩm</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>15</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>11</td>
-                                                    </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -556,18 +538,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>0384082003</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Đinh Tuấn Anh</td>
-                                                        <td>0389478937</td>
-                                                        <td>9</td>
-                                                    </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -589,18 +560,18 @@
 
                 </div>
                 <form id="formsearchhd">
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <label for="pttt">Phương thức thanh toán</label>
-                        <select class="form-select" name="phuongThucThanhToan" aria-label="Default select example" id="pttt">
-                            <option value="">Tất cả</option>
-                            <option value="THANHTOANNHANHANG">Thanh toán nhận hàng</option>
-                            <option value="VIDIENTU">Ví điện tử</option>
-                            <option value="CHUYENKHOAN">Paypal</option>
-                        </select>
-                    </div>
+                    <div class="row" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
                         <div class="col-2">
-                            <label for="trangthaihd">Trạng thái</label>
+                            <label for="pttt">Phương thức thanh toán:</label>
+                            <select class="form-select" name="phuongThucThanhToan" aria-label="Default select example" id="pttt">
+                                <option value="">Tất cả</option>
+                                <option value="THANHTOANNHANHANG">Thanh toán khi nhận hàng</option>
+                                <option value="VIDIENTU">Ví điện tử</option>
+                                <option value="CHUYENKHOAN">Paypal</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="trangthaihd">Trạng thái:</label>
                             <select class="form-select" name="trangThai" aria-label="Default select example" id="trangthaihd">
                                 <option value="">Tất cả</option>
                                 <option value="CHONHANDON">Chờ nhận đơn</option>
@@ -611,62 +582,64 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label for="startDate">Start</label>
+                            <label for="startDate">Bắt đầu:</label>
                             <input id="startDate" class="form-control" name="startDate" type="date" />
                             <span id="startDateSelected"></span>
                         </div>
                         <div class="col-2">
-                            <label for="endDate">End</label>
+                            <label for="endDate">Kết thúc:</label>
                             <input id="endDate" name="endDate" class="form-control" type="date" />
                             <span id="endDateSelected"></span></div>
-                        <div class="col-2 mt-5">
-                            <button type="submit" id="searchhd" class="btn btn-outline-primary">Search</button>
+                        <div class="col-2 pt-4 mt-2">
+                            <button type="submit" id="searchhd" class="btn btn-success">Search</button>
                         </div>
-                </div>
+                    </div>
                 </form>
+                <div class="row mt-3" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
+                    <table class="table table table-striped" id="tblhoadon" >
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Mã hoá đơn</th>
+                            <th scope="col">Ngày đặt</th>
+                            <th scope="col">Mã khách hàng</th>
+                            <th scope="col">Tên người đặt</th>
+                            <th scope="col">Tổng tiền hàng</th>
+                            <th scope="col">Tiền khách trả</th>
+                            <th scope="col">Phương thức thanh toán</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Chi tiết</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>Thornton</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td colspan="2">Larry the Bird</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                <table class="table table table-striped" id="tblhoadon">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Mã hoá đơn</th>
-                        <th scope="col">Ngày đặt</th>
-                        <th scope="col">Mã khách hàng</th>
-                        <th scope="col">Tên người đặt</th>
-                        <th scope="col">Tổng tiền hàng</th>
-                        <th scope="col">Tiền khách trả</th>
-                        <th scope="col">Phương thức thanh toán</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col">Chi tiết</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
-                    </tbody>
-                </table>
 
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
@@ -741,9 +714,9 @@
         data.forEach(function (item, index) {
             tbody.append(`
             <tr>
-                <td>\${index+1}</td>
+                <td class="text-center">\${index+1}</td>
                 <td>\${item.ten}</td>
-                <td>\${item.tong}</td>
+                <td class="text-center">\${item.tong}</td>
             </tr>
             `);
         })
