@@ -49,8 +49,15 @@ public class SanPhamAPI {
 			@RequestParam(name = "page", defaultValue = "1") Integer page,
 			@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit,
 			@RequestParam Map<String, Object> filters){
+		deleteKeyFromMap(filters);
 		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit, param, filters, null);
 		return new ResponseEntity<>(results, HttpStatus.OK);
+	}
+
+	private void deleteKeyFromMap(Map<String, Object> params){
+		params.remove("page");
+		params.remove("limit");
+		params.remove("q");
 	}
 
 	@GetMapping("/danh-muc/{slug}")

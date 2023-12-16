@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IHoaDonService {
 
@@ -13,8 +14,11 @@ public interface IHoaDonService {
 
     List<HoaDonResponse> findByMaStatus(String trangThai);
 
+//    Map<String, Object> pagingOrSearchOrFindByMaStatus(Integer pageCurrent, Integer limit, String param, String trangThai );
 
     HoaDonResponse update(HoaDonResquest hoaDonResquest);
 
-    String delete(String ma);
+//    String delete(String ma);
+
+    void delete(String ma);
 }

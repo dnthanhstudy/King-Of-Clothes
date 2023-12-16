@@ -14,8 +14,8 @@ import java.util.List;
 @Setter
 public class AllThongKeResponse {
 
-    DoanhThuBanHangResponse doanhThuBanHang;
+    private DoanhThuBanHangResponse doanhThuBanHang;
 
-    List<TopResponse> dsKhachHangMuaNhieuNhat;
-    List<TopResponse> dsSanPhamBanChayNhat;
+    private List<TopResponse> dsKhachHangMuaNhieuNhat;
+    private List<TopResponse> dsSanPhamBanChayNhat;
 }

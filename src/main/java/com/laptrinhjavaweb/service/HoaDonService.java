@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 
@@ -40,5 +41,5 @@ public interface HoaDonService {
 
     AllThongTinHoaDon allThongTinHoaDon(String maHoaDon);
 
-    AllThongKeResponse allThongKe(String thoiGian);
+    AllThongKeResponse allThongKe(Integer thoiGian);
 }
