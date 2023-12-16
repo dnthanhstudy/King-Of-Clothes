@@ -12,7 +12,5 @@ public class SystemConstant {
 
     public static final String DELETE = "DELETE";
 
-    public static final String ROLE_STAFF = "STAFF";
-
     public static final String path = "G:/workspace/du-an-tot-nghiep/project-spring-boot-web/src/main/webapp/assets/images";
 }

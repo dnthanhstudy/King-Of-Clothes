@@ -14,11 +14,15 @@ public class HoaDonResponse {
 
     private String ma;
 
-    private String khachHang;
+    private String tenKhachHang;
+
+    private String soDienThoaiKhachHang;
 
     private Double tongTienHang;
 
     private Double tienKhachTra;
+
+    private Double tienGiamGia;
 
     private Double tienThua;
 

@@ -35,21 +35,16 @@ public class HoaDonAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 //  update hoa don theo ma
-    @PutMapping("/{ma}")
+    @PutMapping()
     public ResponseEntity<?> update(@RequestBody HoaDonResquest hoaDonResquest){
         HoaDonResponse result = hoaDonService.update(hoaDonResquest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
     //  delete hoa don theo ma, xoa db
-//    @DeleteMapping("/{ma}")
-//    public ResponseEntity<?> delete(@PathVariable("ma") String ma){
-//        String result = hoaDonService.delete(ma);
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
-
     @DeleteMapping("/{ma}")
-    public ResponseEntity<?> delete(@PathVariable(name = "ma") String ma){
-        hoaDonService.delete(ma);
-        return new ResponseEntity<>("Xóa thành công", HttpStatus.OK);
+    public ResponseEntity<?> delete(@PathVariable("ma") String ma){
+        String result = hoaDonService.delete(ma);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
 }

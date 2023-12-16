@@ -66,6 +66,9 @@ public class HoaDonEntity extends BaseEntity{
 	@Column(name = "loai")
 	private String loai;
 
+	@Column(name = "tiengiamgia")
+	private Double tienGiamGia;
+
 	@ManyToOne
 	@JoinColumn(name = "idnhanvien")
 	private NhanVienEntity nhanVien;
@@ -78,7 +81,7 @@ public class HoaDonEntity extends BaseEntity{
 	@JoinColumn(name = "idlydohuydon")
 	private LyDoHuyDonEntity lyDoHuyDon;
 
-	@OneToMany(mappedBy = "hoaDon",cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "hoaDon")
 	private List<TrangThaiGiaoHangEntity> trangThaiGiaoHangs;
 
 	@OneToMany(mappedBy = "hoaDon")
@@ -105,8 +108,8 @@ public class HoaDonEntity extends BaseEntity{
 			super.setTrangThai("HUYDON");
 		}else if(trangThai == TrangThaiHoaDonEnum.TREO){
 			super.setTrangThai("TREO");
-		} else if(trangThai == TrangThaiHoaDonEnum.DANGCHOTHANHTOAN){
-			super.setTrangThai("DANGCHOTHANHTOAN");
+		}else if(trangThai == TrangThaiHoaDonEnum.THANHCONG){
+			super.setTrangThai("THANHCONG");
 		}
 	}
 
