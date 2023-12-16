@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
+import java.math.BigDecimal;
 
 //@NamedStoredProcedureQuery(name = "HoaDon",
 //        procedureName = "SP_ThongKe", parameters = {
@@ -24,10 +25,10 @@ import javax.persistence.StoredProcedureParameter;
 //@NoArgsConstructor
 //@AllArgsConstructor
 public interface DoanhThuBanHangResponse {
-     Double getDoanhThuOnline();
-     Double getDoanhThuOffline();
-     Double getTongSoSanPhamDaBan();
-     Double getSoLuongKhuyenMaiDaBan();
+     BigDecimal getDoanhThuOnline();
+     BigDecimal getDoanhThuOffline();
+     Long getTongSoSanPhamDaBan();
+     Long getSoLuongKhuyenMaiDaBan();
 
     // Getters and setters
 }

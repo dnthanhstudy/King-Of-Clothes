@@ -5,6 +5,9 @@ import com.laptrinhjavaweb.model.request.ThongTinNhanHangRequest;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
+import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
+import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.service.GiaoHangService;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.service.Thu3Service;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -41,6 +45,10 @@ public class ApiHoaDonController {
     @Autowired
     Thu3Service thu3Service;
 
+    @GetMapping("/thongkedssp")
+    public List<TopResponse> thongKeDsSanPham(){
+        return hoaDonService.thongKeDsSanPham();
+    }
     @GetMapping("/alltt")
     public AllThongTinHoaDon allThongTinHoaDon(@RequestParam("mahoadon") String maHoaDon){
         return hoaDonService.allThongTinHoaDon(maHoaDon);
@@ -48,6 +56,20 @@ public class ApiHoaDonController {
     @GetMapping("/thongke")
     public Object allThongKe(@RequestParam("thoigian") Integer thoiGian){
         return hoaDonService.allThongKe(thoiGian);
+    }
+
+    @GetMapping("/dshoadonresponse")
+    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
+                                                       @RequestParam(value = "endDate")Date endDate,
+                                                       @RequestParam(value = "trangThai")String trangThai,
+                                                       @RequestParam(value = "phuongThucThanhToan")String phuongThucThanhToan
+
+    ){
+        if (startDate==null&&endDate==null){
+            return hoaDonService.dsHoaDonResponse();
+        }
+
+        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
     }
 
     @GetMapping("/findall")
@@ -72,25 +94,30 @@ public class ApiHoaDonController {
     }
 
 
-    @GetMapping("/dshoadon")
-    public ResponseObject dsHoaDonOnline(){
-        return new ResponseObject(hoaDonService.dsHoaDonOnline());
-    }
+//    @GetMapping("/dshoadon")
+//    public ResponseObject dsHoaDonOnline(){
+//        return new ResponseObject(hoaDonService.dsHoaDonOnline());
+//    }
 
+    @GetMapping("/dshoadon")
+    public List<HoaDonResponse> dsHoaDonOnline(@RequestParam(name = "ten",required = false,defaultValue = "")String ten,
+                                               @RequestParam(name = "trangthai",required = false,defaultValue = "")String trangThai){
+        return hoaDonService.dsHoaDonOnline(trangThai,ten);
+    }
 
     @GetMapping("/thaydoitrangthai")
     public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,
                                    @RequestParam("trangthai")String trangThai,
                                    @RequestParam(value = "luuy",required = false,defaultValue = "")String luuy
     ){
-        hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
-        PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
+        HoaDonEntity hoaDon = hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
+            PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
             thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đang được vận chuyển");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
-            thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đơn hàng đã huỷ");
+            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đơn hàng đã huỷ");
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đã nhận hàng");
+            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đã nhận hàng");
         }
        return  "Thay đổi trạng thái thành công";
     }
@@ -101,6 +128,10 @@ public class ApiHoaDonController {
         HoaDonEntity hoaDon = giaoHangService.thanhToan(request.getIdkh(),request.getTtgh(),
                 "THANHTOANNHANHANG", request.getPhiship(),request.getLuuy(),request.getTongTien());
         return new ResponseObject("Đặt hàng thành công");
+    }
+    @GetMapping("/thongkehoadon")
+    public List<ThongKeHoaDonResponse> thongKeHoaDon(){
+        return  hoaDonService.thongKeHoaDon();
     }
 
     @PostMapping("/datvidientu")

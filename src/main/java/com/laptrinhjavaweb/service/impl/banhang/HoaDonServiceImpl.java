@@ -3,7 +3,9 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 import com.laptrinhjavaweb.converter.CaLamConverter;
 import com.laptrinhjavaweb.entity.CaLamEntity;
+import com.laptrinhjavaweb.entity.ChiTieuEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
@@ -12,8 +14,11 @@ import com.laptrinhjavaweb.model.response.hoadon.HDCTResponse;
 import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
+import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.QueryDoanhThu;
+import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
+import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
@@ -23,8 +28,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class HoaDonServiceImpl implements HoaDonService {
@@ -59,6 +66,12 @@ public class HoaDonServiceImpl implements HoaDonService {
     @Autowired
     TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
 
+    @Autowired
+    ViDienTuRepository viDienTuRepository;
+
+    @Autowired
+    ChiTieuRepository chiTieuRepository;
+
 //    @Autowired
 //    HoaDonConverter hoaDonConverter;
 
@@ -68,10 +81,24 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
+    public List<DanhSachHoaDonResponse> dsHoaDonResponse() {
+        return hoaDonRepository.dsHoaDon();
+    }
+
+    @Override
+    public List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate) {
+        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
+    }
+
+    @Override
     public HoaDonEntity findById(Long idhd) {
         return hoaDonRepository.findById(idhd).orElse(null);
     }
 
+    @Override
+    public List<ThongKeHoaDonResponse> thongKeHoaDon() {
+        return hoaDonRepository.thongKeDsHoaDon();
+    }
 
 
     @Override
@@ -95,6 +122,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
+    public List<HoaDonResponse> dsHoaDonOnline(String trangThai, String ten) {
+        return hoaDonRepository.dsHoaDonOnline(trangThai,ten);
+    }
+
+    @Override
     public String thayDoiTrangThaiHoaDon(Long idhd, String trangThai) {
         try{
             HoaDonEntity hoaDon = hoaDonRepository.findById(idhd).orElse(null);
@@ -109,17 +141,32 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public String thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy) {
+    public HoaDonEntity thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy) {
         try{
             HoaDonEntity hoaDon = hoaDonRepository.findById(idhd).orElse(null);
             assert hoaDon != null;
-            // TrangThaiHoaDonEnum
+            if (Objects.equals(trangThai, TrangThaiHoaDon.HUYDON) &&hoaDon.getLoaiThanhToan()){
+                ViDienTuEntity viDienTuEntity = viDienTuRepository.findByKhachHang(hoaDon.getKhachHang().getId());
+                ChiTieuEntity chiTieu = new ChiTieuEntity();
+                chiTieu.setViDienTu(viDienTuEntity);
+                chiTieu.setSoTien(hoaDon.getTienKhachTra());
+                chiTieu.setLoaiChiTieu(2);
+                viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()+hoaDon.getTienKhachTra());
+                chiTieuRepository.save(chiTieu);
+                viDienTuRepository.save(viDienTuEntity);
+
+                hoaDonRepository.updateLaiSoLuongKhiHuyDon(idhd);
+            }
+
+            if (trangThai.equals(TrangThaiHoaDon.DANHANHANG)&&!hoaDon.getLoaiThanhToan()){
+                hoaDon.setNgayThanhToan(new java.util.Date());
+            }
             hoaDon.setTrangThai(trangThai);
             hoaDon.setMoTa(luuy);
             hoaDonRepository.save(hoaDon);
-            return "Thay đổi trạng thái thành công";
+            return hoaDon;
         }catch (Exception e){
-            return "Có lỗi xảy ra";
+            return null;
         }
     }
 
@@ -172,25 +219,36 @@ public class HoaDonServiceImpl implements HoaDonService {
             case 1:{
                 response.setDoanhThuBanHang(hoaDonRepository.doanhThuNgay());
                 response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoNgay());
+                response.setDsKhachHangMuaNhieuNhat(hoaDonRepository.dsKhachHangMuaNhieuNhatTheoNgay());
+
                 break;
             }
             case 2:{
                 response.setDoanhThuBanHang(hoaDonRepository.doanhThuTuan());
                 response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoTuan());
+                response.setDsKhachHangMuaNhieuNhat(hoaDonRepository.dsKhachHangMuaNhieuNhatTheoTuan());
                 break;
             }case 3:{
                 response.setDoanhThuBanHang(hoaDonRepository.doanhThuThang());
                 response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoThang());
+                response.setDsKhachHangMuaNhieuNhat(hoaDonRepository.dsKhachHangMuaNhieuNhatTheoThang());
 
                 break;
             }case 4:{
                 response.setDoanhThuBanHang(hoaDonRepository.doanhThuNam());
                 response.setDsSanPhamBanChayNhat(hoaDonRepository.dsSanPhamBanChayTheoNam());
+                response.setDsKhachHangMuaNhieuNhat(hoaDonRepository.dsKhachHangMuaNhieuNhatTheoNam());
                 break;
             }
+            default:return null;
         }
 
         return response;
+    }
+
+    @Override
+    public List<TopResponse> thongKeDsSanPham() {
+        return hoaDonRepository.thongKeDsSanPhamTheoThoiGian();
     }
 
 

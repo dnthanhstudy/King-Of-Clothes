@@ -55,6 +55,7 @@
                         method: "GET",
                         dataType: "json",
                     });
+                    let mahd = res.data[0].maHoaDon;
                     let html = `<div class="col-12 mt-3">
                                 <div class="khung">
                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">
@@ -67,10 +68,10 @@
                                     <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
-                                    <h4>\${item.tenSanPham}</h4>
+                                    <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>
                                     <div class="d-flex justify-content-between">
                                         <span>Phân loại: \${item.tenBienThe} </span>
-                                        <span class="text-danger">\${item.tongTienHdct}₫</span></span>
+                                        <span class="text-danger">\${formatNumber(item.tongTienHdct)}₫</span></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <span>x\${item.soLuong} </span>
@@ -87,7 +88,7 @@
                                         Phí ship:
                                     </div>
                                     <div class="col text-right">
-                                        <span class="text-danger">\${item.tienShip}₫</span>
+                                        <span class="text-danger">\${formatNumber(item.tienShip)}₫</span>
                                     </div>
                                 </div>
                                 <div class="row d-flex justify-content-between">
@@ -95,12 +96,12 @@
                                         Thành tiền:
                                     </div>
                                     <div class="col text-right">
-                                        <span class="text-danger" style="font-size: 25px">\${item.tongTien}₫</span>
+                                        <span class="text-danger" style="font-size: 25px">\${formatNumber(item.tongTien)}₫</span>
                                     </div>
                                 </div>
                                 <div class="my-2 text-right">
-                                    <button class="btn btn-danger me-2" >Mua lại</button>
-                                    <button class="btn btn-secondary" >Xem đơn hàng</button>
+<!--                                    <button class="btn btn-danger me-2" >Mua lại</button>-->
+                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
                                 </div>
                             </div>
                         </div>

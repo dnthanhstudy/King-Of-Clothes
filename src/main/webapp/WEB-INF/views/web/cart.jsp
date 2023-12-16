@@ -457,9 +457,28 @@
             method: 'POST',
             contentType: 'application/json',
             data: data,
-            success: function (req) {
+            success: async function (req) {
                 //     console.log(req)
-                window.location.href = "/checkout"
+                if (!req) {
+                    window.location.href = "/checkout"
+                } else {
+                    if (req == 1) {
+                        Swal.fire({
+                            title: "Thông báo!",
+                            text: "Hiện số lượng tại cửa hàng không đủ, chúng tôi sẽ cập nhật lại số lượng cho bạn!",
+                            icon: "error"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
+                            }
+                        });
+                    } else {
+                        await Swal.fire('Thông báo...', 'Vì là số lượng của giỏ hàng lớn hơn 10 khi đặt hàng, ' +
+                            'vậy nên chúng tôi sẽ liên hệ với bạn khi chúng tôi xác nhận đơn', 'warning');
+                        window.location.href = "/checkout";
+                    }
+
+                }
             },
             error: function (xhr, status, error) {
                 console.log(error)

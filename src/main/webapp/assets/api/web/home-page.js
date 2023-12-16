@@ -21,8 +21,14 @@ function loadProduct() {
                 let htmlCoupon = '';
                 let coupon = item.khuyenMaiHienThiResponse;
                 if(coupon !== null){
-                    htmlCoupon = `<h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                    if(coupon.trangThai === "UPCOMING"){
+                        htmlCoupon = `
+                                  <h4 class="text-danger product-price-custom-vnd ms-2">${item.gia}</h4>`;
+                    }else{
+                        htmlCoupon = `<h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
                                   <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>`;
+                    }
+
                 }else{
                     htmlCoupon = `<h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>`;
                 }

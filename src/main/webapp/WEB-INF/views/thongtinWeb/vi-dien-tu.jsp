@@ -99,6 +99,8 @@
                     var loaiChiTieuStr = "";
                     if (item.loaiChiTieu == 0) {
                         loaiChiTieuStr = "Thanh toán";
+                    }else if (item.loaiChiTieu == 2) {
+                        loaiChiTieuStr = "Hoàn tiền";
                     } else{
                         loaiChiTieuStr = "Nạp tiền";
                     }

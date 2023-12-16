@@ -390,31 +390,22 @@
                         <div class="">
                             <h4>Danh sách hóa đơn</h4>
                         </div>
-                        <div class=" ms-auto">
-                            <div class="radio-inputs">
-                                <label class="radio">
-                                    <input type="radio" name="radio" checked="">
-                                    <span class="name">Chờ xác nhận</span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="radio">
-                                    <span class="name">Đã huỷ</span>
-                                </label>
-
-                                <label class="radio">
-                                    <input type="radio" name="radio">
-                                    <span class="name">Đã thanh toán</span>
-                                </label>
-                            </div>
+                        <div class="ms-auto">
+                            <label for="tthd">Trạng thái hoá đơn</label><select id="tthd" class="form-select">
+                                <option value="" selected>Tất cả</option>
+                                <option value="CHONHANDON">Chờ nhận đơn</option>
+                                <option value="DANHANDON">Đã nhận đơn</option>
+                                <option value="DANGGIAOHANG">Đang giao hàng</option>
+                            </select>
                         </div>
                         <div class="vr"></div>
                         <div class="">
                             <div class="InputContainer">
-                                <input type="text" id="searchAll" name="text" class="input" placeholder="Search">
+                                <input type="text" id="tensearch" name="text" class="input" placeholder="Search">
 
                                 <div class="border"></div>
 
-                                <button id="searchButton" class="micButton">
+                                <button id="searchhoadon" class="micButton">
                                     <svg viewBox="0 0 512 512" class="searchIcon">
                                         <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
                                     </svg>
@@ -446,27 +437,28 @@
                     </div>
                 </div>
 
-                <nav class="mt-2">
-                    <ul class="pagination pagination-gutter pagination-primary  no-bg">
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-left"></i></a>
-                        </li>
-                        <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                        <li class="page-item page-indicator">
-                            <a class="page-link" href="javascript:void(0)">
-                                <i class="la la-angle-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+<%--                <nav class="mt-2">--%>
+<%--                    <ul class="pagination pagination-gutter pagination-primary  no-bg">--%>
+<%--                        <li class="page-item page-indicator">--%>
+<%--                            <a class="page-link" href="javascript:void(0)">--%>
+<%--                                <i class="la la-angle-left"></i></a>--%>
+<%--                        </li>--%>
+<%--                        <li class="page-item "><a class="page-link" href="javascript:void(0)">1</a>--%>
+<%--                        </li>--%>
+<%--                        <li class="page-item active"><a class="page-link" href="javascript:void(0)">2</a></li>--%>
+<%--                        <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>--%>
+<%--                        <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>--%>
+<%--                        <li class="page-item page-indicator">--%>
+<%--                            <a class="page-link" href="javascript:void(0)">--%>
+<%--                                <i class="la la-angle-right"></i></a>--%>
+<%--                        </li>--%>
+<%--                    </ul>--%>
+<%--                </nav>--%>
 
         </div>
     </div>
 </section>
+<div id="loading"></div>
 <%--<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>--%>
 
 <script>
@@ -477,7 +469,8 @@
           method: 'GET',
           success: function (req) {
               console.log(req)
-              loadTable(req.data)
+              $("#loading").addClass("loading")
+              loadTable(req)
 
           },
           error: function(xhr, status, error) {
@@ -504,11 +497,7 @@
                 </tr>
          `)
       })
-      // $("#tblHoaDon").dataTable({
-      //     destroy: true,
-      //     stripeClasses: ['w-100'],
-      //     paging:false
-      // })
+
   }
   function htmlGiaTien(giaTien,giaTienKm) {
         let html = '';
@@ -668,4 +657,24 @@
            }
 
    }
+   $("#searchhoadon").click(function () {
+       let ten = $("#tensearch").val();
+       let trangThai = $('#tthd').val();
+       // let trangThai = $('input[name=radio]:checked').val();
+       $.ajax({
+           url: `/api/hoadon/dshoadon?trangthai=\${trangThai}&ten=\${ten}`,
+           method: 'GET',
+           success: function (req) {
+               console.log(req)
+               loadTable(req)
+
+           },
+           error: function(xhr, status, error) {
+               console.log("Có lỗi xảy ra")
+           }
+       });
+   })
+    $(".tthd").click(function () {
+        $("#searchhoadon").trigger("click");
+    })
 </script>
