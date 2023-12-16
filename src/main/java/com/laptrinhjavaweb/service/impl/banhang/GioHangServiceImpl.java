@@ -74,19 +74,40 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     @Transactional
-    public ResponseObject datHang(Long idkh, List<Long> dsghct) {
+    public String datHang(Long idkh, List<Long> dsghct) {
 //        HoaDonChiTietEntity hoaDon = hoaDonRepository.getHoaDonMoiTaoByIdkh(idkh);
 //        if (hoaDon!=null){
 //            return new ResponseObject("Đang có hoá đơn trạng thái chưa giao hàng,vui lòng xem lại");
 //        }
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
-        HoaDonEntity hoaDon = new HoaDonEntity();
-        hoaDon.setKhachHang(khachHang);
-        hoaDon.setTrangThai(TrangThaiHoaDon.CHUANBIDATHANG);
-        hoaDon = hoaDonRepository.save(hoaDon);
-        hoaDon.setMa("HD"+hoaDon.getId());
-        hoaDon.setLoai("Online");
-        hoaDonRepository.save(hoaDon);
+        HoaDonEntity hoaDon = hoaDonRepository.findHoaDonMoiDat(idkh);
+        if (hoaDon==null){
+            hoaDon = new HoaDonEntity();
+            hoaDon.setKhachHang(khachHang);
+            hoaDon.setTrangThai(TrangThaiHoaDon.CHUANBIDATHANG);
+            hoaDon = hoaDonRepository.save(hoaDon);
+            hoaDon.setMa("HD"+hoaDon.getId());
+            hoaDon.setLoai("Online");
+            hoaDonRepository.save(hoaDon);
+        }
+
+        String check = null;
+        for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
+            BienTheEntity bienThe = gioHangChiTiet.getBienThe();
+            if (bienThe.getSoLuong() < gioHangChiTiet.getSoLuong()) {
+                if (bienThe.getSoLuong()==0){
+                    gioHangChiTiet.setTrangThai("DAHETHANG");
+                }else{
+                    gioHangChiTiet.setSoLuong(bienThe.getSoLuong());
+                }
+                gioHangChiTietRepository.save(gioHangChiTiet);
+                check= "1";
+            }
+        }
+        if (check!=null){
+            return check;
+        }
+        int checkSl = 0;
         for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();
             HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();
@@ -96,15 +117,20 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonChiTiet.setGia(bienThe.getGia());
             hoaDonChiTiet.setHoaDon(hoaDon);
             gioHangChiTiet.setTrangThai("PENDING");
+            checkSl+=gioHangChiTiet.getSoLuong();
             hoaDonChiTietRepository.save(hoaDonChiTiet);
         }
-        return new ResponseObject("Đặt hàng thành công");
+        if (checkSl>10){
+            return "2";
+        }
+        return null;
     }
 
     @Override
     @Transactional
-    public Long themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
+    public String themVaoGioHang(Long idkh, Long idBienThe,Integer quantity) {
         BienTheEntity bienThe = bienTheRepository.findById(idBienThe).orElse(null);
+        assert bienThe != null;
         KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
         assert khachHang != null;
         if (khachHang.getGioHangEntities()==null){
@@ -114,17 +140,25 @@ public class GioHangServiceImpl implements GioHangService {
             khachHang.setGioHangEntities(gioHangRepository.save(gioHang));
         }
         GioHangChiTietEntity gioHangChiTiet = gioHangChiTietRepository.findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(idBienThe,idkh,"ACTIVE");
+
         if (gioHangChiTiet==null){
+            if (quantity>bienThe.getSoLuong()){
+                return "Số lượng tại cửa hàng hiện không đủ";
+            }
             gioHangChiTiet = new GioHangChiTietEntity();
             gioHangChiTiet.setBienThe(bienThe);
             gioHangChiTiet.setGioHang(khachHang.getGioHangEntities());
             gioHangChiTiet.setSoLuong(quantity);
             gioHangChiTiet.setTrangThai("ACTIVE");
         }else {
+            int soLuongNeuThem = gioHangChiTiet.getSoLuong()+quantity;
+            if (soLuongNeuThem>bienThe.getSoLuong()){
+                return "Số lượng tại cửa hàng không đủ";
+            }
             gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
         }
       gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
-        return gioHangChiTiet.getBienThe().getId();
+        return gioHangChiTiet.getBienThe().getId().toString();
     }
 
     @Override
@@ -140,6 +174,21 @@ public class GioHangServiceImpl implements GioHangService {
     public String xoaGioHangChiTiet(Long idghct) {
         gioHangChiTietRepository.delete(gioHangChiTietRepository.findById(idghct).get());
         return "Xoá thành công";
+    }
+
+    @Override
+    public Long tongSoSanPhamTrongGioHang(Long idkh) {
+        KhachHangEntity khachHang = khachHangRepository.findById(idkh).orElse(null);
+        assert khachHang != null;
+        if (khachHang.getGioHangEntities()==null){
+            GioHangEntity gioHang = new GioHangEntity();
+            gioHang.setKhachHang(khachHang);
+            gioHang.setTrangThai("ACTIVE");
+            khachHang.setGioHangEntities(gioHangRepository.save(gioHang));
+            return 0L;
+        }
+        List<GioHangResponse> dsGioHang = gioHangChiTietRepository.dsGioHangChiTietByIdKh(idkh);
+        return (long) dsGioHang.size();
     }
 
 //

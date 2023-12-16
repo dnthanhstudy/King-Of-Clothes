@@ -7,6 +7,8 @@ import com.laptrinhjavaweb.model.response.hoadon.AllThongTinHoaDon;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
 import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
+import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
+import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 
@@ -18,6 +20,7 @@ public interface HoaDonService {
 
     HoaDonEntity findById(Long idhd);
 
+    List<ThongKeHoaDonResponse> thongKeHoaDon();
     List<HoaDonChiTietResponse> findHoaDonMoiDat(Long idkh);
 
     List<HoaDonChiTietResponse> dsHoaDonChiTietByIdHoaDon(Long idhd);
@@ -27,7 +30,7 @@ public interface HoaDonService {
     List<HoaDonResponse> dsHoaDonOnline();
 
     String thayDoiTrangThaiHoaDon(Long idhd, String trangThai);
-    String thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy);
+    HoaDonEntity thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy);
 
     List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh,String trangThai);
 
@@ -42,4 +45,6 @@ public interface HoaDonService {
     AllThongTinHoaDon allThongTinHoaDon(String maHoaDon);
 
     AllThongKeResponse allThongKe(Integer thoiGian);
+
+    List<TopResponse> thongKeDsSanPham();
 }

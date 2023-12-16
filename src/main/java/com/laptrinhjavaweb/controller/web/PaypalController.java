@@ -105,7 +105,7 @@ public class PaypalController {
             Payment payment = service.executePayment(paymentId, payerId);
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
-                HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN",order.getPhiShip(),"Chuyển khoản",order.getTienKhachTra());
+                HoaDonEntity hoaDon= giaoHangService.thanhToan(idkh,ttgh,"CHUYENKHOAN",order.getPhiShip(),order.getMota(),order.getTienKhachTra());
                 if (hoaDon==null){
                     return "web/403";
                 }
