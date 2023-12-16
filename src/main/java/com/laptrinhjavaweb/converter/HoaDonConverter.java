@@ -47,7 +47,7 @@ public class HoaDonConverter {
             response.setSoDienThoaiKhachHang("");
         }else{
             response.setTenKhachHang(entity.getKhachHang().getTen());
-            response.setTenKhachHang(entity.getKhachHang().getSoDienThoai());
+            response.setSoDienThoaiKhachHang(entity.getKhachHang().getSoDienThoai());
         }
         List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream().map(
                 item -> hoaDonChiTietConverter.convertToResponse(item)

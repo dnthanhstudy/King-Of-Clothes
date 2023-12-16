@@ -137,7 +137,7 @@
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
                                  <td>\${item.tongTienHang}</td>
                                  <td>\${item.tienKhachTra}</td>
-                                 <td>\${item.tienThua}</td>
+                                 <td>\${item.tienKhachTra - item.tongTienHang}</td>
                                  <td>
                                     <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                      <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
@@ -147,6 +147,7 @@
                         `;
                     tbody.append(row);
                 });
+
                 if (value === "TREO") {
                     $(".detail").hide();
                 } else {
