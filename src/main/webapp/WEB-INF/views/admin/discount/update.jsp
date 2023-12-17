@@ -83,7 +83,7 @@
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="number" class="form-control" id="giaTriGiam" name="val-text" placeholder="Nhập giá trị" min="0">
+                                                            <input type="text" class="form-control" id="giaTriGiam" name="val-text" placeholder="Nhập giá trị" min="0">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -92,7 +92,7 @@
                                                 <label class="col-lg-2 col-form-label">Số lượng <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="number" class="form-control" id="soLuong" name="val-text" placeholder="Nhập số lượng"  min="0">
+                                                    <input type="text" class="form-control" id="soLuong" name="val-text" placeholder="Nhập số lượng"  min="0">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -200,15 +200,15 @@
                                                 </div>
                                             </div>
 
-<%--                                            <div class="mb-3">--%>
-<%--                                                <div class="mb-3">Sản phẩm khuyến mại:</div>--%>
+                                            <%--                                            <div class="mb-3">--%>
+                                            <%--                                                <div class="mb-3">Sản phẩm khuyến mại:</div>--%>
 
-<%--                                                <table class="table table-hover table-striped">--%>
-<%--                                                    <tbody class="tbody-product-select">--%>
+                                            <%--                                                <table class="table table-hover table-striped">--%>
+                                            <%--                                                    <tbody class="tbody-product-select">--%>
 
-<%--                                                    </tbody>--%>
-<%--                                                </table>--%>
-<%--                                            </div>--%>
+                                            <%--                                                    </tbody>--%>
+                                            <%--                                                </table>--%>
+                                            <%--                                            </div>--%>
 
                                             <div class="form-group row">
                                                 <div class="col-lg-4 ml-auto">
@@ -300,17 +300,36 @@
     var checkedValues = listSlugSanPham;
 
     $("#getValue").click(function (){
-        checkedValues = []
+        getvaluew();
+    });
+    $('#soLuongSanPham').text(size);
+    function getvaluew(){
         $('.form-check-input:checked').each(function () {
-            checkedValues.push($(this).val());
+            let val = $(this).val();
+
+            if (checkedValues.length === 0) {
+                checkedValues.push(val);
+            } else {
+                let isDuplicate = false;
+
+                for (const x in checkedValues) {
+                    if (checkedValues[x] === val) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate) {
+                    checkedValues.push(val);
+                }
+            }
         });
+        listSlugSanPham = checkedValues;
         $('#modalSanPham').modal('hide');
         size = checkedValues.length;
         $('#soLuongSanPham').text(size);
         console.log(checkedValues);
-    });
-    $('#soLuongSanPham').text(size);
-
+    };
 
 
 
@@ -368,6 +387,7 @@
             method: 'GET',
             success: function (response) {
                 let html = '';
+                console.log(response.data);
                 $.each(response.data, (index, item) => {
 
                     if(item.khuyenMaiHienThiResponse == null || (item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma === maKM)) {
@@ -420,6 +440,10 @@
             showError("Số lượng trống. Vui lòng nhập giá trị!");
             isValid = false;
         }else{
+            if(isNaN(soLuong)){
+                showError("Số lượng không hợp lệ. Vui lòng nhập giá trị là số");
+                isValid = false;
+            }else
             if(soLuong < 0 ){
                 showError("Số lượng không hợp lệ. Vui lòng nhập số lượng > 0!");
                 isValid = false;
@@ -430,12 +454,18 @@
             isValid = false;
         }else{
             if(loaiGiamGia == 1){
-                if(giaTriGiam <=0 || giaTriGiam >= 100){
+                if(isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <=0 || giaTriGiam >= 100){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 0 & < 100!");
                     isValid = false;
                 }
             }else{
-                if(giaTriGiam <= 1000){
+                if(isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <= 1000){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 1000!");
                     isValid = false;
                 }
@@ -455,12 +485,12 @@
             isValid = false;
         }
         // else{
-            // let ngayBD = new Date(ngayBatDau);
-            // let currentDate = new Date();
-            // if(ngayBD < currentDate){
-            //     showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
-            //     isValid = false;
-            // }
+        // let ngayBD = new Date(ngayBatDau);
+        // let currentDate = new Date();
+        // if(ngayBD < currentDate){
+        //     showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
+        //     isValid = false;
+        // }
         // }
         if ($("#tenKM").val() === "") {
             showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
@@ -469,6 +499,9 @@
         return isValid;
     }
     function formatNumber(number) {
+        if (isNaN(number) || number === null) {
+            return "0";
+        }
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
     $(document).ready(function() {
@@ -477,6 +510,7 @@
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
                 value = searchButton.val();
+                getvaluew();
                 if (value.isBlank) {
                     loadKhuyenMai();
                 } else {
@@ -486,7 +520,7 @@
         });
         $('#ngayBatDau').attr('min', getCurrentDatetime());
         $('#ngayKetThuc').attr('min', getCurrentDatetime());
-        $("#ngayBatDau").val(getCurrentDatetime());
+        // $("#ngayBatDau").val(getCurrentDatetime());
     });
     var limit = 100;
 
@@ -560,6 +594,15 @@
                 console.log(error);
             }
         });
+    }
+    function getCurrentDatetime() {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = (today.getMonth() + 1).toString().padStart(2, '0');
+        var day = today.getDate().toString().padStart(2, '0');
+        var hours = today.getHours().toString().padStart(2, '0');
+        var minutes = today.getMinutes().toString().padStart(2, '0');
+        return `\${year}-\${month}-\${day}T\${hours}:\${minutes}`;
     }
 
 </script>
