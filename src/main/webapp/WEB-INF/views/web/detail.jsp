@@ -63,7 +63,7 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                   <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                   <c:if test="${product.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
                        <p>Kết thúc sau:
                            <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
                            <span class="finish"></span>

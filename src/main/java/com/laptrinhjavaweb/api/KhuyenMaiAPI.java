@@ -37,7 +37,7 @@ public class KhuyenMaiAPI {
         return new ResponseEntity<>(results, HttpStatus.CREATED);
     }
     @PutMapping("/update/{ma}")
-    public ResponseEntity<?> update(@RequestBody KhuyenMaiRequest km, @PathVariable String ma){
+    public ResponseEntity<?> update(@RequestBody KhuyenMaiRequest km, @PathVariable("ma") String ma){
         KhuyenMaiResponse results = khuyenMaiService.update(km, ma);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
@@ -57,4 +57,5 @@ public class KhuyenMaiAPI {
         Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit,null, null, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
 }

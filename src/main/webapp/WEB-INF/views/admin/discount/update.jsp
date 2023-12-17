@@ -96,18 +96,38 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="">Sản phẩm áp dụng <span class="text-danger"></span>
+                                                <label class="col-lg-2 col-form-label" >Sản phẩm áp dụng <span
+                                                        class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <div class="col-lg-12 ml-auto" style="padding-left: 0px;">
-                                                        <button type="button" class="btn btn-primary light mb-2" data-toggle="modal" data-target=".bd-example-modal-lg">Thêm sản phẩm</button>
-                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg">
+                                                        <button type="button" class="btn btn-primary light mb-2"
+                                                                data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                            Thêm sản phẩm
+                                                        </button>
+                                                        <div class="modal fade bd-example-modal-lg" tabindex="-1"
+                                                             role="dialog" aria-hidden="true" id="modalSanPham">
+                                                            <div class="modal-dialog modal-xl">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title">Thêm sản phẩm</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                                        </button>
+                                                                        <h5 class="modal-title">Danh sách sản phẩm</h5>
+                                                                        <div class="group123 ">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
+                                                                                 viewBox="0 0 512 512">
+                                                                                <style>svg {
+                                                                                    fill: #ebeef4
+                                                                                }</style>
+                                                                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                                                                            </svg>
+                                                                            <input placeholder="Tìm sản phẩm" type="search" class="inputghichu w-100" id="searchButton">
+                                                                        </div>
+                                                                        <div>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal">
+                                                                                <span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+
                                                                     </div>
                                                                     <div style="max-height: 550px; overflow-y: scroll;">
                                                                         <div class="modal-body">
@@ -136,7 +156,10 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Đóng</button>
+                                                                        <button type="button"
+                                                                                class="btn btn-danger light"
+                                                                                data-dismiss="modal">Đóng
+                                                                        </button>
                                                                         <button type="button" class="btn btn-primary" id="getValue" data-dismiss="modal">
                                                                             Xác nhận
                                                                         </button>
@@ -146,6 +169,17 @@
                                                         </div>
                                                     </div>
 
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-2" >
+                                                    <span>Số sản phẩm đã chọn:</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <label id="soLuongSanPham">
+
+                                                    </label>
+                                                    <span >sản phẩm</span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -165,15 +199,17 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <div class="mb-3">Sản phẩm khuyến mại:</div>
 
-                                                <table class="table table-hover table-striped">
-                                                    <tbody class="tbody-product-select">
+<%--                                            <div class="mb-3">--%>
+<%--                                                <div class="mb-3">Sản phẩm khuyến mại:</div>--%>
 
-                                                    </tbody>
-                                                </table>
-                                            </div>
+<%--                                                <table class="table table-hover table-striped">--%>
+<%--                                                    <tbody class="tbody-product-select">--%>
+
+<%--                                                    </tbody>--%>
+<%--                                                </table>--%>
+<%--                                            </div>--%>
+
                                             <div class="form-group row">
                                                 <div class="col-lg-4 ml-auto">
                                                     <a href="#" class="btn btn-success" id="update">Xác nhận</a>
@@ -201,6 +237,7 @@
     var url = window.location.pathname.split("/");
     var maKM = url[url.length - 1];
     var listSlugSanPham = [];
+    var size = 0;
     var idKM;
     $.ajax({
         url: '/api/khuyen-mai/detail/'+maKM,
@@ -223,25 +260,27 @@
             data.listSanPham.forEach(function (item) {
                 listSlugSanPham.push(item.sanPhamResponse.slug);
             });
+            size = listSlugSanPham.length;
+            $("#soLuongSanPham").text(size)
             idKM = data.id;
 
             var dsSanPhamKhuyenMai = data.listSanPham;
             console.log(dsSanPhamKhuyenMai)
-            let html = '';
-            var i = 0
-            dsSanPhamKhuyenMai.forEach(function (item){
-                i++;
-                html +=  `<tr>
-                                <td>\${i}</td>
-                                <td>
-                                    <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
-                                </td>
-                                <td>\${item.sanPhamResponse.ten}</td>
-
-                            </tr>`
-
-            })
-            $('.tbody-product-select').html(html);
+            // let html = '';
+            // var i = 0
+            // dsSanPhamKhuyenMai.forEach(function (item){
+            //     i++;
+            //     html +=  `<tr>
+            //                     <td>\${i}</td>
+            //                     <td>
+            //                         <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+            //                     </td>
+            //                     <td>\${item.sanPhamResponse.ten}</td>
+            //
+            //                 </tr>`
+            //
+            // })
+            // $('.tbody-product-select').html(html);
         },
         error: function(xhr, status, error) {
             console.log(error);
@@ -259,14 +298,18 @@
     }
 
     var checkedValues = listSlugSanPham;
+
     $("#getValue").click(function (){
         checkedValues = []
         $('.form-check-input:checked').each(function () {
             checkedValues.push($(this).val());
         });
         $('#modalSanPham').modal('hide');
+        size = checkedValues.length;
+        $('#soLuongSanPham').text(size);
         console.log(checkedValues);
-    })
+    });
+    $('#soLuongSanPham').text(size);
 
 
 
@@ -326,25 +369,29 @@
             success: function (response) {
                 let html = '';
                 $.each(response.data, (index, item) => {
-                    let isCheck = false;
-                    listSlugSanPham.forEach(x => {
-                        if (item.slug === x) {
-                            isCheck = true;
-                            return false;
-                        }
-                    });
 
-                    html += `<tr>
-             <td>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
-                </div>
-            </td>
-            <td>\${item.ten}</td>
-            <td>\${item.gia}</td>
-            <td>\${item.danhMuc.ten}</td>
-            <td>\${item.thuongHieu.ten}</td>
-       </tr>`;
+                    if(item.khuyenMaiHienThiResponse == null || (item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma === maKM)) {
+                        let isCheck = false;
+                        listSlugSanPham.forEach(x => {
+                            if (item.slug === x) {
+                                isCheck = true;
+                                return false;
+                            }
+                        });
+
+                        html += `<tr>
+                                     <td>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
+                                        </div>
+                                    </td>
+                                    <td>\${item.ten}</td>
+                                    <td>\${formatNumber(item.gia)}<span>đ</span></td>
+                                    <td>\${item.danhMuc.ten}</td>
+                                    <td>\${item.thuongHieu.ten}</td>
+                               </tr>`;
+                    }
+
                 });
 
                 $('.tbody-product').html(html);
@@ -420,6 +467,99 @@
             isValid = false;
         }
         return isValid;
+    }
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    $(document).ready(function() {
+        var searchButton = $('#searchButton');
+        pageCurrent = 1;
+        searchButton.on('keydown', function (event) {
+            if (event.which === 13) {
+                value = searchButton.val();
+                if (value.isBlank) {
+                    loadKhuyenMai();
+                } else {
+                    loadSearch(value);
+                }
+            }
+        });
+        $('#ngayBatDau').attr('min', getCurrentDatetime());
+        $('#ngayKetThuc').attr('min', getCurrentDatetime());
+        $("#ngayBatDau").val(getCurrentDatetime());
+    });
+    var limit = 100;
+
+    function loadSearch(value) {
+        $.ajax({
+            url: '/api/san-pham/search?q=' + value + '&limit=' + limit,
+            method: 'GET',
+            success: function (response) {
+                let html = '';
+                if(response.data.length == 0){
+                    html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm không tồn tại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                }else {
+                    $.each(response.data, (index, item) => {
+                        if (item.khuyenMaiHienThiResponse == null || (item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma === maKM)) {
+                            let isCheck = false;
+                            listSlugSanPham.forEach(x => {
+                                if (item.slug === x) {
+                                    isCheck = true;
+                                    return false;
+                                }
+                            });
+
+                            html += `<tr>
+                                     <td>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
+                                        </div>
+                                    </td>
+                                    <td>\${item.ten}</td>
+                                    <td>\${formatNumber(item.gia)}<span>đ</span></td>
+                                    <td>\${item.danhMuc.ten}</td>
+                                    <td>\${item.thuongHieu.ten}</td>
+                               </tr>`;
+                        }
+                        if(response.data.length == 1 && item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma != maKM){
+                            html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm đang chạy khuyến mại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                        }
+                    })
+                }
+                $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
     }
 
 </script>

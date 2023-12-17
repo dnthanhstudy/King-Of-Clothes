@@ -76,7 +76,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             entity.setKhuyenMai(result);
             entity.setSanPham(spEntity);
             khuyenMaiSanPhamRepository.save(entity);
-            if (result.getTrangThai() == "UPCOMING") {
+            if (result.getTrangThai().equals("UPCOMING")) {
                 entity.setTrangThai("UPCOMING");
                 khuyenMaiSanPhamRepository.save(entity);
             }
@@ -109,7 +109,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
             khuyenMaiEntity.setId(km.getId());
             KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
-            List<KhuyenMaiSanPhamEntity> list = km.getKhuyenMaiSanPhamEntities();
+            List<KhuyenMaiSanPhamEntity> list = khuyenMaiSanPhamRepository.findAllByKhuyenMai_id(result.getId());
             for (KhuyenMaiSanPhamEntity kmsp:list
             ) {
                 khuyenMaiSanPhamRepository.delete(kmsp);

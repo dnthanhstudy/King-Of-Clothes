@@ -82,7 +82,7 @@
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="text" class="form-control" id="giaTriGiam"
+                                                            <input type="number" class="form-control" id="giaTriGiam"
                                                                    name="val-text" placeholder="Nhập giá trị">
                                                         </div>
 
@@ -95,7 +95,7 @@
                                                     <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="soLuong" name="val-text"
+                                                    <input type="number" class="form-control" id="soLuong" name="val-text"
                                                            placeholder="Nhập vào">
                                                 </div>
                                             </div>
@@ -173,6 +173,18 @@
                                                         </div>
                                                     </div>
 
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-2" >
+                                                    <span>Số sản phẩm đã chọn:</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <label id="soLuongSanPham">
+
+                                                    </label>
+                                                    <span >sản phẩm</span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -252,14 +264,18 @@
     loadKhuyenMai();
 
     var checkedValues = [];
+    var size = checkedValues.length;
     $("#getValue").click(function (){
         checkedValues = []
         $('.form-check-input:checked').each(function () {
             checkedValues.push($(this).val());
         });
         $('#modalSanPham').modal('hide');
+        size = checkedValues.length;
+        $('#soLuongSanPham').text(size);
         console.log(checkedValues);
     })
+    $('#soLuongSanPham').text(size);
 
     $("#addDiscount").click(function () {
         var maKM = $("#maKM").val();
@@ -349,20 +365,43 @@
             method: 'GET',
             success: function (response) {
                 let html = '';
-                $.each(response.data, (index, item) => {
-                    html += `<tr>
+                console.log(response.data);
+                if(response.data.length == 0){
+                    html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm không tồn tại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                }else{
+                    $.each(response.data, (index, item) => {
+                        if(item.khuyenMaiHienThiResponse == null){
+                            html += `<tr>
                                  <td>
                                     <div class="form-check">
                                       <input class="form-check-input" type="checkbox" value="\${item.slug}">
                                     </div>
                                 </td>
                                 <td>\${item.ten}</td>
-                                <td>\${item.gia}</td>
+                                <td>\${formatNumber(item.gia)}<span>đ</span></td>
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
                            </tr>`;
-                })
+                        }
+                        if(response.data.length == 1 && item.khuyenMaiHienThiResponse != null){
+                            html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm đang chạy khuyến mại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                        }
+                    })
+                }
                 $('.tbody-product').html(html);
+
                 // $('#pagination').twbsPagination({
                 //     first: "<<",
                 //     prev: "<",
@@ -413,7 +452,10 @@
             showError("Số lượng trống. Vui lòng nhập giá trị!");
             isValid = false;
         }else{
-            if(soLuong < 0 ){
+            if(!isNaN(soLuong)){
+                showError("Số lượng không hợp lệ. Vui lòng nhập giá trị là số");
+                isValid = false;
+            }else if(soLuong < 0 ){
                 showError("Số lượng không hợp lệ. Vui lòng nhập số lượng > 0!");
                 isValid = false;
             }
@@ -423,12 +465,18 @@
             isValid = false;
         }else{
             if(loaiGiamGia == 1){
-                if(giaTriGiam <=0 || giaTriGiam >= 100){
+                if(!isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <=0 || giaTriGiam >= 100){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 0 & < 100!");
                     isValid = false;
                 }
             }else{
-                if(giaTriGiam <= 1000){
+                if(!isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <= 1000){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 1000!");
                     isValid = false;
                 }
@@ -438,6 +486,7 @@
             showError("Ngày kết thúc trống. Vui lòng chọn giá trị");
             isValid = false;
         } else {
+
             if (ngayBatDau > ngayKetThuc) {
                 showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày kết thúc > ngày bắt đầu");
                 isValid = false;
@@ -460,6 +509,9 @@
             isValid = false;
         }
         return isValid;
+    }
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
 
