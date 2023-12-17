@@ -108,9 +108,9 @@ public class ApiHoaDonController {
             PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
             thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đang được vận chuyển");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đơn hàng đã huỷ");
+            thu3Service.themTrangThaiGiaoHang(hoaDon.getId().toString(),"Đơn hàng đã huỷ");
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đã nhận hàng");
+            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang().toString(),"Đã nhận hàng");
         }
        return  "Thay đổi trạng thái thành công";
     }
