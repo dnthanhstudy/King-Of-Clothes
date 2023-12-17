@@ -61,14 +61,10 @@ public class ApiHoaDonController {
     @GetMapping("/dshoadonresponse")
     public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
                                                        @RequestParam(value = "endDate")Date endDate,
-                                                       @RequestParam(value = "trangThai")String trangThai,
-                                                       @RequestParam(value = "phuongThucThanhToan")String phuongThucThanhToan
-
+                                                       @RequestParam(value = "trangThai",required = false,defaultValue = "")String trangThai,
+                                                       @RequestParam(value = "phuongThucThanhToan",required = false,defaultValue = "")String phuongThucThanhToan
     ){
-        if (startDate==null&&endDate==null){
-            return hoaDonService.dsHoaDonResponse();
-        }
-
+//        return  hoaDonService.dsHoaDonResponse();
         return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
     }
 
@@ -94,10 +90,7 @@ public class ApiHoaDonController {
     }
 
 
-//    @GetMapping("/dshoadon")
-//    public ResponseObject dsHoaDonOnline(){
-//        return new ResponseObject(hoaDonService.dsHoaDonOnline());
-//    }
+
 
     @GetMapping("/dshoadon")
     public List<HoaDonResponse> dsHoaDonOnline(@RequestParam(name = "ten",required = false,defaultValue = "")String ten,

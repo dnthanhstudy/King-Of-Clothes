@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -67,6 +68,18 @@ public class GioHangServiceImpl implements GioHangService {
     public List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH) {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
+
+    @Override
+    public List<List<GioHangResponse>> dsGioHangTheoSpByIdkh(Long idkh) {
+        List<List<GioHangResponse>> dsGioHangTheoSp = new ArrayList<>();
+        List<Long> dsidsp = gioHangChiTietRepository.dsspCuaGioHang(idkh);
+        for (Long idsp: dsidsp
+             ) {
+            dsGioHangTheoSp.add(gioHangChiTietRepository.dsGhctCuaSanPham(idkh,idsp));
+        }
+        return dsGioHangTheoSp;
+    }
+
     @Override
     public TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
         return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);

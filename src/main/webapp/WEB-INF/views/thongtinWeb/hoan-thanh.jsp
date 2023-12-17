@@ -40,7 +40,7 @@
 </div>
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-
+    function loadTable() {
     $.ajax({
         url: '/api/hoadon/dshdtheott/' + idkh + '?trangthai=DANHANHANG',
         method: "GET",
@@ -80,6 +80,7 @@
                             </div>
                             <hr>`;
                     });
+                    let genderHtml = genderTrangThaiHd(item.id,item.ma,item.trangThai);
                     html += `<div class="row">
                             <div class="col-9"></div>
                             <div class="col-3">
@@ -99,10 +100,7 @@
                                         <span class="text-danger" style="font-size: 25px">\${formatNumber(item.tongTien)}₫</span>
                                     </div>
                                 </div>
-                                <div class="my-2 text-right">
-<!--                                    <button class="btn btn-danger me-2" >Mua lại</button>-->
-                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
-                                </div>
+                                \${genderHtml}
                             </div>
                         </div>
                     </div>
@@ -117,6 +115,24 @@
             console.log(error);
         }
     });
+    }
+    loadTable()
+    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+        var luuy = $("#luuy").val();
+        parameter += `&luuy=\${encodeURIComponent(luuy)}`;
+        $.ajax({
+            url: `/api/hoadon/thaydoitrangthai`+parameter,
+            method: 'GET',
+            success: function (req) {
+                showSuccess("Huỷ đơn thành công");
+                loadTable();
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
 </script>
 </body>
 </html>

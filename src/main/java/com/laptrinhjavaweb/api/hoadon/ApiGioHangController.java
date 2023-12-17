@@ -36,6 +36,10 @@ public class ApiGioHangController {
     public List<GioHangResponse> dsGioHangChiTietByKhachHang(@PathVariable(name = "id")Long idkh){
         return gioHangService.dsGioHangChiTietByIdKh(idkh);
     }
+    @GetMapping("/dsghtheosp/{id}")
+    public List<List<GioHangResponse>> dsGioHangChiTietTheoSanPham(@PathVariable(name = "id")Long idkh){
+        return gioHangService.dsGioHangTheoSpByIdkh(idkh);
+    }
 
     @GetMapping("/tongsptronggio")
     public Long tongBienTheTrongGioHang(@RequestParam(name = "id",required = false,defaultValue = "-1")Long idkh){

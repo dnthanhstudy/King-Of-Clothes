@@ -26,8 +26,16 @@
         .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
         .autocomplete-selected { background: #F0F0F0; }
         .autocomplete-suggestions strong { font-weight: bold; color: #000; }
+    /*    Loading  */
+
     </style>
     <script>
+        var loadingBody = function(){
+            $('#preloader').show();
+        }
+        var endLoadingBody = function () {
+            $('#preloader').hide();
+        }
         function convertVND(number){
             if (!number){
                 number = 0;
@@ -124,7 +132,8 @@
 <!--*******************
    Preloader start
 ********************-->
-<div id="preloader">
+
+<div id="preloader" style="z-index: 999;">
     <div class="sk-three-bounce">
         <div class="sk-child sk-bounce1"></div>
         <div class="sk-child sk-bounce2"></div>
@@ -134,6 +143,7 @@
 <!--*******************
     Preloader end
 ********************-->
+
 
 <div id="main-wrapper">
     <%@ include file="/common/admin/header.jsp" %>

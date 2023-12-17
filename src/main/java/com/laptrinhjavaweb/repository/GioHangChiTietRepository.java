@@ -14,8 +14,17 @@ import java.util.List;
 @Repository
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEntity,Long> {
 
+    @Query("select distinct ghct.bienThe.sanPham.id from GioHangChiTietEntity ghct" +
+            " where ghct.gioHang.khachHang.id=:idkh and " +
+            "ghct.trangThai not in ('DELETE','PENDING','DAHETHANG')")
+    List<Long> dsspCuaGioHang(@Param("idkh")Long idkh);
+
     @Query("select ghct from GioHangChiTietEntity ghct" +
-            " where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai not in ('DELETE','PENDING')")
+            " where ghct.gioHang.khachHang.id=:idkh and ghct.bienThe.sanPham.id=:idsp and ghct.trangThai not in ('DELETE','PENDING','DAHETHANG') order by ghct.ngayTao desc,ghct.ngaySua desc ")
+    List<GioHangResponse> dsGhctCuaSanPham(@Param("idkh")Long idkh,@Param("idsp")Long idsp);
+
+    @Query("select ghct from GioHangChiTietEntity ghct" +
+            " where ghct.gioHang.khachHang.id=:idkh and ghct.trangThai not in ('DELETE','PENDING','DAHETHANG')")
     List<GioHangResponse> dsGioHangChiTietByIdKh(@Param("idkh")Long idkh);
 
     GioHangChiTietEntity findGioHangChiTietEntitiesByBienThe_IdAndGioHang_KhachHang_IdAndTrangThai(Long bienTheId,Long khachHangId,String trangThai);

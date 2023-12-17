@@ -16,7 +16,7 @@
                                         <div class="col-xl-12">
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" >Tên khuyến mãi
-                                                    <span class="text-danger">*</span>
+                                                    <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="tenKM" name="val-text"
@@ -25,7 +25,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" >Mã khuyến mãi <span
-                                                        class="text-danger">*</span>
+                                                        class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="maKM" name="val-text"
@@ -34,7 +34,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label" >Thời gian sử dụng mã
-                                                    <span class="text-danger">*</span>
+                                                    <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-3">
                                                     <input type="datetime-local" class="form-control" id="ngayBatDau"

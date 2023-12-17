@@ -8551,7 +8551,8 @@ p {
   overflow: hidden;
   position: relative; }
   #main-wrapper.show {
-    opacity: 1; }
+    opacity: 1;
+  }
 
 .rounded-lg {
   border-radius: 0.35rem; }
@@ -9276,7 +9277,8 @@ a {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 .sk-three-bounce {
   margin: 0;
