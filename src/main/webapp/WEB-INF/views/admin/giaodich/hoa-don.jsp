@@ -630,6 +630,7 @@
 
    }
    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+       loadingBody()
        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
            var luuy = $("#luuy").val();
            parameter += `&luuy=\${encodeURIComponent(luuy)}`;
@@ -637,11 +638,14 @@
            url: `/api/hoadon/thaydoitrangthai`+parameter,
            method: 'GET',
            success: function (req) {
+               endLoadingBody();
                showMessageHoaDon(trangThai);
                loadDsHoaDon();
            },
            error: function(xhr, status, error) {
+               showError("Có lỗi xảy ra")
                console.log("Có lỗi xảy ra")
+               endLoadingBody()
            }
        });
    }
