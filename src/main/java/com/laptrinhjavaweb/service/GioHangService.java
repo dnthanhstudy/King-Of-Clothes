@@ -13,6 +13,8 @@ public interface GioHangService {
 
     List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH);
 
+    List<List<GioHangResponse>> dsGioHangTheoSpByIdkh(Long idkh);
+
 //    BigDecimal tongTien(Long idKH);
     TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct);
 

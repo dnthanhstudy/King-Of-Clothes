@@ -84,8 +84,6 @@
                                      style='color:#b29898'></i> Voucher</span>
                         </div>
                         <div class="col-6 text-right">
-                            <span class=" text-cyan">Chọn hoặc nhập mã</span>
-
                         </div>
                     </div>
                 </div>
@@ -103,7 +101,6 @@
                     <a>Xóa</a>
                 </div>
                 <div class="col-4 mt-2">
-                    <span>Lưu vào mục đã thích</span>
                 </div>
                 <div class="col-5">
                     <div class="row">
@@ -258,7 +255,7 @@
                         const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
                         var html =
                             `
-<div class="row mt-2" style="border-bottom: 1px solid #dedede">
+<div class="row mt-2 cartographic" style="border-bottom: 1px solid #dedede">
     <div class="col-5">
                                <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                    <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
@@ -317,8 +314,8 @@
     <div class="col-2">
         <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>
     </div>
-    <div class="col-1">
-        <a>Xóa</a>
+    <div class="col-1" >
+        <a class="delete-ghct" style="cursor: pointer" data-id=\${sp.idGhct}>Xóa</a>
     </div>
 </div>
 
@@ -538,4 +535,26 @@
             }
         });
     }
+    function xoaGioHangChiTiet(val) {
+
+    }
+    $(document).on("click",".delete-ghct",function() {
+         let data= $(this);
+
+
+        $.ajax({
+            url: '/api/user/giohang/'+data.attr("data-id"),
+            method: 'DELETE',
+            contentType: 'application/json',
+            success: function (req) {
+                showSuccess("Xoá thành công")
+                data.closest(".cartographic").remove();
+                loadDataCheckbox();
+            },
+            error: function (xhr, status, error) {
+                showError("Có lỗi xảy ra")
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    });
 </script>

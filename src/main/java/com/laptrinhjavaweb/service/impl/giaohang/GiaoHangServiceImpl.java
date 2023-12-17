@@ -174,6 +174,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         trangThaiGiaoHang.setTenTrangThai("Đặt hàng");
         trangThaiGiaoHangRepository.save(trangThaiGiaoHang);
         int parameter = gioHangChiTietRepository.configHoaDonChiTietKhiDatHang(hoaDon.getId(),khachHang.getId());
+        hoaDon.setLoai("Online");
         return hoaDonRepository.save(hoaDon);
     }
 
