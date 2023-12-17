@@ -245,10 +245,10 @@
             tbody.empty();
 
             if (req.length === 0) {
-                tbody.append(`<h3 class="text-center"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>`);
+                tbody.append(`<h3 class="text-center mt-2"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>`);
             } else {
                 const promises = req.map(async function (data) {
-                    let htmlArray = []; // Array to store HTML content for each data item
+                    let htmlArray = [];
                     await Promise.all(data.map(async function (sp) {
                         const thuocTinhSanPham = await getThuocTinhSanPham(sp.slugSanPham);
                         const htmlGiaTien = setGiaTien(sp.giaTien, sp.giaTienKm, sp.idGhct);
@@ -256,7 +256,7 @@
 
                              html =
                                 `
-    <div class="row mt-2 cartographic" style="border-bottom: 1px solid #dedede">
+    <div class="row mt-2 cartographic" >
         <div class="col-5">
                                    <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                        <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
@@ -323,8 +323,9 @@
                                 `;
                         htmlArray.push(html); // Store HTML content for each iteration
                     }));
-
-                    return htmlArray.join(''); // Join HTML content for each data item
+//style="border-bottom: 1px solid #dedede"
+                    // Join HTML content for each data item
+                    return `<div style="border-bottom: 1px solid #dedede">` + htmlArray.join('') + '</div>';
                 });
 
                 const fullHTMLArray = await Promise.all(promises); // Wait for all iterations to complete

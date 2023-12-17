@@ -22,7 +22,7 @@
                         <label for="tenTrangThai" class="form-label">Trạng thái</label>
                         <input type="email" class="form-control" id="tenTrangThai" aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">Thêm trạng thái giao hàng của mã giao hàng</div>
-                        <button type="button" class="btn btn-outline-success" onclick="themTrangThai()">Thêm</button>
+                        <button type="button" class="btn btn-outline-success" id="themtrangthai" onclick="themTrangThai()">Thêm</button>
                     </div>
 
                 <div id="dsTrangThaiGiaoHang">
@@ -41,7 +41,6 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Mã Giao Hàng</th>
             <th scope="col">Mã hoá đơn</th>
             <th scope="col">Ngày giao hàng</th>
             <th scope="col">Tên người nhận</th>
@@ -64,6 +63,7 @@
 <script>
 
     var maGiaoHangIndex ;
+    var trangThaiThis ;
    async function loadTrangThaiGiaoHang(maGiaoHang,trangThai) {
       await  $.ajax({
             url: '/api/thu3/dstrangthai/'+maGiaoHang,
@@ -114,7 +114,13 @@
         let diaChi = $(this).attr("data-diachi");
         let idhd = $(this).attr("data-idhd");
         let trangthai = $(this).attr("data-trangthai");
-        $("#dc").text(diaChi)
+        if (trangthai=="Huỷ đơn"){
+            $("#themtrangthai").hide();
+        }else{
+            $("#themtrangthai").show();
+        }
+        trangThaiThis =trangthai;
+            $("#dc").text(diaChi)
       await  loadTrangThaiGiaoHang(maGiaoHang,trangthai)
         $(".ghtc").val(idhd)
 
@@ -134,13 +140,14 @@
         });
     }
     function themTrangThai(){
+
         $.ajax({
             url:'api/thu3/themtrangthai/'+maGiaoHangIndex+"?tentrangthai="+$("#tenTrangThai").val(),
             method: 'GET',
             contentType: 'application/json',
             success: function (response) {
                 $("#tenTrangThai").val("")
-                loadTrangThaiGiaoHang(maGiaoHangIndex,'Đang giao hàng')
+                loadTrangThaiGiaoHang(maGiaoHangIndex,trangThaiThis)
                 showSuccess("Thêm thành công")
             },
             error: function (xhr, status, error) {
@@ -163,7 +170,7 @@
                         pageLength: 10,
                         responsive:true,
                         data: response,
-                        order:[3,"desc"],
+                        order:[[3,"desc"],[2,"desc"]],
                         columns: [
                             {
                                 data: null,
@@ -172,7 +179,6 @@
                                     return type === 'display' ? meta.row + 1 : data;
                                 }
                             },
-                            { data: 'maGiaoHang' },
                             { data: 'ma' },
                             {
                                 data: 'thoiGianDat',
@@ -186,7 +192,7 @@
                             {
                                 data: 'maGiaoHang',
                                 render: function(data, type, row) {
-                                    return `<button type='button' class='btn btn-primary searchTrangThai' data-bs-toggle='modal' data-bs-target='#exampleModal' value='\${data}'
+                                    return `<button type='button' class='btn btn-primary searchTrangThai' data-bs-toggle='modal' data-bs-target='#exampleModal' value='\${row.id}'
                                 data-diachi='\${row.diaChi}'
                                 data-idhd='\${row.id}'
                                 data-trangthai='\${row.trangThai}'

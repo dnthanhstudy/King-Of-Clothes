@@ -55,6 +55,7 @@
             success: async (response) => {
                 console.log(response)
                 let dshd = $('#dshd');
+                dshd.empty();
                 for (const item of response.data) {
                     let idhd = item.id;
                     try {
@@ -63,7 +64,6 @@
                             method: "GET",
                             dataType: "json",
                         });
-                        let mahd = res.data[0].maHoaDon;
                         let html = `<div class="col-12 mt-3">
                                 <div class="khung">
                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">
@@ -127,8 +127,6 @@
     loadTable()
     function thayDoiTrangThaiHoaDon(idhd,trangThai){
         let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
-        var luuy = $("#luuy").val();
-        parameter += `&luuy=\${encodeURIComponent(luuy)}`;
         $.ajax({
             url: `/api/hoadon/thaydoitrangthai`+parameter,
             method: 'GET',
