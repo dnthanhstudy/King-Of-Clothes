@@ -59,11 +59,10 @@ public class ApiHoaDonController {
     }
 
     @GetMapping("/dshoadonresponse")
-    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate",required = false,defaultValue = "")Date startDate,
+    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
                                                        @RequestParam(value = "endDate")Date endDate,
-                                                       @RequestParam(value = "trangThai")String trangThai,
+                                                       @RequestParam(value = "trangThai",required = false,defaultValue = "")String trangThai,
                                                        @RequestParam(value = "phuongThucThanhToan",required = false,defaultValue = "")String phuongThucThanhToan
-
     ){
         return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
     }

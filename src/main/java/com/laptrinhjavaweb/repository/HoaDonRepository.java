@@ -39,10 +39,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     List<ThongKeHoaDonResponse> thongKeDsHoaDon();
     HoaDonEntity findByMa(String maHoaDon);
 
-    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' order by hd.ngayDat")
+    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.loai='Online' order by hd.ngayDat desc ")
     List<DanhSachHoaDonResponse> dsHoaDon();
     @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.ngayDat >= :startdate and hd.ngayDat <= :enddate " +
-            " and (:trangthai = '' or hd.trangThai = :trangthai or :pttt = '' or hd.phuongThucThanhToan = :pttt) and hd.loai = 'Online' " +
+            " and (:trangthai = '' or hd.trangThai = :trangthai )and ( :pttt = '' or hd.phuongThucThanhToan = :pttt) and hd.loai = 'Online' " +
             " order by hd.ngayDat desc")
     List<DanhSachHoaDonResponse> dsHoaDon(
             @Param("pttt") String pttt,

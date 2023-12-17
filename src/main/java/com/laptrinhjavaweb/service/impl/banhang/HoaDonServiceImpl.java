@@ -87,8 +87,8 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate) {
-        return hoaDonRepository.dsHoaDon();
-//        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
+//        return hoaDonRepository.dsHoaDon();
+        return hoaDonRepository.dsHoaDon(phuongThucThanhToan,trangThai,startDate,endDate);
     }
 
     @Override
