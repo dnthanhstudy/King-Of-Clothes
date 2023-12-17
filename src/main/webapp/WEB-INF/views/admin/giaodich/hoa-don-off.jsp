@@ -108,7 +108,7 @@
             dataType: "json",
             data: JSON.stringify(data),
             success: (response) => {
-                showSuccess("Thêm hóa thành công");
+                showSuccess("Thêm hóa đơn thành công");
                 window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
             },
             error: (error) => {
@@ -127,7 +127,6 @@
                 tbody.empty();
                 var index = 0;
                 response.forEach(function(item) {
-                    console.log(response)
                     var row = `
                             <tr>
                                 <td>\${++index}</td>
@@ -175,6 +174,7 @@
             var selectedValue = $(this).val();
             getHoaDon(selectedValue);
         });
+
     });
 
     $('.tbody-hoadon').on('click', (e) => {
@@ -198,6 +198,16 @@
                 })
         }
     })
+
+    $("#exportButton").click(function () {
+        var selectedValue = $("#trangThai").val();
+
+        if (selectedValue === "THANHCONG") {
+            window.location.href = "/api/hoa-don-off/exportToExcel?trangThai=" + selectedValue;
+        } else {
+            showError("Bạn chỉ có thể xuất hóa đơn đã thanh toán!");
+        }
+    });
 </script>
 </body>
 </html>
