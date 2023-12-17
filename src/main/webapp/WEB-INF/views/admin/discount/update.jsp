@@ -24,7 +24,7 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="">Tên khuyến mãi
+                                                <label class="col-lg-2 col-form-label" >Tên khuyến mãi
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
@@ -32,14 +32,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="">Mã khuyến mãi <span class="text-danger">*</span>
+                                                <label class="col-lg-2 col-form-label" >Mã khuyến mãi <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="maKM" name="val-text" placeholder="Nhập vào">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="">Thời gian sử dụng mã
+                                                <label class="col-lg-2 col-form-label" >Thời gian sử dụng mã
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-3">
@@ -71,7 +71,7 @@
                                     <div class="row">
                                         <div class="col-xl-12">
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="val-username">Loại giảm giá | Mức giảm
+                                                <label class="col-lg-2 col-form-label" >Loại giảm giá | Mức giảm
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <form action="#">
@@ -83,16 +83,16 @@
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="text" class="form-control" id="giaTriGiam" name="val-text" placeholder="Nhập giá trị">
+                                                            <input type="number" class="form-control" id="giaTriGiam" name="val-text" placeholder="Nhập giá trị" min="0">
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="">Số lượng <span class="text-danger"></span>
+                                                <label class="col-lg-2 col-form-label">Số lượng <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="soLuong" name="val-text" placeholder="Nhập vào">
+                                                    <input type="number" class="form-control" id="soLuong" name="val-text" placeholder="Nhập số lượng"  min="0">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
