@@ -541,6 +541,10 @@
         $("#defaultdc").text("");
         $(".sotiengiaohang").text("");
         $("#tongthanhtoan").text("");
+        $("#thoigiandukien").text("Giao hàng nhanh không hỗ trợ")
+        $("#tongtiendola").text("");
+        $("#shipdola").text("");
+        $("#tongthanhtoandola").text("");
     }
     //Hiển thị thông tin mua hàng mặc định
     function getAddressDefault(){
@@ -551,14 +555,15 @@
 
                 console.log(req)
                 var data = req.data;
+                if (!data){
+                    setShipNull();
+                    await dsthongtinmuahang();
+                    return;
+                }
                await dsthongtinmuahang();
                 const radio = document.querySelector(`input[type='radio'][name='diaChiNhanHang'][value='\${data.id}']`);
                 if (radio) {
                     radio.checked = true;
-                }
-                if (!data){
-                    setShipNull();
-                    return;
                 }
                 $("#idttmuahang").val(data.id);
                 $("#tennguoinhan").html(

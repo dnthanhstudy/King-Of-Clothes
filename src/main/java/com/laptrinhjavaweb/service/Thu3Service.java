@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface Thu3Service {
 
-    List<TrangThaiGiaoHangResponse> dsTrangThaiDangGiao(String maGiaoHang);
+    List<TrangThaiGiaoHangResponse> dsTrangThaiDangGiao(Long idhd);
 
     List<HoaDonResponse> dsHoaDonDangGiao();
 
-    String themTrangThaiGiaoHang(String maGiaoHang,String tenTrangThai);
+    String themTrangThaiGiaoHang(Long idhd,String tenTrangThai);
 }

@@ -106,13 +106,17 @@ public class ApiHoaDonController {
         HoaDonEntity hoaDon = hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
             PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
-            thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đang được vận chuyển");
+            hoaDon.setMaGiaoHang(previewGiaoHang.getMaHoaDon());
+            hoaDonService.saveHoaDon(hoaDon);
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đơn hàng đã huỷ");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ");
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đã nhận hàng");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng");
+        } else if (trangThai.equals(TrangThaiHoaDon.DANGGIAOHANG)) {
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ");
         }
-       return  "Thay đổi trạng thái thành công";
+        return  "Thay đổi trạng thái thành công";
     }
 
     @PostMapping("/dathangnhanhang")
