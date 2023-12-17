@@ -22,4 +22,6 @@ public class KhuyenMaiHienThiResponse {
     private long ngayKetThuc;
 
     private Double gia;
+
+    private String trangThai;
 }

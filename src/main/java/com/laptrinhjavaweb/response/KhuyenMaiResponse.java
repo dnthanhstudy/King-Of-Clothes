@@ -36,4 +36,7 @@ public class KhuyenMaiResponse {
     private String moTa;
 
     private List<KhuyenMaiSanPhamResponse> listSanPham;
+
+    private ThongKeKhuyenMaiResponse thongKe;
+
 }

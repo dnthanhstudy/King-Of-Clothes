@@ -13,6 +13,7 @@ public interface IKhuyenMaiService {
     KhuyenMaiResponse update(KhuyenMaiRequest request, String ma);
     KhuyenMaiResponse findById(Long id);
     KhuyenMaiResponse findByMa(String ma);
+    void updateDS();
 
     Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug);
 }

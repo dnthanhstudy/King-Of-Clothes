@@ -165,6 +165,15 @@
                                                     </form>
                                                 </div>
                                             </div>
+                                            <div class="mb-3">
+                                                <div class="mb-3">Sản phẩm khuyến mại:</div>
+
+                                                <table class="table table-hover table-striped">
+                                                    <tbody class="tbody-product-select">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <div class="form-group row">
                                                 <div class="col-lg-4 ml-auto">
                                                     <a href="#" class="btn btn-success" id="update">Xác nhận</a>
@@ -215,6 +224,24 @@
                 listSlugSanPham.push(item.sanPhamResponse.slug);
             });
             idKM = data.id;
+
+            var dsSanPhamKhuyenMai = data.listSanPham;
+            console.log(dsSanPhamKhuyenMai)
+            let html = '';
+            var i = 0
+            dsSanPhamKhuyenMai.forEach(function (item){
+                i++;
+                html +=  `<tr>
+                                <td>\${i}</td>
+                                <td>
+                                    <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                </td>
+                                <td>\${item.sanPhamResponse.ten}</td>
+
+                            </tr>`
+
+            })
+            $('.tbody-product-select').html(html);
         },
         error: function(xhr, status, error) {
             console.log(error);
@@ -379,18 +406,20 @@
         if (ngayBatDau === "") {
             showError("Ngày bắt đầu trống. Vui lòng chọn giá trị");
             isValid = false;
-        }else{
+        }
+        // else{
             // let ngayBD = new Date(ngayBatDau);
             // let currentDate = new Date();
             // if(ngayBD < currentDate){
             //     showError("Ngày bắt đầu không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
             //     isValid = false;
             // }
-        }
+        // }
         if ($("#tenKM").val() === "") {
             showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
             isValid = false;
         }
         return isValid;
     }
+
 </script>

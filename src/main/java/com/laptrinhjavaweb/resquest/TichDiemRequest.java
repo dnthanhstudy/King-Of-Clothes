@@ -7,7 +7,10 @@ import lombok.Setter;
 @Getter
 public class TichDiemRequest {
 
-    private String tenKhachHang;
+    private String maKhachHang;
 
-    private Integer soDiem;
+    private Double tongHoaDon;
+
+    private Integer soDiemDung;
+
 }

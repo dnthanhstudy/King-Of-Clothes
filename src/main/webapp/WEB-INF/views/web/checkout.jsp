@@ -170,12 +170,7 @@
                 <div class="col-7"></div>
                 <div class="col-5">
                     <div class="row">
-                        <div class="col-6">
-                            <span><i class='bx bxs-coupon bx-tada bx-flip-vertical' style='color:#b29898' ></i> Voucher</span>
-                        </div>
-                        <div class="col-6 text-right">
-                            <span class=" text-cyan">Chọn Voucher</span>
-                        </div>
+
                     </div>
                 </div>
             </div>

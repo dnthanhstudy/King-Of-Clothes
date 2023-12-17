@@ -61,8 +61,13 @@
                                         </c:if>
 
                                         <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
-                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai =='UPCOMING'}">
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.gia}</h4>
+                                            </c:if>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                                                <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            </c:if>
                                         </c:if>
                                     </div>
                                 </div>
@@ -95,8 +100,13 @@
                                         </c:if>
 
                                         <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
-                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai =='UPCOMING'}">
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.gia}</h4>
+                                            </c:if>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                                                <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            </c:if>
                                         </c:if>
                                     </div>
                                 </div>
@@ -129,9 +139,15 @@
                                         </c:if>
 
                                         <c:if test="${not empty item.khuyenMaiHienThiResponse}">
-                                            <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
-                                            <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai =='UPCOMING'}">
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.gia}</h4>
+                                            </c:if>
+                                            <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                                                <h6><del class="product-price-custom-vnd product-buy">${item.gia}</del></h6>
+                                                <h4 class="text-danger product-price-custom-vnd ms-2">${item.giaBan}</h4>
+                                            </c:if>
                                         </c:if>
+
                                     </div>
                                 </div>
                             </div>

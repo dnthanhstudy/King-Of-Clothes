@@ -117,6 +117,21 @@
             }
         }
 
+        function getSoLuongGioHang(customerIdWhenLogin){
+            $.ajax({
+                url: '/api/user/giohang/tongsptronggio?id='+customerIdWhenLogin,
+                dataType: "json",
+                success: function (response){
+                    $("#soLuongGioHang").text(response);
+                },
+                error: function (error){
+                    console.log(error);
+                }
+            });
+        };
+        function formatNumber(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
     </script>
 
 </head>

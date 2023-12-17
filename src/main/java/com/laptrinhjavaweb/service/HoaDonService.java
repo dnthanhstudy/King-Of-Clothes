@@ -24,10 +24,10 @@ public interface HoaDonService {
 
     List<DanhSachHoaDonResponse> dsHoaDonResponse(String phuongThucThanhToan,String trangThai,Date startDate, Date endDate);
 
-
     HoaDonEntity findById(Long idhd);
 
     List<ThongKeHoaDonResponse> thongKeHoaDon();
+
     List<HoaDonChiTietResponse> findHoaDonMoiDat(Long idkh);
 
     List<HoaDonChiTietResponse> dsHoaDonChiTietByIdHoaDon(Long idhd);
@@ -37,7 +37,9 @@ public interface HoaDonService {
     List<HoaDonResponse> dsHoaDonOnline();
 
     List<HoaDonResponse> dsHoaDonOnline(String trangThai,String ten);
+
     String thayDoiTrangThaiHoaDon(Long idhd, String trangThai);
+
     HoaDonEntity thayDoiTrangThaiHoaDon(Long idhd, String trangThai,String luuy);
 
     List<HoaDonResponse> dsHoaDonTheoTrangThai(Long idkh,String trangThai);

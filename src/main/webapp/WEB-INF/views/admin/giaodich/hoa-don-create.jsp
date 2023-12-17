@@ -982,7 +982,7 @@
                             let quantityElement = $(this).closest('.action').find('.invoice-detail-quantity');
                             let quantity = parseInt(quantityElement.val());
                             if (quantity === 1) {
-                                showError("Số lượng không thể nhỏ hơn 1. Không thể giảm thêm nữa.")
+                                showError("Không thể giảm thêm nữa nhé.")
                                 return;
                             }
                             quantity -= 1;
@@ -1084,7 +1084,6 @@
     function paymentInvoice() {
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
-        let tienThua = tienKhachTra - tongTienHang;
 
         if (isNaN(tienKhachTra) || tienKhachTra < tongTienHang) {
             showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
@@ -1099,9 +1098,7 @@
         data['phuongThucThanhToan'] = "TIENMAT";
         data['tongTienHang'] = tongTienHang;
         data['tienKhachTra'] = tienKhachTra;
-
         data['tienThua'] = tienThua;
-
         data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
         data['maNhanVien'] = ma;
 
@@ -1125,6 +1122,7 @@
                     } else {
                         window.location.href = "/admin/giao-dich/hoa-don-off";
                         showSuccess("Thanh toán hóa đơn thành công");
+
                     }
             })
         }

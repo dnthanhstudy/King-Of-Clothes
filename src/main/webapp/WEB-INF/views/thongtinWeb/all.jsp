@@ -76,10 +76,10 @@
                                     <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
-                                    <h4>\${item.tenSanPham}</h4>
+                                    <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>
                                     <div class="d-flex justify-content-between">
                                         <span>Phân loại: \${item.tenBienThe} </span>
-                                        <span class="text-danger">\${item.tongTienHdct}₫</span></span>
+                                        <span class="text-danger">\${formatNumber(item.tongTienHdct)}₫</span></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <span>x\${item.soLuong} </span>
@@ -97,7 +97,7 @@
                                         Phí ship:
                                     </div>
                                     <div class="col text-right">
-                                        <span class="text-danger">\${item.tienShip}₫</span>
+                                        <span class="text-danger">\${formatNumber(item.tienShip)}₫</span>
                                     </div>
                                 </div>
                                 <div class="row d-flex justify-content-between">
@@ -105,7 +105,7 @@
                                         Thành tiền:
                                     </div>
                                     <div class="col text-right">
-                                        <span class="text-danger" style="font-size: 25px">\${item.tongTien}₫</span>
+                                        <span class="text-danger" style="font-size: 25px">\${formatNumber(item.tongTien)}₫</span>
                                     </div>
                                 </div>
                                 \${genderHtml}

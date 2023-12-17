@@ -372,44 +372,51 @@
             </div>
         </div>
 
-
-        <h1>Trang chủ</h1>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Thống kê doanh thu</button>
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Thống kê doanh thu
+                </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn</button>
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn</button>
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                </button>
             </li>
 
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                 tabindex="0">
                 <div class="container-fluid">
-        <div class="form-head mb-sm-5 mb-3 d-flex justify-content-between">
-            <div class="mb-3">
-            <div class="col-3"><h2 class="font-w600 title mb-2 mr-auto ">Trang chủ</h2></div>
+                    <div class="form-head mb-sm-5 mb-3 d-flex flex-wrap align-items-center row">
+                        <div class="col-8"></div>
             </div>
-            <div class="col-7"></div>
+                        <div class="col-2">
                 <h5 class="mt-3 me-2">Thống kê theo: </h5>
                 <div>
-                            <select id="cbbthongke" class="form-control">
-                    <option value="1">Ngày</option>
-                    <option value="2">Tuần</option>
-                    <option value="3">Tháng</option>
-                    <option value="4">Năm</option>
-                </select>
+                                <select id="cbbthongke" class="form-control">
+                                <option value="1">Ngày</option>
+                                <option value="2">Tuần</option>
+                                <option value="3">Tháng</option>
+                                <option value="4">Năm</option>
+                            </select>
                 </div>
+                            </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 m-t35">
                             <div class="card card-coin h-100">
                                 <div class="card-body text-center h-50">
-                                    <svg class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none"
+                                    <svg class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80"
+                                         fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="40" cy="40" r="40" fill="white"></circle>
                                         <path d="M40 0C17.9083 0 0 17.9083 0 40C0 62.0917 17.9083 80 40 80C62.0917 80 80 62.0917 80 40C80 17.9083 62.0917 0 40 0ZM40 72.5C22.0783 72.5 7.5 57.92 7.5 40C7.5 22.08 22.0783 7.5 40 7.5C57.9217 7.5 72.5 22.0783 72.5 40C72.5 57.9217 57.92 72.5 40 72.5Z"
@@ -421,7 +428,8 @@
                                         <path d="M44.385 36.5066C45.015 35.8766 45.3983 35.0316 45.3983 34.08C45.3983 32.1916 43.8633 30.655 41.9733 30.655H36.8133V37.52H41.9733C42.91 37.52 43.77 37.12 44.385 36.5066Z"
                                               fill="#FFAB2D"></path>
                                     </svg>
-                                    <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng online <span class="thoiGian"></span></i></h4>
+                                    <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng online <span
+                                            class="thoiGian"></span></i></h4>
 
                                     <h2 class="text-black mb-2 font-w600" id="doanhthuonline">$168,331.09</h2>
                                 </div>
@@ -430,7 +438,8 @@
                         <div class="col-xl-3 col-sm-6 m-t35">
                             <div class="card card-coin h-100">
                                 <div class="card-body text-center">
-                                    <svg class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80" fill="none"
+                                    <svg class="mb-3 currency-icon" width="80" height="80" viewbox="0 0 80 80"
+                                         fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="40" cy="40" r="40" fill="white"></circle>
                                         <path d="M40 0C17.9083 0 0 17.9083 0 40C0 62.0917 17.9083 80 40 80C62.0917 80 80 62.0917 80 40C80 17.9083 62.0917 0 40 0ZM40 72.5C22.0783 72.5 7.5 57.92 7.5 40C7.5 22.08 22.0783 7.5 40 7.5C57.9217 7.5 72.5 22.0783 72.5 40C72.5 57.9217 57.92 72.5 40 72.5Z"
@@ -442,7 +451,8 @@
                                         <path d="M44.385 36.5066C45.015 35.8766 45.3983 35.0316 45.3983 34.08C45.3983 32.1916 43.8633 30.655 41.9733 30.655H36.8133V37.52H41.9733C42.91 37.52 43.77 37.12 44.385 36.5066Z"
                                               fill="#FFAB2D"></path>
                                     </svg>
-                                    <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng offline <span class="thoiGian"></span></i></h4>
+                                    <h4 class="text-danger-emphasis"><i>Doanh thu bán hàng offline <span
+                                            class="thoiGian"></span></i></h4>
 
                                     <h2 class="text-black mb-2 font-w600" id="doanhthuoffline">$24,098</h2>
 
@@ -452,9 +462,14 @@
                         <div class="col-xl-3 col-sm-6 m-t35">
                             <div class="card card-coin h-100">
                                 <div class="card-body text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-3 currency-icon" fill="none" width="80" height="80" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"  fill="#FFAB2D"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-3 currency-icon" fill="none"
+                                         width="80" height="80" viewBox="0 0 512 512">
+                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                        <path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"
+                                              fill="#FFAB2D"/>
                                     </svg>
-                                    <h4 class="text-danger-emphasis"><i>Tổng sản phẩm đã bán <span class="thoiGian"></span></i></h4>
+                                    <h4 class="text-danger-emphasis"><i>Tổng sản phẩm đã bán <span
+                                            class="thoiGian"></span></i></h4>
                                     <h2 class="text-black mb-2 font-w600" id="tongsanphamdaban">370</h2>
 
                                 </div>
@@ -463,10 +478,14 @@
                         <div class="col-xl-3 col-sm-6 m-t35">
                             <div class="card card-coin h-100">
                                 <div class="card-body text-center">
-                                    <svg class="mb-3 currency-icon" xmlns="http://www.w3.org/2000/svg" width="80"   fill="none"  height="80" viewBox="0 0 512 512">
+                                    <svg class="mb-3 currency-icon" xmlns="http://www.w3.org/2000/svg" width="80"
+                                         fill="none" height="80" viewBox="0 0 512 512">
                                         <circle cx="40" cy="40" r="40" fill="white"></circle>
-                                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z " fill="#EB8153"/></svg>
-                                    <h4 class="text-danger-emphasis"><i>Số lượng khuyến mãi đã bán <span class="thoiGian"></span></i></h4>
+                                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z "
+                                              fill="#EB8153"/>
+                                    </svg>
+                                    <h4 class="text-danger-emphasis"><i>Số lượng khuyến mãi đã bán <span
+                                            class="thoiGian"></span></i></h4>
 
                                     <h2 class="text-black mb-2 font-w600" id="soluongkhuyenmai">555</h2>
                                 </div>
@@ -480,39 +499,22 @@
                                 <div class="col-sm-6 ">
                                     <div class="card">
                                         <div class="card-header border-0 pb-0">
-                                            <h4 class="mb-0 text-black fs-20">Danh sách sản phẩm bán được nhiều nhất</h4>
+                                            <h4 class="mb-0 text-black fs-20">Danh sách sản phẩm bán được nhiều
+                                                nhất</h4>
                                         </div>
                                         <div class="card-body p-3">
                                             <div class="table-responsive">
-                                                <table class="table text-center bg-info-hover tr-rounded order-tbl" id="tbldsbannhieunhat">
+                                                <table class="table  bg-info-hover tr-rounded order-tbl"
+                                                       id="tbldsbannhieunhat">
                                                     <thead>
-                                                    <tr>
-                                                        <th>STT</th>
-                                                        <th>Tên sản phẩm</th>
-                                                        <th>Tổng sản phẩm</th>
-                                                    </tr>
+                                                        <tr class="text-center">
+                                                            <th>STT</th>
+                                                            <th>Tên sản phẩm</th>
+                                                            <th>Tổng sản phẩm</th>
+                                                        </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>15</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>10</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>11</td>
-                                                    </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -527,7 +529,8 @@
                                         </div>
                                         <div class="card-body p-3">
                                             <div class="table-responsive">
-                                                <table class="table text-center bg-info-hover tr-rounded order-tbl" id="dskhachhang">
+                                                <table class="table text-center bg-info-hover tr-rounded order-tbl"
+                                                       id="dskhachhang">
                                                     <thead>
                                                     <tr>
                                                         <th>STT</th>
@@ -538,18 +541,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Đinh Anh Tuấn</td>
-                                                        <td>0384082003</td>
-                                                        <td>12</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Đinh Tuấn Anh</td>
-                                                        <td>0389478937</td>
-                                                        <td>9</td>
-                                                    </tr>
+
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -571,18 +563,18 @@
 
                 </div>
                 <form id="formsearchhd">
-                <div class="row mb-4">
-                    <div class="col-2">
-                        <label for="pttt">Phương thức thanh toán</label>
-                        <select class="form-select" name="phuongThucThanhToan" aria-label="Default select example" id="pttt">
-                            <option value="">Tất cả</option>
-                            <option value="THANHTOANNHANHANG">Thanh toán nhận hàng</option>
-                            <option value="VIDIENTU">Ví điện tử</option>
-                            <option value="CHUYENKHOAN">Paypal</option>
-                        </select>
-                    </div>
+                    <div class="row" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
                         <div class="col-2">
-                            <label for="trangthaihd">Trạng thái</label>
+                            <label for="pttt">Phương thức thanh toán:</label>
+                            <select class="form-select" name="phuongThucThanhToan" aria-label="Default select example" id="pttt">
+                                <option value="">Tất cả</option>
+                                <option value="THANHTOANNHANHANG">Thanh toán khi nhận hàng</option>
+                                <option value="VIDIENTU">Ví điện tử</option>
+                                <option value="CHUYENKHOAN">Paypal</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label for="trangthaihd">Trạng thái:</label>
                             <select class="form-select" name="trangThai" aria-label="Default select example" id="trangthaihd">
                                 <option value="">Tất cả</option>
                                 <option value="CHONHANDON">Chờ nhận đơn</option>
@@ -593,80 +585,46 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label for="startDate">Start</label>
+                            <label for="startDate">Bắt đầu:</label>
                             <input id="startDate" class="form-control" name="startDate" type="date" />
                             <span id="startDateSelected"></span>
                         </div>
                         <div class="col-2">
-                            <label for="endDate">End</label>
+                            <label for="endDate">Kết thúc:</label>
                             <input id="endDate" name="endDate" class="form-control" type="date" />
                             <span id="endDateSelected"></span></div>
-                        <div class="col-2 mt-5">
-                            <button type="submit" id="searchhd" class="btn btn-outline-primary">Search</button>
+                        <div class="col-2 pt-4 mt-2">
+                            <button type="submit" id="searchhd" class="btn btn-success">Search</button>
                         </div>
-                </div>
+                    </div>
                 </form>
-
-                <table class="table table table-striped" id="tblhoadon">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Mã hoá đơn</th>
-                        <th scope="col">Ngày đặt</th>
-                        <th scope="col">Mã khách hàng</th>
-                        <th scope="col">Tên người đặt</th>
-                        <th scope="col">Tổng tiền hàng</th>
-                        <th scope="col">Tiền khách trả</th>
-                        <th scope="col">Phương thức thanh toán</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col">Chi tiết</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <div class="row mt-5">
-                    <h5>Thống kê danh sách hoá đơn</h5>
-                    <table class="table">
+                <div class="row mt-3" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
+                    <table class="table table table-striped" id="tblhoadon" >
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Ngày</th>
-                            <th scope="col">Tổng hoá đơn bán được</th>
-                            <th scope="col">Tổng doanh thu</th>
+                            <th scope="col">Mã hoá đơn</th>
+                            <th scope="col">Ngày đặt</th>
+                            <th scope="col">Mã khách hàng</th>
+                            <th scope="col">Tên người đặt</th>
+                            <th scope="col">Tổng tiền hàng</th>
+                            <th scope="col">Tiền khách trả</th>
+                            <th scope="col">Phương thức thanh toán</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col">Chi tiết</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <th scope="row">1</th>
                             <td>Mark</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
+                            <td>Otto</td>
                             <td>Otto</td>
                             <td>Otto</td>
                         </tr>
@@ -683,6 +641,29 @@
                         </tr>
                         </tbody>
                     </table>
+                </div>
+
+
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="row mt-4">
+                    <h5 class="mb-3">Thống kê danh sách hoá đơn</h5>
+                    <div class="card">
+                        <table class="table table-hover table-striped" id="tblThongKeHoaDon">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Ngày</th>
+                                <th scope="col">Tổng hóa đơn</th>
+                                <th scope="col">Tổng sản phẩm đã bán</th>
+                                <th scope="col">Tổng doanh thu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
 
                 </div>
             </div>
@@ -690,27 +671,27 @@
     </div>
 
 
-
 </div>
 <script>
-    $('#cbbthongke').on('change', function() {
-       loadThongKe($(this).val())
+    $('#cbbthongke').on('change', function () {
+        loadThongKe($(this).val())
     });
     loadThongKe(2);
+
     function loadThongKe(val) {
         let thoiGian = $(".thoiGian");
-        if (val==1){
+        if (val == 1) {
             thoiGian.text("hôm nay")
-        }else if (val==2){
+        } else if (val == 2) {
             thoiGian.text("tuần này")
 
-        }else if (val==3){
+        } else if (val == 3) {
             thoiGian.text("tháng này")
-        }else{
+        } else {
             thoiGian.text("năm nay")
         }
         $.ajax({
-            url: '/api/hoadon/thongke?thoigian='+val,
+            url: '/api/hoadon/thongke?thoigian=' + val,
             method: 'GET',
             success: function (req) {
                 console.log(req)
@@ -718,7 +699,7 @@
                 setElementDanhSachSanPham(req.dsSanPhamBanChayNhat)
                 setElementDanhSachKhachHang(req.dsKhachHangMuaNhieuNhat)
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.log("Có lỗi xảy ra")
             }
         });
@@ -729,23 +710,25 @@
         $("#tongsanphamdaban").text(checknull(item.tongSoSanPhamDaBan))
         $("#soluongkhuyenmai").text(checknull(item.soLuongKhuyenMaiDaBan))
     }
+
     function setElementDanhSachSanPham(data) {
         let tbody = $("#tbldsbannhieunhat tbody");
         tbody.empty();
-        data.forEach(function (item,index) {
+        data.forEach(function (item, index) {
             tbody.append(`
             <tr>
-                <td>\${index+1}</td>
+                <td class="text-center">\${index+1}</td>
                 <td>\${item.ten}</td>
-                <td>\${item.tong}</td>
+                <td class="text-center">\${item.tong}</td>
             </tr>
             `);
         })
     }
+
     function setElementDanhSachKhachHang(data) {
         let tbody = $("#dskhachhang tbody");
         tbody.empty();
-        data.forEach(function (item,index) {
+        data.forEach(function (item, index) {
             tbody.append(`
             <tr>
                 <td>\${index+1}</td>
@@ -757,10 +740,11 @@
             `);
         })
     }
+
     function checknull(val) {
-        if (!val){
+        if (!val) {
             return 0;
-        }else{
+        } else {
             return val;
         }
     }
@@ -930,6 +914,34 @@
         return `\${year}-\${month}-\${day}`;
     }
 
+    function loadThongKeHoaDon() {
+        $.ajax({
+            url: "/api/hoadon/thongkehoadon",
+            method: 'GET',
+            success: function (response) {
+                var tbody = $('#tblThongKeHoaDon tbody');
+                tbody.empty();
+                var index = 0;
+                response.forEach(function (item) {
+                    var row = `
+                            <tr>
+                                <td>\${++index}</td>
+                                <td>\${getFormattedDate(item.ngay)}</td>
+                                <td>\${item.tongHoaDonBanDuoc}</td>
+                                <td>\${item.soLuong}</td>
+                                <td>\${convertVND(item.tongTienHang)}</td>
+                            </tr>
+                        `;
+                    tbody.append(row);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+    }
+
+    loadThongKeHoaDon();
 
 </script>
 <script src="https://code.highcharts.com/highcharts.js"></script>

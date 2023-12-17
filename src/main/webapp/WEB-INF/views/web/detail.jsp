@@ -63,30 +63,46 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                    <p>Kết thúc sau:
-                        <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
-                        <span class="finish"></span>
-                    </p>
+                   <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                       <p>Kết thúc sau:
+                           <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
+                           <span class="finish"></span>
+                       </p>
+                   </c:if>
                 </c:if>
-                <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
-                    ${product.giaBan}
-                </h3>
+                <c:if test="${empty product.khuyenMaiHienThiResponse}">
+                   <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
+                       ${product.giaBan}
+                   </h3>
+                </c:if>
+
                 <div class="mb-3">
                     <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                        <del class="product-price-custom-vnd product-origin">${product.gia}</del>
-                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
-                            <div class="badge rounded-pill text-bg-danger">
-                                <span class="product-price-custom-percent coupon-value ">${product.khuyenMaiHienThiResponse.giaTri}</span>
-                                <span class="coupon-type">% Giảm</span>
-                            </div>
+                        <c:if test="${product.khuyenMaiHienThiResponse.trangThai =='UPCOMING'}">
+                           <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
+                              ${product.gia}
+                          </h3>
+                        </c:if>
+                        <c:if test="${product.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                            <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
+                               ${product.giaBan}
+                           </h3>
+                            <del class="product-price-custom-vnd product-origin">${product.gia}</del>
+                            <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
+                                <div class="badge rounded-pill text-bg-danger">
+                                    <span class="product-price-custom-percent coupon-value ">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                                    <span class="coupon-type">% Giảm</span>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${product.khuyenMaiHienThiResponse.loai eq '0'}">
+                                <div class="badge rounded-pill text-bg-danger">
+                                    <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
+                                    <span class="coupon-type"> Giảm</span>
+                                </div>
+                            </c:if>
                         </c:if>
 
-                        <c:if test="${product.khuyenMaiHienThiResponse.loai eq '0'}">
-                            <div class="badge rounded-pill text-bg-danger">
-                                <span class="product-price-custom-vnd coupon-value">${product.khuyenMaiHienThiResponse.giaTri}</span>
-                                <span class="coupon-type"> Giảm</span>
-                            </div>
-                        </c:if>
                     </c:if>
                 </div>
                 <c:forEach var="item" items="${product.thuocTinh}">
@@ -370,6 +386,7 @@
             method: 'GET',
             success: function (req) {
                 showSuccess("Thêm vào giỏ hàng thành công")
+                getSoLuongGioHang(idkh);
             },
             error: function (xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
