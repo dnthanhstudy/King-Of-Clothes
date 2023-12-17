@@ -158,7 +158,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query(value = "select * from vw_doanhthunam", nativeQuery = true)
     DoanhThuBanHangResponse doanhThuNam();
 
-    List<HoaDonEntity> findAllByTrangThai(String trangThai);
+    List<HoaDonEntity> findAllByTrangThaiOrderByNgayTaoDesc(String trangThai);
 
 //    Page<HoaDonEntity> findAllByTrangThai(String trangThai, Pageable pageable);
 

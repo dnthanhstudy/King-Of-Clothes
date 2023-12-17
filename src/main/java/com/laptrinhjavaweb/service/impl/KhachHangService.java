@@ -128,6 +128,7 @@ public class KhachHangService implements IKhachHangService {
         khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
         khachHangEntity.setTrangThai("ACTIVE");
+        khachHangEntity.setMatKhau(passwordEncoder.encode("123456"));
         khachHangRepository.save(khachHangEntity);
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
         result.setId(khachHangEntity.getId());

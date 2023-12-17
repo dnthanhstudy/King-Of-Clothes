@@ -139,7 +139,7 @@
                     </div>
                     <div id="invoice-money-quantity" class="card card-body mt-3" style="border-radius: 10px">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-4">
                                 <div class="group123">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
                                          viewBox="0 0 512 512">
@@ -156,8 +156,17 @@
                                 <div class="d-flex justify-content-center">
                                     <div>
                                         <h4 class="text-right">
+                                            <strong>Tổng số lượng:</strong>
+                                            <span id="invoice-quantity">1</span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-flex justify-content-center">
+                                    <div>
+                                        <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
-                                            <span id="invoice-quantity">11</span>
                                             <span class="invoice-total ms-4">0</span> đ
                                         </h4>
                                     </div>
@@ -889,7 +898,7 @@
                                         <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
                                             <div class="d-flex project-status align-items-center">
                                                 <div class="ml-2">
-                                                    <span>Tổng tiền</span>
+                                                    <span>Tổng tiền</span><br>
                                                     <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${item.thanhTien}</span> đ
                                                 </div>
                                                 <div class="dropdown">
@@ -993,7 +1002,8 @@
                             updateQuantity(invoiceDetailId, quantity);
                         });
 
-                        $('.invoice-detail-delete').on('click', function () {
+                        $('.invoice-detail-delete').on('click', function (e) {
+                            e.preventDefault();
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             $.ajax({
                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
@@ -1085,7 +1095,6 @@
         data['phuongThucThanhToan'] = "TIENMAT";
         data['tongTienHang'] = tongTienHang;
         data['tienKhachTra'] = tienKhachTra;
-        data['tienThua'] = tienThua;
         data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
         data['maNhanVien'] = ma;
 

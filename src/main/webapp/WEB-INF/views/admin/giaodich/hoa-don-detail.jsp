@@ -36,7 +36,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-1">
-                                    <img src="/template/web/img/anh1.png" width="50px" style="border-radius: 50%" alt="">
+                                    <img src="/template/admin/images/avatar.jpeg" width="50px" style="border-radius: 50%" alt="">
                             </div>
                             <div class="col-11">
                                     <span style="color: #eb8153" class="fs-5" id="tenKhachHang"></span><br>

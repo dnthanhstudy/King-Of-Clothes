@@ -74,7 +74,7 @@
                 <hr>
                 <table class="table table-hover" id="tblHoaDonOff">
                     <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa đơn</th>
                         <th scope="col">Khách hàng</th>
@@ -128,14 +128,14 @@
                 var index = 0;
                 response.forEach(function(item) {
                     var row = `
-                            <tr>
+                            <tr class="text-center">
                                 <td>\${++index}</td>
                                 <td>\${item.ma}</td>
                                  <td>\${item.tenKhachHang}</td>
                                  <td>\${item.tenNhanVien}</td>
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
-                                 <td>\${item.tongTienHang}</td>
-                                 <td>\${item.tienKhachTra}</td>
+                                <td>\${item.tongTienHang != null ? item.tongTienHang : 0}</td>
+                                <td>\${item.tienKhachTra != null ? item.tienKhachTra : 0}</td>
                                  <td>\${item.tienKhachTra - item.tongTienHang}</td>
                                  <td>
                                     <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
