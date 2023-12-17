@@ -64,11 +64,6 @@
                                     <label class="input-label">Mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="matKhau" id="matKhau" placeholder="*************">
-                                        <div class="js-toggle-password-target-1 input-group-append">
-                                            <a class="input-group-text" href="javascript:;">
-                                                <i class="js-toggle-passowrd-show-icon-1 tio-visible-outlined"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -76,11 +71,6 @@
                                     <label class="input-label">Xác nhận mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="xacNhanMatKhau" id="xacNhanMatKhau" placeholder="*************">
-                                        <div class="js-toggle-password-target-2 input-group-append">
-                                            <a class="input-group-text" href="javascript:;">
-                                                <i class="js-toggle-passowrd-show-icon-2 tio-visible-outlined"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
 

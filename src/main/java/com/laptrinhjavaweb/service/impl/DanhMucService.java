@@ -53,7 +53,7 @@ public class DanhMucService implements IDanhMucService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = danhMucRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
+            page = danhMucRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -65,7 +65,7 @@ public class DanhMucService implements IDanhMucService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistDanhMucEntity);
 
             }else {
-                page = danhMucRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
+                page = danhMucRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listDanhMucResponse = page.getContent().stream().map(

@@ -70,7 +70,7 @@ public class KhachHangService implements IKhachHangService {
         if (pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
+            page = khachHangRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, wholePage);
         } else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if (param != null) {
@@ -82,7 +82,7 @@ public class KhachHangService implements IKhachHangService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
 
             } else {
-                page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
+                page = khachHangRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listKhachHangResponse = page.getContent().stream().map(

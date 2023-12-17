@@ -122,7 +122,7 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNotOrderByNgayTaoDesc(SystemConstant.DELETE, ma, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -134,7 +134,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNotOrderByNgayTaoDesc(SystemConstant.DELETE, ma, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(

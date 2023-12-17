@@ -10,5 +10,5 @@ public interface SliderRepository extends JpaRepository<SliderEntity, Long> {
 
     SliderEntity findByImage(String image);
 
-    Page<SliderEntity> findAllByTrangThaiNot(String trangThai, Pageable pageable);
+    Page<SliderEntity> findAllByTrangThaiNotOrderByNgayTaoDesc(String trangThai, Pageable pageable);
 }
