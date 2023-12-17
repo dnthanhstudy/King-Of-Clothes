@@ -365,8 +365,19 @@
             method: 'GET',
             success: function (response) {
                 let html = '';
-                $.each(response.data, (index, item) => {
-                    html += `<tr>
+                console.log(response.data);
+                if(response.data.length == 0){
+                    html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm không tồn tại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                }else{
+                    $.each(response.data, (index, item) => {
+                        if(item.khuyenMaiHienThiResponse == null){
+                            html += `<tr>
                                  <td>
                                     <div class="form-check">
                                       <input class="form-check-input" type="checkbox" value="\${item.slug}">
@@ -377,8 +388,20 @@
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
                            </tr>`;
-                })
+                        }
+                        if(response.data.length == 1 && item.khuyenMaiHienThiResponse != null){
+                            html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm đang chạy khuyến mại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                        }
+                    })
+                }
                 $('.tbody-product').html(html);
+
                 // $('#pagination').twbsPagination({
                 //     first: "<<",
                 //     prev: "<",
@@ -429,7 +452,10 @@
             showError("Số lượng trống. Vui lòng nhập giá trị!");
             isValid = false;
         }else{
-            if(soLuong < 0 ){
+            if(!isNaN(soLuong)){
+                showError("Số lượng không hợp lệ. Vui lòng nhập giá trị là số");
+                isValid = false;
+            }else if(soLuong < 0 ){
                 showError("Số lượng không hợp lệ. Vui lòng nhập số lượng > 0!");
                 isValid = false;
             }
@@ -439,12 +465,18 @@
             isValid = false;
         }else{
             if(loaiGiamGia == 1){
-                if(giaTriGiam <=0 || giaTriGiam >= 100){
+                if(!isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <=0 || giaTriGiam >= 100){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 0 & < 100!");
                     isValid = false;
                 }
             }else{
-                if(giaTriGiam <= 1000){
+                if(!isNaN(giaTriGiam)){
+                    showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
+                    isValid = false;
+                }else if(giaTriGiam <= 1000){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị > 1000!");
                     isValid = false;
                 }
@@ -454,6 +486,7 @@
             showError("Ngày kết thúc trống. Vui lòng chọn giá trị");
             isValid = false;
         } else {
+
             if (ngayBatDau > ngayKetThuc) {
                 showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày kết thúc > ngày bắt đầu");
                 isValid = false;

@@ -471,5 +471,95 @@
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+    $(document).ready(function() {
+        var searchButton = $('#searchButton');
+        pageCurrent = 1;
+        searchButton.on('keydown', function (event) {
+            if (event.which === 13) {
+                value = searchButton.val();
+                if (value.isBlank) {
+                    loadKhuyenMai();
+                } else {
+                    loadSearch(value);
+                }
+            }
+        });
+        $('#ngayBatDau').attr('min', getCurrentDatetime());
+        $('#ngayKetThuc').attr('min', getCurrentDatetime());
+        $("#ngayBatDau").val(getCurrentDatetime());
+    });
+    var limit = 100;
+
+    function loadSearch(value) {
+        $.ajax({
+            url: '/api/san-pham/search?q=' + value + '&limit=' + limit,
+            method: 'GET',
+            success: function (response) {
+                let html = '';
+                if(response.data.length == 0){
+                    html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm không tồn tại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                }else {
+                    $.each(response.data, (index, item) => {
+                        if (item.khuyenMaiHienThiResponse == null || (item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma === maKM)) {
+                            let isCheck = false;
+                            listSlugSanPham.forEach(x => {
+                                if (item.slug === x) {
+                                    isCheck = true;
+                                    return false;
+                                }
+                            });
+
+                            html += `<tr>
+                                     <td>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
+                                        </div>
+                                    </td>
+                                    <td>\${item.ten}</td>
+                                    <td>\${formatNumber(item.gia)}<span>đ</span></td>
+                                    <td>\${item.danhMuc.ten}</td>
+                                    <td>\${item.thuongHieu.ten}</td>
+                               </tr>`;
+                        }
+                        if(response.data.length == 1 && item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma != maKM){
+                            html += `
+                            <tr>
+                                <td colspan="5">
+                                Sản phẩm tìm kiếm đang chạy khuyến mại. Vui lòng tìm kiếm hoặc chọn sản phẩm khác!
+                                </td>
+                           </tr>
+                        `
+                        }
+                    })
+                }
+                $('.tbody-product').html(html);
+                // $('#pagination').twbsPagination({
+                //     first: "<<",
+                //     prev: "<",
+                //     next: ">",
+                //     last: ">>",
+                //     visiblePages: 5,
+                //     totalPages: response.meta.totalPage,
+                //     startPage: response.meta.pageCurrent,
+                //     onPageClick: function (event, page) {
+                //         if(page !== pageCurrent){
+                //             event.preventDefault();
+                //             pageCurrent = page;
+                //             loadKhuyenMai();
+                //         }
+                //     },
+                // });
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
 
 </script>
