@@ -1,8 +1,8 @@
 package com.laptrinhjavaweb.converter;
 
+import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.TichDiemEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
-import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.TichDiemResponse;
 import com.laptrinhjavaweb.resquest.TichDiemRequest;
 import org.modelmapper.ModelMapper;
@@ -16,21 +16,18 @@ public class TichDiemConverter {
     private KhachHangRepository khachHangRepository;
 
     @Autowired
-    private KhachHangConverter khachHangConverter;
-
-    @Autowired
     private ModelMapper modelMapper;
 
     public TichDiemResponse convertToResponse(TichDiemEntity entity) {
         TichDiemResponse response = modelMapper.map(entity, TichDiemResponse.class);
-        KhacHangResponse khacHangResponse = khachHangConverter.convertToResponse(entity.getKhachHang());
-        response.setKhachHang(khacHangResponse);
         return response;
     }
 
     public TichDiemEntity convertToEntity(TichDiemRequest request){
         TichDiemEntity entity = modelMapper.map(request, TichDiemEntity.class);
-        entity.setKhachHang(khachHangRepository.findByMa(request.getTenKhachHang()));
+        KhachHangEntity khachHangEntity = khachHangRepository.findByMa(request.getMaKhachHang());
+        entity.setKhachHang(khachHangEntity);
+        entity.setSoDiem(request.getSoDiemTichDuoc());
         return entity;
     }
 }

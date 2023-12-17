@@ -144,8 +144,6 @@
              method: 'GET',
              dataType: 'json',
              success: function (req) {
-                 console.log(req)
-                 let totalInvoice = 0;
                  let toatlQuantity = 0;
 
                  $("#ma").text(req.ma);
@@ -157,7 +155,6 @@
                  tbody.empty();
                  var index = 0;
                  req.hoaDonChiTiet.forEach(function(item) {
-                     totalInvoice += item.thanhTien;
                      toatlQuantity += item.soLuong;
                      var row = `
                             <tr>
@@ -169,7 +166,7 @@
                             </tr>
                         `;
                      tbody.append(row);
-                     $('#invoice-quantity').text(toatlQuantity);
+                     $('#invoice-quantity').text(response.tongTienHang - response.tienGiamGia);
                      $('.invoice-total').text(totalInvoice);
                      $("#tienKhachTra").text(req.tienKhachTra);
                  });

@@ -274,7 +274,8 @@
                         <div class="row mt-3">
                             <div class="col">
                                 <div class=" badge bg-success text-wrap">
-                                    <span>Điểm: </span><strong>50</strong>
+                                    <span>Điểm: </span>
+                                    <strong id="point-customer">Không có</strong>
                                 </div>
                             </div>
                         </div>
@@ -316,7 +317,7 @@
                                 <h5><strong>Khách cần trả:</strong></h5>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="color: #EB8153"><strong class="invoice-total fs-5">0</strong></span> <span style="color: #EB8153">đ</span>
+                                <span style="color: #EB8153"><strong id="invoice-after-point" class="invoice-total fs-5">0</strong></span> <span style="color: #EB8153">đ</span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -421,11 +422,47 @@
         });
     })
 
-
-
     $('#btn-paymant-invoice').on('click', function () {
         paymentInvoice();
+        if($('#code-customer').val() !== ""){
+            tienQuyDiem(
+                function (response) {
+                    let data = {};
+                    data['maKhachHang'] = $('#code-customer').val();
+                    data['soDiemDung'] = parseInt($('#input-point').val())
+                    data['soDiemTichDuoc'] = response;
+                    data['maHoaDon'] = maHoaDon;
+
+                    console.log(data);
+
+                    tichDiem(data);
+
+                    luuLichSu(data);
+
+                },
+                function (error) {
+                    console.log(error)
+                })
+        }
     })
+
+    $("#input-point").keyup(function () {
+        if($(this).val() !== ''){
+            diemQuyTien(parseInt($(this).val()));
+        }
+    });
+
+    $('#invoice-customer-payment').on('input', validateForm);
+
+    $('#searchAll').on('keydown', function (event) {
+        if (event.which === 13) {
+            param = $(this).val();
+            if (pageCurrent > 1) {
+                pageCurrent = 1;
+            }
+            searchSanPham(param);
+        }
+    });
 
     function time() {
         var currentDate = new Date();
@@ -797,20 +834,6 @@
         });
     }
 
-    $(document).ready(function() {
-        var searchButton = $('#searchAll');
-        pageCurrent = 1;
-        searchButton.on('keydown', function(event) {
-            if (event.which === 13) {
-                param = searchButton.val();
-                if(pageCurrent > 1){
-                    pageCurrent = 1;
-                }
-                searchSanPham(param);
-            }
-        });
-    });
-
     let customers = [];
     $.ajax({
         url: '/api/khach-hang/all',
@@ -824,7 +847,6 @@
                 }
                 customers.push(customer);
             })
-            //console.log(customers)
             loadSuggestions(customers);
         },
         error: function (error) {
@@ -839,6 +861,22 @@
             onSelect: function (suggestion) {
                 $('#code-customer').val(suggestion.ma);
                 $('#search-customer').val(suggestion.value);
+                $('#input-point').attr('disabled', false);
+                loadSoDiem(suggestion.ma);
+            }
+        });
+    }
+
+    function loadSoDiem(ma){
+        $.ajax({
+            url: "/api/tich-diem/" + ma,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                $('#point-customer').text(response);
+            },
+            error: (error) => {
+                console.log(error);
             }
         });
     }
@@ -1006,7 +1044,8 @@
                             updateQuantity(invoiceDetailId, quantity);
                         });
 
-                        $('.invoice-detail-delete').on('click', function () {
+                        $('.invoice-detail-delete').on('click', function (e) {
+                            e.preventDefault()
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             $.ajax({
                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
@@ -1066,7 +1105,6 @@
         });
     }
 
-
     function validateForm() {
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
@@ -1079,14 +1117,13 @@
         $('#money-change').text(tienThua);
     }
 
-    $('#invoice-customer-payment').on('input', validateForm);
-
     function paymentInvoice() {
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
+        let tienThua = tienKhachTra - tongTienHang;
 
-        if (isNaN(tienKhachTra) || tienKhachTra < tongTienHang) {
-            showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
+        if (isNaN(tienKhachTra) || tienThua < 0) {
+            showError("Số tiền khách trả không hợp lệ");
             return;
         }
 
@@ -1100,32 +1137,92 @@
         data['tienKhachTra'] = tienKhachTra;
         data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
         data['maNhanVien'] = ma;
+        data['tienGiamGia'] = parseFloat($('#discount').text());
 
-            showConfirm("Bạn có muốn in hóa đơn hay không?")
+        showConfirm("Bạn có muốn in hóa đơn hay không?")
             .then((confirmed) => {
-                    $.ajax({
-                        url: "/api/hoa-don-off",
-                        method: "PUT",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(data),
-                        success: (response) => {
-                            console.log(response)
-                        },
-                        error: (error) => {
-                            console.log(error)
-                        }
-                    });
-                    if (confirmed) {
-                        window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
-                    } else {
-                        window.location.href = "/admin/giao-dich/hoa-don-off";
-                        showSuccess("Thanh toán hóa đơn thành công");
+                $.ajax({
+                    url: "/api/hoa-don-off",
+                    method: "PUT",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success: (response) => {
+                        console.log(response)
+                    },
+                    error: (error) => {
+                        console.log(error)
                     }
+                });
+                if (confirmed) {
+                    window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
+                } else {
+                    window.location.href = "/admin/giao-dich/hoa-don-off";
+                    showSuccess("Thanh toán hóa đơn thành công");
+                }
             })
-        }
+    }
 
+    function tichDiem(data){
+        $.ajax({
+            url: "/api/tich-diem",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: (response) => {
 
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });
+    }
+
+    function luuLichSu(data){
+        $.ajax({
+            url: "/api/lich-su-tich-diem",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: (response) => {
+
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });
+    }
+
+    function diemQuyTien(diem){
+        $.ajax({
+            url: "/api/quy-doi-diem/diem-to-tien/" + diem,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                $('#discount').text(response);
+
+                let total = parseFloat($('.invoice-total:first').text()) - parseFloat($('#discount').text());
+                $('#invoice-after-point').text(total);
+            },
+            error: (error) => {
+
+            }
+        })
+    }
+
+    function tienQuyDiem(successCallback, errorCallback){
+        $.ajax({
+            url: "/api/quy-doi-diem/tien-to-diem/" + parseFloat($('#invoice-after-point').text()),
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                successCallback(response);
+            },
+            error: (error) => {
+                errorCallback(error)
+            }
+        })
+    }
 </script>
 
 </body>

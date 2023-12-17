@@ -63,7 +63,7 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                   <c:if test="${item.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
+                   <c:if test="${product.khuyenMaiHienThiResponse.trangThai eq 'ACTIVE'}">
                        <p>Kết thúc sau:
                            <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
                            <span class="finish"></span>
@@ -153,7 +153,9 @@
             <div class="khung mt-4">
                 <h5>Mô tả sản phẩm</h5>
                 <span class="product-description">
-                    ${proudct.moTa}
+                      <span class="form-control" id="moTa">
+
+                      </span>
                 </span>
             </div>
 
@@ -231,6 +233,7 @@
     </div>
 </div>
 </div>
+<script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
@@ -346,4 +349,7 @@
             }
         });
     }
+
+    $('#moTa').innerHTML  = `${product.moTa}`;
+
 </script>
