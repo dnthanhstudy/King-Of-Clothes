@@ -14,9 +14,9 @@ import java.util.List;
 @Repository
 public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEntity,Long> {
 
-    @Query("select distinct ghct.bienThe.sanPham.id,ghct.ngayTao,ghct.ngaySua from GioHangChiTietEntity ghct" +
+    @Query("select distinct ghct.bienThe.sanPham.id from GioHangChiTietEntity ghct" +
             " where ghct.gioHang.khachHang.id=:idkh and " +
-            "ghct.trangThai not in ('DELETE','PENDING','DAHETHANG') order by ghct.ngayTao desc,ghct.ngaySua desc ")
+            "ghct.trangThai not in ('DELETE','PENDING','DAHETHANG')")
     List<Long> dsspCuaGioHang(@Param("idkh")Long idkh);
 
     @Query("select ghct from GioHangChiTietEntity ghct" +
