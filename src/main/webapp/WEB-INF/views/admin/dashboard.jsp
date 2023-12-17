@@ -823,7 +823,6 @@
                     `
                 })
                 cart.append(html);
-                setTrangThaiHoaDon(idhd,data.trangThaiHoaDon)
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
@@ -872,6 +871,7 @@
 
         var queryParams = $.param(jsonObject);
         var url = `/api/hoadon/dshoadonresponse?\${queryParams}`;
+        console.log(url)
         $.ajax({
             url: url,
             method: 'GET',

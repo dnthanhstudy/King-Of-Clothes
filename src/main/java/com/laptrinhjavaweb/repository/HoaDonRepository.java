@@ -41,8 +41,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.loai='Online' order by hd.ngayDat desc ")
     List<DanhSachHoaDonResponse> dsHoaDon();
-    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and hd.ngayDat >= :startdate and hd.ngayDat <= :enddate " +
-            " and (:trangthai = '' or hd.trangThai = :trangthai )and ( :pttt = '' or hd.phuongThucThanhToan = :pttt) and hd.loai = 'Online' " +
+    @Query(value = "select hd from HoaDonEntity hd where hd.trangThai <> 'CHUANBIDATHANG' and date(hd.ngayDat) >= date(:startdate) and date(hd.ngayDat) <= date(:enddate) " +
+            " and (:trangthai ='' or hd.trangThai=:trangthai) and (:pttt='' or hd.phuongThucThanhToan=:pttt) and hd.loai = 'Online' " +
             " order by hd.ngayDat desc")
     List<DanhSachHoaDonResponse> dsHoaDon(
             @Param("pttt") String pttt,

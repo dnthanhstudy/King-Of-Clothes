@@ -657,6 +657,9 @@
            }
 
    }
+   $("#tthd").change(function () {
+       $("#searchhoadon").click();
+   })
    $("#searchhoadon").click(function () {
        let ten = $("#tensearch").val();
        let trangThai = $('#tthd').val();

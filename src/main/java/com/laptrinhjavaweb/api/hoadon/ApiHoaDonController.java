@@ -64,8 +64,8 @@ public class ApiHoaDonController {
                                                        @RequestParam(value = "trangThai",required = false,defaultValue = "")String trangThai,
                                                        @RequestParam(value = "phuongThucThanhToan",required = false,defaultValue = "")String phuongThucThanhToan
     ){
-        return  hoaDonService.dsHoaDonResponse();
-//        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
+//        return  hoaDonService.dsHoaDonResponse();
+        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
     }
 
     @GetMapping("/findall")
