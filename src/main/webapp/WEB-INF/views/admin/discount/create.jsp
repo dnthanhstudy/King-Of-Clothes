@@ -83,7 +83,7 @@
                                                                 </select>
                                                             </div>
                                                             <input type="number" class="form-control" id="giaTriGiam"
-                                                                   name="val-text" placeholder="Nhập giá trị">
+                                                                   name="val-text" placeholder="Nhập giá trị" min="0">
                                                         </div>
 
 
@@ -96,7 +96,7 @@
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="number" class="form-control" id="soLuong" name="val-text"
-                                                           placeholder="Nhập vào">
+                                                           placeholder="Nhập vào" min="0">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
