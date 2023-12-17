@@ -82,7 +82,7 @@
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="number" class="form-control" id="giaTriGiam"
+                                                            <input type="text" class="form-control" id="giaTriGiam"
                                                                    name="val-text" placeholder="Nhập giá trị" min="0">
                                                         </div>
 
@@ -95,7 +95,7 @@
                                                     <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="number" class="form-control" id="soLuong" name="val-text"
+                                                    <input type="text" class="form-control" id="soLuong" name="val-text"
                                                            placeholder="Nhập vào" min="0">
                                                 </div>
                                             </div>
@@ -212,6 +212,8 @@
     var generatedNumbers = new Set();
     let pageCurrent = 1;
 
+    var checkedValues = [];
+    var size = checkedValues.length;
     ///pagination?page='+ pageCurrent+'&limit='+limit,
     var genMa = "KOCS"+generateNumber();
     $("#maKM").val(genMa);
@@ -223,15 +225,22 @@
                 let html = '';
                 console.log(response.data);
                 $.each(response.data, (index, item) => {
+                    let isCheck = false;
+                    checkedValues.forEach(x => {
+                        if (item.slug === x) {
+                            isCheck = true;
+                            return false;
+                        }
+                    });
                     if(item.khuyenMaiHienThiResponse == null){
                         html += `<tr>
                                  <td>
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
                                     </div>
                                 </td>
                                 <td>\${item.ten}</td>
-                                <td>\${item.gia}</td>
+                                <td>\${formatNumber(item.gia)}</td>
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
                            </tr>`;
@@ -263,19 +272,36 @@
 
     loadKhuyenMai();
 
-    var checkedValues = [];
-    var size = checkedValues.length;
     $("#getValue").click(function (){
-        checkedValues = []
+        getvaluew();
+    })
+    $('#soLuongSanPham').text(size);
+    function getvaluew(){
         $('.form-check-input:checked').each(function () {
-            checkedValues.push($(this).val());
+            let val = $(this).val();
+
+            if (checkedValues.length === 0) {
+                checkedValues.push(val);
+            } else {
+                let isDuplicate = false;
+
+                for (const x in checkedValues) {
+                    if (checkedValues[x] === val) {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate) {
+                    checkedValues.push(val);
+                }
+            }
         });
         $('#modalSanPham').modal('hide');
         size = checkedValues.length;
         $('#soLuongSanPham').text(size);
         console.log(checkedValues);
-    })
-    $('#soLuongSanPham').text(size);
+    };
 
     $("#addDiscount").click(function () {
         var maKM = $("#maKM").val();
@@ -326,7 +352,6 @@
 
     function convertDateFormat(inputDate) {
         var date = new Date(inputDate);
-
         return date;
     }
 
@@ -345,6 +370,7 @@
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
+                getvaluew();
                 value = searchButton.val();
                 if (value.isBlank) {
                     loadKhuyenMai();
@@ -376,11 +402,18 @@
                         `
                 }else{
                     $.each(response.data, (index, item) => {
+                        let isCheck = false;
+                        checkedValues.forEach(x => {
+                            if (item.slug === x) {
+                                isCheck = true;
+                                return false;
+                            }
+                        });
                         if(item.khuyenMaiHienThiResponse == null){
                             html += `<tr>
                                  <td>
                                     <div class="form-check">
-                                      <input class="form-check-input" type="checkbox" value="\${item.slug}">
+                                      <input class="form-check-input" type="checkbox" value="\${item.slug}" \${isCheck ? 'checked' : ''}>
                                     </div>
                                 </td>
                                 <td>\${item.ten}</td>
@@ -452,7 +485,7 @@
             showError("Số lượng trống. Vui lòng nhập giá trị!");
             isValid = false;
         }else{
-            if(!isNaN(soLuong)){
+            if(isNaN(soLuong)){
                 showError("Số lượng không hợp lệ. Vui lòng nhập giá trị là số");
                 isValid = false;
             }else if(soLuong < 0 ){
@@ -465,7 +498,7 @@
             isValid = false;
         }else{
             if(loaiGiamGia == 1){
-                if(!isNaN(giaTriGiam)){
+                if(isNaN(giaTriGiam)){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
                     isValid = false;
                 }else if(giaTriGiam <=0 || giaTriGiam >= 100){
@@ -473,7 +506,7 @@
                     isValid = false;
                 }
             }else{
-                if(!isNaN(giaTriGiam)){
+                if(isNaN(giaTriGiam)){
                     showError("Giá trị giảm không hợp lệ. Vui lòng nhập giá trị là số");
                     isValid = false;
                 }else if(giaTriGiam <= 1000){
@@ -511,8 +544,10 @@
         return isValid;
     }
     function formatNumber(number) {
+        if (isNaN(number) || number === null) {
+            return "0";
+        }
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
-
 
 </script>
