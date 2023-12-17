@@ -317,7 +317,9 @@
                                 <h5><strong>Khách cần trả:</strong></h5>
                             </div>
                             <div class="col-6 text-right">
-                                <span style="color: #EB8153"><strong id="invoice-after-point" class="invoice-total fs-5">0</strong></span> <span style="color: #EB8153">đ</span>
+                                <span style="color: #EB8153"><strong id="invoice-after-point"
+                                                                     class="invoice-total fs-5">0</strong></span> <span
+                                    style="color: #EB8153">đ</span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -374,25 +376,34 @@
 
     $('.btn-add-invoice').on('click', function (e) {
         e.preventDefault();
-        let data = {};
-        data['maNhanVien'] = ma;
-        data['trangThai'] = "TREO";
-        data['loai'] = "Offline";
 
-        $.ajax({
-            url: "/api/hoa-don-off",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                showSuccess("Thêm hóa thành công");
-                window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+        updateInvoiceTreo(
+            function(){
+                let data = {};
+                data['maNhanVien'] = ma;
+                data['trangThai'] = "TREO";
+                data['loai'] = "Offline";
+
+                $.ajax({
+                    url: "/api/hoa-don-off",
+                    method: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success: (response) => {
+                        showSuccess("Thêm hóa thành công");
+                        window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
             },
-            error: (error) => {
-                console.log(error);
+            function(error){
+                console.log("Error: " + error);
             }
-        });
+
+        );
     })
 
     $('#btn-add-customer').on('click', () => {
@@ -424,7 +435,7 @@
 
     $('#btn-paymant-invoice').on('click', function () {
         paymentInvoice();
-        if($('#code-customer').val() !== ""){
+        if ($('#code-customer').val() !== "") {
             tienQuyDiem(
                 function (response) {
                     let data = {};
@@ -432,8 +443,6 @@
                     data['soDiemDung'] = parseInt($('#input-point').val())
                     data['soDiemTichDuoc'] = response;
                     data['maHoaDon'] = maHoaDon;
-
-                    console.log(data);
 
                     tichDiem(data);
 
@@ -447,7 +456,7 @@
     })
 
     $("#input-point").keyup(function () {
-        if($(this).val() !== ''){
+        if ($(this).val() !== '') {
             diemQuyTien(parseInt($(this).val()));
         }
     });
@@ -867,7 +876,7 @@
         });
     }
 
-    function loadSoDiem(ma){
+    function loadSoDiem(ma) {
         $.ajax({
             url: "/api/tich-diem/" + ma,
             method: "GET",
@@ -1163,7 +1172,7 @@
             })
     }
 
-    function tichDiem(data){
+    function tichDiem(data) {
         $.ajax({
             url: "/api/tich-diem",
             method: "POST",
@@ -1178,7 +1187,7 @@
         });
     }
 
-    function luuLichSu(data){
+    function luuLichSu(data) {
         $.ajax({
             url: "/api/lich-su-tich-diem",
             method: "POST",
@@ -1193,7 +1202,7 @@
         });
     }
 
-    function diemQuyTien(diem){
+    function diemQuyTien(diem) {
         $.ajax({
             url: "/api/quy-doi-diem/diem-to-tien/" + diem,
             method: "GET",
@@ -1210,7 +1219,7 @@
         })
     }
 
-    function tienQuyDiem(successCallback, errorCallback){
+    function tienQuyDiem(successCallback, errorCallback) {
         $.ajax({
             url: "/api/quy-doi-diem/tien-to-diem/" + parseFloat($('#invoice-after-point').text()),
             method: "GET",
@@ -1222,6 +1231,37 @@
                 errorCallback(error)
             }
         })
+    }
+
+    function updateInvoiceTreo(successCallback, errorCallback) {
+        let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
+        let tongTienHang = parseFloat($('.invoice-total:first').text());
+
+        let data = {};
+        data['id'] = parseInt($('.invoice-id').val());
+        data['ma'] = maHoaDon;
+        data['loai'] = "OFFLINE";
+        data['trangThai'] = "TREO";
+        data['phuongThucThanhToan'] = "TIENMAT";
+        data['tongTienHang'] = tongTienHang;
+        data['tienKhachTra'] = tienKhachTra;
+        data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
+        data['maNhanVien'] = ma;
+        data['tienGiamGia'] = parseFloat($('#discount').text());
+
+        $.ajax({
+            url: "/api/hoa-don-off",
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                successCallback();
+            },
+            error: (error) => {
+                errorCallback(error);
+            }
+        });
     }
 </script>
 

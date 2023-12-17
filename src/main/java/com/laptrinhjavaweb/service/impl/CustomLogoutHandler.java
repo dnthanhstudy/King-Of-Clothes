@@ -1,8 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.response.MyUserResponse;
-import com.laptrinhjavaweb.service.INhanVienService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -15,9 +13,6 @@ import java.io.IOException;
 @Service
 public class CustomLogoutHandler implements LogoutHandler {
 
-    @Autowired
-    private INhanVienService nhanVienService;
-
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
         try{
@@ -25,9 +20,6 @@ public class CustomLogoutHandler implements LogoutHandler {
             if (authentication != null) {
                 MyUserResponse myUserResponse = (MyUserResponse) authentication.getPrincipal();
                 if(myUserResponse.getMaChucVu().equals("STAFF") || myUserResponse.getMaChucVu().equals("ADMIN")){
-                    if(myUserResponse.getMaChucVu().equals("STAFF")){
-                        nhanVienService.dongCa(myUserResponse.getMa());
-                    }
                     url = "/login?is_logout";
                 }else if(myUserResponse.getMaChucVu().equals("CUSTOMER")){
                     url = "/trang-chu";
