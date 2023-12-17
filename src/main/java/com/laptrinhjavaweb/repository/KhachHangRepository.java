@@ -16,6 +16,8 @@ public interface KhachHangRepository extends JpaRepository<KhachHangEntity, Long
 
     KhachHangEntity findBySoDienThoaiOrEmail(String soDienThoai, String email);
 
+    KhachHangEntity findBySoDienThoai(String soDienThoai);
+
     KhachHangEntity findByMa(String ma);
 
     KhachHangEntity findByEmail(String email);
