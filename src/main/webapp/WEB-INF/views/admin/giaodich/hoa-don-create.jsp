@@ -78,18 +78,6 @@
                 </div>
             </div>
         </div>
-        <div class="offcanvas-footer">
-            <div class="row p-5">
-                <div class="text-right">
-                    <button class="btn btn-light me-3" data-bs-dismiss="offcanvas" aria-label="Close"
-                            style="border: 1px solid #dedede; font-size: 22px; border-radius: 10px ">Bỏ qua
-                    </button>
-                    <button class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"
-                            style="background-color: #EB8153;font-size: 22px; border-radius: 10px">Xong
-                    </button>
-                </div>
-            </div>
-        </div>
     </div>
 
 </div>
@@ -420,8 +408,6 @@
             }
         });
     })
-
-
 
     $('#btn-paymant-invoice').on('click', function () {
         paymentInvoice();
@@ -935,6 +921,7 @@
 
                         $('.invoice-detail-seen').on('click', function () {
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            console.log(invoiceDetailId)
                             $.ajax({
                                 url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
                                 method: "GET",
