@@ -82,7 +82,7 @@
                                                                     <option value="0">Theo mức tiền</option>
                                                                 </select>
                                                             </div>
-                                                            <input type="text" class="form-control" id="giaTriGiam"
+                                                            <input type="number" class="form-control" id="giaTriGiam"
                                                                    name="val-text" placeholder="Nhập giá trị">
                                                         </div>
 
@@ -95,7 +95,7 @@
                                                     <span class="text-danger"></span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="soLuong" name="val-text"
+                                                    <input type="number" class="form-control" id="soLuong" name="val-text"
                                                            placeholder="Nhập vào">
                                                 </div>
                                             </div>
@@ -173,6 +173,18 @@
                                                         </div>
                                                     </div>
 
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-2" >
+                                                    <span>Số sản phẩm đã chọn:</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <label id="soLuongSanPham">
+
+                                                    </label>
+                                                    <span >sản phẩm</span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -252,14 +264,18 @@
     loadKhuyenMai();
 
     var checkedValues = [];
+    var size = checkedValues.length;
     $("#getValue").click(function (){
         checkedValues = []
         $('.form-check-input:checked').each(function () {
             checkedValues.push($(this).val());
         });
         $('#modalSanPham').modal('hide');
+        size = checkedValues.length;
+        $('#soLuongSanPham').text(size);
         console.log(checkedValues);
     })
+    $('#soLuongSanPham').text(size);
 
     $("#addDiscount").click(function () {
         var maKM = $("#maKM").val();
@@ -357,7 +373,7 @@
                                     </div>
                                 </td>
                                 <td>\${item.ten}</td>
-                                <td>\${item.gia}</td>
+                                <td>\${formatNumber(item.gia)}<span>đ</span></td>
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
                            </tr>`;
@@ -460,6 +476,9 @@
             isValid = false;
         }
         return isValid;
+    }
+    function formatNumber(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
 
