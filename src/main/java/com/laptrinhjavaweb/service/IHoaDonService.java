@@ -14,8 +14,6 @@ public interface IHoaDonService {
 
     List<HoaDonResponse> findByMaStatus(String trangThai);
 
-//    Map<String, Object> pagingOrSearchOrFindByMaStatus(Integer pageCurrent, Integer limit, String param, String trangThai );
-
     HoaDonResponse update(HoaDonResquest hoaDonResquest);
 
     String delete(String ma);

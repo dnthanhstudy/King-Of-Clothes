@@ -89,9 +89,11 @@
             dataType: "json",
             success: (response) => {
                 let html = '';
-                let totalInoivce = 0;
+                let totalInvoice = response.tongTienHang;
+                if(response.tienGiamGia !== null){
+                    totalInvoice -= response.tienGiamGia;
+                }
                 $.each(response.hoaDonChiTiet, (index, item) => {
-                    totalInoivce += item.thanhTien;
                     html += ` <tr>
                                     <th scope="row">\${++index}</th>
                                     <td>\${item.tenSanPham}</td>
@@ -102,7 +104,7 @@
                 })
                 html += `<tr>
                                 <td scope="col" colspan="3"></td>
-                                <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInoivce}</th>
+                                <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInvoice}</th>
 
                             </tr>`;
                 $('#tbody-invoice').html(html);
@@ -111,7 +113,7 @@
                 $('#user-id').text(response.tenNhanVien);
 
                 var docTien = new DocTienBangChu();
-                $('#price-read-vnd').text(docTien.doc(totalInoivce))
+                $('#price-read-vnd').text(docTien.doc(totalInvoice))
 
                 var ngayTao = new Date(response.ngayTao).toLocaleDateString("vi-VN")
                 let splitNgayTao = ngayTao.split("/");

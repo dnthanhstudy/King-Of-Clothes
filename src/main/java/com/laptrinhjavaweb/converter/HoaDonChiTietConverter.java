@@ -1,12 +1,11 @@
 package com.laptrinhjavaweb.converter;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
+import com.laptrinhjavaweb.entity.KhuyenMaiSanPhamEntity;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.BienTheRepository;
-import com.laptrinhjavaweb.repository.HoaDonRepository;
-import com.laptrinhjavaweb.repository.KhuyenMaiRepository;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
+import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
@@ -40,13 +39,24 @@ public class HoaDonChiTietConverter {
     @Autowired
     private SanPhamConverter sanPhamConverter;
 
+    @Autowired
+    private KhuyenMaiSanPhamRepository khuyenMaiSanPhamRepository;
+
     public HoaDonChiTietEntity convertToEntity(HoaDonChiTietRequest request){
         HoaDonChiTietEntity entity = modelMapper.map(request, HoaDonChiTietEntity.class);
         entity.setSanPham(sanPhamRepository.findById(request.getIdSanPham()).get());
         if(request.getIdBienThe() != null){
             entity.setBienThe(bienTheRepository.findById(request.getIdBienThe()).get());
+
         }
-        entity.setKhuyenMai(khuyenMaiRepository.findById(request.getIdKhuyenMai()).get());
+        KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity =
+                khuyenMaiSanPhamRepository.
+                        findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai
+                                (entity.getSanPham().getId(), SystemConstant.ACTICE, entity.getSanPham().getId(), SystemConstant.UPCOMING);
+        if(khuyenMaiSanPhamEntity != null){
+            entity.setKhuyenMai(khuyenMaiSanPhamEntity.getKhuyenMai());
+        }
+
         entity.setHoaDon(hoaDonRepository.findByMa(request.getMaHoaDon()));
         return entity;
     }

@@ -15,6 +15,6 @@ public interface DanhMucRepository extends JpaRepository<DanhMucEntity, Long>, D
 
 	List<DanhMucEntity> findAllByTrangThai(String trangThai);
 
-	Page<DanhMucEntity> findAllByTrangThaiNot(String trangThai, Pageable pageable);
+	Page<DanhMucEntity> findAllByTrangThaiNotOrderByNgayTaoDesc(String trangThai, Pageable pageable);
 
 }

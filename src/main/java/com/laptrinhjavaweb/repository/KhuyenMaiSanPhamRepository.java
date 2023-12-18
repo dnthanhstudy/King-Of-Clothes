@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface KhuyenMaiSanPhamRepository extends JpaRepository<KhuyenMaiSanPhamEntity, Long> {
 
-    KhuyenMaiSanPhamEntity findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(Long idSanPham, String trangThai1, Long idSanPham2, String trangThai2);
-
+    KhuyenMaiSanPhamEntity findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(Long idSanPham, String trangThai1,
+                                                                                Long idSanPham2, String trangThai2);
     List<KhuyenMaiSanPhamEntity> findAllByKhuyenMai_id(Long idkm);
 }

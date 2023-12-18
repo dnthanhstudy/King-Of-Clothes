@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SliderConverter;
-import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.SliderEntity;
 import com.laptrinhjavaweb.repository.SliderRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
@@ -45,10 +44,10 @@ public class SliderServicer implements ISliderService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = sliderRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE,wholePage);
+            page = sliderRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE,wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-            page = sliderRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE,pageable);
+            page = sliderRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE,pageable);
         }
         listSliderResponse = page.getContent().stream().map(
                 item -> sliderConverter.convertToResponse(item)

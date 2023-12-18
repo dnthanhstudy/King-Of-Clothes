@@ -5,6 +5,7 @@ import com.laptrinhjavaweb.resquest.TichDiemRequest;
 
 public interface ITichDiemService {
 
-    TichDiemResponse save(TichDiemRequest request);
+    void update(TichDiemRequest request);
 
+    Integer soDiemFindByKhachHang(String ma);
 }

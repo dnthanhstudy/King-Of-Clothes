@@ -76,11 +76,6 @@
 
                                 <div class="input-group input-group-merge">
                                     <input type="password" class="js-toggle-password form-control form-control-lg" name="j_password" id="signupSrPassword" placeholder="*************" value="123456">
-                                    <div id="changePassTarget" class="input-group-append">
-                                        <a class="input-group-text" href="javascript:;">
-                                            <i id="changePassIcon" class="tio-visible-outlined"></i>
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                             <!-- End Form Group -->

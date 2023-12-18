@@ -99,7 +99,7 @@
         let data = {};
         data['maNhanVien'] = ma;
         data['trangThai'] = "TREO";
-        data['loai'] = "Offline";
+        data['loai'] = "OFFLINE";
 
         $.ajax({
             url: "/api/hoa-don-off",
@@ -123,6 +123,7 @@
             url: "/api/hoa-don-off/find-by-status?trangThai=" + value,
             method: "GET",
             success: (response) => {
+                console.log(response)
                 var tbody = $('#tblHoaDonOff tbody');
                 tbody.empty();
                 var index = 0;
@@ -136,7 +137,7 @@
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
                                 <td>\${item.tongTienHang != null ? item.tongTienHang : 0}</td>
                                 <td>\${item.tienKhachTra != null ? item.tienKhachTra : 0}</td>
-                                 <td>\${item.tienKhachTra - item.tongTienHang}</td>
+                                 <td>\${item.tienKhachTra - (item.tongTienHang - item.tienGiamGia)}</td>
                                  <td>
                                     <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                      <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>

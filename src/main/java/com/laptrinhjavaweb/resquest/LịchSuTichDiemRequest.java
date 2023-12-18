@@ -3,9 +3,11 @@ package com.laptrinhjavaweb.resquest;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class TichDiemRequest {
+@Setter
+public class LịchSuTichDiemRequest {
+
+    private String maHoaDon;
 
     private String maKhachHang;
 

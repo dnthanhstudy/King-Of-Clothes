@@ -15,5 +15,5 @@ public interface ThuongHieuRepository extends JpaRepository<ThuongHieuEntity, Lo
 
 	List<ThuongHieuEntity> findAllByTrangThai(String trangThai);
 
-	Page<ThuongHieuEntity> findAllByTrangThaiNot(String trangThai, Pageable pageable);
+	Page<ThuongHieuEntity> findAllByTrangThaiNotOrderByNgayTaoDesc(String trangThai, Pageable pageable);
 }

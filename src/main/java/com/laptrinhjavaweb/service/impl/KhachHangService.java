@@ -70,7 +70,7 @@ public class KhachHangService implements IKhachHangService {
         if (pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
+            page = khachHangRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, wholePage);
         } else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if (param != null) {
@@ -82,7 +82,7 @@ public class KhachHangService implements IKhachHangService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistKhachHangEntity);
 
             } else {
-                page = khachHangRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
+                page = khachHangRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listKhachHangResponse = page.getContent().stream().map(
@@ -118,12 +118,16 @@ public class KhachHangService implements IKhachHangService {
     }
 
     @Override
+    @Transactional
     public KhacHangResponse insert(KhachHangRequest khachHangRequest) {
-        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
-                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
-        );
+        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoai(khachHangRequest.getSoDienThoai());
         if (khachHangEntity != null) {
             return null;
+        }
+        if(khachHangRequest.getEmail() != null && !khachHangRequest.getEmail().isEmpty()){
+            if(khachHangRepository.findByEmail(khachHangRequest.getEmail()) != null){
+                return null;
+            }
         }
         khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
@@ -240,8 +244,6 @@ public class KhachHangService implements IKhachHangService {
     public KhacHangResponse changePassword(KhachHangRequest khachHangRequest) {
         KhachHangEntity khachHangEntity = khachHangRepository.findByMa(khachHangRequest.getMa());
         String oldPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
-        System.out.println("Mat khau 1: "+khachHangEntity.getMatKhau());
-        System.out.println("Mat khau 2: "+oldPassword);
         if (passwordEncoder.matches(khachHangRequest.getMatKhau().trim(), khachHangEntity.getMatKhau())) {
             String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhauMoi().trim());
             khachHangEntity.setMatKhau(newPassword);
