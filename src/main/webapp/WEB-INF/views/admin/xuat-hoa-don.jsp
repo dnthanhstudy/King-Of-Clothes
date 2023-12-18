@@ -43,6 +43,7 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Đơn giá</th>
                     <th scope="col">Thành tiền</th>
+                    <th scope="col">Tiền giảm giá</th>
                 </tr>
                 </thead>
                 <tbody id="tbody-invoice" class="table-group-divider">
@@ -89,20 +90,23 @@
             dataType: "json",
             success: (response) => {
                 let html = '';
-                let totalInoivce = 0;
+                let totalInvoice = response.tongTienHang;
+                if(response.tienGiamGia !== null){
+                    totalInvoice -= response.tienGiamGia;
+                }
                 $.each(response.hoaDonChiTiet, (index, item) => {
-                    totalInoivce += item.thanhTien;
                     html += ` <tr>
                                     <th scope="row">\${++index}</th>
                                     <td>\${item.tenSanPham}</td>
                                     <td>\${item.soLuong}</td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.thanhTien}</td>
+                                    <td>\{item.tienGiamGia}</td>
                                 </tr>`;
                 })
                 html += `<tr>
-                                <td scope="col" colspan="3"></td>
-                                <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInoivce}</th>
+                                <td scope="col" colspan="4"></td>
+                                <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInvoice}</th>
 
                             </tr>`;
                 $('#tbody-invoice').html(html);
@@ -111,7 +115,7 @@
                 $('#user-id').text(response.tenNhanVien);
 
                 var docTien = new DocTienBangChu();
-                $('#price-read-vnd').text(docTien.doc(totalInoivce))
+                $('#price-read-vnd').text(docTien.doc(totalInvoice))
 
                 var ngayTao = new Date(response.ngayTao).toLocaleDateString("vi-VN")
                 let splitNgayTao = ngayTao.split("/");
@@ -131,8 +135,8 @@
     $("#printf-invoice").on("click", function () {
         $("body").scrollTop(0);
         createPDF();
-        window.location.href = `/admin/giao-dich/hoa-don-off`;
         showSuccess("In hóa đơn thành công !")
+        window.location.href = `/admin/giao-dich/hoa-don-off`;
     });
 
     function createPDF() {

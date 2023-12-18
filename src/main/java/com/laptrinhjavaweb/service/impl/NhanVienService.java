@@ -20,6 +20,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class NhanVienService implements INhanVienService {
 
     @Autowired
     private ChucVuRepository chucVuRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public NhanVienResponse findByMaAndTrangThai(String ma, String trangThai) {
@@ -66,6 +70,7 @@ public class NhanVienService implements INhanVienService {
         }
         nhanVienEntity = nhanVienConverter.convertToEntity(nhanVienRequest);
         nhanVienEntity.setMa(GenerateStringUtils.generateMa(nhanVienRequest.getTen()));
+        nhanVienEntity.setMatKhau(passwordEncoder.encode("123456"));
         nhanVienRepository.save(nhanVienEntity);
         nhanVienEntity.setTrangThai("INACTIVE");
         nhanVienRepository.save(nhanVienEntity);
@@ -117,7 +122,7 @@ public class NhanVienService implements INhanVienService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, wholePage);
+            page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNotOrderByNgayTaoDesc(SystemConstant.DELETE, ma, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -129,7 +134,7 @@ public class NhanVienService implements INhanVienService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistNhanVienEntity);
 
             }else {
-                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNot(SystemConstant.DELETE, ma, pageable);
+                page = nhanVienRepository.findAllByTrangThaiNotAndAndMaNotOrderByNgayTaoDesc(SystemConstant.DELETE, ma, pageable);
             }
         }
         listNhanVienResponse = page.getContent().stream().map(

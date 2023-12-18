@@ -14,7 +14,7 @@
 <body>
 
 <main id="content" role="main" class="main">
-    <div class="position-fixed top-0 right-0 left-0 bg-img-hero" style="height: 32rem; background-image: url(/template/login/svg/components/abstract-bg-4.svg);">
+    <div class="position-fixed top-0 right-0 left-0 bg-img-hero" style="height: 32rem; background-image: url(/template/login/img/bgr.jpg);">
 
         <figure class="position-absolute right-0 bottom-0 left-0">
             <svg preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewbox="0 0 1921 273">
@@ -64,11 +64,6 @@
                                     <label class="input-label">Mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="matKhau" id="matKhau" placeholder="*************">
-                                        <div class="js-toggle-password-target-1 input-group-append">
-                                            <a class="input-group-text" href="javascript:;">
-                                                <i class="js-toggle-passowrd-show-icon-1 tio-visible-outlined"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -76,11 +71,6 @@
                                     <label class="input-label">Xác nhận mật khẩu</label>
                                     <div class="input-group input-group-merge">
                                         <input type="password" class="js-toggle-password form-control form-control-lg" name="xacNhanMatKhau" id="xacNhanMatKhau" placeholder="*************">
-                                        <div class="js-toggle-password-target-2 input-group-append">
-                                            <a class="input-group-text" href="javascript:;">
-                                                <i class="js-toggle-passowrd-show-icon-2 tio-visible-outlined"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -188,6 +178,7 @@
                 data: JSON.stringify(data),
                 success: (response) => {
                     window.location.href = '/login';
+                    showSuccess("Đăng ký thành công")
                 },
                 error: (error) => {
                     showError(error.responseJSON.error);

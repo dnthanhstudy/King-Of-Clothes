@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp" %>
 <html>
 <head>
     <title>Hóa đơn</title>
@@ -19,7 +20,7 @@
 
         <div class="card card-body hstack gap-3 mt-4">
             <div class="p-2">
-                <a id="create-hoa-don" class="Btnaddkh" type="button" style="text-decoration: none">Add
+                <a id="create-hoa-don" class="Btnaddkh" type="button" style="text-decoration: none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style>
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </a>
@@ -74,7 +75,7 @@
                 <hr>
                 <table class="table table-hover" id="tblHoaDonOff">
                     <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa đơn</th>
                         <th scope="col">Khách hàng</th>
@@ -99,7 +100,7 @@
         let data = {};
         data['maNhanVien'] = ma;
         data['trangThai'] = "TREO";
-        data['loai'] = "Offline";
+        data['loai'] = "OFFLINE";
 
         $.ajax({
             url: "/api/hoa-don-off",
@@ -117,26 +118,31 @@
         });
     })
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('vi-VN').format(number);
+    }
+
     var trangThai = $('#trangThai option:selected').val();
     function getHoaDon(value){
         $.ajax({
             url: "/api/hoa-don-off/find-by-status?trangThai=" + value,
             method: "GET",
             success: (response) => {
+                console.log(response)
                 var tbody = $('#tblHoaDonOff tbody');
                 tbody.empty();
                 var index = 0;
                 response.forEach(function(item) {
                     var row = `
-                            <tr>
+                            <tr class="text-center">
                                 <td>\${++index}</td>
                                 <td>\${item.ma}</td>
                                  <td>\${item.tenKhachHang}</td>
                                  <td>\${item.tenNhanVien}</td>
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
-                                 <td>\${item.tongTienHang}</td>
-                                 <td>\${item.tienKhachTra}</td>
-                                 <td>\${item.tienKhachTra - item.tongTienHang}</td>
+                                 <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
                                  <td>
                                     <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                      <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>

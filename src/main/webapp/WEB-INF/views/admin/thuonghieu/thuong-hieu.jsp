@@ -245,6 +245,7 @@
                             method: 'DELETE',
                             success: function (req) {
                                 showSuccess("Xóa thành công");
+                                loadThuongHieu();
                             },
                             error: function (xhr, status, error) {
                                 showError("Xóa thất bại");

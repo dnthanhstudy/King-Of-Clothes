@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface NhanVienRepository extends JpaRepository<NhanVienEntity, Long>, NhanVienRepositoryCustom {
 
 
-    Page<NhanVienEntity> findAllByTrangThaiNotAndAndMaNot(String trangThai, String ma, Pageable pageable);
+    Page<NhanVienEntity> findAllByTrangThaiNotAndAndMaNotOrderByNgayTaoDesc(String trangThai, String ma, Pageable pageable);
 
     NhanVienEntity findByMaAndTrangThai(String ma, String trangThai);
 

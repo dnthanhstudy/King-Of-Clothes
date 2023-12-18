@@ -1,16 +1,14 @@
 package com.laptrinhjavaweb.repository.custom.impl;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.repository.custom.SanPhamRepositoryCustom;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.springframework.stereotype.Repository;
-
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.custom.SanPhamRepositoryCustom;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {

@@ -88,10 +88,7 @@
         let email = $("#email").val();
         let ngaySinh = $("#ngaySinh").val();
 
-        if (ngaySinh === "") {
-            showError("Ngày sinh không được để trống");
-            isValid = false;
-        } else {
+        if(ngaySinh !== "") {
             let selectedDate = new Date(ngaySinh);
             let currentDate = new Date();
 
@@ -104,10 +101,7 @@
                 isValid = false;
             }
         }
-        if (email === "") {
-            showError("Địa chỉ email không được để trống");
-            isValid = false;
-        } else if (!isValidEmail(email)) {
+        if (!isValidEmail(email) && email !== "") {
             showError("Địa chỉ email không hợp lệ");
             isValid = false;
         }
