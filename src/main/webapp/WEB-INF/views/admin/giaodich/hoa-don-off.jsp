@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/taglib.jsp" %>
 <html>
 <head>
     <title>Hóa đơn</title>
@@ -117,6 +118,10 @@
         });
     })
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('vi-VN').format(number);
+    }
+
     var trangThai = $('#trangThai option:selected').val();
     function getHoaDon(value){
         $.ajax({
@@ -135,9 +140,9 @@
                                  <td>\${item.tenKhachHang}</td>
                                  <td>\${item.tenNhanVien}</td>
                                  <td>\${getFormattedDate(item.ngayTao)}</td>
-                                <td>\${item.tongTienHang != null ? item.tongTienHang : 0}</td>
-                                <td>\${item.tienKhachTra != null ? item.tienKhachTra : 0}</td>
-                                 <td>\${item.tienKhachTra - (item.tongTienHang - item.tienGiamGia)}</td>
+                                 <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
                                  <td>
                                     <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                      <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>

@@ -74,19 +74,19 @@
                                  <div class="d-flex justify-content-between">
                                      <span>Tổng tiền hàng:</span>
                                      <div>
-                                         <span class="font-weight-bold invoice-total"></span> <span class="font-weight-bold fs-5">đ</span>
+                                         <span class="font-weight-bold invoice-total"></span> <span class="font-weight-bold">đ</span>
                                      </div>
                                  </div>
                                  <div class="d-flex justify-content-between">
                                      <span>Tiền giảm giá:</span>
                                      <div>
-                                         <span class="font-weight-bold invoice-discount"></span> <span class="font-weight-bold fs-5">đ</span>
+                                         <span class="font-weight-bold invoice-discount"></span> <span class="font-weight-bold">đ</span>
                                      </div>
                                  </div>
                                  <div class="d-flex justify-content-between">
                                      <span>Tiền khách trả:</span>
                                      <div>
-                                         <span class="font-weight-bold " id="tienKhachTra"></span> <span class="font-weight-bold fs-5">đ</span>
+                                         <span class="font-weight-bold " id="tienKhachTra"></span> <span class="font-weight-bold">đ</span>
                                      </div>
                                  </div>
                              </div>
@@ -130,6 +130,10 @@
          return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
      }
 
+     function formatNumber(number) {
+         return new Intl.NumberFormat('vi-VN').format(number);
+     }
+
      function loadHoaDon() {
          var url = window.location.pathname.split("/");
          var ma = url[url.length - 1];
@@ -157,15 +161,15 @@
                                 <td>\${++index}</td>
                                 <td>\${item.tenSanPham}</td>
                                  <td>\${item.soLuong}</td>
-                                 <td>\${item.gia} đ</td>
-                                 <td>\${item.thanhTien} đ</td>
+                                 <td>\${formatNumber(item.gia)} đ</td>
+                                 <td>\${formatNumber(item.thanhTien)} đ</td>
                             </tr>
                         `;
                      tbody.append(row);
                      $('#invoice-quantity').text(toatlQuantity);
-                     $('.invoice-total').text(totalInvoice);
-                     $("#tienKhachTra").text(req.tienKhachTra);
-                     $(".invoice-discount").text(req.tienGiamGia);
+                     $('.invoice-total').text(formatNumber(totalInvoice));
+                     $("#tienKhachTra").text(formatNumber(req.tienKhachTra));
+                     $(".invoice-discount").text(formatNumber(req.tienGiamGia));
                  });
              },
              error: function (xhr, status, error) {

@@ -45,17 +45,6 @@
                     <li><a href="/admin/san-pham">Sản phẩm</a></li>
                     <li><a href="/admin/khuyen-mai">Khuyến mãi</a></li>
                     <li><a href="/admin/slider">Slider</a></li>
-                    <li><a href="/admin/giao-ca/thong-ke-giao-ca">Thống kê giao ca</a></li>
-                </ul>
-            </li>
-
-            <li class="shift"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-381-network"></i>
-                <span class="nav-text">Giao ca</span>
-            </a>
-                <ul aria-expanded="false">
-                    <li><a href="/admin/giao-ca/mo-ca">Mở ca</a></li>
-                    <li><a href="/admin/giao-ca/dong-ca">Đóng ca</a></li>
                 </ul>
             </li>
             <li>
@@ -93,15 +82,6 @@
     const role = $('.ma-chuc-vu').val();
     if(role === "STAFF"){
         const html = `<li class="nav-label first">Main Menu</li>
-                        <li class="mm-active"><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                            <i class="flaticon-381-network"></i>
-                            <span class="nav-text">Giao ca</span>
-                            </a>
-                            <ul aria-expanded="false" class="mm-collapse mm-show" style="">
-                                <li><a href="/admin/giao-ca/dong-ca">Đóng ca</a></li>
-                            </ul>
-                        </li>
-
                         <li>
                             <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                                 <i class="flaticon-044-file"></i>
@@ -144,10 +124,8 @@
                                 <li><a href="/admin/san-pham">Sản phẩm</a></li>
                                 <li><a href="/admin/khuyen-mai">Khuyến mại</a></li>
                                 <li><a href="/admin/slider">Slider</a></li>
-                                <li><a href="/admin/giao-ca/thong-ke-giao-ca">Thống kê giao ca</a></li>
                             </ul>
                         </li>
-
                         <li>
                                 <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                                     <i class="flaticon-044-file"></i>
