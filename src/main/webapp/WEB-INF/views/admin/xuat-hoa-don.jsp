@@ -89,7 +89,10 @@
             dataType: "json",
             success: (response) => {
                 let html = '';
-                let totalInoivce = response.tongTienHang - response.tienGiamGia;
+                let totalInvoice = response.tongTienHang;
+                if(response.tienGiamGia !== null){
+                    totalInvoice -= response.tienGiamGia;
+                }
                 $.each(response.hoaDonChiTiet, (index, item) => {
                     html += ` <tr>
                                     <th scope="row">\${++index}</th>
@@ -110,7 +113,7 @@
                 $('#user-id').text(response.tenNhanVien);
 
                 var docTien = new DocTienBangChu();
-                $('#price-read-vnd').text(docTien.doc(totalInoivce))
+                $('#price-read-vnd').text(docTien.doc(totalInvoice))
 
                 var ngayTao = new Date(response.ngayTao).toLocaleDateString("vi-VN")
                 let splitNgayTao = ngayTao.split("/");

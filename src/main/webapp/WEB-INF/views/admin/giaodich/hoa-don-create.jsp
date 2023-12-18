@@ -373,25 +373,34 @@
 
     $('.btn-add-invoice').on('click', function (e) {
         e.preventDefault();
-        let data = {};
-        data['maNhanVien'] = ma;
-        data['trangThai'] = "TREO";
-        data['loai'] = "Offline";
 
-        $.ajax({
-            url: "/api/hoa-don-off",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                showSuccess("Thêm hóa thành công");
-                window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+        updateInvoiceTreo(
+            function(){
+                let data = {};
+                data['maNhanVien'] = ma;
+                data['trangThai'] = "TREO";
+                data['loai'] = "Offline";
+
+                $.ajax({
+                    url: "/api/hoa-don-off",
+                    method: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success: (response) => {
+                        showSuccess("Thêm hóa thành công");
+                        window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
+                    },
+                    error: (error) => {
+                        console.log(error);
+                    }
+                });
             },
-            error: (error) => {
-                console.log(error);
+            function(error){
+                console.log("Error: " + error);
             }
-        });
+
+        );
     })
 
     $('#btn-add-customer').on('click', () => {
@@ -431,8 +440,6 @@
                     data['soDiemDung'] = parseInt($('#input-point').val())
                     data['soDiemTichDuoc'] = response;
                     data['maHoaDon'] = maHoaDon;
-
-                    console.log(data);
 
                     tichDiem(data);
 
@@ -1235,6 +1242,37 @@
                 errorCallback(error)
             }
         })
+    }
+
+    function updateInvoiceTreo(successCallback, errorCallback) {
+        let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
+        let tongTienHang = parseFloat($('.invoice-total:first').text());
+
+        let data = {};
+        data['id'] = parseInt($('.invoice-id').val());
+        data['ma'] = maHoaDon;
+        data['loai'] = "OFFLINE";
+        data['trangThai'] = "TREO";
+        data['phuongThucThanhToan'] = "TIENMAT";
+        data['tongTienHang'] = tongTienHang;
+        data['tienKhachTra'] = tienKhachTra;
+        data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
+        data['maNhanVien'] = ma;
+        data['tienGiamGia'] = parseFloat($('#discount').text());
+
+        $.ajax({
+            url: "/api/hoa-don-off",
+            method: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                successCallback();
+            },
+            error: (error) => {
+                errorCallback(error);
+            }
+        });
     }
 </script>
 

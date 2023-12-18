@@ -535,7 +535,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(265, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 225000, NULL, 'X1eH7QMZ', 300, 'Đen,29,Dáng Ống Loe', 44),
 	(266, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'Mi6mSioq', 300, 'Đen,30,Dáng Xuông', 44),
 	(267, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 225000, NULL, 'NLGkFWs0', 300, 'Đen,30,Dáng Ống Loe', 44),
-	(268, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'pE7nI1Z6', 300, 'Đen,31,Dáng Xuông', 44),
+	(268, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'pE7nI1Z6', 299, 'Đen,31,Dáng Xuông', 44),
 	(269, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 225000, NULL, 'gCoVmJZG', 300, 'Đen,31,Dáng Ống Loe', 44),
 	(270, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 235000, NULL, 'BShoPUlf', 300, 'Đen,32,Dáng Xuông', 44),
 	(271, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 225000, NULL, 'HIkiWz5B', 300, 'Đen,32,Dáng Ống Loe', 44),
@@ -547,7 +547,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(277, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 125000, NULL, 'OUp9gkuj', 450, 'Đen,XL,Cổ thấp', 45),
 	(278, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 120000, '4l4O5I.jpg', '7PkNFCZl', 450, 'Xám,M,Cổ dài', 45),
 	(279, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 129000, NULL, 'Qs3y2I3V', 450, 'Xám,M,Cổ thấp', 45),
-	(280, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 130000, NULL, 'ExQpDIZE', 450, 'Xám,L,Cổ dài', 45),
+	(280, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 130000, NULL, 'ExQpDIZE', 448, 'Xám,L,Cổ dài', 45),
 	(281, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 129000, NULL, '9yMzHhdI', 450, 'Xám,L,Cổ thấp', 45),
 	(282, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'ufqrWKN7', 450, 'Xám,XL,Cổ dài', 45),
 	(283, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 125000, NULL, 'EjDlfK3X', 450, 'Xám,XL,Cổ thấp', 45),
@@ -680,7 +680,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(410, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 13900, NULL, 'qC64rsp6', 300, 'Hồng,XL,Vải Visco,Bầu Trời', 48),
 	(411, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'AvTaa09J', 250, 'Hồng,XL,Vải Visco,Họa Hình', 48),
 	(412, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'lM5SaF7T', 250, 'Hồng,XXL,Vải Cotton,Địa Cầu', 48),
-	(413, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'yPQxJPP1', 300, 'Hồng,XXL,Vải Cotton,Mặt Trăng', 48),
+	(413, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'yPQxJPP1', 299, 'Hồng,XXL,Vải Cotton,Mặt Trăng', 48),
 	(414, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'YidvuhBj', 300, 'Hồng,XXL,Vải Cotton,Bầu Trời', 48),
 	(415, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 's7s5KC3i', 250, 'Hồng,XXL,Vải Cotton,Họa Hình', 48),
 	(416, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'nvxtcKqq', 250, 'Hồng,XXL,Vải Kate,Địa Cầu', 48),
@@ -827,7 +827,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(557, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 82000, NULL, 'qVuMYNEa', 500, 'Trắng,L,Vải Cotton,Tay lỡ', 49),
 	(558, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'rZRoya3W', 500, 'Trắng,L,Vải Corolan,Tay ngắn', 49),
 	(559, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'GpZK5Hgm', 500, 'Trắng,L,Vải Corolan,Tay lỡ', 49),
-	(560, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'Mxihd7Tq', 400, 'Trắng,XL,Vải Cotton,Tay ngắn', 49),
+	(560, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'Mxihd7Tq', 399, 'Trắng,XL,Vải Cotton,Tay ngắn', 49),
 	(561, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 89000, NULL, 'EVAR3YLb', 500, 'Trắng,XL,Vải Cotton,Tay lỡ', 49),
 	(562, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'eDXWYTI1', 500, 'Trắng,XL,Vải Corolan,Tay ngắn', 49),
 	(563, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'Ka3ncRzp', 500, 'Trắng,XL,Vải Corolan,Tay lỡ', 49),
@@ -853,9 +853,11 @@ CREATE TABLE IF NOT EXISTS `calam` (
   PRIMARY KEY (`id`),
   KEY `FKqwajinxv270ke9tysey6xigop` (`idnhanvien`),
   CONSTRAINT `FKqwajinxv270ke9tysey6xigop` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table duantotnghiep.calam: ~0 rows (approximately)
+INSERT INTO `calam` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotiencuoica`, `sotiendauca`, `idnhanvien`, `ghichu`, `tienchenhlech`, `tienmatbangiao`) VALUES
+	(8, NULL, '2023-12-16 16:03:08', NULL, 'nguyenvana0183', 'ACTIVE', NULL, 500000, 1, NULL, NULL, NULL);
 
 -- Dumping structure for table duantotnghiep.chitietcalam
 CREATE TABLE IF NOT EXISTS `chitietcalam` (
@@ -874,7 +876,7 @@ CREATE TABLE IF NOT EXISTS `chitietcalam` (
   CONSTRAINT `FKas009v8q6c9ut5hv8ko0x508d` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.chitietcalam: ~4 rows (approximately)
+-- Dumping data for table duantotnghiep.chitietcalam: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.chitieu
 CREATE TABLE IF NOT EXISTS `chitieu` (
@@ -890,9 +892,9 @@ CREATE TABLE IF NOT EXISTS `chitieu` (
   PRIMARY KEY (`id`),
   KEY `FK7fr74dox50p8nxx296nhl6740` (`idvidientu`),
   CONSTRAINT `FK7fr74dox50p8nxx296nhl6740` FOREIGN KEY (`idvidientu`) REFERENCES `vidientu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.chitieu: ~11 rows (approximately)
+-- Dumping data for table duantotnghiep.chitieu: ~14 rows (approximately)
 INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `loaichitieu`, `sotien`, `idvidientu`) VALUES
 	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 110000, 1),
 	(2, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 0, 220000, 1),
@@ -904,7 +906,10 @@ INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(8, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 300000, 3),
 	(9, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 440000, 4),
 	(10, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 0, 500000, 4),
-	(11, NULL, '2023-12-12 05:32:36', NULL, 'dinhanhtuan0812', 'ACTIVE', 1, 200000, 3);
+	(11, NULL, '2023-12-12 05:32:36', NULL, 'dinhanhtuan0812', 'ACTIVE', 1, 200000, 3),
+	(12, NULL, '2023-12-16 15:49:38', NULL, 'dinhanhtuan0812', NULL, 0, 163300, 3),
+	(13, NULL, '2023-12-16 15:58:10', NULL, 'dinhanhtuan0812', NULL, 0, 264200, 3),
+	(14, NULL, '2023-12-16 16:01:00', NULL, 'dinhanhtuan0812', NULL, 1, 1000000, 3);
 
 -- Dumping structure for table duantotnghiep.chucvu
 CREATE TABLE IF NOT EXISTS `chucvu` (
@@ -2951,20 +2956,22 @@ CREATE TABLE IF NOT EXISTS `giohangchitiet` (
   CONSTRAINT `FK8j5vpdk26mdy519f0uoeh1dix` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKpubdi51v0ipjgpy3hfa7egsjq` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`),
   CONSTRAINT `FKrxrj4t2nvkmcprh4ee0ehbvwi` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohangchitiet: ~10 rows (approximately)
+-- Dumping data for table duantotnghiep.giohangchitiet: ~12 rows (approximately)
 INSERT INTO `giohangchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `idbienthe`, `idgiohang`, `idsanpham`) VALUES
 	(1, '2023-11-22 18:19:20', '2023-11-22 18:17:56', 'dangngocthanh0133', 'dangngocthanh0133', 'ACTIVE', NULL, 0, 4, 1, NULL),
-	(2, '2023-11-28 15:02:54', '2023-11-28 14:39:34', 'admin9193', 'dinhanhtuan0812', 'PENDING', NULL, 1, 225, 2, NULL),
-	(3, '2023-11-28 14:57:42', '2023-11-28 14:57:26', 'admin9193', 'admin9193', 'PENDING', NULL, 1, 7, 2, NULL),
+	(2, '2023-11-28 15:02:54', '2023-11-28 14:39:34', 'admin9193', 'dinhanhtuan0812', 'DELETE', NULL, 1, 225, 2, NULL),
+	(3, '2023-11-28 14:57:42', '2023-11-28 14:57:26', 'admin9193', 'admin9193', 'DELETE', NULL, 1, 7, 2, NULL),
 	(4, '2023-12-11 16:20:41', '2023-12-11 15:27:38', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 2, 556, 3, NULL),
 	(5, '2023-12-11 16:20:41', '2023-12-11 15:30:30', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 1, 234, 3, NULL),
 	(6, '2023-12-11 16:20:41', '2023-12-11 15:31:05', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 2, 292, 3, NULL),
-	(7, '2023-12-11 17:26:04', '2023-12-11 17:22:00', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', NULL, 1, 413, 2, NULL),
-	(8, NULL, '2023-12-12 05:02:42', NULL, 'dinhanhtuan0812', 'ACTIVE', NULL, 1, 560, 2, NULL),
-	(9, '2023-12-12 05:10:32', '2023-12-12 05:09:18', 'dinhanhtuan0812', 'dinhanhtuan0812', 'PENDING', NULL, 5, 567, 2, NULL),
-	(10, NULL, '2023-12-14 08:41:45', NULL, 'dangngocthanh0133', 'ACTIVE', NULL, 1, 255, 1, NULL);
+	(7, '2023-12-16 15:46:34', '2023-12-11 17:22:00', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 413, 2, NULL),
+	(8, '2023-12-16 15:46:34', '2023-12-12 05:02:42', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 560, 2, NULL),
+	(9, '2023-12-12 05:10:32', '2023-12-12 05:09:18', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 5, 567, 2, NULL),
+	(10, NULL, '2023-12-14 08:41:45', NULL, 'dangngocthanh0133', 'ACTIVE', NULL, 1, 255, 1, NULL),
+	(11, '2023-12-16 15:51:13', '2023-12-16 15:51:04', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 268, 2, NULL),
+	(12, '2023-12-16 15:58:01', '2023-12-16 15:57:55', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 280, 2, NULL);
 
 -- Dumping structure for table duantotnghiep.hoadon
 CREATE TABLE IF NOT EXISTS `hoadon` (
@@ -3002,15 +3009,35 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   CONSTRAINT `FKdwfy15k3xk5wta4dkl3ff0t9t` FOREIGN KEY (`idlydohuydon`) REFERENCES `lydohuydon` (`id`),
   CONSTRAINT `FKlwt6og8a59ih2g8k9le1n7bpy` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`),
   CONSTRAINT `FKotnlgqnkhi19yrgi907nev953` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadon: ~5 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadon: ~24 rows (approximately)
 INSERT INTO `hoadon` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `ma`, `mota`, `ngaydat`, `ngaydukiengiaohang`, `ngaynhanhang`, `ngaythanhtoan`, `phuongthucthanhtoan`, `sodienthoai`, `tennguoinhan`, `tienkhachtra`, `tienship`, `tongtienhang`, `idkhachhang`, `idlydohuydon`, `idnhanvien`, `magiaohang`, `loai`, `ngaygiaohang`, `tiengiamgia`) VALUES
-	(2, '2023-11-28 14:58:43', '2023-11-28 14:57:42', 'admin9193', 'admin9193', 'CHONHANDON', 'Hà Nội, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD2', NULL, '2023-11-28 14:58:43', NULL, NULL, '2023-11-28 14:58:43', 'THANHTOANNHANHANG', '09876543121', 'admin', NULL, 0, 128000, 2, NULL, NULL, NULL, NULL, NULL, NULL),
 	(3, '2023-11-28 15:03:06', '2023-11-28 15:02:54', 'admin9193', 'admin9193', 'CHONHANDON', 'Hà Nội, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD3', NULL, '2023-11-28 15:03:06', NULL, NULL, '2023-11-28 15:03:06', 'THANHTOANNHANHANG', '09876543121', 'admin', NULL, 0, 280000, 2, NULL, NULL, NULL, NULL, NULL, NULL),
 	(4, '2023-12-11 16:40:41', '2023-12-11 16:20:41', 'dinhtuananh0183', 'dinhtuananh0183', 'CHONHANDON', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD4', 'Ok shop', '2023-12-11 16:40:41', NULL, NULL, '2023-12-11 16:40:41', 'THANHTOANNHANHANG', '0977853450', 'Đinh Tuấn Anh', 722301, 25301, 697000, 5, NULL, NULL, NULL, NULL, NULL, NULL),
-	(10, '2023-12-12 05:10:32', '2023-12-12 05:10:32', 'dinhanhtuan0812', 'dinhanhtuan0812', 'CHUANBIDATHANG', NULL, 'HD10', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(72, '2023-12-15 18:36:08', '2023-12-15 18:25:49', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'JohvIx', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 1100000, NULL, 1090000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL);
+	(10, '2023-12-16 15:49:38', '2023-12-12 05:10:32', 'dinhanhtuan0812', 'dinhanhtuan0812', 'CHONHANDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD10', 'GIao buổi sáng', '2023-12-16 15:49:38', NULL, NULL, '2023-12-16 15:49:38', 'VIDIENTU', '0915812752', 'Tuấn 1', 163300, 24200, 139100, 2, NULL, NULL, NULL, NULL, NULL, NULL),
+	(87, '2023-12-16 08:32:30', '2023-12-16 08:32:11', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'tv5u48', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 300000, NULL, 275000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(88, '2023-12-16 09:20:22', '2023-12-16 08:41:56', 'admin9193', 'admin9193', 'HUYDON', NULL, 'JPF2Qd', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 160000, NULL, 154050, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(89, '2023-12-16 09:09:27', '2023-12-16 08:58:54', 'admin9193', 'admin9193', 'HUYDON', NULL, 'fGf0XG', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 250000, NULL, 239000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(90, '2023-12-16 09:09:14', '2023-12-16 08:58:58', 'admin9193', 'admin9193', 'HUYDON', NULL, 'JK4js2', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 250000, NULL, 235000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(91, '2023-12-16 09:14:58', '2023-12-16 09:09:50', 'admin9193', 'admin9193', 'HUYDON', NULL, 'y2JtLm', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 5000000, NULL, 4465000, 8, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(92, '2023-12-16 09:31:31', '2023-12-16 09:14:44', 'admin9193', 'admin9193', 'HUYDON', NULL, '5ClftS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(94, '2023-12-16 09:36:22', '2023-12-16 09:36:02', 'admin9193', 'admin9193', 'HUYDON', NULL, 'NgreQr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(95, '2023-12-16 13:27:53', '2023-12-16 09:47:16', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'kxz9do', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 190000, NULL, 187850, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(100, '2023-12-16 14:28:43', '2023-12-16 14:27:59', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'OThbdf', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 1300000, NULL, 1246000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(101, '2023-12-16 14:29:33', '2023-12-16 14:29:03', 'admin9193', 'admin9193', 'THANHCONG', NULL, '8fEEpa', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 167000, NULL, 166350, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(102, '2023-12-16 15:00:05', '2023-12-16 14:37:01', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'b8yeN9', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 490000, NULL, 469950, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(103, '2023-12-16 15:55:50', '2023-12-16 15:51:13', 'admin9193', 'dinhanhtuan0812', 'HUYDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD103', '', '2023-12-16 15:51:43', NULL, NULL, NULL, 'THANHTOANNHANHANG', '0915812752', 'Linnh', 244200, 24200, 220000, 2, NULL, NULL, NULL, 'Online', NULL, NULL),
+	(104, '2023-12-16 15:59:48', '2023-12-16 15:58:01', 'admin9193', 'dinhanhtuan0812', 'DANGGIAOHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD104', '', '2023-12-16 15:58:10', '2023-12-17 23:59:59', NULL, '2023-12-16 15:58:10', 'VIDIENTU', '0915812752', 'Linnh', 264200, 24200, 240000, 2, NULL, NULL, 'LF7GRL', 'Online', NULL, NULL),
+	(105, '2023-12-16 16:04:32', '2023-12-16 16:03:18', 'nguyenvana0183', 'nguyenvana0183', 'THANHCONG', NULL, 'ShEONu', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 350000, NULL, 342700, NULL, NULL, 1, NULL, 'OFFLINE', NULL, NULL),
+	(106, NULL, '2023-12-17 05:29:02', NULL, 'admin9193', 'TREO', NULL, 'PxhKRZ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(107, NULL, '2023-12-17 07:04:28', NULL, 'admin9193', 'TREO', NULL, 'gXj2xz', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(108, NULL, '2023-12-17 06:13:34', NULL, 'admin9193', 'TREO', NULL, 'pAY61F', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(109, '2023-12-17 14:54:38', '2023-12-17 07:27:12', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'RrMrpT', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 150000, NULL, 146950, 1, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(110, '2023-12-17 15:11:25', '2023-12-17 15:09:58', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'klmyEW', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 370000, NULL, 367000, 1, NULL, 2, NULL, 'OFFLINE', NULL, 50000),
+	(111, '2023-12-17 15:15:17', '2023-12-17 15:14:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'rKSMMa', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 310000, NULL, 309450, 1, NULL, 2, NULL, 'OFFLINE', NULL, 50000),
+	(112, '2023-12-17 15:26:05', '2023-12-17 15:24:31', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'S2sGxt', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 230000, NULL, 225050, 1, NULL, 2, NULL, 'OFFLINE', NULL, 20000),
+	(113, '2023-12-17 15:39:57', '2023-12-17 15:34:45', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'FPE9Qr', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 650000, NULL, 642200, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0);
 
 -- Dumping structure for table duantotnghiep.hoadonchitiet
 CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
@@ -3037,12 +3064,49 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   CONSTRAINT `FK72nghe3o7s1prylbbnvfwub2k` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FK8g5acmm1r0ha2hua47ul4rdia` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKhv6nwlu151jpu9ikpe9fonvi6` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadonchitiet: ~2 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadonchitiet: ~34 rows (approximately)
 INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `thanhtien`, `idbienthe`, `idhoadon`, `idkhuyenmai`, `sotiengiam`, `idsanpham`) VALUES
-	(7, '2023-12-15 18:35:46', '2023-12-15 18:31:25', 'admin9193', 'admin9193', 'ACTIVE', 270000, 2, 540000, 227, 72, 20, NULL, 38),
-	(8, '2023-12-15 18:35:38', '2023-12-15 18:33:53', 'admin9193', 'admin9193', 'ACTIVE', 275000, 2, 550000, 226, 72, 20, NULL, 38);
+	(27, NULL, '2023-12-16 08:32:21', NULL, 'admin9193', 'ACTIVE', 275000, 1, 275000, 226, 87, 20, NULL, 38),
+	(28, '2023-12-16 08:55:04', '2023-12-16 08:42:24', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 88, 23, NULL, 49),
+	(29, NULL, '2023-12-16 08:59:10', NULL, 'admin9193', 'ACTIVE', 235000, 1, 235000, 309, 90, 22, NULL, 46),
+	(30, NULL, '2023-12-16 09:07:52', NULL, 'admin9193', 'ACTIVE', 239000, 1, 239000, 296, 89, 22, NULL, 46),
+	(31, '2023-12-16 09:10:02', '2023-12-16 09:09:57', 'admin9193', 'admin9193', 'ACTIVE', 235000, 19, 4465000, 309, 91, 22, NULL, 46),
+	(32, NULL, '2023-12-16 09:56:43', NULL, 'admin9193', 'ACTIVE', 187850, 1, 187850, 327, 95, 23, NULL, 47),
+	(33, '2023-12-16 14:28:33', '2023-12-16 14:28:06', 'admin9193', 'admin9193', 'ACTIVE', 51350, 5, 256750, 563, 100, 23, NULL, 49),
+	(34, NULL, '2023-12-16 14:28:09', NULL, 'admin9193', 'ACTIVE', 284000, 1, 284000, 234, 100, 21, NULL, 41),
+	(35, '2023-12-16 14:28:30', '2023-12-16 14:28:12', 'admin9193', 'admin9193', 'ACTIVE', 275000, 2, 550000, 226, 100, 20, NULL, 38),
+	(36, NULL, '2023-12-16 14:28:17', NULL, 'admin9193', 'ACTIVE', 59250, 1, 59250, 49, 100, 19, NULL, 4),
+	(37, NULL, '2023-12-16 14:28:21', NULL, 'admin9193', 'ACTIVE', 96000, 1, 96000, 8, 100, 19, NULL, 1),
+	(38, NULL, '2023-12-16 14:29:12', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 101, 23, NULL, 49),
+	(39, NULL, '2023-12-16 14:29:15', NULL, 'admin9193', 'ACTIVE', 115000, 1, 115000, 283, 101, 22, NULL, 45),
+	(40, NULL, '2023-12-16 14:37:07', NULL, 'admin9193', 'ACTIVE', 94250, 1, 94250, 405, 102, 23, NULL, 48),
+	(41, '2023-12-16 14:39:41', '2023-12-16 14:39:21', 'admin9193', 'admin9193', 'ACTIVE', 187850, 2, 375700, 327, 102, 23, NULL, 47),
+	(42, NULL, '2023-12-16 15:46:34', NULL, 'dinhanhtuan0812', NULL, 135000, 1, 87750, 413, 10, 23, 47250, NULL),
+	(43, NULL, '2023-12-16 15:46:34', NULL, 'dinhanhtuan0812', NULL, 79000, 1, 51350, 560, 10, 23, 27650, NULL),
+	(44, NULL, '2023-12-16 15:51:13', NULL, 'dinhanhtuan0812', NULL, 230000, 1, 220000, 268, 103, 22, 10000, NULL),
+	(45, NULL, '2023-12-16 15:58:01', NULL, 'dinhanhtuan0812', NULL, 260000, 2, 240000, 280, 104, 22, 20000, NULL),
+	(46, '2023-12-16 16:03:37', '2023-12-16 16:03:28', 'nguyenvana0183', 'nguyenvana0183', 'ACTIVE', 51350, 2, 102700, 567, 105, 23, NULL, 49),
+	(47, NULL, '2023-12-16 16:03:32', NULL, 'nguyenvana0183', 'ACTIVE', 240000, 1, 240000, 307, 105, 22, NULL, 46),
+	(48, NULL, '2023-12-17 05:29:14', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 106, 23, NULL, 49),
+	(49, '2023-12-17 05:29:27', '2023-12-17 05:29:21', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 417, 106, 23, NULL, 48),
+	(50, '2023-12-17 07:05:05', '2023-12-17 07:04:41', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 520, 107, 23, NULL, 49),
+	(51, NULL, '2023-12-17 07:04:48', NULL, 'admin9193', 'ACTIVE', 91000, 1, 91000, 406, 107, 23, NULL, 48),
+	(52, NULL, '2023-12-17 06:13:51', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 108, 23, NULL, 47),
+	(53, NULL, '2023-12-17 06:14:03', NULL, 'admin9193', 'ACTIVE', 239000, 1, 239000, 311, 108, 22, NULL, 46),
+	(54, NULL, '2023-12-17 07:27:49', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 109, 23, NULL, 49),
+	(55, NULL, '2023-12-17 07:27:58', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 540, 109, 23, NULL, 49),
+	(56, NULL, '2023-12-17 07:28:06', NULL, 'admin9193', 'ACTIVE', 94250, 1, 94250, 405, 109, 23, NULL, 48),
+	(57, NULL, '2023-12-17 15:10:16', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 110, NULL, NULL, 47),
+	(58, NULL, '2023-12-17 15:10:22', NULL, 'admin9193', 'ACTIVE', 235000, 1, 235000, 309, 110, NULL, NULL, 46),
+	(59, '2023-12-17 15:14:57', '2023-12-17 15:14:13', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 111, NULL, NULL, 49),
+	(60, '2023-12-17 15:14:51', '2023-12-17 15:14:20', 'admin9193', 'admin9193', 'ACTIVE', 51350, 4, 205400, 520, 111, NULL, NULL, 49),
+	(61, '2023-12-17 15:25:04', '2023-12-17 15:24:46', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 112, NULL, NULL, 49),
+	(62, NULL, '2023-12-17 15:24:55', NULL, 'admin9193', 'ACTIVE', 91000, 1, 91000, 329, 112, NULL, NULL, 48),
+	(63, '2023-12-17 15:35:37', '2023-12-17 15:35:00', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 567, 113, NULL, NULL, 49),
+	(64, '2023-12-17 15:35:42', '2023-12-17 15:35:08', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 470, 113, NULL, NULL, 48),
+	(65, '2023-12-17 15:35:46', '2023-12-17 15:35:27', 'admin9193', 'admin9193', 'ACTIVE', 182000, 2, 364000, 313, 113, NULL, NULL, 47);
 
 -- Dumping structure for table duantotnghiep.khachhang
 CREATE TABLE IF NOT EXISTS `khachhang` (
@@ -3065,17 +3129,18 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_jb5oqkftwr5hwaxh2exlh14xn` (`ma`),
   UNIQUE KEY `UK_h52m162a489iuk0ffo82aa16w` (`sodienthoai`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khachhang: ~7 rows (approximately)
+-- Dumping data for table duantotnghiep.khachhang: ~8 rows (approximately)
 INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `email`, `gioitinh`, `ma`, `matkhau`, `mota`, `ngaysinh`, `sodienthoai`, `ten`, `expiretime`, `resttoken`) VALUES
 	(1, NULL, '2023-11-19 16:57:34', NULL, 'nguyenvana@gmail.com', 'ACTIVE', 'dangngocthanh@gmail.com', 'Nam', 'dangngocthanh0133', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 16:57:25', '0372092723', 'Đặng Ngọc Thanh', NULL, NULL),
-	(2, '2023-12-12 05:32:01', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'dinhanhtuan@gmail.com', 'Nam', 'dinhanhtuan0812', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '', '2003-12-08 00:00:00', '0384082003', 'Đinh Anh Tuấn', NULL, NULL),
+	(2, '2023-12-16 16:01:30', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'dinhanhtuan@gmail.com', 'Nam', 'dinhanhtuan0812', '$2a$10$nGSToRTIXfyL3lz0aG02mO0kQFMwxOVVMJlY4KJFb/F64.r7irDYW', '', '2003-12-08 00:00:00', '0384082003', 'Đinh Anh Tuấn', NULL, NULL),
 	(3, NULL, '2023-11-19 17:01:05', NULL, 'nguyenvana@gmail.com', 'ACTIVE', 'nguyenthikhanhlinh@gmail.com', 'Nữ', 'nguyenthikhanhlinh1711', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 17:00:12', '0979386056', 'Nguyễn Thị Khánh Linh', NULL, NULL),
 	(4, NULL, '2023-11-19 17:01:13', NULL, 'doquochuy8173', 'ACTIVE', 'doquochuy@gmail.com', 'Nam', 'doquochuy8173', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 17:01:26', '0193838838', 'Đỗ Quốc Huy', NULL, NULL),
 	(5, NULL, '2023-11-19 17:02:12', NULL, 'admin9193', 'ACTIVE', 'dinhtuananh@gmail.com', 'Nam', 'dinhtuananh0183', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2023-11-19 17:02:36', '0381992939', 'Đinh Tuấn Anh', NULL, NULL),
 	(6, NULL, '2023-12-09 09:16:55', NULL, 'anonymous', 'ACTIVE', 'huydo@gmail.com', NULL, 'huydq8493', '$2a$10$55iif1j6/xl5UuJjMPtpOOwoFH4glzlBmpxpiiTnMpY6SIEbcNaxC', NULL, NULL, '0389979874', 'huydq', NULL, NULL),
-	(7, NULL, '2023-12-09 09:27:35', NULL, 'anonymous', 'ACTIVE', 'nhatminh@gmail.com', NULL, 'nhatminh5731', '$2a$10$mrYZeWuOsXAC3d4BkkWsR.s.4hmIib4GR.ZD.ZZrjW7HC7oUI0ghG', NULL, NULL, '0912876321', 'Nhật Minh', NULL, NULL);
+	(7, NULL, '2023-12-09 09:27:35', NULL, 'anonymous', 'ACTIVE', 'nhatminh@gmail.com', NULL, 'nhatminh5731', '$2a$10$mrYZeWuOsXAC3d4BkkWsR.s.4hmIib4GR.ZD.ZZrjW7HC7oUI0ghG', NULL, NULL, '0912876321', 'Nhật Minh', NULL, NULL),
+	(8, NULL, '2023-12-16 09:10:16', NULL, 'admin9193', 'ACTIVE', '', NULL, 'nguyenvana5849', NULL, NULL, NULL, '0987654322', 'Nguyễn Văn A', NULL, NULL);
 
 -- Dumping structure for table duantotnghiep.khachhangyeuthichsanpham
 CREATE TABLE IF NOT EXISTS `khachhangyeuthichsanpham` (
@@ -3127,8 +3192,8 @@ INSERT INTO `khuyenmai` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(19, '2023-12-15 14:10:40', '2023-12-04 19:30:12', 'anonymous', 'admin9193', 'ACTIVE', '25.0', '1', 'KOC251223', 'Khuyến mại 25/12', '2023-12-09 12:29:00', '2023-12-23 00:37:59', 5000, 'Khuyến mại 25/12', NULL),
 	(20, '2023-12-09 06:13:25', '2023-12-04 19:38:02', 'admin9193', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCFS24', 'Flash Sale 24h', '2023-12-05 12:37:00', '2023-12-23 02:37:52', 123, 'Flash Sale 24h', NULL),
 	(21, '2023-12-09 06:13:06', '2023-12-04 19:44:33', 'admin9193', 'admin9193', 'ACTIVE', '20.0', '1', 'KOCSALE99k', 'Khuyến mại 99k', '2023-12-05 12:44:00', '2023-12-23 12:49:59', 10000, 'Khuyến mại 99k', NULL),
-	(22, '2023-12-09 06:12:44', '2023-12-04 19:51:32', 'admin9193', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCSALE1H', 'Khuyến mại 1h', '2023-12-04 22:51:00', '2023-12-23 07:43:58', 12345, 'Khuyến mại 1h', NULL),
-	(23, '2023-12-15 14:10:38', '2023-12-05 00:30:19', 'anonymous', 'admin9193', 'ACTIVE', '35.0', '1', 'KOCSLH334', 'Lễ Hội Mua Sắm', '2023-12-09 17:29:00', '2023-12-23 03:00:05', 123, 'Lễ Hội Mua Sắm', NULL);
+	(22, '2023-12-09 06:12:44', '2023-12-04 19:51:32', 'admin9193', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCSALE1H', 'Khuyến mại 1h', '2023-12-04 22:51:00', '2023-12-23 07:43:58', 12342, 'Khuyến mại 1h', NULL),
+	(23, '2023-12-15 14:10:38', '2023-12-05 00:30:19', 'anonymous', 'admin9193', 'ACTIVE', '35.0', '1', 'KOCSLH334', 'Lễ Hội Mua Sắm', '2023-12-09 17:29:00', '2023-12-23 03:00:05', 122, 'Lễ Hội Mua Sắm', NULL);
 
 -- Dumping structure for table duantotnghiep.khuyenmaisanpham
 CREATE TABLE IF NOT EXISTS `khuyenmaisanpham` (
@@ -3191,15 +3256,17 @@ CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
   `sodiemdung` int DEFAULT NULL,
   `sodiemtichduoc` int DEFAULT NULL,
   `idhoadon` bigint DEFAULT NULL,
-  `idtichdiem` bigint DEFAULT NULL,
+  `idkhachhang` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKobdibrqqyn0p33ymjekbpbd1q` (`idhoadon`),
-  KEY `FKo20v7m85j3ybwep3vv1lop3ik` (`idtichdiem`),
-  CONSTRAINT `FKo20v7m85j3ybwep3vv1lop3ik` FOREIGN KEY (`idtichdiem`) REFERENCES `tichdiem` (`id`),
-  CONSTRAINT `FKobdibrqqyn0p33ymjekbpbd1q` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `FKobdibrqqyn0p33ymjekbpbd1q` (`idhoadon`) USING BTREE,
+  KEY `FKrabwvgudhyvmny1diurrq8lo` (`idkhachhang`),
+  CONSTRAINT `FKobdibrqqyn0p33ymjekbpbd1q` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
+  CONSTRAINT `FKrabwvgudhyvmny1diurrq8lo` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lichsutichdiem: ~0 rows (approximately)
+-- Dumping data for table duantotnghiep.lichsutichdiem: ~1 rows (approximately)
+INSERT INTO `lichsutichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiemdung`, `sodiemtichduoc`, `idhoadon`, `idkhachhang`) VALUES
+	(17, NULL, '2023-12-17 15:39:57', NULL, 'admin9193', NULL, NULL, 6, 113, 2);
 
 -- Dumping structure for table duantotnghiep.lydohuydon
 CREATE TABLE IF NOT EXISTS `lydohuydon` (
@@ -3245,9 +3312,9 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   CONSTRAINT `FKdnln0piv4a38v23mqcbqmnii8` FOREIGN KEY (`idchucvu`) REFERENCES `chucvu` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.nhanvien: ~3 rows (approximately)
+-- Dumping data for table duantotnghiep.nhanvien: ~4 rows (approximately)
 INSERT INTO `nhanvien` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `anh`, `cancuoccongdan`, `diachi`, `email`, `expiretime`, `gioitinh`, `ma`, `matkhau`, `ngaycap`, `ngaysinh`, `resttoken`, `sodienthoai`, `ten`, `idchucvu`) VALUES
-	(1, '2023-12-12 07:42:51', '2023-11-19 16:54:23', 'nguyenvana0183', 'admin9193', 'INACTIVE', 'KyqcTH.jpg', '019383883131', 'Nam Từ Liêm, Hà Nội', 'nguyenvana@mail.com', NULL, 'Nam', 'nguyenvana0183', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:37:53', '2003-11-20 16:38:10', NULL, '0198338312', 'Nguyễn Văn A', 2),
+	(1, '2023-12-16 16:03:08', '2023-11-19 16:54:23', 'nguyenvana0183', 'admin9193', 'ACTIVE', 'KyqcTH.jpg', '019383883131', 'Nam Từ Liêm, Hà Nội', 'nguyenvana@mail.com', NULL, 'Nam', 'nguyenvana0183', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:37:53', '2003-11-20 16:38:10', NULL, '0198338312', 'Nguyễn Văn A', 2),
 	(2, '2023-12-13 14:16:00', '2023-11-19 16:54:26', 'admin9193', 'admin9193', 'INACTIVE', 'KyqcTH.jpg', '028484881331', 'Nam Từ Liêm, Hà Nội', 'admin@gmail.com', NULL, 'Nam', 'admin9193', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-19 16:56:13', '1999-10-10 17:00:00', NULL, '0123456789', 'ADMIN', 1),
 	(3, NULL, '2023-11-20 16:12:45', NULL, 'admin9193', 'INACTIVE', 'KyqcTH.jpg', '029388313413', 'Bắc Từ Liêm, Hà Nội', 'nguyenvanb@gmail.com', NULL, 'Nam', 'nguyenvanb9213', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:12:21', '2003-11-20 16:12:24', NULL, '0987654321', 'Nguyễn Văn B', 2),
 	(5, NULL, '2023-12-13 15:50:54', NULL, 'admin9193', 'INACTIVE', NULL, '034203006527', 'Kiều Mai, Bắc Từ Liêm', 'dangngocthanh720@gmail.com', NULL, 'Nam', 'dangngocthanh0386', NULL, '2023-12-06 00:00:00', '2023-12-06 00:00:00', NULL, '0372012912', 'Đặng Ngọc Thanh', 2);
@@ -3269,7 +3336,7 @@ CREATE TABLE IF NOT EXISTS `quydoidiem` (
 -- Dumping data for table duantotnghiep.quydoidiem: ~2 rows (approximately)
 INSERT INTO `quydoidiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diem`, `loai`, `tien`) VALUES
 	(1, NULL, '2023-11-28 15:53:27', NULL, 'admin9193', 'ACTIVE', 1, 'TIENQUYDIEM', 100000),
-	(2, NULL, '2023-11-28 15:53:28', NULL, 'admin9193', 'ACTIVE', 1, 'DIEMQUYTIEN', 1000);
+	(2, '2023-12-16 14:41:28', '2023-11-28 15:53:28', 'admin9193', 'admin9193', 'ACTIVE', 1, 'DIEMQUYTIEN', 1000);
 
 -- Dumping structure for table duantotnghiep.sanpham
 CREATE TABLE IF NOT EXISTS `sanpham` (
@@ -3364,26 +3431,34 @@ INSERT INTO `slider` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trang
 
 -- Dumping structure for procedure duantotnghiep.sp_update_price_hdct
 DELIMITER //
-CREATE PROCEDURE `sp_update_price_hdct`(IN idhd INT, IN idkh INT)
+CREATE PROCEDURE `sp_update_price_hdct`(IN p_idhd INT, IN p_idkh INT)
 BEGIN
     UPDATE hoadonchitiet hdct 
     JOIN vw_pricesanpham sp ON hdct.idbienthe = sp.bientheid
-    SET hdct.sotiengiam = sp.gia - IFNULL(sp.sotiengiam, sp.gia), hdct.gia = sp.gia
-    WHERE hdct.idhoadon = idhd;
+    SET hdct.sotiengiam = IFNULL(sp.sotiengiam, 0)*hdct.soluong, hdct.gia = sp.gia*hdct.soluong
+    WHERE hdct.idhoadon = p_idhd;
 
     UPDATE hoadonchitiet hdct 
     JOIN vw_pricesanpham sp ON hdct.idbienthe = sp.bientheid
     SET hdct.idkhuyenmai = sp.khuyenmaiid
-    WHERE hdct.idhoadon = idhd;
+    WHERE hdct.idhoadon = p_idhd;
 
     UPDATE hoadonchitiet hdct 
-    SET thanhtien = (gia - sotiengiam) * soluong
-    WHERE hdct.idhoadon = idhd;
-    
+    JOIN vw_pricesanpham sp ON hdct.idbienthe = sp.bientheid
+    SET thanhtien = thucte * soluong
+    WHERE hdct.idhoadon = p_idhd;
+
     UPDATE giohangchitiet ghct
     JOIN giohang gh ON gh.id = ghct.idgiohang
     SET ghct.trangthai = 'DELETE'
-    WHERE ghct.TRANGTHAI = 'PENDING' AND gh.idkhachhang = idkh;
+    WHERE ghct.TRANGTHAI = 'PENDING' AND gh.idkhachhang = p_idkh;
+        update bienthe bt
+	 join hoadonchitiet hdct on bt.id = hdct.idbienthe 
+	 set bt.soluong = (bt.soluong-hdct.soluong)
+	where idhoadon = p_idhd;
+    
+     update khuyenmai km join vw_pricesanpham spkm on km.id = spkm.khuyenmaiid 
+ join hoadonchitiet hdct on spkm.bientheid = hdct.idbienthe set km.soluong = km.soluong-hdct.soluong where hdct.idhoadon = p_idhd;
 END//
 DELIMITER ;
 
@@ -3406,13 +3481,15 @@ CREATE TABLE IF NOT EXISTS `thongtinmuahang` (
   PRIMARY KEY (`id`),
   KEY `FKdbn26ymw7iskh3x4obhqilti3` (`idkhachhang`),
   CONSTRAINT `FKdbn26ymw7iskh3x4obhqilti3` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.thongtinmuahang: ~3 rows (approximately)
+-- Dumping data for table duantotnghiep.thongtinmuahang: ~5 rows (approximately)
 INSERT INTO `thongtinmuahang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `idhuyen`, `idthanhpho`, `idxa`, `sodienthoai`, `sonha`, `ten`, `idkhachhang`) VALUES
 	(1, '2023-12-12 05:14:38', '2023-11-28 14:58:13', 'dinhanhtuan0812', 'admin9193', 'ACTIVE', 'Hà Nội, Phường Mễ Trì, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 907557, '09876543121', 'Hà Nội', 'admin', 2),
 	(2, NULL, '2023-12-11 16:33:19', NULL, 'dinhtuananh0183', 'DEFAULT', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231013, '0977853450', 'Xóm ninh hoà', 'Đinh Tuấn Anh', 5),
-	(3, '2023-12-12 05:30:58', '2023-12-12 05:11:56', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DEFAULT', 'Hà Nội, Xã Vũ Chấn, Huyện Võ Nhai, Thái Nguyên, Vietnam', 2051, 244, 120515, '0384082003', 'Hà Nội', 'Tuấn', 2);
+	(3, '2023-12-12 05:30:58', '2023-12-12 05:11:56', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'Hà Nội, Xã Vũ Chấn, Huyện Võ Nhai, Thái Nguyên, Vietnam', 2051, 244, 120515, '0384082003', 'Hà Nội', 'Tuấn', 2),
+	(4, NULL, '2023-12-16 15:47:59', NULL, 'dinhanhtuan0812', NULL, 'Xuân Phương hihi, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0987654322', 'Xuân Phương hihi', 'Tuấn', 2),
+	(5, '2023-12-16 15:51:31', '2023-12-16 15:48:57', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DEFAULT', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0915812752', 'Trịnh Văn Bô', 'Linnh', 2);
 
 -- Dumping structure for table duantotnghiep.thuoctinh
 CREATE TABLE IF NOT EXISTS `thuoctinh` (
@@ -3557,9 +3634,11 @@ CREATE TABLE IF NOT EXISTS `tichdiem` (
   PRIMARY KEY (`id`),
   KEY `FK3cn0i0s6nyyqp3m7fb1uwyqv0` (`idkhachhang`),
   CONSTRAINT `FK3cn0i0s6nyyqp3m7fb1uwyqv0` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.tichdiem: ~0 rows (approximately)
+-- Dumping data for table duantotnghiep.tichdiem: ~1 rows (approximately)
+INSERT INTO `tichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiem`, `idkhachhang`) VALUES
+	(7, NULL, '2023-12-17 15:39:57', NULL, 'admin9193', NULL, 6, 2);
 
 -- Dumping structure for table duantotnghiep.timkiemsanpham
 CREATE TABLE IF NOT EXISTS `timkiemsanpham` (
@@ -3594,18 +3673,22 @@ CREATE TABLE IF NOT EXISTS `trangthaigiaohang` (
   `tentrangthai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `idgiaohang` bigint DEFAULT NULL,
   `magiaohang` bigint DEFAULT NULL,
-  `trangthaihoadon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trangthaihoadon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK5xq4329do0ec9v495gnmyv157` (`idgiaohang`),
   KEY `FKjjhu2d0nug7uqy9qqbaqjqf0a` (`magiaohang`),
   CONSTRAINT `FK5xq4329do0ec9v495gnmyv157` FOREIGN KEY (`idgiaohang`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKjjhu2d0nug7uqy9qqbaqjqf0a` FOREIGN KEY (`magiaohang`) REFERENCES `hoadon` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.trangthaigiaohang: ~2 rows (approximately)
+-- Dumping data for table duantotnghiep.trangthaigiaohang: ~6 rows (approximately)
 INSERT INTO `trangthaigiaohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `tentrangthai`, `idgiaohang`, `magiaohang`, `trangthaihoadon`) VALUES
 	(1, NULL, '2023-12-10 12:04:20', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 1, NULL),
-	(2, NULL, '2023-12-10 12:19:09', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 3, NULL);
+	(2, NULL, '2023-12-10 12:19:09', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 3, NULL),
+	(3, NULL, '2023-12-16 15:49:38', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 10, NULL),
+	(4, NULL, '2023-12-16 15:51:43', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 103, NULL),
+	(5, NULL, '2023-12-16 15:58:10', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 104, NULL),
+	(6, NULL, '2023-12-16 15:58:32', NULL, 'admin9193', NULL, 'Đang được vận chuyển', NULL, 104, NULL);
 
 -- Dumping structure for table duantotnghiep.vidientu
 CREATE TABLE IF NOT EXISTS `vidientu` (
@@ -3626,11 +3709,47 @@ CREATE TABLE IF NOT EXISTS `vidientu` (
 INSERT INTO `vidientu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotien`, `idkhachhang`) VALUES
 	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 4),
 	(2, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 1),
-	(3, '2023-12-12 05:32:36', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'doquochuy8173', 'ACTIVE', 3200000, 2),
+	(3, '2023-12-16 16:01:00', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'doquochuy8173', 'ACTIVE', 3772500, 2),
 	(4, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 3),
 	(5, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 5),
 	(6, NULL, '2023-12-09 09:25:51', NULL, 'huydq8493', 'ACTIVE', 0, 6),
 	(7, NULL, '2023-12-09 09:28:04', NULL, 'nhatminh5731', 'ACTIVE', 0, 7);
+
+-- Dumping structure for view duantotnghiep.vw_doanhthunam
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_doanhthunam` (
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view duantotnghiep.vw_doanhthungay
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_doanhthungay` (
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view duantotnghiep.vw_doanhthuthang
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_doanhthuthang` (
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view duantotnghiep.vw_doanhthutuan
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_doanhthutuan` (
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
+) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_giohangchitiet_summary
 -- Creating temporary table to overcome VIEW dependency errors
@@ -3647,7 +3766,9 @@ CREATE TABLE `vw_hoadonchitiet_summary` (
 	`idhoadon` BIGINT(19) NULL,
 	`giagoc` DOUBLE NULL,
 	`giagiam` DOUBLE NULL,
-	`thucte` DOUBLE NULL
+	`thucte` DOUBLE NULL,
+	`tienship` DOUBLE NULL,
+	`tienkhachtra` DOUBLE NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_pricesanpham
@@ -3659,6 +3780,24 @@ CREATE TABLE `vw_pricesanpham` (
 	`sotiengiam` DOUBLE NULL,
 	`khuyenmaiid` BIGINT(19) NULL,
 	`thucte` DOUBLE NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view duantotnghiep.vw_thongkedshoadon
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_thongkedshoadon` (
+	`ngay` DATE NULL,
+	`tonghoadonbanduoc` BIGINT(19) NOT NULL,
+	`tongtienhang` DOUBLE NULL,
+	`soluong` DECIMAL(32,0) NULL
+) ENGINE=MyISAM;
+
+-- Dumping structure for view duantotnghiep.vw_thongkedssp
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `vw_thongkedssp` (
+	`id` BIGINT(19) NOT NULL,
+	`ten` VARCHAR(255) NULL COLLATE 'utf8mb4_unicode_ci',
+	`ngaydat` DATE NULL,
+	`tong` DECIMAL(32,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for trigger duantotnghiep.bienthe_saukhi_insert
@@ -3678,16 +3817,40 @@ DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
 -- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_doanhthunam`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthunam` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((year(`hd`.`ngaydat`) = year(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_doanhthungay`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthungay` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((cast(`hd`.`ngaydat` as date) = curdate()) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_doanhthuthang`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthuthang` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((year(`hd`.`ngaydat`) = year(curdate())) and (month(`hd`.`ngaydat`) = month(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_doanhthutuan`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthutuan` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((yearweek(`hd`.`ngaydat`,0) = yearweek(curdate(),0)) and (year(`hd`.`ngaydat`) = year(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
+
+-- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_giohangchitiet_summary`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_giohangchitiet_summary` AS select `ghct`.`id` AS `id`,sum((`sp`.`gia` * `ghct`.`soluong`)) AS `giagoc`,sum((`sp`.`sotiengiam` * `ghct`.`soluong`)) AS `giagiam`,sum((`sp`.`thucte` * `ghct`.`soluong`)) AS `thucte` from (`giohangchitiet` `ghct` join (select `vw_pricesanpham`.`bientheid` AS `bientheid`,`vw_pricesanpham`.`sanphamid` AS `sanphamid`,`vw_pricesanpham`.`gia` AS `gia`,`vw_pricesanpham`.`sotiengiam` AS `sotiengiam`,`vw_pricesanpham`.`thucte` AS `thucte` from `vw_pricesanpham`) `sp` on((`sp`.`bientheid` = `ghct`.`idbienthe`))) group by `ghct`.`id`;
 
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_hoadonchitiet_summary`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_hoadonchitiet_summary` AS select `hdct`.`idhoadon` AS `idhoadon`,sum((`sp`.`gia` * `hdct`.`soluong`)) AS `giagoc`,sum((`sp`.`sotiengiam` * `hdct`.`soluong`)) AS `giagiam`,sum((`sp`.`thucte` * `hdct`.`soluong`)) AS `thucte` from (`hoadonchitiet` `hdct` join (select `vw_pricesanpham`.`bientheid` AS `bientheid`,`vw_pricesanpham`.`sanphamid` AS `sanphamid`,`vw_pricesanpham`.`gia` AS `gia`,`vw_pricesanpham`.`sotiengiam` AS `sotiengiam`,`vw_pricesanpham`.`thucte` AS `thucte` from `vw_pricesanpham`) `sp` on((`sp`.`bientheid` = `hdct`.`idbienthe`))) group by `hdct`.`id`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_hoadonchitiet_summary` AS select `hd`.`idhoadon` AS `idhoadon`,sum(`hd`.`giagoc`) AS `giagoc`,sum(`hd`.`giagiam`) AS `giagiam`,sum(`hd`.`thucte`) AS `thucte`,`ho`.`tienship` AS `tienship`,(sum(`hd`.`thucte`) + `ho`.`tienship`) AS `tienkhachtra` from ((select `hdct`.`idhoadon` AS `idhoadon`,sum((`sp`.`gia` * `hdct`.`soluong`)) AS `giagoc`,ifnull(sum((`sp`.`sotiengiam` * `hdct`.`soluong`)),0) AS `giagiam`,sum((`sp`.`thucte` * `hdct`.`soluong`)) AS `thucte` from (`hoadonchitiet` `hdct` join `vw_pricesanpham` `sp` on((`sp`.`bientheid` = `hdct`.`idbienthe`))) group by `hdct`.`idhoadon`) `hd` left join `hoadon` `ho` on((`hd`.`idhoadon` = `ho`.`id`))) group by `hd`.`idhoadon`;
 
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_pricesanpham`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_pricesanpham` AS select `outer_query`.`bientheid` AS `bientheid`,`outer_query`.`sanphamid` AS `sanphamid`,`outer_query`.`gia` AS `gia`,`outer_query`.`sotiengiam` AS `sotiengiam`,`outer_query`.`khuyenmaiid` AS `khuyenmaiid`,(case when (`outer_query`.`sotiengiam` is null) then `outer_query`.`gia` else (`outer_query`.`gia` - `outer_query`.`sotiengiam`) end) AS `thucte` from (select `inner_query`.`bientheid` AS `bientheid`,`inner_query`.`sanphamid` AS `sanphamid`,`inner_query`.`gia` AS `gia`,(case when (`inner_query`.`khuyenmaiid` is null) then NULL when (`inner_query`.`loai` = 1) then (`inner_query`.`gia` * (`inner_query`.`giatri` / 100)) else (`inner_query`.`gia` - (`inner_query`.`gia` - `inner_query`.`giatri`)) end) AS `sotiengiam`,`inner_query`.`khuyenmaiid` AS `khuyenmaiid` from (select `bt`.`id` AS `bientheid`,`sp`.`id` AS `sanphamid`,(case when (`bt`.`gia` is null) then `sp`.`gia` else `bt`.`gia` end) AS `gia`,`km`.`id` AS `khuyenmaiid`,`km`.`giatri` AS `giatri`,`km`.`loai` AS `loai` from (((`bienthe` `bt` join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) left join `khuyenmaisanpham` `kmsp` on((`kmsp`.`idsanpham` = `sp`.`id`))) left join `khuyenmai` `km` on(((`km`.`id` = `kmsp`.`idkhuyenmai`) and (`km`.`ngaybatdau` <= curdate()) and (`km`.`ngayketthuc` >= curdate()))))) `inner_query`) `outer_query`;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_thongkedshoadon`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_thongkedshoadon` AS select cast(`hd`.`ngaythanhtoan` as date) AS `ngay`,count(`hd`.`id`) AS `tonghoadonbanduoc`,sum(`hd`.`tongtienhang`) AS `tongtienhang`,sum(`hdct`.`soluong`) AS `soluong` from (`hoadon` `hd` join `hoadonchitiet` `hdct` on((`hd`.`id` = `hdct`.`idhoadon`))) where ((`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `ngay` order by `ngay` desc;
+
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `vw_thongkedssp`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_thongkedssp` AS select `sp`.`id` AS `id`,`sp`.`ten` AS `ten`,cast(`hd`.`ngaydat` as date) AS `ngaydat`,sum(`hdct`.`soluong`) AS `tong` from ((((`hoadonchitiet` `hdct` join `bienthe` `bt` on((`hdct`.`idbienthe` = `bt`.`id`))) join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) join `hoadon` `hd` on((`hd`.`id` = `hdct`.`idhoadon`))) join (select count(`hdct`.`soluong`) AS `tongsospban`,`sp`.`id` AS `idsp` from (((`hoadonchitiet` `hdct` join `bienthe` `bt` on((`hdct`.`idbienthe` = `bt`.`id`))) join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) join `hoadon` `hd` on((`hd`.`id` = `hdct`.`idhoadon`))) group by `sp`.`id` order by `tongsospban` desc limit 5) `spbannhieunhat` on((`sp`.`id` = `spbannhieunhat`.`idsp`))) group by `sp`.`id`,`sp`.`ten`,cast(`hd`.`ngaydat` as date) order by cast(`hd`.`ngaydat` as date);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -118,12 +118,16 @@ public class KhachHangService implements IKhachHangService {
     }
 
     @Override
+    @Transactional
     public KhacHangResponse insert(KhachHangRequest khachHangRequest) {
-        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoaiOrEmail(
-                khachHangRequest.getSoDienThoai(), khachHangRequest.getEmail()
-        );
+        KhachHangEntity khachHangEntity = khachHangRepository.findBySoDienThoai(khachHangRequest.getSoDienThoai());
         if (khachHangEntity != null) {
             return null;
+        }
+        if(khachHangRequest.getEmail() != null && !khachHangRequest.getEmail().isEmpty()){
+            if(khachHangRepository.findByEmail(khachHangRequest.getEmail()) != null){
+                return null;
+            }
         }
         khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
