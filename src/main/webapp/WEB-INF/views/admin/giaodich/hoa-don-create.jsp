@@ -840,7 +840,7 @@
     }
 
     $(document).ready(function () {
-        var searchButton = $('#searchAll');
+        var searchButton = $('#searchAll').trim();
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
