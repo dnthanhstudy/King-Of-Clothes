@@ -431,7 +431,7 @@
     })
 
     $('#btn-paymant-invoice').on('click', function () {
-        paymentInvoice();
+        paymentInvoice()
         if ($('#code-customer').val() !== "") {
             tienQuyDiem(
                 function (response) {
@@ -450,6 +450,7 @@
                     console.log(error)
                 })
         }
+
     })
 
     $("#input-point").keyup(function () {
@@ -889,7 +890,7 @@
             success: (response) => {
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
-                let html = '';
+                let html = `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`;
                 if (response.tienThua === null) {
                     $('#money-change').text(0);
                 } else {
@@ -963,12 +964,13 @@
                                     <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
                                 </div>
                                 `;
-
+                        $('#invoice').html(html);
                         $('#invoice-non').hide();
+
                         $('#invoice-money-quantity').show();
 
-                        $('#invoice').html(html + `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
                         $('.invoice-total').text(totalInvoice);
+
                         $('#invoice-quantity').text(toatlQuantity);
 
                         $('.invoice-detail-seen').on('click', function () {
@@ -1010,9 +1012,11 @@
                         })
 
                         $('.btn-add-product').on('click', function () {
+                            console.log("abc");
                             let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
                             quantity += 1;
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            console.log(invoiceDetailId)
                             updateQuantity(invoiceDetailId, quantity)
                         })
 
@@ -1043,7 +1047,6 @@
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity);
                         });
-
                         $('.invoice-detail-delete').on('click', function (e) {
                             e.preventDefault()
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
@@ -1143,43 +1146,46 @@
         let tienGiamGia = parseFloat($('#discount').text());
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
             showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
-            return;
-        }
+            return false;
+        }else if(parseInt($('#input-point').val()) > parseInt($('#point-customer').text())){
+            showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
+            return false;
+        }else{
+            let data = {};
+            data['id'] = parseInt($('.invoice-id').val());
+            data['ma'] = maHoaDon;
+            data['loai'] = "OFFLINE";
+            data['trangThai'] = "THANHCONG";
+            data['phuongThucThanhToan'] = "TIENMAT";
+            data['tongTienHang'] = tongTienHang;
+            data['tienKhachTra'] = tienKhachTra;
+            data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
+            data['maNhanVien'] = ma;
+            data['tienGiamGia'] = tienGiamGia
 
-        let data = {};
-        data['id'] = parseInt($('.invoice-id').val());
-        data['ma'] = maHoaDon;
-        data['loai'] = "OFFLINE";
-        data['trangThai'] = "THANHCONG";
-        data['phuongThucThanhToan'] = "TIENMAT";
-        data['tongTienHang'] = tongTienHang;
-        data['tienKhachTra'] = tienKhachTra;
-        data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
-        data['maNhanVien'] = ma;
-        data['tienGiamGia'] = tienGiamGia
-
-        showConfirm("Bạn có muốn in hóa đơn hay không?")
-            .then((confirmed) => {
-                $.ajax({
-                    url: "/api/hoa-don-off",
-                    method: "PUT",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(data),
-                    success: (response) => {
-                        console.log(response)
-                    },
-                    error: (error) => {
-                        console.log(error)
+            showConfirm("Bạn có muốn in hóa đơn hay không?")
+                .then((confirmed) => {
+                    $.ajax({
+                        url: "/api/hoa-don-off",
+                        method: "PUT",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: (response) => {
+                            console.log(response)
+                        },
+                        error: (error) => {
+                            console.log(error)
+                        }
+                    });
+                    if (confirmed) {
+                        window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
+                    } else {
+                        window.location.href = "/admin/giao-dich/hoa-don-off";
+                        showSuccess("Thanh toán hóa đơn thành công");
                     }
-                });
-                if (confirmed) {
-                    window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
-                } else {
-                    window.location.href = "/admin/giao-dich/hoa-don-off";
-                    showSuccess("Thanh toán hóa đơn thành công");
-                }
-            })
+                })
+        }
     }
 
     function tichDiem(data) {

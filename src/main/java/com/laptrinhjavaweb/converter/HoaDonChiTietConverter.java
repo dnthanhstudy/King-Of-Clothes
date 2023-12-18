@@ -67,8 +67,8 @@ public class HoaDonChiTietConverter {
         SanPhamResponse sanPhamResponse = sanPhamConverter.convertToResponse(sanPhamEntity);
         List<ThuocTinhResponse> thuocTinhResponse = sanPhamResponse.getThuocTinh();
 
-        BienTheEntity bienTheEntity = bienTheRepository.findById(entity.getBienThe().getId()).get();
-        if(bienTheEntity != null){
+        if(entity.getBienThe() != null){
+            BienTheEntity bienTheEntity = bienTheRepository.findById(entity.getBienThe().getId()).get();
             if(bienTheEntity.getHinhAnh() != null){
                 response.setImage(bienTheEntity.getHinhAnh());
             }else{
