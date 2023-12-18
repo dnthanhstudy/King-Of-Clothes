@@ -13,9 +13,9 @@ public interface SanPhamRepository extends JpaRepository<SanPhamEntity, Long>, S
 
 	SanPhamEntity findBySlug(String slug);
 
-	List<SanPhamEntity> findByDanhMuc_slugAndTrangThai(String slug, String trangThai);
+//	List<SanPhamEntity> findByDanhMuc_slugAndTrangThai(String slug, String trangThai);
 
 	Page<SanPhamEntity> findByTrangThaiOrderByNgayTaoDesc(String trangThai, Pageable pageable);
 
-	Page<SanPhamEntity> findAllByNgayTaoDesc(Pageable pageable);
+//	Page<SanPhamEntity> findAllByNgayTaoDesc(Pageable pageable);
 }
