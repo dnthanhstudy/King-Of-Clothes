@@ -68,7 +68,7 @@
                                 <div class="d-flex justify-content-between">
                                     <span>Tổng số lượng:</span>
                                     <div>
-                                        <span class="font-weight-bold " id="invoice-quantity"></span> <span class="font-weight-bold fs-5">đ</span>
+                                        <span class="font-weight-bold " id="invoice-quantity"></span>
                                     </div>
                                 </div>
                                  <div class="d-flex justify-content-between">

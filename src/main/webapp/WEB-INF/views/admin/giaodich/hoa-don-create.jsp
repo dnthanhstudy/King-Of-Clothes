@@ -404,30 +404,30 @@
     })
 
     $('#btn-add-customer').on('click', () => {
-        let dataForm = $('#form-data-customer').serializeArray();
-        let data = {};
-        $.each(dataForm, (index, value) => {
-            let propertyName = value.name;
-            let propertyValue = value.value;
-            data[propertyName] = propertyValue;
-        });
-        $.ajax({
-            url: "/api/khach-hang",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                console.log(response);
-                $('#exampleModal1').removeClass('show');
-                $('.modal-backdrop').addClass('d-none');
-                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
-                $('#code-customer').val(response.ma);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
+            let dataForm = $('#form-data-customer').serializeArray();
+            let data = {};
+            $.each(dataForm, (index, value) => {
+                let propertyName = value.name;
+                let propertyValue = value.value;
+                data[propertyName] = propertyValue;
+            });
+            $.ajax({
+                url: "/api/khach-hang",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    console.log(response);
+                    $('#exampleModal1').removeClass('show');
+                    $('.modal-backdrop').addClass('d-none');
+                    $('#search-customer').val(response.soDienThoai + " - " + response.ten);
+                    $('#code-customer').val(response.ma);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
     })
 
     $('#btn-paymant-invoice').on('click', function () {
@@ -457,8 +457,6 @@
             diemQuyTien(parseInt($(this).val()));
         }
     });
-
-    $('#invoice-customer-payment').on('input', validateForm);
 
     function time() {
         var currentDate = new Date();
@@ -883,20 +881,6 @@
         });
     }
 
-    function loadSoDiem(ma) {
-        $.ajax({
-            url: "/api/tich-diem/" + ma,
-            method: "GET",
-            dataType: "json",
-            success: (response) => {
-                $('#point-customer').text(response);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
-    }
-
     function loadHoaDon() {
         $.ajax({
             url: "/api/hoa-don-off/" + maHoaDon,
@@ -1121,10 +1105,25 @@
         });
     }
 
+    function loadSoDiem(ma) {
+        $.ajax({
+            url: "/api/tich-diem/" + ma,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                $('#point-customer').text(response);
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+    }
+
     function validateForm() {
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
+        let diemTichLuy = parseFloat($('#point-customer').text());
 
         if (isNaN(tienKhachTra)) {
             tienKhachTra = 0;
