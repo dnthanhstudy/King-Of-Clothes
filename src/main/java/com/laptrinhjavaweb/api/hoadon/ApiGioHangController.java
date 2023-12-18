@@ -105,13 +105,5 @@ public class ApiGioHangController {
     }
 
 
-//    @GetMapping("/dsspttchiatheosp/{id}")
-//    public ResponseObject dsSpttChiaTheoSanPhamByIdKh(@PathVariable(name = "id")Long idkh){
-//        return new ResponseObject(gioHangService.dsGioHangChiaTheoSanPham(idkh));
-//    }
-//    @PostMapping("/themsanphamvaogio/{idkh}")
-//    public ResponseObject themSanPhamVaoGioHang(@PathVariable(name = "idkh") Long idkh,
-//                                                @RequestBody ChiTietThuocTinhBienTheRequest request) {
-//        return gioHangService.themVaoGioHang(idkh, Arrays.asList(request.getDsThuocTinhBienThe()));
-//    }
+
 }

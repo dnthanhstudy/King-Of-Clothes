@@ -38,4 +38,14 @@ public class Thu3ServiceImpl implements Thu3Service {
         return "Thành công";
     }
 
+    @Override
+    public String themTrangThaiGiaoHang(Long idhd, String maVanhang, String tenTrangThai) {
+        TrangThaiGiaoHangEntity trangThaiGiaoHangEntity = new TrangThaiGiaoHangEntity();
+        trangThaiGiaoHangEntity.setTenTrangThai(tenTrangThai);
+        trangThaiGiaoHangEntity.setTrangThaiHoaDon(maVanhang);
+        trangThaiGiaoHangEntity.setHoaDon(hoaDonRepository.findById(idhd).orElse(null));
+        trangThaiGiaoHangRepository.save(trangThaiGiaoHangEntity);
+        return "Thành công";
+    }
+
 }

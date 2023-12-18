@@ -70,12 +70,17 @@ public class GioHangChiTietEntity extends BaseEntity{
 					LocalDate localNgayBatDau = ngayBatDau.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					LocalDate localNgayKetThuc = ngayKetThuc.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-					return !localNgayBatDau.isAfter(ngayHienTai) && !localNgayKetThuc.isBefore(ngayHienTai);
+					return !localNgayBatDau.isAfter(ngayHienTai) &&
+							!localNgayKetThuc.isBefore(ngayHienTai)&&khuyenMai.getKhuyenMai().getSoLuong()>0
+							&&!khuyenMai.getTrangThai().equals("EXPIRED");
 				})
 				.findFirst();
 
 		if (khuyenMaiHopLeOptional.isPresent()) {
 			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
+			if (khuyenMaiHopLe.getTrangThai().equals("EXPIRED")||khuyenMaiHopLe.getTrangThai().equals("DELETE")){
+				return null;
+			}
 			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
 			Double giaTri = khuyenMai.getGiaTri();
 			if (khuyenMai.getLoai().equals("1"))

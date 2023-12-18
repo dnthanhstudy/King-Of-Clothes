@@ -820,7 +820,7 @@
                     `
                 })
                 cart.append(html);
-                setTrangThaiHoaDon(idhd,data.trangThaiHoaDon)
+                // setTrangThaiHoaDon(idhd,data.trangThaiHoaDon)
             },
             error: function(xhr, status, error) {
                 console.log("Có lỗi xảy ra")
@@ -884,8 +884,8 @@
                         <td>\${formatDate(item.ngayDat)}</td>
                         <td>\${item.maKhachHang}</td>
                         <td>\${item.tenNguoiDat}</td>
-                        <td>\${checknull(item.tongTienHang)}</td>
-                        <td>\${checknull(item.tienKhachTra)}</td>
+                        <td>\${convertVND(item.tongTienHang)}</td>
+                        <td>\${convertVND(item.tienKhachTra)}</td>
                         <td>\${item.phuongThucThanhToan}</td>
                         <td>\${item.trangThai}</td>
                         <td>
