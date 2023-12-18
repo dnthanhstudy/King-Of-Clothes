@@ -113,11 +113,12 @@
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Thiết lập giá cho tất cả thuộc tính"
+                                                    id="price-all"
                                             />
                                             <button
                                                     class="btn btn-primary"
                                                     type="button"
-                                                    id="btn-search"
+                                                    id="btn-set-price"
                                             >
                                                 Xác nhận!
                                             </button>

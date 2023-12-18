@@ -482,6 +482,7 @@
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
+                    console.log(response.data)
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
                     if (item.khuyenMaiHienThiResponse !== null) {
@@ -501,6 +502,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
                     html += htmlcoupon;
+                    html +=    `<h6 class="badge bg-success text-wrap">\${item.soLuong}</h6>`;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                     let htmlThuocTinh = `<div class="row mt-2">`;
@@ -840,11 +842,11 @@
     }
 
     $(document).ready(function () {
-        var searchButton = $('#searchAll').trim();
+        var searchButton = $('#searchAll');
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
-                param = searchButton.val();
+                param = searchButton.val().trim();
                 if (pageCurrent > 1) {
                     pageCurrent = 1;
                 }

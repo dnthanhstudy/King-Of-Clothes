@@ -93,7 +93,11 @@
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
         param = $('#searchAll').val().trim();
-        searchLichSu();
+        if(param != ''){
+            searchLichSu(param);
+        }else{
+            getLSTD();
+        }
     })
 
     function searchLichSu(){
