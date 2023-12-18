@@ -429,7 +429,7 @@
                     $('#code-customer').val(response.ma);
                 },
                 error: (error) => {
-                    console.log(error);
+                   showError(error.responseJSON.error)
                 }
             });
     })
@@ -441,7 +441,7 @@
                 function (response) {
                     let data = {};
                     data['maKhachHang'] = $('#code-customer').val();
-                    data['soDiemDung'] = parseInt($('#input-point').val())
+                    data['soDiemDung'] = parseInt($('#input-point').val().trim())
                     data['soDiemTichDuoc'] = response;
                     data['maHoaDon'] = maHoaDon;
 
@@ -1156,7 +1156,7 @@
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
-            showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
+            showError("Số tiền khách trả chưa đủ");
             return false;
         } else if (parseInt($('#input-point').val()) > parseInt($('#point-customer').text())) {
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
@@ -1241,7 +1241,7 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
-                $('#discount').text(formatNumber(response));
+                $('#discount').text(response);
 
                 let total = parseFloat($('.invoice-total:first').text()) - parseFloat($('#discount').text());
                 $('#invoice-after-point').text(total);
