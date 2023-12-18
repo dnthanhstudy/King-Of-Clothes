@@ -1241,7 +1241,7 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
-                $('#discount').text(response);
+                $('#discount').text(formatNumber(response));
 
                 let total = parseFloat($('.invoice-total:first').text()) - parseFloat($('#discount').text());
                 $('#invoice-after-point').text(total);

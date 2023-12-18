@@ -101,7 +101,7 @@
                                     <td>\${item.soLuong}</td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.thanhTien}</td>
-                                    <td>\{item.tienGiamGia}</td>
+                                    <td>\${item.tienGiamGia}</td>
                                 </tr>`;
                 })
                 html += `<tr>

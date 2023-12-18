@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface LichSuTichDiemRepository extends JpaRepository<LichSuTichDiemEntity, Long> {
 
-    List<LichSuTichDiemEntity> findAll();
+    List<LichSuTichDiemEntity> findAllByOrderByNgayTaoDesc();
 
-    List<LichSuTichDiemEntity> findAllByKhachHang_id(Long idKhachHang);
+    List<LichSuTichDiemEntity> findAllByKhachHang_idOrderByNgayTaoDesc(Long idKhachHang);
 }

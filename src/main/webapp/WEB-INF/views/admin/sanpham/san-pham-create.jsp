@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="slug" class="form-label">Slug</label>
-                        <input name="slug" type="text" class="form-control" id="slug" readonly/>
+                        <input name="slug" type="text" class="form-control" id="slug" readonly disabled/>
                     </div>
 
                     <div class="col-3">
