@@ -133,8 +133,8 @@
     $("#printf-invoice").on("click", function () {
         $("body").scrollTop(0);
         createPDF();
-        window.location.href = `/admin/giao-dich/hoa-don-off`;
         showSuccess("In hóa đơn thành công !")
+        window.location.href = `/admin/giao-dich/hoa-don-off`;
     });
 
     function createPDF() {
