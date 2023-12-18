@@ -226,7 +226,7 @@
                 console.log(response.data);
                 $.each(response.data, (index, item) => {
                     let isCheck = false;
-                    checkedValues.forEach(x => {
+                    checkedValues.forEach(function (x){
                         if (item.slug === x) {
                             isCheck = true;
                             return false;
@@ -272,30 +272,34 @@
 
     loadKhuyenMai();
 
-    $("#getValue").click(function (){
+    $("#getValue").click(function () {
+        checkSearch=false;
         getvaluew();
     })
     $('#soLuongSanPham').text(size);
-    function getvaluew(){
+
+    function getvaluew() {
+        if(!checkSearch){
+            checkedValues = [];
+        }
         $('.form-check-input:checked').each(function () {
             let val = $(this).val();
+            checkedValues.push(val);
+            //let isDuplicate = false;
 
-            if (checkedValues.length === 0) {
-                checkedValues.push(val);
-            } else {
-                let isDuplicate = false;
+            // checkedValues.forEach((item) => {
+            //     console.log(item);
+            //     if (item === val) {
+            //         isDuplicate = true;
+            //
+            //         return false;
+            //     }
+            // })
 
-                for (const x in checkedValues) {
-                    if (checkedValues[x] === val) {
-                        isDuplicate = true;
-                        break;
-                    }
-                }
+            // if (!isDuplicate) {
+            //     checkedValues.push(val);
+            // }
 
-                if (!isDuplicate) {
-                    checkedValues.push(val);
-                }
-            }
         });
         $('#modalSanPham').modal('hide');
         size = checkedValues.length;
@@ -355,6 +359,7 @@
         return date;
     }
 
+    var checkSearch = false;
     function generateNumber() {
         var randomNumber;
         do {
@@ -369,6 +374,7 @@
         var searchButton = $('#searchButton');
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
+            checkSearch=true;
             if (event.which === 13) {
                 getvaluew();
                 value = searchButton.val();

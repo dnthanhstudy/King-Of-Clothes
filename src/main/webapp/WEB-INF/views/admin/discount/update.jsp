@@ -300,10 +300,14 @@
     var checkedValues = listSlugSanPham;
 
     $("#getValue").click(function (){
+        checkSearch=false;
         getvaluew();
     });
     $('#soLuongSanPham').text(size);
     function getvaluew(){
+        if(!checkSearch){
+            checkedValues = [];
+        }
         $('.form-check-input:checked').each(function () {
             let val = $(this).val();
 
@@ -368,6 +372,7 @@
                 data: JSON.stringify(km),
                 success: function(response) {
                     window.location.href = "/admin/khuyen-mai";
+                    showSuccess("Cập nhật thành công!");
                 },
                 error: function(xhr, status, error) {
                     console.log(error);
@@ -504,10 +509,12 @@
         }
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+    var checkSearch = false;
     $(document).ready(function() {
         var searchButton = $('#searchButton');
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
+            checkSearch=true;
             if (event.which === 13) {
                 value = searchButton.val();
                 getvaluew();
