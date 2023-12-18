@@ -24,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -59,13 +62,14 @@ public class ApiHoaDonController {
     }
 
     @GetMapping("/dshoadonresponse")
-    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
-                                                       @RequestParam(value = "endDate")Date endDate,
+    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")String startDate,
+                                                       @RequestParam(value = "endDate")String endDate,
                                                        @RequestParam(value = "trangThai",required = false,defaultValue = "")String trangThai,
                                                        @RequestParam(value = "phuongThucThanhToan",required = false,defaultValue = "")String phuongThucThanhToan
-    ){
-//        return  hoaDonService.dsHoaDonResponse();
-        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
+    ) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(startDate);
+        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,date,formatter.parse(endDate));
     }
 
     @GetMapping("/findall")
@@ -114,7 +118,7 @@ public class ApiHoaDonController {
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
             thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng");
         } else if (trangThai.equals(TrangThaiHoaDon.DANGGIAOHANG)) {
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao");
         }
         return  "Thay đổi trạng thái thành công";
     }
