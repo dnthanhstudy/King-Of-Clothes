@@ -455,7 +455,7 @@
         }
         let lenghtsp = 0;
         listsp.forEach(function (item) {
-            lenghtsp+=$("#soluong-"+item).val();
+            lenghtsp+=Number($("#soluong-"+item).val());
         })
         console.log(lenghtsp)
          if(lenghtsp>10){

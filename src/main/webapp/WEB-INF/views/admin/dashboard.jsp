@@ -669,6 +669,8 @@
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     $('#cbbthongke').on('change', function () {
         loadThongKe($(this).val())
@@ -853,19 +855,20 @@
             jsonObject[this.name] = this.value || '';
         });
 
-        var startDate = new Date(jsonObject.startDate);
-        var endDate = new Date(jsonObject.endDate);
+        var startDate = moment(jsonObject.startDate);
+        var endDate = moment(jsonObject.endDate);
 
-        if (isNaN(startDate.getTime())) {
-            startDate = new Date(1990, 0, 1);
+        if (!startDate.isValid()) {
+            startDate = moment('1990-01-01');
         }
 
-        if (isNaN(endDate.getTime())) {
-            endDate = new Date();
+        if (!endDate.isValid()) {
+            endDate = moment().add(1, 'day');
         }
 
-        jsonObject.startDate = startDate.toISOString().slice(0, 10);
-        jsonObject.endDate = endDate.toISOString().slice(0, 10);
+        jsonObject.startDate = startDate.format('YYYY-MM-DD');
+        jsonObject.endDate = endDate.format('YYYY-MM-DD');
+
 
         var queryParams = $.param(jsonObject);
         var url = `/api/hoadon/dshoadonresponse?\${queryParams}`;
