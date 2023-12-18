@@ -43,6 +43,7 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Đơn giá</th>
                     <th scope="col">Thành tiền</th>
+                    <th scope="col">Tiền giảm giá</th>
                 </tr>
                 </thead>
                 <tbody id="tbody-invoice" class="table-group-divider">
@@ -100,10 +101,11 @@
                                     <td>\${item.soLuong}</td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.thanhTien}</td>
+                                    <td>\{item.tienGiamGia}</td>
                                 </tr>`;
                 })
                 html += `<tr>
-                                <td scope="col" colspan="3"></td>
+                                <td scope="col" colspan="4"></td>
                                 <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInvoice}</th>
 
                             </tr>`;
@@ -133,8 +135,8 @@
     $("#printf-invoice").on("click", function () {
         $("body").scrollTop(0);
         createPDF();
-        window.location.href = `/admin/giao-dich/hoa-don-off`;
         showSuccess("In hóa đơn thành công !")
+        window.location.href = `/admin/giao-dich/hoa-don-off`;
     });
 
     function createPDF() {

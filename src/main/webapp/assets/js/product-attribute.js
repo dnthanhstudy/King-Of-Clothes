@@ -343,3 +343,12 @@ function loadSuggestions(options) {
         }
     });
 }
+
+$('#btn-set-price').on('click', function(){
+    let price = $("#price-all").val();
+    console.log(price)
+    $(".table-variant-body .price-variant").each((index, item) => {
+        console.log($(item))
+        $(item).val(price)
+    });
+});

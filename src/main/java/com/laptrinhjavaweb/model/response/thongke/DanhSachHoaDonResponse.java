@@ -16,6 +16,8 @@ public interface DanhSachHoaDonResponse {
 
     @Value("#{target.ngayDat}")
     Date getNgayDat();
+//    @Value("#{target.ngayThanhToan}")
+//    Date getNgayThanhToan();
     @Value("#{target.khachHang.ma}")
     String getMaKhachHang();
     @Value("#{target.khachHang.ten}")

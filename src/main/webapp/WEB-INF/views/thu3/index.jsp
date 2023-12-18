@@ -114,7 +114,7 @@
         let diaChi = $(this).attr("data-diachi");
         let idhd = $(this).attr("data-idhd");
         let trangthai = $(this).attr("data-trangthai");
-        if (trangthai=="Huỷ đơn"){
+        if (trangthai!="Đang giao hàng"){
             $("#themtrangthai").hide();
         }else{
             $("#themtrangthai").show();

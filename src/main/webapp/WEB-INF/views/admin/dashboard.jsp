@@ -673,7 +673,7 @@
     $('#cbbthongke').on('change', function () {
         loadThongKe($(this).val())
     });
-    loadThongKe(2);
+    loadThongKe(1);
 
     function loadThongKe(val) {
         let thoiGian = $(".thoiGian");

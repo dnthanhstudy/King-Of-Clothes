@@ -365,6 +365,10 @@
 
     setInterval(time, 1000);
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('vi-VN').format(number);
+    }
+
     let param = '';
     let pageCurrent = 1;
     loadAllProduct();
@@ -431,7 +435,7 @@
     })
 
     $('#btn-paymant-invoice').on('click', function () {
-        paymentInvoice();
+        paymentInvoice()
         if ($('#code-customer').val() !== "") {
             tienQuyDiem(
                 function (response) {
@@ -450,6 +454,7 @@
                     console.log(error)
                 })
         }
+
     })
 
     $("#input-point").keyup(function () {
@@ -477,6 +482,7 @@
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
+                    console.log(response.data)
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
                     if (item.khuyenMaiHienThiResponse !== null) {
@@ -496,6 +502,7 @@
                                     <div class="card-body">
                                         <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
                     html += htmlcoupon;
+                    html +=    `<h6 class="badge bg-success text-wrap">\${item.soLuong}</h6>`;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                     let htmlThuocTinh = `<div class="row mt-2">`;
@@ -839,7 +846,7 @@
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
-                param = searchButton.val();
+                param = searchButton.val().trim();
                 if (pageCurrent > 1) {
                     pageCurrent = 1;
                 }
@@ -889,7 +896,7 @@
             success: (response) => {
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
-                let html = '';
+                let html = `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`;
                 if (response.tienThua === null) {
                     $('#money-change').text(0);
                 } else {
@@ -934,7 +941,7 @@
                                             <div class="d-flex  align-items-center">
                                                 <div class="ml-2">
                                                     <span>Đơn giá</span><br>
-                                                    <span class="mb-0 pt-1 fs-5 font-w500 text-black">\${item.gia}</span> đ
+                                                    <span class="mb-0 pt-1 fs-5 font-w500 text-black">\${formatNumber(item.gia)}</span> đ
                                                 </div>
                                             </div>
                                         </div>
@@ -942,33 +949,37 @@
                                             <div class="d-flex project-status align-items-center">
                                                 <div class="ml-2">
                                                     <span>Tổng tiền</span><br>
-                                                    <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${item.thanhTien}</span> đ
+                                                    <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${formatNumber(item.thanhTien)}</span> đ
                                                 </div>
-                                                <div class="dropdown">
-                                                    <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </svg>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item invoice-detail-delete" href="">Xóa</a>
-                                                        <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
-                                                    </div>
-                                                </div>
+
                                             </div>
+                                        </div>
+                                        <div class="col-xl-1 my-2 col-lg-6 col-sm-6">
+                                             <div class="dropdown">
+                                                <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item invoice-detail-delete" href="">Xóa</a>
+                                                    <a class="dropdown-item invoice-detail-seen" href="" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">Xem chi tiết</a>
+                                                </div>
+                                             </div>
                                         </div>
                                     </div>
                                     <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
                                 </div>
                                 `;
-
+                        $('#invoice').html(html);
                         $('#invoice-non').hide();
+
                         $('#invoice-money-quantity').show();
 
-                        $('#invoice').html(html + `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
                         $('.invoice-total').text(totalInvoice);
+
                         $('#invoice-quantity').text(toatlQuantity);
 
                         $('.invoice-detail-seen').on('click', function () {
@@ -979,7 +990,7 @@
                                 dataType: "json",
                                 success: (response) => {
                                     $("#tenSanPham").text(response.tenSanPham);
-                                    $("#gia").text(response.gia);
+                                    $("#gia").text(formatNumber(response.gia));
                                     $("#soLuong").text(response.soLuong);
                                     $("#tenThuongHieu").text(response.tenThuongHieu);
                                     $("#image").attr('src', '/assets/images/sanpham/' + response.image);
@@ -1010,9 +1021,11 @@
                         })
 
                         $('.btn-add-product').on('click', function () {
+                            console.log("abc");
                             let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
                             quantity += 1;
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                            console.log(invoiceDetailId)
                             updateQuantity(invoiceDetailId, quantity)
                         })
 
@@ -1043,7 +1056,6 @@
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity);
                         });
-
                         $('.invoice-detail-delete').on('click', function (e) {
                             e.preventDefault()
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
@@ -1123,7 +1135,6 @@
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
-        let diemTichLuy = parseFloat($('#point-customer').text());
 
         if (isNaN(tienKhachTra)) {
             tienKhachTra = 0;
@@ -1132,7 +1143,7 @@
         let tienThua = tienKhachTra - (tongTienHang - tienGiamGia) ;
         tienThua = Math.max(0, tienThua);
 
-        $('#money-change').text(tienThua);
+        $('#money-change').text(formatNumber(tienThua));
     }
 
     $('#invoice-customer-payment').on('input', validateForm);
@@ -1143,43 +1154,46 @@
         let tienGiamGia = parseFloat($('#discount').text());
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
             showError("Số tiền khách trả phải lớn hơn hoặc bằng tổng tiền hàng");
-            return;
-        }
+            return false;
+        }else if(parseInt($('#input-point').val()) > parseInt($('#point-customer').text())){
+            showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
+            return false;
+        }else{
+            let data = {};
+            data['id'] = parseInt($('.invoice-id').val());
+            data['ma'] = maHoaDon;
+            data['loai'] = "OFFLINE";
+            data['trangThai'] = "THANHCONG";
+            data['phuongThucThanhToan'] = "TIENMAT";
+            data['tongTienHang'] = tongTienHang;
+            data['tienKhachTra'] = tienKhachTra;
+            data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
+            data['maNhanVien'] = ma;
+            data['tienGiamGia'] = tienGiamGia
 
-        let data = {};
-        data['id'] = parseInt($('.invoice-id').val());
-        data['ma'] = maHoaDon;
-        data['loai'] = "OFFLINE";
-        data['trangThai'] = "THANHCONG";
-        data['phuongThucThanhToan'] = "TIENMAT";
-        data['tongTienHang'] = tongTienHang;
-        data['tienKhachTra'] = tienKhachTra;
-        data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
-        data['maNhanVien'] = ma;
-        data['tienGiamGia'] = tienGiamGia
-
-        showConfirm("Bạn có muốn in hóa đơn hay không?")
-            .then((confirmed) => {
-                $.ajax({
-                    url: "/api/hoa-don-off",
-                    method: "PUT",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(data),
-                    success: (response) => {
-                        console.log(response)
-                    },
-                    error: (error) => {
-                        console.log(error)
+            showConfirm("Bạn có muốn in hóa đơn hay không?")
+                .then((confirmed) => {
+                    $.ajax({
+                        url: "/api/hoa-don-off",
+                        method: "PUT",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: (response) => {
+                            console.log(response)
+                        },
+                        error: (error) => {
+                            console.log(error)
+                        }
+                    });
+                    if (confirmed) {
+                        window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
+                    } else {
+                        window.location.href = "/admin/giao-dich/hoa-don-off";
+                        showSuccess("Thanh toán hóa đơn thành công");
                     }
-                });
-                if (confirmed) {
-                    window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
-                } else {
-                    window.location.href = "/admin/giao-dich/hoa-don-off";
-                    showSuccess("Thanh toán hóa đơn thành công");
-                }
-            })
+                })
+        }
     }
 
     function tichDiem(data) {
