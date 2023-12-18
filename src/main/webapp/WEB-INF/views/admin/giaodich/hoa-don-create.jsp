@@ -976,7 +976,7 @@
 
                         $('#invoice-money-quantity').show();
 
-                        $('.invoice-total').text(formatNumber(totalInvoice));
+                        $('.invoice-total').text(totalInvoice);
 
                         $('#invoice-quantity').text(toatlQuantity);
 
