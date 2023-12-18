@@ -81,4 +81,7 @@ public class KhachHangEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<ViDienTuEntity> viDienTuEntities = new ArrayList<>();
+
+	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
+	private List<LichSuTichDiemEntity> lichSuTichDiemEntities = new ArrayList<>();
 }

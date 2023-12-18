@@ -24,7 +24,4 @@ public class TichDiemEntity extends BaseEntity{
 	
 	@Column(name = "sodiem")
 	private Integer soDiem;
-	
-	@OneToMany(mappedBy = "tichDiem", fetch = FetchType.LAZY)
-	private List<LichSuTichDiemEntity> lichSuTichDiemEntities = new ArrayList<>();
 }

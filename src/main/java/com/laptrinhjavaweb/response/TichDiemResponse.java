@@ -7,9 +7,6 @@ import lombok.Setter;
 @Getter
 public class TichDiemResponse {
 
-    private Long id;
-
-    private KhacHangResponse khachHang;
-
     private Integer soDiem;
+
 }

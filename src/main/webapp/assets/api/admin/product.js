@@ -11,18 +11,12 @@ function validateProduct() {
         showError("Giá không được để trống");
         return false;
     }
-    else if (isNaN(gia) || /^\d+$/.test(gia)) {
-        showError("Giá sai định dạng");
-        return false;
-    }
+
     if (soLuong === "") {
         showError("Số lượng không được để trống");
         return false;
     }
-    else if (isNaN(soLuong) || /^\d+$/.test(soLuong)) {
-        showError("Số lượng sai định dạng");
-        return false;
-    }
+
 
     return true;
 }

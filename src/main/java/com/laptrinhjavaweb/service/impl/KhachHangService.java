@@ -240,8 +240,6 @@ public class KhachHangService implements IKhachHangService {
     public KhacHangResponse changePassword(KhachHangRequest khachHangRequest) {
         KhachHangEntity khachHangEntity = khachHangRepository.findByMa(khachHangRequest.getMa());
         String oldPassword = passwordEncoder.encode(khachHangRequest.getMatKhau().trim());
-        System.out.println("Mat khau 1: "+khachHangEntity.getMatKhau());
-        System.out.println("Mat khau 2: "+oldPassword);
         if (passwordEncoder.matches(khachHangRequest.getMatKhau().trim(), khachHangEntity.getMatKhau())) {
             String newPassword = passwordEncoder.encode(khachHangRequest.getMatKhauMoi().trim());
             khachHangEntity.setMatKhau(newPassword);

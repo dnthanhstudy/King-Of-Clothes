@@ -63,30 +63,30 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <c:if test="${not empty product.khuyenMaiHienThiResponse}">
-                   <c:if test="${product.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
-                       <p>Kết thúc sau:
-                           <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
-                           <span class="finish"></span>
-                       </p>
-                   </c:if>
+                    <c:if test="${product.khuyenMaiHienThiResponse.trangThai eq 'ACTIVE'}">
+                        <p>Kết thúc sau:
+                            <input id="product-finish" type="hidden" value="${product.khuyenMaiHienThiResponse.ngayKetThuc}">
+                            <span class="finish"></span>
+                        </p>
+                    </c:if>
                 </c:if>
                 <c:if test="${empty product.khuyenMaiHienThiResponse}">
-                   <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
-                       ${product.giaBan}
-                   </h3>
+                    <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
+                            ${product.giaBan}
+                    </h3>
                 </c:if>
 
                 <div class="mb-3">
                     <c:if test="${not empty product.khuyenMaiHienThiResponse}">
                         <c:if test="${product.khuyenMaiHienThiResponse.trangThai =='UPCOMING'}">
-                           <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
-                              ${product.gia}
-                          </h3>
+                            <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
+                                    ${product.gia}
+                            </h3>
                         </c:if>
                         <c:if test="${product.khuyenMaiHienThiResponse.trangThai == 'ACTIVE'}">
                             <h3 class="font-weight-semi-bold mb-4 product-price product-price-custom-vnd product-buy">
-                               ${product.giaBan}
-                           </h3>
+                                    ${product.giaBan}
+                            </h3>
                             <del class="product-price-custom-vnd product-origin">${product.gia}</del>
                             <c:if test="${product.khuyenMaiHienThiResponse.loai eq '1'}">
                                 <div class="badge rounded-pill text-bg-danger">
@@ -152,13 +152,10 @@
 
             <div class="khung mt-4">
                 <h5>Mô tả sản phẩm</h5>
-                <span class="product-description">Áo thun polo nam thể thao LADOS - 9080 cổ bẻ, chất liệu vải thun lạnh mát mẻ, kiểu dáng DRI-FIT
-                Chất liệu: Vải poli lanh, vải thoáng khí mát mẻ
-                Co giãn tốt, mặc cực thoải mái, thấm hút mồ hôi tốt
-                Chất vải đẹp, đứng form áo
-                Đường may cực tỉ mỉ cực đẹp
-                Có thể mặc đi chơi, chạy bộ, tậm gym vận động
-                Kiểu dáng: Thiết kế theo form rộng vừa,đơn giản , dễ mặc ..Tôn lên được sự trẻ trung năng động cho các bạn nam, kèm vào đó là sự hoạt động thoải mái khi mặc sản phẩm.
+                <span class="product-description">
+                      <span class="form-control" id="moTa">
+
+                      </span>
                 </span>
             </div>
 
@@ -196,82 +193,6 @@
                             mà hãy liên hệ Shop để đc hỗ trợ 1 cách tốt nhất nhé.</p>
                     </div>
 
-                </div>
-            </div>
-            <div class="tab-pane fade" id="tab-pane-3">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
-                        <div class="media mb-4">
-                            <img src="<c:url value='/template/web/img/user.jpg'/>" alt="Image"
-                                 class="img-fluid mr-3 mt-1" style="width: 45px;">
-                            <div class="media-body">
-                                <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                <div class="text-primary mb-2">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                                <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at.
-                                    Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h4 class="mb-4">Leave a review</h4>
-                        <small>Your email address will not be published. Required fields are marked *</small>
-                        <div class="d-flex my-3">
-                            <p class="mb-0 mr-2">Your Rating * :</p>
-                            <div class="rating">
-                                <input type="radio" id="star-1" name="star-radio" value="star-1">
-                                <label for="star-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path pathLength="360"
-                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
-                                    </svg>
-                                </label>
-                                <input type="radio" id="star-2" name="star-radio" value="star-1">
-                                <label for="star-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path pathLength="360"
-                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
-                                    </svg>
-                                </label>
-                                <input type="radio" id="star-3" name="star-radio" value="star-1">
-                                <label for="star-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path pathLength="360"
-                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
-                                    </svg>
-                                </label>
-                                <input type="radio" id="star-4" name="star-radio" value="star-1">
-                                <label for="star-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path pathLength="360"
-                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
-                                    </svg>
-                                </label>
-                                <input type="radio" id="star-5" name="star-radio" value="star-1">
-                                <label for="star-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <path pathLength="360"
-                                              d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
-                                    </svg>
-                                </label>
-                            </div>
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="message">Your Review *</label>
-                                <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                            </div>
-                            <div class="form-group mb-0">
-                                <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -312,6 +233,7 @@
     </div>
 </div>
 </div>
+<script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
@@ -427,4 +349,7 @@
             }
         });
     }
+
+    $('#moTa').innerHTML  = `${product.moTa}`;
+
 </script>

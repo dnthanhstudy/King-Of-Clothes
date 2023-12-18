@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TichDiemRepository extends JpaRepository<TichDiemEntity, Long> {
 
-    TichDiemEntity findByKhachHang_id(Long id);
+    TichDiemEntity findByKhachHang_ma(String maKhachHang);
 }
