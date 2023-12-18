@@ -111,7 +111,12 @@ public class GioHangServiceImpl implements GioHangService {
                 if (bienThe.getSoLuong()==0){
                     gioHangChiTiet.setTrangThai("DAHETHANG");
                 }else{
-                    gioHangChiTiet.setSoLuong(bienThe.getSoLuong());
+                    Integer sl = bienThe.getSoLuong();
+                    if (sl>10){
+                        gioHangChiTiet.setSoLuong(10);
+                    }else{
+                        gioHangChiTiet.setSoLuong(sl);
+                    }
                 }
                 gioHangChiTietRepository.save(gioHangChiTiet);
                 check= "1";

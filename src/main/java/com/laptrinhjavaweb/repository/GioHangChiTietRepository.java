@@ -20,7 +20,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     List<Long> dsspCuaGioHang(@Param("idkh")Long idkh);
 
     @Query("select ghct from GioHangChiTietEntity ghct" +
-            " where ghct.gioHang.khachHang.id=:idkh and ghct.bienThe.sanPham.id=:idsp and ghct.trangThai not in ('DELETE','PENDING','DAHETHANG') order by ghct.ngayTao desc,ghct.ngaySua desc ")
+            " where ghct.gioHang.khachHang.id=:idkh and ghct.bienThe.sanPham.id=:idsp and ghct.trangThai " +
+            "not in ('DELETE','PENDING','DAHETHANG') order by ghct.ngayTao desc,ghct.ngaySua desc ")
     List<GioHangResponse> dsGhctCuaSanPham(@Param("idkh")Long idkh,@Param("idsp")Long idsp);
 
     @Query("select ghct from GioHangChiTietEntity ghct" +
