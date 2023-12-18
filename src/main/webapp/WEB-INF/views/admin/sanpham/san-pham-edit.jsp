@@ -179,20 +179,6 @@
                             Sản phẩm nổi bật
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input name="sanPhamNhieuLuotXem" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-nhieu-luot-xem">
-                        <label class="form-check-label" for="san-pham-nhieu-luot-xem">
-                            Sản phẩm nhiều lượt xem
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamPhoBien" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-pho-bien">
-                        <label class="form-check-label" for="san-pham-pho-bien">
-                            Sản phẩm phổ biến
-                        </label>
-                    </div>
                 </div>
 
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
@@ -212,7 +198,6 @@
     function detailSP() {
         var url = window.location.pathname.split("/");
         var slug = url[url.length - 1];
-        console.log(slug);
         $.ajax({
             url: '/api/san-pham/' + slug,
             method: 'GET',
@@ -282,11 +267,9 @@
                             </tr>`;
                 })
                 $("#variants").append(htmlBienThe)
-                console.log(htmlBienThe)
             },
             error: function (xhr, status, error) {
                 console.log(error);
-                alert('Có lỗi xảy ra: ' + error);
             }
         });
     }

@@ -154,7 +154,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		if(querySearch != null){
 			queryFinal.append(querySearch);
 		}
-		queryFinal.append(" GROUP BY subquery.id ");
+		queryFinal.append(" GROUP BY subquery.id ORDER BY ngaytao DESC");
 		System.out.println(queryFinal);
 		return queryFinal.toString();
 	}
