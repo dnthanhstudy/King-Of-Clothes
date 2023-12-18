@@ -392,7 +392,7 @@
                     dataType: "json",
                     data: JSON.stringify(data),
                     success: (response) => {
-                        showSuccess("Thêm hóa thành công");
+                        showSuccess("Thêm hóa đơn thành công");
                         window.location.href = `/admin/giao-dich/hoa-don-off/create/\${response.ma}`;
                     },
                     error: (error) => {
@@ -896,7 +896,7 @@
             success: (response) => {
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
-                let html = `<input type="hidden" name="" class="invoice-id" value="\${response.id}">`;
+                let html = ``;
                 if (response.tienThua === null) {
                     $('#money-change').text(0);
                 } else {
@@ -1056,6 +1056,7 @@
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
                             updateQuantity(invoiceDetailId, quantity);
                         });
+
                         $('.invoice-detail-delete').on('click', function (e) {
                             e.preventDefault()
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
@@ -1074,11 +1075,12 @@
 
                         })
                     })
+
                 } else {
                     $('#invoice-money-quantity').hide();
                     $('.invoice-total').text(0);
-
                 }
+                $('#invoice').append(`<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
             },
             error: (error) => {
                 console.log(error);
@@ -1273,6 +1275,7 @@
         data['maNhanVien'] = ma;
         data['tienGiamGia'] = parseFloat($('#discount').text());
 
+        console.log(data)
         $.ajax({
             url: "/api/hoa-don-off",
             method: "PUT",

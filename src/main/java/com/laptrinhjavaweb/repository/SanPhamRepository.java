@@ -17,4 +17,5 @@ public interface SanPhamRepository extends JpaRepository<SanPhamEntity, Long>, S
 
 	Page<SanPhamEntity> findByTrangThaiOrderByNgayTaoDesc(String trangThai, Pageable pageable);
 
+	Page<SanPhamEntity> findAllByNgayTaoDesc(Pageable pageable);
 }
