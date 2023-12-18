@@ -61,6 +61,7 @@ public class HoaDonService implements IHoaDonService {
     }
 
     @Override
+    @Transactional
     public HoaDonResponse update(HoaDonResquest hoaDonResquest) {
         HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
         HoaDonEntity result = hoaDonRepository.save(entity);

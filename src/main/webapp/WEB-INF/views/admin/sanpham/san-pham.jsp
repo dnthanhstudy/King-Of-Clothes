@@ -93,6 +93,10 @@
                                 <td>
                                     <a href="/admin/san-pham/edit/\${item.slug}" class="btn btn-warning">Sửa</a>
                                     <button class="btn btn-danger btn-delete-san-pham" value="\${item.slug}">Xóa</button>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
                                 </td>
                             </tr>`;
                 })
