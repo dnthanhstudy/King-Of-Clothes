@@ -500,7 +500,9 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h6 class="card-title line-clamp-2">\${item.ten}</h6>`;
-                    html += htmlcoupon;
+                    html += htmlcoupon + `<p>
+                                            Sản phẩm có sẵn: <span class="product-quantity">\${item.soLuong}</span>
+                                        </p>`;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                     let htmlThuocTinh = `<div class="row mt-2">`;
@@ -1273,7 +1275,6 @@
         data['maNhanVien'] = ma;
         data['tienGiamGia'] = parseFloat($('#discount').text());
 
-        console.log(data)
         $.ajax({
             url: "/api/hoa-don-off",
             method: "PUT",
