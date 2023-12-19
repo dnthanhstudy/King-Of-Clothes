@@ -62,6 +62,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     public KhuyenMaiResponse save(KhuyenMaiRequest request) {
        KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
         KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
+
         Date timeNow = new Date();
         if (khuyenMaiEntity.getNgayBatDau().compareTo(timeNow) > 0) {
             khuyenMaiEntity.setTrangThai("UPCOMING");
@@ -139,6 +140,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     @Override
     public KhuyenMaiResponse findByMa(String ma) {
         KhuyenMaiEntity entity = khuyenMaiRepository.findByMa(ma);
+        updateStatus(entity);
         KhuyenMaiResponse response = khuyenMaiConvert.convertToResponse(entity);
 //        ThongKeKhuyenMaiResponse thongKe = khuyenMaiRepository.thongKeKM(entity.getId());
         ThongKeKhuyenMaiResponse thongKe = getThongKe(entity.getId());
@@ -194,10 +196,29 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         }
         return results;
     }
+
+    @Override
+    public String undelete(String ma) {
+        KhuyenMaiEntity km = khuyenMaiRepository.findByMa(ma);
+        if (km != null) {
+            List<KhuyenMaiSanPhamEntity> list = km.getKhuyenMaiSanPhamEntities();
+            for (KhuyenMaiSanPhamEntity kmsp:list ) {
+                kmsp.setTrangThai("ACTIVE");
+                khuyenMaiSanPhamRepository.save(kmsp);
+            }
+            km.setTrangThai("ACTIVE");
+            this.khuyenMaiRepository.save(km);
+            return "Cập nhật thành công";
+        } else {
+            return "Không tìm thấy";
+        }
+    }
+
+    @Override
     public KhuyenMaiEntity updateStatus(KhuyenMaiEntity khuyenMaiEntity) {
         if (!(khuyenMaiEntity.getTrangThai().equals("EXPIRED"))){
             Date currentDate = new Date();
-            if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && khuyenMaiEntity.getTrangThai()!="EXPIRED"){
+            if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && khuyenMaiEntity.getTrangThai().equals("EXPIRED") && khuyenMaiEntity.getTrangThai().equals("DELETE")){
                 khuyenMaiEntity.setTrangThai("ACTIVE");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {
@@ -213,8 +234,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     khuyenMaiSanPhamRepository.save(kmsp);
                 }
             }
-            ThongKeKhuyenMaiResponse thongKe = getThongKe(khuyenMaiEntity.getId());
-            if(thongKe.getSoLuongSuDung() == khuyenMaiEntity.getSoLuong()){
+            if(khuyenMaiEntity.getSoLuong() == 0){
                 khuyenMaiEntity.setTrangThai("EXPIRED");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {
@@ -225,6 +245,13 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         }
         return khuyenMaiEntity;
     }
+
+    @Override
+    public void updateStatusByMa(String ma) {
+        KhuyenMaiEntity khuyenMaiEntity = khuyenMaiRepository.findByMa(ma);
+        KhuyenMaiEntity entity = updateStatus(khuyenMaiEntity);
+    }
+
     public ThongKeKhuyenMaiResponse getThongKe(Long id){
         List<Object[]> result = khuyenMaiRepository.thongKeKM(id);
         ThongKeKhuyenMaiResponse thongKe = new ThongKeKhuyenMaiResponse();

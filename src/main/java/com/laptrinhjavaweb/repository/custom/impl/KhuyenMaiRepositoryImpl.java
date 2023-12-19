@@ -16,8 +16,8 @@ public class KhuyenMaiRepositoryImpl implements KhuyenMaiRepositoryCustom {
     @SuppressWarnings("unchecked")
     @Override
     public List<KhuyenMaiEntity> seachs(String param) {
-        String sql = "FROM KhuyenMaiEntity WHERE ( ten LIKE '%" + param + "%' OR ma LIKE '%" + param
-                + "%') AND trangthai != 'DELETE' ORDER BY ngaytao DESC";
+        String sql = "FROM KhuyenMaiEntity WHERE ten LIKE '%" + param + "%' OR ma LIKE '%" + param
+                + "%' ORDER BY ngaytao DESC";
         Query query = entityManager.createQuery(sql, KhuyenMaiEntity.class);
         return query.getResultList();
     }

@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.service;
 
+import com.laptrinhjavaweb.entity.KhuyenMaiEntity;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;
 import com.laptrinhjavaweb.resquest.KhuyenMaiRequest;
 
@@ -14,6 +15,9 @@ public interface IKhuyenMaiService {
     KhuyenMaiResponse findById(Long id);
     KhuyenMaiResponse findByMa(String ma);
     void updateDS();
-
+    KhuyenMaiEntity updateStatus(KhuyenMaiEntity khuyenMaiEntity);
+    void updateStatusByMa(String ma);
     Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug);
+
+    String undelete(String ma);
 }
