@@ -181,7 +181,7 @@
                                 }
                             },
                             { data: 'ma' },
-                            { data: 'maVanHang' },
+                            { data: 'maGiaoHang' },
                             {
                                 data: 'thoiGianDat',
                                 render: function(data, type, row) {

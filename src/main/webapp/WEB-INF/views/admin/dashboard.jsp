@@ -602,6 +602,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Mã hoá đơn</th>
                             <th scope="col">Ngày đặt</th>
+                            <th scope="col">Ngày thanh toán</th>
                             <th scope="col">Mã khách hàng</th>
                             <th scope="col">Tên người đặt</th>
                             <th scope="col">Tổng tiền hàng</th>
@@ -653,6 +654,7 @@
                                 <th scope="col">Ngày</th>
                                 <th scope="col">Tổng hóa đơn</th>
                                 <th scope="col">Tổng sản phẩm đã bán</th>
+                                <th scope="col">Số lượng khuyến mãi đã bán</th>
                                 <th scope="col">Tổng doanh thu</th>
                             </tr>
                             </thead>
@@ -669,6 +671,8 @@
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     $('#cbbthongke').on('change', function () {
         loadThongKe($(this).val())
@@ -853,19 +857,20 @@
             jsonObject[this.name] = this.value || '';
         });
 
-        var startDate = new Date(jsonObject.startDate);
-        var endDate = new Date(jsonObject.endDate);
+        var startDate = moment(jsonObject.startDate);
+        var endDate = moment(jsonObject.endDate);
 
-        if (isNaN(startDate.getTime())) {
-            startDate = new Date(1990, 0, 1);
+        if (!startDate.isValid()) {
+            startDate = moment('1990-01-01');
         }
 
-        if (isNaN(endDate.getTime())) {
-            endDate = new Date();
+        if (!endDate.isValid()) {
+            endDate = moment().add(1, 'day');
         }
 
-        jsonObject.startDate = startDate.toISOString().slice(0, 10);
-        jsonObject.endDate = endDate.toISOString().slice(0, 10);
+        jsonObject.startDate = startDate.format('YYYY-MM-DD');
+        jsonObject.endDate = endDate.format('YYYY-MM-DD');
+
 
         var queryParams = $.param(jsonObject);
         var url = `/api/hoadon/dshoadonresponse?\${queryParams}`;
@@ -882,6 +887,7 @@
                         <th scope="row">\${index+1}</th>
                         <td>\${item.ma}</td>
                         <td>\${formatDate(item.ngayDat)}</td>
+                        <td>\${formatDate(item.ngayThanhToan)}</td>
                         <td>\${item.maKhachHang}</td>
                         <td>\${item.tenNguoiDat}</td>
                         <td>\${convertVND(item.tongTienHang)}</td>
@@ -904,6 +910,9 @@
 
     $("#formsearchhd").submit();
     function formatDate(date) {
+        if (!date){
+            return "";
+        }
         date = new Date(date)
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -926,6 +935,7 @@
                                 <td>\${getFormattedDate(item.ngay)}</td>
                                 <td>\${item.tongHoaDonBanDuoc}</td>
                                 <td>\${item.soLuong}</td>
+                                <td>\${item.soLuongKhuyenMai}</td>
                                 <td>\${convertVND(item.tongTienHang)}</td>
                             </tr>
                         `;

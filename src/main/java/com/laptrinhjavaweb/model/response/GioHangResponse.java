@@ -36,6 +36,9 @@ public interface GioHangResponse {
     @Value("#{target.bienThe.ten}")
     String getTenBienThe();
 
+    @Value("#{target.bienThe.soLuong}")
+    Integer getSoLuongBienThe();
+
     @Value("#{target.tongTien}")
     BigDecimal getTongTien();
     @Value("#{target.bienThe.sanPham.ten}")

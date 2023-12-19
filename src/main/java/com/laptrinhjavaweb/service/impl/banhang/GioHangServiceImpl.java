@@ -161,7 +161,10 @@ public class GioHangServiceImpl implements GioHangService {
 
         if (gioHangChiTiet==null){
             if (quantity>bienThe.getSoLuong()){
-                return "Số lượng tại cửa hàng hiện không đủ";
+                return "2";
+            }
+            if (quantity>10){
+                quantity=10;
             }
             gioHangChiTiet = new GioHangChiTietEntity();
             gioHangChiTiet.setBienThe(bienThe);
@@ -171,11 +174,14 @@ public class GioHangServiceImpl implements GioHangService {
         }else {
             int soLuongNeuThem = gioHangChiTiet.getSoLuong()+quantity;
             if (soLuongNeuThem>bienThe.getSoLuong()){
-                return "Số lượng tại cửa hàng không đủ";
+                soLuongNeuThem=10;
             }
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
+            if (soLuongNeuThem>10){
+                return "1";
+            }
+            gioHangChiTiet.setSoLuong(soLuongNeuThem);
         }
-      gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
+        gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
         return gioHangChiTiet.getBienThe().getId().toString();
     }
 
