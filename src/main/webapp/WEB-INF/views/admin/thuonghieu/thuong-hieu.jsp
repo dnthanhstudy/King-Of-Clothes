@@ -202,7 +202,7 @@
     function validateForm() {
         let isValid = true;
 
-        if ($("#ten").val() === "") {
+        if ($("#ten").val().trim() === "") {
             showError("Tên thương hiệu không được để trống");
             isValid = false;
         }

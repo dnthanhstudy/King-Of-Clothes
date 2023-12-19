@@ -43,7 +43,6 @@
                     <th scope="col">Số lượng</th>
                     <th scope="col">Đơn giá</th>
                     <th scope="col">Thành tiền</th>
-                    <th scope="col">Tiền giảm giá</th>
                 </tr>
                 </thead>
                 <tbody id="tbody-invoice" class="table-group-divider">
@@ -90,34 +89,35 @@
             dataType: "json",
             success: (response) => {
                 let html = '';
-                let totalInvoice = response.tongTienHang;
-                if(response.tienGiamGia !== null){
-                    totalInvoice -= response.tienGiamGia;
-                }
-                $.each(response.hoaDonChiTiet, (index, item) => {
-                    html += ` <tr>
-                                    <th scope="row">\${++index}</th>
-                                    <td>\${item.tenSanPham}</td>
-                                    <td>\${item.soLuong}</td>
-                                    <td>\${item.gia}</td>
-                                    <td>\${item.thanhTien}</td>
-                                    <td>\{item.tienGiamGia}</td>
-                                </tr>`;
-                })
-                html += `<tr>
-                                <td scope="col" colspan="4"></td>
-                                <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalInvoice}</th>
+                let totalInvoice = 0;
 
+                $.each(response.hoaDonChiTiet, (index, item) => {
+                    totalInvoice += item.thanhTien;
+                    html += ` <tr>
+                                <th scope="row">\${++index}</th>
+                                <td>\${item.tenSanPham}</td>
+                                <td>\${item.soLuong}</td>
+                                <td>\${item.gia}</td>
+                                <td>\${item.thanhTien}</td>
                             </tr>`;
+                });
+
+                let totalAmount = response.tienGiamGia !== null ? totalInvoice - response.tienGiamGia : totalInvoice;
+
+                html += `<tr>
+                        <td scope="col" colspan="3"></td>
+                        <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalAmount}</th>
+                    </tr>`;
+
                 $('#tbody-invoice').html(html);
                 $('.customer-name').text(response.tenKhachHang);
                 $('.customer-phone').text(response.soDienThoaiKhachHang);
                 $('#user-id').text(response.tenNhanVien);
 
                 var docTien = new DocTienBangChu();
-                $('#price-read-vnd').text(docTien.doc(totalInvoice))
+                $('#price-read-vnd').text(docTien.doc(totalAmount));
 
-                var ngayTao = new Date(response.ngayTao).toLocaleDateString("vi-VN")
+                var ngayTao = new Date(response.ngayTao).toLocaleDateString("vi-VN");
                 let splitNgayTao = ngayTao.split("/");
                 let res = "Ngày " + splitNgayTao[0] + " tháng " + splitNgayTao[1] + " năm " + splitNgayTao[2];
                 $('.timestamp-invoice').html(res);
@@ -128,6 +128,7 @@
         });
     }
 
+
     var form = $("#printf-invoice-pdf"),
         cache_width = form.width(),
         a4 = [570, 850];
@@ -135,8 +136,8 @@
     $("#printf-invoice").on("click", function () {
         $("body").scrollTop(0);
         createPDF();
-        showSuccess("In hóa đơn thành công !")
-        window.location.href = `/admin/giao-dich/hoa-don-off`;
+        showSuccess("In hóa đơn thành công")
+
     });
 
     function createPDF() {
@@ -159,6 +160,7 @@
             removeContainer: true,
         });
     }
+
 </script>
 </body>
 </html>

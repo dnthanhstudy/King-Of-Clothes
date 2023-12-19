@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,6 +65,9 @@ public class HoaDonService implements IHoaDonService {
     @Transactional
     public HoaDonResponse update(HoaDonResquest hoaDonResquest) {
         HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
+        if(hoaDonResquest.getTrangThai().equals("THANHCONG")){
+            entity.setNgayThanhToan(new Date());
+        }
         HoaDonEntity result = hoaDonRepository.save(entity);
         return hoaDonConverter.convertToResponse(result);
     }

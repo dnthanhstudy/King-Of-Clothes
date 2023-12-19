@@ -101,7 +101,7 @@
             });
         });
         function genderTrangThaiHd(idhd,mahd,val) {
-            if (val=="Huỷ đơn"){
+            if (val!="Chờ nhận đơn"){
                 return `
                 <div class="my-2 text-right">
                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>

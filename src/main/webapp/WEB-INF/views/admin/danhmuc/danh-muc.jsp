@@ -203,7 +203,7 @@
     function validateForm() {
         let isValid = true;
 
-        if ($("#ten").val() === "") {
+        if ($("#ten").val().trim() === "") {
             showError("Tên danh mục không được để trống");
             isValid = false;
         }

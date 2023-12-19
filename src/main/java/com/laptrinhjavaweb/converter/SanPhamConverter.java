@@ -57,6 +57,7 @@ public class SanPhamConverter {
 				item -> thuocTinhConverter.convertToResponse(item)).collect(Collectors.toList());
 		List<BienTheResponse> bienTheResponses = entity.getBienTheEntities().stream().map(
 				item -> bienTheConverter.convertToResponse(item)).collect(Collectors.toList());
+//		Integer quantity = bienTheResponses.stream().filter(i -> i != null).mapToInt(i -> i.getSoLuong()).sum();0
 		KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(entity.getId(), SystemConstant.ACTICE, entity.getId(), SystemConstant.UPCOMING);
 		if(khuyenMaiSanPhamEntity != null){
 			KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = khuyenMaiConvert.convertToHienThiResponse(khuyenMaiSanPhamEntity.getKhuyenMai());
@@ -72,6 +73,7 @@ public class SanPhamConverter {
 		}else{
 			response.setGiaBan(entity.getGia());
 		}
+//		response.setSoLuong(quantity);
 		response.setThuocTinh(thuocTinhResponses);
 		response.setBienThe(bienTheResponses);
 		response.setAnh(anhSanPhamResponses);

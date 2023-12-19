@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="slug" class="form-label">Slug</label>
-                        <input name="slug" type="text" class="form-control" id="slug" readonly/>
+                        <input name="slug" type="text" class="form-control" id="slug" readonly disabled/>
                     </div>
 
                     <div class="col-3">
@@ -176,20 +176,6 @@
                                id="san-pham-noi-bat">
                         <label class="form-check-label" for="san-pham-noi-bat">
                             Sản phẩm nổi bật
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamNhieuLuotXem" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-nhieu-luot-xem">
-                        <label class="form-check-label" for="san-pham-nhieu-luot-xem">
-                            Sản phẩm nhiều lượt xem
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamPhoBien" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-pho-bien">
-                        <label class="form-check-label" for="san-pham-pho-bien">
-                            Sản phẩm phổ biến
                         </label>
                     </div>
                 </div>

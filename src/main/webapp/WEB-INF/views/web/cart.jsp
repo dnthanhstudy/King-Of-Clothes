@@ -442,13 +442,39 @@
         });
     }
 
+    function getPriceElement(element) {
+        let priceString = $(element).text().split(" ")[0].replaceAll(".", "");
+        return parseFloat(priceString); // Chuyển đổi chuỗi thành số float
+    }
+    async function muahang() {
 
-    function muahang() {
         var listsp = getValByCheckbox();
-        if (listsp.length == 0) {
+        if (listsp.length== 0) {
             showError("Bạn chưa chọn sản phẩm để mua")
             return;
         }
+        let lenghtsp = 0;
+        listsp.forEach(function (item) {
+            lenghtsp+=$("#soluong-"+item).val();
+        })
+        console.log(lenghtsp)
+         if(lenghtsp>10){
+            await Swal.fire({
+                title: "Thông báo!",
+                text: "Số lượng sản phẩm khi mua hàng không vượt quá 10,vui lòng liên hệ cửa hàng để được ưu đãi khi mua số lượng lớn!",
+                icon: "error"
+            })
+            return;
+        }else if (getPriceElement("#tongtienthuc")>5000000){
+           await Swal.fire({
+                title: "Thông báo!",
+                text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
+                    "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
+                icon: "error"
+            })
+            return;
+        }
+
         var listspAsNumbers = listsp.map(str => Number(str));
 
         var data = JSON.stringify({
@@ -462,7 +488,9 @@
             success: async function (req) {
                 //     console.log(req)
                 if (!req) {
-                    window.location.href = "/checkout"
+                    if(await showConfirm("Xác nhận đặt hàng ?")){
+                        window.location.href = "/checkout";
+                    };
                 } else {
                     if (req == 1) {
                         Swal.fire({
@@ -471,13 +499,21 @@
                             icon: "error"
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
+                                ghct();
+                                dsCheckbox=[];
+                                tongTienTheoGhct(dsCheckbox);
+                                // window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
                             }
                         });
                     } else {
-                        await Swal.fire('Thông báo...', 'Vì là số lượng của giỏ hàng lớn hơn 10 khi đặt hàng, ' +
-                            'vậy nên chúng tôi sẽ liên hệ với bạn khi chúng tôi xác nhận đơn', 'warning');
-                        window.location.href = "/checkout";
+                        await Swal.fire({
+                            title: "Thông báo!",
+                            text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
+                                "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
+                            icon: "error"
+                        })
+                        return;
+
                     }
 
                 }
@@ -543,23 +579,24 @@
     function xoaGioHangChiTiet(val) {
 
     }
-    $(document).on("click",".delete-ghct",function() {
-         let data= $(this);
+    $(document).on("click",".delete-ghct",async function() {
+        if(await showConfirm("Bạn có chắc chắn muốn xoá không ?")){
+             let data= $(this);
+            $.ajax({
+                url: '/api/user/giohang/'+data.attr("data-id"),
+                method: 'DELETE',
+                contentType: 'application/json',
+                success: function (req) {
+                    showSuccess("Xoá thành công")
+                    data.closest(".cartographic").remove();
+                    loadDataCheckbox();
+                },
+                error: function (xhr, status, error) {
+                    showError("Có lỗi xảy ra")
+                    console.log('Có lỗi xảy ra: ' + error);
+                }
+            });
+        }
 
-
-        $.ajax({
-            url: '/api/user/giohang/'+data.attr("data-id"),
-            method: 'DELETE',
-            contentType: 'application/json',
-            success: function (req) {
-                showSuccess("Xoá thành công")
-                data.closest(".cartographic").remove();
-                loadDataCheckbox();
-            },
-            error: function (xhr, status, error) {
-                showError("Có lỗi xảy ra")
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
     });
 </script>

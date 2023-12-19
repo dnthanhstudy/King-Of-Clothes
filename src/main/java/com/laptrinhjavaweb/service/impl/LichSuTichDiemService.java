@@ -34,7 +34,7 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
 
     @Override
     public List<LichSuTichDiemResponse> findAll() {
-        List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAll();
+        List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAllByOrderByNgayTaoDesc();
 
         List<LichSuTichDiemResponse> result = entity.stream().map(
                 item ->
@@ -46,7 +46,7 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
     @Override
     public List<LichSuTichDiemResponse> findAllByIdKhachHang(String sdtKhachHang) {
         KhachHangEntity kh = khachHangRepository.findBySoDienThoai(sdtKhachHang);
-        List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAllByKhachHang_id(kh.getId());
+        List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAllByKhachHang_idOrderByNgayTaoDesc(kh.getId());
 
         List<LichSuTichDiemResponse> result = entity.stream().map(
                 item ->

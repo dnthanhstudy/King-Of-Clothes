@@ -134,13 +134,13 @@
     }
 
     function validateForm(){
-        let ten = $("#ten").val();
-        let email = $("#email").val();
-        let diaChi = $("#diaChi").val();
-        let soDienThoai = $("#soDienThoai").val();
-        let canCuocCongDan = $("#canCuocCongDan").val();
-        let ngaySinh = $("#ngaySinh").val();
-        let ngayCap = $("#ngayCap").val();
+        let ten = $("#ten").val().trim();
+        let email = $("#email").val().trim();
+        let diaChi = $("#diaChi").val().trim();
+        let soDienThoai = $("#soDienThoai").val().trim();
+        let canCuocCongDan = $("#canCuocCongDan").val().trim();
+        let ngaySinh = $("#ngaySinh").val().trim();
+        let ngayCap = $("#ngayCap").val().trim()
 
         if (ten === "") {
             showError("Họ và tên không được để trống");
