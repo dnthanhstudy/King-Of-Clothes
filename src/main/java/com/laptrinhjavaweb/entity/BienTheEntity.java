@@ -51,4 +51,11 @@ public class BienTheEntity extends BaseEntity{
 		}
 		return gia;
 	}
+
+	public Integer getSoLuong() {
+		if (soLuong==null){
+			return 0;
+		}
+		return soLuong;
+	}
 }

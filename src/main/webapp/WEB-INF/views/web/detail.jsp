@@ -303,12 +303,20 @@
             showError("Số lượng của cửa hàng không đủ");
             return;
         }
+        if (quantity<1){
+            showError("Số lượng không được bé hơn 1")
+            return;
+        }
         $.ajax({
             url: '/api/user/giohang/addcart?idkh=' + idkh + '&data=' + arrData.join(",") + "&quantity=" + quantity,
             method: 'GET',
             success: function (req) {
-                showSuccess("Thêm vào giỏ hàng thành công")
-                getSoLuongGioHang(idkh);
+                if (req=="1"){
+                    showError("Số lượng của cửa hàng hiện không đủ")
+                }else {
+                    showSuccess("Thêm vào giỏ hàng thành công")
+                    getSoLuongGioHang(idkh);
+                }
             },
             error: function (xhr, status, error) {
                 console.log('Có lỗi xảy ra: ' + error);
@@ -336,6 +344,10 @@
         var quantity = $("#quantity").val();
         if (quantity > spcosan) {
             showError("Số lượng của cửa hàng không đủ");
+            return;
+        }
+        if (quantity<1){
+            showError("Số lượng không được bé hơn 1")
             return;
         }
         $.ajax({

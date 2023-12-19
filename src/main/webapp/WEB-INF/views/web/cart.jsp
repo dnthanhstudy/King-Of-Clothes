@@ -310,6 +310,7 @@
                                             </button>
                                         </div>
                                     </div>
+                            <span class="mt-5">Hiện có : <span id="slbt-\${sp.idGhct}">\${sp.soLuongBienThe}</span><span> sản phẩm</span>
                         </span>
                     </div>
         <div class="col-2">
@@ -413,7 +414,32 @@
         }else {
             soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên
             if (soLuongHienTai<1){
-                showError("Số lượng không thể bé hơn 0");
+                showError("Số lượng không thể bé hơn 1");
+                return;
+            }
+            if (soLuongHienTai>10){
+                showError("Số lượng mua tối đa là 10")
+                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
+                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
+                if (!soTienGiam){
+                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
+                }else{
+                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
+                }
+                return;
+            }
+            let slbtghct = $("#slbt-"+idghct).text();
+            console.log(slbtghct)
+            if (slbtghct<soLuongHienTai){
+                showError("Số lượng hiện tại của cửa hàng không đủ")
+                $("#soluong-" + idghct).val(slbtghct)
+                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
+                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
+                if (!soTienGiam){
+                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
+                }else{
+                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
+                }
                 return;
             }
             $("#soluong-" + idghct).val(soLuongHienTai)
@@ -421,7 +447,6 @@
 
         // Gọi API với giá trị soLuongHienTai
 
-        console.log(soLuongHienTai);
 
         $.ajax({
             url: '/api/user/giohang/thaydoisoluong',
@@ -497,12 +522,9 @@
                             title: "Thông báo!",
                             text: "Hiện số lượng tại cửa hàng không đủ, chúng tôi sẽ cập nhật lại số lượng cho bạn!",
                             icon: "error"
-                        }).then((result) => {
+                        }).then(async (result) => {
                             if (result.isConfirmed) {
-                                ghct();
-                                dsCheckbox=[];
-                                tongTienTheoGhct(dsCheckbox);
-                                // window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
+                                window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
                             }
                         });
                     } else {
