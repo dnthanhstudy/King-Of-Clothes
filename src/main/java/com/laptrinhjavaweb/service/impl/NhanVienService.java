@@ -151,7 +151,7 @@ public class NhanVienService implements INhanVienService {
     }
 
     public void saveImage(NhanVienRequest nhanVienRequest) {
-        String path = SystemConstant.path + "/nhanvien/"  + nhanVienRequest.getAnh();
+        String path = SystemConstant.path + "/"  + nhanVienRequest.getAnh();
         if (nhanVienRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(nhanVienRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

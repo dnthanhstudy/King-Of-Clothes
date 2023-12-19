@@ -73,7 +73,7 @@
                         $.each(res.data, (index, item) => {
                             html += `<div class="row mt-3">
                                 <div class="col-2">
-                                    <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
+                                    <img src="/repository/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
                                     <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>

@@ -83,7 +83,7 @@
                                     <div class="card-body pb-0">
                                            <div class="d-flex mb-3 align-items-center">
                                                     <div class="dz-media mr-3 rounded-circle">
-                                                         <img src="/assets/images/nhanvien/\${item.anh}" alt="">
+                                                         <img src="/repository/\${item.anh}" alt="">
                                                     </div>
                                                      <div>
                                                        <h5 class="title">\${item.ten}</h5>
@@ -200,7 +200,7 @@
                                     <div class="card-body pb-0">
                                            <div class="d-flex mb-3 align-items-center">
                                                     <div class="dz-media mr-3 rounded-circle">
-                                                         <img src="/assets/images/nhanvien/\${item.anh}" alt="">
+                                                         <img src="/repository/\${item.anh}" alt="">
                                                     </div>
                                                      <div>
                                                        <h5 class="title">\${item.ten}</h5>

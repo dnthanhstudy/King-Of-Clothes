@@ -213,7 +213,7 @@
                 $("#thuong-hieu select").val(req.thuongHieu.slug)
                 let htmlImage = '';
                 $.each(req.anh, (index, item) => {
-                    htmlImage += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
+                    htmlImage += `<img src="/repository/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
                 })
                 $(".list-images").append(htmlImage)
 
@@ -262,7 +262,7 @@
                               </td>
                               <td>
                                 <input class="form-control image-variant"  type="file">`;
-                    htmlBienThe += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="image-variant mt-2 hinhanhbase64" style="width: 150px;" />
+                    htmlBienThe += `<img src="/repository/\${item.hinhAnh}" class="image-variant mt-2 hinhanhbase64" style="width: 150px;" />
                              </td>
                             </tr>`;
                 })

@@ -30,7 +30,7 @@
     <div class="row px-xl-5">
         <div class="col-lg-5 col-md-5 col-sm-12">
             <div class="row">
-                <img class="product-image-primary" src="/assets/images/sanpham/${product.anh[0].hinhAnh}" alt="Image">
+                <img class="product-image-primary" src="/repository/${product.anh[0].hinhAnh}" alt="Image">
             </div>
             <div class="row mt-3">
                 <div class="col">
@@ -39,7 +39,7 @@
                             <div class="card product-item border-0">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                     <img alt="Ảnh sản phẩm" class="img-fluid w-100"
-                                         src="/assets/images/sanpham/${item.hinhAnh}"/>
+                                         src="/repository/${item.hinhAnh}"/>
                                 </div>
                             </div>
                         </c:forEach>
@@ -209,7 +209,7 @@
                     <a href="/san-pham/${item.slug}" class="text-decoration-none">
                         <div class="card product-item border-0 hovers">
                             <div class="card-header  product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="/assets/images/sanpham/${item.anh[0].hinhAnh}"
+                                <img class="img-fluid w-100" src="/repository/${item.anh[0].hinhAnh}"
                                      style="height:350px" alt="">
                             </div>
                             <div class="card-body border border-left border-right text-center p-0 pt-4 pb-3">
