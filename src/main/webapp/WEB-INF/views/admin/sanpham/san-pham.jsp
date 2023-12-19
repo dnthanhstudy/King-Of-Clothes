@@ -74,13 +74,14 @@
     loadAllProduct();
     function loadAllProduct(){
         $.ajax({
-            url: "/api/san-pham/pagination?page="+pageCurrent + "&limit=" + limit,
+            url: "/api/san-pham?page="+pageCurrent + "&limit=" + limit,
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
+                    let isChecked = item.trangThai === "ACTIVE" ? "checked": "";
                     html += `<tr>
                                     <td>\${index+1}</td>
                                     <td><img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
@@ -90,15 +91,17 @@
                                     <td>\${item.thuongHieu.ten}</td>
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" checked>
+                                            <input class="checked-update-status" type="checkbox" \${isChecked}>
                                             <span class="slider"></span>
                                         </label>
                                     </td>
+                                    <input class="product-slug" type="hidden" value="\${item.slug}">
                                 </tr>
                             `;
                 })
                 $('.tbody-product').html(html);
                 $('#pagination').twbsPagination('destroy');
+
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -115,6 +118,15 @@
                         }
                     },
                 });
+
+                $('.checked-update-status').on('change', function(){
+                    const slug = $(this).closest("tr").find('.product-slug').val();
+                    if ($(this).is(":checked")) {
+                        updateTrangThai(slug, "ACTIVE");
+                    } else {
+                        updateTrangThai(slug, "INACTIVE");
+                    }
+                })
             },
             error: (error) => {
                 console.log(error);
@@ -242,6 +254,20 @@
             loadAllProduct()
         }
     });
+
+    function updateTrangThai(slug, trangThai){
+        $.ajax({
+            url: "/api/san-pham/update/" + slug,
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: trangThai,
+            success: (response) => {
+                showSuccess("Updated sản phẩm thành công");
+            },
+            error: (error) => {
+            }
+        })
+    }
 </script>
 </body>
 </html>

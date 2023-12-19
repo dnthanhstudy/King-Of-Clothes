@@ -178,4 +178,29 @@ public class SanPhamService implements ISanPhamService{
 		sanPhamRepository.save(sanPhamEntity);
 	}
 
+	@Override
+	public void updateTrangThai(String slug, String trangThai) {
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
+		sanPhamEntity.setTrangThai(trangThai);
+		sanPhamRepository.save(sanPhamEntity);
+	}
+
+	@Override
+	public Map<String, Object> findÁll(Integer pageCurrent, Integer limit) {
+		Map<String, Object> results = new HashMap<>();
+		Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
+		Page<SanPhamEntity> page = sanPhamRepository.findAllByOrderByNgayTaoDesc(pageable);
+
+		List<SanPhamResponse> listSanPhamResponse = page.getContent().stream().map(
+				item -> sanPhamConvert.convertToResponse(item)
+		).collect(Collectors.toList());
+
+		PageableResponse pageableResponse = new PageableResponse();
+		pageableResponse.setPageCurrent(pageCurrent);
+		pageableResponse.setTotalPage(page.getTotalPages());
+		results.put("meta", pageableResponse);
+		results.put("data", listSanPhamResponse);
+		return results;
+	}
+
 }

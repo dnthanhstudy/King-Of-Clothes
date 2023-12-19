@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
@@ -25,5 +26,7 @@ public interface ISanPhamService {
 
 	void delete(String slug);
 
+	void updateTrangThai(String slug, String trangThai);
 
+	Map<String, Object> findÁll(Integer pageCurrent, Integer limit);
 }

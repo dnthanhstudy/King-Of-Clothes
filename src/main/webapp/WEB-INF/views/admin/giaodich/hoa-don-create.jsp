@@ -500,8 +500,9 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title line-clamp-2">\${item.ten}</h5>`;
-                    html += htmlcoupon;
-                    html +=    `<h5 class="badge bg-success text-wrap">\${item.soLuong}</h5>`;
+                    html += htmlcoupon + `<p>
+                                            Sản phẩm có sẵn: <span class="product-quantity">\${item.soLuong}</span>
+                                        </p>`;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                     let htmlThuocTinh = `<div class="row mt-2">`;
@@ -689,8 +690,9 @@
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h5 class="card-title line-clamp-2">\${item.ten}</h5>`;
-                        html += htmlcoupon;
-                        html +=    `<h5 class="badge bg-success text-wrap">\${item.soLuong}</h5>`;
+                        html += htmlcoupon + `<p>
+                                            Sản phẩm có sẵn: <span class="product-quantity">\${item.soLuong}</span>
+                                        </p>`;
                         html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                         let htmlThuocTinh = `<div class="row mt-2">`;
@@ -1114,7 +1116,6 @@
                 loadHoaDon()
             },
             error: (error) => {
-                console.log(error)
                 showError(error.responseJSON.error)
             }
         });
@@ -1158,7 +1159,7 @@
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
             showError("Số tiền khách trả chưa đủ");
             return false;
-        } else if (parseInt($('#input-point').val()) > parseInt($('#point-customer').text())) {
+        }else if(parseInt($('#input-point').val()) > parseInt($('#point-customer').text())){
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
             return false;
         } else {
@@ -1282,7 +1283,6 @@
         data['maNhanVien'] = ma;
         data['tienGiamGia'] = parseFloat($('#discount').text());
 
-        console.log(data)
         $.ajax({
             url: "/api/hoa-don-off",
             method: "PUT",
