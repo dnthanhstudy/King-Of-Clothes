@@ -586,7 +586,9 @@
                             data: JSON.stringify(attributeId),
                             success: (response) => {
                                 variantId = response.id;
-                                couponId = response.khuyenMaiHienThiResponse.id;
+                                if(response.khuyenMaiHienThiResponse !== null){
+                                    couponId = response.khuyenMaiHienThiResponse.id;
+                                }
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
@@ -595,6 +597,8 @@
                                 if (response.khuyenMaiHienThiResponse !== null) {
                                     $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
                                 }
+
+                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
 
                                 $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
                                     let res = $(item).html();
