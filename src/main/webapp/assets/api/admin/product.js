@@ -1,7 +1,7 @@
 function validateProduct() {
-    let ten = $("#ten").val();
-    let gia = $("#gia").val();
-    let soLuong = $("#so-luong").val();
+    let ten = $("#ten").val().trim();
+    let gia = $("#gia").val().trim();
+    let soLuong = $("#so-luong").val().trim();
 
     if (ten === "") {
         showError("Tên sản phẩm không được để trống");
@@ -11,9 +11,17 @@ function validateProduct() {
         showError("Giá không được để trống");
         return false;
     }
+    else if(isNaN(gia)){
+        showError("Giá không hợp lệ. Vui lòng nhập số");
+        return false;
+    }
 
     if (soLuong === "") {
         showError("Số lượng không được để trống");
+        return false;
+    }
+    else if(isNaN(soLuong)){
+        showError("Số lượng không hợp lệ. Vui lòng nhập số");
         return false;
     }
 
@@ -43,6 +51,16 @@ $(".btn-add-product").on("click", function (event) {
             return false;
         }
         data["bienThe"] = getVariants();
+        $.each(data["bienThe"], function (index, item) {
+            if (isNumber(item.gia) === false || isNumber(item.soLuong) === false) {
+                showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
+                hasEmptyGiaTris = true;
+                return false;
+            }
+        });
+        if (hasEmptyGiaTris) {
+            return false;
+        }
         $.ajax({
             url: "/api/san-pham",
             method: "POST",

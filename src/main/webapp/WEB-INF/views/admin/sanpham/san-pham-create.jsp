@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-3">
                         <label for="slug" class="form-label">Slug</label>
-                        <input name="slug" type="text" class="form-control" id="slug" readonly disabled/>
+                        <input name="slug" type="text" class="form-control" id="slug" readonly/>
                     </div>
 
                     <div class="col-3">
@@ -192,8 +192,9 @@
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
 </script>
-<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 <script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/validate.js'/>"></script>
 <script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
+<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>
 </html>
