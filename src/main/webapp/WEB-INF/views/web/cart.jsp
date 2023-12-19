@@ -550,7 +550,6 @@
     }
 
     function tongTienTheoGhct(listCheckbox) {
-        console.log(listCheckbox)
         if (listCheckbox.length == 0) {
             $("#thanhtien").html(0 + "₫");
             $("#tongthanhtoan").html(0 + "₫");

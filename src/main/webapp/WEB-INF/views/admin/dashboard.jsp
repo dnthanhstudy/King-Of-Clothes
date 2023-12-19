@@ -602,6 +602,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Mã hoá đơn</th>
                             <th scope="col">Ngày đặt</th>
+                            <th scope="col">Ngày thanh toán</th>
                             <th scope="col">Mã khách hàng</th>
                             <th scope="col">Tên người đặt</th>
                             <th scope="col">Tổng tiền hàng</th>
@@ -653,6 +654,7 @@
                                 <th scope="col">Ngày</th>
                                 <th scope="col">Tổng hóa đơn</th>
                                 <th scope="col">Tổng sản phẩm đã bán</th>
+                                <th scope="col">Số lượng khuyến mãi đã bán</th>
                                 <th scope="col">Tổng doanh thu</th>
                             </tr>
                             </thead>
@@ -885,6 +887,7 @@
                         <th scope="row">\${index+1}</th>
                         <td>\${item.ma}</td>
                         <td>\${formatDate(item.ngayDat)}</td>
+                        <td>\${formatDate(item.ngayThanhToan)}</td>
                         <td>\${item.maKhachHang}</td>
                         <td>\${item.tenNguoiDat}</td>
                         <td>\${convertVND(item.tongTienHang)}</td>
@@ -907,6 +910,9 @@
 
     $("#formsearchhd").submit();
     function formatDate(date) {
+        if (!date){
+            return "";
+        }
         date = new Date(date)
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -929,6 +935,7 @@
                                 <td>\${getFormattedDate(item.ngay)}</td>
                                 <td>\${item.tongHoaDonBanDuoc}</td>
                                 <td>\${item.soLuong}</td>
+                                <td>\${item.soLuongKhuyenMai}</td>
                                 <td>\${convertVND(item.tongTienHang)}</td>
                             </tr>
                         `;

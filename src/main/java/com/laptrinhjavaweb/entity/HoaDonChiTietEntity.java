@@ -68,7 +68,9 @@ public class HoaDonChiTietEntity extends BaseEntity{
 					LocalDate localNgayBatDau = ngayBatDau.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					LocalDate localNgayKetThuc = ngayKetThuc.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-					return !localNgayBatDau.isAfter(ngayHienTai) && !localNgayKetThuc.isBefore(ngayHienTai);
+					return !localNgayBatDau.isAfter(ngayHienTai) &&
+							!localNgayKetThuc.isBefore(ngayHienTai)&&khuyenMai1.getKhuyenMai().getSoLuong()>0
+							&&!khuyenMai1.getTrangThai().equals("EXPIRED");
 				})
 				.findFirst();
 	}
@@ -76,6 +78,9 @@ public class HoaDonChiTietEntity extends BaseEntity{
 		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = getKhuyenMai();
 		if (khuyenMaiHopLeOptional.isPresent()) {
 			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
+			if (khuyenMaiHopLe.getTrangThai().equals("EXPIRED")||khuyenMaiHopLe.getTrangThai().equals("DELETE")){
+				return null;
+			}
 			KhuyenMaiEntity khuyenMai = khuyenMaiHopLe.getKhuyenMai();
 			Double giaTri = khuyenMai.getGiaTri();
 			if (khuyenMai.getLoai().equals("1"))
