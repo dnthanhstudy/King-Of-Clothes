@@ -35,7 +35,7 @@
                                                 <label class="col-lg-2 col-form-label" >Mã khuyến mãi <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="maKM" name="val-text" placeholder="Nhập vào">
+                                                    <input type="text" class="form-control" id="maKM" name="val-text" placeholder="Nhập vào" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -191,7 +191,8 @@
                                                             <div class="input-group-prepend">
                                                                 <select  class="form-control default-select" id="trangThai" name="trangThai">
                                                                     <option value="ACTIVE">Đang diễn ra</option>
-                                                                    <option value="EXPIRED">Kết thúc khuyến mại</option>
+                                                                    <option value="DELETE">Dừng khuyến mãi</option>
+                                                                    <option value="EXPIRED">Đã kết thúc</option>
                                                                     <option value="UPCOMING">Sắp diễn ra</option>
                                                                 </select>
                                                             </div>

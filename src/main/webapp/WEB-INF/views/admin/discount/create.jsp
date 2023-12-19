@@ -29,7 +29,7 @@
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="maKM" name="val-text"
-                                                           placeholder="Nhập vào">
+                                                           placeholder="Nhập vào" disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -543,7 +543,7 @@
         //         isValid = false;
         //     }
         // }
-        if ($("#tenKM").val() === "") {
+        if ($("#tenKM").val().trim() === "") {
             showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
             isValid = false;
         }

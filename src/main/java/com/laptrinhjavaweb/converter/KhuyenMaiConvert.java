@@ -29,6 +29,7 @@ public class KhuyenMaiConvert {
     }
     public KhuyenMaiEntity convertToEntity(KhuyenMaiRequest request) {
         KhuyenMaiEntity entity = modelMapper.map(request, KhuyenMaiEntity.class);
+        entity.setTong(request.getSoLuong());
         return entity;
     }
 

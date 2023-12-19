@@ -16,10 +16,10 @@ public interface KhuyenMaiRepository extends JpaRepository<KhuyenMaiEntity, Long
 
     KhuyenMaiEntity findByMa(String ma);
 
-    @Query("SELECT km FROM KhuyenMaiEntity km WHERE km.trangThai <> ?1 ORDER BY km.ngayTao DESC")
+    @Query("SELECT km FROM KhuyenMaiEntity km ORDER BY km.ngayTao DESC")
     List<KhuyenMaiEntity> findAllByTrangThai(String active);
 
-    @Query("SELECT km FROM KhuyenMaiEntity km WHERE km.trangThai <> ?1 ORDER BY km.ngayTao DESC")
+    @Query("SELECT km FROM KhuyenMaiEntity km ORDER BY km.ngayTao DESC")
     Page<KhuyenMaiEntity> findAllByTrangThai(String active, Pageable pageable);
 
     @Query(value = "SELECT sum(soluong) as soluongsudung, sum(thanhtien) as sotienthuduoc, sum(sotiengiam) as sotiengiam FROM hoadonchitiet WHERE idkhuyenmai = :id", nativeQuery = true)
