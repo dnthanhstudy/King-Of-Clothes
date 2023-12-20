@@ -30,6 +30,9 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@Column(name = "thanhtien")
 	private Double thanhTien;
 
+	@Column(name = "sotiengiam")
+	private Double soTienGiam;
+
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;

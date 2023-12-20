@@ -11,17 +11,21 @@ import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import com.laptrinhjavaweb.service.IKhachHangService;
+import com.laptrinhjavaweb.utils.GenerateRandomCode;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -50,6 +54,22 @@ public class KhachHangService implements IKhachHangService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Value("datnnhom@gmail.com") private String sender;
+
+    @Override
+    public void sendPassRandom(String recipient, String password) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(sender);
+        mailMessage.setTo(recipient);
+        mailMessage.setSubject("Mật khẩu của quý khách");
+        mailMessage.setText("Quý khách sử dụng mật khẩu này để đăng nhập vào cửa hàng King Of Clothes: " + password);
+
+        javaMailSender.send(mailMessage);
+    }
 
     @Override
     public KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai) {
@@ -132,7 +152,10 @@ public class KhachHangService implements IKhachHangService {
         khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
         khachHangEntity.setTrangThai("ACTIVE");
-        khachHangEntity.setMatKhau(passwordEncoder.encode("123456"));
+        String randomMatKhau = GenerateRandomCode.generateRandomCode(6);
+        sendPassRandom(khachHangEntity.getEmail(), randomMatKhau);
+        khachHangEntity.setMatKhau(passwordEncoder.encode(randomMatKhau));
+
         khachHangRepository.save(khachHangEntity);
         KhacHangResponse result = khachHangConverter.convertToResponse(khachHangEntity);
         result.setId(khachHangEntity.getId());

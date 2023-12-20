@@ -1,7 +1,6 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.response.KhacHangResponse;
-import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.response.TimKiemSanPhamResponse;
 import com.laptrinhjavaweb.resquest.KhachHangRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface IKhachHangService {
+
+    void sendPassRandom(String recipient, String password);
 
     KhacHangResponse findBySoDienThoaiOrEmailAndTrangThai(String sodienThoai, String email, String trangThai);
 
