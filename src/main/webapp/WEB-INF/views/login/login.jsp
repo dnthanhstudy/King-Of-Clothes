@@ -60,7 +60,7 @@
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail"> Nhập Email/Số điện thoại</label>
 
-                                <input type="text" class="form-control form-control-lg" value="admin9193"
+                                <input type="text" class="form-control form-control-lg" value=""
                                        name="j_username" id="signinSrEmail" placeholder="" >
                             </div>
                             <!-- End Form Group -->
@@ -75,19 +75,10 @@
                                 </label>
 
                                 <div class="input-group input-group-merge">
-                                    <input type="password" class="js-toggle-password form-control form-control-lg" name="j_password" id="signupSrPassword" placeholder="*************" value="123456">
+                                    <input type="password" class="js-toggle-password form-control form-control-lg" name="j_password" id="signupSrPassword" placeholder="*************" value="">
                                 </div>
                             </div>
                             <!-- End Form Group -->
-
-                            <!-- Checkbox -->
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox">
-                                    <label class="custom-control-label text-muted" for="termsCheckbox"> Nhớ mật khẩu</label>
-                                </div>
-                            </div>
-                            <!-- End Checkbox -->
 
                             <button type="submit" class="btn btn-lg btn-block btn-primary">Đăng nhập</button>
                         </form>

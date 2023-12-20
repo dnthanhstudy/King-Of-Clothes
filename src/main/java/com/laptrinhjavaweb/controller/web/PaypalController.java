@@ -169,6 +169,12 @@ public class PaypalController {
         return "redirect:/pay";
     }
 
+    @GetMapping(value = "/naptienthanhcong")
+    public String naptientc(
+    ) {
+        return "paypal/naptientc";
+    }
+
     @GetMapping(value = "/successurl/{idvidientu}/{tienviet}")
     public String thanhcongtest(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,
                                 @PathVariable(name = "idvidientu") Long idvidientu,
@@ -179,7 +185,7 @@ public class PaypalController {
             System.out.println(payment.toJSON());
             if (payment.getState().equals("approved")) {
                 viDienTuService.congTien(tienviet, idvidientu);
-                return "paypal/success";
+                return "paypal/naptientc";
             }
         } catch (PayPalRESTException e) {
             System.out.println(e.getMessage());

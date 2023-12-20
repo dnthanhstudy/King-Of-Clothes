@@ -76,6 +76,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             KhuyenMaiSanPhamEntity entity = new KhuyenMaiSanPhamEntity();
             entity.setKhuyenMai(result);
             entity.setSanPham(spEntity);
+            entity.setTrangThai("ACTIVE");
             khuyenMaiSanPhamRepository.save(entity);
             if (result.getTrangThai().equals("UPCOMING")) {
                 entity.setTrangThai("UPCOMING");
