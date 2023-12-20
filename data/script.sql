@@ -893,7 +893,7 @@ CREATE TABLE IF NOT EXISTS `calam` (
   CONSTRAINT `FKqwajinxv270ke9tysey6xigop` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.calam: ~0 rows (approximately)
+-- Dumping data for table duantotnghiep.calam: ~1 rows (approximately)
 INSERT INTO `calam` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotiencuoica`, `sotiendauca`, `idnhanvien`, `ghichu`, `tienchenhlech`, `tienmatbangiao`) VALUES
 	(8, NULL, '2023-12-16 16:03:08', NULL, 'nguyenvana0183', 'ACTIVE', NULL, 500000, 1, NULL, NULL, NULL);
 
@@ -932,7 +932,7 @@ CREATE TABLE IF NOT EXISTS `chitieu` (
   CONSTRAINT `FK7fr74dox50p8nxx296nhl6740` FOREIGN KEY (`idvidientu`) REFERENCES `vidientu` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.chitieu: ~34 rows (approximately)
+-- Dumping data for table duantotnghiep.chitieu: ~35 rows (approximately)
 INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `loaichitieu`, `sotien`, `idvidientu`) VALUES
 	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 110000, 1),
 	(2, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 0, 220000, 1),
@@ -3065,7 +3065,7 @@ CREATE TABLE IF NOT EXISTS `giohang` (
   CONSTRAINT `FKrotib125snysssa1uiikkfj1b` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohang: ~12 rows (approximately)
+-- Dumping data for table duantotnghiep.giohang: ~14 rows (approximately)
 INSERT INTO `giohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `idkhachhang`) VALUES
 	(1, NULL, '2023-11-22 18:17:55', NULL, 'dangngocthanh0133', 'ACTIVE', 1),
 	(2, NULL, '2023-11-28 14:39:34', NULL, 'dinhanhtuan0812', 'ACTIVE', 2),
@@ -3104,7 +3104,7 @@ CREATE TABLE IF NOT EXISTS `giohangchitiet` (
   CONSTRAINT `FKrxrj4t2nvkmcprh4ee0ehbvwi` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohangchitiet: ~65 rows (approximately)
+-- Dumping data for table duantotnghiep.giohangchitiet: ~66 rows (approximately)
 INSERT INTO `giohangchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `idbienthe`, `idgiohang`, `idsanpham`) VALUES
 	(1, '2023-11-22 18:19:20', '2023-11-22 18:17:56', 'dangngocthanh0133', 'dangngocthanh0133', 'ACTIVE', NULL, 0, 4, 1, NULL),
 	(2, '2023-11-28 15:02:54', '2023-11-28 14:39:34', 'admin9193', 'dinhanhtuan0812', 'DELETE', NULL, 1, 225, 2, NULL),
@@ -3211,7 +3211,7 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   CONSTRAINT `FKotnlgqnkhi19yrgi907nev953` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadon: ~73 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadon: ~75 rows (approximately)
 INSERT INTO `hoadon` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `ma`, `mota`, `ngaydat`, `ngaydukiengiaohang`, `ngaynhanhang`, `ngaythanhtoan`, `phuongthucthanhtoan`, `sodienthoai`, `tennguoinhan`, `tienkhachtra`, `tienship`, `tongtienhang`, `idkhachhang`, `idlydohuydon`, `idnhanvien`, `magiaohang`, `loai`, `ngaygiaohang`, `tiengiamgia`) VALUES
 	(3, '2023-11-28 15:03:06', '2023-11-28 15:02:54', 'admin9193', 'admin9193', 'CHONHANDON', 'Hà Nội, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD3', NULL, '2023-11-28 15:03:06', NULL, NULL, '2023-11-28 15:03:06', 'THANHTOANNHANHANG', '09876543121', 'admin', NULL, 0, 280000, 2, NULL, NULL, NULL, NULL, NULL, NULL),
 	(4, '2023-12-11 16:40:41', '2023-12-11 16:20:41', 'dinhtuananh0183', 'dinhtuananh0183', 'CHONHANDON', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD4', 'Ok shop', '2023-12-11 16:40:41', NULL, NULL, '2023-12-11 16:40:41', 'THANHTOANNHANHANG', '0977853450', 'Đinh Tuấn Anh', 722301, 25301, 697000, 5, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -3316,7 +3316,7 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   CONSTRAINT `FKhv6nwlu151jpu9ikpe9fonvi6` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadonchitiet: ~134 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadonchitiet: ~138 rows (approximately)
 INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `thanhtien`, `idbienthe`, `idhoadon`, `idkhuyenmai`, `sotiengiam`, `idsanpham`) VALUES
 	(27, NULL, '2023-12-16 08:32:21', NULL, 'admin9193', 'ACTIVE', 275000, 1, 275000, 226, 87, 20, NULL, 38),
 	(28, '2023-12-16 08:55:04', '2023-12-16 08:42:24', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 88, 23, NULL, 49),
@@ -3481,7 +3481,7 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   UNIQUE KEY `UK_h52m162a489iuk0ffo82aa16w` (`sodienthoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khachhang: ~24 rows (approximately)
+-- Dumping data for table duantotnghiep.khachhang: ~23 rows (approximately)
 INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `email`, `gioitinh`, `ma`, `matkhau`, `mota`, `ngaysinh`, `sodienthoai`, `ten`, `expiretime`, `resttoken`, `loai`) VALUES
 	(1, NULL, '2023-11-19 16:57:34', NULL, 'nguyenvana@gmail.com', 'ACTIVE', 'dangngocthanh@gmail.com', 'Nam', 'dangngocthanh0133', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 16:57:25', '0372092723', 'Đặng Ngọc Thanh', NULL, NULL, NULL),
 	(2, '2023-12-16 16:01:30', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'dinhanhtuan@gmail.com', 'Nam', 'dinhanhtuan0812', '$2a$10$nGSToRTIXfyL3lz0aG02mO0kQFMwxOVVMJlY4KJFb/F64.r7irDYW', '', '2003-12-08 00:00:00', '0384082003', 'Đinh Anh Tuấn', NULL, NULL, NULL),
@@ -3493,14 +3493,9 @@ INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(8, NULL, '2023-12-16 09:10:16', NULL, 'admin9193', 'ACTIVE', '', NULL, 'nguyenvana5849', NULL, NULL, NULL, '0987654322', 'Nguyễn Văn A', NULL, NULL, NULL),
 	(9, NULL, '2023-12-17 06:51:50', NULL, 'anonymous', 'ACTIVE', 'tuan@gmail.com', NULL, 'anh8536', '$2a$10$GCiokf2LFUVRsXA8wzS2UeyYirUpG7xsLTeTwTJ.HqyUgqY/4d.ne', NULL, NULL, '0384082004', 'Anh ', NULL, NULL, NULL),
 	(10, NULL, '2023-12-17 06:55:51', NULL, 'anonymous', 'ACTIVE', 'linh12@gmail.com', NULL, 'linh8143', '$2a$10$bJ5ilr0FMQr0KEHuJt.p8.f6Y2u5iyWG83GTDZyqU0dtpDffHHRmK', NULL, NULL, '0979386057', 'Linh', NULL, NULL, NULL),
-	(11, NULL, '2023-12-17 07:27:12', NULL, 'admin9193', 'ACTIVE', 'tun@fpt.edu.vn', NULL, 'linh1634', NULL, NULL, NULL, '0341254852', 'Linh', NULL, NULL, NULL),
 	(12, '2023-12-18 03:28:25', '2023-12-17 07:33:10', 'khanhlinh4878', 'admin9193', 'INACTIVE', 'abc@gmai;.com', NULL, 'abc7192', NULL, NULL, NULL, '0987764578', 'abc', NULL, NULL, NULL),
-	(13, NULL, '2023-12-17 07:40:04', NULL, 'admin9193', 'ACTIVE', '123@gmail.com', NULL, 'tuananh6883', NULL, NULL, NULL, '0389478933', 'Tuấn Anh', NULL, NULL, NULL),
-	(14, NULL, '2023-12-17 13:05:14', NULL, 'admin9193', 'ACTIVE', 'abcd@gmail.com', NULL, 'abcd2505', '$2a$10$CWc5D1r2vN4.to2T2gVT9OoOt2KGcMHERpyQczF6gZjR8Bq7MEZu6', NULL, NULL, '0951285125', 'abcd', NULL, NULL, NULL),
 	(21, NULL, '2023-12-18 03:21:48', NULL, 'khanhlinh4878', 'ACTIVE', 'linh@gmail.com', 'Nữ', 'khanhlinh1416', '$2a$10$VDgfB9V2Io1dH9kz9YtvxO9humJCUGaqWefDdlY.2s3bHHE1PJjFO', 'Ahihihihi', '2000-11-11 00:00:00', '0542454345', 'Khánh Linh', NULL, NULL, NULL),
 	(22, NULL, '2023-12-18 04:26:07', NULL, 'nguyenvana0183', 'ACTIVE', '', NULL, 'tuan3174', '$2a$10$lRnlXTFFNdtT72QwIaiimOuzPOQHeqLQMiCCLfFYdwIVxFqdARrBy', NULL, NULL, '0951275812', 'Tuấn', NULL, NULL, NULL),
-	(23, NULL, '2023-12-18 04:28:19', NULL, 'admin9193', 'ACTIVE', '', 'Nam', 'hihi8123', '$2a$10$/DrlMtlvjXI7jO6.1Y5tK.US4jDsDQLIaJdcFgZ0dfBjbVaqEtJu.', '', NULL, '0915182582', 'hihi', NULL, NULL, NULL),
-	(24, NULL, '2023-12-18 04:37:57', NULL, 'admin9193', 'ACTIVE', '', NULL, '4124', '$2a$10$J5lYbURC/rRdZqpri5SilugBUx4p5jYoRtEMD2kBt/EqjMFoft8r6', NULL, NULL, '', '', NULL, NULL, NULL),
 	(25, NULL, '2023-12-18 07:49:37', NULL, 'anonymous', 'ACTIVE', 'tun12@fpt.edu.vn', NULL, 'tuan6764', '$2a$10$/O1/ChwMTSJW6f6XK5NjCOgEVn18X3fIUsWp3ja.oj2ExDkFb3hEC', NULL, NULL, '0345485126', 'Tuấn', NULL, NULL, NULL),
 	(26, NULL, '2023-12-18 18:13:30', NULL, 'anonymous', 'ACTIVE', 'viethoang@gmail.com', NULL, 'viethoang8541', '$2a$10$cEoUvYhmOptyiGDsEDnImOTr04B894tKmovgZdiwRi9.51aah4Kv2', NULL, NULL, '0987876542', 'Việt Hoàng', NULL, NULL, NULL),
 	(27, NULL, '2023-12-18 18:24:44', NULL, 'anonymous', 'ACTIVE', 'thuyduong@gmail.com', NULL, 'hoangthuyduong8758', '$2a$10$D3J27560e.nnqQmwdHJrQu2q8XtOX07o/LuoGw9VHCjcpIXeQ0Xiy', NULL, NULL, '0987432213', 'Hoàng Thùy Dương', NULL, NULL, NULL),
@@ -3659,7 +3654,7 @@ CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
   CONSTRAINT `FKrabwvgudhyvmny1diurrq8lo` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lichsutichdiem: ~30 rows (approximately)
+-- Dumping data for table duantotnghiep.lichsutichdiem: ~34 rows (approximately)
 INSERT INTO `lichsutichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiemdung`, `sodiemtichduoc`, `idhoadon`, `idtichdiem`, `idkhachhang`) VALUES
 	(49, NULL, '2023-12-18 05:58:46', NULL, 'admin9193', 'ACTIVE', 100, 3, 161, NULL, 2),
 	(50, NULL, '2023-12-18 05:59:50', NULL, 'admin9193', 'ACTIVE', 5, 1, 162, NULL, 2),
@@ -4108,7 +4103,7 @@ CREATE TABLE IF NOT EXISTS `tichdiem` (
   CONSTRAINT `FK3cn0i0s6nyyqp3m7fb1uwyqv0` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.tichdiem: ~8 rows (approximately)
+-- Dumping data for table duantotnghiep.tichdiem: ~9 rows (approximately)
 INSERT INTO `tichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiem`, `idkhachhang`) VALUES
 	(1, NULL, '2023-12-17 16:51:04', NULL, 'admin9193', 'ACTIVE', 0, 12),
 	(2, '2023-12-19 05:15:09', '2023-12-17 17:11:42', 'admin9193', 'admin9193', 'ACTIVE', 9, 2),
@@ -4161,7 +4156,7 @@ CREATE TABLE IF NOT EXISTS `trangthaigiaohang` (
   CONSTRAINT `FKjjhu2d0nug7uqy9qqbaqjqf0a` FOREIGN KEY (`magiaohang`) REFERENCES `hoadon` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.trangthaigiaohang: ~122 rows (approximately)
+-- Dumping data for table duantotnghiep.trangthaigiaohang: ~123 rows (approximately)
 INSERT INTO `trangthaigiaohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `tentrangthai`, `idgiaohang`, `magiaohang`, `trangthaihoadon`) VALUES
 	(1, NULL, '2023-12-10 12:04:20', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 1, NULL),
 	(2, NULL, '2023-12-10 12:19:09', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 3, NULL),
@@ -4302,7 +4297,7 @@ CREATE TABLE IF NOT EXISTS `vidientu` (
   CONSTRAINT `FK67k6ih1yc8wc22q9qxgly084r` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.vidientu: ~13 rows (approximately)
+-- Dumping data for table duantotnghiep.vidientu: ~15 rows (approximately)
 INSERT INTO `vidientu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotien`, `idkhachhang`) VALUES
 	(1, '2023-12-19 05:05:37', '2023-11-19 16:59:26', 'doquochuy8173', 'doquochuy8173', 'ACTIVE', 1776299, 4),
 	(2, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 1),
