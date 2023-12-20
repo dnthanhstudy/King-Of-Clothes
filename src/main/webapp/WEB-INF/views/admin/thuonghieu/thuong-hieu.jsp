@@ -186,7 +186,7 @@
 
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
-        param = $('#searchAll').val();
+        param = $('#searchAll').val().trim();
         if(pageCurrent > 1){
             pageCurrent = 1;
         }
@@ -202,7 +202,7 @@
     function validateForm() {
         let isValid = true;
 
-        if ($("#ten").val() === "") {
+        if ($("#ten").val().trim() === "") {
             showError("Tên thương hiệu không được để trống");
             isValid = false;
         }
@@ -245,6 +245,7 @@
                             method: 'DELETE',
                             success: function (req) {
                                 showSuccess("Xóa thành công");
+                                loadThuongHieu();
                             },
                             error: function (xhr, status, error) {
                                 showError("Xóa thất bại");

@@ -24,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -59,17 +62,14 @@ public class ApiHoaDonController {
     }
 
     @GetMapping("/dshoadonresponse")
-    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")Date startDate,
-                                                       @RequestParam(value = "endDate")Date endDate,
-                                                       @RequestParam(value = "trangThai")String trangThai,
-                                                       @RequestParam(value = "phuongThucThanhToan")String phuongThucThanhToan
-
-    ){
-        if (startDate==null&&endDate==null){
-            return hoaDonService.dsHoaDonResponse();
-        }
-
-        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,startDate,endDate);
+    public List<DanhSachHoaDonResponse> danhSachHoaDon(@RequestParam(value = "startDate")String startDate,
+                                                       @RequestParam(value = "endDate")String endDate,
+                                                       @RequestParam(value = "trangThai",required = false,defaultValue = "")String trangThai,
+                                                       @RequestParam(value = "phuongThucThanhToan",required = false,defaultValue = "")String phuongThucThanhToan
+    ) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(startDate);
+        return  hoaDonService.dsHoaDonResponse(phuongThucThanhToan,trangThai,date,formatter.parse(endDate));
     }
 
     @GetMapping("/findall")
@@ -94,10 +94,7 @@ public class ApiHoaDonController {
     }
 
 
-//    @GetMapping("/dshoadon")
-//    public ResponseObject dsHoaDonOnline(){
-//        return new ResponseObject(hoaDonService.dsHoaDonOnline());
-//    }
+
 
     @GetMapping("/dshoadon")
     public List<HoaDonResponse> dsHoaDonOnline(@RequestParam(name = "ten",required = false,defaultValue = "")String ten,
@@ -113,13 +110,17 @@ public class ApiHoaDonController {
         HoaDonEntity hoaDon = hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
             PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
-            thu3Service.themTrangThaiGiaoHang(previewGiaoHang.getMaHoaDon(),"Đang được vận chuyển");
+            hoaDon.setMaGiaoHang(previewGiaoHang.getMaHoaDon());
+            hoaDonService.saveHoaDon(hoaDon);
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đơn hàng đã huỷ");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ");
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(hoaDon.getMaGiaoHang(),"Đã nhận hàng");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng");
+        } else if (trangThai.equals(TrangThaiHoaDon.DANGGIAOHANG)) {
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao");
         }
-       return  "Thay đổi trạng thái thành công";
+        return  "Thay đổi trạng thái thành công";
     }
 
     @PostMapping("/dathangnhanhang")

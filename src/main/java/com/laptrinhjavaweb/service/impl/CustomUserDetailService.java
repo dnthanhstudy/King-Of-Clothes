@@ -35,7 +35,7 @@ public class CustomUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MyUserResponse myUserResponse = null;
         List<GrantedAuthority> authorities = new ArrayList<>();
-        NhanVienResponse nhanVienResponse = nhanVienService.findByMaAndTrangThai(username, SystemConstant.IN_ACTICE);
+        NhanVienResponse nhanVienResponse = nhanVienService.findByMaAndTrangThai(username, SystemConstant.ACTICE);
         if(nhanVienResponse != null){
             authorities.add(new SimpleGrantedAuthority("ROLE_"+nhanVienResponse.getChucVu().getMa()));
             myUserResponse = new MyUserResponse(username, nhanVienResponse.getMatKhau(), true, true, true, true, authorities);

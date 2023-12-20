@@ -2,10 +2,8 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.ThuongHieuConverter;
-import com.laptrinhjavaweb.entity.DanhMucEntity;
 import com.laptrinhjavaweb.entity.ThuongHieuEntity;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
-import com.laptrinhjavaweb.response.DanhMucResponse;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.ThuongHieuResponse;
 import com.laptrinhjavaweb.resquest.ThuongHieuRequest;
@@ -49,7 +47,7 @@ public class ThuongHieuService implements IThuongHieuService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = thuongHieuRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, wholePage);
+            page = thuongHieuRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
             if(param != null) {
@@ -61,7 +59,7 @@ public class ThuongHieuService implements IThuongHieuService {
                 page = new PageImpl<>(pageContent, pageable, sizeOflistThuongHieuEntity);
 
             }else {
-                page = thuongHieuRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE, pageable);
+                page = thuongHieuRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE, pageable);
             }
         }
         listThuongHieuResponse = page.getContent().stream().map(

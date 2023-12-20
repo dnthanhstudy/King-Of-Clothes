@@ -7,7 +7,11 @@ import lombok.Setter;
 @Getter
 public class TichDiemRequest {
 
-    private String tenKhachHang;
+    private String maKhachHang;
 
-    private Integer soDiem;
+    private Integer soDiemDung;
+
+    private Integer soDiemTichDuoc;
+
+    private String trangThai = "ACTIVE";
 }

@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -67,6 +68,18 @@ public class GioHangServiceImpl implements GioHangService {
     public List<GioHangResponse> dsGioHangChiTietByIdKh(Long idKH) {
         return gioHangChiTietRepository.dsGioHangChiTietByIdKh(idKH);
     }
+
+    @Override
+    public List<List<GioHangResponse>> dsGioHangTheoSpByIdkh(Long idkh) {
+        List<List<GioHangResponse>> dsGioHangTheoSp = new ArrayList<>();
+        List<Long> dsidsp = gioHangChiTietRepository.dsspCuaGioHang(idkh);
+        for (Long idsp: dsidsp
+             ) {
+            dsGioHangTheoSp.add(gioHangChiTietRepository.dsGhctCuaSanPham(idkh,idsp));
+        }
+        return dsGioHangTheoSp;
+    }
+
     @Override
     public TongTienResponse tongTienTheoGioHangChiTiet(List<Long> lstGhct) {
         return gioHangChiTietRepository.tongTienTheoGioHangChiTiet( lstGhct);
@@ -98,7 +111,12 @@ public class GioHangServiceImpl implements GioHangService {
                 if (bienThe.getSoLuong()==0){
                     gioHangChiTiet.setTrangThai("DAHETHANG");
                 }else{
-                    gioHangChiTiet.setSoLuong(bienThe.getSoLuong());
+                    Integer sl = bienThe.getSoLuong();
+                    if (sl>10){
+                        gioHangChiTiet.setSoLuong(10);
+                    }else{
+                        gioHangChiTiet.setSoLuong(sl);
+                    }
                 }
                 gioHangChiTietRepository.save(gioHangChiTiet);
                 check= "1";
@@ -143,7 +161,10 @@ public class GioHangServiceImpl implements GioHangService {
 
         if (gioHangChiTiet==null){
             if (quantity>bienThe.getSoLuong()){
-                return "Số lượng tại cửa hàng hiện không đủ";
+                return "2";
+            }
+            if (quantity>10){
+                quantity=10;
             }
             gioHangChiTiet = new GioHangChiTietEntity();
             gioHangChiTiet.setBienThe(bienThe);
@@ -153,11 +174,14 @@ public class GioHangServiceImpl implements GioHangService {
         }else {
             int soLuongNeuThem = gioHangChiTiet.getSoLuong()+quantity;
             if (soLuongNeuThem>bienThe.getSoLuong()){
-                return "Số lượng tại cửa hàng không đủ";
+                soLuongNeuThem=10;
             }
-            gioHangChiTiet.setSoLuong(gioHangChiTiet.getSoLuong()+quantity);
+            if (soLuongNeuThem>10){
+                return "1";
+            }
+            gioHangChiTiet.setSoLuong(soLuongNeuThem);
         }
-      gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
+        gioHangChiTiet =   gioHangChiTietRepository.save(gioHangChiTiet);
         return gioHangChiTiet.getBienThe().getId().toString();
     }
 

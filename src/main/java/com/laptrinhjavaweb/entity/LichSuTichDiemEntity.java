@@ -15,8 +15,8 @@ import javax.persistence.*;
 public class LichSuTichDiemEntity extends BaseEntity{
 
 	@ManyToOne
-	@JoinColumn(name = "idtichdiem")
-	private TichDiemEntity tichDiem;
+	@JoinColumn(name = "idkhachhang")
+	private KhachHangEntity khachHang;
 	
 	@ManyToOne
 	@JoinColumn(name = "idhoadon")

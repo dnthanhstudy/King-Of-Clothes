@@ -16,7 +16,7 @@ $("#product").on("change", "input[type='radio']", function () {
                 $('.product-origin').text(response.gia);
 
                 if (response.hinhAnh !== null) {
-                    $('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                    $('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                 }
                 if (response.soLuong !== null) {
                     $('.product-quantity').text(response.soLuong)

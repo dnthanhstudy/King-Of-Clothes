@@ -74,7 +74,8 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span><span class="text-black ml-1 font-w550" id="loai"></span></div>
-                                    <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
+                                    <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="tong"></span></div>
+                                    <div class="mb-3">Số lượng còn lại:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
                                     <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550" id="soLuongSuDung">00</span></div>
                                     <div class="mb-3">
                                         <div class="mb-3">Sản phẩm khuyến mại:</div>
@@ -139,6 +140,7 @@
             var ngayTaoFMT = formatMicrosoftJSONDate(data.ngayTao);
             $("#ngayBatDauFMT").text(ngayBatDauFMT);
             $("#ngayketThucFMT").text(ngayKetThucFMT);
+            $("#tong").text(data.tong);
             $("#giaTriGiam").text(formatNumber(data.giaTri));
             var thongKe = data.thongKe;
 
@@ -174,7 +176,7 @@
                 html +=  `<tr>
                                 <td>\${i}</td>
                                 <td>
-                                    <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                    <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
                                 </td>
                                 <td>\${item.sanPhamResponse.ten}</td>
 
@@ -184,17 +186,24 @@
             $('.tbody-product-select').html(html);
             var cardBtn = $('#cardBtn');
             cardBtn.empty();
-            if(data.trangThai != "EXPIRED"){
-                var card1 = `
-                    <div class="col-lg-3 ml-right mb-3">
-                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật</a>
-                    </div>
-                `;
-                cardBtn.append(card1);
-            }
-            var card2 = `
+            // if(data.trangThai == "DELETE"){
+            //     var card1 = `
+            //         <div class="col-lg-3 ml-right mb-3">
+            //             <a class="btn btn-danger btn-undelete-khuyen-mai " data-ma="\${data.ma}">Tiếp tục khuyến mại</a>
+            //         </div>
+            //     `;
+            // }else if(data.trangThai != "EXPIRED"){
+            //     var card1 = `
+            //         <div class="col-lg-3 ml-right mb-3">
+            //             <a class="btn btn-danger btn-delete-khuyen-mai " data-ma="\${data.ma}">Dừng khuyến mại</a>
+            //
+            //         </div>
+            //     `;
+            //     cardBtn.append(card1);
+            // }
+                var card2 = `
                     <div class="col-lg-3 ml-right">
-                        <a class="btn btn-danger btn-delete-khuyen-mai " data-ma="\${data.ma}">Xóa khuyến mại</a>
+                        <a class="btn btn-info" href="/admin/khuyen-mai/edit/\${data.ma}" >Cập nhật</a>
                     </div>
                 `;
             cardBtn.append(card2);
@@ -202,13 +211,16 @@
             var badgeColor = "";
             if(data.trangThai == "EXPIRED"){
                 trangThaiStr = "Đã kết thúc";
-                badgeColor = "badge-danger";
+                badgeColor = "badge-success";
             }else if(data.trangThai == "UPCOMING"){
                 trangThaiStr = "Sắp diễn ra";
                 badgeColor ="badge-warning";
+            }else if(data.trangThai == "DELETE"){
+                trangThaiStr = "Đã dừng";
+                badgeColor ="badge-danger";
             }else{
                 trangThaiStr = "Đang diễn ra";
-                badgeColor="badge-success";
+                badgeColor="badge-primary";
             }
             var cardTrangThai = $('#cardTrangThai');
             cardTrangThai.empty();
@@ -237,7 +249,7 @@
     $('#cardBtn').on('click', (e) => {
         if ($(e.target).hasClass('btn-delete-khuyen-mai')) {
             let ma = $(e.target).data('ma');
-            showConfirm("Bạn có muốn xóa?", ma)
+            showConfirm("Bạn có muốn dừng khuyến mại?", ma)
                 .then((confirmed) => {
                     if (confirmed) {
                         $.ajax({
@@ -246,10 +258,32 @@
                             success: function (req) {
                                 console.log(req);
                                 loadKhuyenMai();
-                                showSuccess("Delete success");
+                                showSuccess("Dừng khuyến mại thành công!");
                             },
                             error: function (xhr, status, error) {
-                                showError("Delete fail");
+                                showError("Cập nhật không thành công");
+                            }
+                        });
+                    }
+                })
+        }
+    });
+    $('#cardBtn').on('click', (e) => {
+        if ($(e.target).hasClass('btn-delete-khuyen-mai')) {
+            let ma = $(e.target).data('ma');
+            showConfirm("Bạn có muốn tiếp tục khuyến mại?", ma)
+                .then((confirmed) => {
+                    if (confirmed) {
+                        $.ajax({
+                            url: '/api/khuyen-mai/undelete/' + ma,
+                            method: 'DELETE',
+                            success: function (req) {
+                                console.log(req);
+                                loadKhuyenMai();
+                                showSuccess("Cập nhật thành công!");
+                            },
+                            error: function (xhr, status, error) {
+                                showError("Cập nhật không thành công");
                             }
                         });
                     }

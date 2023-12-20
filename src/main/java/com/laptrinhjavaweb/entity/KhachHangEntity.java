@@ -55,6 +55,9 @@ public class KhachHangEntity extends BaseEntity{
 	@Column(name = "resttoken")
 	private String restToken;
 
+	@Column(name = "loai")
+	private String loai;
+
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<HoaDonEntity> hoaDonEntities  = new ArrayList<>();
 	
@@ -78,4 +81,7 @@ public class KhachHangEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<ViDienTuEntity> viDienTuEntities = new ArrayList<>();
+
+	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
+	private List<LichSuTichDiemEntity> lichSuTichDiemEntities = new ArrayList<>();
 }

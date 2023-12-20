@@ -41,7 +41,7 @@
 </div>
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-
+    function loadTable() {
     $.ajax({
         url: '/api/hoadon/dshdtheott/' + idkh + '?trangthai=DANHANDON',
         method: "GET",
@@ -66,7 +66,7 @@
                     $.each(res.data, (index, item) => {
                         html += `<div class="row mt-3">
                                 <div class="col-2">
-                                    <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
+                                    <img src="/repository/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
                                     <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>
@@ -81,6 +81,7 @@
                             </div>
                             <hr>`;
                     });
+                    let genderHtml = genderTrangThaiHd(item.id,item.ma,item.trangThai);
                     html += `<div class="row">
                             <div class="col-9"></div>
                             <div class="col-3">
@@ -100,9 +101,7 @@
                                         <span class="text-danger" style="font-size: 25px">\${formatNumber(item.tongTien)}₫</span>
                                     </div>
                                 </div>
-                                <div class="my-2 text-right">
-                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
-                                </div>
+                                \${genderHtml}
                             </div>
                         </div>
                     </div>
@@ -117,6 +116,24 @@
             console.log(error);
         }
     });
+    }
+    loadTable()
+    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+        var luuy = $("#luuy").val();
+        parameter += `&luuy=\${encodeURIComponent(luuy)}`;
+        $.ajax({
+            url: `/api/hoadon/thaydoitrangthai`+parameter,
+            method: 'GET',
+            success: function (req) {
+                showSuccess("Huỷ đơn thành công");
+                loadTable();
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
 </script>
 </body>
 </html>

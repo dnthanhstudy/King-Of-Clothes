@@ -11,6 +11,8 @@ public interface TrangThaiGiaoHangResponse {
 
     @Value("#{target.tenTrangThai}")
     String getTenTrangThai();
+  @Value("#{target.trangThaiHoaDon}")
+    String getMaVanHang();
 
     @Value("#{target.hoaDon.maGiaoHang}")
     String getMaGiaoHang();

@@ -72,7 +72,7 @@ public class BienTheService implements IBienTheService{
 	}
 
 	public void saveImage(BienTheRequest request) {
-		String path = SystemConstant.path + "/sanpham/" + request.getHinhAnh();
+		String path = SystemConstant.path + "/" + request.getHinhAnh();
 		if (request.getBase64() != null) {
 			byte[] bytes = Base64.decodeBase64(request.getBase64().getBytes());
 			uploadFileUtils.writeOrUpdate(path, bytes);

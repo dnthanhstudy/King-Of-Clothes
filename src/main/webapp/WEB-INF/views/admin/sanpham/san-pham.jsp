@@ -18,10 +18,10 @@
                 <a href="/admin/san-pham/create" class="btn btn-primary">Thêm mới</a>
             </div>
             <div class="p-2 ms-auto">
-                <select class="form-control">
+                <select id="filter-quantity" class="form-control">
+                    <option value="5">5</option>
                     <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
+                    <option value="50">50</option>
                 </select>
             </div>
         </div>
@@ -70,34 +70,38 @@
 <script>
     let param = '';
     let pageCurrent = 1;
+    let limit = 5;
     loadAllProduct();
     function loadAllProduct(){
         $.ajax({
-            url: "/api/san-pham/pagination?page="+pageCurrent,
+            url: "/api/san-pham?page="+pageCurrent + "&limit=" + limit,
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
-                console.log(response);
                 let html = '';
                 $.each(response.data, (index, item) => {
+                    let isChecked = item.trangThai === "ACTIVE" ? "checked": "";
                     html += `<tr>
-                                <td>\${index+1}</td>
-                                <td>
-                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;">
-                                </td>
-                                <td>\${item.ten}</td>
-                                <td>\${item.gia}</td>
-                                <td>\${item.danhMuc.ten}</td>
-                                <td>\${item.thuongHieu.ten}</td>
-                                <td>
-                                    <a href="/admin/san-pham/edit/\${item.slug}" class="btn btn-warning">Sửa</a>
-                                    <button class="btn btn-danger btn-delete-san-pham" value="\${item.slug}">Xóa</button>
-                                </td>
-                            </tr>`;
+                                    <td>\${index+1}</td>
+                                    <td><img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
+                                   <td><a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a></td>
+                                    <td>\${item.gia}</td>
+                                    <td>\${item.danhMuc.ten}</td>
+                                    <td>\${item.thuongHieu.ten}</td>
+                                    <td>
+                                        <label class="switch">
+                                            <input class="checked-update-status" type="checkbox" \${isChecked}>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                    <input class="product-slug" type="hidden" value="\${item.slug}">
+                                </tr>
+                            `;
                 })
                 $('.tbody-product').html(html);
                 $('#pagination').twbsPagination('destroy');
+
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
                     totalPages: response.meta.totalPage,
@@ -114,6 +118,15 @@
                         }
                     },
                 });
+
+                $('.checked-update-status').on('change', function(){
+                    const slug = $(this).closest("tr").find('.product-slug').val();
+                    if ($(this).is(":checked")) {
+                        updateTrangThai(slug, "ACTIVE");
+                    } else {
+                        updateTrangThai(slug, "INACTIVE");
+                    }
+                })
             },
             error: (error) => {
                 console.log(error);
@@ -123,7 +136,7 @@
 
     function searchSanPham(param){
         $.ajax({
-            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent,
+            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit="+limit,
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -142,9 +155,9 @@
                         html += `<tr>
                                 <td>\${index+1}</td>
                                 <td>
-                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                    <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
                                 </td>
-                                <td>\${item.ten}</td>
+                                <td><a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a></td>
                                 <td>\${item.gia}</td>
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
@@ -156,7 +169,6 @@
                     })
                     $('.tbody-product').html(html);
 
-                    console.log(response);
                     $('#pagination').twbsPagination('destroy');
                     $('#pagination').twbsPagination({
                         first: "First",
@@ -191,7 +203,7 @@
         pageCurrent = 1;
         searchButton.on('keydown', function(event) {
             if (event.which === 13) {
-                param = searchButton.val();
+                param = searchButton.val().trim();
                 if(pageCurrent > 1){
                     pageCurrent = 1;
                 }
@@ -199,31 +211,6 @@
             }
         });
     });
-
-
-
-    $('.tbody-product').on('click', (e) => {
-        if($(e.target).hasClass('btn-delete-san-pham')){
-            let slug = $(e.target).val();
-            showConfirm("Bạn có muốn xóa?", slug)
-                .then((confirmed) => {
-                    if (confirmed) {
-                        $.ajax({
-                            url: '/api/san-pham/' + slug,
-                            method: 'DELETE',
-                            success: function (req) {
-                                loadAllProduct();
-                                showSuccess("Delete success");
-                            },
-                            error: function (xhr, status, error) {
-                                showError("Delete fail");
-                            }
-                        });
-                    }
-                })
-        }
-    })
-
 
     $(document).ready(function() {
         // Xác định thẻ table và thẻ th
@@ -257,6 +244,30 @@
             return $(row).children('td').eq(index).text();
         }
     });
+
+    $('#filter-quantity').on('change', function(){
+        let quantity = $(this).val();
+        limit = quantity;
+        if(param !== ""){
+            searchSanPham(param)
+        }else{
+            loadAllProduct()
+        }
+    });
+
+    function updateTrangThai(slug, trangThai){
+        $.ajax({
+            url: "/api/san-pham/update/" + slug,
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: trangThai,
+            success: (response) => {
+                showSuccess("Updated sản phẩm thành công");
+            },
+            error: (error) => {
+            }
+        })
+    }
 </script>
 </body>
 </html>

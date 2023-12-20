@@ -84,8 +84,6 @@
                                      style='color:#b29898'></i> Voucher</span>
                         </div>
                         <div class="col-6 text-right">
-                            <span class=" text-cyan">Chọn hoặc nhập mã</span>
-
                         </div>
                     </div>
                 </div>
@@ -103,7 +101,6 @@
                     <a>Xóa</a>
                 </div>
                 <div class="col-4 mt-2">
-                    <span>Lưu vào mục đã thích</span>
                 </div>
                 <div class="col-5">
                     <div class="row">
@@ -199,7 +196,6 @@
         let html = '';
 
         thuocTinhSanPham.forEach(function (item,index) {
-            console.log(item)
             html += `
         <li>
                                             <div class="color-selector">
@@ -226,7 +222,6 @@
 
     function setGiaTien(giaTien,giaTienKm,idGhct) {
         var html = '';
-        console.log(giaTienKm)
         if (!giaTienKm){
             html+=  `
             <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTien)}</b>
@@ -240,99 +235,107 @@
         return html;
     }
     async function ghct() {
-        await $.ajax({
-            url: '/api/user/giohang/' + idkh,
-            method: 'GET',
-            success: function (data) {
-                console.log(data)
-                var tbody = $("#cart");
-                tbody.empty();
-                if (data.length==0){
-                    tbody.append(`
-                    <h3 class="text-center"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>
-                    `)
-                }else{
-                    data.forEach(async function (sp){
-                        const thuocTinhSanPham =await getThuocTinhSanPham(sp.slugSanPham);
-                        const htmlGiaTien = setGiaTien(sp.giaTien,sp.giaTienKm,sp.idGhct);
-                        const htmlthuoctinh = getDsBienThe(thuocTinhSanPham,sp.idGhct,sp.tenBienThe.split(","));
-                        var html =
-                            `
-<div class="row mt-2" style="border-bottom: 1px solid #dedede">
-    <div class="col-5">
-                               <div class="form-check align-items-center justify-content-between mb-3 datacart">
-                                   <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
-            <label class="form-check-label"">
-                <div class="mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-lg-3">
-<a href="/san-pham/\${sp.slugSanPham}">
-                            <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">
-</a>
-                        </div>
-                        <div class="col-lg-9">
-                            <div class="card-body">
-                                <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>
-                                <div class="btn-group">
-                                                    <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
-                                                        Phân loại hàng
-                                                    </span>
-                                    <ul class="dropdown-menu p-3" >
-                                        \${htmlthuoctinh}
-                                        <li class="text-right ">
-                                            <button type="button" class="btn btn-light cancelbutton"  >Back</button>
-                                            <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
-                                        </li>
-                                    </ul>
+        try {
+            const req = await $.ajax({
+                url: '/api/user/giohang/dsghtheosp/' + idkh,
+                method: 'GET'
+            });
 
+            const tbody = $("#cart");
+            tbody.empty();
+
+            if (req.length === 0) {
+                tbody.append(`<h3 class="text-center mt-2"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>`);
+            } else {
+                const promises = req.map(async function (data) {
+                    let htmlArray = [];
+                    await Promise.all(data.map(async function (sp) {
+                        const thuocTinhSanPham = await getThuocTinhSanPham(sp.slugSanPham);
+                        const htmlGiaTien = setGiaTien(sp.giaTien, sp.giaTienKm, sp.idGhct);
+                        const htmlthuoctinh = getDsBienThe(thuocTinhSanPham, sp.idGhct, sp.tenBienThe.split(","));
+
+                             html =
+                                `
+    <div class="row mt-2 cartographic" >
+        <div class="col-5">
+                                   <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                       <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
+                <label class="form-check-label"">
+                    <div class="mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-lg-3">
+    <a href="/san-pham/\${sp.slugSanPham}">
+                                <img src="/repository/\${sp.image}" class="img-fluid rounded-start" alt="...">
+    </a>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="card-body">
+                                    <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>
+                                    <div class="btn-group">
+                                                        <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
+                                                            Phân loại hàng
+                                                        </span>
+                                        <ul class="dropdown-menu p-3" >
+                                            \${htmlthuoctinh}
+                                            <li class="text-right ">
+                                                <button type="button" class="btn btn-light cancelbutton"  >Back</button>
+                                                <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    <p id="tenbienthe-\${sp.idGhct}">\${sp.tenBienThe}</p>
                                 </div>
-                                <p id="tenbienthe-\${sp.idGhct}">\${sp.tenBienThe}</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </label>
+                </label>
+            </div>
+        </div>
+        <div class="col-2">
+                        \${htmlGiaTien}
+                    </div>
+     <div class="col-2">
+                        <span>
+                            <div class="input-group " style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                            <span class="mt-5">Hiện có : <span id="slbt-\${sp.idGhct}">\${sp.soLuongBienThe}</span><span> sản phẩm</span>
+                        </span>
+                    </div>
+        <div class="col-2">
+            <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>
+        </div>
+        <div class="col-1" >
+            <a class="delete-ghct" style="cursor: pointer" data-id=\${sp.idGhct}>Xóa</a>
         </div>
     </div>
-    <div class="col-2">
-                    \${htmlGiaTien}
-                </div>
- <div class="col-2">
-                    <span>
-                        <div class="input-group " style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                    </span>
-                </div>
-    <div class="col-2">
-        <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>
-    </div>
-    <div class="col-1">
-        <a>Xóa</a>
-    </div>
-</div>
 
-                            `;
-                        tbody.append(html);
-                    })
-                }
+                                `;
+                        htmlArray.push(html); // Store HTML content for each iteration
+                    }));
+//style="border-bottom: 1px solid #dedede"
+                    // Join HTML content for each data item
+                    return `<div style="border-bottom: 1px solid #dedede">` + htmlArray.join('') + '</div>';
+                });
 
-
-            },
-            error: function (xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
+                const fullHTMLArray = await Promise.all(promises); // Wait for all iterations to complete
+                const fullHTML = fullHTMLArray.join(''); // Join all HTML content
+                tbody.append(fullHTML); // Append HTML after all iterations are complete
             }
-        });
+        } catch (error) {
+            console.log('Có lỗi xảy ra: ' + error);
+        }
     }
 
 
@@ -411,7 +414,32 @@
         }else {
             soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên
             if (soLuongHienTai<1){
-                showError("Số lượng không thể bé hơn 0");
+                showError("Số lượng không thể bé hơn 1");
+                return;
+            }
+            if (soLuongHienTai>10){
+                showError("Số lượng mua tối đa là 10")
+                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
+                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
+                if (!soTienGiam){
+                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
+                }else{
+                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
+                }
+                return;
+            }
+            let slbtghct = $("#slbt-"+idghct).text();
+            console.log(slbtghct)
+            if (slbtghct<soLuongHienTai){
+                showError("Số lượng hiện tại của cửa hàng không đủ")
+                $("#soluong-" + idghct).val(slbtghct)
+                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
+                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
+                if (!soTienGiam){
+                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
+                }else{
+                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
+                }
                 return;
             }
             $("#soluong-" + idghct).val(soLuongHienTai)
@@ -419,7 +447,6 @@
 
         // Gọi API với giá trị soLuongHienTai
 
-        console.log(soLuongHienTai);
 
         $.ajax({
             url: '/api/user/giohang/thaydoisoluong',
@@ -440,13 +467,39 @@
         });
     }
 
+    function getPriceElement(element) {
+        let priceString = $(element).text().split(" ")[0].replaceAll(".", "");
+        return parseFloat(priceString); // Chuyển đổi chuỗi thành số float
+    }
+    async function muahang() {
 
-    function muahang() {
         var listsp = getValByCheckbox();
-        if (listsp.length == 0) {
+        if (listsp.length== 0) {
             showError("Bạn chưa chọn sản phẩm để mua")
             return;
         }
+        let lenghtsp = 0;
+        listsp.forEach(function (item) {
+            lenghtsp+=Number($("#soluong-"+item).val());
+        })
+        console.log(lenghtsp)
+         if(lenghtsp>10){
+            await Swal.fire({
+                title: "Thông báo!",
+                text: "Số lượng sản phẩm khi mua hàng không vượt quá 10,vui lòng liên hệ cửa hàng để được ưu đãi khi mua số lượng lớn!",
+                icon: "error"
+            })
+            return;
+        }else if (getPriceElement("#tongtienthuc")>5000000){
+           await Swal.fire({
+                title: "Thông báo!",
+                text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
+                    "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
+                icon: "error"
+            })
+            return;
+        }
+
         var listspAsNumbers = listsp.map(str => Number(str));
 
         var data = JSON.stringify({
@@ -460,22 +513,29 @@
             success: async function (req) {
                 //     console.log(req)
                 if (!req) {
-                    window.location.href = "/checkout"
+                    if(await showConfirm("Xác nhận đặt hàng ?")){
+                        window.location.href = "/checkout";
+                    };
                 } else {
                     if (req == 1) {
                         Swal.fire({
                             title: "Thông báo!",
                             text: "Hiện số lượng tại cửa hàng không đủ, chúng tôi sẽ cập nhật lại số lượng cho bạn!",
                             icon: "error"
-                        }).then((result) => {
+                        }).then(async (result) => {
                             if (result.isConfirmed) {
                                 window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
                             }
                         });
                     } else {
-                        await Swal.fire('Thông báo...', 'Vì là số lượng của giỏ hàng lớn hơn 10 khi đặt hàng, ' +
-                            'vậy nên chúng tôi sẽ liên hệ với bạn khi chúng tôi xác nhận đơn', 'warning');
-                        window.location.href = "/checkout";
+                        await Swal.fire({
+                            title: "Thông báo!",
+                            text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
+                                "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
+                            icon: "error"
+                        })
+                        return;
+
                     }
 
                 }
@@ -512,7 +572,6 @@
     }
 
     function tongTienTheoGhct(listCheckbox) {
-        console.log(listCheckbox)
         if (listCheckbox.length == 0) {
             $("#thanhtien").html(0 + "₫");
             $("#tongthanhtoan").html(0 + "₫");
@@ -538,4 +597,27 @@
             }
         });
     }
+    function xoaGioHangChiTiet(val) {
+
+    }
+    $(document).on("click",".delete-ghct",async function() {
+        if(await showConfirm("Bạn có chắc chắn muốn xoá không ?")){
+             let data= $(this);
+            $.ajax({
+                url: '/api/user/giohang/'+data.attr("data-id"),
+                method: 'DELETE',
+                contentType: 'application/json',
+                success: function (req) {
+                    showSuccess("Xoá thành công")
+                    data.closest(".cartographic").remove();
+                    loadDataCheckbox();
+                },
+                error: function (xhr, status, error) {
+                    showError("Có lỗi xảy ra")
+                    console.log('Có lỗi xảy ra: ' + error);
+                }
+            });
+        }
+
+    });
 </script>

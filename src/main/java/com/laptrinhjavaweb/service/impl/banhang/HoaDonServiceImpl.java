@@ -15,8 +15,6 @@ import com.laptrinhjavaweb.model.response.hoadon.ThongTinHoaDonResponse;
 import com.laptrinhjavaweb.model.response.hoadon.TongTienResponse;
 import com.laptrinhjavaweb.model.response.thongke.AllThongKeResponse;
 import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
-import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
-import com.laptrinhjavaweb.model.response.thongke.QueryDoanhThu;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.*;
@@ -28,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -179,7 +177,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     public List<HoaDonResponse> dsHoaDonDaMua(Long idkh) {
         List<String> dsTrangThai = new ArrayList<>();
         dsTrangThai.add(TrangThaiHoaDon.CHUANBIDATHANG);
-        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInOrderByNgayDat(idkh,dsTrangThai);
+        return hoaDonRepository.findAllByKhachHang_IdAndTrangThaiNotInAndLoaiOrderByNgayDat(idkh,dsTrangThai,"Online");
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SliderConverter;
-import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.SliderEntity;
 import com.laptrinhjavaweb.repository.SliderRepository;
 import com.laptrinhjavaweb.response.PageableResponse;
@@ -45,10 +44,10 @@ public class SliderServicer implements ISliderService {
         if(pageCurrent == null && limit == null) {
             isAll = true;
             Pageable wholePage = Pageable.unpaged();
-            page = sliderRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE,wholePage);
+            page = sliderRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE,wholePage);
         }else {
             Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-            page = sliderRepository.findAllByTrangThaiNot(SystemConstant.IN_ACTICE,pageable);
+            page = sliderRepository.findAllByTrangThaiNotOrderByNgayTaoDesc(SystemConstant.IN_ACTICE,pageable);
         }
         listSliderResponse = page.getContent().stream().map(
                 item -> sliderConverter.convertToResponse(item)
@@ -88,7 +87,7 @@ public class SliderServicer implements ISliderService {
     }
 
     public void saveImage(SliderRequest sliderRequest) {
-        String path = SystemConstant.path + "/slider/"  + sliderRequest.getImage();
+        String path = SystemConstant.path + "/"  + sliderRequest.getImage();
         if (sliderRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(sliderRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

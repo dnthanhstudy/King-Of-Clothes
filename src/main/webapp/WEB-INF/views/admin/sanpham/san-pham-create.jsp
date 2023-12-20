@@ -113,11 +113,12 @@
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Thiết lập giá cho tất cả thuộc tính"
+                                                    id="price-all"
                                             />
                                             <button
                                                     class="btn btn-primary"
                                                     type="button"
-                                                    id="btn-search"
+                                                    id="btn-set-price"
                                             >
                                                 Xác nhận!
                                             </button>
@@ -177,20 +178,6 @@
                             Sản phẩm nổi bật
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input name="sanPhamNhieuLuotXem" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-nhieu-luot-xem">
-                        <label class="form-check-label" for="san-pham-nhieu-luot-xem">
-                            Sản phẩm nhiều lượt xem
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamPhoBien" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-pho-bien">
-                        <label class="form-check-label" for="san-pham-pho-bien">
-                            Sản phẩm phổ biến
-                        </label>
-                    </div>
                 </div>
 
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
@@ -206,6 +193,7 @@
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
 </script>
 <script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/validate.js'/>"></script>
 <script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
 <script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>

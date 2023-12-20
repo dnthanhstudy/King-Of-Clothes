@@ -13,7 +13,7 @@ import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.utils.ResponseObject;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public interface HoaDonService {

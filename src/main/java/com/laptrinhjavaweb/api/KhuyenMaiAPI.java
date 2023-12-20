@@ -31,13 +31,18 @@ public class KhuyenMaiAPI {
         String results = khuyenMaiService.delete(ma);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+    @DeleteMapping("/undelete/{ma}")
+    public ResponseEntity<?> undelete(@PathVariable(name = "ma") String ma){
+        String results = khuyenMaiService.undelete(ma);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody KhuyenMaiRequest km){
         KhuyenMaiResponse results = khuyenMaiService.save(km);
         return new ResponseEntity<>(results, HttpStatus.CREATED);
     }
     @PutMapping("/update/{ma}")
-    public ResponseEntity<?> update(@RequestBody KhuyenMaiRequest km, @PathVariable String ma){
+    public ResponseEntity<?> update(@RequestBody KhuyenMaiRequest km, @PathVariable("ma") String ma){
         KhuyenMaiResponse results = khuyenMaiService.update(km, ma);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
@@ -57,4 +62,5 @@ public class KhuyenMaiAPI {
         Map<String, Object> results = khuyenMaiService.pagingOrSearchOrFindAllOrFilterOrCategories(page, limit,null, null, null);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+
 }

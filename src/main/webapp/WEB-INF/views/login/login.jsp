@@ -6,7 +6,7 @@
 </head>
 <body>
 <main id="content" role="main" class="main">
-    <div class="position-fixed top-0 right-0 left-0 bg-img-hero" style="height: 32rem; background-image: url(/template/login/svg/components/abstract-bg-4.svg);">
+    <div class="position-fixed top-0 right-0 left-0 bg-img-hero" style="height: 32rem; background-image: url(/template/login/img/bgr.jpg);">
         <!-- SVG Bottom Shape -->
         <figure class="position-absolute right-0 bottom-0 left-0">
             <svg preserveaspectratio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewbox="0 0 1921 273">
@@ -60,7 +60,7 @@
                             <div class="js-form-message form-group">
                                 <label class="input-label" for="signinSrEmail"> Nhập Email/Số điện thoại</label>
 
-                                <input type="text" class="form-control form-control-lg" value="admin9193"
+                                <input type="text" class="form-control form-control-lg" value=""
                                        name="j_username" id="signinSrEmail" placeholder="" >
                             </div>
                             <!-- End Form Group -->
@@ -75,24 +75,10 @@
                                 </label>
 
                                 <div class="input-group input-group-merge">
-                                    <input type="password" class="js-toggle-password form-control form-control-lg" name="j_password" id="signupSrPassword" placeholder="*************" value="123456">
-                                    <div id="changePassTarget" class="input-group-append">
-                                        <a class="input-group-text" href="javascript:;">
-                                            <i id="changePassIcon" class="tio-visible-outlined"></i>
-                                        </a>
-                                    </div>
+                                    <input type="password" class="js-toggle-password form-control form-control-lg" name="j_password" id="signupSrPassword" placeholder="*************" value="">
                                 </div>
                             </div>
                             <!-- End Form Group -->
-
-                            <!-- Checkbox -->
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox">
-                                    <label class="custom-control-label text-muted" for="termsCheckbox"> Nhớ mật khẩu</label>
-                                </div>
-                            </div>
-                            <!-- End Checkbox -->
 
                             <button type="submit" class="btn btn-lg btn-block btn-primary">Đăng nhập</button>
                         </form>

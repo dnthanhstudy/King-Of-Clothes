@@ -1,12 +1,12 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.converter.HoaDonConverter;
+import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
-import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
-import com.laptrinhjavaweb.repository.HoaDonRepository;
-import com.laptrinhjavaweb.repository.TrangThaiGiaoHangRepository;
+import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,12 @@ public class HoaDonService implements IHoaDonService {
 
     @Autowired
     private TrangThaiGiaoHangRepository trangThaiGiaoHangRepository;
+
+    @Autowired
+    private SanPhamRepository sanPhamRepository;
+
+    @Autowired
+    private BienTheRepository bienTheRepository;
 
     @Override
     @Transactional
@@ -53,7 +60,7 @@ public class HoaDonService implements IHoaDonService {
 
     @Override
     public List<HoaDonResponse> findByMaStatus(String trangThai) {
-        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThai(trangThai);
+        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThaiOrderByNgayTaoDesc(trangThai);
         List<HoaDonResponse> result = list.stream().map(
                 item -> hoaDonConverter.convertToResponse(item)
         ).collect(Collectors.toList());
@@ -61,8 +68,29 @@ public class HoaDonService implements IHoaDonService {
     }
 
     @Override
+    @Transactional
     public HoaDonResponse update(HoaDonResquest hoaDonResquest) {
+        String trangThai = hoaDonResquest.getTrangThai();
         HoaDonEntity entity = hoaDonConverter.convertToEntity(hoaDonResquest);
+        if (trangThai.equals("THANHCONG")) {
+            List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(hoaDonResquest.getMa());
+            hoaDonChiTietEntities.forEach(
+                    item -> {
+                            if (item.getBienThe() != null) {
+                                BienTheEntity bienTheEntity = item.getBienThe();
+                                bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
+                                bienTheRepository.save(bienTheEntity);
+                            } else {
+                                SanPhamEntity sanPhamEntity = item.getSanPham();
+                                sanPhamEntity.setSoLuong(sanPhamEntity.getSoLuong() - item.getSoLuong());
+                                sanPhamRepository.save(sanPhamEntity);
+                            }
+                        }
+            );
+        }
+        if(hoaDonResquest.getTrangThai().equals("THANHCONG")){
+            entity.setNgayThanhToan(new Date());
+        }
         HoaDonEntity result = hoaDonRepository.save(entity);
         return hoaDonConverter.convertToResponse(result);
     }
@@ -71,13 +99,13 @@ public class HoaDonService implements IHoaDonService {
     @Transactional
     public String delete(String ma) {
         HoaDonEntity entity = hoaDonRepository.findByMa(ma);
-        if(entity!= null){
+        if (entity != null) {
             List<HoaDonChiTietEntity> listHDCT = entity.getHoaDonChiTietEntities();
-                if(!listHDCT.isEmpty()){
-                    for (HoaDonChiTietEntity hdct: listHDCT) {
-                        hoaDonChiTietRepository.deleteHoaDonCT(hdct.getId());
-                    }
+            if (!listHDCT.isEmpty()) {
+                for (HoaDonChiTietEntity hdct : listHDCT) {
+                    hoaDonChiTietRepository.deleteHoaDonCT(hdct.getId());
                 }
+            }
 
             trangThaiGiaoHangRepository.deleteByHoaDonId(entity);
             hoaDonRepository.deleteHoaDon(entity.getId());

@@ -20,7 +20,7 @@ public class Thu3ServiceImpl implements Thu3Service {
     @Autowired
     private HoaDonRepository hoaDonRepository;
     @Override
-    public List<TrangThaiGiaoHangResponse> dsTrangThaiDangGiao(String maGiaoHang) {
+    public List<TrangThaiGiaoHangResponse> dsTrangThaiDangGiao(Long maGiaoHang) {
         return trangThaiGiaoHangRepository.getTrangThaiDonHangByMaGiaoHang(maGiaoHang);
     }
 
@@ -30,13 +30,20 @@ public class Thu3ServiceImpl implements Thu3Service {
     }
 
     @Override
-    public String themTrangThaiGiaoHang(String maGiaoHang, String tenTrangThai) {
-        if (tenTrangThai.equals("Đã nhận hàng")){
-            hoaDonRepository.thayDoiTrangThaiGiaoHangTheoMaGiaoHang(maGiaoHang, TrangThaiHoaDon.DANHANHANG);
-        }
+    public String themTrangThaiGiaoHang(Long idhd, String tenTrangThai) {
         TrangThaiGiaoHangEntity trangThaiGiaoHangEntity = new TrangThaiGiaoHangEntity();
         trangThaiGiaoHangEntity.setTenTrangThai(tenTrangThai);
-        trangThaiGiaoHangEntity.setHoaDon(hoaDonRepository.findByMaGiaoHang(maGiaoHang));
+        trangThaiGiaoHangEntity.setHoaDon(hoaDonRepository.findById(idhd).orElse(null));
+        trangThaiGiaoHangRepository.save(trangThaiGiaoHangEntity);
+        return "Thành công";
+    }
+
+    @Override
+    public String themTrangThaiGiaoHang(Long idhd, String maVanhang, String tenTrangThai) {
+        TrangThaiGiaoHangEntity trangThaiGiaoHangEntity = new TrangThaiGiaoHangEntity();
+        trangThaiGiaoHangEntity.setTenTrangThai(tenTrangThai);
+        trangThaiGiaoHangEntity.setTrangThaiHoaDon(maVanhang);
+        trangThaiGiaoHangEntity.setHoaDon(hoaDonRepository.findById(idhd).orElse(null));
         trangThaiGiaoHangRepository.save(trangThaiGiaoHangEntity);
         return "Thành công";
     }

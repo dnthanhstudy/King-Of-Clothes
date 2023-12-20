@@ -22,7 +22,7 @@ public class SanPhamGhnApi {
     private long price;
 //    private int length;
 //    private int width;
-    private int weight = 100;
+    private int weight = 200;
 //    private int height;
 //    private Category category;
     public SanPhamGhnApi(HoaDonChiTietResponse hoaDonChiTietResponse){

@@ -36,7 +36,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-1">
-                                    <img src="/template/web/img/anh1.png" width="50px" style="border-radius: 50%" alt="">
+                                    <img src="/template/admin/images/avatar.jpeg" width="50px" style="border-radius: 50%" alt="">
                             </div>
                             <div class="col-11">
                                     <span style="color: #eb8153" class="fs-5" id="tenKhachHang"></span><br>
@@ -59,41 +59,35 @@
                              </tr>
                              </thead>
                              <tbody>
-                             <tr>
-                                 <td>SP01</td>
-                                 <td>Aos polo nam aelimited</td>
-                                 <td>3</td>
-                                 <td>300000</td>
-                                 <td></td>
-                             </tr>
+
                              </tbody>
                          </table>
                          <div class="row">
                              <div class="col-8"></div>
                              <div class="col-4">
-                                <div class="row">
-                                    <div class="col-7">
-                                        Tổng số lượng:
+                                <div class="d-flex justify-content-between">
+                                    <span>Tổng số lượng:</span>
+                                    <div>
+                                        <span class="font-weight-bold " id="invoice-quantity"></span>
                                     </div>
-                                    <div class="col-5 text-right font-weight-bold" id="invoice-quantity"></div>
                                 </div>
-                                 <div class="row mt-2">
-                                     <div class="col-7">
-                                         Tổng tiền hàng:
+                                 <div class="d-flex justify-content-between">
+                                     <span>Tổng tiền hàng:</span>
+                                     <div>
+                                         <span class="font-weight-bold invoice-total"></span> <span class="font-weight-bold">đ</span>
                                      </div>
-                                     <div class="col-5 text-right font-weight-bold invoice-total"></div>
                                  </div>
-                                 <div class="row mt-2">
-                                     <div class="col-7">
-                                         Khách cần trả:
+                                 <div class="d-flex justify-content-between">
+                                     <span>Tiền giảm giá:</span>
+                                     <div>
+                                         <span class="font-weight-bold invoice-discount"></span> <span class="font-weight-bold">đ</span>
                                      </div>
-                                     <div class="col-5 text-right font-weight-bold invoice-total"></div>
                                  </div>
-                                 <div class="row mt-2">
-                                     <div class="col-7">
-                                         Khách đã trả:
+                                 <div class="d-flex justify-content-between">
+                                     <span>Tiền khách trả:</span>
+                                     <div>
+                                         <span class="font-weight-bold " id="tienKhachTra"></span> <span class="font-weight-bold">đ</span>
                                      </div>
-                                     <div class="col-5 text-right font-weight-bold" id="tienKhachTra"></div>
                                  </div>
                              </div>
                          </div>
@@ -136,6 +130,10 @@
          return ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear() + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
      }
 
+     function formatNumber(number) {
+         return new Intl.NumberFormat('vi-VN').format(number);
+     }
+
      function loadHoaDon() {
          var url = window.location.pathname.split("/");
          var ma = url[url.length - 1];
@@ -144,10 +142,9 @@
              method: 'GET',
              dataType: 'json',
              success: function (req) {
-                 console.log(req)
                  let totalInvoice = 0;
                  let toatlQuantity = 0;
-
+                    console.log(req)
                  $("#ma").text(req.ma);
                  $("#tenKhachHang").text(req.tenKhachHang);
                  $("#soDienThoaiKhachHang").text(req.soDienThoaiKhachHang);
@@ -164,14 +161,15 @@
                                 <td>\${++index}</td>
                                 <td>\${item.tenSanPham}</td>
                                  <td>\${item.soLuong}</td>
-                                 <td>\${item.gia}</td>
-                                 <td>\${item.thanhTien}</td>
+                                 <td>\${formatNumber(item.gia)} đ</td>
+                                 <td>\${formatNumber(item.thanhTien)} đ</td>
                             </tr>
                         `;
                      tbody.append(row);
                      $('#invoice-quantity').text(toatlQuantity);
-                     $('.invoice-total').text(totalInvoice);
-                     $("#tienKhachTra").text(req.tienKhachTra);
+                     $('.invoice-total').text(formatNumber(totalInvoice));
+                     $("#tienKhachTra").text(formatNumber(req.tienKhachTra));
+                     $(".invoice-discount").text(formatNumber(req.tienGiamGia));
                  });
              },
              error: function (xhr, status, error) {

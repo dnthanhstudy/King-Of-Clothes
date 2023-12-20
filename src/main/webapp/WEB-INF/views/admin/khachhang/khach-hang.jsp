@@ -110,7 +110,7 @@
                                  <td>\${item.ten}</td>
                                  <td>\${item.soDienThoai}</td>
                                  <td>\${item.email}</td>
-                                 <td>\${item.gioiTinh}</td>
+                                 <td>\${item.gioiTinh != null ? item.gioiTinh : ""}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -185,7 +185,7 @@
                                  <td>\${item.ten}</td>
                                  <td>\${item.soDienThoai}</td>
                                  <td>\${item.email}</td>
-                                 <td>\${item.gioiTinh}</td>
+                                 <td>\${item.gioiTinh != null ? item.gioiTinh : ""}</td>
                                  <td>\${getFormattedDate(item.ngaySinh)}</td>
                                  <td>
                                       <a type="button" class="btn btn-warning" href="/admin/khach-hang/edit/\${item.ma}" style="text-decoration: none">
@@ -238,7 +238,7 @@
 
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
-        param = $('#searchAll').val();
+        param = $('#searchAll').val().trim();
         if(pageCurrent > 1){
             pageCurrent = 1;
         }

@@ -722,7 +722,7 @@
 <%--                        </li>--%>
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <img src="/assets/images/nhanvien/<%=SecurityUtils.getPrincipal().getAnh()%>" width="20" alt="">
+                                <img src="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" width="20" alt="">
                                 <div class="header-info">
                                     <span><%=SecurityUtils.getPrincipal().getTen()%></span>
                                     <small class="user-name-login"><%=SecurityUtils.getPrincipal().getMa()%></small>

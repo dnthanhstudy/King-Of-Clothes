@@ -1,16 +1,14 @@
 package com.laptrinhjavaweb.repository.custom.impl;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.repository.custom.SanPhamRepositoryCustom;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.springframework.stereotype.Repository;
-
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.custom.SanPhamRepositoryCustom;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
@@ -64,7 +62,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		}else {
 			sql += "sanphamphobien = 1";
 		}
-		sql += " ORDER BY ngaytao DESC, RAND() LIMIT " + limit;
+		sql += " AND trangthai = 'ACTIVE' ORDER BY ngaytao DESC, RAND() LIMIT " + limit;
 		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
 		return query.getResultList();
 	}
@@ -156,7 +154,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		if(querySearch != null){
 			queryFinal.append(querySearch);
 		}
-		queryFinal.append(" GROUP BY subquery.id ");
+		queryFinal.append(" GROUP BY subquery.id ORDER BY ngaytao DESC");
 		System.out.println(queryFinal);
 		return queryFinal.toString();
 	}

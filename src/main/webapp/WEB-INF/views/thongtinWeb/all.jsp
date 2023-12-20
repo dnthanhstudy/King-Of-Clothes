@@ -47,31 +47,33 @@
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
 
-    $.ajax({
-        url: '/api/hoadon/dshoadondamua/' + idkh,
-        method: "GET",
-        dataType: "json",
-        success: async (response) => {
-            let dshd = $('#dshd');
-            for (const item of response.data) {
-                let idhd = item.id;
-                try {
-                    const res = await $.ajax({
-                        url: '/api/hdct/' + idhd,
-                        method: "GET",
-                        dataType: "json",
-                    });
-                    let mahd = res.data[0].maHoaDon;
-                    let html = `<div class="col-12 mt-3">
+    function loadTable() {
+        $.ajax({
+            url: '/api/hoadon/dshoadondamua/' + idkh,
+            method: "GET",
+            dataType: "json",
+            success: async (response) => {
+                console.log(response)
+                let dshd = $('#dshd');
+                dshd.empty();
+                for (const item of response.data) {
+                    let idhd = item.id;
+                    try {
+                        const res = await $.ajax({
+                            url: '/api/hdct/' + idhd,
+                            method: "GET",
+                            dataType: "json",
+                        });
+                        let html = `<div class="col-12 mt-3">
                                 <div class="khung">
                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">
                                         <span><i class="bi bi-truck"></i> Đơn hàng đang được xác nhận</span>
                                         <span class="text-danger text-uppercase">\${item.trangThai}</span>
                                     </div>`;
-                    $.each(res.data, (index, item) => {
-                        html += `<div class="row mt-3">
+                        $.each(res.data, (index, item) => {
+                            html += `<div class="row mt-3">
                                 <div class="col-2">
-                                    <img src="/assets/images/sanpham/\${item.image}" width="90%" alt="">
+                                    <img src="/repository/\${item.image}" width="90%" alt="">
                                 </div>
                                 <div class="col-10">
                                     <a style="color: black; text-decoration: none;" href="/san-pham/\${item.slugSP}"><h5 class="card-title line-clamp-2">\${item.tenSanPham}</h5></a>
@@ -85,8 +87,9 @@
                                 </div>
                             </div>
                             <hr>`;
-                    });
-                    html += `<div class="row">
+                        });
+                        let genderHtml = genderTrangThaiHd(item.id,item.ma,item.trangThai);
+                        html += `<div class="row">
                             <div class="col-9"></div>
                             <div class="col-3">
                                 <div class="row d-flex justify-content-between">
@@ -105,24 +108,37 @@
                                         <span class="text-danger" style="font-size: 25px">\${formatNumber(item.tongTien)}₫</span>
                                     </div>
                                 </div>
-                                <div class="my-2 text-right">
-                                    <button class="btn btn-danger me-2 mb-2" >Hủy đơn</button>
-                                    <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>
-                                </div>
+                                \${genderHtml}
                             </div>
                         </div>
                     </div>
                 </div>`;
-                    dshd.append(html);
-                } catch (error) {
-                    console.error(error);
+                        dshd.append(html);
+                    } catch (error) {
+                        console.error(error);
+                    }
                 }
+            },
+            error: (error) => {
+                console.log(error);
             }
-        },
-        error: (error) => {
-            console.log(error);
-        }
-    });
+        });
+    }
+    loadTable()
+    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+        $.ajax({
+            url: `/api/hoadon/thaydoitrangthai`+parameter,
+            method: 'GET',
+            success: function (req) {
+                showSuccess("Huỷ đơn thành công");
+                loadTable();
+            },
+            error: function(xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+            }
+        });
+    }
 </script>
 
 

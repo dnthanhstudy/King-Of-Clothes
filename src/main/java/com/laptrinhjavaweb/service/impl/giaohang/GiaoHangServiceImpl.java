@@ -64,16 +64,16 @@ public class GiaoHangServiceImpl implements GiaoHangService {
                                                               ){
         ThongTinDatHangRequest request = ThongTinDatHangRequest.builder()
               //  .payment_type_id(2L)
-                .note("Chuyển khoản")
+                .note(hoaDon.getMoTa())
                 .required_note("KHONGCHOXEMHANG")
                 .client_order_code("")
                 .from_name("Đinh Tuấn Anh")
                 .from_phone("0389478937")
                 .content("Test mua đơn hàng")
-                .weight(100)
-                .length(10)
-                .width(10)
-                .height(10)
+//                .weight(100)
+//                .length(10)
+//                .width(10)
+//                .height(10)
                 .deliver_station_id(null)
                 .service_id(0L)
                 .service_type_id(2L)
@@ -81,6 +81,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         request.setTienThuHo(hoaDon);
         request.setDiaChiNguoiGui(diaChiBuuCuc);
         request.setDsSanPham(dssp);
+        request.setNoiDungDonHang("Khách đặt");
         request.setNguoiNhan(hoaDon.getDiaChi(), hoaDon.getSodienthoai(),hoaDon.getTenNguoiNhan());
         return request;
     }
@@ -94,17 +95,15 @@ public class GiaoHangServiceImpl implements GiaoHangService {
                 .client_order_code("")
                 .from_name("Đinh Tuấn Anh")
                 .from_phone("0389478937")
-                .content("Test mua đơn hàng")
-                .weight(100)
-                .length(10)
-                .width(10)
-                .height(10)
+//                .weight(100)
+//                .length(10)
+//                .width(10)
+//                .height(10)
                 .cod_amount(20000L)
                 .deliver_station_id(null)
                 .service_id(0L)
                 .service_type_id(2L)
                 .build();
-        //request.setTienThuHo(hoaDon);
         request.setDiaChiNguoiGui(diaChiBuuCuc);
         request.setDsSanPham(dssp);
         request.setNguoiNhan(diaChi,soDienThoai,nguoiNhan);
@@ -174,6 +173,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         trangThaiGiaoHang.setTenTrangThai("Đặt hàng");
         trangThaiGiaoHangRepository.save(trangThaiGiaoHang);
         int parameter = gioHangChiTietRepository.configHoaDonChiTietKhiDatHang(hoaDon.getId(),khachHang.getId());
+        hoaDon.setLoai("Online");
         return hoaDonRepository.save(hoaDon);
     }
 
