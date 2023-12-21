@@ -15,28 +15,23 @@
 
 <section>
     <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
-        <div class="d-flex justify-content-between">
-            <div>
-                <span class="fs-5">Số dư ví : </span><span class="fs-2" id="soDuVi"></span>đ
-            </div>
-            <div>
-                <span class="badge bg-primary text-wrap fs-3"> <i class="bi bi-coin"></i> 30</span>
-            </div>
-        </div>
-        <div class="card mt-4">
-            <div class="p-4">
+        <div class="card">
+            <div class="p-2">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="btn btn-default" href="/vi-dien-tu/nap-tien">
                             <i class="bi bi-cash-coin fs-2"></i>
-                            <h6>Nạp tiền</h6>
+                            <h5 class="text-primary">Nạp tiền</h5>
                         </a>
                     </li>
                     <li class="nav-item ms-5">
                         <button id="lichSuButton" class="btn btn-default" onclick="lichSu()">
                             <i class="bi bi-receipt fs-2"></i>
-                            <h6>Lịch sử</h6>
+                            <h5 class="text-primary">Lịch sử</h5>
                         </button>
+                    </li>
+                    <li class="nav-item p-4 ms-auto">
+                        <span class="fs-5 text-primary">Số dư ví : </span><span class="fs-2" id="soDuVi"></span>đ
                     </li>
                 </ul>
             </div>
