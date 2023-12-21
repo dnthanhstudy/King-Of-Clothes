@@ -757,8 +757,6 @@
                     $("#list-products").on("change", "input[type='radio']", function () {
                         let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
                         const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
-
-
                         if (lenChecked === lenOfAttribute) {
                             let attributeId = [];
                             $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
@@ -771,9 +769,13 @@
                                 dataType: "json",
                                 data: JSON.stringify(attributeId),
                                 success: (response) => {
+                                    console.log(response);
                                     variantId = response.id;
                                     couponId = response.khuyenMaiHienThiResponse.id;
+
                                     $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                    $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong);
 
                                     if (response.hinhAnh !== null) {
                                         $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);

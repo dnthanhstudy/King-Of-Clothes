@@ -49,4 +49,6 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     @Modifying
     @Query(value ="call sp_update_price_hdct (:idhd,:idkh)",nativeQuery = true)
     int configHoaDonChiTietKhiDatHang(@Param("idhd")Long idhd,@Param("idkh")Long idkh);
+
+    GioHangChiTietEntity findByGioHang_idAndBienThe_id(Long idGioHang, Long idBienThe);
 }
