@@ -375,17 +375,17 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Thống kê doanh thu
+                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><h5>Thống kê doanh thu</h5>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><h5>Thống kê hoá đơn</h5>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><h5>Thống kê hoá đơn theo ngày</h5>
                 </button>
             </li>
 
@@ -396,7 +396,7 @@
                 <div class="container-fluid">
                     <div class="form-head mb-sm-5 mb-3">
                         <div class="d-flex justify-content-end">
-                            <h5 class="mt-3 me-2">Thống kê theo: </h5>
+                            <h5 class="mt-1 mb-2 me-2">Thống kê theo: </h5>
                             <div>
                                 <select id="cbbthongke" class="form-control">
                                     <option value="1">Ngày</option>
@@ -553,12 +553,7 @@
 
             </div>
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <h1>Thống kê danh sách hoá đơn</h1>
-                    </div>
 
-                </div>
                 <form id="formsearchhd">
                     <div class="row" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
                         <div class="col-2">
@@ -595,7 +590,15 @@
                         </div>
                     </div>
                 </form>
+
                 <div class="row mt-3" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <h4>Danh sách hoá đơn</h4>
+                        </div>
+                        <hr>
+
+                    </div>
                     <table class="table table table-striped" id="tblhoadon" >
                         <thead>
                         <tr>
@@ -645,8 +648,10 @@
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row mt-4">
-                    <h5 class="mb-3">Thống kê danh sách hoá đơn</h5>
+
                     <div class="card">
+                        <h4 class="mt-3">Danh sách hoá đơn theo ngày</h4>
+                        <hr>
                         <table class="table table-hover table-striped" id="tblThongKeHoaDon">
                             <thead>
                             <tr>
