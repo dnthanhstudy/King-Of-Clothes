@@ -235,7 +235,10 @@
                             </div>
                             <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
                                 <div class="d-flex project-status align-items-center">
+                                    <h6>
                                     <span class="btn \${textColor} \${textFront} status-btn mr-3">\${trangThaiStr}</span>
+                                    </h6>
+
                                     <div class="dropdown">
                                         <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
                                             <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
