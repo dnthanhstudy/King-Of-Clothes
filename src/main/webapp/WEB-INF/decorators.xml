@@ -54,6 +54,10 @@
         <pattern>/doi-mat-khau</pattern>
     </decorator>
 
+    <decorator name="thong-tin-tich-diem" page="thongtinWeb.jsp">
+        <pattern>/thong-tin-tich-diem</pattern>
+    </decorator>
+
     <decorator name="thu3" page="thu3.jsp">
         <pattern>/thu3</pattern>
     </decorator>

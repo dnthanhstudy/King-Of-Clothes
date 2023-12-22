@@ -45,16 +45,7 @@
                     </div>
 
                     <div class="col-3">
-                        <label for="gia" class="form-label">Giá</label>
-                        <input name="gia" type="text" class="form-control" id="gia"/>
-                    </div>
-
-                    <div class="col-3">
-                        <label for="so-luong" class="form-label">Số lượng</label>
-                        <input name="soLuong" type="text" class="form-control" id="so-luong"/>
-                    </div>
-
-                    <div class="col-6 mt-4">
+                        <label for="slug" class="form-label">Danh mục</label>
                         <select class="form-select" name="danhMucSlug">
                             <option value="" selected>Vui lòng chọn danh mục</option>
                             <c:forEach var="item" items="${categoriesProduct}">
@@ -63,7 +54,8 @@
                         </select>
                     </div>
 
-                    <div class="col-6 mt-4">
+                    <div class="col-3">
+                        <label for="slug" class="form-label">Thương hiệu</label>
                         <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
                             <c:forEach var="item" items="${brandsProduct}">
@@ -160,23 +152,6 @@
                                 id="motasanpham"
                                 name="moTa"
                         ></textarea>
-                    </div>
-                </div>
-
-                <div class="row d-flex">
-                    <div class="form-check">
-                        <input name="sanPhamMoi" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-moi">
-                        <label class="form-check-label" for="san-pham-moi">
-                            Sản phẩm mới
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamNoiBat" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-noi-bat">
-                        <label class="form-check-label" for="san-pham-noi-bat">
-                            Sản phẩm nổi bật
-                        </label>
                     </div>
                 </div>
 

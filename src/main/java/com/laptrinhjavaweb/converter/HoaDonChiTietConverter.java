@@ -54,9 +54,15 @@ public class HoaDonChiTietConverter {
                         findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai
                                 (entity.getSanPham().getId(), SystemConstant.ACTICE, entity.getSanPham().getId(), SystemConstant.UPCOMING);
         if(khuyenMaiSanPhamEntity != null){
+            Double soTienGiam = 0.0;
             entity.setKhuyenMai(khuyenMaiSanPhamEntity.getKhuyenMai());
+            if(khuyenMaiSanPhamEntity.getKhuyenMai().getLoai().equals("0")){
+                soTienGiam = khuyenMaiSanPhamEntity.getKhuyenMai().getGiaTri();
+            }else{
+                soTienGiam = entity.getBienThe().getGia() * (khuyenMaiSanPhamEntity.getKhuyenMai().getGiaTri() / 100);
+            }
+            entity.setSoTienGiam(soTienGiam);
         }
-
         entity.setHoaDon(hoaDonRepository.findByMa(request.getMaHoaDon()));
         return entity;
     }

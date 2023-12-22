@@ -362,6 +362,7 @@
     const currentUrl = window.location.href;
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
+    let isPayment = true;
 
     setInterval(time, 1000);
 
@@ -383,7 +384,7 @@
                 let data = {};
                 data['maNhanVien'] = ma;
                 data['trangThai'] = "TREO";
-                data['loai'] = "Offline";
+                data['loai'] = "OFFLINE";
 
                 $.ajax({
                     url: "/api/hoa-don-off",
@@ -435,8 +436,8 @@
     })
 
     $('#btn-paymant-invoice').on('click', function () {
-        paymentInvoice()
-        if ($('#code-customer').val() !== "") {
+        var res = paymentInvoice()
+        if ($('#code-customer').val() !== "" && res !== false) {
             tienQuyDiem(
                 function (response) {
                     let data = {};
@@ -454,12 +455,14 @@
                     console.log(error)
                 })
         }
-
     })
 
     $("#input-point").keyup(function () {
         if ($(this).val() !== '') {
             diemQuyTien(parseInt($(this).val()));
+        }
+        else {
+            $('#discount').text("0");
         }
     });
 
@@ -491,7 +494,7 @@
                         htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
                     html += `<div class="col-lg-6">
-                        <div class="card card-item-product mb-3" style=" height: 375px">
+                        <div class="card card-item-product mb-3" style=" height: 390px">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="/repository/\${item.anh[0].hinhAnh}"
@@ -1116,11 +1119,15 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(quantity),
             success: (response) => {
+                isPayment = true;
                 showSuccess("Cập nhật số lượng hóa đơn thành công")
                 loadHoaDon()
+
             },
             error: (error) => {
-                showError(error.responseJSON.error)
+                isPayment = false;
+                //showError(error.responseJSON.error)
+                console.log(error)
             }
         });
     }
@@ -1157,6 +1164,10 @@
     $('#invoice-customer-payment').on('input', validateForm);
 
     function paymentInvoice() {
+        if(isPayment === false){
+            showError("Số lượng không hợp lệ. Xin kiểm tra lại");
+            return false;
+        }
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
