@@ -44,6 +44,12 @@ public class DashboardController {
     public String xuathoadon(@PathVariable("ma") String ma) {
         return "admin/xuat-hoa-don";
     }
+
+    @GetMapping("/tra-hang")
+    public String trahang(){
+            return "admin/tra-hang";
+
+    }
 }
 
 
