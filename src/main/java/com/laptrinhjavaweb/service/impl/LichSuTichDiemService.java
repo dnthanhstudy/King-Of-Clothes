@@ -55,5 +55,17 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
         return result;
     }
 
+    @Override
+    public List<LichSuTichDiemResponse> findAllByMaKH(String ma) {
+        KhachHangEntity kh = khachHangRepository.findByMa(ma);
+        List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAllByKhachHang_idOrderByNgayTaoDesc(kh.getId());
+
+        List<LichSuTichDiemResponse> result = entity.stream().map(
+                item ->
+                        lichSuTichDiemConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return result;
+    }
+
 
 }

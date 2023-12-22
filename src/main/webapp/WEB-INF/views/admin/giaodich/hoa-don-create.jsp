@@ -463,6 +463,8 @@
         }
         else {
             $('#discount').text("0");
+            $('#invoice-after-point').text($('.invoice-total:first').text());
+
         }
     });
 

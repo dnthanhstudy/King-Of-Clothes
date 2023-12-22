@@ -33,4 +33,10 @@ public class LichSuTichDiemAPI {
         List<LichSuTichDiemResponse> result = lichSuTichDiemService.findAllByIdKhachHang(sdtKhachHang);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @GetMapping("/{ma}")
+    public ResponseEntity<?> getDanhSachLSTDOnl(@PathVariable(name = "ma") String ma){
+        List<LichSuTichDiemResponse> result = lichSuTichDiemService.findAllByMaKH(ma);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

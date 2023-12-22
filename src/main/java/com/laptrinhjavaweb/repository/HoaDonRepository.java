@@ -160,8 +160,6 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
 
     List<HoaDonEntity> findAllByTrangThaiOrderByNgayTaoDesc(String trangThai);
 
-//    Page<HoaDonEntity> findAllByTrangThai(String trangThai, Pageable pageable);
-
     @Modifying
     @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")
     void deleteHoaDon(@Param("id") Long id);
