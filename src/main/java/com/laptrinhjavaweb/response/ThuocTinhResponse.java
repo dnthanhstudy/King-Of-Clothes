@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ThuocTinhResponse {
+
 	private Long id;
 
 	private String ten;

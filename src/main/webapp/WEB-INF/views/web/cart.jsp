@@ -1,6 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
 <%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Giỏ hàng</title>
+</head>
+<body>
 <div class="container-fluid bg-secondary mb-5">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 180px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
@@ -14,7 +24,7 @@
 <div class="container-fluid pt-5">
     <div class="px-xl-5">
         <div class="khung mb-3">
-            <div class="row">
+            <div class="row ">
                 <div class="col-5">
                     <div class="form-check mb-3">
                         <input class="form-check-input allchecked" type="checkbox">
@@ -37,57 +47,177 @@
                 </div>
             </div>
         </div>
-        <div class="khung mb-3">
+        <div class="khung mb-5">
             <div id="cart">
+                <div style="border-bottom: 1px solid #dedede">
+                    <div class="row mt-2 d-flex justify-content-center align-items-center">
+                        <div class="col-5">
+                            <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
+                                <label class="form-check-label">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-lg-3">
+                                                <a href="">
+                                                    <img src="/assets/images/sanpham/0PQldf.jpg"
+                                                         class="img-fluid rounded-start" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="card-body">
+                                                    <a style="color: black; text-decoration: none;" href=""><h5
+                                                            class="card-title line-clamp-2">Áo polo</h5></a>
+                                                    <div class="btn-group">
+                                                    <span class="dropdown-toggle" data-bs-toggle="dropdown"
+                                                          data-bs-auto-close="false" aria-expanded="false">
+                                                        Phân loại hàng
+                                                    </span>
+                                                        <ul class="dropdown-menu p-3">
+                                                            <li>
+                                                                <div class="color-selector">
+                                                                    <label>Color:</label>
+                                                                    <div class="color-buttons">
+                                                                        <button class="color-button" data-color="black">
+                                                                            Black
+                                                                        </button>
+                                                                        <button class="color-button" data-color="red">
+                                                                            Red
+                                                                        </button>
+                                                                        <button class="color-button" data-color="blue">
+                                                                            BLue
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="color-selector">
+                                                                    <label>Size:</label>
+                                                                    <div class="color-buttons">
+                                                                        <button class="size-button" data-color="s">Size
+                                                                            S
+                                                                        </button>
+                                                                        <button class="size-button" data-color="m">Size
+                                                                            M
+                                                                        </button>
+                                                                        <button class="size-button" data-color="l">Size
+                                                                            L
+                                                                        </button>
+                                                                        <button class="size-button" data-color="xl">Size
+                                                                            XL
+                                                                        </button>
+                                                                        <button class="size-button" data-color="xxl">
+                                                                            Size XXL
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="text-right ">
+                                                                <button type="button" class="btn btn-light">Cancel
+                                                                </button>
+                                                                <button type="button" class="btn text-light"
+                                                                        style="background-color: #C3817B">Submit
+                                                                </button>
+                                                            </li>
+                                                        </ul>
 
+                                                    </div>
+                                                    <p id="">Trắng, L</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            300000
+                        </div>
+                        <div class="col-2">
+                        <span>
+                            <div class="input-group " style="width: 100px;">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-minus">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text"
+                                               class="form-control form-control-sm bg-secondary text-center slthis"
+                                               value="1">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                        </span>
+                        </div>
+                        <div class="col-2">
+                            <b>500000</b>
+                        </div>
+                        <div class="col-1">
+                            <a style="cursor: pointer">Xóa</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-
-                <div class="row mt-2" style="">
-                    <div class="col-5">
+        </div>
+        <div class="khung mb-5">
+            <span class="fs-4">Danh Sách Sản Phẩm Không Hoạt Động</span>
+            <div id="cart-disable">
+                <div class="special-card" style="border-bottom: 1px solid #dedede">
+                    <div class="row mt-2 d-flex justify-content-center align-items-center">
+                        <div class="col-5">
+                            <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
+                                <label class="form-check-label">
+                                    <div class="mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-lg-3">
+                                                <a href="">
+                                                    <img src="/assets/images/sanpham/0PQldf.jpg"
+                                                         class="img-fluid rounded-start" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-9">
+                                                <div class="card-body">
+                                                    <a style="color: black; text-decoration: none;" href=""><h5
+                                                            class="card-title line-clamp-2">Áo polo</h5></a>
+                                                    <div class="btn-group">
+                                                        <span class="dropdown-toggle" data-bs-toggle="dropdown"
+                                                              data-bs-auto-close="false" aria-expanded="false">
+                                                            Phân loại hàng
+                                                        </span>
+                                                    </div>
+                                                    <p>Trắng, L</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            300000
+                        </div>
+                        <div class="col-2">
+                        <span>
+                            <div class="input-group " style="width: 100px;">
+                                1
+                            </div>
+                        </span>
+                        </div>
+                        <div class="col-2">
+                            <b>500000</b>
+                        </div>
+                        <div class="col-1" style="background: #fff;">
+                            <a class="text-dark" style="cursor: pointer; opacity: 1;">Xóa</a>
+                        </div>
                     </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-2 mt-3">
-                        <strong>Thành tiền : </strong>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <span><strong id="thanhtien">0 ₫</strong></span>
-                    </div>
-                    <div class="col-1">
-                    </div>
-                    <%--                    --%>
-                    <div class="col-5">
-                    </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-2 mt-3">
-                        <strong>Số tiền giảm : </strong>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <span><strong id="sotiengiam">0 ₫</strong></span>
-                    </div>
-                    <div class="col-1">
-                    </div>
-
                 </div>
             </div>
         </div>
 
         <div class="khung mb-3">
-            <div class="row" style="border-bottom: 1px solid #dedede; padding-bottom: 10px">
-                <div class="col-7"></div>
-                <div class="col-5">
-                    <div class="row">
-                        <div class="col-6">
-                            <span><i class='bx bxs-coupon bx-tada bx-flip-vertical'
-                                     style='color:#b29898'></i> Voucher</span>
-                        </div>
-                        <div class="col-6 text-right">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row mt-4">
                 <div class="col-2 mt-2">
                     <div class="form-check mb-3">
@@ -100,17 +230,50 @@
                 <div class="col-1 mt-2">
                     <a>Xóa</a>
                 </div>
-                <div class="col-4 mt-2">
+                <div class="col-3 mt-2">
                 </div>
-                <div class="col-5">
+                <div class="col-6">
                     <div class="row">
                         <div class="col-6">
-                            Tổng thanh toán (<span id="totalproduct">0</span> sản phẩm): <span class="text-danger"
-                                                                                               style="font-size: 25px"
-                                                                                               id="tongtienthuc">0₫</span>
+                            Tổng thanh toán (<span>0</span> sản phẩm):
+                            <div class="btn-group">
+                                <span class="dropdown-toggle text-danger" style="font-size: 25px"
+                                      data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+                                    200000₫
+                                </span>
+                                <ul class="dropdown-menu p-3" style="width: 500px">
+                                    <li>
+                                        <div class="fs-5" style="border-bottom: 1px solid #dedede; padding: 10px">
+                                            <span>Chi tiết khuyến mãi:</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex justify-content-between mt-2"
+                                             style="border-bottom: 1px solid #dedede; padding: 10px">
+                                            <span>Tổng tiền hàng:</span>
+                                            <span>300000</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex justify-content-between mt-2"
+                                             style="border-bottom: 1px solid #dedede; padding: 10px">
+                                            <span>Số tiền giảm:</span>
+                                            <span>100000</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex justify-content-between mt-2"
+                                             style="border-bottom: 1px solid #dedede; padding: 10px">
+                                            <span>Tổng số tiền:</span>
+                                            <span>200000</span>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
                         </div>
                         <div class="col-6 text-right">
-                            <button class="btn text-light w-75" onclick="muahang()" style="background-color: #C3817B">
+                            <button class="btn text-light w-75" style="background-color: #C3817B">
                                 Mua hàng
                             </button>
                         </div>
@@ -122,502 +285,445 @@
 
     </div>
 </div>
-
-
-<script>
-
-
-    var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-    async function huyDatHang(){
-        await $.ajax({
-            url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
-            method: 'GET',
-            success: function(req) {
-                ghct()
-            },
-            error: function(xhr, status, error) {
-                showError('Có lỗi xảy ra, hãy liên hệ admin');
-            }
-        });
-    }
-    checkChuanBiDat();
-    async function checkChuanBiDat(){
-        await ghct()
-        await $.ajax({
-            url: '/api/hoadon/chuanbidat/'+idkh,
-            method: 'GET',
-            success: async function (req) {
-                var data = req.data;
-                if (data.length != 0) {
-                    if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
-                        window.location.href = "/checkout"
-                    }
-                    else {
-                        await huyDatHang()
-                    }
-                }
-            },
-            error: function(xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-    }
-
-    var dsCheckbox = [];
-
-    $(".allchecked").click(function () {
-        var isChecked = $(this).is(":checked");
-        if (isChecked) {
-            $(".allchecked").prop("checked", true);
-            $("input[name='idghct']").prop('checked', true)
-        } else {
-            $(".allchecked").prop("checked", false);
-            $("input[name='idghct']").prop('checked', false)
-        }
-        loadDataCheckbox();
-    })
-
-    async function getThuocTinhSanPham(slug) {
-        let thuocTinhSanPham;
-        await $.ajax({
-            url: '/api/san-pham/' + slug,
-            method: 'GET',
-            success: function (req) {
-                thuocTinhSanPham = req.thuocTinh;
-            },
-            error: function (xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-        return thuocTinhSanPham;
-    }
-
-    function getDsBienThe(thuocTinhSanPham, idsp,arrTenBienThe) {
-        let html = '';
-
-        thuocTinhSanPham.forEach(function (item,index) {
-            html += `
-        <li>
-                                            <div class="color-selector">
-                                                <label>\${item.ten}:</label>
-                <div class="color-buttons">
-        `;
-            let dsGiaTriThuocTinh = item.giaTriThuocTinh;
-            dsGiaTriThuocTinh.forEach(function (thuoctinhchitiet) {
-                let isActive = thuoctinhchitiet.giaTri==arrTenBienThe[index]?"active":"";
-                var ten = thuoctinhchitiet.giaTri;
-                var id1 = thuoctinhchitiet.id;
-                html += `
-                    <button class="color-button ghct-\${idsp} button-giatri giatri-\${item.id} \${isActive}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>
-                `
-            });
-            html += `
-            </div>
-                                            </div>
-                                        </li>
-                `;
-        })
-        return html;
-    }
-
-    function setGiaTien(giaTien,giaTienKm,idGhct) {
-        var html = '';
-        if (!giaTienKm){
-            html+=  `
-            <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTien)}</b>
-            `
-        }else{
-            html+=`
-            <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTienKm)}</b>
-            <p><del id="giatienbienthe-\${idGhct}">\${convertVND(giaTien)}</del></p>
-            `
-        }
-        return html;
-    }
-    async function ghct() {
-        try {
-            const req = await $.ajax({
-                url: '/api/user/giohang/dsghtheosp/' + idkh,
-                method: 'GET'
-            });
-
-            const tbody = $("#cart");
-            tbody.empty();
-
-            if (req.length === 0) {
-                tbody.append(`<h3 class="text-center mt-2"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>`);
-            } else {
-                const promises = req.map(async function (data) {
-                    let htmlArray = [];
-                    await Promise.all(data.map(async function (sp) {
-                        const thuocTinhSanPham = await getThuocTinhSanPham(sp.slugSanPham);
-                        const htmlGiaTien = setGiaTien(sp.giaTien, sp.giaTienKm, sp.idGhct);
-                        const htmlthuoctinh = getDsBienThe(thuocTinhSanPham, sp.idGhct, sp.tenBienThe.split(","));
-
-                             html =
-                                `
-    <div class="row mt-2 cartographic" >
-        <div class="col-5">
-                                   <div class="form-check align-items-center justify-content-between mb-3 datacart">
-                                       <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">
-                <label class="form-check-label"">
-                    <div class="mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-lg-3">
-    <a href="/san-pham/\${sp.slugSanPham}">
-                                <img src="/repository/\${sp.image}" class="img-fluid rounded-start" alt="...">
-    </a>
-                            </div>
-                            <div class="col-lg-9">
-                                <div class="card-body">
-                                    <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>
-                                    <div class="btn-group">
-                                                        <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >
-                                                            Phân loại hàng
-                                                        </span>
-                                        <ul class="dropdown-menu p-3" >
-                                            \${htmlthuoctinh}
-                                            <li class="text-right ">
-                                                <button type="button" class="btn btn-light cancelbutton"  >Back</button>
-                                                <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                    <p id="tenbienthe-\${sp.idGhct}">\${sp.tenBienThe}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </label>
-            </div>
-        </div>
-        <div class="col-2">
-                        \${htmlGiaTien}
-                    </div>
-     <div class="col-2">
-                        <span>
-                            <div class="input-group " style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                            <span class="mt-5">Hiện có : <span id="slbt-\${sp.idGhct}">\${sp.soLuongBienThe}</span><span> sản phẩm</span>
-                        </span>
-                    </div>
-        <div class="col-2">
-            <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>
-        </div>
-        <div class="col-1" >
-            <a class="delete-ghct" style="cursor: pointer" data-id=\${sp.idGhct}>Xóa</a>
-        </div>
-    </div>
-
-                                `;
-                        htmlArray.push(html); // Store HTML content for each iteration
-                    }));
-//style="border-bottom: 1px solid #dedede"
-                    // Join HTML content for each data item
-                    return `<div style="border-bottom: 1px solid #dedede">` + htmlArray.join('') + '</div>';
-                });
-
-                const fullHTMLArray = await Promise.all(promises); // Wait for all iterations to complete
-                const fullHTML = fullHTMLArray.join(''); // Join all HTML content
-                tbody.append(fullHTML); // Append HTML after all iterations are complete
-            }
-        } catch (error) {
-            console.log('Có lỗi xảy ra: ' + error);
-        }
-    }
-
-
-    $(document).on("click", '.button-giatri', function () {
-        var giatri = $(this).data('thuoctinh'); // Lấy giá trị của data-thuoctinh từ button được click
-
-        $('.giatri-' + giatri).removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1
-        $(this).addClass('active'); // Thêm lớp active cho các button có giatri-1 tương ứng
-    });
-    $(document).on("click", '.cancelbutton', function () {
-        $(this).closest(".show").removeClass('show');
-    });
-    $(document).on("input", '.slthis', function () {
-
-        let idghct = $(this).attr("data-idghct");
-
-        thayDoiSoLuong(idghct,0);
-    });
-    $(document).on("click", '.xacnhanthuoctinh', function () {
-        let getGiaTri = $(this).val();
-        let activeGetGiaTri = $(`.\${getGiaTri}.active`);
-        let dsThuocTinhId = [];
-        activeGetGiaTri.each(function () {
-            dsThuocTinhId.push($(this).data('id'));
-        });
-        var ghctId = getGiaTri.split("-")[1];
-        updateGioHangChiTiet(ghctId, dsThuocTinhId)
-    });
-
-    function updateGioHangChiTiet(idghct, dsThuocTinhId) {
-        $.ajax({
-            url: '/api/user/giohang/updateCart?idghct=' + idghct + '&data=' + dsThuocTinhId.join(","),
-            method: 'GET',
-            success: function (req) {
-                $("#tenbienthe-"+idghct).text(req.tenBienThe);
-                $("#giatienbienthe-"+idghct).text(req.giaTienKm+"₫");
-                $("#giatienbienthe-km-"+idghct).text(req.giaTien+"₫");
-                $("#tongtien-"+idghct).text(req.giaTien+"₫");
-                tongTienTheoGhct(dsCheckbox);
-                showSuccess("Thành công");
-            },
-            error: function (xhr, status, error) {
-                showError("Có lỗi xảy ra")
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-    }
-
-    function tongTien() {
-        $.ajax({
-            url: '/api/user/giohang/tongtienghct?dsghct=',
-            method: 'GET',
-            success: function (req) {
-                var data = req.data;
-                $("#thanhtien").html(data + "₫");
-                $("#tongthanhtoan").html(data + "₫");
-
-            },
-            error: function (xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-
-    }
-
-    function thayDoiSoLuong(idghct, sl) {
-        let slgValue = $("#soluong-" + idghct).val().trim(); // Lấy giá trị từ input và loại bỏ các khoảng trắng ở đầu và cuối chuỗi
-
-        // Kiểm tra nếu giá trị nhập vào là rỗng hoặc không phải là số
-        let soLuongHienTai;
-        if (slgValue === '' ) {
-            soLuongHienTai = 1; // Gán giá trị mặc định là 1
-        }else if (isNaN(slgValue)){
-            soLuongHienTai = 1; // Gán giá trị mặc định là 1
-            $("#soluong-" + idghct).val(1)
-        }else {
-            soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên
-            if (soLuongHienTai<1){
-                showError("Số lượng không thể bé hơn 1");
-                return;
-            }
-            if (soLuongHienTai>10){
-                showError("Số lượng mua tối đa là 10")
-                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
-                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
-                if (!soTienGiam){
-                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
-                }else{
-                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
-                }
-                return;
-            }
-            let slbtghct = $("#slbt-"+idghct).text();
-            console.log(slbtghct)
-            if (slbtghct<soLuongHienTai){
-                showError("Số lượng hiện tại của cửa hàng không đủ")
-                $("#soluong-" + idghct).val(slbtghct)
-                let soTienGiam = getPriceElement($("#giatienbienthe-km-"+idghct));
-                let soTien = getPriceElement($("#giatienbienthe-"+idghct));
-                if (!soTienGiam){
-                    $("#tongtien-"+idghct).text(convertVND(soTien*soLuongHienTai))
-                }else{
-                    $("#tongtien-"+idghct).text(convertVND(soTienGiam*soLuongHienTai))
-                }
-                return;
-            }
-            $("#soluong-" + idghct).val(soLuongHienTai)
-        }
-
-        // Gọi API với giá trị soLuongHienTai
-
-
-        $.ajax({
-            url: '/api/user/giohang/thaydoisoluong',
-            method: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                idGhct: idghct,
-                soLuong: soLuongHienTai
-            }),
-            success: async function (req) {
-                var data = req.data;
-                $("#tongtien-" + data.idGhct).text(convertVND(data.tongTien));
-                tongTienTheoGhct(dsCheckbox);
-            },
-            error: function (xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-    }
-
-    function getPriceElement(element) {
-        let priceString = $(element).text().split(" ")[0].replaceAll(".", "");
-        return parseFloat(priceString); // Chuyển đổi chuỗi thành số float
-    }
-    async function muahang() {
-
-        var listsp = getValByCheckbox();
-        if (listsp.length== 0) {
-            showError("Bạn chưa chọn sản phẩm để mua")
-            return;
-        }
-        let lenghtsp = 0;
-        listsp.forEach(function (item) {
-            lenghtsp+=Number($("#soluong-"+item).val());
-        })
-        console.log(lenghtsp)
-         if(lenghtsp>10){
-            await Swal.fire({
-                title: "Thông báo!",
-                text: "Số lượng sản phẩm khi mua hàng không vượt quá 10,vui lòng liên hệ cửa hàng để được ưu đãi khi mua số lượng lớn!",
-                icon: "error"
-            })
-            return;
-        }else if (getPriceElement("#tongtienthuc")>5000000){
-           await Swal.fire({
-                title: "Thông báo!",
-                text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
-                    "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
-                icon: "error"
-            })
-            return;
-        }
-
-        var listspAsNumbers = listsp.map(str => Number(str));
-
-        var data = JSON.stringify({
-            dsghct: listspAsNumbers,
-        });
-        $.ajax({
-            url: '/api/user/giohang/dathang/' + idkh,
-            method: 'POST',
-            contentType: 'application/json',
-            data: data,
-            success: async function (req) {
-                //     console.log(req)
-                if (!req) {
-                    if(await showConfirm("Xác nhận đặt hàng ?")){
-                        window.location.href = "/checkout";
-                    };
-                } else {
-                    if (req == 1) {
-                        Swal.fire({
-                            title: "Thông báo!",
-                            text: "Hiện số lượng tại cửa hàng không đủ, chúng tôi sẽ cập nhật lại số lượng cho bạn!",
-                            icon: "error"
-                        }).then(async (result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK
-                            }
-                        });
-                    } else {
-                        await Swal.fire({
-                            title: "Thông báo!",
-                            text: "Bạn không được mua quá "+convertVND(5000000) +" trên 1 lần mua," +
-                                "vui lòng liên hệ cửa hàng để được ưu đãi khi mua số tiền lớn!",
-                            icon: "error"
-                        })
-                        return;
-
-                    }
-
-                }
-            },
-            error: function (xhr, status, error) {
-                console.log(error)
-                showError("Có lỗi xảy ra");
-            }
-        });
-    }
-
-
-
-    // Đặt sự kiện delegating cho phần tử body để bắt sự kiện click của checkbox
-
-    $(document).on('click', 'input[name="idghct"]', function () {
-        // Xử lý sự kiện tại đây
-        loadDataCheckbox()
-    });
-
-    function loadDataCheckbox() {
-        var listCheckbox = getValByCheckbox();
-        if (listCheckbox.length==0){
-            $(".allchecked").prop("checked",false)
-        }
-        dsCheckbox = listCheckbox;
-        tongTienTheoGhct(dsCheckbox)
-    }
-
-    function getValByCheckbox() {
-        return $("input[name='idghct']:checked").map(function () {
-            return this.value;
-        }).get();
-    }
-
-    function tongTienTheoGhct(listCheckbox) {
-        if (listCheckbox.length == 0) {
-            $("#thanhtien").html(0 + "₫");
-            $("#tongthanhtoan").html(0 + "₫");
-            $("#sotiengiam").html(0 + "₫");
-            $("#totalproduct").html(0);
-            return;
-        }
-        $.ajax({
-            url: '/api/user/giohang/tongtienghct?dsghct=' + listCheckbox.join(","),
-            method: 'GET',
-            contentType: 'application/json',
-            success: function (req) {
-                console.log(req)
-                var data = req.data;
-                $("#thanhtien").html(convertVND(data.giaGoc));
-                $("#tongthanhtoan").html( convertVND(data.giaGoc));
-                $("#sotiengiam").html(convertVND(!data.giaGiam?0:data.giaGiam));
-                $("#tongtienthuc").html(convertVND(data.thucTe));
-                $("#totalproduct").html(listCheckbox.length);
-            },
-            error: function (xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
-    }
-    function xoaGioHangChiTiet(val) {
-
-    }
-    $(document).on("click",".delete-ghct",async function() {
-        if(await showConfirm("Bạn có chắc chắn muốn xoá không ?")){
-             let data= $(this);
-            $.ajax({
-                url: '/api/user/giohang/'+data.attr("data-id"),
-                method: 'DELETE',
-                contentType: 'application/json',
-                success: function (req) {
-                    showSuccess("Xoá thành công")
-                    data.closest(".cartographic").remove();
-                    loadDataCheckbox();
-                },
-                error: function (xhr, status, error) {
-                    showError("Có lỗi xảy ra")
-                    console.log('Có lỗi xảy ra: ' + error);
-                }
-            });
-        }
-
-    });
-</script>
+<script src="<c:url value='/assets/api/web/cart.js'/>"></script>
+<%--    <script>--%>
+<%--    --%>
+<%--    --%>
+<%--        var idkh = <%=SecurityUtils.getPrincipal().getId()%>;--%>
+<%--        async function huyDatHang(){--%>
+<%--            await $.ajax({--%>
+<%--                url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,--%>
+<%--                method: 'GET',--%>
+<%--                success: function(req) {--%>
+<%--                    ghct()--%>
+<%--                },--%>
+<%--                error: function(xhr, status, error) {--%>
+<%--                    showError('Có lỗi xảy ra, hãy liên hệ admin');--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--        checkChuanBiDat();--%>
+<%--        async function checkChuanBiDat(){--%>
+<%--            await ghct()--%>
+<%--            await $.ajax({--%>
+<%--                url: '/api/hoadon/chuanbidat/'+idkh,--%>
+<%--                method: 'GET',--%>
+<%--                success: async function (req) {--%>
+<%--                    var data = req.data;--%>
+<%--                    if (data.length != 0) {--%>
+<%--                        if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {--%>
+<%--                            window.location.href = "/checkout"--%>
+<%--                        }--%>
+<%--                        else {--%>
+<%--                            await huyDatHang()--%>
+<%--                        }--%>
+<%--                    }--%>
+<%--                },--%>
+<%--                error: function(xhr, status, error) {--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--    --%>
+<%--        var dsCheckbox = [];--%>
+<%--    --%>
+<%--        $(".allchecked").click(function () {--%>
+<%--            var isChecked = $(this).is(":checked");--%>
+<%--            if (isChecked) {--%>
+<%--                $(".allchecked").prop("checked", true);--%>
+<%--                $("input[name='idghct']").prop('checked', true)--%>
+<%--            } else {--%>
+<%--                $(".allchecked").prop("checked", false);--%>
+<%--                $("input[name='idghct']").prop('checked', false)--%>
+<%--            }--%>
+<%--            loadDataCheckbox();--%>
+<%--        })--%>
+<%--    --%>
+<%--        async function getThuocTinhSanPham(slug) {--%>
+<%--            let thuocTinhSanPham;--%>
+<%--            await $.ajax({--%>
+<%--                url: '/api/san-pham/' + slug,--%>
+<%--                method: 'GET',--%>
+<%--                success: function (req) {--%>
+<%--                    thuocTinhSanPham = req.thuocTinh;--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--            return thuocTinhSanPham;--%>
+<%--        }--%>
+<%--    --%>
+<%--        function getDsBienThe(thuocTinhSanPham, idsp,arrTenBienThe) {--%>
+<%--            let html = '';--%>
+<%--    --%>
+<%--            thuocTinhSanPham.forEach(function (item,index) {--%>
+<%--                html += `--%>
+<%--            <li>--%>
+<%--                                                <div class="color-selector">--%>
+<%--                                                    <label>\${item.ten}:</label>--%>
+<%--                    <div class="color-buttons">--%>
+<%--            `;--%>
+<%--                let dsGiaTriThuocTinh = item.giaTriThuocTinh;--%>
+<%--                dsGiaTriThuocTinh.forEach(function (thuoctinhchitiet) {--%>
+<%--                    let isActive = thuoctinhchitiet.giaTri==arrTenBienThe[index]?"active":"";--%>
+<%--                    var ten = thuoctinhchitiet.giaTri;--%>
+<%--                    var id1 = thuoctinhchitiet.id;--%>
+<%--                    html += `--%>
+<%--                        <button class="color-button ghct-\${idsp} button-giatri giatri-\${item.id} \${isActive}" data-thuoctinh="\${item.id}" data-id="\${id1}">\${ten}</button>--%>
+<%--                    `--%>
+<%--                });--%>
+<%--                html += `--%>
+<%--                </div>--%>
+<%--                                                </div>--%>
+<%--                                            </li>--%>
+<%--                    `;--%>
+<%--            })--%>
+<%--            return html;--%>
+<%--        }--%>
+<%--    --%>
+<%--        function setGiaTien(giaTien,giaTienKm,idGhct) {--%>
+<%--            var html = '';--%>
+<%--            if (!giaTienKm){--%>
+<%--                html+=  `--%>
+<%--                <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTien)}</b>--%>
+<%--                `--%>
+<%--            }else{--%>
+<%--                html+=`--%>
+<%--                <b id="giatienbienthe-km-\${idGhct}">\${convertVND(giaTienKm)}</b>--%>
+<%--                <p><del id="giatienbienthe-\${idGhct}">\${convertVND(giaTien)}</del></p>--%>
+<%--                `--%>
+<%--            }--%>
+<%--            return html;--%>
+<%--        }--%>
+<%--        async function ghct() {--%>
+<%--            try {--%>
+<%--                const req = await $.ajax({--%>
+<%--                    url: '/api/user/giohang/dsghtheosp/' + idkh,--%>
+<%--                    method: 'GET'--%>
+<%--                });--%>
+<%--    --%>
+<%--                const tbody = $("#cart");--%>
+<%--                tbody.empty();--%>
+<%--    --%>
+<%--                if (req.length === 0) {--%>
+<%--                    tbody.append(`<h3 class="text-center mt-2"> Bạn chưa thêm sản phẩm vào giỏ hàng</h3>`);--%>
+<%--                } else {--%>
+<%--                    const promises = req.map(async function (data) {--%>
+<%--                        let htmlArray = [];--%>
+<%--                        await Promise.all(data.map(async function (sp) {--%>
+<%--                            const thuocTinhSanPham = await getThuocTinhSanPham(sp.slugSanPham);--%>
+<%--                            const htmlGiaTien = setGiaTien(sp.giaTien, sp.giaTienKm, sp.idGhct);--%>
+<%--                            const htmlthuoctinh = getDsBienThe(thuocTinhSanPham, sp.idGhct, sp.tenBienThe.split(","));--%>
+<%--    --%>
+<%--                            html =--%>
+<%--                                `--%>
+<%--        <div class="row mt-2 cartographic" >--%>
+<%--            <div class="col-5">--%>
+<%--                                       <div class="form-check align-items-center justify-content-between mb-3 datacart">--%>
+<%--                                           <input class="form-check-input" type="checkbox" name="idghct" value="\${sp.idGhct}">--%>
+<%--                    <label class="form-check-label"">--%>
+<%--                        <div class="mb-3" style="max-width: 540px;">--%>
+<%--                            <div class="row g-0">--%>
+<%--                                <div class="col-lg-3">--%>
+<%--        <a href="/san-pham/\${sp.slugSanPham}">--%>
+<%--                                    <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">--%>
+<%--        </a>--%>
+<%--                                </div>--%>
+<%--                                <div class="col-lg-9">--%>
+<%--                                    <div class="card-body">--%>
+<%--                                        <a style="color: black; text-decoration: none;" href="/san-pham/\${sp.slugSanPham}"><h5 class="card-title line-clamp-2">\${sp.tenSanPham}</h5></a>--%>
+<%--                                        <div class="btn-group">--%>
+<%--                                                            <span class="dropdown-toggle"  data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false" >--%>
+<%--                                                                Phân loại hàng--%>
+<%--                                                            </span>--%>
+<%--                                            <ul class="dropdown-menu p-3" >--%>
+<%--                                                \${htmlthuoctinh}--%>
+<%--                                                <li class="text-right ">--%>
+<%--                                                    <button type="button" class="btn btn-light cancelbutton"  >Back</button>--%>
+<%--                                                    <button type="button" class="btn text-light cancelbutton xacnhanthuoctinh" value="ghct-\${sp.idGhct}" style="background-color: #C3817B" >Xác nhận</button>--%>
+<%--                                                </li>--%>
+<%--                                            </ul>--%>
+<%--    --%>
+<%--                                        </div>--%>
+<%--                                        <p id="tenbienthe-\${sp.idGhct}">\${sp.tenBienThe}</p>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </label>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-2">--%>
+<%--                            \${htmlGiaTien}--%>
+<%--                        </div>--%>
+<%--         <div class="col-2">--%>
+<%--                            <span>--%>
+<%--                                <div class="input-group " style="width: 100px;">--%>
+<%--                                            <div class="input-group-btn">--%>
+<%--                                                <button class="btn btn-sm btn-primary btn-minus" onclick="thayDoiSoLuong(\${sp.idGhct},-1)">--%>
+<%--                                                    <i class="fa fa-minus"></i>--%>
+<%--                                                </button>--%>
+<%--                                            </div>--%>
+<%--                                            <input type="text" class="form-control form-control-sm bg-secondary text-center slthis" data-idghct="\${sp.idGhct}" value="\${sp.soLuong}" id="soluong-\${sp.idGhct}">--%>
+<%--                                            <div class="input-group-btn">--%>
+<%--                                                <button class="btn btn-sm btn-primary btn-plus" onclick="thayDoiSoLuong(\${sp.idGhct},1)">--%>
+<%--                                                    <i class="fa fa-plus"></i>--%>
+<%--                                                </button>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                            </span>--%>
+<%--                        </div>--%>
+<%--            <div class="col-2">--%>
+<%--                <b id="tongtien-\${sp.idGhct}">\${convertVND(sp.tongTien)}</b>--%>
+<%--            </div>--%>
+<%--            <div class="col-1" >--%>
+<%--                <a class="delete-ghct" style="cursor: pointer" data-id=\${sp.idGhct}>Xóa</a>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    --%>
+<%--                                    `;--%>
+<%--                            htmlArray.push(html); // Store HTML content for each iteration--%>
+<%--                        }));--%>
+<%--    //style="border-bottom: 1px solid #dedede"--%>
+<%--                        // Join HTML content for each data item--%>
+<%--                        return `<div style="border-bottom: 1px solid #dedede">` + htmlArray.join('') + '</div>';--%>
+<%--                    });--%>
+<%--    --%>
+<%--                    const fullHTMLArray = await Promise.all(promises); // Wait for all iterations to complete--%>
+<%--                    const fullHTML = fullHTMLArray.join(''); // Join all HTML content--%>
+<%--                    tbody.append(fullHTML); // Append HTML after all iterations are complete--%>
+<%--                }--%>
+<%--            } catch (error) {--%>
+<%--                console.log('Có lỗi xảy ra: ' + error);--%>
+<%--            }--%>
+<%--        }--%>
+<%--    --%>
+<%--    --%>
+<%--        $(document).on("click", '.button-giatri', function () {--%>
+<%--            var giatri = $(this).data('thuoctinh'); // Lấy giá trị của data-thuoctinh từ button được click--%>
+<%--    --%>
+<%--            $('.giatri-' + giatri).removeClass('active'); // Loại bỏ lớp active từ tất cả các button có class giatri-1--%>
+<%--            $(this).addClass('active'); // Thêm lớp active cho các button có giatri-1 tương ứng--%>
+<%--        });--%>
+<%--        $(document).on("click", '.cancelbutton', function () {--%>
+<%--            $(this).closest(".show").removeClass('show');--%>
+<%--        });--%>
+<%--        $(document).on("input", '.slthis', function () {--%>
+<%--    --%>
+<%--            let idghct = $(this).attr("data-idghct");--%>
+<%--    --%>
+<%--            thayDoiSoLuong(idghct,0);--%>
+<%--        });--%>
+<%--        $(document).on("click", '.xacnhanthuoctinh', function () {--%>
+<%--            let getGiaTri = $(this).val();--%>
+<%--            let activeGetGiaTri = $(`.\${getGiaTri}.active`);--%>
+<%--            let dsThuocTinhId = [];--%>
+<%--            activeGetGiaTri.each(function () {--%>
+<%--                dsThuocTinhId.push($(this).data('id'));--%>
+<%--            });--%>
+<%--            var ghctId = getGiaTri.split("-")[1];--%>
+<%--            updateGioHangChiTiet(ghctId, dsThuocTinhId)--%>
+<%--        });--%>
+<%--    --%>
+<%--        function updateGioHangChiTiet(idghct, dsThuocTinhId) {--%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/updateCart?idghct=' + idghct + '&data=' + dsThuocTinhId.join(","),--%>
+<%--                method: 'GET',--%>
+<%--                success: function (req) {--%>
+<%--                    $("#tenbienthe-"+idghct).text(req.tenBienThe);--%>
+<%--                    $("#giatienbienthe-"+idghct).text(req.giaTienKm+"₫");--%>
+<%--                    $("#giatienbienthe-km-"+idghct).text(req.giaTien+"₫");--%>
+<%--                    $("#tongtien-"+idghct).text(req.giaTien+"₫");--%>
+<%--                    tongTienTheoGhct(dsCheckbox);--%>
+<%--                    showSuccess("Thành công");--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    showError("Có lỗi xảy ra")--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--    --%>
+<%--        function tongTien() {--%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/tongtienghct?dsghct=',--%>
+<%--                method: 'GET',--%>
+<%--                success: function (req) {--%>
+<%--                    var data = req.data;--%>
+<%--                    $("#thanhtien").html(data + "₫");--%>
+<%--                    $("#tongthanhtoan").html(data + "₫");--%>
+<%--    --%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--    --%>
+<%--        }--%>
+<%--    --%>
+<%--        function thayDoiSoLuong(idghct, sl) {--%>
+<%--            let slgValue = $("#soluong-" + idghct).val().trim(); // Lấy giá trị từ input và loại bỏ các khoảng trắng ở đầu và cuối chuỗi--%>
+<%--    --%>
+<%--            // Kiểm tra nếu giá trị nhập vào là rỗng hoặc không phải là số--%>
+<%--            let soLuongHienTai;--%>
+<%--            if (slgValue === '' ) {--%>
+<%--                soLuongHienTai = 1; // Gán giá trị mặc định là 1--%>
+<%--            }else if (isNaN(slgValue)){--%>
+<%--                soLuongHienTai = 1; // Gán giá trị mặc định là 1--%>
+<%--                $("#soluong-" + idghct).val(1)--%>
+<%--            }else {--%>
+<%--                soLuongHienTai = parseInt(slgValue)+sl; // Chuyển đổi giá trị thành số nguyên--%>
+<%--                if (soLuongHienTai<1){--%>
+<%--                    showError("Số lượng không thể bé hơn 0");--%>
+<%--                    return;--%>
+<%--                }--%>
+<%--                $("#soluong-" + idghct).val(soLuongHienTai)--%>
+<%--            }--%>
+<%--    --%>
+<%--            // Gọi API với giá trị soLuongHienTai--%>
+<%--    --%>
+<%--            console.log(soLuongHienTai);--%>
+<%--    --%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/thaydoisoluong',--%>
+<%--                method: 'POST',--%>
+<%--                contentType: 'application/json',--%>
+<%--                data: JSON.stringify({--%>
+<%--                    idGhct: idghct,--%>
+<%--                    soLuong: soLuongHienTai--%>
+<%--                }),--%>
+<%--                success: async function (req) {--%>
+<%--                    var data = req.data;--%>
+<%--                    $("#tongtien-" + data.idGhct).text(convertVND(data.tongTien));--%>
+<%--                    tongTienTheoGhct(dsCheckbox);--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--    --%>
+<%--    --%>
+<%--        function muahang() {--%>
+<%--            var listsp = getValByCheckbox();--%>
+<%--            if (listsp.length == 0) {--%>
+<%--                showError("Bạn chưa chọn sản phẩm để mua")--%>
+<%--                return;--%>
+<%--            }--%>
+<%--            var listspAsNumbers = listsp.map(str => Number(str));--%>
+<%--    --%>
+<%--            var data = JSON.stringify({--%>
+<%--                dsghct: listspAsNumbers,--%>
+<%--            });--%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/dathang/' + idkh,--%>
+<%--                method: 'POST',--%>
+<%--                contentType: 'application/json',--%>
+<%--                data: data,--%>
+<%--                success: async function (req) {--%>
+<%--                    //     console.log(req)--%>
+<%--                    if (!req) {--%>
+<%--                        window.location.href = "/checkout"--%>
+<%--                    } else {--%>
+<%--                        if (req == 1) {--%>
+<%--                            Swal.fire({--%>
+<%--                                title: "Thông báo!",--%>
+<%--                                text: "Hiện số lượng tại cửa hàng không đủ, chúng tôi sẽ cập nhật lại số lượng cho bạn!",--%>
+<%--                                icon: "error"--%>
+<%--                            }).then((result) => {--%>
+<%--                                if (result.isConfirmed) {--%>
+<%--                                    window.location.href = "/cart"; // Chuyển hướng khi người dùng ấn OK--%>
+<%--                                }--%>
+<%--                            });--%>
+<%--                        } else {--%>
+<%--                            await Swal.fire('Thông báo...', 'Vì là số lượng của giỏ hàng lớn hơn 10 khi đặt hàng, ' +--%>
+<%--                                'vậy nên chúng tôi sẽ liên hệ với bạn khi chúng tôi xác nhận đơn', 'warning');--%>
+<%--                            window.location.href = "/checkout";--%>
+<%--                        }--%>
+<%--    --%>
+<%--                    }--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    console.log(error)--%>
+<%--                    showError("Có lỗi xảy ra");--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--    --%>
+<%--    --%>
+<%--    --%>
+<%--        // Đặt sự kiện delegating cho phần tử body để bắt sự kiện click của checkbox--%>
+<%--    --%>
+<%--        $(document).on('click', 'input[name="idghct"]', function () {--%>
+<%--            // Xử lý sự kiện tại đây--%>
+<%--            loadDataCheckbox()--%>
+<%--        });--%>
+<%--    --%>
+<%--        function loadDataCheckbox() {--%>
+<%--            var listCheckbox = getValByCheckbox();--%>
+<%--            if (listCheckbox.length==0){--%>
+<%--                $(".allchecked").prop("checked",false)--%>
+<%--            }--%>
+<%--            dsCheckbox = listCheckbox;--%>
+<%--            tongTienTheoGhct(dsCheckbox)--%>
+<%--        }--%>
+<%--    --%>
+<%--        function getValByCheckbox() {--%>
+<%--            return $("input[name='idghct']:checked").map(function () {--%>
+<%--                return this.value;--%>
+<%--            }).get();--%>
+<%--        }--%>
+<%--    --%>
+<%--        function tongTienTheoGhct(listCheckbox) {--%>
+<%--            console.log(listCheckbox)--%>
+<%--            if (listCheckbox.length == 0) {--%>
+<%--                $("#thanhtien").html(0 + "₫");--%>
+<%--                $("#tongthanhtoan").html(0 + "₫");--%>
+<%--                $("#sotiengiam").html(0 + "₫");--%>
+<%--                $("#totalproduct").html(0);--%>
+<%--                return;--%>
+<%--            }--%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/tongtienghct?dsghct=' + listCheckbox.join(","),--%>
+<%--                method: 'GET',--%>
+<%--                contentType: 'application/json',--%>
+<%--                success: function (req) {--%>
+<%--                    console.log(req)--%>
+<%--                    var data = req.data;--%>
+<%--                    $("#thanhtien").html(convertVND(data.giaGoc));--%>
+<%--                    $("#tongthanhtoan").html( convertVND(data.giaGoc));--%>
+<%--                    $("#sotiengiam").html(convertVND(!data.giaGiam?0:data.giaGiam));--%>
+<%--                    $("#tongtienthuc").html(convertVND(data.thucTe));--%>
+<%--                    $("#totalproduct").html(listCheckbox.length);--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        }--%>
+<%--        function xoaGioHangChiTiet(val) {--%>
+<%--    --%>
+<%--        }--%>
+<%--        $(document).on("click",".delete-ghct",function() {--%>
+<%--            let data= $(this);--%>
+<%--    --%>
+<%--    --%>
+<%--            $.ajax({--%>
+<%--                url: '/api/user/giohang/'+data.attr("data-id"),--%>
+<%--                method: 'DELETE',--%>
+<%--                contentType: 'application/json',--%>
+<%--                success: function (req) {--%>
+<%--                    showSuccess("Xoá thành công")--%>
+<%--                    data.closest(".cartographic").remove();--%>
+<%--                    loadDataCheckbox();--%>
+<%--                },--%>
+<%--                error: function (xhr, status, error) {--%>
+<%--                    showError("Có lỗi xảy ra")--%>
+<%--                    console.log('Có lỗi xảy ra: ' + error);--%>
+<%--                }--%>
+<%--            });--%>
+<%--        });--%>
+<%--    </script>--%>
+</body>
+</html>

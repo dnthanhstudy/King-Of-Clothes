@@ -114,4 +114,13 @@ public class HoaDonService implements IHoaDonService {
         return "Không tìm thấy hoá đơn";
     }
 
+    @Override
+    public List<HoaDonResponse> searchs(String param, String trangThai) {
+        List<HoaDonEntity> list = hoaDonRepository.searchs(param,trangThai);
+        List<HoaDonResponse> result = list.stream().map(
+                item -> hoaDonConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return result;
+    }
+
 }

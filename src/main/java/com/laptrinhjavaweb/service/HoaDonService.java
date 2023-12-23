@@ -50,8 +50,6 @@ public interface HoaDonService {
 
     ResponseObject huyDatHang(Long idkh);
 
-    CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien);
-
     AllThongTinHoaDon allThongTinHoaDon(String maHoaDon);
 
     AllThongKeResponse allThongKe(Integer thoiGian);
