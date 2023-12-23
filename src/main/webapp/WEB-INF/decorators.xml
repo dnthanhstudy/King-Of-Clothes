@@ -65,4 +65,8 @@
     <decorator name="xuat-hoa-don" page="xuat-hoa-don.jsp">
         <pattern>/admin/hoa-don/printf/**</pattern>
     </decorator>
+
+    <decorator name="tra-hang" page="tra-hang.jsp">
+        <pattern>/admin/tra-hang</pattern>
+    </decorator>
 </decorators>
