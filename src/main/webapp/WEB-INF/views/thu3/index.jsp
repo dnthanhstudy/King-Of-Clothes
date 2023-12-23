@@ -41,6 +41,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Mã giao hàng</th>
             <th scope="col">Mã hoá đơn</th>
             <th scope="col">Ngày giao hàng</th>
             <th scope="col">Tên người nhận</th>
@@ -180,6 +181,7 @@
                                 }
                             },
                             { data: 'ma' },
+                            { data: 'maGiaoHang' },
                             {
                                 data: 'thoiGianDat',
                                 render: function(data, type, row) {

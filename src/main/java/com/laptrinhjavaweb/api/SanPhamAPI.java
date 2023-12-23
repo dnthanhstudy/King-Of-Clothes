@@ -107,4 +107,10 @@ public class SanPhamAPI {
 	public void updatedTrangThai(@PathVariable("slug") String slug, @RequestBody String trangThai){
 		sanPhamService.updateTrangThai(slug, trangThai);
 	}
+
+	@GetMapping("/find-all")
+	public ResponseEntity<?> findAll(){
+		List<SanPhamResponse> results = sanPhamService.findAll();
+		return new ResponseEntity<>(results, HttpStatus.OK);
+	}
 }

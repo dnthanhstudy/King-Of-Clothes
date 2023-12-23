@@ -30,6 +30,7 @@ public class HomePageController {
 
     @GetMapping("/trang-chu")
     public ModelAndView homePage(){
+        khuyenMaiService.updateDS();
         ModelAndView mav = new ModelAndView("web/homepage");
         mav.addObject("productOutstanding", sanPhamService.random(null,null, null, 1, null, 6));
         mav.addObject("productPopular", sanPhamService.random(null,null, null, null, 1, 6));
@@ -58,6 +59,7 @@ public class HomePageController {
             @RequestParam(name = "limit", required = false, defaultValue = "9") Integer limit,
             @RequestParam Map<String, Object> filters
     ){
+        khuyenMaiService.updateDS();
         MapUtils.deleteKeyFromMap(filters);
         ModelAndView mav = new ModelAndView("web/shop");
         Map<String, Object> results = new HashMap<>();
@@ -90,6 +92,9 @@ public class HomePageController {
     public ModelAndView detail(@PathVariable("slug") String slug){
         ModelAndView mav = new ModelAndView("web/detail");
         SanPhamResponse result = sanPhamService.findBySlug(slug);
+        if (result.getKhuyenMaiHienThiResponse() != null){
+            khuyenMaiService.updateStatusByMa(result.getKhuyenMaiHienThiResponse().getMa());
+        }
         mav.addObject("product", result);
         mav.addObject("sameProduct", sanPhamService.same(slug));
         return mav;

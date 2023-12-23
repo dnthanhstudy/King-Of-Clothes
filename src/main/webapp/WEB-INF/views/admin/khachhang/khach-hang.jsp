@@ -238,7 +238,7 @@
 
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
-        param = $('#searchAll').val();
+        param = $('#searchAll').val().trim();
         if(pageCurrent > 1){
             pageCurrent = 1;
         }

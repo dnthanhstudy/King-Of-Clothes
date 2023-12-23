@@ -203,4 +203,12 @@ public class SanPhamService implements ISanPhamService{
 		return results;
 	}
 
+	@Override
+	public List<SanPhamResponse> findAll() {
+		List<SanPhamResponse> results = sanPhamRepository.findAll().stream().map(
+				item -> sanPhamConvert.convertToResponse(item)
+		).collect(Collectors.toList());
+		return results;
+	}
+
 }

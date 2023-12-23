@@ -29,4 +29,6 @@ public interface ISanPhamService {
 	void updateTrangThai(String slug, String trangThai);
 
 	Map<String, Object> findÁll(Integer pageCurrent, Integer limit);
+
+	List<SanPhamResponse> findAll();
 }

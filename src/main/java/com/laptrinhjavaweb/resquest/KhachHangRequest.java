@@ -30,4 +30,10 @@ public class KhachHangRequest{
     private String xacNhanMatKhau;
 
     private String trangThai = "ACTIVE";
+
+    private String recipient;
+
+    private String message;
+
+    private String subject;
 }

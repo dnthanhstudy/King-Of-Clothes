@@ -9,5 +9,5 @@ public interface HoaDonRepositoryCustom {
 
     List<HoaDonEntity> findAllByCurrentDateAndMaNhanVien(String ngay, String maNhanVien);
 
-//    List<HoaDonEntity> searchs(String param);
+    List<HoaDonEntity> searchs(String param, String trangThai);
 }

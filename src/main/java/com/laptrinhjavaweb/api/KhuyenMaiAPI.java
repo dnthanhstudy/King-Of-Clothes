@@ -31,6 +31,11 @@ public class KhuyenMaiAPI {
         String results = khuyenMaiService.delete(ma);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
+    @DeleteMapping("/undelete/{ma}")
+    public ResponseEntity<?> undelete(@PathVariable(name = "ma") String ma){
+        String results = khuyenMaiService.undelete(ma);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody KhuyenMaiRequest km){
         KhuyenMaiResponse results = khuyenMaiService.save(km);

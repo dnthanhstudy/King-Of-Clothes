@@ -21,5 +21,7 @@ public class HoaDonChiTietRequest{
 
     private Double thanhTien;
 
+    private Double soTienGiam;
+
     private String trangThai = "ACTIVE";
 }

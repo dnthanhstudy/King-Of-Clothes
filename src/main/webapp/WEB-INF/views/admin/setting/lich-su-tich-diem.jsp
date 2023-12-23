@@ -41,7 +41,8 @@
                     <tr class="text-center">
                         <th scope="col">STT</th>
                         <th scope="col">Mã Hóa đơn</th>
-                        <th scope="col">Khách hàng</th>
+                        <th scope="col">Tên khách hàng</th>
+                        <th scope="col">Số điện thoại</th>
                         <th scope="col">Số điểm tích được</th>
                         <th scope="col">Số điểm dùng</th>
                         <th scope="col">Ngày tích</th>
@@ -62,6 +63,7 @@
             url: '/api/lich-su-tich-diem',
             method: 'GET',
             success: function (response) {
+
                 var tbody = $('#tbllstd tbody');
                 tbody.empty();
                 var index = 0;
@@ -69,9 +71,10 @@
                     console.log(response)
                     var row = `
                             <tr class="text-center">
-                                <td>\${++index}</td>
-                                <td>\${item.hoaDon.ma}</td>
-                                 <td>\${item.khachHang.ten}</td>
+                                 <td>\${++index}</td>
+                                 <td>\${item.maHoaDon}</td>
+                                 <td>\${item.tenKhachHang}</td>
+                                 <td>\${item.soDienThoai}</td>
                                  <td>\${item.soDiemTichDuoc}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
                                  <td>\${formatDateInput(item.ngayTao)}</td>
@@ -86,11 +89,17 @@
         });
     }
     getLSTD();
+
     $('#searchButton').on('click', (e) =>{
         e.preventDefault();
-        param = $('#searchAll').val();
-        searchLichSu();
+        param = $('#searchAll').val().trim();
+        if(param != ''){
+            searchLichSu(param);
+        }else{
+            getLSTD();
+        }
     })
+
     function searchLichSu(){
         $.ajax({
             url: '/api/lich-su-tich-diem/search?sdtKhachHang=' + param,
@@ -101,12 +110,13 @@
                     var tbody = $('#tbllstd tbody');
                     tbody.empty();
                     var index = 0;
-                    response.data.forEach(function (item) {
+                    response.forEach(function (item) {
                         var row = `
                            <tr class="text-center">
                                 <td>\${++index}</td>
-                                <td>\${item.hoaDon.ma}</td>
-                                 <td>\${item.khachHang.ten}</td>
+                                 <td>\${item.maHoaDon}</td>
+                                 <td>\${item.tenKhachHang}</td>
+                                 <td>\${item.soDienThoai}</td>
                                  <td>\${item.soDiemTichDuoc}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
                                  <td>\${formatDateInput(item.ngayTao)}</td>
@@ -117,7 +127,6 @@
 
             },
             error: function (xhr, status, error) {
-                console.log('Lỗi khi lấy danh sách khách hàng: ' + error);
                 showError("Không tìm thấy khách hàng nào như thế!")
             }
         });

@@ -23,17 +23,14 @@ public class HoaDonRepositoryImpl implements HoaDonRepositoryCustom {
         return query.getResultList();
     }
 
-//    @Override
-//    public List<HoaDonEntity> searchs(String param) {
-//        String sql = "select hoadon.* from hoadon join nhanvien on hoadon.idnhanvien = nhanvien.id" +
-//                " join khachhang on hoadon.idkhachhang = khachhang.id "
-//                + " where (hoadon.ma LIKE '%" + param
-//                + "%' OR khachhang.ma LIKE '%" + param
-//                + "%' OR khachhang.ten LIKE '%" + param
-//                + "%' OR nhanvien.ma LIKE '%" + param
-//                + "%' OR nhanvien.ten LIKE '%" + param
-//                + "%'" + ")" ;
-//        Query query = entityManager.createNativeQuery(sql, HoaDonEntity.class);
-//        return query.getResultList();
-//    }
+    @Override
+    public List<HoaDonEntity> searchs(String param, String trangThai) {
+        String sql = "SELECT hoadon.* FROM hoadon LEFT JOIN khachhang on hoadon.idkhachhang = khachhang.id" +
+                " WHERE ( hoadon.ma LIKE '%" + param + "%'" +
+                " OR khachhang.sodienthoai LIKE '%" + param + "%' )" +
+                " AND hoadon.trangthai = '" + trangThai + "'";
+        Query query = entityManager.createNativeQuery(sql, HoaDonEntity.class);
+        System.out.println("SQL SEARCH " + sql);
+        return query.getResultList();
+    }
 }

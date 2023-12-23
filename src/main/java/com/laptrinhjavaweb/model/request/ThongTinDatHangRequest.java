@@ -78,7 +78,7 @@ public class ThongTinDatHangRequest {
 
     private Long cod_amount;         // Số tiền thu hộ
     public void setTienThuHo(HoaDonEntity hoaDon){
-        if (hoaDon.getPhuongThucThanhToan()==null||hoaDon.getPhuongThucThanhToan().equals("CHUYENKHOAN")){
+        if (hoaDon.getPhuongThucThanhToan()==null||hoaDon.getLoaiThanhToan()){
             cod_amount = 0L;
             payment_type_id=1L;
         }else {
@@ -105,6 +105,16 @@ public class ThongTinDatHangRequest {
     // private Object coupon;           // Mã khuyến mãi
     private Long pickup_time;        // Thời gian mong muốn lấy hàng
     public void setDsSanPham(List<SanPhamGhnApi> dsSanPham){
+//        dsSanPham.get(i).getQuantity();
+        int slSanPham = 0;
+        for (SanPhamGhnApi sp: dsSanPham
+             ) {
+            slSanPham+=sp.getQuantity();
+        }
+        slSanPham*=7;
+        weight=slSanPham;
+        length=slSanPham;
+        width=slSanPham;
         items = dsSanPham;
     }
 

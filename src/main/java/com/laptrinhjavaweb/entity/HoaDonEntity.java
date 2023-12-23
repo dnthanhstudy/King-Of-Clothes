@@ -43,8 +43,10 @@ public class HoaDonEntity extends BaseEntity{
 	
 	@Column(name = "ngaydukiengiaohang", columnDefinition = "TIMESTAMP")
 	private Date ngayDuKienGiaoHang;
+
 	@Column(name = "ngaygiaohang", columnDefinition = "TIMESTAMP")
 	private Date ngayGiaoHang;
+
 	@Column(name = "ngaythanhtoan", columnDefinition = "TIMESTAMP")
 	private Date ngayThanhToan;
 	
@@ -146,10 +148,6 @@ public class HoaDonEntity extends BaseEntity{
 			return 0D;
 		}
 		return getTienShip()+tongTienHang;
-	}
-
-	public String pttt(){
-		return phuongThucThanhToan;
 	}
 
 	public String getPhuongThucThanhToan() {

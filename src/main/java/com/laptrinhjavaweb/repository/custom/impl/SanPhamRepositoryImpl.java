@@ -62,7 +62,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		}else {
 			sql += "sanphamphobien = 1";
 		}
-		sql += " ORDER BY ngaytao DESC, RAND() LIMIT " + limit;
+		sql += " AND trangthai = 'ACTIVE' ORDER BY ngaytao DESC, RAND() LIMIT " + limit;
 		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
 		return query.getResultList();
 	}

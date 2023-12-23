@@ -31,6 +31,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+
+        function getDateTime(longDate) {
+            date = new Date(longDate);
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, '0');
+            let day = date.getDate().toString().padStart(2, '0');
+            let hours = date.getHours().toString().padStart(2, '0');
+            let minutes = date.getMinutes().toString().padStart(2, '0');
+
+            return day + '-' + month + '-' + year + ' ' + hours + ':' + minutes;
+        }
+
         function convertVND(number){
             return number.toLocaleString('it-IT', {style : 'currency', currency : 'VND'});
         }
@@ -101,7 +113,7 @@
             });
         });
         function genderTrangThaiHd(idhd,mahd,val) {
-            if (val=="Huỷ đơn"){
+            if (val!="Chờ nhận đơn"){
                 return `
                 <div class="my-2 text-right">
                                     <a class="btn btn-secondary" href="/web/thong-tin-don-hang?mahd=\${mahd}">Xem đơn hàng</a>

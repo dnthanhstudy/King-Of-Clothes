@@ -84,9 +84,9 @@
     function validateForm() {
         let isValid = true;
 
-        let soDienThoai = $("#soDienThoai").val();
-        let email = $("#email").val();
-        let ngaySinh = $("#ngaySinh").val();
+        let soDienThoai = $("#soDienThoai").val().trim();
+        let email = $("#email").val().trim();
+        let ngaySinh = $("#ngaySinh").val().trim();
 
         if(ngaySinh !== "") {
             let selectedDate = new Date(ngaySinh);
@@ -112,7 +112,7 @@
             showError("Số điện thoại không hợp lệ");
             isValid = false;
         }
-        if ($("#ten").val() === "") {
+        if ($("#ten").val().trim() === "") {
             showError("Họ và tên không được để trống");
             isValid = false;
         }

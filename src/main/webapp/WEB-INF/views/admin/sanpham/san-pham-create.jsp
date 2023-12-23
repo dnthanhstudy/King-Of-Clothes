@@ -50,6 +50,7 @@
                     </div>
 
                     <div class="col-6 mt-4">
+                        <label for="slug" class="form-label">Danh mục</label>
                         <select class="form-select" name="danhMucSlug">
                             <option value="" selected>Vui lòng chọn danh mục</option>
                             <c:forEach var="item" items="${categoriesProduct}">
@@ -59,6 +60,7 @@
                     </div>
 
                     <div class="col-6 mt-4">
+                        <label for="slug" class="form-label">Thương hiệu</label>
                         <select class="form-select" name="thuongHieuSlug">
                             <option selected>Vui lòng chọn thương hiệu</option>
                             <c:forEach var="item" items="${brandsProduct}">
@@ -66,98 +68,101 @@
                             </c:forEach>
                         </select>
                     </div>
-                </div>
 
-                <div class="row mt-4 mb-4">
-                    <div class="col-6">
-                        <div class="card" id="card-attribute">
-                            <div
-                                    class="d-flex justify-content-between align-items-center card-header"
-                            >
-                                <p>Thuộc tính</p>
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <input
-                                                type="text"
-                                                class="form-control input-name-atrribute"
-                                                placeholder="Nhập thuộc tính"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text card-text-none-attribute">
-                                    Chưa có thuộc tính
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="card" id="card-variant">
-                            <div
-                                    class="d-flex justify-content-between align-items-center card-header"
-                            >
-                                <p>Biến thể</p>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-4 d-flex align-items-center">
-                                    <div class="col-8">
+                    <div class="row mt-4 mb-4">
+                        <div class="col-6">
+                            <div class="card" id="card-attribute">
+                                <div
+                                        class="d-flex justify-content-between align-items-center card-header"
+                                >
+                                    <p>Thuộc tính</p>
+                                    <div class="col-4">
                                         <div class="input-group">
                                             <input
                                                     type="text"
-                                                    class="form-control"
-                                                    placeholder="Thiết lập giá cho tất cả thuộc tính"
-                                                    id="price-all"
+                                                    class="form-control input-name-atrribute"
+                                                    placeholder="Nhập thuộc tính"
                                             />
-                                            <button
-                                                    class="btn btn-primary"
-                                                    type="button"
-                                                    id="btn-set-price"
-                                            >
-                                                Xác nhận!
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-variant">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center" scope="col">Tên biến thể</th>
-                                        <th class="text-center" scope="col">Giá</th>
-                                        <th class="text-center" scope="col">Số lượng</th>
-                                        <th class="text-center" scope="col">Chọn hình ảnh</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="table-variant-body" id="variants"></tbody>
-                                </table>
+                                <div class="card-body">
+                                    <p class="card-text card-text-none-attribute">
+                                        Chưa có thuộc tính
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="card" id="card-variant">
+                                <div
+                                        class="d-flex justify-content-between align-items-center card-header"
+                                >
+                                    <p>Biến thể</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-4 d-flex align-items-center">
+                                        <div class="col-8">
+                                            <div class="input-group">
+                                                <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Thiết lập giá cho tất cả thuộc tính"
+                                                        id="price-all"
+                                                />
+                                                <button
+                                                        class="btn btn-primary"
+                                                        type="button"
+                                                        id="btn-set-price"
+                                                >
+                                                    Xác nhận!
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered table-variant">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center" scope="col">Tên biến thể</th>
+                                            <th class="text-center" scope="col">Giá</th>
+                                            <th class="text-center" scope="col">Số lượng</th>
+                                            <th class="text-center" scope="col">Chọn hình ảnh</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="table-variant-body" id="variants"></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row mb-4">
-                    <div class="col-6">
-                        <label for="chitietsanpham" class="form-label"
-                        >Thông tin chi tiết</label
-                        >
-                        <textarea
-                                class="form-control"
-                                id="chitietsanpham"
-                                name="thongTinChiTiet"
-                        ></textarea>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <label for="chitietsanpham" class="form-label"
+                            >Thông tin chi tiết</label
+                            >
+                            <textarea
+                                    class="form-control"
+                                    id="chitietsanpham"
+                                    name="thongTinChiTiet"
+                            ></textarea>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="motasanpham" class="form-label">Mô tả sản phẩm</label>
+                            <textarea
+                                    class="form-control"
+                                    id="motasanpham"
+                                    name="moTa"
+                            ></textarea>
+                        </div>
                     </div>
 
-                    <div class="col-6">
-                        <label for="motasanpham" class="form-label">Mô tả sản phẩm</label>
-                        <textarea
-                                class="form-control"
-                                id="motasanpham"
-                                name="moTa"
-                        ></textarea>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
                     </div>
                 </div>
-                <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
         </div>
 

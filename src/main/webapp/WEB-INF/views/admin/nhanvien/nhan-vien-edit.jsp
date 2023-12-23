@@ -141,7 +141,7 @@
                 $("#ngaySinh").val(formatDateInput(req.ngaySinh));
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
-                $("#thumbimage").attr('src', "/repository//" + req.anh);
+                $("#thumbimage").attr('src', "/repository/" + req.anh);
 
                 $("#selectChucVu option").each(function(i){
                     $(this).prop('selected', $(this).val() === (req.chucVu && req.chucVu.ma));

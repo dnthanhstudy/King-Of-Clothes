@@ -13,4 +13,6 @@ public class SystemConstant {
     public static final String DELETE = "DELETE";
 
     public static final String path = "G:/images";
+
+    //public static final String path = "D:/images";
 }

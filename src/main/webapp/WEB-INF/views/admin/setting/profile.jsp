@@ -25,7 +25,7 @@
                         </div>
                         <div class="profile-info">
                             <div class="profile-photo">
-                                <img  src="/repository//<%=SecurityUtils.getPrincipal().getAnh()%>" id="anh" class="img-fluid rounded-circle" alt="">
+                                <img  src="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" id="anh" class="img-fluid rounded-circle" alt="">
                             </div>
                             <div class="profile-details">
                                 <div class="profile-name px-3 pt-2">
@@ -47,8 +47,8 @@
                                 <div class="profile-interest">
                                     <h5 class="text-cyan d-inline">Image</h5>
                                     <div class="row mt-4 sp4" id="lightgallery">
-                                        <a href="/repository//<%=SecurityUtils.getPrincipal().getAnh()%>" data-exthumbimage="/repository//<%=SecurityUtils.getPrincipal().getAnh()%>" data-src="/repository//<%=SecurityUtils.getPrincipal().getAnh()%>" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
-                                            <img src="/repository//<%=SecurityUtils.getPrincipal().getAnh()%>" alt="" class="img-fluid">
+                                        <a href="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" data-exthumbimage="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" data-src="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" class="mb-1 col-lg-4 col-xl-4 col-sm-4 col-6">
+                                            <img src="/repository/<%=SecurityUtils.getPrincipal().getAnh()%>" alt="" class="img-fluid">
                                         </a>
 
                                     </div>

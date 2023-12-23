@@ -34,8 +34,13 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
             if(hoaDonChiTietRequest.getSoLuong() > quantity){
                throw new ClientError("Vui lòng giảm số lượng sản phẩm mua hoặc kiểm tra lại số lượng sản phẩm có sẵn");
             }
+            if(entity.getSoTienGiam() != null){
+                Double soTienGiamLanDau = hoaDonChiTietEntity.getSoTienGiam() / hoaDonChiTietEntity.getSoLuong();
+                hoaDonChiTietEntity.setSoTienGiam(soTienGiamLanDau * hoaDonChiTietRequest.getSoLuong());
+            }
             hoaDonChiTietEntity.setSoLuong(hoaDonChiTietEntity.getSoLuong() + 1);
             hoaDonChiTietEntity.setThanhTien(hoaDonChiTietEntity.getGia() * hoaDonChiTietEntity.getSoLuong());
+
             hoaDonChiTietRepository.save(hoaDonChiTietEntity);
         }else{
             hoaDonChiTietRepository.save(entity);
@@ -46,6 +51,10 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
     @Transactional
     public void update(Long id, Integer soLuong) {
         HoaDonChiTietEntity entity = hoaDonChiTietRepository.findById(id).get();
+        if(entity.getSoTienGiam() != null){
+            Double soTienGiamLanDau = entity.getSoTienGiam() / entity.getSoLuong();
+            entity.setSoTienGiam(soTienGiamLanDau * soLuong);
+        }
         entity.setSoLuong(soLuong);
         entity.setThanhTien(entity.getGia() * soLuong);
         Integer quantity = entity.getSanPham().getSoLuong();

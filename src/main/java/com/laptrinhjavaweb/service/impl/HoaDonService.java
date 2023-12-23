@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -87,6 +88,9 @@ public class HoaDonService implements IHoaDonService {
                         }
             );
         }
+        if(hoaDonResquest.getTrangThai().equals("THANHCONG")){
+            entity.setNgayThanhToan(new Date());
+        }
         HoaDonEntity result = hoaDonRepository.save(entity);
         return hoaDonConverter.convertToResponse(result);
     }
@@ -108,6 +112,15 @@ public class HoaDonService implements IHoaDonService {
             return "Xóa thành công";
         }
         return "Không tìm thấy hoá đơn";
+    }
+
+    @Override
+    public List<HoaDonResponse> searchs(String param, String trangThai) {
+        List<HoaDonEntity> list = hoaDonRepository.searchs(param,trangThai);
+        List<HoaDonResponse> result = list.stream().map(
+                item -> hoaDonConverter.convertToResponse(item)
+        ).collect(Collectors.toList());
+        return result;
     }
 
 }
