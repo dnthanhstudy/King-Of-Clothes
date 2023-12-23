@@ -84,7 +84,7 @@
                     let isChecked = item.trangThai === "ACTIVE" ? "checked": "";
                     html += `<tr>
                                     <td>\${index+1}</td>
-                                    <td><img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
+                                    <td><img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
                                     <td>\${item.ten}</td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.danhMuc.ten}</td>
@@ -155,7 +155,7 @@
                         html += `<tr>
                                 <td>\${index+1}</td>
                                 <td>
-                                    <img src='/assets/images/sanpham/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                    <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
                                 </td>
                                 <td>\${item.ten}</td>
                                 <td>\${item.gia}</td>
@@ -199,11 +199,11 @@
     }
 
     $(document).ready(function() {
-        var searchButton = $('#searchAll').trim();
+        var searchButton = $('#searchAll');
         pageCurrent = 1;
         searchButton.on('keydown', function(event) {
             if (event.which === 13) {
-                param = searchButton.val();
+                param = searchButton.val().trim();
                 if(pageCurrent > 1){
                     pageCurrent = 1;
                 }

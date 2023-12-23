@@ -34,24 +34,19 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="slug" class="form-label">Slug</label>
                         <input name="slug" type="text" class="form-control" id="slug" readonly/>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="ten" class="form-label">Tên</label>
                         <input name="ten" type="text" class="form-control" id="ten"/>
                     </div>
 
-                    <div class="col-3">
-                        <label for="gia" class="form-label">Giá</label>
+                    <div class="col-4">
+                        <label for="ten" class="form-label">Giá</label>
                         <input name="gia" type="text" class="form-control" id="gia"/>
-                    </div>
-
-                    <div class="col-3">
-                        <label for="so-luong" class="form-label">Số lượng</label>
-                        <input name="soLuong" type="text" class="form-control" id="so-luong"/>
                     </div>
 
                     <div class="col-6 mt-4">
@@ -113,11 +108,12 @@
                                                     type="text"
                                                     class="form-control"
                                                     placeholder="Thiết lập giá cho tất cả thuộc tính"
+                                                    id="price-all"
                                             />
                                             <button
                                                     class="btn btn-primary"
                                                     type="button"
-                                                    id="btn-search"
+                                                    id="btn-set-price"
                                             >
                                                 Xác nhận!
                                             </button>
@@ -161,24 +157,6 @@
                         ></textarea>
                     </div>
                 </div>
-
-                <div class="row d-flex">
-                    <div class="form-check">
-                        <input name="sanPhamMoi" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-moi">
-                        <label class="form-check-label" for="san-pham-moi">
-                            Sản phẩm mới
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamNoiBat" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-noi-bat">
-                        <label class="form-check-label" for="san-pham-noi-bat">
-                            Sản phẩm nổi bật
-                        </label>
-                    </div>
-                </div>
-
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
         </div>
@@ -191,8 +169,9 @@
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
 </script>
-<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 <script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/validate.js'/>"></script>
 <script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
+<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>
 </html>

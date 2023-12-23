@@ -111,7 +111,7 @@
                 $("#canCuocCongDan").val(req.canCuocCongDan);
                 $("#ngayCap").val(formatDateInput(req.ngayCap));
                 $("#tenChucVu").val(req.chucVu.ten);
-                $("#anh").attr('src', "/assets/images/nhanvien/" + req.anh);
+                $("#anh").attr('src', "/repository//" + req.anh);
             },
             error: function (xhr, status, error) {
                 console.log(error);

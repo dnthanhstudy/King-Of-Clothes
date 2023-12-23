@@ -82,7 +82,7 @@ public class GioHangChiTietConveter {
         response.setThuocTinh(thuocTinh);
         response.setDonGia(bienTheEntity.getGia());
         response.setGiaMua(giaMua);
-        response.setThanhTien(giaMua * response.getSoLuong());
+        response.setSoTien(giaMua * response.getSoLuong());
         response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
         return response;
     }

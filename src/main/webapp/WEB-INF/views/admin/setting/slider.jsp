@@ -61,7 +61,7 @@
                             <tr>
                                 <td>\${++index}</td>
                                 <td>
-                                    <img src='/assets/images/slider/\${item.image}' style="width: 120px;">
+                                    <img src='/repository//\${item.image}' style="width: 120px;">
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger btn-delete" value="\${item.id}">Xóa</button>

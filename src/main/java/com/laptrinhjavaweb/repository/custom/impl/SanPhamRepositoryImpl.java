@@ -51,13 +51,13 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 	public List<SanPhamEntity> random(Integer sanPhamBanChay, Integer sanPhamMoi, Integer sanPhamNhieuLuotXem, Integer sanPhamNoiBat, Integer sanPhamPhoBien,
 									  Integer limit) {
 		String sql = "SELECT * FROM sanpham WHERE ";
-		if(sanPhamMoi != null){
+		if(sanPhamBanChay != null){
 			sql += "sanphambanchay = 1";
 		}else if(sanPhamMoi != null){
-			sql += "sanmhammoi = 1";
+			sql += "sanphammoi = 1";
 		}else if(sanPhamNhieuLuotXem != null){
-			sql += "sapnhamnhieuluotxem = 1";
-		}else if(sanPhamPhoBien != null){
+			sql += "sanphamnhieuluotxem = 1";
+		}else if(sanPhamNoiBat != null){
 			sql += "sanphamnoibat = 1";
 		}else {
 			sql += "sanphamphobien = 1";

@@ -23,7 +23,7 @@ public class ReadFileUtils extends HttpServlet {
         }
         ServletOutputStream outStream;
         outStream = response.getOutputStream();
-        FileInputStream fin = new FileInputStream("D:/project-5-ngay-hoc-java-master/V1" + relativeImagePath);
+        FileInputStream fin = new FileInputStream("G:/images" + relativeImagePath);
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(outStream);
         int ch = 0;

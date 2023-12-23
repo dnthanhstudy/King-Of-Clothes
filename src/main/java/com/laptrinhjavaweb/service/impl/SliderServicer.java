@@ -87,7 +87,7 @@ public class SliderServicer implements ISliderService {
     }
 
     public void saveImage(SliderRequest sliderRequest) {
-        String path = SystemConstant.path + "/slider/"  + sliderRequest.getImage();
+        String path = SystemConstant.path + "/"  + sliderRequest.getImage();
         if (sliderRequest.getBase64() != null) {
             byte[] bytes = Base64.decodeBase64(sliderRequest.getBase64().getBytes());
             uploadFileUtils.writeOrUpdate(path, bytes);

@@ -759,7 +759,7 @@
                         <div class="mb-3">
                             <div class="row g-0">
                                 <div class="col-md-2">
-                                    <img src="/assets/images/sanpham/\${custom.image}" class="img-fluid rounded-start " alt="...">
+                                    <img src="/repository/\${custom.image}" class="img-fluid rounded-start " alt="...">
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body">

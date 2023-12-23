@@ -16,15 +16,12 @@ $("#product").on("change", "input[type='radio']", function () {
             success: (response) => {
                 variantId = response.id;
                 $('.product-origin').text(response.gia);
-
+                $('.product-buy').text(response.giaBan)
                 if (response.hinhAnh !== null) {
-                    $('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                    $('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                 }
                 if (response.soLuong !== null) {
                     $('.product-quantity').text(response.soLuong + " sản phẩm có sẵn")
-                }
-                if (response.khuyenMaiHienThiResponse !== null) {
-                    $('.product-buy').text(response.giaBan)
                 }
 
                 $('.product-price-custom-vnd').each(function (index, item) {

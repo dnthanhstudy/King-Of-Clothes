@@ -274,7 +274,7 @@
 <%--                            <div class="row g-0">--%>
 <%--                                <div class="col-lg-3">--%>
 <%--        <a href="/san-pham/\${sp.slugSanPham}">--%>
-<%--                                    <img src="/assets/images/sanpham/\${sp.image}" class="img-fluid rounded-start" alt="...">--%>
+<%--                                    <img src="/repository/\${sp.image}" class="img-fluid rounded-start" alt="...">--%>
 <%--        </a>--%>
 <%--                                </div>--%>
 <%--                                <div class="col-lg-9">--%>

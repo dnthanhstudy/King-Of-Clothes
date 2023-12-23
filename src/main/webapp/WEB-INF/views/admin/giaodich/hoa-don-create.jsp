@@ -494,7 +494,7 @@
                         <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                    <img src="/repository/\${item.anh[0].hinhAnh}"
                                          class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
@@ -590,7 +590,7 @@
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
-                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                 }
                                 if (response.khuyenMaiHienThiResponse !== null) {
                                     $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
@@ -684,7 +684,7 @@
                         <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                    <img src="/repository/\${item.anh[0].hinhAnh}"
                                          class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
@@ -778,7 +778,7 @@
                                     $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong);
 
                                     if (response.hinhAnh !== null) {
-                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                     }
                                     if (response.khuyenMaiHienThiResponse !== null) {
                                         $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
@@ -995,7 +995,7 @@
                                     $("#gia").text(formatNumber(response.gia));
                                     $("#soLuong").text(response.soLuong);
                                     $("#tenThuongHieu").text(response.tenThuongHieu);
-                                    $("#image").attr('src', '/assets/images/sanpham/' + response.image);
+                                    $("#image").attr('src', '/repository/' + response.image);
                                     const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
                                     let htmlThuocTinh = '';
                                     $.each(response.thuocTinh, (index, item) => {

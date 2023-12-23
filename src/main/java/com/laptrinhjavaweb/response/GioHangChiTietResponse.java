@@ -19,7 +19,7 @@ public class GioHangChiTietResponse {
 
     private Double giaMua;
 
-    private Double thanhTien;
+    private Double soTien;
 
     private List<ThuocTinhResponse> thuocTinh;
 

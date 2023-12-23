@@ -33,24 +33,19 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="slug" class="form-label">Slug</label>
                         <input name="slug" type="text" class="form-control" id="slug" readonly/>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="ten" class="form-label">Tên</label>
                         <input name="ten" type="text" class="form-control" id="ten"/>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-4">
                         <label for="gia" class="form-label">Giá</label>
                         <input name="gia" type="text" class="form-control" id="gia"/>
-                    </div>
-
-                    <div class="col-3">
-                        <label for="so-luong" class="form-label">Số lượng</label>
-                        <input name="soLuong" type="text" class="form-control" id="so-luong"/>
                     </div>
 
                     <div class="col-6 mt-4" id="danh-muc">
@@ -206,14 +201,13 @@
                 $("#slug").val(req.slug);
                 $("#ten").val(req.ten);
                 $("#gia").val(req.gia);
-                $("#so-luong").val(req.soLuong);
                 $("#motasanpham").val(req.moTa);
                 $("#chitietsanpham").val(req.thongTinChiTiet);
                 $("#danh-muc select").val(req.danhMuc.slug)
                 $("#thuong-hieu select").val(req.thuongHieu.slug)
                 let htmlImage = '';
                 $.each(req.anh, (index, item) => {
-                    htmlImage += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
+                    htmlImage += `<img src="/repository/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
                 })
                 $(".list-images").append(htmlImage)
 
@@ -262,7 +256,7 @@
                               </td>
                               <td>
                                 <input class="form-control image-variant"  type="file">`;
-                    htmlBienThe += `<img src="/assets/images/sanpham/\${item.hinhAnh}" class="image-variant mt-2 hinhanhbase64" style="width: 150px;" />
+                    htmlBienThe += `<img src="/repository/\${item.hinhAnh}" class="image-variant mt-2 hinhanhbase64" style="width: 150px;" />
                              </td>
                             </tr>`;
                 })

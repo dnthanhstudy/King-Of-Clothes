@@ -124,7 +124,6 @@ $("#ten").keyup(function () {
     $("#slug").val(slug);
 });
 
-
 function generateVariant() {
     let arrayAttributes = getAttributeValues();
 
@@ -262,7 +261,7 @@ function getVariants() {
         let variant = {};
         variant["ten"] = ten;
         variant["gia"] = gia;
-        variant["soluong"] = soLuong;
+        variant["soLuong"] = soLuong;
         variant["base64"] = hinhanhbase64;
         variant["hinhAnh"] = null;
         variants.push(variant);
@@ -343,3 +342,16 @@ function loadSuggestions(options) {
         }
     });
 }
+
+$('#btn-set-price').on('click', function(){
+    let price = $("#price-all").val();
+    let res = isNumber(price);
+    if(res === false){
+        showError("Gía không hợp lệ. Xin kiểm tra lại");
+        return false;
+    }
+    $(".table-variant-body .price-variant").each((index, item) => {
+        $(item).val(price)
+    });
+    $("#price-all").val("");
+});

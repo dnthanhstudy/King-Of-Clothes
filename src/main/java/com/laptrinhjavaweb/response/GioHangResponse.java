@@ -11,5 +11,9 @@ public class GioHangResponse {
 
     private List<GioHangChiTietResponse> gioHang;
 
-    private Double tongTien;
+    private Double tongTienHang;
+
+    private Double tietKiem;
+
+    private Double tongSoTien;
 }

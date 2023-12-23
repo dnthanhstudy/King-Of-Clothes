@@ -33,7 +33,7 @@ public class HomePageController {
         ModelAndView mav = new ModelAndView("web/homepage");
         mav.addObject("productOutstanding", sanPhamService.random(null,null, null, 1, null, 6));
         mav.addObject("productPopular", sanPhamService.random(null,null, null, null, 1, 6));
-        mav.addObject("productSeller", sanPhamService.random(1,null, null, null, 1, 6));
+        mav.addObject("productNew", sanPhamService.random(null,1, null, null, null, 6));
         return mav;
     }
 
