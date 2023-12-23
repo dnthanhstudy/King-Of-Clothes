@@ -20,11 +20,7 @@ public class KhuyenMaiSanPhamEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idkhuyenmai")
 	private KhuyenMaiEntity khuyenMai;
-	
-	@ManyToOne
-	@JoinColumn(name = "idbienthe")
-	private BienTheEntity bienThe;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
