@@ -5,10 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.*;
 @Entity
 @Table(name = "bienthe")
 @Getter
@@ -35,9 +34,7 @@ public class BienTheEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
-	
-	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
-	private List<KhuyenMaiSanPhamEntity> khuyenMaiSanPhamEntities = new ArrayList<>();
+
 		
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<GiaTriThuocTinhBienTheEntity> giaTriThuocTinhBienTheEntities = new ArrayList<>();

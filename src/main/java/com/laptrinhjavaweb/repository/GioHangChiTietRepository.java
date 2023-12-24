@@ -52,4 +52,6 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     int configHoaDonChiTietKhiDatHang(@Param("idhd")Long idhd,@Param("idkh")Long idkh);
 
     GioHangChiTietEntity findByGioHang_idAndBienThe_id(Long idGioHang, Long idBienThe);
+
+    List<GioHangChiTietEntity> findAllByBienThe_id(Long id);
 }
