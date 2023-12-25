@@ -66,6 +66,20 @@ $('#cart').on('click', function (e) {
     }
 })
 
+$('#cart').on('input', function (e) {
+    const eleClick = $(e.target);
+    if(eleClick.hasClass('product-quantity')){
+        let enteredQuantity = parseInt(eleClick.val());
+        if (isNaN(enteredQuantity) || enteredQuantity <= 0) {
+            enteredQuantity = 1;
+        }
+
+        eleClick.val(enteredQuantity);
+        updateCart(eleClick);
+    }
+
+})
+
 function findAllChecked() {
     let checked = [];
     $('.checked-one:checked').each((index, item) => {
@@ -282,6 +296,7 @@ function updateCart(ele) {
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
             loadOneCartItem(response, eleCartItem);
+
         },
         error: (error) => {
             console.log(error)
@@ -458,3 +473,4 @@ function removeIonChecked(eleClick) {
         })
     });
 }
+
