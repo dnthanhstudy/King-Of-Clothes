@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class GioHangChiTietRequest {
 
+    private Long id;
+
     private Long idGioHang;
 
     private Long idSanPham;

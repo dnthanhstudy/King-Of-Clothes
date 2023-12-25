@@ -77,6 +77,7 @@ public class GioHangChiTietConveter {
             giaMua = bienTheEntity.getGia();
         }
 
+        response.setSlug(sanPhamResponse.getSlug());
         response.setTenSanPham(sanPhamResponse.getTen());
         response.setImage(image);
         response.setThuocTinh(thuocTinh);
@@ -84,6 +85,7 @@ public class GioHangChiTietConveter {
         response.setGiaMua(giaMua);
         response.setSoTien(giaMua * response.getSoLuong());
         response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
+        response.setIdBienThe(bienTheEntity.getId());
         return response;
     }
 }

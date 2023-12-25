@@ -21,13 +21,13 @@
         </div>
     </div>
 </div>
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-5" id="cart-checked">
     <div class="px-xl-5">
         <div class="khung mb-3">
             <div class="row ">
                 <div class="col-5">
                     <div class="form-check mb-3">
-                        <input class="form-check-input checked-all" type="checkbox">
+                        <input class="form-check-input checked-product checked-all" type="checkbox">
                         <label class="form-check-label">
                             Sản phẩm
                         </label>
@@ -223,7 +223,7 @@
             <div class="row mt-4">
                 <div class="col-2 mt-2">
                     <div class="form-check mb-3">
-                        <input class="form-check-input checked-all" type="checkbox">
+                        <input class="form-check-input checked-product checked-all" type="checkbox">
                         <label class="form-check-label">
                             Sản phẩm
                         </label>
@@ -237,11 +237,11 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-6">
-                            Tổng thanh toán (<span>0</span> sản phẩm):
+                            Tổng thanh toán (<span class="total-checked">0</span> sản phẩm):
                             <div class="btn-group">
-                                <span class="dropdown-toggle text-danger" style="font-size: 25px"
+                                <span class="dropdown-toggle text-danger total-buy product-price-custom-vnd" style="font-size: 25px"
                                       data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-                                    200000₫
+                                    0
                                 </span>
                                 <ul class="dropdown-menu p-3" style="width: 500px">
                                     <li>
@@ -253,21 +253,21 @@
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Tổng tiền hàng:</span>
-                                            <span>300000</span>
+                                            <span class="total-cart product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Số tiền giảm:</span>
-                                            <span>100000</span>
+                                            <span class="total-discount product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Tổng số tiền:</span>
-                                            <span>200000</span>
+                                            <span class="total-buy product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                 </ul>
@@ -275,7 +275,7 @@
                             </div>
                         </div>
                         <div class="col-6 text-right">
-                            <button class="btn text-light w-75" style="background-color: #C3817B">
+                            <button id="buy-product" class="btn text-light w-75" style="background-color: #C3817B">
                                 Mua hàng
                             </button>
                         </div>
@@ -286,6 +286,5 @@
     </div>
 </div>
 <script src="<c:url value='/assets/api/web/cart.js'/>"></script>
-
 </body>
 </html>

@@ -36,18 +36,7 @@ public class GioHangConverter {
                 item -> gioHangChiTietConveter.convertToResponse(item)
         ).collect(Collectors.toList());
 
-        Double tongTienHang = listGioHangChiTiet.stream().mapToDouble(
-                item-> (item.getSoLuong() * item.getDonGia())
-        ).sum();
-
-        Double tongSoTien = listGioHangChiTiet.stream().mapToDouble(
-                item-> item.getSoTien()
-        ).sum();
-
         response.setGioHang(listGioHangChiTiet);
-        response.setTongTienHang(tongTienHang);
-        response.setTongSoTien(tongSoTien);
-        response.setTietKiem(response.getTongTienHang() - response.getTongSoTien());
         return response;
     }
 }

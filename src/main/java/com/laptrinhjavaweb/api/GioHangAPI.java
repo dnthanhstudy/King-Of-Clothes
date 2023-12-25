@@ -16,13 +16,13 @@ public class GioHangAPI {
     private IGioHangService gioHangService;
 
     @PostMapping
-    public ResponseEntity<?> created(@RequestBody GioHangRequest gioHangRequest){
+    public ResponseEntity<?> created(@RequestBody GioHangRequest gioHangRequest) {
         Long result = gioHangService.save(gioHangRequest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/{ma}")
-    public ResponseEntity<?> findAll(@PathVariable String ma){
+    public ResponseEntity<?> findAll(@PathVariable String ma) {
         GioHangResponse result = gioHangService.findByMaKhachHang(ma);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

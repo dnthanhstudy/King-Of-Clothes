@@ -10,10 +10,4 @@ import java.util.List;
 public class GioHangResponse {
 
     private List<GioHangChiTietResponse> gioHang;
-
-    private Double tongTienHang;
-
-    private Double tietKiem;
-
-    private Double tongSoTien;
 }
