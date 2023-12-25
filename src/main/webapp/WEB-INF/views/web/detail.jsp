@@ -153,9 +153,10 @@
             <div class="khung mt-4">
                 <h5>Mô tả sản phẩm</h5>
                 <span class="product-description">
-                      <span class="form-control" id="moTa">
+                    <div id="moTa">
+                        ${product.moTa}
+                    </div>
 
-                      </span>
                 </span>
             </div>
 
@@ -237,6 +238,11 @@
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>
+    ClassicEditor
+            .create( document.querySelector( '#moTa' ) )
+            .catch( error => {
+                console.error( error );
+            } );
     var x = setInterval(function () {
         var finish = parseInt($('#product-finish').val());
         var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
