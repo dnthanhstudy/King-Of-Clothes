@@ -149,7 +149,7 @@ function loadProductActive() {
                                                   class="dropdown-toggle"
                                                   data-bs-toggle="dropdown"
                                                   data-bs-auto-close="false"
-aria-expanded="false"
+                                                  aria-expanded="false"
                                                 >
                                                   Phân loại hàng
                                                 </span> <ul style="width: 450px !important;" class="dropdown-menu p-3 list-attr-name">`;
@@ -296,7 +296,6 @@ function updateCart(ele) {
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
             loadOneCartItem(response, eleCartItem);
-
         },
         error: (error) => {
             console.log(error)
@@ -472,3 +471,4 @@ function removeIonChecked(eleClick) {
         })
     });
 }
+
