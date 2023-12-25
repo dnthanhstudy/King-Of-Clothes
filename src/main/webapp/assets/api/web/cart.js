@@ -66,6 +66,20 @@ $('#cart').on('click', function (e) {
     }
 })
 
+$('#cart').on('input', function (e) {
+    const eleClick = $(e.target);
+    if(eleClick.hasClass('product-quantity')){
+        let enteredQuantity = parseInt(eleClick.val());
+        if (isNaN(enteredQuantity) || enteredQuantity <= 0) {
+            enteredQuantity = 1;
+        }
+
+        eleClick.val(enteredQuantity);
+        updateCart(eleClick);
+    }
+
+})
+
 function findAllChecked() {
     let checked = [];
     $('.checked-one:checked').each((index, item) => {
@@ -135,7 +149,7 @@ function loadProductActive() {
                                                   class="dropdown-toggle"
                                                   data-bs-toggle="dropdown"
                                                   data-bs-auto-close="false"
-                                                  aria-expanded="false"
+aria-expanded="false"
                                                 >
                                                   Phân loại hàng
                                                 </span> <ul style="width: 450px !important;" class="dropdown-menu p-3 list-attr-name">`;
@@ -186,7 +200,7 @@ function loadProductActive() {
                                         </button>
                                       </li></ul></div>
                                         <div class="mt-2">
-                                            <p class="name-variant">${nameVariant.join(" , ")}</p>
+<p class="name-variant">${nameVariant.join(" , ")}</p>
                                             <input class="variant-id" type="hidden" name="" value="${item.idBienThe}">
                                         </div>`;
 
@@ -282,6 +296,7 @@ function updateCart(ele) {
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
             loadOneCartItem(response, eleCartItem);
+
         },
         error: (error) => {
             console.log(error)
@@ -357,7 +372,6 @@ function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.price-origin').text(formatNumber(data.donGia) + " đ");
     eleCartItem.find('.price-discount').text(formatNumber(data.giaMua) + " đ");
     eleCartItem.find('.price-buy').text(formatNumber(data.soTien) + " đ");
-
     const listAttrName = eleCartItem.find('.list-attr-name');
 
     let nameVariant = [];
