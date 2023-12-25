@@ -28,7 +28,7 @@
             <a href="?lang=en" class="btn border"><img src="/template/web/img/my.jpg" style="width: 30px" alt=""></a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="" id="soLuongGioHang">0</span>
+                <span class="quantity-cart">0</span>
             </a>
         </div>
     </div>
@@ -68,9 +68,7 @@
 
     let histories = [];
     let customerCodeWhenLogin = $('#customer-code').val();
-    console.log("Code when login: " + customerCodeWhenLogin)
     if (customerCodeWhenLogin !== "null") {
-        console.log(customerCodeWhenLogin);
         $.ajax({
             url: '/api/khach-hang/histories?ma=' + customerCodeWhenLogin,
             dataType: "json",
@@ -98,4 +96,16 @@
             });
         }
     }
+
+    $.ajax({
+        url: "/api/gio-hang/" + customerCodeWhenLogin,
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            const size = response.gioHang.length;
+            $('.quantity-cart').text(size);
+        },
+        error: (error) => {
+        }
+    });
 </script>

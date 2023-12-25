@@ -9,6 +9,8 @@ import java.util.List;
 @Setter
 public class GioHangChiTietResponse {
 
+    private Long id;
+
     private String tenSanPham;
 
     private String image;
@@ -24,4 +26,6 @@ public class GioHangChiTietResponse {
     private List<ThuocTinhResponse> thuocTinh;
 
     private List<Long> giaTriThuocTinhChecked;
+
+    private Long idBienThe;
 }

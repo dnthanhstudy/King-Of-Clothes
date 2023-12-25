@@ -1,5 +1,6 @@
 const lenOfAttribute = parseInt($('#len-attribute').val());
 let variantId = null;
+
 $("#product").on("change", "input[type='radio']", function () {
     const lenChecked = $('#product input[type="radio"]:checked').length;
     if (lenChecked === lenOfAttribute) {
@@ -102,14 +103,26 @@ function actionWhenClick(buttonClick){
 
                 addProduct(data,
                     function () {
-                        console.log(buttonClick.prop('id'))
+                        $.ajax({
+                            url: "/api/gio-hang/" + customerCodeWhenLogin,
+                            method: "GET",
+                            dataType: "json",
+                            success: (response) => {
+                                const size = response.gioHang.length;
+                                $('.quantity-cart').text(size);
+                            },
+                            error: (error) => {
+                            }
+                        });
+
                         if (buttonClick.prop('id') === "add-cart") {
                             showSuccess("Thêm sản phẩm vào giỏ hàng thành công");
                             variantId = null;
                             $('#product').find('input[type=radio]').prop('checked', false);
                             $('#quantity').val(1);
                         } else {
-                            // redirect hiển thị giỏ hàng
+                            $('#product').find('input[type=radio]').prop('checked', false);
+                            $('#quantity').val(1);
                             window.location.href = "/cart"
                         }
                     }
@@ -118,7 +131,6 @@ function actionWhenClick(buttonClick){
                         showError(error.responseJSON.error)
                     }
                 )
-
             }, function (error) {
                 console.log(error)
             })
