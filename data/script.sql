@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               8.0.31 - MySQL Community Server - GPL
+-- Server version:               8.0.35 - MySQL Community Server - GPL
 -- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
+-- HeidiSQL Version:             12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `anhsanpham` (
   PRIMARY KEY (`id`),
   KEY `FKl2yrbw1jmokavcq0mcl2215j3` (`idsanpham`),
   CONSTRAINT `FKl2yrbw1jmokavcq0mcl2215j3` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=244 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.anhsanpham: ~226 rows (approximately)
+-- Dumping data for table duantotnghiep.anhsanpham: ~216 rows (approximately)
 INSERT INTO `anhsanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `hinhanh`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'TBpuvQ.jpg', 1),
 	(2, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'hCuy1c.jpg', 1),
@@ -252,16 +252,17 @@ INSERT INTO `anhsanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `t
 	(231, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'vx04tG.jpg', 49),
 	(232, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'T5jKFR.jpg', 49),
 	(233, NULL, '2023-12-12 06:57:24', NULL, 'admin9193', 'ACTIVE', 'g343y5.jpg', 4),
-	(234, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 'pgEEpI.jpg', 50),
-	(235, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'fpHXuH.jpg', 51),
-	(236, NULL, '2023-12-18 07:46:17', NULL, 'admin9193', 'ACTIVE', 'X5vrgm.jpg', 56),
-	(237, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'XKLds3.jpg', 57),
-	(238, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 'IkFIh4.jpg', 58),
-	(239, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'C29qGn.jpg', 59),
-	(240, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'xjWTb5.jpg', 60),
-	(241, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', '1EhzR1.jpg', 61),
-	(242, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 'CxFYu7.jpg', 62),
-	(243, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'km7iJM.jpg', 63);
+	(234, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'DgRa1n.jpg', 50),
+	(235, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'EQPlUq.jpg', 50),
+	(236, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', '8WGHPi.jpg', 50),
+	(237, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'f5qvMd.jpg', 50),
+	(238, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'pYIeP9.jpg', 51),
+	(239, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'AhcN6z.jpg', 52),
+	(240, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'jTlLjh.jpg', 52),
+	(241, NULL, '2023-12-23 09:43:34', NULL, 'admin9193', 'ACTIVE', 'Jb8fuU.jpg', 53),
+	(242, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'bDzEas.jpg', 53),
+	(243, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'HbO6Qc.jpg', 53),
+	(244, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'aO2dLE.jpg', 53);
 
 -- Dumping structure for table duantotnghiep.bienthe
 CREATE TABLE IF NOT EXISTS `bienthe` (
@@ -281,9 +282,9 @@ CREATE TABLE IF NOT EXISTS `bienthe` (
   UNIQUE KEY `UK_1i0avoe2xfvbl86pcd6fltolm` (`ma`),
   KEY `FK5wqyagvu9na935be2xsh2a9xv` (`idsanpham`),
   CONSTRAINT `FK5wqyagvu9na935be2xsh2a9xv` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=596 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=585 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.bienthe: ~588 rows (approximately)
+-- Dumping data for table duantotnghiep.bienthe: ~560 rows (approximately)
 INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `hinhanh`, `ma`, `soluong`, `ten`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 128000, 'PrSCiL.jpg', 'SLG3RP0y', 12000, 'Trắng,M', 1),
 	(2, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 138000, NULL, 'Ilbl9LXU', 12000, 'Trắng,L', 1),
@@ -343,7 +344,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(56, NULL, '2023-11-27 02:39:53', NULL, 'admin9193', 'ACTIVE', 270000, '4SmTyN.jpg', 'GmCQtQqt', 12000, 'Đen,M', 7),
 	(57, NULL, '2023-11-27 02:39:53', NULL, 'admin9193', 'ACTIVE', 279000, 'RCvnAR.jpg', 'xGV66qLe', 12000, 'Đen,L', 7),
 	(58, NULL, '2023-11-27 02:43:46', NULL, 'admin9193', 'ACTIVE', 259000, 'x6F7PO.jpg', '9tJJJBr3', 12000, 'Đen,L', 8),
-	(59, NULL, '2023-11-27 02:43:46', NULL, 'admin9193', 'ACTIVE', 269000, '6r6Bxo.jpg', '6ubTfoUS', 11999, 'Đen,XL', 8),
+	(59, NULL, '2023-11-27 02:43:46', NULL, 'admin9193', 'ACTIVE', 269000, '6r6Bxo.jpg', '6ubTfoUS', 12000, 'Đen,XL', 8),
 	(60, NULL, '2023-11-27 02:46:17', NULL, 'admin9193', 'ACTIVE', 345000, 'ophxa5.jpg', 'sGxcr8Ap', 12000, 'Đen,L', 9),
 	(61, NULL, '2023-11-27 02:46:17', NULL, 'admin9193', 'ACTIVE', 360000, 'oxjvWV.jpg', 'X8JncyDE', 12000, 'Đen,XL', 9),
 	(62, NULL, '2023-11-27 02:48:58', NULL, 'admin9193', 'ACTIVE', 340000, 'i4mTHm.jpg', 'SCFdtGr5', 12000, 'Đen,M', 10),
@@ -514,7 +515,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(234, NULL, '2023-11-27 16:40:54', NULL, 'admin9193', 'ACTIVE', 355000, NULL, 's1QP6QW6', 12000, 'XL', 41),
 	(235, NULL, '2023-11-27 16:48:19', NULL, 'admin9193', 'ACTIVE', 199000, NULL, 'vlQCrYkp', 12000, 'M', 42),
 	(236, NULL, '2023-11-27 16:48:19', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'nn7nRUEe', 12000, 'L', 42),
-	(237, '2023-12-19 05:18:15', '2023-11-27 16:48:19', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'DHnGDkeX', 2001, 'XL', 42),
+	(237, NULL, '2023-11-27 16:48:19', NULL, 'admin9193', 'ACTIVE', 210000, NULL, 'DHnGDkeX', 12000, 'XL', 42),
 	(238, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 379000, 'xFNS0O.jpg', 'HAPdtgLS', 12000, 'Đen,M,Địa Cầu', 43),
 	(239, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 380000, NULL, 'N13AGniV', 12000, 'Đen,M,Họa Hình', 43),
 	(240, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 380000, NULL, 'hrxXuRiN', 12000, 'Đen,L,Địa Cầu', 43),
@@ -523,7 +524,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(243, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 379000, NULL, 'vcIfVi3u', 12000, 'Đen,XL,Họa Hình', 43),
 	(244, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 385000, 'TnMzIX.jpg', 'uhZBnJiu', 12000, 'Be,M,Địa Cầu', 43),
 	(245, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 379000, NULL, 'eSMdL4jX', 12000, 'Be,M,Họa Hình', 43),
-	(246, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 380000, NULL, 'KIEzeJAI', 11998, 'Be,L,Địa Cầu', 43),
+	(246, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 380000, NULL, 'KIEzeJAI', 12000, 'Be,L,Địa Cầu', 43),
 	(247, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 380000, NULL, 'WoOrQ7yi', 12000, 'Be,L,Họa Hình', 43),
 	(248, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 385000, NULL, '013jGpPk', 12000, 'Be,XL,Địa Cầu', 43),
 	(249, NULL, '2023-12-09 05:23:49', NULL, 'admin9193', 'ACTIVE', 379000, NULL, 'Zmq04H0a', 12000, 'Be,XL,Họa Hình', 43),
@@ -551,7 +552,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(271, NULL, '2023-12-09 05:27:30', NULL, 'admin9193', 'ACTIVE', 225000, NULL, 'HIkiWz5B', 12000, 'Đen,32,Dáng Ống Loe', 44),
 	(272, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 120000, 'znId4O.jpg', 'Ad2uCsa6', 12000, 'Đen,M,Cổ dài', 45),
 	(273, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 129000, NULL, '6EClQGt0', 12000, 'Đen,M,Cổ thấp', 45),
-	(274, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 13000, NULL, '8nC0pG28', 12000, 'Đen,L,Cổ dài', 45),
+	(274, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 130000, NULL, '8nC0pG28', 12000, 'Đen,L,Cổ dài', 45),
 	(275, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 129000, NULL, 'mgZLPnZs', 12000, 'Đen,L,Cổ thấp', 45),
 	(276, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'TfnqxPa1', 12000, 'Đen,XL,Cổ dài', 45),
 	(277, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 125000, NULL, 'OUp9gkuj', 12000, 'Đen,XL,Cổ thấp', 45),
@@ -573,7 +574,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(293, NULL, '2023-12-09 05:29:48', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'JxM9ONk6', 12000, 'Xanh Than,L,Cổ thấp', 45),
 	(294, NULL, '2023-12-09 05:29:48', NULL, 'admin9193', 'ACTIVE', 130000, NULL, 'h2zdQgsG', 12000, 'Xanh Than,XL,Cổ dài', 45),
 	(295, NULL, '2023-12-09 05:29:48', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'QdX867qr', 12000, 'Xanh Than,XL,Cổ thấp', 45),
-	(296, '2023-12-19 09:02:28', '2023-12-09 05:33:09', 'admin9193', 'admin9193', 'ACTIVE', 249000, 'CFanXL.jpg', 'YHa5Avvc', 11997, 'Đen,M,Vải Cotton', 46),
+	(296, NULL, '2023-12-09 05:33:09', NULL, 'admin9193', 'ACTIVE', 249000, 'CFanXL.jpg', 'YHa5Avvc', 12000, 'Đen,M,Vải Cotton', 46),
 	(297, NULL, '2023-12-09 05:33:09', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'PSvP64Gi', 12000, 'Đen,M,Vải Corona', 46),
 	(298, NULL, '2023-12-09 05:33:09', NULL, 'admin9193', 'ACTIVE', 245000, NULL, 'Xp3D1vBF', 12000, 'Đen,L,Vải Cotton', 46),
 	(299, NULL, '2023-12-09 05:33:09', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'B23JWB2e', 12000, 'Đen,L,Vải Corona', 46),
@@ -585,13 +586,13 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(305, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 249000, NULL, 'nZiPXaVE', 12000, 'Be,M,Vải Corona', 46),
 	(306, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 255000, NULL, '9jNHj21R', 12000, 'Be,L,Vải Cotton', 46),
 	(307, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'H4qnSxjd', 12000, 'Be,L,Vải Corona', 46),
-	(308, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'FUBfvzLA', 11999, 'Be,XL,Vải Cotton', 46),
+	(308, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'FUBfvzLA', 12000, 'Be,XL,Vải Cotton', 46),
 	(309, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 245000, NULL, 'FxQN5xVl', 12000, 'Be,XL,Vải Corona', 46),
 	(310, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 249000, NULL, 'sLxgWA13', 12000, 'Be,S,Vải Cotton', 46),
 	(311, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 249000, NULL, 'n1dZ7VZr', 12000, 'Be,S,Vải Corona', 46),
 	(312, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, '1cdaBH.jpg', 'bHPu0jZd', 12000, 'Xanh,S,Logo', 47),
 	(313, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 280000, NULL, 'FyQF31BY', 12000, 'Xanh,S,Chữ cái', 47),
-	(314, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, '1MrpcfPG', 11999, 'Xanh,L,Logo', 47),
+	(314, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, '1MrpcfPG', 12000, 'Xanh,L,Logo', 47),
 	(315, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 285000, NULL, 'qRNXM91s', 12000, 'Xanh,L,Chữ cái', 47),
 	(316, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 280000, NULL, 'S8LBjd3W', 12000, 'Xanh,XL,Logo', 47),
 	(317, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, '7LGppDQL', 12000, 'Xanh,XL,Chữ cái', 47),
@@ -617,7 +618,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(337, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 144000, NULL, 'POtZZQbn', 12000, 'Xanh,M,Vải Visco,Mặt Trăng', 48),
 	(338, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'Rx8OIG0p', 12000, 'Xanh,M,Vải Visco,Bầu Trời', 48),
 	(339, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 149000, NULL, 'TO1LzLHf', 12000, 'Xanh,M,Vải Visco,Họa Hình', 48),
-	(340, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 145000, NULL, '7qDtllPE', 11998, 'Xanh,L,Vải Cotton,Địa Cầu', 48),
+	(340, '2023-12-19 04:27:19', '2023-12-09 05:42:32', 'admin9193', 'admin9193', 'ACTIVE', 145000, NULL, '7qDtllPE', 11998, 'Xanh,L,Vải Cotton,Địa Cầu', 48),
 	(341, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'JaqrGV2c', 12000, 'Xanh,L,Vải Cotton,Mặt Trăng', 48),
 	(342, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'tF4cIqnH', 12000, 'Xanh,L,Vải Cotton,Bầu Trời', 48),
 	(343, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'aAD5ej9H', 12000, 'Xanh,L,Vải Cotton,Họa Hình', 48),
@@ -653,7 +654,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(373, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'P9iP0f1i', 12000, 'Xanh,XXL,Vải Visco,Mặt Trăng', 48),
 	(374, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'JSfWCrnt', 12000, 'Xanh,XXL,Vải Visco,Bầu Trời', 48),
 	(375, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'iuKhSpds', 12000, 'Xanh,XXL,Vải Visco,Họa Hình', 48),
-	(376, '2023-12-19 08:32:28', '2023-12-09 05:42:32', 'admin9193', 'admin9193', 'ACTIVE', 145000, 'Iq8Bzv.jpg', 'uTz5ipj0', 11998, 'Hồng,M,Vải Cotton,Địa Cầu', 48),
+	(376, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 145000, 'Iq8Bzv.jpg', 'uTz5ipj0', 12000, 'Hồng,M,Vải Cotton,Địa Cầu', 48),
 	(377, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'mJyk021m', 12000, 'Hồng,M,Vải Cotton,Mặt Trăng', 48),
 	(378, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 138000, NULL, 'LU6hjq7X', 12000, 'Hồng,M,Vải Cotton,Bầu Trời', 48),
 	(379, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 139000, NULL, 'tdbanS15', 12000, 'Hồng,M,Vải Cotton,Họa Hình', 48),
@@ -665,7 +666,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(385, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'XPA3HI5V', 12000, 'Hồng,M,Vải Visco,Mặt Trăng', 48),
 	(386, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'sxeDLPtZ', 12000, 'Hồng,M,Vải Visco,Bầu Trời', 48),
 	(387, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 145000, NULL, 'SbAtaUrG', 12000, 'Hồng,M,Vải Visco,Họa Hình', 48),
-	(388, '2023-12-19 08:07:40', '2023-12-09 05:42:33', 'admin9193', 'admin9193', 'ACTIVE', 140000, NULL, '139WYpyX', 11999, 'Hồng,L,Vải Cotton,Địa Cầu', 48),
+	(388, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, '139WYpyX', 12000, 'Hồng,L,Vải Cotton,Địa Cầu', 48),
 	(389, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'QBUpSuVW', 12000, 'Hồng,L,Vải Cotton,Mặt Trăng', 48),
 	(390, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'B3KWLZsU', 12000, 'Hồng,L,Vải Cotton,Bầu Trời', 48),
 	(391, NULL, '2023-12-09 05:42:33', NULL, 'admin9193', 'ACTIVE', 145000, NULL, 'mssEC4gb', 12000, 'Hồng,L,Vải Cotton,Họa Hình', 48),
@@ -797,11 +798,11 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(517, NULL, '2023-12-09 05:42:35', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'xTJNiusc', 12000, 'Đen,XXL,Vải Visco,Mặt Trăng', 48),
 	(518, NULL, '2023-12-09 05:42:35', NULL, 'admin9193', 'ACTIVE', 139000, NULL, '7WIj8ldM', 12000, 'Đen,XXL,Vải Visco,Bầu Trời', 48),
 	(519, NULL, '2023-12-09 05:42:35', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'lB2qAl5S', 12000, 'Đen,XXL,Vải Visco,Họa Hình', 48),
-	(520, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, '8YWa7N.jpg', 'P0xcvUWE', 12000, 'Đen,M,Vải Cotton,Tay ngắn', 49),
+	(520, '2023-12-19 04:27:19', '2023-12-09 05:47:44', 'admin9193', 'admin9193', 'ACTIVE', 79000, '8YWa7N.jpg', 'P0xcvUWE', 11998, 'Đen,M,Vải Cotton,Tay ngắn', 49),
 	(521, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'bpJIeOTh', 12000, 'Đen,M,Vải Cotton,Tay lỡ', 49),
 	(522, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'Rq6N4TKp', 12000, 'Đen,M,Vải Corolan,Tay ngắn', 49),
 	(523, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '1Xg72YAl', 12000, 'Đen,M,Vải Corolan,Tay lỡ', 49),
-	(524, '2023-12-19 08:32:28', '2023-12-09 05:47:44', 'admin9193', 'admin9193', 'ACTIVE', 79000, NULL, 'liX5KSC6', 11988, 'Đen,L,Vải Cotton,Tay ngắn', 49),
+	(524, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'liX5KSC6', 12000, 'Đen,L,Vải Cotton,Tay ngắn', 49),
 	(525, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'kH5XAImT', 12000, 'Đen,L,Vải Cotton,Tay lỡ', 49),
 	(526, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'YTjdW2gr', 12000, 'Đen,L,Vải Corolan,Tay ngắn', 49),
 	(527, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'hMXalKUg', 12000, 'Đen,L,Vải Corolan,Tay lỡ', 49),
@@ -817,11 +818,11 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(537, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'hJZfiMtM', 12000, 'Xám,M,Vải Cotton,Tay lỡ', 49),
 	(538, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 85000, NULL, 'IM2Iahsx', 12000, 'Xám,M,Vải Corolan,Tay ngắn', 49),
 	(539, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'eLtISgqd', 12000, 'Xám,M,Vải Corolan,Tay lỡ', 49),
-	(540, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'fvvtbaCv', 11999, 'Xám,L,Vải Cotton,Tay ngắn', 49),
+	(540, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'fvvtbaCv', 12000, 'Xám,L,Vải Cotton,Tay ngắn', 49),
 	(541, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, '4Kv354mV', 12000, 'Xám,L,Vải Cotton,Tay lỡ', 49),
 	(542, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'kFP0iBMc', 12000, 'Xám,L,Vải Corolan,Tay ngắn', 49),
 	(543, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'GpL8oSkH', 12000, 'Xám,L,Vải Corolan,Tay lỡ', 49),
-	(544, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '6PZEVfsV', 11999, 'Xám,XL,Vải Cotton,Tay ngắn', 49),
+	(544, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '6PZEVfsV', 12000, 'Xám,XL,Vải Cotton,Tay ngắn', 49),
 	(545, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, '0ASPLVXb', 12000, 'Xám,XL,Vải Cotton,Tay lỡ', 49),
 	(546, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'CM0ykSbH', 12000, 'Xám,XL,Vải Corolan,Tay ngắn', 49),
 	(547, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'tC69Ws4R', 12000, 'Xám,XL,Vải Corolan,Tay lỡ', 49),
@@ -844,35 +845,24 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(564, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'n3FYOMsF', 12000, 'Trắng,XXL,Vải Cotton,Tay ngắn', 49),
 	(565, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '07jIkdqi', 12000, 'Trắng,XXL,Vải Cotton,Tay lỡ', 49),
 	(566, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 85000, NULL, 'DV0DgbZy', 12000, 'Trắng,XXL,Vải Corolan,Tay ngắn', 49),
-	(567, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'vQiacqZL', 12000, 'Trắng,XXL,Vải Corolan,Tay lỡ', 49),
-	(568, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'gAbxQi1q', 12000, 'Đỏ', 50),
-	(569, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 210000, NULL, 'xQWY6z0B', 12000, 'Xanh', 50),
-	(570, '2023-12-19 08:54:44', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'bQBVhMBg', 11995, 'Xanh,Xl', 51),
-	(571, NULL, '2023-12-17 06:30:37', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'yPtRjUvr', 12000, 'Xanh,L', 51),
-	(572, NULL, '2023-12-17 06:30:37', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'xc65qcOd', 12000, 'Đỏ,Xl', 51),
-	(573, NULL, '2023-12-17 06:30:37', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'rpoVOOb9', 12000, 'Đỏ,L', 51),
-	(574, '2023-12-19 05:15:11', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'Lt27ypYY', 11998, 'S', 56),
-	(575, '2023-12-19 05:15:11', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, '6F4mcAEb', 11998, 'XL', 56),
-	(576, '2023-12-19 05:15:11', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'DHrWL9DS', 11999, 'XS,Xanh', 57),
-	(577, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'qqmLI09J', 12000, 'XS,Đỏ', 57),
-	(578, '2023-12-19 05:15:11', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'LAEemhRN', 11999, 'XXL,Xanh', 57),
-	(579, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'D3soJoCH', 12000, 'XXL,Đỏ', 57),
-	(580, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'jWKUuN3b', 40, 'S', 58),
-	(581, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'X2HOvgsm', 19, 'M', 58),
-	(582, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 250000, NULL, 'z0Q9YCNO', 16, 'L', 58),
-	(583, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'KS2HRvT5', 12, 'S,Đỏ', 59),
-	(584, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 210000, NULL, 'O6qeUFqo', 45, 'S,Đen', 59),
-	(585, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'b3rykO7r', 13, 'XS,Đỏ', 59),
-	(586, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'WOJASaSE', 11, 'XS,Đen', 59),
-	(587, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'iqoQRfSH', 12, 'Đỏ,XS', 60),
-	(588, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 240000, NULL, 'CvNXWeYy', 15, 'Đỏ,XL', 60),
-	(589, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'yWOjHI4g', 23, 'Đen,XS', 60),
-	(590, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'D3VkVWaO', 12, 'Đen,XL', 60),
-	(591, NULL, '2023-12-19 08:38:09', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'MhzuNEW2', 12, 'a,10', 61),
-	(592, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'Is0v6iF1', 6, 'S', 62),
-	(593, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 15000, NULL, 'CdT7VovE', 7, 'XL', 62),
-	(594, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 10000, NULL, 'VKXfBdnI', 3, 'S', 63),
-	(595, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 10000, NULL, 'IQupM58u', 4, 'XL', 63);
+	(567, '2023-12-19 04:07:52', '2023-12-09 05:47:45', 'admin9193', 'admin9193', 'ACTIVE', 79000, NULL, 'vQiacqZL', 11999, 'Trắng,XXL,Vải Corolan,Tay lỡ', 49),
+	(568, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'RBPT6DV8', 10, 'M,Vàng mơ', 50),
+	(569, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'qHDYvMnL', 20, 'M,Đen', 50),
+	(570, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'uvykbRgq', 30, 'M,Xanh than', 50),
+	(571, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, '2tkau2rT', 40, 'L,Vàng mơ', 50),
+	(572, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'ICVLz8Ur', 50, 'L,Đen', 50),
+	(573, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 210000, NULL, 'dMqZNs3e', 60, 'L,Xanh than', 50),
+	(574, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'NxEVKz2U', 70, 'XL,Vàng mơ', 50),
+	(575, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'PMFOfyEx', 80, 'XL,Đen', 50),
+	(576, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 't47yeMzv', 90, 'XL,Xanh than', 50),
+	(577, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 120000, NULL, '4sBdKAZt', 50, 'XXL,Đỏ', 51),
+	(578, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 70000, NULL, 'NNZxCuLV', 120, 'XXL,Tràm', 51),
+	(579, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'U9h5D3RE', 100, 'Xanh,XXL', 52),
+	(580, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 90000, NULL, 'zWqHxdmR', 200, 'Xanh,S', 52),
+	(581, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'sNvPO7kv', 300, 'Tràm,XXL', 52),
+	(582, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 120000, NULL, '4O5v5EHP', 400, 'Tràm,S', 52),
+	(583, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'L3LzsXo5', 3, 'M,Vàng', 53),
+	(584, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '6f7SIF0O', 4, 'L,Vàng', 53);
 
 -- Dumping structure for table duantotnghiep.calam
 CREATE TABLE IF NOT EXISTS `calam` (
@@ -893,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `calam` (
   CONSTRAINT `FKqwajinxv270ke9tysey6xigop` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.calam: ~1 rows (approximately)
+-- Dumping data for table duantotnghiep.calam: ~0 rows (approximately)
 INSERT INTO `calam` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotiencuoica`, `sotiendauca`, `idnhanvien`, `ghichu`, `tienchenhlech`, `tienmatbangiao`) VALUES
 	(8, NULL, '2023-12-16 16:03:08', NULL, 'nguyenvana0183', 'ACTIVE', NULL, 500000, 1, NULL, NULL, NULL);
 
@@ -930,9 +920,9 @@ CREATE TABLE IF NOT EXISTS `chitieu` (
   PRIMARY KEY (`id`),
   KEY `FK7fr74dox50p8nxx296nhl6740` (`idvidientu`),
   CONSTRAINT `FK7fr74dox50p8nxx296nhl6740` FOREIGN KEY (`idvidientu`) REFERENCES `vidientu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.chitieu: ~35 rows (approximately)
+-- Dumping data for table duantotnghiep.chitieu: ~14 rows (approximately)
 INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `loaichitieu`, `sotien`, `idvidientu`) VALUES
 	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 110000, 1),
 	(2, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 0, 220000, 1),
@@ -947,28 +937,7 @@ INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(11, NULL, '2023-12-12 05:32:36', NULL, 'dinhanhtuan0812', 'ACTIVE', 1, 200000, 3),
 	(12, NULL, '2023-12-16 15:49:38', NULL, 'dinhanhtuan0812', NULL, 0, 163300, 3),
 	(13, NULL, '2023-12-16 15:58:10', NULL, 'dinhanhtuan0812', NULL, 0, 264200, 3),
-	(14, NULL, '2023-12-16 16:01:00', NULL, 'dinhanhtuan0812', NULL, 1, 1000000, 3),
-	(15, NULL, '2023-12-18 15:03:44', NULL, 'admin9193', NULL, 0, 299200, 3),
-	(16, NULL, '2023-12-18 16:05:51', NULL, 'admin9193', NULL, 0, 199700, 3),
-	(17, NULL, '2023-12-18 17:06:03', NULL, 'dinhanhtuan0812', NULL, 0, 849200, 3),
-	(18, NULL, '2023-12-18 17:09:08', NULL, 'dinhanhtuan0812', NULL, 0, 784200, 3),
-	(19, NULL, '2023-12-18 17:16:15', NULL, 'dinhtuananh0183', NULL, 0, 1264901, 5),
-	(20, NULL, '2023-12-18 17:52:25', NULL, 'doquochuy8173', NULL, 0, 625301, 1),
-	(21, NULL, '2023-12-18 17:54:55', NULL, 'doquochuy8173', NULL, 0, 174200, 1),
-	(22, NULL, '2023-12-18 17:54:55', NULL, 'doquochuy8173', 'ACTIVE', 1, 3000000, 11),
-	(23, NULL, '2023-12-18 18:42:39', NULL, 'hoangthuyduong8758', NULL, 0, 759551, 11),
-	(24, NULL, '2023-12-18 18:43:37', NULL, 'hoangthuyduong8758', NULL, 0, 593301, 11),
-	(25, NULL, '2023-12-18 17:54:55', NULL, 'doquochuy8173', 'ACTIVE', 1, 5000000, 12),
-	(26, NULL, '2023-12-18 18:52:35', NULL, 'trantien0698', NULL, 0, 352251, 12),
-	(27, NULL, '2023-12-18 19:03:51', NULL, 'trantien0698', NULL, 0, 717801, 12),
-	(28, NULL, '2023-12-19 05:05:37', NULL, 'doquochuy8173', NULL, 0, 424200, 1),
-	(29, NULL, '2023-12-19 07:54:08', NULL, 'nguyenthikhanhlinh1711', NULL, 1, 1000000, 4),
-	(30, NULL, '2023-12-19 08:01:51', NULL, 'nguyenthikhanhlinh1711', NULL, 1, 100000, 4),
-	(31, NULL, '2023-12-19 08:03:11', NULL, 'nguyenthikhanhlinh1711', NULL, 0, 76651, 4),
-	(32, NULL, '2023-12-19 08:28:37', NULL, 'nguyenthikhanhlinh1711', NULL, 0, 266651, 4),
-	(33, NULL, '2023-12-19 09:11:21', NULL, 'nguyenthikhanhlinh1711', NULL, 1, 200000, 4),
-	(34, NULL, '2023-12-19 09:12:40', NULL, 'nguyenthikhanhlinh1711', NULL, 2, 76651, 4),
-	(35, NULL, '2023-12-20 14:03:04', NULL, 'admin9193', NULL, 0, 474550, 3);
+	(14, NULL, '2023-12-16 16:01:00', NULL, 'dinhanhtuan0812', NULL, 1, 1000000, 3);
 
 -- Dumping structure for table duantotnghiep.chucvu
 CREATE TABLE IF NOT EXISTS `chucvu` (
@@ -1022,9 +991,9 @@ CREATE TABLE IF NOT EXISTS `danhmuc` (
   `ten` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_sulfov08aud7rmuh75nxqn4fj` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.danhmuc: ~13 rows (approximately)
+-- Dumping data for table duantotnghiep.danhmuc: ~11 rows (approximately)
 INSERT INTO `danhmuc` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `hienthi`, `slug`, `ten`) VALUES
 	(1, NULL, '2023-11-19 17:09:00', NULL, 'admin9193', 'ACTIVE', NULL, 'ao-thun', 'Áo thun'),
 	(2, NULL, '2023-11-19 17:18:46', NULL, 'admin9193', 'ACTIVE', NULL, 'ao-so-mi', 'Áo sơ mi'),
@@ -1036,9 +1005,7 @@ INSERT INTO `danhmuc` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(8, NULL, '2023-11-19 17:18:49', NULL, 'admin9193', 'ACTIVE', NULL, 'quan-dui', 'Quần short'),
 	(9, NULL, '2023-11-19 17:18:50', NULL, 'admin9193', 'ACTIVE', NULL, 'quan-ngu', 'Quần ngủ'),
 	(10, NULL, '2023-11-19 17:18:51', NULL, 'admin9193', 'ACTIVE', NULL, 'quan-kaki', 'Quần  Kaki'),
-	(11, '2023-12-18 04:10:01', '2023-12-13 14:53:42', 'admin9193', 'admin9193', 'INACTIVE', NULL, 'ao-vai', 'Áo vải'),
-	(15, NULL, '2023-12-18 03:19:35', NULL, 'khanhlinh4878', 'ACTIVE', NULL, 'ao-balo', 'Áo balo'),
-	(20, NULL, '2023-12-18 16:35:20', NULL, 'admin9193', 'ACTIVE', NULL, 'da', '      da');
+	(11, NULL, '2023-12-13 14:53:42', NULL, 'admin9193', 'ACTIVE', NULL, 'ao-vai', 'Áo vải');
 
 -- Dumping structure for table duantotnghiep.giatrithuoctinh
 CREATE TABLE IF NOT EXISTS `giatrithuoctinh` (
@@ -1056,9 +1023,9 @@ CREATE TABLE IF NOT EXISTS `giatrithuoctinh` (
   KEY `FK6y4ueyayt8cgynk5a14wylvun` (`idthuoctinh`),
   CONSTRAINT `FK6y4ueyayt8cgynk5a14wylvun` FOREIGN KEY (`idthuoctinh`) REFERENCES `thuoctinh` (`id`),
   CONSTRAINT `FKpm5svcqbt5m7ipbbihqu6d139` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=278 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giatrithuoctinh: ~267 rows (approximately)
+-- Dumping data for table duantotnghiep.giatrithuoctinh: ~238 rows (approximately)
 INSERT INTO `giatrithuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `giatri`, `idsanpham`, `idthuoctinh`) VALUES
 	(1, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'Trắng', 1, 1),
 	(2, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'Đen', 1, 1),
@@ -1298,35 +1265,22 @@ INSERT INTO `giatrithuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao
 	(259, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'Vải Corolan', 49, 95),
 	(260, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'Tay ngắn', 49, 96),
 	(261, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'Tay lỡ', 49, 96),
-	(262, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 50, 97),
-	(263, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 'Xanh', 50, 97),
-	(264, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'Xanh', 51, 98),
-	(265, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 51, 98),
-	(266, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'Xl', 51, 99),
-	(267, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'L', 51, 99),
-	(268, NULL, '2023-12-18 07:46:17', NULL, 'admin9193', 'ACTIVE', 'S', 56, 100),
-	(269, NULL, '2023-12-18 07:46:17', NULL, 'admin9193', 'ACTIVE', 'XL', 56, 100),
-	(270, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'XS', 57, 101),
-	(271, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'XXL', 57, 101),
-	(272, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'Xanh', 57, 102),
-	(273, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 57, 102),
-	(274, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 'S', 58, 103),
-	(275, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 'M', 58, 103),
-	(276, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 'L', 58, 103),
-	(277, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'S', 59, 104),
-	(278, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'XS', 59, 104),
-	(279, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 59, 105),
-	(280, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'Đen', 59, 105),
-	(281, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 60, 106),
-	(282, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'Đen', 60, 106),
-	(283, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'XS', 60, 107),
-	(284, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'XL', 60, 107),
-	(285, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 'a', 61, 108),
-	(286, NULL, '2023-12-19 08:38:09', NULL, 'admin9193', 'ACTIVE', '10', 61, 109),
-	(287, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 'S', 62, 110),
-	(288, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 'XL', 62, 110),
-	(289, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'S', 63, 111),
-	(290, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'XL', 63, 111);
+	(262, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'M', 50, 97),
+	(263, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'L', 50, 97),
+	(264, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'XL', 50, 97),
+	(265, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'Vàng mơ', 50, 98),
+	(266, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'Đen', 50, 98),
+	(267, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'Xanh than', 50, 98),
+	(268, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'XXL', 51, 99),
+	(269, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'Đỏ', 51, 100),
+	(270, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'Tràm', 51, 100),
+	(271, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'Xanh', 52, 101),
+	(272, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'Tràm', 52, 101),
+	(273, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'XXL', 52, 102),
+	(274, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'S', 52, 102),
+	(275, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'M', 53, 103),
+	(276, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'L', 53, 103),
+	(277, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'Vàng', 53, 104);
 
 -- Dumping structure for table duantotnghiep.giatrithuoctinhbienthe
 CREATE TABLE IF NOT EXISTS `giatrithuoctinhbienthe` (
@@ -1343,9 +1297,9 @@ CREATE TABLE IF NOT EXISTS `giatrithuoctinhbienthe` (
   KEY `FKnj57apbbxsmiwq7187rsgtp7s` (`idgiatrithuoctinh`),
   CONSTRAINT `FKnj57apbbxsmiwq7187rsgtp7s` FOREIGN KEY (`idgiatrithuoctinh`) REFERENCES `giatrithuoctinh` (`id`),
   CONSTRAINT `FKobw0qcs615au67nx2d0ktp41d` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2785 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2773 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giatrithuoctinhbienthe: ~1,703 rows (approximately)
+-- Dumping data for table duantotnghiep.giatrithuoctinhbienthe: ~1,658 rows (approximately)
 INSERT INTO `giatrithuoctinhbienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `idbienthe`, `idgiatrithuoctinh`) VALUES
 	(148, NULL, NULL, NULL, NULL, 'ACTIVE', 1, 1),
 	(149, NULL, NULL, NULL, NULL, 'ACTIVE', 1, 3),
@@ -3006,50 +2960,39 @@ INSERT INTO `giatrithuoctinhbienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `n
 	(2719, NULL, NULL, NULL, NULL, 'ACTIVE', 567, 259),
 	(2720, NULL, NULL, NULL, NULL, 'ACTIVE', 567, 261),
 	(2724, NULL, NULL, NULL, NULL, 'ACTIVE', 568, 262),
-	(2725, NULL, NULL, NULL, NULL, 'ACTIVE', 569, 263),
-	(2726, NULL, NULL, NULL, NULL, 'ACTIVE', 570, 264),
-	(2727, NULL, NULL, NULL, NULL, 'ACTIVE', 570, 266),
-	(2729, NULL, NULL, NULL, NULL, 'ACTIVE', 571, 264),
-	(2730, NULL, NULL, NULL, NULL, 'ACTIVE', 571, 267),
-	(2732, NULL, NULL, NULL, NULL, 'ACTIVE', 572, 265),
-	(2733, NULL, NULL, NULL, NULL, 'ACTIVE', 572, 266),
-	(2735, NULL, NULL, NULL, NULL, 'ACTIVE', 573, 265),
-	(2736, NULL, NULL, NULL, NULL, 'ACTIVE', 573, 267),
-	(2737, NULL, NULL, NULL, NULL, 'ACTIVE', 574, 268),
-	(2738, NULL, NULL, NULL, NULL, 'ACTIVE', 575, 269),
-	(2739, NULL, NULL, NULL, NULL, 'ACTIVE', 576, 270),
-	(2740, NULL, NULL, NULL, NULL, 'ACTIVE', 576, 272),
-	(2742, NULL, NULL, NULL, NULL, 'ACTIVE', 577, 270),
-	(2743, NULL, NULL, NULL, NULL, 'ACTIVE', 577, 273),
-	(2745, NULL, NULL, NULL, NULL, 'ACTIVE', 578, 271),
-	(2746, NULL, NULL, NULL, NULL, 'ACTIVE', 578, 272),
-	(2748, NULL, NULL, NULL, NULL, 'ACTIVE', 579, 271),
-	(2749, NULL, NULL, NULL, NULL, 'ACTIVE', 579, 273),
-	(2751, NULL, NULL, NULL, NULL, 'ACTIVE', 580, 274),
-	(2752, NULL, NULL, NULL, NULL, 'ACTIVE', 581, 275),
-	(2753, NULL, NULL, NULL, NULL, 'ACTIVE', 582, 276),
-	(2754, NULL, NULL, NULL, NULL, 'ACTIVE', 583, 277),
-	(2755, NULL, NULL, NULL, NULL, 'ACTIVE', 583, 279),
-	(2757, NULL, NULL, NULL, NULL, 'ACTIVE', 584, 277),
-	(2758, NULL, NULL, NULL, NULL, 'ACTIVE', 584, 280),
-	(2760, NULL, NULL, NULL, NULL, 'ACTIVE', 585, 278),
-	(2761, NULL, NULL, NULL, NULL, 'ACTIVE', 585, 279),
-	(2763, NULL, NULL, NULL, NULL, 'ACTIVE', 586, 278),
-	(2764, NULL, NULL, NULL, NULL, 'ACTIVE', 586, 280),
-	(2766, NULL, NULL, NULL, NULL, 'ACTIVE', 587, 281),
-	(2767, NULL, NULL, NULL, NULL, 'ACTIVE', 587, 283),
-	(2769, NULL, NULL, NULL, NULL, 'ACTIVE', 588, 281),
-	(2770, NULL, NULL, NULL, NULL, 'ACTIVE', 588, 284),
-	(2772, NULL, NULL, NULL, NULL, 'ACTIVE', 589, 282),
-	(2773, NULL, NULL, NULL, NULL, 'ACTIVE', 589, 283),
-	(2775, NULL, NULL, NULL, NULL, 'ACTIVE', 590, 282),
-	(2776, NULL, NULL, NULL, NULL, 'ACTIVE', 590, 284),
-	(2778, NULL, NULL, NULL, NULL, 'ACTIVE', 591, 285),
-	(2779, NULL, NULL, NULL, NULL, 'ACTIVE', 591, 286),
-	(2781, NULL, NULL, NULL, NULL, 'ACTIVE', 592, 287),
-	(2782, NULL, NULL, NULL, NULL, 'ACTIVE', 593, 288),
-	(2783, NULL, NULL, NULL, NULL, 'ACTIVE', 594, 289),
-	(2784, NULL, NULL, NULL, NULL, 'ACTIVE', 595, 290);
+	(2725, NULL, NULL, NULL, NULL, 'ACTIVE', 568, 265),
+	(2727, NULL, NULL, NULL, NULL, 'ACTIVE', 569, 262),
+	(2728, NULL, NULL, NULL, NULL, 'ACTIVE', 569, 266),
+	(2730, NULL, NULL, NULL, NULL, 'ACTIVE', 570, 262),
+	(2731, NULL, NULL, NULL, NULL, 'ACTIVE', 570, 267),
+	(2733, NULL, NULL, NULL, NULL, 'ACTIVE', 571, 263),
+	(2734, NULL, NULL, NULL, NULL, 'ACTIVE', 571, 265),
+	(2736, NULL, NULL, NULL, NULL, 'ACTIVE', 572, 263),
+	(2737, NULL, NULL, NULL, NULL, 'ACTIVE', 572, 266),
+	(2739, NULL, NULL, NULL, NULL, 'ACTIVE', 573, 263),
+	(2740, NULL, NULL, NULL, NULL, 'ACTIVE', 573, 267),
+	(2742, NULL, NULL, NULL, NULL, 'ACTIVE', 574, 264),
+	(2743, NULL, NULL, NULL, NULL, 'ACTIVE', 574, 265),
+	(2745, NULL, NULL, NULL, NULL, 'ACTIVE', 575, 264),
+	(2746, NULL, NULL, NULL, NULL, 'ACTIVE', 575, 266),
+	(2748, NULL, NULL, NULL, NULL, 'ACTIVE', 576, 264),
+	(2749, NULL, NULL, NULL, NULL, 'ACTIVE', 576, 267),
+	(2751, NULL, NULL, NULL, NULL, 'ACTIVE', 577, 268),
+	(2752, NULL, NULL, NULL, NULL, 'ACTIVE', 577, 269),
+	(2754, NULL, NULL, NULL, NULL, 'ACTIVE', 578, 268),
+	(2755, NULL, NULL, NULL, NULL, 'ACTIVE', 578, 270),
+	(2756, NULL, NULL, NULL, NULL, 'ACTIVE', 579, 271),
+	(2757, NULL, NULL, NULL, NULL, 'ACTIVE', 579, 273),
+	(2759, NULL, NULL, NULL, NULL, 'ACTIVE', 580, 271),
+	(2760, NULL, NULL, NULL, NULL, 'ACTIVE', 580, 274),
+	(2762, NULL, NULL, NULL, NULL, 'ACTIVE', 581, 272),
+	(2763, NULL, NULL, NULL, NULL, 'ACTIVE', 581, 273),
+	(2765, NULL, NULL, NULL, NULL, 'ACTIVE', 582, 272),
+	(2766, NULL, NULL, NULL, NULL, 'ACTIVE', 582, 274),
+	(2768, NULL, NULL, NULL, NULL, 'ACTIVE', 583, 275),
+	(2769, NULL, NULL, NULL, NULL, 'ACTIVE', 583, 277),
+	(2771, NULL, NULL, NULL, NULL, 'ACTIVE', 584, 276),
+	(2772, NULL, NULL, NULL, NULL, 'ACTIVE', 584, 277);
 
 -- Dumping structure for table duantotnghiep.giohang
 CREATE TABLE IF NOT EXISTS `giohang` (
@@ -3063,24 +3006,11 @@ CREATE TABLE IF NOT EXISTS `giohang` (
   PRIMARY KEY (`id`),
   KEY `FKrotib125snysssa1uiikkfj1b` (`idkhachhang`),
   CONSTRAINT `FKrotib125snysssa1uiikkfj1b` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohang: ~14 rows (approximately)
+-- Dumping data for table duantotnghiep.giohang: ~1 rows (approximately)
 INSERT INTO `giohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `idkhachhang`) VALUES
-	(1, NULL, '2023-11-22 18:17:55', NULL, 'dangngocthanh0133', 'ACTIVE', 1),
-	(2, NULL, '2023-11-28 14:39:34', NULL, 'dinhanhtuan0812', 'ACTIVE', 2),
-	(3, NULL, '2023-12-11 15:27:38', NULL, 'dinhtuananh0183', 'ACTIVE', 5),
-	(4, NULL, '2023-12-17 06:52:11', NULL, 'anh8536', 'ACTIVE', 9),
-	(5, NULL, '2023-12-17 06:56:18', NULL, 'linh8143', 'ACTIVE', 10),
-	(6, NULL, '2023-12-17 15:56:24', NULL, 'nguyenthikhanhlinh1711', 'ACTIVE', 3),
-	(7, NULL, '2023-12-18 07:50:14', NULL, 'tuan6764', 'ACTIVE', 25),
-	(8, NULL, '2023-12-18 17:48:17', NULL, 'doquochuy8173', 'ACTIVE', 4),
-	(9, NULL, '2023-12-18 18:13:39', NULL, 'viethoang8541', 'ACTIVE', 26),
-	(10, NULL, '2023-12-18 18:24:55', NULL, 'hoangthuyduong8758', 'ACTIVE', 27),
-	(11, NULL, '2023-12-18 18:47:31', NULL, 'trantien0698', 'ACTIVE', 28),
-	(12, NULL, '2023-12-18 19:38:24', NULL, 'todung4660', 'ACTIVE', 29),
-	(13, NULL, '2023-12-20 13:58:03', NULL, 'nguyen6602', 'ACTIVE', 30),
-	(14, NULL, '2023-12-20 16:40:08', NULL, 'tuan1630', 'ACTIVE', 36);
+	(9, NULL, '2023-12-23 08:39:07', NULL, 'dangngocthanh0133', 'ACTIVE', 1);
 
 -- Dumping structure for table duantotnghiep.giohangchitiet
 CREATE TABLE IF NOT EXISTS `giohangchitiet` (
@@ -3102,76 +3032,12 @@ CREATE TABLE IF NOT EXISTS `giohangchitiet` (
   CONSTRAINT `FK8j5vpdk26mdy519f0uoeh1dix` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKpubdi51v0ipjgpy3hfa7egsjq` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`),
   CONSTRAINT `FKrxrj4t2nvkmcprh4ee0ehbvwi` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohangchitiet: ~66 rows (approximately)
+-- Dumping data for table duantotnghiep.giohangchitiet: ~2 rows (approximately)
 INSERT INTO `giohangchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `idbienthe`, `idgiohang`, `idsanpham`) VALUES
-	(1, '2023-11-22 18:19:20', '2023-11-22 18:17:56', 'dangngocthanh0133', 'dangngocthanh0133', 'ACTIVE', NULL, 0, 4, 1, NULL),
-	(2, '2023-11-28 15:02:54', '2023-11-28 14:39:34', 'admin9193', 'dinhanhtuan0812', 'DELETE', NULL, 1, 225, 2, NULL),
-	(3, '2023-11-28 14:57:42', '2023-11-28 14:57:26', 'admin9193', 'admin9193', 'DELETE', NULL, 1, 7, 2, NULL),
-	(4, '2023-12-11 16:20:41', '2023-12-11 15:27:38', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 2, 556, 3, NULL),
-	(5, '2023-12-11 16:20:41', '2023-12-11 15:30:30', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 1, 234, 3, NULL),
-	(6, '2023-12-11 16:20:41', '2023-12-11 15:31:05', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 2, 292, 3, NULL),
-	(7, '2023-12-16 15:46:34', '2023-12-11 17:22:00', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 413, 2, NULL),
-	(8, '2023-12-16 15:46:34', '2023-12-12 05:02:42', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 560, 2, NULL),
-	(9, '2023-12-12 05:10:32', '2023-12-12 05:09:18', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 5, 567, 2, NULL),
-	(10, NULL, '2023-12-14 08:41:45', NULL, 'dangngocthanh0133', 'ACTIVE', NULL, 1, 255, 1, NULL),
-	(11, '2023-12-16 15:51:13', '2023-12-16 15:51:04', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 268, 2, NULL),
-	(12, '2023-12-16 15:58:01', '2023-12-16 15:57:55', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 280, 2, NULL),
-	(14, '2023-12-16 17:13:18', '2023-12-16 16:53:24', 'admin9193', 'admin9193', 'DELETE', NULL, 2, 189, 2, NULL),
-	(15, '2023-12-17 05:40:16', '2023-12-17 05:40:06', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 2, 240, 3, NULL),
-	(16, '2023-12-17 07:00:37', '2023-12-17 06:58:18', 'linh8143', 'linh8143', 'DELETE', NULL, 2, 217, 5, NULL),
-	(17, '2023-12-17 07:00:37', '2023-12-17 06:59:33', 'linh8143', 'linh8143', 'DELETE', NULL, 1, 142, 5, NULL),
-	(20, '2023-12-18 07:51:33', '2023-12-18 07:50:37', 'tuan6764', 'tuan6764', 'DELETE', NULL, 4, 234, 7, NULL),
-	(22, '2023-12-18 15:03:38', '2023-12-18 15:03:32', 'admin9193', 'admin9193', 'DELETE', NULL, 1, 226, 2, NULL),
-	(24, '2023-12-18 16:05:14', '2023-12-18 16:04:39', 'admin9193', 'admin9193', 'DELETE', NULL, 2, 328, 2, NULL),
-	(25, '2023-12-18 17:04:58', '2023-12-18 17:03:40', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 226, 2, NULL),
-	(26, '2023-12-19 06:20:48', '2023-12-18 17:08:24', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 246, 2, NULL),
-	(27, '2023-12-18 17:09:01', '2023-12-18 17:08:54', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 171, 2, NULL),
-	(28, '2023-12-18 17:11:22', '2023-12-18 17:11:09', 'nguyenvana0183', 'nguyenvana0183', 'DELETE', NULL, 1, 234, 1, NULL),
-	(29, '2023-12-18 17:16:07', '2023-12-18 17:14:23', 'dinhtuananh0183', 'dinhtuananh0183', 'DELETE', NULL, 10, 280, 3, NULL),
-	(31, '2023-12-18 17:51:55', '2023-12-18 17:51:40', 'doquochuy8173', 'doquochuy8173', 'DELETE', NULL, 4, 51, 8, NULL),
-	(32, '2023-12-18 17:53:43', '2023-12-18 17:53:33', 'doquochuy8173', 'doquochuy8173', 'DELETE', NULL, 1, 51, 8, NULL),
-	(36, '2023-12-18 18:15:42', '2023-12-18 18:15:20', 'viethoang8541', 'viethoang8541', 'DELETE', NULL, 1, 340, 9, NULL),
-	(37, '2023-12-18 18:18:06', '2023-12-18 18:16:59', 'viethoang8541', 'viethoang8541', 'DELETE', NULL, 1, 228, 9, NULL),
-	(38, '2023-12-18 18:18:06', '2023-12-18 18:17:09', 'viethoang8541', 'viethoang8541', 'DELETE', NULL, 1, 217, 9, NULL),
-	(40, '2023-12-18 18:22:18', '2023-12-18 18:21:44', 'viethoang8541', 'viethoang8541', 'DELETE', NULL, 2, 340, 9, NULL),
-	(41, '2023-12-18 18:22:18', '2023-12-18 18:21:50', 'viethoang8541', 'viethoang8541', 'DELETE', NULL, 1, 314, 9, NULL),
-	(42, '2023-12-18 18:27:11', '2023-12-18 18:25:41', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 1, 55, 10, NULL),
-	(44, '2023-12-18 18:27:11', '2023-12-18 18:26:00', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 2, 65, 10, NULL),
-	(45, '2023-12-18 18:29:54', '2023-12-18 18:29:20', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 2, 123, 10, NULL),
-	(46, '2023-12-18 18:29:54', '2023-12-18 18:29:22', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 2, 146, 10, NULL),
-	(47, '2023-12-18 18:42:23', '2023-12-18 18:36:08', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 2, 92, 10, NULL),
-	(48, '2023-12-18 18:42:23', '2023-12-18 18:36:14', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 1, 61, 10, NULL),
-	(49, '2023-12-18 18:42:23', '2023-12-18 18:38:35', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 1, 98, 10, NULL),
-	(50, '2023-12-18 18:43:27', '2023-12-18 18:43:05', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 2, 79, 10, NULL),
-	(51, '2023-12-18 18:43:27', '2023-12-18 18:43:10', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DELETE', NULL, 1, 69, 10, NULL),
-	(52, '2023-12-18 18:51:20', '2023-12-18 18:50:45', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 524, 11, NULL),
-	(53, '2023-12-18 18:51:20', '2023-12-18 18:50:51', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 340, 11, NULL),
-	(54, '2023-12-18 18:51:20', '2023-12-18 18:50:56', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 314, 11, NULL),
-	(56, '2023-12-18 18:54:22', '2023-12-18 18:53:14', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 229, 11, NULL),
-	(58, '2023-12-18 19:02:49', '2023-12-18 19:02:19', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 30, 11, NULL),
-	(59, '2023-12-18 19:02:49', '2023-12-18 19:02:25', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 55, 11, NULL),
-	(60, '2023-12-18 19:02:49', '2023-12-18 19:02:31', 'trantien0698', 'trantien0698', 'DELETE', NULL, 1, 61, 11, NULL),
-	(61, NULL, '2023-12-18 19:38:55', NULL, 'todung4660', 'ACTIVE', NULL, 1, 51, 12, NULL),
-	(62, '2023-12-18 19:39:57', '2023-12-18 19:39:07', 'todung4660', 'todung4660', 'DELETE', NULL, 1, 63, 12, NULL),
-	(63, '2023-12-18 19:39:57', '2023-12-18 19:39:15', 'todung4660', 'todung4660', 'DELETE', NULL, 1, 80, 12, NULL),
-	(64, '2023-12-19 05:05:31', '2023-12-19 05:05:26', 'doquochuy8173', 'doquochuy8173', 'DELETE', NULL, 2, 578, 8, NULL),
-	(65, '2023-12-19 06:20:48', '2023-12-19 05:48:13', 'dinhanhtuan0812', 'admin9193', 'DELETE', NULL, 1, 544, 2, NULL),
-	(66, '2023-12-19 06:20:48', '2023-12-19 05:56:15', 'dinhanhtuan0812', 'admin9193', 'DELETE', NULL, 1, 581, 2, NULL),
-	(67, '2023-12-19 06:20:48', '2023-12-19 05:59:25', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 340, 2, NULL),
-	(68, '2023-12-19 06:20:48', '2023-12-19 06:19:31', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 308, 2, NULL),
-	(69, '2023-12-19 06:20:48', '2023-12-19 06:20:32', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 582, 2, NULL),
-	(70, '2023-12-20 14:02:59', '2023-12-19 06:23:03', 'admin9193', 'admin9193', 'DELETE', NULL, 1, 59, 2, NULL),
-	(71, '2023-12-20 14:02:59', '2023-12-19 06:23:34', 'admin9193', 'admin9193', 'DELETE', NULL, 1, 314, 2, NULL),
-	(72, '2023-12-19 07:52:37', '2023-12-19 07:51:44', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'ACTIVE', NULL, 1, 312, 6, NULL),
-	(73, '2023-12-19 08:02:35', '2023-12-19 08:02:21', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'DELETE', NULL, 1, 520, 6, NULL),
-	(74, '2023-12-19 08:28:14', '2023-12-19 08:27:26', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'DELETE', NULL, 1, 574, 6, NULL),
-	(75, '2023-12-19 08:28:14', '2023-12-19 08:27:52', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'DELETE', NULL, 1, 540, 6, NULL),
-	(76, '2023-12-19 09:06:40', '2023-12-19 09:05:40', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'ACTIVE', NULL, 9, 576, 6, NULL),
-	(77, '2023-12-19 09:09:55', '2023-12-19 09:08:53', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'ACTIVE', NULL, 10, 595, 6, NULL),
-	(78, '2023-12-19 09:12:04', '2023-12-19 09:11:57', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'DELETE', NULL, 1, 376, 6, NULL),
-	(79, '2023-12-20 14:06:49', '2023-12-20 14:05:17', 'admin9193', 'admin9193', 'ACTIVE', NULL, 1, 591, 2, NULL);
+	(29, '2023-12-25 09:06:23', '2023-12-23 08:39:08', 'dangngocthanh0133', 'dangngocthanh0133', 'ACTIVE', NULL, 3, 232, 9, 41),
+	(33, NULL, '2023-12-25 09:37:01', NULL, 'dangngocthanh0133', 'ACTIVE', NULL, 1, 272, 9, 45);
 
 -- Dumping structure for table duantotnghiep.hoadon
 CREATE TABLE IF NOT EXISTS `hoadon` (
@@ -3209,85 +3075,61 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   CONSTRAINT `FKdwfy15k3xk5wta4dkl3ff0t9t` FOREIGN KEY (`idlydohuydon`) REFERENCES `lydohuydon` (`id`),
   CONSTRAINT `FKlwt6og8a59ih2g8k9le1n7bpy` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`),
   CONSTRAINT `FKotnlgqnkhi19yrgi907nev953` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=150 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadon: ~75 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadon: ~48 rows (approximately)
 INSERT INTO `hoadon` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `ma`, `mota`, `ngaydat`, `ngaydukiengiaohang`, `ngaynhanhang`, `ngaythanhtoan`, `phuongthucthanhtoan`, `sodienthoai`, `tennguoinhan`, `tienkhachtra`, `tienship`, `tongtienhang`, `idkhachhang`, `idlydohuydon`, `idnhanvien`, `magiaohang`, `loai`, `ngaygiaohang`, `tiengiamgia`) VALUES
 	(3, '2023-11-28 15:03:06', '2023-11-28 15:02:54', 'admin9193', 'admin9193', 'CHONHANDON', 'Hà Nội, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD3', NULL, '2023-11-28 15:03:06', NULL, NULL, '2023-11-28 15:03:06', 'THANHTOANNHANHANG', '09876543121', 'admin', NULL, 0, 280000, 2, NULL, NULL, NULL, NULL, NULL, NULL),
 	(4, '2023-12-11 16:40:41', '2023-12-11 16:20:41', 'dinhtuananh0183', 'dinhtuananh0183', 'CHONHANDON', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD4', 'Ok shop', '2023-12-11 16:40:41', NULL, NULL, '2023-12-11 16:40:41', 'THANHTOANNHANHANG', '0977853450', 'Đinh Tuấn Anh', 722301, 25301, 697000, 5, NULL, NULL, NULL, NULL, NULL, NULL),
 	(10, '2023-12-16 15:49:38', '2023-12-12 05:10:32', 'dinhanhtuan0812', 'dinhanhtuan0812', 'CHONHANDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD10', 'GIao buổi sáng', '2023-12-16 15:49:38', NULL, NULL, '2023-12-16 15:49:38', 'VIDIENTU', '0915812752', 'Tuấn 1', 163300, 24200, 139100, 2, NULL, NULL, NULL, NULL, NULL, NULL),
-	(87, '2023-12-16 08:32:30', '2023-12-16 08:32:11', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'tv5u48', NULL, NULL, NULL, NULL, '2023-12-16 08:32:30', 'TIENMAT', NULL, NULL, 300000, NULL, 275000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(87, '2023-12-16 08:32:30', '2023-12-16 08:32:11', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'tv5u48', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 300000, NULL, 275000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(88, '2023-12-16 09:20:22', '2023-12-16 08:41:56', 'admin9193', 'admin9193', 'HUYDON', NULL, 'JPF2Qd', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 160000, NULL, 154050, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(89, '2023-12-16 09:09:27', '2023-12-16 08:58:54', 'admin9193', 'admin9193', 'HUYDON', NULL, 'fGf0XG', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 250000, NULL, 239000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(90, '2023-12-16 09:09:14', '2023-12-16 08:58:58', 'admin9193', 'admin9193', 'HUYDON', NULL, 'JK4js2', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 250000, NULL, 235000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(91, '2023-12-16 09:14:58', '2023-12-16 09:09:50', 'admin9193', 'admin9193', 'HUYDON', NULL, 'y2JtLm', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 5000000, NULL, 4465000, 8, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(92, '2023-12-16 09:31:31', '2023-12-16 09:14:44', 'admin9193', 'admin9193', 'HUYDON', NULL, '5ClftS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
 	(94, '2023-12-16 09:36:22', '2023-12-16 09:36:02', 'admin9193', 'admin9193', 'HUYDON', NULL, 'NgreQr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
-	(95, '2023-12-16 13:27:53', '2023-12-16 09:47:16', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'kxz9do', NULL, NULL, NULL, NULL, '2023-12-16 13:27:53', 'TIENMAT', NULL, NULL, 190000, NULL, 187850, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
-	(100, '2023-12-16 14:28:43', '2023-12-16 14:27:59', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'OThbdf', NULL, NULL, NULL, NULL, '2023-12-16 14:28:43', 'TIENMAT', NULL, NULL, 1300000, NULL, 1246000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
-	(101, '2023-12-16 14:29:33', '2023-12-16 14:29:03', 'admin9193', 'admin9193', 'THANHCONG', NULL, '8fEEpa', NULL, NULL, NULL, NULL, '2023-12-16 14:29:33', 'TIENMAT', NULL, NULL, 167000, NULL, 166350, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
-	(102, '2023-12-16 15:00:05', '2023-12-16 14:37:01', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'b8yeN9', NULL, NULL, NULL, NULL, '2023-12-16 15:00:05', 'TIENMAT', NULL, NULL, 490000, NULL, 469950, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(95, '2023-12-16 13:27:53', '2023-12-16 09:47:16', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'kxz9do', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 190000, NULL, 187850, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(100, '2023-12-16 14:28:43', '2023-12-16 14:27:59', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'OThbdf', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 1300000, NULL, 1246000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(101, '2023-12-16 14:29:33', '2023-12-16 14:29:03', 'admin9193', 'admin9193', 'THANHCONG', NULL, '8fEEpa', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 167000, NULL, 166350, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(102, '2023-12-16 15:00:05', '2023-12-16 14:37:01', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'b8yeN9', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 490000, NULL, 469950, 2, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
 	(103, '2023-12-16 15:55:50', '2023-12-16 15:51:13', 'admin9193', 'dinhanhtuan0812', 'HUYDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD103', '', '2023-12-16 15:51:43', NULL, NULL, NULL, 'THANHTOANNHANHANG', '0915812752', 'Linnh', 244200, 24200, 220000, 2, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(143, '2023-12-18 05:28:37', '2023-12-18 04:49:30', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'bN4pEI', NULL, NULL, NULL, NULL, '2023-12-18 05:28:37', 'TIENMAT', NULL, NULL, 700000, NULL, 773500, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(144, '2023-12-18 05:36:18', '2023-12-18 05:28:49', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'HtlSOz', NULL, NULL, NULL, NULL, '2023-12-18 05:36:18', 'TIENMAT', NULL, NULL, 600000, NULL, 646450, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(146, '2023-12-18 05:37:33', '2023-12-18 05:36:34', 'admin9193', 'admin9193', 'THANHCONG', NULL, '6txYMt', NULL, NULL, NULL, NULL, '2023-12-18 05:37:33', 'TIENMAT', NULL, NULL, 140000, NULL, 239200, 2, NULL, 2, NULL, 'OFFLINE', NULL, 105000),
-	(147, '2023-12-18 05:43:35', '2023-12-18 05:42:20', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'b7bsY8', NULL, NULL, NULL, NULL, '2023-12-18 05:43:35', 'TIENMAT', NULL, NULL, 1100000, NULL, 1130100, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(148, '2023-12-18 05:46:09', '2023-12-18 05:43:54', 'admin9193', 'admin9193', 'THANHCONG', NULL, '2FPbfz', NULL, NULL, NULL, NULL, '2023-12-18 05:46:09', 'TIENMAT', NULL, NULL, 300000, NULL, 361400, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(157, '2023-12-18 05:46:59', '2023-12-18 05:46:21', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'jB437m', NULL, NULL, NULL, NULL, '2023-09-18 05:46:59', 'TIENMAT', NULL, NULL, 140000, NULL, 141700, 2, NULL, 2, NULL, 'OFFLINE', NULL, 10000),
-	(158, '2023-12-18 05:52:50', '2023-12-18 05:47:28', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'o4XJRp', NULL, NULL, NULL, NULL, '2022-12-18 05:52:50', 'TIENMAT', NULL, NULL, 360000, NULL, 361400, 2, NULL, 2, NULL, 'OFFLINE', NULL, 10000),
-	(159, '2023-12-18 05:54:29', '2023-12-18 05:53:46', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'VCAEoH', NULL, NULL, NULL, NULL, '2022-10-18 05:54:29', 'TIENMAT', NULL, NULL, 800000, NULL, 887300, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(160, '2023-12-18 05:57:46', '2023-12-18 05:57:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'Z3D0vb', NULL, NULL, NULL, NULL, '2023-12-18 05:57:46', 'TIENMAT', NULL, NULL, 520000, NULL, 618750, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(161, '2023-12-18 05:59:03', '2023-12-18 05:57:57', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'MvMB6D', NULL, NULL, NULL, NULL, '2023-12-18 05:59:03', 'TIENMAT', NULL, NULL, 400000, NULL, 471350, 2, NULL, 2, NULL, 'OFFLINE', NULL, 100000),
-	(162, '2023-12-18 06:00:01', '2023-12-18 05:59:09', 'admin9193', 'admin9193', 'THANHCONG', NULL, '3BHJ6P', NULL, NULL, NULL, NULL, '2023-10-18 06:00:01', 'TIENMAT', NULL, NULL, 200000, NULL, 156000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 5000),
-	(165, '2023-12-18 13:44:36', '2023-12-18 06:03:06', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'Y2DrBg', NULL, NULL, NULL, NULL, '2023-12-18 13:44:36', 'TIENMAT', NULL, NULL, 51350, NULL, 51350, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(172, '2023-12-18 13:42:43', '2023-12-18 06:13:29', 'admin9193', 'admin9193', 'THANHCONG', NULL, '64OsPF', NULL, NULL, NULL, NULL, '2023-12-18 13:42:43', 'TIENMAT', NULL, NULL, 500000, NULL, 496600, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(175, '2023-12-18 08:07:55', '2023-12-18 06:55:47', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'IMee3l', NULL, NULL, NULL, NULL, '2023-12-18 08:07:55', 'TIENMAT', NULL, NULL, 400000, NULL, 392700, 22, NULL, 2, NULL, 'OFFLINE', NULL, 1000),
-	(176, '2023-12-18 07:59:05', '2023-12-18 07:51:33', 'tuan6764', 'tuan6764', 'DANHANHANG', 'số 22, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD176', '', '2023-12-18 07:54:09', '2023-12-20 23:59:59', NULL, '2023-12-18 07:59:05', 'THANHTOANNHANHANG', '0384082003', 'Tuấn', 1161301, 25301, 1136000, 25, NULL, NULL, 'LF7UDK', 'Online', NULL, NULL),
-	(177, '2023-12-18 08:05:51', '2023-12-18 08:00:25', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'bL5EbD', NULL, NULL, NULL, NULL, '2023-11-18 08:05:51', 'TIENMAT', NULL, NULL, 100000, NULL, 51350, 22, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(178, '2023-12-18 08:03:46', '2023-12-18 08:01:35', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'eQPI7T', NULL, NULL, NULL, NULL, '2023-12-18 08:03:46', 'TIENMAT', NULL, NULL, 700000, NULL, 677000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(183, '2023-12-18 14:30:44', '2023-12-18 14:24:35', 'admin9193', 'admin9193', 'THANHCONG', NULL, 's3Kg4t', NULL, NULL, NULL, NULL, '2023-12-18 14:30:44', 'TIENMAT', NULL, NULL, 650000, NULL, 635200, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(184, '2023-12-18 14:50:53', '2023-12-18 14:32:18', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'xBrytJ', NULL, NULL, NULL, NULL, '2023-12-18 14:50:53', 'TIENMAT', NULL, NULL, 300000, NULL, 282750, 1, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(185, '2023-12-18 14:51:58', '2023-12-18 14:37:57', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'N7WHyD', NULL, NULL, NULL, NULL, '2023-12-18 14:51:58', 'TIENMAT', NULL, NULL, 2100000, NULL, 2066800, 1, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(186, '2023-12-18 14:49:39', '2023-12-18 14:38:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, '4mrVKe', NULL, NULL, NULL, NULL, '2023-12-18 14:49:39', 'TIENMAT', NULL, NULL, 833000, NULL, 833000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(187, '2023-12-18 18:00:05', '2023-12-18 14:47:39', 'admin9193', 'admin9193', 'DANHANHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD187', '', '2023-12-18 15:03:44', '2023-12-19 23:59:59', NULL, '2023-12-18 15:03:44', 'VIDIENTU', '0915812752', 'Linnh', 299200, 24200, 275000, 2, NULL, NULL, 'LF7UWC', 'Online', NULL, NULL),
-	(188, '2023-12-18 14:53:21', '2023-12-18 14:52:01', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'dPRBZe', NULL, NULL, NULL, NULL, '2023-12-18 14:53:21', 'TIENMAT', NULL, NULL, 250000, NULL, 215000, 1, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(189, '2023-12-18 15:39:03', '2023-12-18 14:53:46', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'qSfTHU', NULL, NULL, NULL, NULL, '2023-12-18 15:39:03', 'TIENMAT', NULL, NULL, 200000, NULL, 175500, 21, NULL, 2, NULL, 'OFFLINE', NULL, 2000),
-	(190, '2023-12-19 04:05:00', '2023-12-18 15:15:39', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'EcWMtM', NULL, NULL, NULL, NULL, '2023-12-19 04:05:00', 'TIENMAT', NULL, NULL, 200000, NULL, 182000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 5000),
-	(193, '2023-12-18 15:42:32', '2023-12-18 15:30:54', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'tOoyUq', NULL, NULL, NULL, NULL, '2023-12-18 15:42:32', 'TIENMAT', NULL, NULL, 215000, NULL, 215000, 21, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(194, '2023-12-18 15:40:37', '2023-12-18 15:40:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'IE3F2M', NULL, NULL, NULL, NULL, '2023-12-18 15:40:37', 'TIENMAT', NULL, NULL, 60000, NULL, 51350, 25, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(195, '2023-12-19 05:15:11', '2023-12-18 15:44:03', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'xH3VzS', NULL, NULL, NULL, NULL, '2023-12-19 05:15:11', 'TIENMAT', NULL, NULL, 1000000, NULL, 1000000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 2000),
-	(196, '2023-12-18 20:00:12', '2023-12-18 15:47:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'JBGzoJ', NULL, NULL, NULL, NULL, '2023-12-18 20:00:12', 'TIENMAT', NULL, NULL, 645200, NULL, 655200, 2, NULL, 2, NULL, 'OFFLINE', NULL, 10000),
-	(197, '2023-12-18 16:43:54', '2023-12-18 15:50:07', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'lxsrYR', NULL, NULL, NULL, NULL, '2023-12-18 16:43:54', 'TIENMAT', NULL, NULL, 102696, NULL, 102700, 2, NULL, 2, NULL, 'OFFLINE', NULL, 4),
-	(198, '2023-12-14 18:00:23', '2023-12-14 18:00:23', 'admin9193', 'admin9193', 'DANHANHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD198', '', '2023-12-14 18:00:23', '2023-12-14 18:00:23', NULL, '2023-12-14 18:00:23', 'VIDIENTU', '0915812752', 'Linnh', 199700, 24200, 175500, 2, NULL, NULL, 'LF7UWU', 'Online', NULL, NULL),
-	(199, '2023-12-14 18:00:23', '2023-12-14 18:00:23', 'admin9193', 'dinhanhtuan0812', 'DANHANHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD199', '', '2023-12-14 18:00:23', '2023-12-14 18:00:23', NULL, '2023-12-14 18:00:23', 'VIDIENTU', '0915812752', 'Tuấn', 849200, 24200, 825000, 2, NULL, NULL, 'LF7UWG', 'Online', NULL, NULL),
-	(200, '2023-12-14 18:00:23', '2023-12-14 18:00:23', 'admin9193', 'dinhanhtuan0812', 'DANHANHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD200', '', '2023-12-14 18:00:23', '2023-12-14 18:00:23', NULL, '2023-12-14 18:00:23', 'VIDIENTU', '0915812752', 'Tuấn', 784200, 24200, 760000, 2, NULL, NULL, 'LF7UW7', 'Online', NULL, NULL),
-	(201, '2023-12-15 18:00:01', '2023-12-15 18:00:01', 'admin9193', 'nguyenvana0183', 'DANHANHANG', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD201', '', '2023-12-18 17:12:30', '2023-12-15 18:00:01', '2023-12-15 18:00:01', '2023-12-15 18:00:01', 'CHUYENKHOAN', '0981517242', 'Nguyễn Văn A', 309301, 25301, 284000, 1, NULL, NULL, 'LF7UWF', 'Online', NULL, NULL),
-	(203, '2023-12-15 18:00:01', '2023-12-15 18:00:01', 'admin9193', 'dinhtuananh0183', 'DANHANHANG', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD203', '', '2023-12-15 18:00:01', '2023-12-15 18:00:01', NULL, '2023-12-15 18:00:01', 'VIDIENTU', '0977853450', 'Đinh Tuấn Anh', 1264901, 64901, 1200000, 5, NULL, NULL, 'LF7UWL', 'Online', NULL, NULL),
-	(204, '2023-12-13 18:00:01', '2023-12-13 18:00:01', 'admin9193', 'doquochuy8173', 'DANHANHANG', 'Số 01, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD204', '', '2023-12-13 18:00:01', '2023-12-13 18:00:01', NULL, '2023-12-13 18:00:01', 'VIDIENTU', '0389979874', 'Trần Mạnh', 625301, 25301, 600000, 4, NULL, NULL, 'LF7UWQ', 'Online', NULL, NULL),
-	(205, '2023-12-13 18:00:01', '2023-12-13 18:00:01', 'admin9193', 'doquochuy8173', 'DANHANHANG', 'Số 01, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD205', '', '2023-12-13 18:00:01', '2023-12-13 18:00:01', NULL, '2023-12-13 18:00:01', 'VIDIENTU', '0389979873', 'Đỗ Minh', 174200, 24200, 150000, 4, NULL, NULL, 'LF7UKE', 'Online', NULL, NULL),
-	(206, '2023-12-12 19:07:19', '2023-12-12 19:07:19', 'admin9193', 'viethoang8541', 'DANHANHANG', 'Số 01, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD206', '', '2023-12-12 19:07:19', '2023-12-18 19:09:29', '2023-12-18 19:09:29', '2023-12-18 19:07:19', 'THANHTOANNHANHANG', '0389979873', 'Việt Hoàng', 119551, 25301, 94250, 26, NULL, NULL, 'LF7UW4', 'Online', NULL, NULL),
-	(207, '2023-12-12 19:07:19', '2023-12-12 19:07:19', 'admin9193', 'viethoang8541', 'DANHANHANG', 'Số 22, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD207', '', '2023-12-12 19:07:19', '2023-12-18 19:09:29', '2023-12-18 19:09:29', '2023-12-18 19:09:29', 'THANHTOANNHANHANG', '0987876234', 'Trần Hùng', 510301, 25301, 485000, 26, NULL, NULL, 'LF7UW3', 'Online', NULL, NULL),
-	(208, '2023-12-12 19:07:19', '2023-12-12 19:07:19', 'admin9193', 'viethoang8541', 'DANHANHANG', 'Số 22, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD208', '', '2023-12-12 19:07:19', '2023-12-18 19:09:29', '2023-12-18 19:09:29', '2023-12-18 19:09:40', 'THANHTOANNHANHANG', '0987876234', 'Trần Hùng', 395151, 25301, 369850, 26, NULL, NULL, 'LF7UWB', 'Online', NULL, NULL),
-	(209, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'hoangthuyduong8758', 'DANHANHANG', 'Số 48, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 'HD209', '', '2023-12-11 19:08:16', '2023-12-18 19:09:29', '2023-12-18 19:09:29', '2023-12-18 19:08:16', 'THANHTOANNHANHANG', '0989764325', 'Hoàng Thùy Dương', 596301, 58301, 538000, 27, NULL, NULL, 'LF7UWP', 'Online', NULL, NULL),
-	(210, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'hoangthuyduong8758', 'DANHANHANG', 'Số 48, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 'HD210', '', '2023-12-11 19:08:16', '2023-12-18 19:09:16', '2023-12-18 19:09:16', '2023-12-18 19:09:16', 'THANHTOANNHANHANG', '0989764325', 'Hoàng Thùy Dương', 812301, 58301, 754000, 27, NULL, NULL, 'LF7UWD', 'Online', NULL, NULL),
-	(212, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'hoangthuyduong8758', 'DANHANHANG', 'Số 48, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 'HD212', '', '2023-12-11 19:08:16', '2023-12-18 18:43:37', NULL, '2023-12-11 19:08:16', 'VIDIENTU', '0989764325', 'Hoàng Thùy Dương', 759551, 58301, 701250, 27, NULL, NULL, 'LF7UWN', 'Online', NULL, NULL),
-	(213, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'hoangthuyduong8758', 'DANHANHANG', 'Số 48, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 'HD213', '', '2023-12-11 19:08:16', '2023-12-18 18:43:37', NULL, '2023-12-11 19:08:16', 'VIDIENTU', '0989764325', 'Hoàng Thùy Dương', 593301, 58301, 535000, 27, NULL, NULL, 'LF7UW6', 'Online', NULL, NULL),
-	(214, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'trantien0698', 'DANHANHANG', '88, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD214', '', '2023-12-11 19:08:16', '2023-12-18 18:43:37', NULL, '2023-12-11 19:08:16', 'VIDIENTU', '0389979221', 'Trần Tiến', 352251, 25301, 326950, 28, NULL, NULL, 'LF7UWV', 'Online', NULL, NULL),
-	(215, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'trantien0698', 'DANHANHANG', '88, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD215', '', '2023-12-11 19:08:16', '2023-12-18 18:43:37', '2023-12-18 18:43:37', '2023-12-18 18:43:37', 'THANHTOANNHANHANG', '0389979221', 'Trần Tiến', 360301, 25301, 335000, 28, NULL, NULL, 'LF7UW9', 'Online', NULL, NULL),
-	(216, '2023-12-11 19:08:16', '2023-12-11 19:08:16', 'admin9193', 'trantien0698', 'DANHANHANG', '88, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD216', '', '2023-12-11 19:08:16', '2023-12-11 19:08:16', NULL, '2023-12-11 19:08:16', 'VIDIENTU', '0389979221', 'Trần Tiến', 717801, 25301, 692500, 28, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(217, '2023-12-19 05:08:30', '2023-12-18 19:39:57', 'admin9193', 'todung4660', 'DANHANHANG', '93, Xã Tống Trân, Huyện Phù Cừ, Hưng Yên, Vietnam', 'HD217', '', '2023-12-18 19:40:45', '2023-12-21 23:59:59', NULL, '2023-12-19 05:08:30', 'THANHTOANNHANHANG', '0389973452', 'Tô Dũng', 555301, 25301, 530000, 29, NULL, NULL, 'LF7UEU', 'Online', NULL, NULL),
-	(218, '2023-12-19 08:07:40', '2023-12-18 20:01:15', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'HEqSjQ', NULL, NULL, NULL, NULL, '2023-12-19 08:07:40', 'TIENMAT', NULL, NULL, 91000, NULL, 91000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(219, '2023-12-19 05:05:37', '2023-12-19 05:05:31', 'doquochuy8173', 'doquochuy8173', 'CHONHANDON', 'Số 01, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD219', '', '2023-12-19 05:05:37', NULL, NULL, '2023-12-19 05:05:37', 'VIDIENTU', '0389979873', 'Đỗ Minh', 424200, 24200, 400000, 4, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(221, '2023-12-19 06:21:21', '2023-12-19 06:20:48', 'dinhanhtuan0812', 'dinhanhtuan0812', 'CHONHANDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD221', '', '2023-12-19 06:21:21', NULL, NULL, '2023-12-19 06:21:21', 'CHUYENKHOAN', '0915812752', 'Tuấn', 1786800, 36300, 1750500, 2, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(224, '2023-12-19 09:12:40', '2023-12-19 08:02:35', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'HUYDON', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD224', '', '2023-12-19 08:03:11', NULL, NULL, '2023-12-19 08:03:11', 'VIDIENTU', '0345165478', 'Linh', 76651, 25301, 51350, 3, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(225, '2023-12-19 08:31:00', '2023-12-19 08:28:14', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'DANHANHANG', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD225', '', '2023-12-19 08:28:37', '2023-12-21 23:59:59', NULL, '2023-12-19 08:28:37', 'VIDIENTU', '0345165478', 'Linh', 266651, 25301, 241350, 3, NULL, NULL, 'LF7CQ8', 'Online', NULL, NULL),
-	(226, '2023-12-19 08:32:28', '2023-12-19 08:31:33', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'Y3mtgI', NULL, NULL, NULL, NULL, '2023-12-19 08:32:28', 'TIENMAT', NULL, NULL, 710450, NULL, 710450, 21, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(227, '2023-12-19 08:54:44', '2023-12-19 08:53:36', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'LF0Eeh', NULL, NULL, NULL, NULL, '2023-12-19 08:54:44', 'TIENMAT', NULL, NULL, 1249000, NULL, 1249000, 28, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(228, '2023-12-19 09:02:28', '2023-12-19 08:54:59', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'SqZbtu', NULL, NULL, NULL, NULL, '2023-12-19 09:02:28', 'TIENMAT', NULL, NULL, 498000, NULL, 498000, 30, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(229, '2023-12-19 09:12:20', '2023-12-19 09:09:25', 'nguyenthikhanhlinh1711', 'nguyenthikhanhlinh1711', 'CHONHANDON', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD229', '', '2023-12-19 09:12:20', NULL, NULL, '2023-12-19 09:12:20', 'CHUYENKHOAN', '0345165478', 'Linh', 119551, 25301, 94250, 3, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(230, '2023-12-20 14:03:04', '2023-12-20 14:02:59', 'admin9193', 'admin9193', 'CHONHANDON', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD230', '', '2023-12-20 14:03:04', NULL, NULL, '2023-12-20 14:03:04', 'VIDIENTU', '0915812752', 'Tuấn', 474550, 24200, 450350, 2, NULL, NULL, NULL, 'Online', NULL, NULL),
-	(234, '2023-12-20 18:19:12', '2023-12-20 16:46:42', 'admin9193', 'admin9193', 'TREO', NULL, '3uoSOD', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, NULL, NULL, 87750, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(240, NULL, '2023-12-20 18:19:12', NULL, 'admin9193', 'TREO', NULL, 'msFtZe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL);
+	(104, '2023-12-16 15:59:48', '2023-12-16 15:58:01', 'admin9193', 'dinhanhtuan0812', 'DANGGIAOHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD104', '', '2023-12-16 15:58:10', '2023-12-17 23:59:59', NULL, '2023-12-16 15:58:10', 'VIDIENTU', '0915812752', 'Linnh', 264200, 24200, 240000, 2, NULL, NULL, 'LF7GRL', 'Online', NULL, NULL),
+	(105, '2023-12-16 16:04:32', '2023-12-16 16:03:18', 'nguyenvana0183', 'nguyenvana0183', 'THANHCONG', NULL, 'ShEONu', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 350000, NULL, 342700, NULL, NULL, 1, NULL, 'OFFLINE', NULL, NULL),
+	(106, NULL, '2023-12-17 05:29:02', NULL, 'admin9193', 'TREO', NULL, 'PxhKRZ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(107, NULL, '2023-12-17 07:04:28', NULL, 'admin9193', 'TREO', NULL, 'gXj2xz', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(108, NULL, '2023-12-17 06:13:34', NULL, 'admin9193', 'TREO', NULL, 'pAY61F', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(109, '2023-12-17 14:54:38', '2023-12-17 07:27:12', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'RrMrpT', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 150000, NULL, 146950, 1, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(110, '2023-12-17 15:11:25', '2023-12-17 15:09:58', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'klmyEW', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 370000, NULL, 367000, 1, NULL, 2, NULL, 'OFFLINE', NULL, 50000),
+	(111, '2023-12-17 15:15:17', '2023-12-17 15:14:02', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'rKSMMa', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 310000, NULL, 309450, 1, NULL, 2, NULL, 'OFFLINE', NULL, 50000),
+	(112, '2023-12-17 15:26:05', '2023-12-17 15:24:31', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'S2sGxt', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 230000, NULL, 225050, 1, NULL, 2, NULL, 'OFFLINE', NULL, 20000),
+	(113, '2023-12-17 15:39:57', '2023-12-17 15:34:45', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'FPE9Qr', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 650000, NULL, 642200, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(114, '2023-12-17 16:47:34', '2023-12-17 16:35:07', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'qF4V0G', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 600000, NULL, 531050, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(115, '2023-12-17 20:48:34', '2023-12-17 20:47:01', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'fLQg9C', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 103000, NULL, 102700, 1, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(116, NULL, '2023-12-17 20:50:06', NULL, 'admin9193', 'TREO', NULL, 'lzn9WV', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(117, NULL, '2023-12-17 21:21:13', NULL, 'admin9193', 'TREO', NULL, 'SiIyn7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(118, NULL, '2023-12-18 05:44:49', NULL, 'admin9193', 'TREO', NULL, 'kEOnqn', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(121, NULL, '2023-12-18 05:58:22', NULL, 'admin9193', 'TREO', NULL, 'CzbhqW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(123, '2023-12-18 06:20:29', '2023-12-18 06:18:49', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'JoFoDW', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 800000, NULL, 720000, 4, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(124, '2023-12-18 06:21:38', '2023-12-18 06:20:50', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'NkW7FO', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 700000, NULL, 645000, 4, NULL, 2, NULL, 'OFFLINE', NULL, 3000),
+	(125, '2023-12-18 10:44:05', '2023-12-18 10:36:59', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'RiGjKt', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 200000, NULL, 190450, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(129, '2023-12-18 11:08:11', '2023-12-18 11:00:26', 'admin9193', 'admin9193', 'TREO', NULL, 'AMnE5x', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, NULL, NULL, 0, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(134, '2023-12-18 11:09:17', '2023-12-18 11:08:12', 'admin9193', 'admin9193', 'TREO', NULL, 'Df4MjT', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, NULL, NULL, 52000, 10, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(135, '2023-12-18 11:10:01', '2023-12-18 11:09:18', 'admin9193', 'admin9193', 'TREO', NULL, 'oJi4q9', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, NULL, NULL, 0, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(136, NULL, '2023-12-18 11:10:01', NULL, 'admin9193', 'TREO', NULL, 'Lc1MVe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'Offline', NULL, NULL),
+	(137, '2023-12-18 16:01:47', '2023-12-18 16:00:05', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'WK4M6b', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 340000, NULL, 330000, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(138, '2023-12-18 16:08:07', '2023-12-18 16:06:31', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'ErZefi', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 52000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(139, '2023-12-18 17:27:55', '2023-12-18 17:20:50', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'N420Xe', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 52000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(140, '2023-12-18 17:31:28', '2023-12-18 17:28:10', 'admin9193', 'admin9193', 'THANHCONG', NULL, '4CqPFW', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 60000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(141, '2023-12-18 17:35:07', '2023-12-18 17:34:05', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'kv1jYl', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 60000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(142, '2023-12-18 17:38:27', '2023-12-18 17:37:32', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'uMmkDx', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 60000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(143, NULL, '2023-12-18 17:38:36', NULL, 'admin9193', 'TREO', NULL, 'Bez3ST', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(144, '2023-12-19 03:58:57', '2023-12-19 03:52:31', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'kSNfH3', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 110000, NULL, 106600, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(145, '2023-12-19 04:07:52', '2023-12-19 04:06:53', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'aPdLJs', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 52000, NULL, 51350, NULL, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(146, '2023-12-19 04:27:19', '2023-12-19 04:25:21', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'D6ZZ6U', NULL, NULL, NULL, NULL, NULL, 'TIENMAT', NULL, NULL, 300000, NULL, 291200, 1, NULL, 2, NULL, 'OFFLINE', NULL, 1000),
+	(147, NULL, '2023-12-19 04:28:03', NULL, 'admin9193', 'TREO', NULL, 'uDka6t', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(148, NULL, '2023-12-20 14:17:46', NULL, 'admin9193', 'TREO', NULL, 'm1LKKg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(149, NULL, '2023-12-20 14:33:34', NULL, 'admin9193', 'TREO', NULL, 'RiKhIm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL);
 
 -- Dumping structure for table duantotnghiep.hoadonchitiet
 CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
@@ -3314,9 +3156,9 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   CONSTRAINT `FK72nghe3o7s1prylbbnvfwub2k` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FK8g5acmm1r0ha2hua47ul4rdia` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKhv6nwlu151jpu9ikpe9fonvi6` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=254 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadonchitiet: ~138 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadonchitiet: ~59 rows (approximately)
 INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `thanhtien`, `idbienthe`, `idhoadon`, `idkhuyenmai`, `sotiengiam`, `idsanpham`) VALUES
 	(27, NULL, '2023-12-16 08:32:21', NULL, 'admin9193', 'ACTIVE', 275000, 1, 275000, 226, 87, 20, NULL, 38),
 	(28, '2023-12-16 08:55:04', '2023-12-16 08:42:24', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 88, 23, NULL, 49),
@@ -3333,129 +3175,61 @@ INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`,
 	(39, NULL, '2023-12-16 14:29:15', NULL, 'admin9193', 'ACTIVE', 115000, 1, 115000, 283, 101, 22, NULL, 45),
 	(40, NULL, '2023-12-16 14:37:07', NULL, 'admin9193', 'ACTIVE', 94250, 1, 94250, 405, 102, 23, NULL, 48),
 	(41, '2023-12-16 14:39:41', '2023-12-16 14:39:21', 'admin9193', 'admin9193', 'ACTIVE', 187850, 2, 375700, 327, 102, 23, NULL, 47),
-	(91, NULL, '2023-12-18 02:29:58', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 135, NULL, NULL, 49),
-	(92, '2023-12-18 02:30:21', '2023-12-18 02:30:09', 'admin9193', 'admin9193', 'ACTIVE', 280000, 2, 560000, 229, 135, NULL, NULL, 41),
-	(93, NULL, '2023-12-18 02:30:12', NULL, 'admin9193', 'ACTIVE', 303200, 1, 303200, 233, 135, NULL, NULL, 43),
-	(106, '2023-12-18 05:26:46', '2023-12-18 05:21:45', 'admin9193', 'admin9193', 'ACTIVE', 51350, 5, 256750, 520, 143, 23, NULL, 49),
-	(107, '2023-12-18 05:26:48', '2023-12-18 05:21:50', 'admin9193', 'admin9193', 'ACTIVE', 52000, 5, 260000, 547, 143, 23, NULL, 49),
-	(108, '2023-12-18 05:26:29', '2023-12-18 05:21:57', 'admin9193', 'admin9193', 'ACTIVE', 51350, 5, 256750, 567, 143, 23, NULL, 49),
-	(109, NULL, '2023-12-18 05:29:01', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 546, 144, 23, NULL, 49),
-	(110, NULL, '2023-12-18 05:29:06', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 144, 23, NULL, 49),
-	(111, NULL, '2023-12-18 05:29:11', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 540, 144, 23, NULL, 49),
-	(112, NULL, '2023-12-18 05:29:18', NULL, 'admin9193', 'ACTIVE', 208400, 1, 208400, NULL, 144, 22, NULL, 40),
-	(113, NULL, '2023-12-18 05:29:24', NULL, 'admin9193', 'ACTIVE', 284000, 1, 284000, 234, 144, 21, NULL, 41),
-	(114, NULL, '2023-12-18 05:36:42', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 146, 23, NULL, 49),
-	(115, NULL, '2023-12-18 05:36:47', NULL, 'admin9193', 'ACTIVE', 187850, 1, 187850, 327, 146, 23, NULL, 47),
-	(116, '2023-12-18 05:42:46', '2023-12-18 05:42:28', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 520, 147, 23, NULL, 49),
-	(117, '2023-12-18 05:42:45', '2023-12-18 05:42:34', 'admin9193', 'admin9193', 'ACTIVE', 90350, 3, 271050, 518, 147, 23, NULL, 48),
-	(118, '2023-12-18 05:42:47', '2023-12-18 05:42:38', 'admin9193', 'admin9193', 'ACTIVE', 235000, 3, 705000, 309, 147, 22, NULL, 46),
-	(119, '2023-12-18 05:45:04', '2023-12-18 05:44:46', 'admin9193', 'admin9193', 'ACTIVE', 90350, 4, 361400, 518, 148, 23, NULL, 48),
-	(120, NULL, '2023-12-18 05:46:28', NULL, 'admin9193', 'ACTIVE', 90350, 1, 90350, 518, 157, 23, NULL, 48),
-	(121, NULL, '2023-12-18 05:46:33', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 157, 23, NULL, 49),
-	(122, '2023-12-18 05:52:24', '2023-12-18 05:47:36', 'admin9193', 'admin9193', 'ACTIVE', 90350, 4, 361400, 518, 158, 23, NULL, 48),
-	(123, NULL, '2023-12-18 05:53:53', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 159, 23, NULL, 49),
-	(124, NULL, '2023-12-18 05:53:56', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 159, 23, NULL, 47),
-	(125, NULL, '2023-12-18 05:54:00', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 328, 159, 23, NULL, 48),
-	(126, NULL, '2023-12-18 05:54:03', NULL, 'admin9193', 'ACTIVE', 239000, 1, 239000, 296, 159, 22, NULL, 46),
-	(127, NULL, '2023-12-18 05:54:06', NULL, 'admin9193', 'ACTIVE', 159200, 1, 159200, 235, 159, 21, NULL, 42),
-	(128, NULL, '2023-12-18 05:54:08', NULL, 'admin9193', 'ACTIVE', 168000, 1, 168000, 237, 159, 21, NULL, 42),
-	(129, NULL, '2023-12-18 05:57:10', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 160, 23, NULL, 47),
-	(130, NULL, '2023-12-18 05:57:13', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 519, 160, 23, NULL, 48),
-	(131, NULL, '2023-12-18 05:57:17', NULL, 'admin9193', 'ACTIVE', 239000, 1, 239000, 311, 160, 22, NULL, 46),
-	(132, NULL, '2023-12-18 05:57:20', NULL, 'admin9193', 'ACTIVE', 110000, 1, 110000, 289, 160, 22, NULL, 45),
-	(133, NULL, '2023-12-18 05:58:10', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 161, 23, NULL, 49),
-	(134, NULL, '2023-12-18 05:58:14', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 161, 23, NULL, 47),
-	(135, NULL, '2023-12-18 05:58:18', NULL, 'admin9193', 'ACTIVE', 119000, 1, 119000, 281, 161, 22, NULL, 45),
-	(136, NULL, '2023-12-18 05:58:22', NULL, 'admin9193', 'ACTIVE', 119000, 1, 119000, 309, 161, 22, NULL, 45),
-	(137, '2023-12-18 05:59:35', '2023-12-18 05:59:17', 'admin9193', 'admin9193', 'ACTIVE', 52000, 3, 156000, 547, 162, 23, NULL, 49),
-	(138, '2023-12-18 13:39:26', '2023-12-18 06:13:50', 'admin9193', 'admin9193', 'ACTIVE', 52000, 2, 104000, 547, 172, 23, NULL, 49),
-	(139, '2023-12-18 13:35:54', '2023-12-18 06:13:55', 'admin9193', 'admin9193', 'ACTIVE', 55250, 3, 165750, 566, 172, 23, NULL, 49),
-	(140, '2023-12-18 13:34:25', '2023-12-18 06:14:00', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 519, 172, 23, NULL, 48),
-	(143, NULL, '2023-12-18 06:56:04', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 175, 23, NULL, 49),
-	(144, NULL, '2023-12-18 06:56:24', NULL, 'admin9193', 'ACTIVE', 181350, 1, 181350, 312, 175, 23, NULL, 47),
-	(145, NULL, '2023-12-18 06:56:29', NULL, 'admin9193', 'ACTIVE', 160000, 1, 160000, 236, 175, 21, NULL, 42),
-	(147, '2023-12-18 08:03:11', '2023-12-18 08:02:01', 'admin9193', 'admin9193', 'ACTIVE', 110000, 2, 220000, 272, 178, 22, NULL, 45),
-	(148, NULL, '2023-12-18 08:02:23', NULL, 'admin9193', 'ACTIVE', 333000, 1, 333000, 60, 178, 25, NULL, 9),
-	(149, NULL, '2023-12-18 08:02:55', NULL, 'admin9193', 'ACTIVE', 124000, 1, 124000, 64, 178, 10, NULL, 11),
-	(150, NULL, '2023-12-18 08:05:28', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 177, 23, NULL, 49),
-	(152, NULL, '2023-12-18 13:39:19', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 172, 23, NULL, 49),
-	(153, NULL, '2023-12-18 13:43:40', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 562, 165, 23, NULL, 49),
-	(154, NULL, '2023-12-18 14:24:46', NULL, 'admin9193', 'ACTIVE', 303200, 1, 303200, 238, 183, 21, NULL, 43),
-	(155, NULL, '2023-12-18 14:24:50', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 183, 23, NULL, 47),
-	(156, NULL, '2023-12-18 14:25:28', NULL, 'admin9193', 'ACTIVE', 150000, 1, 150000, 575, 183, NULL, NULL, 56),
-	(157, '2023-12-18 14:48:00', '2023-12-18 14:38:14', 'admin9193', 'admin9193', 'ACTIVE', 215000, 1, 215000, 233, 186, 22, NULL, 44),
-	(158, '2023-12-18 14:49:17', '2023-12-18 14:38:17', 'admin9193', 'admin9193', 'ACTIVE', 288000, 1, 288000, 233, 186, 21, NULL, 41),
-	(159, '2023-12-18 14:48:02', '2023-12-18 14:38:20', 'admin9193', 'admin9193', 'ACTIVE', 330000, 1, 330000, 228, 186, 20, NULL, 39),
-	(160, '2023-12-18 14:50:43', '2023-12-18 14:50:36', 'admin9193', 'admin9193', 'ACTIVE', 94250, 3, 282750, 405, 184, 23, NULL, 48),
-	(161, '2023-12-18 14:51:40', '2023-12-18 14:51:32', 'admin9193', 'admin9193', 'ACTIVE', 208400, 2, 416800, NULL, 185, 22, NULL, 40),
-	(162, '2023-12-18 14:51:42', '2023-12-18 14:51:35', 'admin9193', 'admin9193', 'ACTIVE', 330000, 5, 1650000, 231, 185, 20, NULL, 39),
-	(163, NULL, '2023-12-18 14:52:58', NULL, 'admin9193', 'ACTIVE', 215000, 1, 215000, 267, 188, 22, NULL, 44),
-	(164, NULL, '2023-12-18 15:03:38', NULL, 'admin9193', NULL, 285000, 1, 275000, 226, 187, 20, 10000, NULL),
-	(167, '2023-12-18 15:33:53', '2023-12-18 15:31:45', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 328, 189, 23, NULL, 48),
-	(168, NULL, '2023-12-18 15:40:15', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 194, 23, NULL, 49),
-	(169, NULL, '2023-12-18 15:41:36', NULL, 'admin9193', 'ACTIVE', 215000, 1, 215000, 256, 193, 22, NULL, 44),
-	(170, NULL, '2023-12-18 15:41:36', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 197, 23, NULL, 49),
-	(171, NULL, '2023-12-18 15:41:36', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 197, 23, NULL, 49),
-	(172, NULL, '2023-12-14 18:00:23', NULL, 'admin9193', NULL, 270000, 2, 175500, 328, 198, 23, 94500, NULL),
-	(173, NULL, '2023-12-14 18:00:23', NULL, 'dinhanhtuan0812', NULL, 285000, 1, 275000, 226, 199, 20, 10000, NULL),
-	(174, NULL, '2023-12-14 18:00:23', NULL, 'dinhanhtuan0812', NULL, 285000, 1, 275000, 226, 199, 20, 10000, NULL),
-	(175, NULL, '2023-12-14 18:00:23', NULL, 'dinhanhtuan0812', NULL, 285000, 1, 275000, 226, 199, 20, 10000, NULL),
-	(176, NULL, '2023-12-14 18:00:23', NULL, 'dinhanhtuan0812', NULL, 760000, 2, 760000, 171, 200, NULL, 0, NULL),
-	(177, NULL, '2023-12-15 18:00:01', NULL, 'nguyenvana0183', NULL, 355000, 1, 284000, 234, 201, 21, 71000, NULL),
-	(180, NULL, '2023-12-15 18:00:01', NULL, 'dinhtuananh0183', NULL, 1300000, 10, 1200000, 280, 203, 22, 100000, NULL),
-	(181, NULL, '2023-12-13 18:00:01', NULL, 'doquochuy8173', NULL, 680000, 4, 600000, 51, 204, 16, 80000, NULL),
-	(182, NULL, '2023-12-13 18:00:01', NULL, 'doquochuy8173', NULL, 170000, 1, 150000, 51, 205, 16, 20000, NULL),
-	(183, NULL, '2023-12-12 19:07:19', NULL, 'viethoang8541', NULL, 145000, 1, 94250, 340, 206, 23, 50750, NULL),
-	(184, NULL, '2023-12-12 19:07:19', NULL, 'viethoang8541', NULL, 340000, 1, 330000, 228, 207, 20, 10000, NULL),
-	(185, NULL, '2023-12-12 19:07:19', NULL, 'viethoang8541', NULL, 165000, 1, 155000, 217, 207, 20, 10000, NULL),
-	(186, NULL, '2023-12-12 19:07:19', NULL, 'viethoang8541', NULL, 290000, 2, 188500, 340, 208, 23, 101500, NULL),
-	(187, NULL, '2023-12-12 19:07:19', NULL, 'viethoang8541', NULL, 279000, 1, 181350, 314, 208, 23, 97650, NULL),
-	(188, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 289000, 1, 274000, 55, 209, 14, 15000, NULL),
-	(189, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 330000, 2, 264000, 65, 209, 10, 66000, NULL),
-	(190, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 260000, 2, 260000, 123, 210, NULL, 0, NULL),
-	(191, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 760000, 2, 494000, 146, 210, 23, 266000, NULL),
-	(195, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 270000, 2, 270000, 92, 212, NULL, 0, NULL),
-	(196, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 360000, 1, 360000, 61, 212, NULL, 0, NULL),
-	(197, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 75000, 1, 71250, 98, 212, 17, 3750, NULL),
-	(198, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 356000, 2, 356000, 79, 213, NULL, 0, NULL),
-	(199, NULL, '2023-12-11 19:08:16', NULL, 'hoangthuyduong8758', NULL, 179000, 1, 179000, 69, 213, NULL, 0, NULL),
-	(200, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 79000, 1, 51350, 524, 214, 23, 27650, NULL),
-	(201, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 145000, 1, 94250, 340, 214, 23, 50750, NULL),
-	(202, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 279000, 1, 181350, 314, 214, 23, 97650, NULL),
-	(203, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 345000, 1, 335000, 229, 215, 20, 10000, NULL),
-	(204, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 78000, 1, 58500, 30, 216, 19, 19500, NULL),
-	(205, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 289000, 1, 274000, 55, 216, 14, 15000, NULL),
-	(206, NULL, '2023-12-11 19:08:16', NULL, 'trantien0698', NULL, 360000, 1, 360000, 61, 216, NULL, 0, NULL),
-	(207, NULL, '2023-12-18 19:39:57', NULL, 'todung4660', NULL, 355000, 1, 355000, 63, 217, NULL, 0, NULL),
-	(208, NULL, '2023-12-18 19:39:57', NULL, 'todung4660', NULL, 175000, 1, 175000, 80, 217, NULL, 0, NULL),
-	(209, '2023-12-18 19:59:59', '2023-12-18 19:59:53', 'admin9193', 'admin9193', 'ACTIVE', 218400, 3, 655200, NULL, 196, NULL, NULL, 40),
-	(210, '2023-12-19 04:05:23', '2023-12-19 04:04:41', 'admin9193', 'admin9193', 'ACTIVE', 182000, 2, 364000, 325, 190, 23, NULL, 47),
-	(211, NULL, '2023-12-19 05:05:31', NULL, 'doquochuy8173', NULL, 400000, 2, 400000, 578, 219, NULL, 0, NULL),
-	(212, NULL, '2023-12-19 05:09:59', NULL, 'admin9193', 'ACTIVE', 200000, 1, 200000, 576, 195, NULL, NULL, 57),
-	(213, NULL, '2023-12-19 05:10:01', NULL, 'admin9193', 'ACTIVE', 200000, 1, 200000, 574, 195, NULL, NULL, 56),
-	(214, '2023-12-19 05:11:37', '2023-12-19 05:10:06', 'admin9193', 'admin9193', 'ACTIVE', 200000, 2, 400000, 575, 195, NULL, NULL, 56),
-	(215, NULL, '2023-12-19 05:14:48', NULL, 'admin9193', 'ACTIVE', 200000, 1, 200000, 578, 195, NULL, NULL, 57),
-	(217, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 760000, 2, 760000, 246, 221, NULL, 0, NULL),
-	(218, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 80000, 1, 52000, 544, 221, 23, 28000, NULL),
-	(219, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 250000, 1, 250000, 581, 221, NULL, 0, NULL),
-	(220, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 290000, 2, 188500, 340, 221, 23, 101500, NULL),
-	(221, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 250000, 1, 250000, 308, 221, NULL, 0, NULL),
-	(222, NULL, '2023-12-19 06:20:48', NULL, 'dinhanhtuan0812', NULL, 250000, 1, 250000, 582, 221, NULL, 0, NULL),
-	(227, NULL, '2023-12-19 08:02:35', NULL, 'nguyenthikhanhlinh1711', NULL, 79000, 1, 51350, 520, 224, 23, 27650, NULL),
-	(228, NULL, '2023-12-19 08:07:20', NULL, 'admin9193', 'ACTIVE', 91000, 1, 91000, 388, 218, 23, NULL, 48),
-	(229, NULL, '2023-12-19 08:28:14', NULL, 'nguyenthikhanhlinh1711', NULL, 190000, 1, 190000, 574, 225, NULL, 0, NULL),
-	(230, NULL, '2023-12-19 08:28:14', NULL, 'nguyenthikhanhlinh1711', NULL, 79000, 1, 51350, 540, 225, 23, 27650, NULL),
-	(231, '2023-12-19 08:31:57', '2023-12-19 08:31:42', 'admin9193', 'admin9193', 'ACTIVE', 51350, 12, 616200, 524, 226, 23, NULL, 49),
-	(232, NULL, '2023-12-19 08:31:48', NULL, 'admin9193', 'ACTIVE', 94250, 1, 94250, 376, 226, 23, NULL, 48),
-	(233, '2023-12-19 08:54:22', '2023-12-19 08:53:45', 'admin9193', 'admin9193', 'ACTIVE', 200000, 5, 1000000, 570, 227, NULL, NULL, 51),
-	(234, NULL, '2023-12-19 08:53:50', NULL, 'admin9193', 'ACTIVE', 249000, 1, 249000, 296, 227, NULL, NULL, 46),
-	(235, '2023-12-19 09:02:19', '2023-12-19 09:02:13', 'admin9193', 'admin9193', 'ACTIVE', 249000, 2, 498000, 296, 228, NULL, NULL, 46),
-	(236, NULL, '2023-12-19 09:12:04', NULL, 'nguyenthikhanhlinh1711', NULL, 145000, 1, 94250, 376, 229, 23, 50750, NULL),
-	(237, NULL, '2023-12-20 14:02:59', NULL, 'admin9193', NULL, 269000, 1, 269000, 59, 230, NULL, 0, NULL),
-	(238, NULL, '2023-12-20 14:02:59', NULL, 'admin9193', NULL, 279000, 1, 181350, 314, 230, 23, 97650, NULL),
-	(251, NULL, '2023-12-20 18:19:01', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 328, 234, 23, 47250, 48),
-	(252, '2023-12-20 18:22:13', '2023-12-20 18:19:21', 'admin9193', 'admin9193', 'ACTIVE', 87750, 1, 87750, 417, 240, 23, 47250, 48),
-	(253, '2023-12-20 18:21:03', '2023-12-20 18:20:22', 'admin9193', 'admin9193', 'ACTIVE', 181350, 1, 181350, 312, 240, 23, 97650, 47);
+	(42, NULL, '2023-12-16 15:46:34', NULL, 'dinhanhtuan0812', NULL, 135000, 1, 87750, 413, 10, 23, 47250, NULL),
+	(43, NULL, '2023-12-16 15:46:34', NULL, 'dinhanhtuan0812', NULL, 79000, 1, 51350, 560, 10, 23, 27650, NULL),
+	(44, NULL, '2023-12-16 15:51:13', NULL, 'dinhanhtuan0812', NULL, 230000, 1, 220000, 268, 103, 22, 10000, NULL),
+	(45, NULL, '2023-12-16 15:58:01', NULL, 'dinhanhtuan0812', NULL, 260000, 2, 240000, 280, 104, 22, 20000, NULL),
+	(46, '2023-12-16 16:03:37', '2023-12-16 16:03:28', 'nguyenvana0183', 'nguyenvana0183', 'ACTIVE', 51350, 2, 102700, 567, 105, 23, NULL, 49),
+	(47, NULL, '2023-12-16 16:03:32', NULL, 'nguyenvana0183', 'ACTIVE', 240000, 1, 240000, 307, 105, 22, NULL, 46),
+	(48, NULL, '2023-12-17 05:29:14', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 106, 23, NULL, 49),
+	(49, '2023-12-17 05:29:27', '2023-12-17 05:29:21', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 417, 106, 23, NULL, 48),
+	(50, '2023-12-17 07:05:05', '2023-12-17 07:04:41', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 520, 107, 23, NULL, 49),
+	(51, NULL, '2023-12-17 07:04:48', NULL, 'admin9193', 'ACTIVE', 91000, 1, 91000, 406, 107, 23, NULL, 48),
+	(52, NULL, '2023-12-17 06:13:51', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 108, 23, NULL, 47),
+	(53, NULL, '2023-12-17 06:14:03', NULL, 'admin9193', 'ACTIVE', 239000, 1, 239000, 311, 108, 22, NULL, 46),
+	(54, NULL, '2023-12-17 07:27:49', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 109, 23, NULL, 49),
+	(55, NULL, '2023-12-17 07:27:58', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 540, 109, 23, NULL, 49),
+	(56, NULL, '2023-12-17 07:28:06', NULL, 'admin9193', 'ACTIVE', 94250, 1, 94250, 405, 109, 23, NULL, 48),
+	(57, NULL, '2023-12-17 15:10:16', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 110, NULL, NULL, 47),
+	(58, NULL, '2023-12-17 15:10:22', NULL, 'admin9193', 'ACTIVE', 235000, 1, 235000, 309, 110, NULL, NULL, 46),
+	(59, '2023-12-17 15:14:57', '2023-12-17 15:14:13', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 111, NULL, NULL, 49),
+	(60, '2023-12-17 15:14:51', '2023-12-17 15:14:20', 'admin9193', 'admin9193', 'ACTIVE', 51350, 4, 205400, 520, 111, NULL, NULL, 49),
+	(61, '2023-12-17 15:25:04', '2023-12-17 15:24:46', 'admin9193', 'admin9193', 'ACTIVE', 51350, 3, 154050, 567, 112, NULL, NULL, 49),
+	(62, NULL, '2023-12-17 15:24:55', NULL, 'admin9193', 'ACTIVE', 91000, 1, 91000, 329, 112, NULL, NULL, 48),
+	(63, '2023-12-17 15:35:37', '2023-12-17 15:35:00', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 567, 113, NULL, NULL, 49),
+	(64, '2023-12-17 15:35:42', '2023-12-17 15:35:08', 'admin9193', 'admin9193', 'ACTIVE', 87750, 2, 175500, 470, 113, NULL, NULL, 48),
+	(65, '2023-12-17 15:35:46', '2023-12-17 15:35:27', 'admin9193', 'admin9193', 'ACTIVE', 182000, 2, 364000, 313, 113, NULL, NULL, 47),
+	(66, '2023-12-17 16:38:01', '2023-12-17 16:37:42', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 567, 114, NULL, NULL, 49),
+	(67, NULL, '2023-12-17 16:38:40', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 546, 114, NULL, NULL, 49),
+	(68, NULL, '2023-12-17 16:46:07', NULL, 'admin9193', 'ACTIVE', 52000, 1, 52000, 558, 114, NULL, NULL, 49),
+	(69, NULL, '2023-12-17 16:46:19', NULL, 'admin9193', 'ACTIVE', 52000, 1, 52000, 521, 114, NULL, NULL, 49),
+	(70, NULL, '2023-12-17 16:46:37', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 403, 114, NULL, NULL, 48),
+	(71, NULL, '2023-12-17 16:47:11', NULL, 'admin9193', 'ACTIVE', 185250, 1, 185250, 324, 114, NULL, NULL, 47),
+	(72, NULL, '2023-12-17 20:47:16', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 115, 23, NULL, 49),
+	(73, NULL, '2023-12-17 20:47:22', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 115, 23, NULL, 49),
+	(74, '2023-12-18 06:20:10', '2023-12-18 06:19:46', 'admin9193', 'admin9193', 'ACTIVE', 240000, 3, 720000, 307, 123, 22, NULL, 46),
+	(75, '2023-12-18 06:21:17', '2023-12-18 06:21:03', 'admin9193', 'admin9193', 'ACTIVE', 215000, 3, 645000, 267, 124, 22, NULL, 44),
+	(76, NULL, '2023-12-18 10:43:22', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 125, 23, NULL, 49),
+	(77, NULL, '2023-12-18 10:43:32', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 328, 125, 23, NULL, 48),
+	(78, NULL, '2023-12-18 10:43:41', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 125, 23, NULL, 49),
+	(79, '2023-12-18 12:52:50', '2023-12-18 11:09:01', 'anonymous', 'admin9193', 'ACTIVE', 52000, 3, 156000, 565, 134, 23, NULL, 49),
+	(80, NULL, '2023-12-18 16:01:30', NULL, 'admin9193', 'ACTIVE', 330000, 1, 330000, 228, 137, 20, NULL, 39),
+	(81, NULL, '2023-12-18 16:07:21', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 138, 23, NULL, 49),
+	(82, NULL, '2023-12-18 17:27:33', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 139, 23, NULL, 49),
+	(83, NULL, '2023-12-18 17:29:23', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 140, 23, NULL, 49),
+	(84, NULL, '2023-12-18 17:34:30', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 141, 23, NULL, 49),
+	(85, NULL, '2023-12-18 17:37:49', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 142, 23, NULL, 49),
+	(86, NULL, '2023-12-18 17:38:53', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 143, 23, NULL, 49),
+	(87, NULL, '2023-12-19 03:52:50', NULL, 'admin9193', 'ACTIVE', 55250, 1, 55250, 566, 144, 23, NULL, 49),
+	(88, NULL, '2023-12-19 03:52:57', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 520, 144, 23, NULL, 49),
+	(89, NULL, '2023-12-19 04:07:09', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 567, 145, 23, NULL, 49),
+	(90, '2023-12-19 04:26:10', '2023-12-19 04:25:49', 'admin9193', 'admin9193', 'ACTIVE', 51350, 2, 102700, 520, 146, 23, NULL, 49),
+	(91, '2023-12-19 04:26:14', '2023-12-19 04:26:01', 'admin9193', 'admin9193', 'ACTIVE', 94250, 2, 188500, 340, 146, 23, NULL, 48),
+	(92, '2023-12-20 14:18:49', '2023-12-20 14:18:16', 'admin9193', 'admin9193', 'ACTIVE', 55250, 2, 110500, 566, 148, 23, NULL, 49),
+	(93, NULL, '2023-12-20 14:18:30', NULL, 'admin9193', 'ACTIVE', 52000, 1, 52000, 526, 148, 23, NULL, 49),
+	(94, NULL, '2023-12-20 14:18:37', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 546, 148, 23, NULL, 49),
+	(95, NULL, '2023-12-20 14:19:01', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 328, 148, 23, NULL, 48),
+	(96, NULL, '2023-12-20 14:25:04', NULL, 'admin9193', 'ACTIVE', 51350, 1, 51350, 541, 148, 23, NULL, 49);
 
 -- Dumping structure for table duantotnghiep.khachhang
 CREATE TABLE IF NOT EXISTS `khachhang` (
@@ -3479,9 +3253,9 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_jb5oqkftwr5hwaxh2exlh14xn` (`ma`),
   UNIQUE KEY `UK_h52m162a489iuk0ffo82aa16w` (`sodienthoai`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khachhang: ~23 rows (approximately)
+-- Dumping data for table duantotnghiep.khachhang: ~13 rows (approximately)
 INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `email`, `gioitinh`, `ma`, `matkhau`, `mota`, `ngaysinh`, `sodienthoai`, `ten`, `expiretime`, `resttoken`, `loai`) VALUES
 	(1, NULL, '2023-11-19 16:57:34', NULL, 'nguyenvana@gmail.com', 'ACTIVE', 'dangngocthanh@gmail.com', 'Nam', 'dangngocthanh0133', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 16:57:25', '0372092723', 'Đặng Ngọc Thanh', NULL, NULL, NULL),
 	(2, '2023-12-16 16:01:30', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'dinhanhtuan@gmail.com', 'Nam', 'dinhanhtuan0812', '$2a$10$nGSToRTIXfyL3lz0aG02mO0kQFMwxOVVMJlY4KJFb/F64.r7irDYW', '', '2003-12-08 00:00:00', '0384082003', 'Đinh Anh Tuấn', NULL, NULL, NULL),
@@ -3491,21 +3265,11 @@ INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(6, NULL, '2023-12-09 09:16:55', NULL, 'anonymous', 'ACTIVE', 'huydo@gmail.com', NULL, 'huydq8493', '$2a$10$55iif1j6/xl5UuJjMPtpOOwoFH4glzlBmpxpiiTnMpY6SIEbcNaxC', NULL, NULL, '0389979874', 'huydq', NULL, NULL, NULL),
 	(7, NULL, '2023-12-09 09:27:35', NULL, 'anonymous', 'ACTIVE', 'nhatminh@gmail.com', NULL, 'nhatminh5731', '$2a$10$mrYZeWuOsXAC3d4BkkWsR.s.4hmIib4GR.ZD.ZZrjW7HC7oUI0ghG', NULL, NULL, '0912876321', 'Nhật Minh', NULL, NULL, NULL),
 	(8, NULL, '2023-12-16 09:10:16', NULL, 'admin9193', 'ACTIVE', '', NULL, 'nguyenvana5849', NULL, NULL, NULL, '0987654322', 'Nguyễn Văn A', NULL, NULL, NULL),
-	(9, NULL, '2023-12-17 06:51:50', NULL, 'anonymous', 'ACTIVE', 'tuan@gmail.com', NULL, 'anh8536', '$2a$10$GCiokf2LFUVRsXA8wzS2UeyYirUpG7xsLTeTwTJ.HqyUgqY/4d.ne', NULL, NULL, '0384082004', 'Anh ', NULL, NULL, NULL),
-	(10, NULL, '2023-12-17 06:55:51', NULL, 'anonymous', 'ACTIVE', 'linh12@gmail.com', NULL, 'linh8143', '$2a$10$bJ5ilr0FMQr0KEHuJt.p8.f6Y2u5iyWG83GTDZyqU0dtpDffHHRmK', NULL, NULL, '0979386057', 'Linh', NULL, NULL, NULL),
-	(12, '2023-12-18 03:28:25', '2023-12-17 07:33:10', 'khanhlinh4878', 'admin9193', 'INACTIVE', 'abc@gmai;.com', NULL, 'abc7192', NULL, NULL, NULL, '0987764578', 'abc', NULL, NULL, NULL),
-	(21, NULL, '2023-12-18 03:21:48', NULL, 'khanhlinh4878', 'ACTIVE', 'linh@gmail.com', 'Nữ', 'khanhlinh1416', '$2a$10$VDgfB9V2Io1dH9kz9YtvxO9humJCUGaqWefDdlY.2s3bHHE1PJjFO', 'Ahihihihi', '2000-11-11 00:00:00', '0542454345', 'Khánh Linh', NULL, NULL, NULL),
-	(22, NULL, '2023-12-18 04:26:07', NULL, 'nguyenvana0183', 'ACTIVE', '', NULL, 'tuan3174', '$2a$10$lRnlXTFFNdtT72QwIaiimOuzPOQHeqLQMiCCLfFYdwIVxFqdARrBy', NULL, NULL, '0951275812', 'Tuấn', NULL, NULL, NULL),
-	(25, NULL, '2023-12-18 07:49:37', NULL, 'anonymous', 'ACTIVE', 'tun12@fpt.edu.vn', NULL, 'tuan6764', '$2a$10$/O1/ChwMTSJW6f6XK5NjCOgEVn18X3fIUsWp3ja.oj2ExDkFb3hEC', NULL, NULL, '0345485126', 'Tuấn', NULL, NULL, NULL),
-	(26, NULL, '2023-12-18 18:13:30', NULL, 'anonymous', 'ACTIVE', 'viethoang@gmail.com', NULL, 'viethoang8541', '$2a$10$cEoUvYhmOptyiGDsEDnImOTr04B894tKmovgZdiwRi9.51aah4Kv2', NULL, NULL, '0987876542', 'Việt Hoàng', NULL, NULL, NULL),
-	(27, NULL, '2023-12-18 18:24:44', NULL, 'anonymous', 'ACTIVE', 'thuyduong@gmail.com', NULL, 'hoangthuyduong8758', '$2a$10$D3J27560e.nnqQmwdHJrQu2q8XtOX07o/LuoGw9VHCjcpIXeQ0Xiy', NULL, NULL, '0987432213', 'Hoàng Thùy Dương', NULL, NULL, NULL),
-	(28, NULL, '2023-12-18 18:47:18', NULL, 'anonymous', 'ACTIVE', 'trantien@gmail.com', NULL, 'trantien0698', '$2a$10$l/RjXpS0QtWmXMSbWMrxIu0Kpi7F6bP5XZLzAIKBqyOrMEraVmEr2', NULL, NULL, '0897654721', 'Trần Tiến', NULL, NULL, NULL),
-	(29, NULL, '2023-12-18 19:38:16', NULL, 'anonymous', 'ACTIVE', 'todung@gmail.com', NULL, 'todung4660', '$2a$10$dIiynL1PtaW9yOQTHY2B6eKmZtqjBIKNw2/uxa0wHz9fKf5iwj3YK', NULL, NULL, '0986765432', 'Tô Dũng', NULL, NULL, NULL),
-	(30, NULL, '2023-12-19 09:01:13', NULL, 'admin9193', 'ACTIVE', 'nguyenvv4@fpt.edu.vn', NULL, 'nguyen6602', '$2a$10$2qGhBk8v7Mn95Npu9ownouc7BQsiqKEyyl/RGI4qncV9Js0bKjdS.', NULL, NULL, '0345123481', 'Nguyên', NULL, NULL, NULL),
-	(33, NULL, '2023-12-20 15:58:26', NULL, 'admin9193', 'ACTIVE', 'linhntk1711@gmail.com', NULL, 'khanhlinh1367', '$2a$10$BfhLX/ZzTUouvKrKCe1CzeB1uktcMm3SGDdqNzdoyngWKw9MSfv3m', NULL, NULL, '0984756123', 'Khánh Linh', NULL, NULL, NULL),
-	(34, NULL, '2023-12-20 16:06:27', NULL, 'admin9193', 'ACTIVE', 'dangngocthanh270@gmail.com', NULL, 'thanh1357', '$2a$10$WvssWs5FWeEhMslzMX7YxORRjH/Eq7SEjIppJ7kN5KlUd8Piv1pyy', NULL, NULL, '0951925831', 'Thanh', NULL, NULL, NULL),
-	(35, NULL, '2023-12-20 16:08:17', NULL, 'admin9193', 'ACTIVE', 'dangngocthanh720@gmail.com', NULL, 'thanh5896', '$2a$10$OpCuA9IXMF/J4djcHR14e.IZJ8ZCOn6K.Q.eUU.XTk8HCEHcTGBKG', NULL, NULL, '0968235322', 'Thanh', NULL, NULL, NULL),
-	(36, NULL, '2023-12-20 16:39:31', NULL, 'admin9193', 'ACTIVE', 'atuan0812@gmail.com', NULL, 'tuan1630', '$2a$10$NZ6hqjVeT5hzM7JoNgycMu/ftdymFI/GznIKD69RsagZbwmbgeFpy', NULL, NULL, '0958912785', 'Tuấn', NULL, NULL, NULL);
+	(9, NULL, '2023-12-17 20:56:10', NULL, 'admin9193', 'ACTIVE', '', 'Nam', 'nguyenvana7295', NULL, '', NULL, '0982704723', 'Nguyễn Văn A', NULL, NULL, NULL),
+	(10, NULL, '2023-12-17 21:15:22', NULL, 'anonymous', 'ACTIVE', 'dangngocthanh720@gmail.com', NULL, 'dangngocthanh1670', '$2a$10$55iif1j6/xl5UuJjMPtpOOwoFH4glzlBmpxpiiTnMpY6SIEbcNaxC', NULL, NULL, '0302704723', 'Đặng Ngọc Thanh', NULL, NULL, NULL),
+	(11, NULL, '2023-12-17 21:19:03', NULL, 'admin9193', 'ACTIVE', '', 'Nam', 'thanh5717', NULL, '', NULL, '0912512571', 'THanh', NULL, NULL, NULL),
+	(12, NULL, '2023-12-17 21:20:45', NULL, 'admin9193', 'ACTIVE', '', 'Nam', 'hhhhhh2810', NULL, '123', '2007-11-30 00:00:00', '0125819251', 'hhhhhh', NULL, NULL, NULL),
+	(13, NULL, '2023-12-17 21:21:28', NULL, 'admin9193', 'ACTIVE', '', NULL, 'f1qwf0551', NULL, NULL, NULL, '0192491249', 'f1qwf', NULL, NULL, NULL);
 
 -- Dumping structure for table duantotnghiep.khachhangyeuthichsanpham
 CREATE TABLE IF NOT EXISTS `khachhangyeuthichsanpham` (
@@ -3545,29 +3309,20 @@ CREATE TABLE IF NOT EXISTS `khuyenmai` (
   `tong` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_qccppo5y398aj6n58grn9syop` (`ma`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khuyenmai: ~19 rows (approximately)
+-- Dumping data for table duantotnghiep.khuyenmai: ~10 rows (approximately)
 INSERT INTO `khuyenmai` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `giatri`, `loai`, `ma`, `mota`, `ngaybatdau`, `ngayketthuc`, `soluong`, `ten`, `tong`) VALUES
-	(10, '2023-12-18 18:25:24', '2023-12-03 05:43:09', 'hoangthuyduong8758', 'admin9193', 'ACTIVE', '20.0', '1', 'KM01', 'CTO1', '2023-12-03 05:42:00', '2023-12-23 05:44:07', 9998, 'Khuyến mại 01', 10000),
-	(14, '2023-12-04 12:03:37', '2023-12-04 08:10:13', 'admin9193', 'admin9193', 'ACTIVE', '15000.0', '0', 'KOFLV001', 'Ưu đãi đầu tháng', '2023-12-04 15:09:00', '2023-12-23 07:35:00', 99998, 'Ưu đãi đầu tháng', 100000),
-	(16, '2023-12-18 17:54:55', '2023-12-04 08:18:22', 'doquochuy8173', 'admin9193', 'EXPIRED', '20000.0', '0', 'KOFSALE101', 'Khuyến mại ', '2023-12-04 15:15:00', '2023-12-23 16:39:25', 0, 'Khuyến mại cuối ngày', 5),
-	(17, '2023-12-18 17:41:55', '2023-12-04 08:37:42', 'admin9193', 'admin9193', 'ACTIVE', '5.0', '1', 'KOFKMM001', 'Chương trình KM', '2023-12-04 01:37:00', '2023-12-23 15:37:00', 99, 'Khuyến mại mới', 100),
-	(18, '2023-12-18 17:40:46', '2023-12-04 19:22:46', 'admin9193', 'admin9193', 'DELETE', '20.0', '1', 'KOCFS001', 'Khuyến mại Flash Sale', '2023-12-05 12:21:00', '2023-12-23 00:38:00', 121, 'Flash Sale', 121),
-	(19, '2023-12-18 17:41:36', '2023-12-04 19:30:12', 'admin9193', 'admin9193', 'ACTIVE', '25.0', '1', 'KOC251223', 'Khuyến mại 25/12', '2023-12-09 12:29:00', '2023-12-23 00:37:00', 499, 'Khuyến mại 25/12', 500),
-	(20, '2023-12-09 06:13:25', '2023-12-04 19:38:02', 'admin9193', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCFS24', 'Flash Sale 24h', '2023-12-05 12:37:00', '2023-12-23 02:37:52', 117, 'Flash Sale 24h', 119),
-	(21, '2023-12-18 17:40:17', '2023-12-04 19:44:33', 'admin9193', 'admin9193', 'DELETE', '20.0', '1', 'KOCSALE99k', 'Khuyến mại 99k', '2023-12-05 12:44:00', '2023-12-23 12:49:59', 9993, 'Khuyến mại 99k', 9993),
-	(22, '2023-12-18 17:40:35', '2023-12-04 19:51:32', 'admin9193', 'admin9193', 'DELETE', '10000.0', '0', 'KOCSALE1H', 'Khuyến mại 1h', '2023-12-04 22:51:00', '2023-12-23 07:43:58', 12332, 'Khuyến mại 1h', 12332),
-	(23, '2023-12-15 14:10:38', '2023-12-05 00:30:19', 'anonymous', 'admin9193', 'ACTIVE', '35.0', '1', 'KOCSLH334', 'Lễ Hội Mua Sắm', '2023-12-09 17:29:00', '2023-12-23 03:00:05', 109, 'Lễ Hội Mua Sắm', 120),
-	(24, '2023-12-19 05:04:40', '2023-12-17 06:45:39', 'anonymous', 'admin9193', 'EXPIRED', '10000.0', '0', 'KOCS408', 'giảm sốc', '2023-12-17 06:42:00', '2023-12-18 06:42:00', 12, 'Noel', 12),
-	(25, '2023-12-19 05:04:40', '2023-12-18 03:40:38', 'anonymous', 'khanhlinh4878', 'EXPIRED', '12000.0', '0', 'KOCS364', 'test 2 số lượng', '2023-12-18 03:39:00', '2023-12-19 03:39:00', 2, 'Test', 2),
-	(26, '2023-12-19 08:23:28', '2023-12-18 08:11:27', 'admin9193', 'admin9193', 'EXPIRED', '10.0', '1', 'KOCS097', '', '2023-12-18 08:09:00', '2023-12-19 08:10:00', 12, 'Noel', 12),
-	(27, '2023-12-20 13:53:51', '2023-12-18 17:48:01', 'anonymous', 'admin9193', 'EXPIRED', '5.0', '1', 'KOCS919', '', '2023-12-18 17:47:00', '2023-12-19 17:47:00', 3, 'Khuyến mại 24h', 3),
-	(28, '2023-12-20 13:53:50', '2023-12-19 05:55:31', 'anonymous', 'admin9193', 'EXPIRED', '5.0', '1', 'KOCS133', '', '2023-12-19 05:54:00', '2023-12-20 05:55:00', 5, 'Khuyến mại 2H', 5),
-	(29, '2023-12-20 13:53:50', '2023-12-19 06:11:40', 'anonymous', 'admin9193', 'EXPIRED', '5.0', '1', 'KOCS608', '', '2023-12-19 06:11:00', '2023-12-20 06:11:00', 100, 'Khuyến mại 1H', 100),
-	(30, '2023-12-20 13:53:50', '2023-12-19 06:22:23', 'anonymous', 'admin9193', 'EXPIRED', '5.0', '1', 'KOCS455', '', '2023-12-19 06:21:00', '2023-12-19 10:22:00', 5, 'Khuyến mại nhanh', 5),
-	(31, '2023-12-20 13:53:50', '2023-12-19 07:47:27', 'anonymous', 'admin9193', 'EXPIRED', '20000.0', '0', 'KOCS981', '', '2023-12-19 07:46:00', '2023-12-20 07:46:00', 23, 'Noel', 23),
-	(32, '2023-12-20 13:53:50', '2023-12-19 08:26:36', 'anonymous', 'admin9193', 'EXPIRED', '20000.0', '0', 'KOCS506', '', '2023-12-19 08:26:00', '2023-12-20 08:26:00', 12, 'Tết', 12);
+	(10, '2023-12-23 09:38:19', '2023-12-03 05:43:09', 'anonymous', 'admin9193', 'ACTIVE', '20.0', '1', 'KM01', 'CTO1', '2023-12-03 05:42:00', '2024-02-23 05:44:07', 10000, 'Khuyến mại 01', NULL),
+	(14, '2023-12-23 08:09:30', '2023-12-04 08:10:13', 'anonymous', 'admin9193', 'ACTIVE', '15000.0', '0', 'KOFLV001', 'Ưu đãi đầu tháng', '2023-12-04 15:09:00', '2024-02-23 07:35:00', 100000, 'Ưu đãi đầu tháng', NULL),
+	(16, '2023-12-24 11:01:41', '2023-12-04 08:18:22', 'anonymous', 'admin9193', 'ACTIVE', '20000.0', '0', 'KOFSALE101', 'Khuyến mại ', '2023-12-04 15:15:00', '2024-02-23 16:39:25', 5, 'Khuyến mại cuối ngày', NULL),
+	(17, '2023-12-23 15:38:19', '2023-12-04 08:37:42', 'dangngocthanh0133', 'admin9193', 'ACTIVE', '5.0', '1', 'KOFKMM001', 'Chương trình KM', '2023-12-04 01:37:00', '2024-02-23 15:37:07', 1000, 'Khuyến mại mới', NULL),
+	(18, '2023-12-23 04:04:17', '2023-12-04 19:22:46', 'anonymous', 'admin9193', 'ACTIVE', '20.0', '1', 'KOCFS001', 'Khuyến mại Flash Sale', '2023-12-05 12:21:00', '2024-02-23 00:38:00', 123, 'Flash Sale', NULL),
+	(19, '2023-12-23 04:04:17', '2023-12-04 19:30:12', 'anonymous', 'admin9193', 'ACTIVE', '25.0', '1', 'KOC251223', 'Khuyến mại 25/12', '2023-12-09 12:29:00', '2024-02-23 00:37:59', 5000, 'Khuyến mại 25/12', NULL),
+	(20, '2023-12-23 04:04:16', '2023-12-04 19:38:02', 'anonymous', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCFS24', 'Flash Sale 24h', '2023-12-05 12:37:00', '2024-02-03 02:37:52', 123, 'Flash Sale 24h', NULL),
+	(21, '2023-12-23 14:44:36', '2023-12-04 19:44:33', 'anonymous', 'admin9193', 'ACTIVE', '20.0', '1', 'KOCSALE99k', 'Khuyến mại 99k', '2023-12-05 12:44:00', '2024-02-23 12:49:59', 10000, 'Khuyến mại 99k', NULL),
+	(22, '2023-12-23 08:09:28', '2023-12-04 19:51:32', 'anonymous', 'admin9193', 'ACTIVE', '10000.0', '0', 'KOCSALE1H', 'Khuyến mại 1h', '2023-12-04 22:51:00', '2024-02-23 07:43:58', 12342, 'Khuyến mại 1h', NULL),
+	(23, '2023-12-23 04:04:15', '2023-12-05 00:30:19', 'anonymous', 'admin9193', 'ACTIVE', '35.0', '1', 'KOCSLH334', 'Lễ Hội Mua Sắm', '2023-12-09 17:29:00', '2024-02-23 03:00:05', 122, 'Lễ Hội Mua Sắm', NULL);
 
 -- Dumping structure for table duantotnghiep.khuyenmaisanpham
 CREATE TABLE IF NOT EXISTS `khuyenmaisanpham` (
@@ -3587,50 +3342,37 @@ CREATE TABLE IF NOT EXISTS `khuyenmaisanpham` (
   CONSTRAINT `FK33tkasuvvky1oe63bc5097od4` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`),
   CONSTRAINT `FK71454sf3u6twd66e64ynbw3eh` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FK72ak37yxbdjl3b4ixb47kt2m` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khuyenmaisanpham: ~40 rows (approximately)
+-- Dumping data for table duantotnghiep.khuyenmaisanpham: ~27 rows (approximately)
 INSERT INTO `khuyenmaisanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `idbienthe`, `idkhuyenmai`, `idsanpham`) VALUES
-	(1, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 23, 49),
-	(2, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 23, 48),
-	(3, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 23, 47),
-	(4, '2023-12-18 17:40:35', '2023-12-09 06:12:44', 'admin9193', 'admin9193', 'DELETE', NULL, 22, 46),
-	(5, '2023-12-18 17:40:35', '2023-12-09 06:12:44', 'admin9193', 'admin9193', 'DELETE', NULL, 22, 45),
-	(6, '2023-12-18 17:40:35', '2023-12-09 06:12:44', 'admin9193', 'admin9193', 'DELETE', NULL, 22, 44),
-	(7, '2023-12-18 17:40:17', '2023-12-09 06:13:06', 'admin9193', 'admin9193', 'DELETE', NULL, 21, 43),
-	(8, '2023-12-18 17:40:17', '2023-12-09 06:13:06', 'admin9193', 'admin9193', 'DELETE', NULL, 21, 42),
-	(9, '2023-12-18 17:40:17', '2023-12-09 06:13:06', 'admin9193', 'admin9193', 'DELETE', NULL, 21, 41),
-	(10, NULL, '2023-12-09 06:13:25', NULL, 'admin9193', 'ACTIVE', NULL, 20, 39),
-	(11, NULL, '2023-12-09 06:13:25', NULL, 'admin9193', 'ACTIVE', NULL, 20, 38),
-	(12, NULL, '2023-12-09 06:13:25', NULL, 'admin9193', 'ACTIVE', NULL, 20, 37),
-	(17, '2023-12-18 17:40:46', '2023-12-09 06:14:56', 'admin9193', 'admin9193', 'DELETE', NULL, 18, 35),
-	(18, '2023-12-18 17:40:46', '2023-12-09 06:14:56', 'admin9193', 'admin9193', 'DELETE', NULL, 18, 34),
-	(19, '2023-12-18 17:40:46', '2023-12-09 06:14:56', 'admin9193', 'admin9193', 'DELETE', NULL, 18, 33),
-	(33, '2023-12-18 17:54:55', '2023-12-09 06:15:26', 'doquochuy8173', 'admin9193', 'EXPIRED', NULL, 16, 5),
-	(34, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 10, 11),
-	(35, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 14, 7),
-	(36, '2023-12-18 17:40:35', '2023-12-09 06:12:25', 'admin9193', 'admin9193', 'DELETE', NULL, 22, 40),
-	(37, NULL, '2023-12-09 06:12:25', NULL, 'admin9193', 'ACTIVE', NULL, 23, 30),
-	(42, '2023-12-19 05:04:39', '2023-12-18 03:46:07', 'anonymous', 'khanhlinh4878', 'EXPIRED', NULL, 25, 8),
-	(43, '2023-12-19 05:04:40', '2023-12-18 03:46:07', 'anonymous', 'khanhlinh4878', 'EXPIRED', NULL, 25, 9),
-	(46, '2023-12-19 08:23:28', '2023-12-18 08:12:51', 'admin9193', 'admin9193', 'EXPIRED', NULL, 26, 36),
-	(47, '2023-12-19 08:23:28', '2023-12-18 08:12:51', 'admin9193', 'admin9193', 'EXPIRED', NULL, 26, 31),
-	(48, '2023-12-18 17:41:36', '2023-12-18 17:41:36', 'admin9193', 'admin9193', 'ACTIVE', NULL, 19, 4),
-	(49, '2023-12-18 17:41:36', '2023-12-18 17:41:36', 'admin9193', 'admin9193', 'ACTIVE', NULL, 19, 3),
-	(50, '2023-12-18 17:41:36', '2023-12-18 17:41:36', 'admin9193', 'admin9193', 'ACTIVE', NULL, 19, 2),
-	(51, '2023-12-18 17:41:36', '2023-12-18 17:41:36', 'admin9193', 'admin9193', 'ACTIVE', NULL, 19, 1),
-	(52, '2023-12-18 17:41:55', '2023-12-18 17:41:55', 'admin9193', 'admin9193', 'ACTIVE', NULL, 17, 27),
-	(53, '2023-12-18 17:41:55', '2023-12-18 17:41:55', 'admin9193', 'admin9193', 'ACTIVE', NULL, 17, 26),
-	(54, '2023-12-18 17:41:55', '2023-12-18 17:41:55', 'admin9193', 'admin9193', 'ACTIVE', NULL, 17, 25),
-	(55, '2023-12-20 13:53:51', '2023-12-18 17:48:01', 'anonymous', 'admin9193', 'EXPIRED', NULL, 27, 45),
-	(56, '2023-12-20 13:53:50', '2023-12-19 05:55:31', 'anonymous', 'admin9193', 'EXPIRED', NULL, 28, 58),
-	(57, '2023-12-20 13:53:50', '2023-12-19 06:11:40', 'anonymous', 'admin9193', 'EXPIRED', NULL, 29, 5),
-	(58, '2023-12-20 13:53:50', '2023-12-19 06:22:23', 'anonymous', 'admin9193', 'EXPIRED', NULL, 30, 8),
-	(59, '2023-12-20 13:53:50', '2023-12-19 07:47:27', 'anonymous', 'admin9193', 'EXPIRED', NULL, 31, 9),
-	(60, '2023-12-20 13:53:50', '2023-12-19 07:47:27', 'anonymous', 'admin9193', 'EXPIRED', NULL, 31, 10),
-	(61, '2023-12-20 13:53:50', '2023-12-19 07:47:27', 'anonymous', 'admin9193', 'EXPIRED', NULL, 31, 12),
-	(62, '2023-12-20 13:53:50', '2023-12-19 08:26:36', 'anonymous', 'admin9193', 'EXPIRED', NULL, 32, 14),
-	(63, '2023-12-20 13:53:50', '2023-12-19 08:26:36', 'anonymous', 'admin9193', 'EXPIRED', NULL, 32, 18);
+	(1, '2023-12-23 04:04:15', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 23, 49),
+	(2, '2023-12-23 04:04:15', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 23, 48),
+	(3, '2023-12-23 04:04:15', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 23, 47),
+	(4, '2023-12-23 08:09:28', '2023-12-09 06:12:44', 'anonymous', 'admin9193', 'ACTIVE', NULL, 22, 46),
+	(5, '2023-12-23 08:09:28', '2023-12-09 06:12:44', 'anonymous', 'admin9193', 'ACTIVE', NULL, 22, 45),
+	(6, '2023-12-23 08:09:28', '2023-12-09 06:12:44', 'anonymous', 'admin9193', 'ACTIVE', NULL, 22, 44),
+	(7, '2023-12-23 14:44:36', '2023-12-09 06:13:06', 'anonymous', 'admin9193', 'ACTIVE', NULL, 21, 43),
+	(8, '2023-12-23 14:44:36', '2023-12-09 06:13:06', 'anonymous', 'admin9193', 'ACTIVE', NULL, 21, 42),
+	(9, '2023-12-23 14:44:36', '2023-12-09 06:13:06', 'anonymous', 'admin9193', 'ACTIVE', NULL, 21, 41),
+	(10, '2023-12-23 04:04:16', '2023-12-09 06:13:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 20, 39),
+	(11, '2023-12-23 04:04:16', '2023-12-09 06:13:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 20, 38),
+	(12, '2023-12-23 04:04:16', '2023-12-09 06:13:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 20, 37),
+	(13, '2023-12-23 04:04:17', '2023-12-09 06:13:53', 'anonymous', 'admin9193', 'ACTIVE', NULL, 19, 4),
+	(14, '2023-12-23 04:04:17', '2023-12-09 06:13:53', 'anonymous', 'admin9193', 'ACTIVE', NULL, 19, 3),
+	(15, '2023-12-23 04:04:17', '2023-12-09 06:13:53', 'anonymous', 'admin9193', 'ACTIVE', NULL, 19, 2),
+	(16, '2023-12-23 04:04:17', '2023-12-09 06:13:53', 'anonymous', 'admin9193', 'ACTIVE', NULL, 19, 1),
+	(17, '2023-12-23 04:04:17', '2023-12-09 06:14:56', 'anonymous', 'admin9193', 'ACTIVE', NULL, 18, 35),
+	(18, '2023-12-23 04:04:17', '2023-12-09 06:14:56', 'anonymous', 'admin9193', 'ACTIVE', NULL, 18, 34),
+	(19, '2023-12-23 04:04:17', '2023-12-09 06:14:56', 'anonymous', 'admin9193', 'ACTIVE', NULL, 18, 33),
+	(20, '2023-12-23 15:38:19', '2023-12-09 06:15:26', 'dangngocthanh0133', 'admin9193', 'ACTIVE', NULL, 17, 27),
+	(21, '2023-12-23 15:38:19', '2023-12-09 06:15:26', 'dangngocthanh0133', 'admin9193', 'ACTIVE', NULL, 17, 26),
+	(22, '2023-12-23 15:38:19', '2023-12-09 06:15:26', 'dangngocthanh0133', 'admin9193', 'ACTIVE', NULL, 17, 25),
+	(33, '2023-12-24 11:01:40', '2023-12-09 06:15:26', 'anonymous', 'admin9193', 'ACTIVE', NULL, 16, 5),
+	(34, '2023-12-23 09:38:19', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 10, 11),
+	(35, '2023-12-23 08:09:29', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 14, 7),
+	(36, '2023-12-23 08:09:28', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 22, 40),
+	(37, '2023-12-23 04:04:15', '2023-12-09 06:12:25', 'anonymous', 'admin9193', 'ACTIVE', NULL, 23, 30);
 
 -- Dumping structure for table duantotnghiep.lichsutichdiem
 CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
@@ -3643,53 +3385,22 @@ CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
   `sodiemdung` int DEFAULT NULL,
   `sodiemtichduoc` int DEFAULT NULL,
   `idhoadon` bigint DEFAULT NULL,
-  `idtichdiem` bigint DEFAULT NULL,
   `idkhachhang` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKobdibrqqyn0p33ymjekbpbd1q` (`idhoadon`),
-  KEY `FKo20v7m85j3ybwep3vv1lop3ik` (`idtichdiem`),
+  KEY `FKobdibrqqyn0p33ymjekbpbd1q` (`idhoadon`) USING BTREE,
   KEY `FKrabwvgudhyvmny1diurrq8lo` (`idkhachhang`),
-  CONSTRAINT `FKo20v7m85j3ybwep3vv1lop3ik` FOREIGN KEY (`idtichdiem`) REFERENCES `tichdiem` (`id`),
   CONSTRAINT `FKobdibrqqyn0p33ymjekbpbd1q` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKrabwvgudhyvmny1diurrq8lo` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lichsutichdiem: ~34 rows (approximately)
-INSERT INTO `lichsutichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiemdung`, `sodiemtichduoc`, `idhoadon`, `idtichdiem`, `idkhachhang`) VALUES
-	(49, NULL, '2023-12-18 05:58:46', NULL, 'admin9193', 'ACTIVE', 100, 3, 161, NULL, 2),
-	(50, NULL, '2023-12-18 05:59:50', NULL, 'admin9193', 'ACTIVE', 5, 1, 162, NULL, 2),
-	(51, NULL, '2023-12-18 08:05:49', NULL, 'admin9193', 'ACTIVE', NULL, 0, 177, NULL, 22),
-	(52, NULL, '2023-12-18 08:07:00', NULL, 'admin9193', 'ACTIVE', 45, 3, 175, NULL, 22),
-	(53, NULL, '2023-12-18 08:07:06', NULL, 'admin9193', 'ACTIVE', 45, 3, 175, NULL, 22),
-	(54, NULL, '2023-12-18 08:07:23', NULL, 'admin9193', 'ACTIVE', 45, 3, 175, NULL, 22),
-	(55, NULL, '2023-12-18 08:07:33', NULL, 'admin9193', 'ACTIVE', 45, 3, 175, NULL, 22),
-	(56, NULL, '2023-12-18 08:07:41', NULL, 'admin9193', 'ACTIVE', 45, 3, 175, NULL, 22),
-	(57, NULL, '2023-12-18 08:07:50', NULL, 'admin9193', 'ACTIVE', 1, 3, 175, NULL, 22),
-	(58, NULL, '2023-12-18 13:44:29', NULL, 'admin9193', 'ACTIVE', NULL, 0, 165, NULL, 2),
-	(59, NULL, '2023-12-18 14:28:51', NULL, 'admin9193', 'ACTIVE', NULL, 6, 183, NULL, 2),
-	(60, NULL, '2023-12-18 14:30:39', NULL, 'admin9193', 'ACTIVE', NULL, 6, 183, NULL, 2),
-	(61, NULL, '2023-12-18 14:49:37', NULL, 'admin9193', 'ACTIVE', NULL, 8, 186, NULL, 2),
-	(62, NULL, '2023-12-18 14:50:52', NULL, 'admin9193', 'ACTIVE', NULL, 2, 184, NULL, 1),
-	(63, NULL, '2023-12-18 14:51:57', NULL, 'admin9193', 'ACTIVE', NULL, 20, 185, NULL, 1),
-	(64, NULL, '2023-12-18 14:53:15', NULL, 'admin9193', 'ACTIVE', NULL, 2, 188, NULL, 1),
-	(65, NULL, '2023-12-18 14:53:19', NULL, 'admin9193', 'ACTIVE', NULL, 2, 188, NULL, 1),
-	(66, NULL, '2023-12-18 15:38:53', NULL, 'admin9193', 'ACTIVE', 2, 1, 189, NULL, 21),
-	(67, NULL, '2023-12-18 15:39:13', NULL, 'admin9193', 'ACTIVE', 2, 1, 189, NULL, 21),
-	(68, NULL, '2023-12-18 15:40:29', NULL, 'admin9193', 'ACTIVE', NULL, 0, 194, NULL, 25),
-	(69, NULL, '2023-12-18 15:42:09', NULL, 'admin9193', 'ACTIVE', NULL, 2, 193, NULL, 21),
-	(70, NULL, '2023-12-18 16:43:32', NULL, 'admin9193', 'ACTIVE', 4, 1, 197, NULL, 2),
-	(71, NULL, '2023-12-18 16:43:41', NULL, 'admin9193', 'ACTIVE', 4, 1, 197, NULL, 2),
-	(72, NULL, '2023-12-18 20:00:10', NULL, 'admin9193', 'ACTIVE', 10, 6, 196, NULL, 2),
-	(73, NULL, '2023-12-19 04:04:58', NULL, 'admin9193', 'ACTIVE', 5, 1, 190, NULL, 2),
-	(74, NULL, '2023-12-19 05:15:09', NULL, 'admin9193', 'ACTIVE', 2, 9, 195, NULL, 2),
-	(78, NULL, '2023-12-19 08:07:37', NULL, 'admin9193', 'ACTIVE', NULL, 0, 218, NULL, 2),
-	(79, NULL, '2023-12-19 08:32:21', NULL, 'admin9193', 'ACTIVE', NULL, 7, 226, NULL, 21),
-	(80, NULL, '2023-12-19 08:54:37', NULL, 'admin9193', 'ACTIVE', NULL, 12, 227, NULL, 28),
-	(81, NULL, '2023-12-19 09:02:26', NULL, 'admin9193', 'ACTIVE', NULL, 4, 228, NULL, 30),
-	(82, NULL, '2023-12-20 16:47:20', NULL, 'admin9193', 'ACTIVE', 99999999, -999907, 234, NULL, 36),
-	(83, NULL, '2023-12-20 16:47:24', NULL, 'admin9193', 'ACTIVE', 99999999, -999907, 234, NULL, 36),
-	(84, NULL, '2023-12-20 16:47:30', NULL, 'admin9193', 'ACTIVE', 0, 92, 234, NULL, 36),
-	(85, NULL, '2023-12-20 16:49:25', NULL, 'admin9193', 'ACTIVE', 7567, 16, 234, NULL, 36);
+-- Dumping data for table duantotnghiep.lichsutichdiem: ~5 rows (approximately)
+INSERT INTO `lichsutichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiemdung`, `sodiemtichduoc`, `idhoadon`, `idkhachhang`) VALUES
+	(17, NULL, '2023-12-17 15:39:57', NULL, 'admin9193', NULL, NULL, 6, 113, 2),
+	(18, NULL, '2023-12-17 20:48:25', NULL, 'admin9193', 'ACTIVE', NULL, 1, 115, 1),
+	(19, NULL, '2023-12-17 20:48:32', NULL, 'admin9193', 'ACTIVE', NULL, 1, 115, 1),
+	(20, NULL, '2023-12-18 06:20:27', NULL, 'admin9193', 'ACTIVE', NULL, 7, 123, 4),
+	(21, NULL, '2023-12-18 06:21:37', NULL, 'admin9193', 'ACTIVE', 3, 6, 124, 4),
+	(22, NULL, '2023-12-19 04:27:12', NULL, 'admin9193', 'ACTIVE', 1, 2, 146, 1);
 
 -- Dumping structure for table duantotnghiep.lydohuydon
 CREATE TABLE IF NOT EXISTS `lydohuydon` (
@@ -3733,19 +3444,14 @@ CREATE TABLE IF NOT EXISTS `nhanvien` (
   UNIQUE KEY `UK_23oxfttcyumkes0bfnli2cgme` (`sodienthoai`),
   KEY `FKdnln0piv4a38v23mqcbqmnii8` (`idchucvu`),
   CONSTRAINT `FKdnln0piv4a38v23mqcbqmnii8` FOREIGN KEY (`idchucvu`) REFERENCES `chucvu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.nhanvien: ~9 rows (approximately)
+-- Dumping data for table duantotnghiep.nhanvien: ~4 rows (approximately)
 INSERT INTO `nhanvien` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `anh`, `cancuoccongdan`, `diachi`, `email`, `expiretime`, `gioitinh`, `ma`, `matkhau`, `ngaycap`, `ngaysinh`, `resttoken`, `sodienthoai`, `ten`, `idchucvu`) VALUES
-	(1, '2023-12-16 16:08:08', '2023-11-19 16:54:23', 'nguyenvana0183', 'admin9193', 'ACTIVE', 'KyqcTH.jpg', '019383883131', 'Nam Từ Liêm, Hà Nội', 'nguyenvana@mail.com', NULL, 'Nam', 'nguyenvana0183', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:37:53', '2003-11-20 16:38:10', NULL, '0198338312', 'Nguyễn Văn A', 2),
+	(1, '2023-12-16 16:03:08', '2023-11-19 16:54:23', 'nguyenvana0183', 'admin9193', 'ACTIVE', 'KyqcTH.jpg', '019383883131', 'Nam Từ Liêm, Hà Nội', 'nguyenvana@mail.com', NULL, 'Nam', 'nguyenvana0183', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:37:53', '2003-11-20 16:38:10', NULL, '0198338312', 'Nguyễn Văn A', 2),
 	(2, '2023-12-13 14:16:00', '2023-11-19 16:54:26', 'admin9193', 'admin9193', 'ACTIVE', 'KyqcTH.jpg', '028484881331', 'Nam Từ Liêm, Hà Nội', 'admin@gmail.com', NULL, 'Nam', 'admin9193', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-19 16:56:13', '1999-10-10 17:00:00', NULL, '0123456789', 'ADMIN', 1),
 	(3, NULL, '2023-11-20 16:12:45', NULL, 'admin9193', 'ACTIVE', 'KyqcTH.jpg', '029388313413', 'Bắc Từ Liêm, Hà Nội', 'nguyenvanb@gmail.com', NULL, 'Nam', 'nguyenvanb9213', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', '2023-11-20 16:12:21', '2003-11-20 16:12:24', NULL, '0987654321', 'Nguyễn Văn B', 2),
-	(5, NULL, '2023-12-13 15:50:54', NULL, 'admin9193', 'ACTIVE', 'XqBAdC.jpg', '034203006527', 'Kiều Mai, Bắc Từ Liêm', 'dangngocthanh720@gmail.com', NULL, 'Nam', 'dangngocthanh0386', NULL, '2023-12-06 00:00:00', '2023-12-06 00:00:00', NULL, '0372012912', 'Đặng Ngọc Thanh', 2),
-	(6, '2023-12-17 12:25:11', '2023-12-17 12:25:11', 'admin9193', 'admin9193', 'ACTIVE', 'XqBAdC.jpg', '034291291241', 'Hòa Bình', 'khanhlinh@gmail.com', NULL, 'Nữ', 'khanhlinh9959', '$2a$10$nsl/5zwayirQDxxnwIX3jOUyUaFZ/b49CSYvnCuz4B3FOI3T/d8IO', '2023-12-06 00:00:00', '2023-11-26 00:00:00', NULL, '0921512582', 'Khánh Linh', 2),
-	(7, '2023-12-18 03:11:10', '2023-12-18 03:11:10', 'admin9193', 'admin9193', 'ACTIVE', 'XqBAdC.jpg', '017256478912', 'Nho Quan - Ninh Bình', 'linhntk1711@gmail.com', NULL, 'Nữ', 'khanhlinh4878', '$2a$10$9R1wxWcZ2/rdttZkLi0tfubZSU.tahwGFQbczZ8g5E3osDNQHlt3.', '2023-12-12 00:00:00', '2023-12-11 00:00:00', NULL, '0345278621', 'Khánh Linh', 1),
-	(8, '2023-12-18 03:28:07', '2023-12-18 03:27:54', 'khanhlinh4878', 'khanhlinh4878', 'DELETE', 'XqBAdC.jpg', '032941294124', 'Hà Nội', '123@gmail.com', NULL, 'Nữ', 'hihi1403', '$2a$10$zij5oiO3AEYlo8A1TwqzI.SyeOKG3BcuBsFUfJ7KFrVUyXfpBGMqO', '2023-11-27 00:00:00', '2002-12-04 00:00:00', NULL, '0987654312', 'hihi', 2),
-	(9, '2023-12-19 05:33:23', '2023-12-19 05:33:23', 'admin9193', 'admin9193', 'INACTIVE', 'XqBAdC.jpg', '089139491241', 'Hà Nội', '1234@gmail.com', NULL, 'Nam', 'thanh6084', '$2a$10$3A3Shb86xswethRePqbJr.xYlarOJozIpieIPu0kb4PfzpelNcfsS', '2023-11-26 00:00:00', '2023-11-26 00:00:00', NULL, '0951272127', 'Thanh', 2),
-	(10, '2023-12-19 05:51:04', '2023-12-19 05:51:04', 'admin9193', 'admin9193', 'INACTIVE', 'RsJJHr.jpg', '029383883130', 'Nam Từ Liêm, Hà Nội', 'annnjsdjj@gmail.com', NULL, 'Nữ', 'abbccbcbcb1169', '$2a$10$DyDCSRIVyfbi7vJkHZOrJeuAjgvPqNcuf3eL.IJJD9ibkSfPn7HBm', '2023-12-06 00:00:00', '2023-12-06 00:00:00', NULL, '0384482001', 'ABBCCBCBCB', 1);
+	(5, NULL, '2023-12-13 15:50:54', NULL, 'admin9193', 'ACTIVE', NULL, '034203006527', 'Kiều Mai, Bắc Từ Liêm', 'dangngocthanh720@gmail.com', NULL, 'Nam', 'dangngocthanh0386', NULL, '2023-12-06 00:00:00', '2023-12-06 00:00:00', NULL, '0372012912', 'Đặng Ngọc Thanh', 2);
 
 -- Dumping structure for table duantotnghiep.quydoidiem
 CREATE TABLE IF NOT EXISTS `quydoidiem` (
@@ -3793,14 +3499,14 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
   KEY `FKsy6e9nghw4psfd0tt2vy232rb` (`idthuonghieu`),
   CONSTRAINT `FKsus861gvf6ywadlvg0s2o3003` FOREIGN KEY (`iddanhmuc`) REFERENCES `danhmuc` (`id`),
   CONSTRAINT `FKsy6e9nghw4psfd0tt2vy232rb` FOREIGN KEY (`idthuonghieu`) REFERENCES `thuonghieu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.sanpham: ~52 rows (approximately)
+-- Dumping data for table duantotnghiep.sanpham: ~42 rows (approximately)
 INSERT INTO `sanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `mota`, `sanphammoi`, `sanphamnhieuluotxem`, `sanphamnoibat`, `sanphamphobien`, `slug`, `soluong`, `ten`, `thongtinchitiet`, `iddanhmuc`, `idthuonghieu`, `sanphambanchay`) VALUES
 	(1, NULL, '2023-11-22 16:26:00', NULL, 'admin9193', 'ACTIVE', 128000, '<p>Quyền lợi của khách mua áo polo nam tại THE BASIC:</p>\n\n<p>Sản phẩm giống mô tả và hình ảnh thật 100% của Shop giữ bản quyền hình ảnh</p>\n\n<p>Đảm bảo chất lượng sản phẩm luôn ở mức cao nhất</p>\n\n<p>Áo được kiểm tra cẩn thận khi gói hàng giao cho Quý Khách</p>\n\n<p>Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>&nbsp;</p>\n\n<p>Để chứng minh vẻ trưởng thành của đấng mày râu thì không quá khó, chỉ cần khoác lên mình một chiếc Polo thì vẻ trưởng thành, đứng đắn đó đã có thừa.</p>\n\n<p>Đến với chiếc Polo Marc Coun ngoài việc “đánh thức” vẻ trưởng thành đó, nó còn khiến cho bạn trở nên lịch lãm và sang trọng hơn.</p>\n\n<p>Sự khéo léo từ việc may phối màu ngực trái đến thêu chữ nổi trước ngực càng khiến cho chiếc Marc Coun đẹp lạ hơn.</p>\n\n<p>Vậy nên ngay lúc này, bạn hãy chọn cho mình 1 size áo phù hợp nhất hoặc nếu cần tư vấn, bạn đừng ngần ngại nhắn tin ngay cho shop để được nhân viên bán hàng hỗ trợ ngay nhé:</p>\n\n<p>Size Chiều cao Cân nặng Ngang Dài áo</p>\n\n<p>M &lt; 1m70 &lt;60kg 46cm 64cm</p>\n\n<p>L &lt; 1m75 61 ~ 68kg 49cm 67cm</p>\n\n<p>XL &lt; 1m75 69 ~ 75kg 51cm 70cm</p>\n\n<p>2XL &lt; 1m80 76 - 85kg 54cm 71cm</p>\n\n<p>3XL &lt; 1m85 86 ~ 95kg 57cm 72cm</p>\n\n<p>Thông số trên có thể sai lệch ~ 0,5cm do sai số trong quá trình sản xuất</p>\n\n<p>&nbsp;</p>\n\n<p>Hướng dẫn sử dụng sản phẩm: Áo polo nam phối màu COUNTERE big size 3xl 90kg thoải mái</p>\n\n<p>&nbsp;Giặt với nước mát thông thường, tách riêng các sản phẩm trắng và các sản phẩm màu đậm</p>\n\n<p>&nbsp;Không được dùng hóa chất tẩy</p>\n\n<p>&nbsp;Tránh phơi dưới ánh nắng trực tiếp hoặc sử dụng bàn ủi với nhiệt độ quá cao</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;Chính sách &amp; điều kiện đổi / trả sản phẩm:</p>\n\n<p>&nbsp;Cam kết chất lượng và mẫu mã sản phẩm giống với hình ảnh</p>\n\n<p>&nbsp;Cam kết được đổi trả hàng trong vòng 7 ngày</p>\n\n<p>&nbsp;Điều kiện duy nhất là sản phẩm còn đầy đủ tem/tag &amp; chưa qua sử dụng bạn nhé</p>\n\n<p>&nbsp;</p>\n\n<p>#ao #thun #phong #polo #nam #hoa #tiet #soc #mo #neo #trung #nien #tui #cotton #ca #sau #lacoste #vnxk #big #size #bigsize #3xl #xxxl #90kg #100kg #dep #thoai #mai #xuat #xin #cao #cap #hang #hieu #basic</p>\n', 1, 1, 1, 1, 'ao-polo-nam-big-size-3xl-90kg-marc-coun-phoi-mau-tre-trung-cotton-lanh-thoang-mat', 1391, 'Áo polo nam big size 3xl 90kg Marc Coun phối màu trẻ trung - cotton lạnh thoáng mát', '', 3, 1, NULL),
 	(2, NULL, '2023-11-22 16:30:53', NULL, 'admin9193', 'ACTIVE', 198000, '<p>Áo thun nam polo Thiết kế màu xanh đen phối cổ vải cá sấu cotton cao cấp mềm mịn, áo phông polo nam đẹp cổ bẻ ngắn tay có đủ bảng màu cực hot Shop Áo Polo VNXK hân hạnh được phục vụ quý khách. Những sản phẩm mới nhất vẫn liên tục được cập nhật mỗi ngày phù hợp với nhiều lứa tuổi. 1. GIỚI THIỆU SẢN PHẨM - Áo phông Polo nam thiết kế là sự lựa chọn hoàn hảo cho các chàng trai. Áo 3 màu trung tính rất dễ mặc, form áo vừa vặn cơ thể, thoải mái theo từng cử động. - Màu sắc trung tính và phối màu tuyệt vời mà rất ít áo polo có tạo nên sự dễ dàng trong việc phối đồ và tạo ra cho mình nhiều phong cách khác nhau. - Áo được làm từ chất liệu cá sấu cotton co giãn với bề mặt vải mềm mại, thấm hút mồ hôi tốt tạo cảm giác thoải mái, thoáng mát cho người mặc. Đây cũng là chất liệu dễ giặt sạch, giúp bạn tiết kiệm một khoảng thời gian đáng kể. - Áo chống nhăn tốt, dễ giặt sạch, nhanh khô. -Giặt tay hay giặt máy thoải mái không sợ ra màu, nhăn , mất form 2. THÔNG TIN SẢN PHẨM - Chất liệu: 100% chất cotton cá sấu, thấm hút mồ hôi , giặt không ra màu , không mất form - Các Size S - M - L- XL- XXL - XXXL + Size S : 35-47 kg cao 1m5-1m55 + Size M : 48 - 59 kg cao 1m55 - 1m65 + Size L : 60 - 67kg cao 1m65 - 1m80 + Size XL : 68- 75kg cao 1m65 - 1m80 + Size XXL : 76 - 85kg cao 1m65 - 1m85 + Size XXXL : 86 - 95kg cao 1m65 - 1m85 - Form áo slim dễ phối đồ 3. CHÍNH SÁCH BÁN HÀNG: - FREESHIP hoặc hỗ trợ 40K cho đơn hàng từ 99K toàn quốc - Ngoài ra, Chúng tôi tặng mã voucher hoặc hoàn xu cho toàn bộ đơn hàng - Cam kết chất lượng và mẫu mã sản phẩm giống với hình ảnh. - Hoàn tiền nếu sản phẩm không giống với mô tả. - Cam kết được đổi trả hàng trong vòng 2 ngày. 4. HƯỚNG DẪN CÁCH ĐẶT HÀNG - Bước 1: Cách chọn size, shop có bảng size mẫu. Bạn NÊN INBOX, cung cấp chiều cao, cân nặng để SHOP TƯ VẤN SIZE - Bước 2: Cách đặt hàng: Nếu bạn muốn mua 2 sản phẩm khác nhau hoặc 2 size khác nhau, để được freeship + Bạn chọn từng sản phẩm rồi thêm vào giỏ hàng + Khi giỏ hàng đã có đầy đủ các sản phẩm cần mua, bạn mới tiến hành ấn nút “ Thanh toán” - Shop luôn sẵn sàng trả lời inbox để tư vấn.</p>\n\n<p>Tham khảo thêm các sản phẩm khác tại: #áothunnamcócổ #aothunnamcoco #áothunnamcócổtayngắn #aopolonam #áopolonam #aopolonamhangmysaleoff #aopolonamdep #aopolonamnu #AOTHUNHANQUOC #áothunnam #aothunnambody #aothunnam #aothunnamnu #áothunnamtayngắn #aothunnamdep #aothunnama</p>\n', 1, 1, 1, 1, 'ao-thun-nam-polo-thiet-ke-vai-ca-sau-cotton-cao-cap-ngan-tay', 1013, 'Áo POLO nam thiết kế vải cá sấu cotton cao cấp ngắn tay', '', 3, 7, NULL),
 	(3, NULL, '2023-11-22 16:34:35', NULL, 'admin9193', 'ACTIVE', 78000, '<p>ÁO THUN POLO</p>\n\n<p>Áo thun Cotton 100% co dãn 4 chiều</p>\n\n<p>&nbsp;</p>\n\n<p>Size sz M L XL XXL</p>\n\n<p>S: 42-50Kg</p>\n\n<p>Size M 51-56kg</p>\n\n<p>Size L 57-63kg</p>\n\n<p>Size XL 64-70kg</p>\n\n<p>Size XXL 71-80kg</p>\n\n<p>Tuỳ chiều cao nhích size cho phù hợp giúp em nha. Bảng cân nặng chỉ là tương đối ạ</p>\n\n<p>&nbsp;</p>\n\n<p>=========================================</p>\n\n<p>CAM KẾT - ĐẢM BẢO:</p>\n\n<p>- Đảm bảo vải chuẩn cotton chất lượng cao.</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .</p>\n\n<p>- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).</p>\n\n<p>- Giao hàng toàn quốc, thanh toán khi nhận hàng.</p>\n\n<p>- Hỗ trợ đổi trả theo quy định của Shopee.</p>\n\n<p>&nbsp;</p>\n\n<p>ĐIỀU KIỆN ĐỔI TRẢ:</p>\n\n<p>- Hỗ trợ trong vòng 03 ngày từ khi nhận hàng.</p>\n\n<p>- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.</p>\n\n<p>- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>&nbsp;</p>\n\n<p>LƯU Ý: Khi bạn gặp bất kì vấn đề gì về sản phẩm đừng vội đánh giá mà hãy chat liên hệ Shop để đc hỗ trợ 1 cách tốt nhất nhé.</p>\n\n<p>#aothun #aopolonam #polo #polonam #aocotron #aothunnam #aothuncotron #aocotton #aothundep #aophong #aophongnam #aophongcotron #aophongtayngan #aothuntayngan #aothunbody</p>\n', 1, 1, 1, 1, 'ao-polo-nam-ao-thun-polo-nam-phoi-mau-co-ao-6-mau-tre-trung-thanh-lich', 2019, 'Áo Polo nam Áo thun polo nam phối màu cổ áo 6 màu trẻ trung thanh lịch', '', 3, 4, NULL),
-	(4, NULL, '2023-11-22 18:33:37', NULL, 'admin9193', 'ACTIVE', 79000, '<p>TẤT CẢ ĐƠN HÀNG TẠI 20SILK KHÁCH HÀNG ĐỀU ĐƯỢC ĐỒNG KIỂM</p>\n\n<p>⭐Bảng size bên shop các bạn tham khảo ạ:</p>\n\n<p>Size S : 35~39kg</p>\n\n<p>Size M : Dành cho người cao từ: 1m47 - 1m57 và nặng từ 40kg - 50kg</p>\n\n<p>Size L : Dành cho người cao từ: 1m58 - 1m65 và nặng từ 50kg - 58kg</p>\n\n<p>Size XL : Dành cho người cao từ: 1m66 - 1m72 và nặng từ 58kg - 65kg</p>\n\n<p>Size 2XL: 66kg~75kg</p>\n\n<p>&nbsp;</p>\n\n<p>? Bảng size mang tính chất tham khảo bạn có thể lấy size to hơn hoặc nhỏ theo yêu cầu của bạn!</p>\n\n<p>&nbsp;</p>\n\n<p>I. SHOP CAM KẾT</p>\n\n<p>- Sản phẩm form rộng giống mô tả 100%</p>\n\n<p>- Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế.</p>\n\n<p>- Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>- Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n\n<p>&nbsp;</p>\n\n<p>II. HỖ TRỢ ĐỔI TRẢ THEO QUY ĐỊNH CỦA SHOPEE</p>\n\n<p>- Điều kiện áp dụng (trong vòng 2 ngày kể từ khi nhận sản phẩm)</p>\n\n<p>- Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>1. Trường hợp được chấp nhận:</p>\n\n<p>- Hàng giao sai size khách đã đặt hàng</p>\n\n<p>- Giao thiếu hàng</p>\n\n<p>2. Trường hợp không đủ điều kiện áp dụng chính sách:</p>\n\n<p>- Quá 2 ngày kể từ khi Quý khách nhận hàng</p>\n\n<p>- Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của 20SILK</p>\n\n<p>- Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n\n<p>&nbsp;</p>\n\n<p>III. MÔ TẢ SẢN PHẨM</p>\n\n<p>⭐ Tên sản phẩm: Áo polo nam FORM RỘNG kiểu dáng basic chữ in ngực</p>\n\n<p>⭐ Chất Liệu: Cotton cá sấu</p>\n\n<p>⭐ Màu Sắc: nhiều màu</p>\n\n<p>⭐ Đặc Tính: Chất vải áo là cotton mềm, mặc mát</p>\n\n<p>&nbsp;</p>\n\n<p>#áopolo #pologiare</p>\n', 1, 1, 1, 1, 'ao-polo-basic-de-phoi-do-chat-thoang-mat-nam-nu-deu-mac-dep', 1083, 'Áo Polo Basic Dễ Phối Đồ, Chất Thoáng Mát, Nam nữ đều mặc đẹp', '', 3, 2, NULL),
+	(4, NULL, '2023-11-22 18:33:37', NULL, 'admin9193', 'ACTIVE', 79000, '<p>TẤT CẢ ĐƠN HÀNG TẠI 20SILK KHÁCH HÀNG ĐỀU ĐƯỢC ĐỒNG KIỂM</p>\n\n<p>⭐Bảng size bên shop các bạn tham khảo ạ:</p>\n\n<p>Size S : 35~39kg</p>\n\n<p>Size M : Dành cho người cao từ: 1m47 - 1m57 và nặng từ 40kg - 50kg</p>\n\n<p>Size L : Dành cho người cao từ: 1m58 - 1m65 và nặng từ 50kg - 58kg</p>\n\n<p>Size XL : Dành cho người cao từ: 1m66 - 1m72 và nặng từ 58kg - 65kg</p>\n\n<p>Size 2XL: 66kg~75kg</p>\n\n<p>&nbsp;</p>\n\n<p>? Bảng size mang tính chất tham khảo bạn có thể lấy size to hơn hoặc nhỏ theo yêu cầu của bạn!</p>\n\n<p>&nbsp;</p>\n\n<p>I. SHOP CAM KẾT</p>\n\n<p>- Sản phẩm form rộng giống mô tả 100%</p>\n\n<p>- Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế.</p>\n\n<p>- Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>- Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n\n<p>&nbsp;</p>\n\n<p>II. HỖ TRỢ ĐỔI TRẢ THEO QUY ĐỊNH CỦA SHOPEE</p>\n\n<p>- Điều kiện áp dụng (trong vòng 2 ngày kể từ khi nhận sản phẩm)</p>\n\n<p>- Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>1. Trường hợp được chấp nhận:</p>\n\n<p>- Hàng giao sai size khách đã đặt hàng</p>\n\n<p>- Giao thiếu hàng</p>\n\n<p>2. Trường hợp không đủ điều kiện áp dụng chính sách:</p>\n\n<p>- Quá 2 ngày kể từ khi Quý khách nhận hàng</p>\n\n<p>- Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của 20SILK</p>\n\n<p>- Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n\n<p>&nbsp;</p>\n\n<p>III. MÔ TẢ SẢN PHẨM</p>\n\n<p>⭐ Tên sản phẩm: Áo polo nam FORM RỘNG kiểu dáng basic chữ in ngực</p>\n\n<p>⭐ Chất Liệu: Cotton cá sấu</p>\n\n<p>⭐ Màu Sắc: nhiều màu</p>\n\n<p>⭐ Đặc Tính: Chất vải áo là cotton mềm, mặc mát</p>\n\n<p>&nbsp;</p>\n\n<p>#áopolo #pologiare</p>\n', 1, 1, 1, 1, 'ao-polo-basic-de-phoi-do-d?̛?̛̣?-d?̂̀??-???̂̉?-chat-thoang-mat-nam-nu-deu-mac-dep', 1083, 'Áo Polo Basic Dễ Phối Đồ, Chất Thoáng Mát, Nam nữ đều mặc đẹp', '', 3, 2, NULL),
 	(5, NULL, '2023-11-27 02:21:58', NULL, 'admin9193', 'ACTIVE', 160000, '<p>Xuất xứ</p>\n\n<p>Việt Nam</p>\n', 1, NULL, NULL, NULL, 'ao-phong-local-brand-nam-nu-unisex-tay-lo-thun-form-rong-teen-co-tron-oversize-cotton-mau-den-trang-tee-cloudzy-crayon', 1000, 'Áo phông local brand nam nữ unisex tay lỡ thun form rộng teen cổ tròn oversize cotton màu đen trắng tee CLOUDZY CRAYON', '<p>Phong cách</p>\n\n<p>Thể thao, Cơ bản, Hàn Quốc, Đường phố, Nhiệt đới</p>\n', 1, 2, NULL),
 	(7, NULL, '2023-11-27 02:39:52', NULL, 'admin9193', 'ACTIVE', 279000, '<p>Chiều dài tay áo</p>\n\n<p>Dài tay</p>\n\n<p>Mùa</p>\n\n<p>Mùa đông</p>\n\n<p>Chất liệu</p>\n\n<p>Cotton, Nỉ</p>\n\n<p>Mẫu</p>\n\n<p>In</p>\n', 1, NULL, NULL, NULL, 'ao-hoodie-nam-nu-local-brand-unisex-cap-doi-ni-ngoai-cotton-form-rong-co-mu-xam-den-day-oversize-cloudzy-hd-paint', 1000, 'Áo hoodie nam nữ local brand unisex cặp đôi nỉ ngoại cotton form rộng có mũ xám đen dày oversize CLOUDZY HD PAINT', '<p>Phong cách</p>\n\n<p>Thể thao, Cơ bản, Hàn Quốc, Đường phố, Nhiệt đới</p>\n', 4, 1, NULL),
 	(8, NULL, '2023-11-27 02:43:46', NULL, 'admin9193', 'ACTIVE', 259000, '<p>Rất lớn</p>\n\n<p>Có</p>\n\n<p>Xuất xứ</p>\n\n<p>Việt Nam</p>\n\n<p>Chiều dài tay áo</p>\n\n<p>Dài tay</p>\n\n<p>Chất liệu</p>\n\n<p>Cotton, Nỉ</p>\n\n<p>Mẫu</p>\n\n<p>In</p>\n\n<p>Tên tổ chức chịu trách nhiệm sản xuất</p>\n\n<p>Pandax</p>\n', 1, NULL, 1, NULL, 'hoodie-nam-nu-local-brand-pandax-ai-cap-ao-khoac-ni-form-rong-unisex-chat-ni-chan-cua-tay-bong-oversize', 1000, 'Hoodie nam nữ local brand PANDAX Ai Cập , áo khoác nỉ form rộng unisex , chất nỉ chân cua tay bồng oversize', '<p>Phong cách</p>\n\n<p>Cơ bản, Boho, Hàn Quốc, Retro, Đường phố</p>\n\n<p>Tall Fit</p>\n\n<p>Không</p>\n', 4, 8, NULL),
@@ -3815,7 +3521,7 @@ INSERT INTO `sanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(23, NULL, '2023-11-27 03:20:51', NULL, 'admin9193', 'ACTIVE', 129000, '<p>Áo Sweater Nam Form Rộng Phối Layer Chất Nỉ Unisex Thời Trang Trẻ Trung VESCA M10</p>\n\n<p>- Sản phẩm được thiết kế theo đúng form chuẩn của nam giới Việt Nam</p>\n\n<p>- Sản phẩm chính là mẫu thiết kế mới nhất của VESCA</p>\n', NULL, 1, NULL, NULL, 'ao-sweater-nam-form-rong-phoi-layer-chat-ni-unisex-thoi-trang-tre-trung-vesca-m10', 1000, 'Áo Sweater Nam Form Rộng Phối Layer Chất Nỉ Unisex Thời Trang Trẻ Trung VESCA M10', '<p>------------------------------------</p>\n\n<p>THÔNG TIN CHI TIẾT</p>\n\n<p>? Chất liệu: Nỉ</p>\n\n<p>? Màu sắc: Đen - Xanh dương - Trắng</p>\n\n<p>? Thương hiệu: VESCA</p>\n\n<p>? Xuất xứ: Việt Nam</p>\n\n<p>&nbsp;</p>\n', 4, 9, NULL),
 	(24, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 299000, '<p>+ Giặt ở nhiệt độ bình thường, với đồ có màu tương tự.</p>\n\n<p>+ Không được dùng hóa chất tẩy.</p>\n\n<p>+ Hạn chế sử dụng máy sấy và ủi ở nhiệt độ thích hợp.</p>\n\n<p>+ Lộn mặt trái khi phơi tránh bị nhanh phai màu</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-da-roway-chat-lieu-da-ep-cao-cap-da-cuc-bam-v2', 1000, 'Áo khoác dạ ROWAY chất liệu dạ ép cao cấp | Dạ cúc bấm V2', '<p>- Chất liệu: dạ ép cao cấp</p>\n\n<p>- Phom dáng: suông mặc thoải mái</p>\n\n<p>- Hoàn thiện: tỉ mỉ cao</p>\n', 5, 4, NULL),
 	(25, NULL, '2023-11-27 03:29:29', NULL, 'admin9193', 'ACTIVE', 75000, '<p>- Giặt ở nhiệt độ bình thường, với đồ có màu tương tự, áo phối màu ko ngâm để tránh phai màu</p>\n\n<p>- Không được dùng hóa chất tẩy.</p>\n\n<p>- Hạn chế sử dụng máy sấy và ủi ở nhiệt độ thích hợp.</p>\n\n<p>- Lộn mặt trái khi phơi tránh bị phai màu</p>\n', 1, NULL, NULL, NULL, 'ao-polo-nam-ao-nam-tay-ngan-phoi-mau-theu-tay-dep-xuat-sac', 1000, 'Áo Polo nam, áo nam tay ngắn Phối Màu, thêu tay đẹp xuất sắc', '<p>- Chất vải Cá Sấu Cotton (95% cotton và 5% spandex)</p>\n\n<p>- Độ co dãn tốt, thấm hút, chóng nhăn và độ bền màu cao</p>\n\n<p>- Gồm 4 màu và Form regular fit thoải mái vận động</p>\n\n<p>- Tỉ mỉ tron từng đường may, sẽ không có chỉ thừa hay đường may khiến bạn khó chịu khi mặc</p>\n\n<p>- Khi giặt áo không bị xù lông hay bay màu, thấm hút mồ hôi tốt và thoải mái khi vận động mạnh</p>\n\n<p>- Thiết kế cấu trúc lỗ thoáng, mắt vải to tạo sự thoáng mát cho người mặc.</p>\n', 3, 2, NULL),
-	(26, '2023-12-18 03:37:24', '2023-11-27 03:36:20', 'khanhlinh4878', 'admin9193', 'INACTIVE', 93870, '<p>- quý khách muốn đặt 2 sản phẩm mà chưa biết cách sẽ thao tác như sau ạ : bấm vào sản phẩm chọn cho vào giỏ hàng , rồi tiếp tục quay lại bấm vào sản phẩm cho vào giỏ hàng lần nữa , sau đó vào giỏ hàng bấm thanh toán 2 sản phẩm đó là sẽ thành một đơn hàng. + Ưu điểm: đứng form tôn dáng, mặc thoáng mát + Hướng dẫn Bảo quản: giũ trước khi phơi, hạn chế chất tẩy rửa, giặt dưới 30 độ và tránh phơi trực tiếp dưới ánh nắng mặt trời + Điểm nổi bật: -Khi mặc các sản phẩm từ vải đũi, bạn sẽ có cảm giác thoải mái, dễ chịu bởi trọng lượng vải khá nhẹ, chất vải mềm mịn, êm ái. -Vải đũi có chất liệu 100% từ thiên nhiên, có khả năng thấm hút tốt vì vậy có tác dụng giải nhiệt -Vải đũi được làm từ nguyên liệu có nguồn gốc từ tự nhiên nên rất an toàn cho da, không ảnh hưởng đến sức khỏe -giặt Áo máy giặt thoải không phai màu, không chảy ! + Phong cách kết hợp tham khảo: phù hợp với mặc đi chơi</p>\n', 1, NULL, NULL, NULL, 'ao-so-mi-dui-nam-coc-tay-phoi-tui-nguc-thoi-trang-store-na', 1000, 'Áo sơ mi đũi nam cộc tay phối túi ngực thời trang Store NA', '<p>Size M 46-56 kg Size L 57-66 kg Size XL 67 - 73 Kg Size XXL 74 _77 kg Size 3XL 78 _86 kg =&gt; FORM NHỎ NÊN QUÝ KHÁCH ĐẶT TĂNG THÊM 1 SIZE SO VỚI QUẦN BÌNH THƯỜNG QUÝ KHÁCH ĐANG MẶC ĐỂ THOẢI MÁI VỪA VẶN HƠN Ạ . + Xuất xứ: Việt Nam</p>\n', 2, 10, NULL),
+	(26, NULL, '2023-11-27 03:36:20', NULL, 'admin9193', 'ACTIVE', 93870, '<p>- quý khách muốn đặt 2 sản phẩm mà chưa biết cách sẽ thao tác như sau ạ : bấm vào sản phẩm chọn cho vào giỏ hàng , rồi tiếp tục quay lại bấm vào sản phẩm cho vào giỏ hàng lần nữa , sau đó vào giỏ hàng bấm thanh toán 2 sản phẩm đó là sẽ thành một đơn hàng. + Ưu điểm: đứng form tôn dáng, mặc thoáng mát + Hướng dẫn Bảo quản: giũ trước khi phơi, hạn chế chất tẩy rửa, giặt dưới 30 độ và tránh phơi trực tiếp dưới ánh nắng mặt trời + Điểm nổi bật: -Khi mặc các sản phẩm từ vải đũi, bạn sẽ có cảm giác thoải mái, dễ chịu bởi trọng lượng vải khá nhẹ, chất vải mềm mịn, êm ái. -Vải đũi có chất liệu 100% từ thiên nhiên, có khả năng thấm hút tốt vì vậy có tác dụng giải nhiệt -Vải đũi được làm từ nguyên liệu có nguồn gốc từ tự nhiên nên rất an toàn cho da, không ảnh hưởng đến sức khỏe -giặt Áo máy giặt thoải không phai màu, không chảy ! + Phong cách kết hợp tham khảo: phù hợp với mặc đi chơi</p>\n', 1, NULL, NULL, NULL, 'ao-so-mi-dui-nam-coc-tay-phoi-tui-nguc-thoi-trang-store-na', 1000, 'Áo sơ mi đũi nam cộc tay phối túi ngực thời trang Store NA', '<p>Size M 46-56 kg Size L 57-66 kg Size XL 67 - 73 Kg Size XXL 74 _77 kg Size 3XL 78 _86 kg =&gt; FORM NHỎ NÊN QUÝ KHÁCH ĐẶT TĂNG THÊM 1 SIZE SO VỚI QUẦN BÌNH THƯỜNG QUÝ KHÁCH ĐANG MẶC ĐỂ THOẢI MÁI VỪA VẶN HƠN Ạ . + Xuất xứ: Việt Nam</p>\n', 2, 10, NULL),
 	(27, NULL, '2023-11-27 03:40:53', NULL, 'admin9193', 'ACTIVE', 145000, '<p>✔️ QUẦN JEANS BAGGY DÁNG ỐNG SUÔNG NAM CAO CẤP</p>\n\n<p>- Có phải bạn đang muốn tìm cho mình một chiếc quần jean baggy cao cấp mang style hàn quốc?</p>\n\n<p>May mắn là bạn đã tìm thấy chúng tôi.</p>\n\n<p>- Chiếc quần jean baggy dành cho nam này cửa hàng chúng tôi bán khoảng 600 chiếc mỗi tháng.</p>\n\n<p>Đã bán hơn 6.000 chiếc chỉ tính riêng trên hệ thống của Shopee Việt Nam, chưa kể đến những kênh bán khác!</p>\n\n<p>- Bạn cũng sẽ là một trong số những người sẽ sở hữu chiếc quần jean baggy mang phong cách hàn quốc này.</p>\n\n<p>Bởi vì đây là một chiếc quần jean mà cực kỳ dễ phối đồ từ áo thun, hoodie, áo khoác..cho đến các loại sneakers, boots..</p>\n', 1, NULL, 1, NULL, 'quan-jean-nam-ong-suong-rong-tr01-quan-bo-nam-mau-xam-den-dang-baggy-20we-hottrend-han-quoc-2023', 1000, 'Quần jean nam ống suông rộng TR01, quần bò nam mầu xám đen dáng baggy 20WE hottrend hàn quốc 2023', '<p>?Size 26 (Từ 36- 42kg Cao Dưới 1m71)</p>\n\n<p>?Size 27 (Từ 42 - 49kg Cao Dưới 1m71)</p>\n\n<p>? Size 28 (Từ 50 - 54kg Cao Dưới 1m75)</p>\n\n<p>? Size 29 (Từ 55 - 58 kg Cao Dưới 1m80)</p>\n\n<p>? Size 30 ( Từ 59- 62 kg Cao Dưới 1m80)</p>\n\n<p>? Size 31 (Từ 63 - 65 kg Cao Dưới 1m80)</p>\n\n<p>? Size 32 (Từ 66 - 69 kg Cao Dưới 1m80)</p>\n\n<p>? Size 33 (Từ 70- 73 kg Cao Dưới 1m85)</p>\n\n<p>? Size 34 (Từ 74 - 77 kg Cao Dưới 1m85)</p>\n\n<p>? Size 35 (Từ 78 - 85 kg Cao Dưới 1m89)</p>\n\n<p>? Size 36 (Từ 86 - 93 kg Cao Dưới 1m89)</p>\n\n<p>? Size 37 ( Từ 95kg-105kg Cao Dưới 1m89)</p>\n', 6, 5, NULL),
 	(28, NULL, '2023-11-27 15:27:15', NULL, 'admin9193', 'ACTIVE', 125000, '<p>&nbsp;</p>\n\n<p>➤ Chất liệu : Vải gió tráng bạc, mềm, lông cừ dày dặn ấm áp ➤ Độ Dày : Dày ấm, chống chịu đại hàn, gió tuyết ➤ Công dụng : che gió , chống nắng (bảo vệ da ) , giữ ấm cho ngày lạnh , rất thời trang ➤ Màu Sắc : Đen , Xanh than, Xanh cổ vịt, Ghi , Vàng ➤ Sản phẩm được thiết kế Đơn Giản mang lại vẻ sang trọng cho người mặc</p>\n', NULL, 1, NULL, NULL, 'ao-khoac-gio-nam-nu-2-lop-lot-long-cuu-cao-cap-sieu-am-ao-gio-nam-nu-phu-nano-chong-gio-chong-tham-nuoc', 1000, 'Áo khoác gió nam nữ 2 lớp lót lông cừu cao cấp siêu ấm, áo gió nam nữ phủ nano chống gió chống thấm nước', '<p>Áo khoác nam lót lông 3 khoá chất vải gió tráng bạc chống nước, lót lông dày dặn * Tiếp nối sự thành công của mẫu áo gió nam lót lông 2021, mẫu áo lót lông nam năm nay được cải tiến tốt hơn. Cải tiến về form áo đảm bảo rộng rãi, về khoá chất lượng, bền và chắc chắn, bên trong lót lông ấm ám, dày dặn. * Một sự khác biệt giữa mẫu năm nay so với mẫu cũ ở thiết kế vải gió tráng bạc chống nước, chống gió tuyệt đối . Chất liệu lông của áo khoác nam lót lông được nhập khẩu trực tiếp, đảm bảo chất lượng và an toàn cho làn da của bạn. Lớp lót lông cừu dày dặn bên trong tạo cảm giác mềm mại và ấm áp, không xù và không rụng lông trong suốt quá trình sử dụng * Phong cách trẻ trung,dễ phối hợp với các loại quần áo khác nhau</p>\n', 5, 7, NULL),
 	(29, NULL, '2023-11-27 15:39:14', NULL, 'admin9193', 'ACTIVE', 170000, '<p>- Điều kiện áp dụng (trong vòng 2 ngày kể từ khi nhận sản phẩm) - Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất. 1. Trường hợp được chấp nhận: - Hàng giao sai size khách đã đặt hàng - Giao thiếu hàng 2. Trường hợp không đủ điều kiện áp dụng chính sách: - Quá 2 ngày kể từ khi Quý khách nhận hàng - Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của 20SILK - Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n', NULL, NULL, 1, NULL, 'ao-khoac-nam-nu-chat-da-han-cao-cap-form-rong-dai-tay-hop-moi-thoi-dai-phong-cach-han-quoc', 1000, 'Áo khoác nam nữ chất dạ Hàn cao cấp form rộng dài tay ,hợp mọi thời đại, phong cách Hàn Quốc', '<p>- Sản phẩm Áo Khoác dạ giống mô tả 100% - Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế. - Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách - Hàng có sẵn, giao hàng ngay khi nhận được đơn - Hoàn tiền nếu sản phẩm không giống với mô tả - Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n', 5, 6, NULL),
@@ -3834,21 +3540,15 @@ INSERT INTO `sanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(42, NULL, '2023-11-27 16:48:18', NULL, 'admin9193', 'ACTIVE', 199000, '<p>Cách giặt: Nên giặt tay để giữ được fom dáng của áo. Lúc phơi cần lộn ngược áo từ trong ra ngoài để tránh tình trạng bị bay màu, phai màu do ánh sáng mặt trời tiếp xúc trực tiếp vào áo và các hình in</p>\n\n<p>Bảo quản nơi khô ráo, nên treo lên móc, giá để không bị nhăn</p>\n', 1, NULL, NULL, NULL, 'áo-thun-fafic-studio-boy-fa-áo-thun-tay-lõ-nam-nũ-oversize-chát-cotton-cao-cáp-kunshop-unisex', 1000, 'Áo thun Fafic studio Boy FA áo thun tay lỡ nam nữ oversize Chất cotton cao cấp KunShop Unisex', '<p>Có SIZE M L XL</p>\n\n<p>Size M từ 55-60kg : cao từ 1m6-1m5</p>\n\n<p>Size L từ 60-70kg : cao từ 1m7</p>\n\n<p>Size Xl từ 70-95kg : cao từ 1m8 trở xún</p>\n', 1, 7, NULL),
 	(43, NULL, '2023-12-09 05:23:47', NULL, 'admin9193', 'ACTIVE', 379000, '<p>- Chất liệu được làm dạ 2 lớp và phối Tay da PU</p>\n\n<p>- Các chi tiết trên áo đều được THÊU cao cấp</p>\n\n<p>- DÁNG RỘNG TO OVERSIZE</p>\n\n<p>- Bo cổ , bo tay , gân dưới áo đều được dệt bo kim tuyến</p>\n', 1, NULL, 1, NULL, 'ao-khoac-bomber-off-white-ac-milan-varsity-jacket-ao-bomber-jacket-ow-x-ac-milan-kunshopunisex', 1200, 'Áo Khoác bomber O.f.f White Ac Milan Varsity Jacket Áo bomber jacket OW x AC Milan kunshopunisex', '<p>Size M từ 55-60kg : cao từ 1m6-1m5</p>\n\n<p>Size L từ 60-70kg : cao từ 1m7</p>\n\n<p>Size Xl từ 70-90kg : cao từ 1m8 trở xún</p>\n', 5, 7, NULL),
 	(44, NULL, '2023-12-09 05:27:29', NULL, 'admin9193', 'ACTIVE', 225000, '<p>* Màu sắc chuẩn được nhuộm kỹ đến hai lần giúp hạn chế tối đa việc phai màu khi sử dụng.</p>\n\n<p>* Vài ảnh chụp cận cảnh để làm rõ thêm sự sắc nét của từng đường may, sớ vải.</p>\n', NULL, 1, 1, NULL, 'quan-jean-baggy-nam-unisex-han-quoc-quan-jeans-dang-suong-danh-cho-nam-nu-kunshop', 1000, 'Quần jean baggy nam unisex Hàn Quốc quần jeans dáng suông dành cho nam nữ Kunshop', '<p>* Quần jean nam nữ với thiết kế mới thời trang hơn, mang lại sự tự tin tối đa cho người mặc trước những người xung quanh</p>\n\n<p>* Quần may bằng vải denim nên rất mềm và thoải mái khi mặc, đảm bảo sẽ không hề cảm thấy gò bó ngay cả khi di chuyển nhiều.</p>\n\n<p>* Dáng quần jean baggy trẻ trung ôm body tạo nên form cực chuẩn cho người mặc túi quần lớn rất thuận tiện cho việc đựng smart phone hoặc ví cỡ bự.</p>\n', 6, 4, NULL),
-	(45, '2023-12-19 05:27:07', '2023-12-09 05:29:47', 'admin9193', 'admin9193', 'ACTIVE', 120000, '<p>? Cách chọn size: Shop có bảng size mẫu. Bạn NÊN INBOX, cung cấp chiều cao, cân nặng để SHOP TƯ VẤN SIZE</p>\n\n<p>? Mã sản phẩm đã có trong ảnh</p>\n\n<p>? Cách đặt hàng: Nếu bạn muốn mua 2 sản phẩm khác nhau hoặc 2 size khác nhau, để được freeship</p>\n\n<p>- Bạn chọn từng sản phẩm rồi thêm vào giỏ hàng</p>\n\n<p>- Khi giỏ hàng đã có đầy đủ các sản phẩm cần mua, bạn mới tiến hành ấn nút “ Thanh toán”</p>\n\n<p>? Shop luôn sẵn sàng trả lời inbox để tư vấn</p>\n', NULL, 1, NULL, 1, 'ao-giu-nhiet-nam-dai-tay-cao-cap-vesca-n', 1200, 'Áo Giữ Nhiệt Nam Dài Tay Cao Cấp VESCA N', '<p>? Đối với sản phẩm mới mua về, nên giặt tay lần đâu tiên để tránh phai màu sang quần áo khác</p>\n\n<p>? Khi giặt nên lộn mặt trái ra để đảm bảo độ bền của hình in/decal</p>\n\n<p>? Sản phẩm phù hợp cho giặt máy/giặt tay</p>\n', 4, 7, NULL),
-	(46, '2023-12-19 05:26:53', '2023-12-09 05:33:09', 'admin9193', 'admin9193', 'ACTIVE', 249000, '<p>? Khi nhận hàng và mờ hàng mong quý khách quay lại video rõ nét mã vận đơn và gói hàng chưa bóc để đảm bảo quyền lợi khách hàng. ? Hàng còn mới nguyên tem, mac và chưa qua sử dụng ? Được đổi trả trong vòng 3 ngày</p>\n', 1, NULL, NULL, 1, 'ao-thun-ao-thun-nam-thoi-trang-cao-cap-phong-cach-han-quoc-cuc-chat-va-ca-tinh-nang-dong-day-dan-thoang-mat', 1000, 'Áo thun, áo thun nam thời trang cáo cấp phông cách Hàn quốc cực chất và cá tính, năng động, dày dặn thoáng mát', '<p>? Áo với chất liệu vải nhập khẩu bền và mềm mịn , mặc cực thoải mái không lo bị nhăn hay mất phom áo ? Áo với thiết kế dày dặn ? Áo thun nam cao cấp cộc tay phong cách Hàn quốc cực thời trang và năng động kết hợp vừa cổ điển vừa hiện đại thiết kế độc quyền của Yuki ? Phong cách trẻ trung, năng động, thời thượng ? Phù hợp với mọi hoàn cảnh đi chơi, công sở hay dự tiệc,....</p>\n', 1, 4, NULL),
+	(45, NULL, '2023-12-09 05:29:47', NULL, 'admin9193', 'ACTIVE', 120000, '<p>? Cách chọn size: Shop có bảng size mẫu. Bạn NÊN INBOX, cung cấp chiều cao, cân nặng để SHOP TƯ VẤN SIZE</p>\n\n<p>? Mã sản phẩm đã có trong ảnh</p>\n\n<p>? Cách đặt hàng: Nếu bạn muốn mua 2 sản phẩm khác nhau hoặc 2 size khác nhau, để được freeship</p>\n\n<p>- Bạn chọn từng sản phẩm rồi thêm vào giỏ hàng</p>\n\n<p>- Khi giỏ hàng đã có đầy đủ các sản phẩm cần mua, bạn mới tiến hành ấn nút “ Thanh toán”</p>\n\n<p>? Shop luôn sẵn sàng trả lời inbox để tư vấn</p>\n', NULL, 1, NULL, 1, 'ao-giu-nhiet-nam-dai-tay-cao-cap-vesca-n', 1200, 'Áo Giữ Nhiệt Nam Dài Tay Cao Cấp VESCA N', '<p>? Đối với sản phẩm mới mua về, nên giặt tay lần đâu tiên để tránh phai màu sang quần áo khác</p>\n\n<p>? Khi giặt nên lộn mặt trái ra để đảm bảo độ bền của hình in/decal</p>\n\n<p>? Sản phẩm phù hợp cho giặt máy/giặt tay</p>\n', 4, 7, NULL),
+	(46, NULL, '2023-12-09 05:33:09', NULL, 'admin9193', 'ACTIVE', 249000, '<p>? Khi nhận hàng và mờ hàng mong quý khách quay lại video rõ nét mã vận đơn và gói hàng chưa bóc để đảm bảo quyền lợi khách hàng. ? Hàng còn mới nguyên tem, mac và chưa qua sử dụng ? Được đổi trả trong vòng 3 ngày</p>\n', 1, NULL, NULL, 1, 'ao-thun-ao-thun-nam-thoi-trang-cao-cap-phong-cach-han-quoc-cuc-chat-va-ca-tinh-nang-dong-day-dan-thoang-mat', 1000, 'Áo thun, áo thun nam thời trang cáo cấp phông cách Hàn quốc cực chất và cá tính, năng động, dày dặn thoáng mát', '<p>? Áo với chất liệu vải nhập khẩu bền và mềm mịn , mặc cực thoải mái không lo bị nhăn hay mất phom áo ? Áo với thiết kế dày dặn ? Áo thun nam cao cấp cộc tay phong cách Hàn quốc cực thời trang và năng động kết hợp vừa cổ điển vừa hiện đại thiết kế độc quyền của Yuki ? Phong cách trẻ trung, năng động, thời thượng ? Phù hợp với mọi hoàn cảnh đi chơi, công sở hay dự tiệc,....</p>\n', 1, 4, NULL),
 	(47, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, '<p>- Điều kiện áp dụng (trong vòng 3 ngày kể từ khi nhận sản phẩm)</p>\n\n<p>- Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>1. Trường hợp được chấp nhận:</p>\n\n<p>- Hàng giao sai size khách đã đặt hàng</p>\n\n<p>- Giao thiếu hàng</p>\n\n<p>2. Trường hợp không đủ điều kiện áp dụng chính sách:</p>\n\n<p>- Quá 2 ngày kể từ khi Quý khách nhận hàng</p>\n\n<p>- Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của Nice Clothes</p>\n\n<p>- Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n', 1, 1, NULL, NULL, 'ao-polo-unisex-phoi-mau-tuong-phan-co-keo-khoa-theu-chu-b-nguc-hoac-polo-spion-3-logo-chat-to-ong-nice-clothe', 1200, 'Áo Polo unisex phối màu tương phản cổ kéo khóa + thêu chữ B ngực hoặc POLO SPION 3 LOGO chất tổ ong, Nice Clothé', '<p>- Sản phẩm áo thun POLO tay lỡ xịn đét, form rộng giống mô tả 100%</p>\n\n<p>- Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế và chụp.</p>\n\n<p>- Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>- Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n', 3, 7, NULL),
 	(48, NULL, '2023-12-09 05:42:31', NULL, 'admin9193', 'ACTIVE', 135000, '<p>HƯỚNG DẪN SỬ DỤNG: Lần đầu đem về chỉ xả nước lạnh rồi phơi khô để đảm bảo chất in trên áo không bong tróc nhé PHỐI ĐỒ: Cách đơn giản nhất là mặc áo thun với quần Jean, quần short, quần culottes, quần baggy hoặc dùng kèm theo các phụ kiện như đeo thắt lưng, túi đeo chéo, mũ lưỡi trai, nón bucket chuẩn phong cách trẻ trung, năng động.</p>\n', 1, NULL, NULL, 1, 'ao-thun-dai-tay-ao-longsleeve-chat-cotton-in-chu-to-banyi-mac-thoang-tham-hut-mo-hoi-de-phoi-do', 1200, 'Áo thun dài tay - Áo longsleeve chất cotton in chữ TO-BANYI mặc thoáng, thấm hút mồ hôi dễ phối đồ', '<p>- Kiểu dáng: Áo thun tay dài - Chất liệu: vải thun Cotton , mềm mịn, thoáng mát, không nhăn, không xù - Đường may tỉ mỉ, chắc chắn, không chỉ thừa - Hình in không bong tróc, sắc nét, không phai màu - Thiết kế hiện đại, trẻ trung, năng động</p>\n', 1, 2, NULL),
-	(49, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, '<p>- Điều kiện áp dụng (trong vòng 3 ngày kể từ khi nhận sản phẩm)</p>\n\n<p>- Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>1. Trường hợp được chấp nhận:</p>\n\n<p>- Hàng giao sai size khách đã đặt hàng</p>\n\n<p>- Giao thiếu hàng</p>\n\n<p>2. Trường hợp không đủ điều kiện áp dụng chính sách:</p>\n\n<p>- Quá 2 ngày kể từ khi Quý khách nhận hàng</p>\n\n<p>- Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của Nice Clothes</p>\n\n<p>- Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n', NULL, NULL, 1, 1, 'ao-thun-dai-tay-ao-longsleeve-chat-cotton-in-chu-to-banyi-mac-thoang-tham-hut-mo-hoi-', 1000, 'Áo thun tay lỡ thoáng mát và mềm mịn đi học ,đi chơi', '<p>- Sản phẩm áo thun tay lỡ xịn đét, form rộng giống mô tả 100%</p>\n\n<p>- Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế và chụp.</p>\n\n<p>- Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>- Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n', 1, 2, NULL),
-	(50, '2023-12-19 05:27:10', '2023-12-17 06:14:05', 'admin9193', 'admin9193', 'INACTIVE', 200000, '<p>Mô tả sản phẩm</p>\n', 1, NULL, NULL, 1, 'ao-thun-moi', 200, 'Áo thun mới ', '<p>Thông tin chi tiết</p>\n', 1, 2, NULL),
-	(51, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 200000, '<p>Mô tả</p>\n', 1, NULL, 1, NULL, 'ao-khoac-thu-dong', 200, 'Áo khoác thu đông', '<p>Chi tiết</p>\n', 2, 3, NULL),
-	(56, NULL, '2023-12-18 07:46:17', NULL, 'admin9193', 'ACTIVE', 200000, '', 1, NULL, NULL, NULL, 'ao-khoac-nam', 200, 'Áo khoác nam', '<p>aos chaats luowngj</p>\n', 1, 3, NULL),
-	(57, '2023-12-19 05:22:41', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, '', 1, NULL, 1, NULL, 'ao-phong-nam-nu-form-rong-2N-Unisex-thun-cotton-in-noi-gatin-mau-trang-hong', 200000, 'Áo phông nam nữ form rộng 2N Unisex thun cotton in nổi Gatin màu trắng hồng', '', 2, 1, NULL),
-	(58, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 300000, '', 1, NULL, 1, NULL, 'ao-vai-truyen-thong', 500, 'áo vải truyền thống ', '', 1, 7, NULL),
-	(59, '2023-12-19 07:43:06', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 120000, '<p>- Đảm bảo vải chuẩn cotton chất lượng cao.<br />\n- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .<br />\n- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.<br />\n- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).<br />\n- Giao hàng toàn quốc, thanh toán khi nhận hàng.<br />\n- Hỗ trợ đổi trả theo quy định của Shopee.<br />\n&nbsp;</p>\n', 1, NULL, 1, NULL, 'ao-polo-nam-ao-thun-polo-nam-phoi-ke-tre-trung-vai-ca-sau-cao-cap', 23, 'Áo Polo Nam áo thun polo nam phối kẻ trẻ trung vải Cá Sấu cao cấp', '<p>- Hỗ trợ trong vòng 03 ngày từ khi nhận hàng.<br />\n- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.<br />\n- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.<br />\n&nbsp;</p>\n', 3, 2, NULL),
-	(60, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 200000, '<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .<br />\n- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.<br />\n- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).<br />\n- Giao hàng toàn quốc, thanh toán khi nhận hàng.<br />\n- Hỗ trợ đổi trả theo quy định của Shop.</p>\n', 1, NULL, 1, NULL, 'quan-nam-phoi-ke-tre-trung-vai-ca-sau-cao-cap', 23, 'Quần Nam phối kẻ trẻ trung vải Cá Sấu cao cấp', '<p>- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.<br />\n- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.</p>\n', 2, 2, NULL),
-	(61, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 120000, '', 1, NULL, NULL, NULL, 'ao-thun', 2, 'áo thun', '', 3, 2, NULL),
-	(62, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 10000, '', NULL, NULL, NULL, NULL, 'quan-au', 12, 'quần âu', '', 2, 2, NULL),
-	(63, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 120000, '', NULL, NULL, NULL, NULL, 'ao-phong', 9, 'áo phông', '', 2, 1, NULL);
+	(49, '2023-12-18 17:18:24', '2023-12-09 05:47:44', 'admin9193', 'admin9193', 'ACTIVE', 79000, '<p>- Điều kiện áp dụng (trong vòng 3 ngày kể từ khi nhận sản phẩm)</p>\n\n<p>- Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất.</p>\n\n<p>1. Trường hợp được chấp nhận:</p>\n\n<p>- Hàng giao sai size khách đã đặt hàng</p>\n\n<p>- Giao thiếu hàng</p>\n\n<p>2. Trường hợp không đủ điều kiện áp dụng chính sách:</p>\n\n<p>- Quá 2 ngày kể từ khi Quý khách nhận hàng</p>\n\n<p>- Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của Nice Clothes</p>\n\n<p>- Không thích, không hợp, đặt nhầm mã, nhầm màu,...</p>\n', NULL, NULL, 1, 1, 'ao-thun-tay-lo-thoang-mat-va-mem-min-di-hoc-di-choi', 1000, 'Áo thun tay lỡ thoáng mát và mềm mịn đi học ,đi chơi', '<p>- Sản phẩm áo thun tay lỡ xịn đét, form rộng giống mô tả 100%</p>\n\n<p>- Hình ảnh sản phẩm là ảnh thật, các hình hoàn toàn do shop tự thiết kế và chụp.</p>\n\n<p>- Kiểm tra cẩn thận trước khi gói hàng giao cho Quý Khách</p>\n\n<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>- Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>- Chấp nhận đổi hàng khi size không vừa trong 3 ngày.</p>\n', 1, 2, NULL),
+	(50, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 180000, '<p>BL Fashion xin chào quý khách THÔNG TIN SẢN PHẨM size M 40-50kg Size L 50-60kg size XL 60-70kg size 2XL 70-80kg Áo Gió Nam Nữ 2 Lớp Vải gió, có lót lông, thoáng khí ️🗣️ LƯU Ý - Khi bạn gặp bất cứ vấn đề gì về sản phẩm, đừng vội đánh giá mà hãy liên hệ shop ngay để được hỗ trợ một cách tốt nhất nhé! Shop cam kết sẽ đem lại những giá trị tốt nhất cho các bạn. - Nếu sản phẩm tốt, đừng quên đánh giá shop 5 sao để nhận được nhiều ưu đãi hấp hơn nhé! Cảm ơn bạn đã tin tưởng và mua sắm #lkdenim #aogio #aogiodoi #aogiochongnuoc #aogiochongnang #aogiolotluoi #aogiolotlong #aogiodu #aokhoacnam #aokhoacnamnu #aokhoacdoi #aogiohaimat #aogiore #aogiogiare #aogiomuathu #aokhoacmuathu #aokhoacnammuathu #aokhoacmuadong --- Lưu ý QUAN TRỌNG: ✅ Bảng size chỉ mang tính chất tham khảo, tùy thuộc vào số đo cơ thể mỗi người và chất liệu vải khác nhau sẽ có sự chênh lệch nhất định từ 1 - 2cm ✅ Màu sắc vải/ sản phẩm quần kiểu nữ/ quần tây nữ có thể sẽ chênh lệch thực tế một phần nhỏ, do ảnh hưởng về độ lệch màu của ánh sáng nhưng vẫn đảm bảo chất lượng. ✅ CAM KẾT 100% hàng chính hãng từ BL Fashion ✅ CAM KẾT 100% đổi Size nếu sản phẩm khách đặt không vừa (hỗ trợ đổi size trong vòng 7 ngày) ✅ Sản phẩm đổi phải còn nguyên tem mác và chưa qua sử dụng. ✅ Nếu có bất kì khiếu nại cần Shop hỗ trợ về sản phẩm, khi mở sản phẩm các Chị vui lòng quay lại video quá trình mở sản phẩm để được đảm bảo 100% đổi lại sản phẩm mới nếu Shop giao bị lỗi. ✅ Khách hàng hài lòng về sản phẩm vui lòng đánh giá 5* giúp BL Fahion nhé ***BL Fashion cảm ơn quý khách hàng đã tin yêu sản phẩm và mua hàng tại shop, chúc bạn có một ngày mua sắm thật thoải mái.</p>\n', NULL, NULL, NULL, NULL, 'ao-gio-nam-nu-hai-lop-beleader-fashion-chat-gio-lot-long-thoang-khi', NULL, 'Áo Gió Nam Nữ Hai Lớp Beleader Fashion Chất Gió, Lót Lông Thoáng Khí', '', 5, 2, NULL),
+	(51, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 89000, '', NULL, NULL, NULL, NULL, 'ao-khoac-ni-nam-dai-tay-co-trum-hoa-tiet-in-chu-form-rong-phong-cach-han-quoc-thoi-trang-zenkonu-ao-khoac-nam-052', NULL, 'Áo Khoác Nỉ Nam Dài Tay Cổ Trùm Họa Tiết In Chữ Form Rộng Phong Cách Hàn Quốc Thời Trang Zenkonu AO KHOAC NAM 052', '<p>Áo Khoác Nỉ Nam Dài Tay Cổ Trùm Họa Tiết In Chữ Form Rộng Phong Cách Hàn Quốc Thời Trang Zenkonu AO KHOAC NAM 052</p>\n\n<p>* THÔNG TIN SẢN PHẨM:</p>\n\n<p>🔸Chât liệu: vải nỉ bông mềm mại, thấm hút mồ hôi.</p>\n\n<p>🔸 Kích thước: S M L XL</p>\n\n<p>🔸 Xuất xứ: Việt Nam</p>\n\n<p>Với thiết kế trẻ trung năng động, phù hợp nhiều hoàn cảnh, phong cách Ulzzang cập nhập xu hướng mới nhất.</p>\n\n<p>* Chi tiết Size:</p>\n\n<p>Size S: cho bạn có cân nặng từ 45 - 50kg tùy chiều cao</p>\n\n<p>Size M: cho bạn có cân nặng từ 50 - 55kg tùy chiều cao</p>\n\n<p>Size L: cho bạn có cân nặng từ 55 - 60kg tùy chiều cao</p>\n\n<p>Size XL: cho bạn có cân nặng từ 60 - 65kg tùy chiều cao</p>\n\n<p>🔰 Thông tin thêm:</p>\n\n<p>- Để bảo quản áo cũng như chất liệu hình in, shop khuyên bạn lộn mặt trái khi giặt và ủi nha</p>\n\n<p>- Bảng size chỉ mang tính chất tham khảo, tùy thuộc hình thể mỗi người và chất liệu nên có chênh lệch. Hãy ibox cho shop khi cần tư vấn cụ thể nha ^^</p>\n\n<p>Hãy theo dõi để ủng hộ shop và cập nhập các chương trình khuyến mãi cũng như các mẫu sản phẩm mới nhất của shop nhé!</p>\n\n<p>🔸 Lưu ý: Shop chỉ hỗ trợ xử lý đơn hàng đổi trả trong vòng 15 ngày kể từ khi giao hàng thành công!</p>\n\n<p>&nbsp;</p>\n', 5, 1, NULL),
+	(52, '2023-12-23 09:44:27', '2023-12-23 08:13:50', 'admin9193', 'admin9193', 'ACTIVE', 99000, '<p>- Thông tin sản phẩm áo khoác gió nam</p>\n\n<p>+ Áo gió nam thiết kế 2 lớp dày dặn, với lớp vải ngoài tráng bạc chống gió chống nước tuyệt đối,</p>\n\n<p>Lớp trong lót lông cừu giữ nhiệt giúp giữ ấm cơ thể</p>\n\n<p>+ Áo khoác gió nam có phần mũ to rộng kèm chun thít mũ đảm bảo vừa phần đầu và kín gió</p>\n\n<p>+ Vừa chống gió mưa &amp; kiêm luôn chống bụi cho dân công sở, đi thị trường, đi công trình, sinh viên</p>\n\n<p>và những người thường xuyên chạy xe ngoài trời</p>\n\n<p>+ Áo khoác dù nam được thiết kế theo đúng form chuẩn của nam giới Việt Nam</p>\n\n<p>&nbsp;</p>\n\n<p>- Bảng Size áo khoác gió nam</p>\n\n<p>M 45-58kg &lt;1m65</p>\n\n<p>L 58-66kg &lt;1m72</p>\n\n<p>XL 66-75kg &lt;1m80</p>\n\n<p>- Màu sắc 5 màu: Đen - Than - Xanh cổ vịt - Vàng - Xám</p>\n\n<p>- Cách đặt nhiều sản phẩm áo khoác dù khác màu, khác size nhau:</p>\n\n<p>+ Bạn chọn từng sản phẩm rồi thêm vào Giỏ hàng.</p>\n\n<p>+ Sau đó ấn vào giỏ hàng để thanh toán</p>\n\n<p>CAM KẾT</p>\n\n<p>+Sản phẩm 100% giống mô tả. Hình ảnh sản phẩm là ảnh thật do shop tự chụp và giữ bản quyền hình ảnh</p>\n\n<p>+Đảm bảo vải chất lượng 100%</p>\n\n<p>+Áo được kiểm tra kĩ càng, cẩn thận và tư vấn nhiệt tình trước khi gói hàng giao cho Quý Khách</p>\n\n<p>+Hàng có sẵn, giao hàng ngay khi nhận được đơn</p>\n\n<p>+Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>+Chấp nhận đổi hàng khi size không vừa</p>\n\n<p>+Giao hàng trên toàn quốc, nhận hàng trả tiền</p>\n\n<p>+Hỗ trợ đổi trả theo quy định của Shopee</p>\n', NULL, NULL, NULL, NULL, 'ao-gio-nam-nu-lot-long-min-depvai-gio-trangkieu-mau-3-khoa-sieu-hot', NULL, 'Áo Gió Nam Nữ Lót Lông Mịn Đẹp,Vải Gió Tráng,Kiểu Mẫu 3 Khoá Siêu Hót', '', 5, 2, NULL),
+	(53, NULL, '2023-12-23 09:43:34', NULL, 'admin9193', 'ACTIVE', 92000, '<p>ÁO KHOÁC gió lót LÔNG CỪU nam nữ, áo khoác gió nam nữ lót lông cừu siêu ấm XUẤT XỊN chống nước, chống LƯU Ý: ÁO GIÓ LÓT LÔNG CỪU NAM NỮ 𝐇-𝐅𝐚𝐬𝐡𝐢𝐨𝐧𝐧 LÀ HÀNG LOẠI 1. KHÁCH CHÚ Ý CÁC CÁCH PHÂN BIỆT. + HÀNG TRÁNG BẠC NANO CHỐNG NƯỚC NHẸ, MƯA PHÙN, VÔ CÙNG TIỆN LỢI + HÀNG LÔNG CỪU NÂU hoặc TRẮNG N LOẠI SIÊU MỊN MƯỢT. KHÔNG PHẢI HÀNG LÔNG CỨNG VÓN CỤC RẺ + LỚP LÓT LÔNG MAY TOÀN THÂN + HÀNG LOẠI 1: CỰC ẤM, NẶNG TAY. ► BẢNG SIZE ÁO KHOÁC NAM NỮ GIÓ LÓT LÔNG CỪU NANO BẠC M: 40 - 51kg L: 51- 61kg XL: 62kg -73kg 2XL: Trên 73kg Bảng size phù hợp 90% khách hàng. Nếu bạn không chắc chắn thì inbox shop tư vấn ạ Trường hợp BÉO bụng hoặc muốn mặc thỏa mái thì tăng 1 size giúp shop nhé ********************** ĐẶC ĐIỂM NỔI BẬT ÁO GIÓ LÔNG CỪU NAM NỮ NANO BẠC - Lớp ngoài áo khoác nam là chất gió tráng bạc thế hệ mới tránh cản chống nước, gió, bụi tuyệt đối - Áo khoác lông cừu Lớp trong lót lông cừu giữ nhiệt giúp giữ ấm tuyệt đối - Áo khoác nam lót lông cừu mũ áo vành rộng rãi có thể điều chỉnh kích thước và tháo rời - Túi 2 bên đều có khóa kéo, thêm 1 túi bên trong lông cừu - Áo lót lông cừu Bo chun tay, gấu áo giúp cản gió hiệu quả hơn - Phong cách hàn quốc cực thịnh hành - Áo có 5 màu trẻ trung: Xám- Đen- Xanh than- Vàng-Xanh Đậm là những tone màu cực dễ phối đồ. 📌 ƯU ĐIỂM NỔI BẬT ÁO KHOÁC GIÓ LÓT LÔNG CỪU NANO BẠC - Áo gió lông cừu nam: Chất liệu vải tráng bạc siêu chống nước, vải dầy dặn mới chống nước tuyệt đối, không nhàu, dầy dặn, màu sắc thời trang - Áo khoác gió nam tráng bạc lót lưới hoặc lông cừu được thiết kế form đẹp với 4 size phù hợp cho cả nam và nữ - Áo khoác gió nam được may lót lưới hoặc lông tất cả từ mũ, thân đến tay bảo đảm. Mũ có thể tháo dời - Áo khoác nam nữ gió lót lông Tiện dụng với túi đựng đi kèm có thể cất gọn vào cốp xe *𝐇-𝐅𝐚𝐬𝐡𝐢𝐨𝐧𝐧 CAM KẾT tất cả sản phẩm của chúng tôi: - Sản xuất tại xưởng FORM CHUẨN - GIÁ TỐT - HÀNG SẴN - GIAO NHANH - Hình ảnh 100% là ảnh thật của sản phẩm - 𝐇-𝐅𝐚𝐬𝐡𝐢𝐨𝐧𝐧 tự tay lên form chuẩn theo hãng, nhập vải theo cây và tự sản xuất đảm bảo về chất lượng và giá cả - Chính sách toàn sàn shopee không cho kiểm hàng trước khi thanh toán, nhưng nhà hỗ trợ đổi trả trong vòng 5 ngày cho các sản phẩm không vừa size hoặc lỗi từ nhà sản xuất, vì vậy quý khách hãy liên hệ Shop để đươc hỗ trợ 1 cách tốt nhất nhé. LỜI MUỐN NÓI Cảm ơn các bạn đã ủng hộ 𝐇-𝐅𝐚𝐬𝐡𝐢𝐨𝐧𝐧,mong các bạn hãy cho 𝐇-𝐅𝐚𝐬𝐡𝐢𝐨𝐧𝐧 một đánh giá 5sao cùng thật nhiều hình ảnh mà bạn tự tay chụp nhé! #aophaonam #ao_phao_nam #aokhoacnam #ao_khoac_nam #aogio #thoitrang# aokhoacgio #aogio2lop #aokhoacuni #aogiothethao #aogionam #vnxk #aokhoat #aokhoatnam #aokhoacdu #aokhoacnhe #aogiochongnuoc #aochongnang #madeinvietnam</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-gio-nam-nu-lot-long-cuu-sieu-amchong-gio-chong-mua-nhe-ben-trong-phu-nano-bac-cao-cap', NULL, 'Áo Khoác Gió Nam Nữ Lót Lông Cừu Siêu Ấm,Chống Gió Chống Mưa Nhẹ Bên Trong Phủ Nano Bạc Cao Cấp', '', 5, 5, NULL);
 
 -- Dumping structure for table duantotnghiep.slider
 CREATE TABLE IF NOT EXISTS `slider` (
@@ -3860,13 +3560,12 @@ CREATE TABLE IF NOT EXISTS `slider` (
   `trangthai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'ACTIVE',
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.slider: ~3 rows (approximately)
+-- Dumping data for table duantotnghiep.slider: ~2 rows (approximately)
 INSERT INTO `slider` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `image`) VALUES
 	(1, NULL, '2023-12-12 17:10:41', NULL, 'admin9193', 'ACTIVE', '2L02kJ.jpg'),
-	(2, NULL, '2023-12-12 17:10:52', NULL, 'admin9193', 'ACTIVE', 'EPfLbE.jpg'),
-	(3, '2023-12-18 03:41:56', '2023-12-18 03:41:45', 'khanhlinh4878', 'khanhlinh4878', 'INACTIVE', 'Jl84hB.jpg');
+	(2, NULL, '2023-12-12 17:10:52', NULL, 'admin9193', 'ACTIVE', 'EPfLbE.jpg');
 
 -- Dumping structure for procedure duantotnghiep.sp_update_price_hdct
 DELIMITER //
@@ -3920,30 +3619,15 @@ CREATE TABLE IF NOT EXISTS `thongtinmuahang` (
   PRIMARY KEY (`id`),
   KEY `FKdbn26ymw7iskh3x4obhqilti3` (`idkhachhang`),
   CONSTRAINT `FKdbn26ymw7iskh3x4obhqilti3` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.thongtinmuahang: ~20 rows (approximately)
+-- Dumping data for table duantotnghiep.thongtinmuahang: ~5 rows (approximately)
 INSERT INTO `thongtinmuahang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `idhuyen`, `idthanhpho`, `idxa`, `sodienthoai`, `sonha`, `ten`, `idkhachhang`) VALUES
 	(1, '2023-12-12 05:14:38', '2023-11-28 14:58:13', 'dinhanhtuan0812', 'admin9193', 'ACTIVE', 'Hà Nội, Phường Mễ Trì, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 907557, '09876543121', 'Hà Nội', 'admin', 2),
 	(2, NULL, '2023-12-11 16:33:19', NULL, 'dinhtuananh0183', 'DEFAULT', 'Xóm ninh hoà, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231013, '0977853450', 'Xóm ninh hoà', 'Đinh Tuấn Anh', 5),
 	(3, '2023-12-12 05:30:58', '2023-12-12 05:11:56', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'Hà Nội, Xã Vũ Chấn, Huyện Võ Nhai, Thái Nguyên, Vietnam', 2051, 244, 120515, '0384082003', 'Hà Nội', 'Tuấn', 2),
 	(4, NULL, '2023-12-16 15:47:59', NULL, 'dinhanhtuan0812', NULL, 'Xuân Phương hihi, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0987654322', 'Xuân Phương hihi', 'Tuấn', 2),
-	(5, '2023-12-18 17:05:42', '2023-12-16 15:48:57', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DEFAULT', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0915812752', 'Trịnh Văn Bô', 'Tuấn', 2),
-	(6, NULL, '2023-12-17 07:01:55', NULL, 'linh8143', 'DEFAULT', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231010, '0979386056', 'số 2', 'Linh', 10),
-	(7, NULL, '2023-12-18 07:52:47', NULL, 'tuan6764', 'DEFAULT', 'số 22, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231010, '0384082003', 'số 22', 'Tuấn', 25),
-	(8, NULL, '2023-12-18 17:12:08', NULL, 'nguyenvana0183', 'DEFAULT', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231001, '0981517242', 'Đổ xăng', 'Nguyễn Văn A', 1),
-	(9, NULL, '2023-12-18 17:52:20', NULL, 'doquochuy8173', 'ACTIVE', 'Số 01, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231013, '0389979874', 'Số 01', 'Trần Mạnh', 4),
-	(10, NULL, '2023-12-18 17:54:10', NULL, 'doquochuy8173', 'ACTIVE', 'Số 01, Phường Mễ Trì, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 907557, '0389979876', 'Số 01', 'Vân Anh', 4),
-	(11, NULL, '2023-12-18 17:54:50', NULL, 'doquochuy8173', 'DEFAULT', 'Số 01, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0389979873', 'Số 01', 'Đỗ Minh', 4),
-	(12, NULL, '2023-12-18 18:16:17', NULL, 'viethoang8541', 'ACTIVE', 'Số 01, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231013, '0389979873', 'Số 01', 'Việt Hoàng', 26),
-	(13, '2023-12-18 18:19:16', '2023-12-18 18:18:32', 'viethoang8541', 'viethoang8541', 'DEFAULT', 'Số 22, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231010, '0987876234', 'Số 22', 'Trần Hùng', 26),
-	(14, NULL, '2023-12-18 18:28:03', NULL, 'hoangthuyduong8758', 'ACTIVE', 'Số 48, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 3312, 262, 370907, '0989764325', 'Số 48', 'Hoàng Thùy Dương', 27),
-	(15, '2023-12-18 18:33:43', '2023-12-18 18:30:26', 'hoangthuyduong8758', 'hoangthuyduong8758', 'DEFAULT', 'Số 09, Xã Canh Vinh, Huyện Vân Canh, Bình Định, Vietnam', 3312, 262, 370907, '096654342', 'Số 09', 'Hoàng Hoa', 27),
-	(16, NULL, '2023-12-18 18:52:04', NULL, 'trantien0698', 'ACTIVE', '88, Xã Mỹ Hưng, Huyện Quảng Hòa, Cao Bằng, Vietnam', 3694, 246, 800325, '0978657213', '88', 'Trần Tiến', 28),
-	(17, NULL, '2023-12-18 18:52:30', NULL, 'trantien0698', 'ACTIVE', '88, Xã Yên Trị, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231013, '0389979221', '88', 'Trần Tiến', 28),
-	(18, NULL, '2023-12-18 19:03:25', NULL, 'trantien0698', 'DEFAULT', '33, Thị Trấn Thiệu Hóa, Huyện Thiệu Hóa, Thanh Hóa, Vietnam', 3298, 234, 800151, '0389974474', '33', 'Võ Vinh', 28),
-	(19, NULL, '2023-12-18 19:40:36', NULL, 'todung4660', 'DEFAULT', '93, Xã Tống Trân, Huyện Phù Cừ, Hưng Yên, Vietnam', 2194, 268, 220714, '0389973452', '93', 'Tô Dũng', 29),
-	(20, NULL, '2023-12-19 08:03:05', NULL, 'nguyenthikhanhlinh1711', 'DEFAULT', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 2270, 267, 231010, '0345165478', 'số 2', 'Linh', 3);
+	(5, '2023-12-16 15:51:31', '2023-12-16 15:48:57', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DEFAULT', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 3440, 201, 13010, '0915812752', 'Trịnh Văn Bô', 'Linnh', 2);
 
 -- Dumping structure for table duantotnghiep.thuoctinh
 CREATE TABLE IF NOT EXISTS `thuoctinh` (
@@ -3959,9 +3643,9 @@ CREATE TABLE IF NOT EXISTS `thuoctinh` (
   PRIMARY KEY (`id`),
   KEY `FKpe2rbqisgm92mmclx5ddxr5te` (`idsanpham`),
   CONSTRAINT `FKpe2rbqisgm92mmclx5ddxr5te` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.thuoctinh: ~97 rows (approximately)
+-- Dumping data for table duantotnghiep.thuoctinh: ~84 rows (approximately)
 INSERT INTO `thuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `slug`, `ten`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 1),
 	(2, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 1),
@@ -3994,7 +3678,9 @@ INSERT INTO `thuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(41, NULL, '2023-11-27 03:16:46', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 22),
 	(42, NULL, '2023-11-27 03:20:51', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 23),
 	(43, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 24),
+	(44, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 24),
 	(45, NULL, '2023-11-27 03:29:29', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 25),
+	(46, NULL, '2023-11-27 03:29:29', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 25),
 	(47, NULL, '2023-11-27 03:36:20', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 26),
 	(48, NULL, '2023-11-27 03:36:20', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 26),
 	(49, NULL, '2023-11-27 03:40:53', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 27),
@@ -4045,21 +3731,14 @@ INSERT INTO `thuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(94, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 49),
 	(95, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'chat-lieu', 'Chất Liệu', 49),
 	(96, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 'kieu-dang', 'Kiểu Dáng', 49),
-	(97, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 50),
-	(98, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 51),
-	(99, NULL, '2023-12-17 06:30:36', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 51),
-	(100, NULL, '2023-12-18 07:46:17', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 56),
-	(101, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 57),
-	(102, NULL, '2023-12-19 04:44:28', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 57),
-	(103, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 58),
-	(104, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 59),
-	(105, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 59),
-	(106, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 60),
-	(107, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 60),
-	(108, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 'phu-kien', 'Phụ kiện', 61),
-	(109, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 'a', 'a', 61),
-	(110, NULL, '2023-12-19 08:51:40', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 62),
-	(111, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 63);
+	(97, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 50),
+	(98, NULL, '2023-12-23 04:17:05', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 50),
+	(99, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 51),
+	(100, NULL, '2023-12-23 04:58:53', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 51),
+	(101, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 52),
+	(102, NULL, '2023-12-23 08:13:50', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 52),
+	(103, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 53),
+	(104, NULL, '2023-12-23 09:43:35', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 53);
 
 -- Dumping structure for table duantotnghiep.thuonghieu
 CREATE TABLE IF NOT EXISTS `thuonghieu` (
@@ -4073,7 +3752,7 @@ CREATE TABLE IF NOT EXISTS `thuonghieu` (
   `ten` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_s0mvror9u635ragoc5rwiuueh` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table duantotnghiep.thuonghieu: ~10 rows (approximately)
 INSERT INTO `thuonghieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `slug`, `ten`) VALUES
@@ -4081,11 +3760,11 @@ INSERT INTO `thuonghieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `t
 	(2, NULL, '2023-11-19 17:05:06', NULL, 'admin9193', 'ACTIVE', 'miucho', 'Miucho'),
 	(3, NULL, '2023-11-19 17:08:28', NULL, 'admin9193', 'ACTIVE', 'tingoan', 'tingoan'),
 	(4, NULL, '2023-11-19 17:08:28', NULL, 'admin9193', 'ACTIVE', 'zhu-xia', 'Zhu Xia'),
-	(5, '2023-12-18 03:25:14', '2023-11-19 17:08:29', 'khanhlinh4878', 'admin9193', 'ACTIVE', 'boo', 'boo'),
+	(5, NULL, '2023-11-19 17:08:29', NULL, 'admin9193', 'ACTIVE', 'boo', 'boo'),
 	(6, NULL, '2023-11-19 17:08:30', NULL, 'admin9193', 'ACTIVE', 'miaa', 'MIAA'),
-	(7, '2023-12-18 04:12:05', '2023-11-19 17:08:30', 'admin9193', 'admin9193', 'ACTIVE', 'avocado', 'AVOCADO'),
+	(7, NULL, '2023-11-19 17:08:30', NULL, 'admin9193', 'ACTIVE', 'avocado', 'AVOCADO'),
 	(8, NULL, '2023-11-19 17:08:31', NULL, 'admin9193', 'ACTIVE', 'choobe', 'Choobe'),
-	(9, '2023-12-18 04:12:12', '2023-11-19 17:08:32', 'admin9193', 'admin9193', 'ACTIVE', 'h-m', 'H&M'),
+	(9, NULL, '2023-11-19 17:08:32', NULL, 'admin9193', 'ACTIVE', 'h-m', 'H&M'),
 	(10, NULL, '2023-11-19 17:08:32', NULL, 'admin9193', 'ACTIVE', 'm2', 'M2');
 
 -- Dumping structure for table duantotnghiep.tichdiem
@@ -4103,17 +3782,11 @@ CREATE TABLE IF NOT EXISTS `tichdiem` (
   CONSTRAINT `FK3cn0i0s6nyyqp3m7fb1uwyqv0` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.tichdiem: ~9 rows (approximately)
+-- Dumping data for table duantotnghiep.tichdiem: ~0 rows (approximately)
 INSERT INTO `tichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiem`, `idkhachhang`) VALUES
-	(1, NULL, '2023-12-17 16:51:04', NULL, 'admin9193', 'ACTIVE', 0, 12),
-	(2, '2023-12-19 05:15:09', '2023-12-17 17:11:42', 'admin9193', 'admin9193', 'ACTIVE', 9, 2),
-	(3, '2023-12-18 15:39:13', '2023-12-18 03:58:26', 'admin9193', 'khanhlinh4878', 'ACTIVE', 0, 21),
-	(4, '2023-12-18 08:07:50', '2023-12-18 04:26:19', 'admin9193', 'nguyenvana0183', 'ACTIVE', 20, 22),
-	(5, NULL, '2023-12-18 14:50:52', NULL, 'admin9193', 'ACTIVE', 2, 1),
-	(6, NULL, '2023-12-18 15:40:29', NULL, 'admin9193', 'ACTIVE', 0, 25),
-	(7, NULL, '2023-12-19 08:54:38', NULL, 'admin9193', 'ACTIVE', 12, 28),
-	(8, NULL, '2023-12-19 09:02:26', NULL, 'admin9193', 'ACTIVE', 4, 30),
-	(9, '2023-12-20 16:49:25', '2023-12-20 16:47:20', 'admin9193', 'admin9193', 'ACTIVE', 0, 36);
+	(7, NULL, '2023-12-17 15:39:57', NULL, 'admin9193', NULL, 6, 2),
+	(8, '2023-12-19 04:27:12', '2023-12-17 20:48:25', 'admin9193', 'admin9193', 'ACTIVE', 2, 1),
+	(9, '2023-12-18 06:21:37', '2023-12-18 06:20:27', 'admin9193', 'admin9193', 'ACTIVE', 10, 4);
 
 -- Dumping structure for table duantotnghiep.timkiemsanpham
 CREATE TABLE IF NOT EXISTS `timkiemsanpham` (
@@ -4154,133 +3827,16 @@ CREATE TABLE IF NOT EXISTS `trangthaigiaohang` (
   KEY `FKjjhu2d0nug7uqy9qqbaqjqf0a` (`magiaohang`),
   CONSTRAINT `FK5xq4329do0ec9v495gnmyv157` FOREIGN KEY (`idgiaohang`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKjjhu2d0nug7uqy9qqbaqjqf0a` FOREIGN KEY (`magiaohang`) REFERENCES `hoadon` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.trangthaigiaohang: ~123 rows (approximately)
+-- Dumping data for table duantotnghiep.trangthaigiaohang: ~6 rows (approximately)
 INSERT INTO `trangthaigiaohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `tentrangthai`, `idgiaohang`, `magiaohang`, `trangthaihoadon`) VALUES
 	(1, NULL, '2023-12-10 12:04:20', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 1, NULL),
 	(2, NULL, '2023-12-10 12:19:09', NULL, 'admin9193', 'ACTIVE', 'Đang được vận chuyển', NULL, 3, NULL),
+	(3, NULL, '2023-12-16 15:49:38', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 10, NULL),
 	(4, NULL, '2023-12-16 15:51:43', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 103, NULL),
 	(5, NULL, '2023-12-16 15:58:10', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 104, NULL),
-	(6, NULL, '2023-12-16 15:58:32', NULL, 'admin9193', NULL, 'Đang được vận chuyển', NULL, 104, NULL),
-	(7, NULL, '2023-12-16 17:13:26', NULL, 'admin9193', NULL, 'Đặt hàng', NULL, 110, NULL),
-	(8, NULL, '2023-12-17 05:40:23', NULL, 'dinhtuananh0183', NULL, 'Đặt hàng', NULL, 117, NULL),
-	(9, NULL, '2023-12-17 05:40:44', NULL, 'admin9193', NULL, 'Đang được vận chuyển', NULL, 110, NULL),
-	(10, NULL, '2023-12-17 05:41:34', NULL, 'admin9193', NULL, 'Ok nhận đang giao', NULL, 110, NULL),
-	(11, NULL, '2023-12-17 05:46:30', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 110, NULL),
-	(12, NULL, '2023-12-17 05:48:24', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 104, NULL),
-	(13, NULL, '2023-12-17 07:03:12', NULL, 'linh8143', NULL, 'Đặt hàng', NULL, 118, NULL),
-	(14, NULL, '2023-12-17 07:10:53', NULL, 'admin9193', NULL, 'Đang được vận chuyển', NULL, 118, NULL),
-	(15, NULL, '2023-12-17 07:13:45', NULL, 'admin9193', NULL, 'Đến Hà Nội', NULL, 118, NULL),
-	(16, NULL, '2023-12-17 07:14:29', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 118, NULL),
-	(17, NULL, '2023-12-18 07:54:09', NULL, 'tuan6764', NULL, 'Đặt hàng', NULL, 176, NULL),
-	(18, NULL, '2023-12-18 07:55:11', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 176, NULL),
-	(19, NULL, '2023-12-18 07:55:42', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 176, NULL),
-	(20, NULL, '2023-12-18 07:57:01', NULL, 'tuan6764', NULL, 'Đến Hà Nội', NULL, 176, NULL),
-	(21, NULL, '2023-12-18 07:59:05', NULL, 'tuan6764', NULL, 'Đã nhận hàng', NULL, 176, NULL),
-	(22, NULL, '2023-12-18 15:03:44', NULL, 'admin9193', NULL, 'Đặt hàng', NULL, 187, NULL),
-	(23, NULL, '2023-12-18 16:05:51', NULL, 'admin9193', NULL, 'Đặt hàng', NULL, 198, NULL),
-	(24, NULL, '2023-12-18 17:06:03', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 199, NULL),
-	(25, NULL, '2023-12-18 17:09:08', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 200, NULL),
-	(26, NULL, '2023-12-18 17:12:30', NULL, 'nguyenvana0183', NULL, 'Đặt hàng', NULL, 201, NULL),
-	(27, NULL, '2023-12-18 17:16:15', NULL, 'dinhtuananh0183', NULL, 'Đặt hàng', NULL, 203, NULL),
-	(28, NULL, '2023-12-18 17:52:25', NULL, 'doquochuy8173', NULL, 'Đặt hàng', NULL, 204, NULL),
-	(29, NULL, '2023-12-18 17:54:55', NULL, 'doquochuy8173', NULL, 'Đặt hàng', NULL, 205, NULL),
-	(30, NULL, '2023-12-18 17:56:56', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 205, NULL),
-	(31, NULL, '2023-12-18 17:57:01', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 204, NULL),
-	(32, NULL, '2023-12-18 17:57:05', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 203, NULL),
-	(33, NULL, '2023-12-18 17:57:08', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 201, NULL),
-	(34, NULL, '2023-12-18 17:57:13', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 200, NULL),
-	(35, NULL, '2023-12-18 17:57:17', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 199, NULL),
-	(36, NULL, '2023-12-18 17:57:21', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 198, NULL),
-	(37, NULL, '2023-12-18 17:57:25', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 187, NULL),
-	(38, NULL, '2023-12-18 17:57:31', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 205, NULL),
-	(39, NULL, '2023-12-18 17:57:33', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 204, NULL),
-	(40, NULL, '2023-12-18 17:57:39', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 203, NULL),
-	(41, NULL, '2023-12-18 17:57:41', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 201, NULL),
-	(42, NULL, '2023-12-18 17:57:44', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 200, NULL),
-	(43, NULL, '2023-12-18 17:57:48', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 199, NULL),
-	(44, NULL, '2023-12-18 17:57:50', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 198, NULL),
-	(45, NULL, '2023-12-18 17:57:53', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 187, NULL),
-	(46, NULL, '2023-12-18 17:58:25', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hà Nội', NULL, 205, NULL),
-	(47, NULL, '2023-12-18 17:58:36', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 203, NULL),
-	(48, NULL, '2023-12-18 17:58:41', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hà Nội', NULL, 199, NULL),
-	(49, NULL, '2023-12-18 17:58:47', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 205, NULL),
-	(50, NULL, '2023-12-18 17:58:52', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 203, NULL),
-	(51, NULL, '2023-12-18 17:58:55', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 199, NULL),
-	(52, NULL, '2023-12-18 17:59:02', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hà Nội', NULL, 200, NULL),
-	(53, NULL, '2023-12-18 17:59:08', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 200, NULL),
-	(54, NULL, '2023-12-18 17:59:14', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hà Nội', NULL, 204, NULL),
-	(55, NULL, '2023-12-18 17:59:43', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 204, NULL),
-	(56, NULL, '2023-12-18 17:59:48', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 204, NULL),
-	(57, NULL, '2023-12-18 18:00:01', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 201, NULL),
-	(58, NULL, '2023-12-18 18:00:05', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 187, NULL),
-	(59, NULL, '2023-12-18 18:00:16', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hà Nội', NULL, 198, NULL),
-	(60, NULL, '2023-12-18 18:00:23', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 198, NULL),
-	(61, NULL, '2023-12-18 18:16:25', NULL, 'viethoang8541', NULL, 'Đặt hàng', NULL, 206, NULL),
-	(62, NULL, '2023-12-18 18:19:23', NULL, 'viethoang8541', NULL, 'Đặt hàng', NULL, 207, NULL),
-	(63, NULL, '2023-12-18 18:22:29', NULL, 'viethoang8541', NULL, 'Đặt hàng', NULL, 208, NULL),
-	(64, NULL, '2023-12-18 18:28:11', NULL, 'hoangthuyduong8758', NULL, 'Đặt hàng', NULL, 209, NULL),
-	(65, NULL, '2023-12-18 18:34:35', NULL, 'hoangthuyduong8758', NULL, 'Đặt hàng', NULL, 210, NULL),
-	(66, NULL, '2023-12-18 18:42:39', NULL, 'hoangthuyduong8758', NULL, 'Đặt hàng', NULL, 212, NULL),
-	(67, NULL, '2023-12-18 18:43:37', NULL, 'hoangthuyduong8758', NULL, 'Đặt hàng', NULL, 213, NULL),
-	(68, NULL, '2023-12-18 18:52:35', NULL, 'trantien0698', NULL, 'Đặt hàng', NULL, 214, NULL),
-	(69, NULL, '2023-12-18 18:54:33', NULL, 'trantien0698', NULL, 'Đặt hàng', NULL, 215, NULL),
-	(70, NULL, '2023-12-18 19:03:51', NULL, 'trantien0698', NULL, 'Đặt hàng', NULL, 216, NULL),
-	(71, NULL, '2023-12-18 19:04:33', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 216, NULL),
-	(72, NULL, '2023-12-18 19:04:37', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 215, NULL),
-	(73, NULL, '2023-12-18 19:04:40', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 215, NULL),
-	(74, NULL, '2023-12-18 19:04:44', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 214, NULL),
-	(75, NULL, '2023-12-18 19:04:46', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 214, NULL),
-	(76, NULL, '2023-12-18 19:04:49', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 213, NULL),
-	(77, NULL, '2023-12-18 19:04:55', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 213, NULL),
-	(78, NULL, '2023-12-18 19:04:58', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 212, NULL),
-	(79, NULL, '2023-12-18 19:05:00', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 212, NULL),
-	(80, NULL, '2023-12-18 19:05:04', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 210, NULL),
-	(81, NULL, '2023-12-18 19:05:07', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 210, NULL),
-	(82, NULL, '2023-12-18 19:05:10', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 209, NULL),
-	(83, NULL, '2023-12-18 19:05:13', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 209, NULL),
-	(84, NULL, '2023-12-18 19:05:15', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 208, NULL),
-	(85, NULL, '2023-12-18 19:05:17', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 208, NULL),
-	(86, NULL, '2023-12-18 19:05:20', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 207, NULL),
-	(87, NULL, '2023-12-18 19:05:22', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 207, NULL),
-	(88, NULL, '2023-12-18 19:05:25', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 206, NULL),
-	(89, NULL, '2023-12-18 19:05:27', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 206, NULL),
-	(90, NULL, '2023-12-18 19:06:05', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 216, NULL),
-	(91, NULL, '2023-12-18 19:06:12', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 216, NULL),
-	(92, NULL, '2023-12-18 19:06:21', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 206, NULL),
-	(93, NULL, '2023-12-18 19:06:41', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 215, NULL),
-	(94, NULL, '2023-12-18 19:07:03', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 214, NULL),
-	(95, NULL, '2023-12-18 19:07:12', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 214, NULL),
-	(96, NULL, '2023-12-18 19:07:19', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 206, NULL),
-	(97, NULL, '2023-12-18 19:07:52', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Bình Định', NULL, 213, NULL),
-	(98, NULL, '2023-12-18 19:07:57', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 213, NULL),
-	(99, NULL, '2023-12-18 19:08:12', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Bình Định', NULL, 209, NULL),
-	(100, NULL, '2023-12-18 19:08:16', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 209, NULL),
-	(101, NULL, '2023-12-18 19:08:44', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Bình Định', NULL, 212, NULL),
-	(102, NULL, '2023-12-18 19:08:50', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 212, NULL),
-	(103, NULL, '2023-12-18 19:09:13', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Bình Định', NULL, 210, NULL),
-	(104, NULL, '2023-12-18 19:09:16', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 210, NULL),
-	(105, NULL, '2023-12-18 19:09:25', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 207, NULL),
-	(106, NULL, '2023-12-18 19:09:29', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 207, NULL),
-	(107, NULL, '2023-12-18 19:09:37', NULL, 'admin9193', NULL, 'Đơn hàng đã đến Hòa Bình', NULL, 208, NULL),
-	(108, NULL, '2023-12-18 19:09:40', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 208, NULL),
-	(109, NULL, '2023-12-18 19:40:45', NULL, 'todung4660', NULL, 'Đặt hàng', NULL, 217, NULL),
-	(110, NULL, '2023-12-19 05:05:37', NULL, 'doquochuy8173', NULL, 'Đặt hàng', NULL, 219, NULL),
-	(111, NULL, '2023-12-19 05:07:35', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 217, NULL),
-	(112, NULL, '2023-12-19 05:07:42', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 217, NULL),
-	(113, NULL, '2023-12-19 05:08:17', NULL, 'admin9193', NULL, 'Đến Hà Nội', NULL, 217, NULL),
-	(114, NULL, '2023-12-19 05:08:30', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 217, NULL),
-	(115, NULL, '2023-12-19 06:21:21', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 221, NULL),
-	(116, NULL, '2023-12-19 08:03:11', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đặt hàng', NULL, 224, NULL),
-	(117, NULL, '2023-12-19 08:28:37', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đặt hàng', NULL, 225, NULL),
-	(118, NULL, '2023-12-19 08:29:17', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 225, NULL),
-	(119, NULL, '2023-12-19 08:29:45', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 225, NULL),
-	(120, NULL, '2023-12-19 08:30:51', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đến Hà Nội', NULL, 225, NULL),
-	(121, NULL, '2023-12-19 08:31:00', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đã nhận hàng', NULL, 225, NULL),
-	(122, NULL, '2023-12-19 09:12:20', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đặt hàng', NULL, 229, NULL),
-	(123, NULL, '2023-12-19 09:12:40', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đơn hàng đã huỷ', NULL, 224, NULL),
-	(124, NULL, '2023-12-20 14:03:04', NULL, 'admin9193', NULL, 'Đặt hàng', NULL, 230, NULL);
+	(6, NULL, '2023-12-16 15:58:32', NULL, 'admin9193', NULL, 'Đang được vận chuyển', NULL, 104, NULL);
 
 -- Dumping structure for table duantotnghiep.vidientu
 CREATE TABLE IF NOT EXISTS `vidientu` (
@@ -4295,60 +3851,52 @@ CREATE TABLE IF NOT EXISTS `vidientu` (
   PRIMARY KEY (`id`),
   KEY `FK67k6ih1yc8wc22q9qxgly084r` (`idkhachhang`),
   CONSTRAINT `FK67k6ih1yc8wc22q9qxgly084r` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.vidientu: ~15 rows (approximately)
+-- Dumping data for table duantotnghiep.vidientu: ~7 rows (approximately)
 INSERT INTO `vidientu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotien`, `idkhachhang`) VALUES
-	(1, '2023-12-19 05:05:37', '2023-11-19 16:59:26', 'doquochuy8173', 'doquochuy8173', 'ACTIVE', 1776299, 4),
+	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 4),
 	(2, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 1),
-	(3, '2023-12-20 14:03:04', '2023-11-19 16:59:26', 'admin9193', 'doquochuy8173', 'ACTIVE', 1165650, 2),
-	(4, '2023-12-19 09:12:40', '2023-11-19 16:59:26', 'nguyenthikhanhlinh1711', 'doquochuy8173', 'ACTIVE', 4033349, 3),
-	(5, '2023-12-18 17:16:15', '2023-11-19 16:59:26', 'dinhtuananh0183', 'doquochuy8173', 'ACTIVE', 1735099, 5),
+	(3, '2023-12-16 16:01:00', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'doquochuy8173', 'ACTIVE', 3772500, 2),
+	(4, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 3),
+	(5, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 3000000, 5),
 	(6, NULL, '2023-12-09 09:25:51', NULL, 'huydq8493', 'ACTIVE', 0, 6),
-	(7, NULL, '2023-12-09 09:28:04', NULL, 'nhatminh5731', 'ACTIVE', 0, 7),
-	(8, NULL, '2023-12-17 07:00:38', NULL, 'linh8143', 'ACTIVE', 0, 10),
-	(9, NULL, '2023-12-18 07:51:34', NULL, 'tuan6764', 'ACTIVE', 0, 25),
-	(10, NULL, '2023-12-18 18:15:43', NULL, 'viethoang8541', 'ACTIVE', 0, 26),
-	(11, '2023-12-18 18:43:37', '2023-12-18 18:27:13', 'hoangthuyduong8758', 'hoangthuyduong8758', 'ACTIVE', 1647148, 27),
-	(12, '2023-12-18 19:03:51', '2023-12-18 18:48:47', 'trantien0698', 'trantien0698', 'ACTIVE', 3929948, 28),
-	(13, NULL, '2023-12-18 19:40:00', NULL, 'todung4660', 'ACTIVE', 0, 29),
-	(14, NULL, '2023-12-20 13:58:14', NULL, 'nguyen6602', 'ACTIVE', 0, 30),
-	(15, NULL, '2023-12-20 16:45:58', NULL, 'tuan1630', 'ACTIVE', 0, 36);
+	(7, NULL, '2023-12-09 09:28:04', NULL, 'nhatminh5731', 'ACTIVE', 0, 7);
 
 -- Dumping structure for view duantotnghiep.vw_doanhthunam
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_doanhthunam` (
-	`DoanhThuOnline` DOUBLE NULL,
-	`DoanhThuOffline` DOUBLE NULL,
-	`TongSoSanPhamDaBan` DECIMAL(32,0) NULL,
-	`SoLuongKhuyenMaiDaBan` DECIMAL(32,0) NULL
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_doanhthungay
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_doanhthungay` (
-	`DoanhThuOnline` DOUBLE NULL,
-	`DoanhThuOffline` DOUBLE NULL,
-	`TongSoSanPhamDaBan` DECIMAL(32,0) NULL,
-	`SoLuongKhuyenMaiDaBan` DECIMAL(32,0) NULL
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_doanhthuthang
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_doanhthuthang` (
-	`DoanhThuOnline` DOUBLE NULL,
-	`DoanhThuOffline` DOUBLE NULL,
-	`TongSoSanPhamDaBan` DECIMAL(32,0) NULL,
-	`SoLuongKhuyenMaiDaBan` DECIMAL(32,0) NULL
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_doanhthutuan
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_doanhthutuan` (
-	`DoanhThuOnline` DOUBLE NULL,
-	`DoanhThuOffline` DOUBLE NULL,
-	`TongSoSanPhamDaBan` DECIMAL(32,0) NULL,
-	`SoLuongKhuyenMaiDaBan` DECIMAL(32,0) NULL
+	`doanhThuOnline` DOUBLE NULL,
+	`doanhThuOffline` DOUBLE NULL,
+	`tongSoSanPhamDaBan` DECIMAL(54,0) NULL,
+	`soLuongKhuyenMaiDaBan` DECIMAL(45,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_giohangchitiet_summary
@@ -4386,10 +3934,9 @@ CREATE TABLE `vw_pricesanpham` (
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `vw_thongkedshoadon` (
 	`ngay` DATE NULL,
-	`tonghoadonbanduoc` DECIMAL(42,0) NULL,
+	`tonghoadonbanduoc` BIGINT(19) NOT NULL,
 	`tongtienhang` DOUBLE NULL,
-	`soluong` DECIMAL(54,0) NULL,
-	`soluongkhuyenmai` DECIMAL(54,0) NULL
+	`soluong` DECIMAL(32,0) NULL
 ) ENGINE=MyISAM;
 
 -- Dumping structure for view duantotnghiep.vw_thongkedssp
@@ -4417,47 +3964,38 @@ END//
 DELIMITER ;
 SET SQL_MODE=@OLDTMP_SQL_MODE;
 
--- Dumping structure for view duantotnghiep.vw_doanhthunam
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_doanhthunam`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthunam` AS select `doanhthu`.`DoanhThuOnline` AS `DoanhThuOnline`,`doanhthu`.`DoanhThuOffline` AS `DoanhThuOffline`,`soluong`.`TongSoSanPhamDaBan` AS `TongSoSanPhamDaBan`,`soluong`.`SoLuongKhuyenMaiDaBan` AS `SoLuongKhuyenMaiDaBan` from ((select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOnline`,sum((case when (`hd`.`loai` = 'Offline') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOffline` from `hoadon` `hd` where ((year(`hd`.`ngaythanhtoan`) = year(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `doanhthu` join (select sum(`hdct`.`soluong`) AS `TongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then `hdct`.`soluong` else 0 end)) AS `SoLuongKhuyenMaiDaBan` from (`hoadonchitiet` `hdct` join `hoadon` `hd` on((`hdct`.`idhoadon` = `hd`.`id`))) where ((year(`hd`.`ngaythanhtoan`) = year(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `soluong`);
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthunam` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((year(`hd`.`ngaydat`) = year(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
 
--- Dumping structure for view duantotnghiep.vw_doanhthungay
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_doanhthungay`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthungay` AS select `doanhthu`.`DoanhThuOnline` AS `DoanhThuOnline`,`doanhthu`.`DoanhThuOffline` AS `DoanhThuOffline`,`soluong`.`TongSoSanPhamDaBan` AS `TongSoSanPhamDaBan`,`soluong`.`SoLuongKhuyenMaiDaBan` AS `SoLuongKhuyenMaiDaBan` from ((select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOnline`,sum((case when (`hd`.`loai` = 'Offline') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOffline` from `hoadon` `hd` where ((cast(`hd`.`ngaythanhtoan` as date) = cast(curdate() as date)) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `doanhthu` join (select sum(`hdct`.`soluong`) AS `TongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then `hdct`.`soluong` else 0 end)) AS `SoLuongKhuyenMaiDaBan` from (`hoadonchitiet` `hdct` join `hoadon` `hd` on((`hdct`.`idhoadon` = `hd`.`id`))) where ((cast(`hd`.`ngaythanhtoan` as date) = cast(curdate() as date)) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `soluong`);
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthungay` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((cast(`hd`.`ngaydat` as date) = curdate()) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
 
--- Dumping structure for view duantotnghiep.vw_doanhthuthang
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_doanhthuthang`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthuthang` AS select `doanhthu`.`DoanhThuOnline` AS `DoanhThuOnline`,`doanhthu`.`DoanhThuOffline` AS `DoanhThuOffline`,`soluong`.`TongSoSanPhamDaBan` AS `TongSoSanPhamDaBan`,`soluong`.`SoLuongKhuyenMaiDaBan` AS `SoLuongKhuyenMaiDaBan` from ((select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOnline`,sum((case when (`hd`.`loai` = 'Offline') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOffline` from `hoadon` `hd` where ((month(`hd`.`ngaythanhtoan`) = month(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `doanhthu` join (select sum(`hdct`.`soluong`) AS `TongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then `hdct`.`soluong` else 0 end)) AS `SoLuongKhuyenMaiDaBan` from (`hoadonchitiet` `hdct` join `hoadon` `hd` on((`hdct`.`idhoadon` = `hd`.`id`))) where ((month(`hd`.`ngaythanhtoan`) = month(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `soluong`);
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthuthang` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((year(`hd`.`ngaydat`) = year(curdate())) and (month(`hd`.`ngaydat`) = month(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
 
--- Dumping structure for view duantotnghiep.vw_doanhthutuan
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_doanhthutuan`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthutuan` AS select `doanhthu`.`DoanhThuOnline` AS `DoanhThuOnline`,`doanhthu`.`DoanhThuOffline` AS `DoanhThuOffline`,`soluong`.`TongSoSanPhamDaBan` AS `TongSoSanPhamDaBan`,`soluong`.`SoLuongKhuyenMaiDaBan` AS `SoLuongKhuyenMaiDaBan` from ((select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOnline`,sum((case when (`hd`.`loai` = 'Offline') then `hd`.`tongtienhang` else 0 end)) AS `DoanhThuOffline` from `hoadon` `hd` where ((yearweek(`hd`.`ngaythanhtoan`,0) = yearweek(curdate(),0)) and (month(`hd`.`ngaythanhtoan`) = month(curdate())) and (year(`hd`.`ngaythanhtoan`) = year(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `doanhthu` join (select sum(`hdct`.`soluong`) AS `TongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then `hdct`.`soluong` else 0 end)) AS `SoLuongKhuyenMaiDaBan` from (`hoadonchitiet` `hdct` join `hoadon` `hd` on((`hdct`.`idhoadon` = `hd`.`id`))) where ((yearweek(`hd`.`ngaythanhtoan`,0) = yearweek(curdate(),0)) and (month(`hd`.`ngaythanhtoan`) = month(curdate())) and (year(`hd`.`ngaythanhtoan`) = year(curdate())) and (`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG')))) `soluong`);
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_doanhthutuan` AS select sum(`tbl`.`doanhThuOnline`) AS `doanhThuOnline`,sum(`tbl`.`doanhThuOffline`) AS `doanhThuOffline`,sum(`tbl`.`tongSoSanPhamDaBan`) AS `tongSoSanPhamDaBan`,sum(`tbl`.`soLuongKhuyenMaiDaBan`) AS `soLuongKhuyenMaiDaBan` from (select sum((case when (`hd`.`loai` = 'Online') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOnline`,sum((case when (`hd`.`loai` = 'Ofline') then `hd`.`tongtienhang` else 0 end)) AS `doanhThuOffline`,`hoadonchitiet_summary`.`tongSoSanPhamDaBan` AS `tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan` AS `soLuongKhuyenMaiDaBan` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `tongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then 1 else 0 end)) AS `soLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhoadon` from `hoadonchitiet` `hdct` group by `hdct`.`idhoadon`) `hoadonchitiet_summary` on((`hd`.`id` = `hoadonchitiet_summary`.`idhoadon`))) where ((yearweek(`hd`.`ngaydat`,0) = yearweek(curdate(),0)) and (year(`hd`.`ngaydat`) = year(curdate())) and (`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `hoadonchitiet_summary`.`tongSoSanPhamDaBan`,`hoadonchitiet_summary`.`soLuongKhuyenMaiDaBan`) `tbl`;
 
--- Dumping structure for view duantotnghiep.vw_giohangchitiet_summary
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_giohangchitiet_summary`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_giohangchitiet_summary` AS select `ghct`.`id` AS `id`,sum((`sp`.`gia` * `ghct`.`soluong`)) AS `giagoc`,sum((`sp`.`sotiengiam` * `ghct`.`soluong`)) AS `giagiam`,sum((`sp`.`thucte` * `ghct`.`soluong`)) AS `thucte` from (`giohangchitiet` `ghct` join (select `vw_pricesanpham`.`bientheid` AS `bientheid`,`vw_pricesanpham`.`sanphamid` AS `sanphamid`,`vw_pricesanpham`.`gia` AS `gia`,`vw_pricesanpham`.`sotiengiam` AS `sotiengiam`,`vw_pricesanpham`.`thucte` AS `thucte` from `vw_pricesanpham`) `sp` on((`sp`.`bientheid` = `ghct`.`idbienthe`))) group by `ghct`.`id`;
 
--- Dumping structure for view duantotnghiep.vw_hoadonchitiet_summary
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_hoadonchitiet_summary`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_hoadonchitiet_summary` AS select `hd`.`idhoadon` AS `idhoadon`,sum(`hd`.`giagoc`) AS `giagoc`,sum(`hd`.`giagiam`) AS `giagiam`,sum(`hd`.`thucte`) AS `thucte`,`ho`.`tienship` AS `tienship`,(sum(`hd`.`thucte`) + `ho`.`tienship`) AS `tienkhachtra` from ((select `hdct`.`idhoadon` AS `idhoadon`,sum((`sp`.`gia` * `hdct`.`soluong`)) AS `giagoc`,ifnull(sum((`sp`.`sotiengiam` * `hdct`.`soluong`)),0) AS `giagiam`,sum((`sp`.`thucte` * `hdct`.`soluong`)) AS `thucte` from (`hoadonchitiet` `hdct` join `vw_pricesanpham` `sp` on((`sp`.`bientheid` = `hdct`.`idbienthe`))) group by `hdct`.`idhoadon`) `hd` left join `hoadon` `ho` on((`hd`.`idhoadon` = `ho`.`id`))) group by `hd`.`idhoadon`;
 
--- Dumping structure for view duantotnghiep.vw_pricesanpham
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_pricesanpham`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_pricesanpham` AS select `outer_query`.`bientheid` AS `bientheid`,`outer_query`.`sanphamid` AS `sanphamid`,`outer_query`.`gia` AS `gia`,`outer_query`.`sotiengiam` AS `sotiengiam`,`outer_query`.`khuyenmaiid` AS `khuyenmaiid`,(case when (`outer_query`.`sotiengiam` is null) then `outer_query`.`gia` else (`outer_query`.`gia` - `outer_query`.`sotiengiam`) end) AS `thucte` from (select `inner_query`.`bientheid` AS `bientheid`,`inner_query`.`sanphamid` AS `sanphamid`,`inner_query`.`gia` AS `gia`,(case when (`inner_query`.`khuyenmaiid` is null) then NULL when (`inner_query`.`loai` = 1) then (`inner_query`.`gia` * (`inner_query`.`giatri` / 100)) else (`inner_query`.`gia` - (`inner_query`.`gia` - `inner_query`.`giatri`)) end) AS `sotiengiam`,`inner_query`.`khuyenmaiid` AS `khuyenmaiid` from (select `bt`.`id` AS `bientheid`,`sp`.`id` AS `sanphamid`,(case when (`bt`.`gia` is null) then `sp`.`gia` else `bt`.`gia` end) AS `gia`,`km`.`id` AS `khuyenmaiid`,`km`.`giatri` AS `giatri`,`km`.`loai` AS `loai` from (((`bienthe` `bt` join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) left join `khuyenmaisanpham` `kmsp` on(((`kmsp`.`idsanpham` = `sp`.`id`) and (`kmsp`.`trangthai` not in ('DELETE','EXPIRED'))))) left join `khuyenmai` `km` on(((`km`.`id` = `kmsp`.`idkhuyenmai`) and (`km`.`ngaybatdau` <= curdate()) and (`km`.`ngayketthuc` >= curdate()) and (`km`.`soluong` > 0) and (`km`.`trangthai` not in ('DELETE','EXPIRED')))))) `inner_query`) `outer_query`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_pricesanpham` AS select `outer_query`.`bientheid` AS `bientheid`,`outer_query`.`sanphamid` AS `sanphamid`,`outer_query`.`gia` AS `gia`,`outer_query`.`sotiengiam` AS `sotiengiam`,`outer_query`.`khuyenmaiid` AS `khuyenmaiid`,(case when (`outer_query`.`sotiengiam` is null) then `outer_query`.`gia` else (`outer_query`.`gia` - `outer_query`.`sotiengiam`) end) AS `thucte` from (select `inner_query`.`bientheid` AS `bientheid`,`inner_query`.`sanphamid` AS `sanphamid`,`inner_query`.`gia` AS `gia`,(case when (`inner_query`.`khuyenmaiid` is null) then NULL when (`inner_query`.`loai` = 1) then (`inner_query`.`gia` * (`inner_query`.`giatri` / 100)) else (`inner_query`.`gia` - (`inner_query`.`gia` - `inner_query`.`giatri`)) end) AS `sotiengiam`,`inner_query`.`khuyenmaiid` AS `khuyenmaiid` from (select `bt`.`id` AS `bientheid`,`sp`.`id` AS `sanphamid`,(case when (`bt`.`gia` is null) then `sp`.`gia` else `bt`.`gia` end) AS `gia`,`km`.`id` AS `khuyenmaiid`,`km`.`giatri` AS `giatri`,`km`.`loai` AS `loai` from (((`bienthe` `bt` join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) left join `khuyenmaisanpham` `kmsp` on((`kmsp`.`idsanpham` = `sp`.`id`))) left join `khuyenmai` `km` on(((`km`.`id` = `kmsp`.`idkhuyenmai`) and (`km`.`ngaybatdau` <= curdate()) and (`km`.`ngayketthuc` >= curdate()))))) `inner_query`) `outer_query`;
 
--- Dumping structure for view duantotnghiep.vw_thongkedshoadon
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_thongkedshoadon`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_thongkedshoadon` AS select `quer`.`ngay` AS `ngay`,sum(`quer`.`tonghoadonbanduoc`) AS `tonghoadonbanduoc`,sum(`quer`.`tongtienhang`) AS `tongtienhang`,sum(`quer`.`soluong`) AS `soluong`,sum(`quer`.`soluongkhuyenmai`) AS `soluongkhuyenmai` from (select count(`hd`.`id`) AS `tonghoadonbanduoc`,sum(`hd`.`tongtienhang`) AS `tongtienhang`,`hdct`.`TongSoSanPhamDaBan` AS `soluong`,`hdct`.`SoLuongKhuyenMaiDaBan` AS `soluongkhuyenmai`,cast(`hd`.`ngaythanhtoan` as date) AS `ngay` from (`hoadon` `hd` join (select sum(`hdct`.`soluong`) AS `TongSoSanPhamDaBan`,sum((case when (`hdct`.`idkhuyenmai` is not null) then `hdct`.`soluong` else 0 end)) AS `SoLuongKhuyenMaiDaBan`,`hdct`.`idhoadon` AS `idhd` from (`hoadonchitiet` `hdct` join `hoadon` `hd` on((`hdct`.`idhoadon` = `hd`.`id`))) group by `hdct`.`idhoadon`) `hdct` on((`hd`.`id` = `hdct`.`idhd`))) where ((`hd`.`trangthai` not in ('HUYDON','TREO')) and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN','TIENMAT')) or (`hd`.`trangthai` = 'DANHANHANG') or (`hd`.`trangthai` = 'THANHCONG'))) group by `ngay`,`hdct`.`TongSoSanPhamDaBan`,`hdct`.`SoLuongKhuyenMaiDaBan`) `quer` group by `quer`.`ngay` order by `quer`.`ngay` desc;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_thongkedshoadon` AS select cast(`hd`.`ngaythanhtoan` as date) AS `ngay`,count(`hd`.`id`) AS `tonghoadonbanduoc`,sum(`hd`.`tongtienhang`) AS `tongtienhang`,sum(`hdct`.`soluong`) AS `soluong` from (`hoadon` `hd` join `hoadonchitiet` `hdct` on((`hd`.`id` = `hdct`.`idhoadon`))) where ((`hd`.`trangthai` <> 'HUYDON') and ((`hd`.`phuongthucthanhtoan` in ('VIDIENTU','CHUYENKHOAN')) or (`hd`.`trangthai` = 'DANHANHANG'))) group by `ngay` order by `ngay` desc;
 
--- Dumping structure for view duantotnghiep.vw_thongkedssp
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `vw_thongkedssp`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `vw_thongkedssp` AS select `sp`.`id` AS `id`,`sp`.`ten` AS `ten`,cast(`hd`.`ngaydat` as date) AS `ngaydat`,sum(`hdct`.`soluong`) AS `tong` from ((((`hoadonchitiet` `hdct` join `bienthe` `bt` on((`hdct`.`idbienthe` = `bt`.`id`))) join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) join `hoadon` `hd` on((`hd`.`id` = `hdct`.`idhoadon`))) join (select count(`hdct`.`soluong`) AS `tongsospban`,`sp`.`id` AS `idsp` from (((`hoadonchitiet` `hdct` join `bienthe` `bt` on((`hdct`.`idbienthe` = `bt`.`id`))) join `sanpham` `sp` on((`sp`.`id` = `bt`.`idsanpham`))) join `hoadon` `hd` on((`hd`.`id` = `hdct`.`idhoadon`))) group by `sp`.`id` order by `tongsospban` desc limit 5) `spbannhieunhat` on((`sp`.`id` = `spbannhieunhat`.`idsp`))) group by `sp`.`id`,`sp`.`ten`,cast(`hd`.`ngaydat` as date) order by cast(`hd`.`ngaydat` as date);
