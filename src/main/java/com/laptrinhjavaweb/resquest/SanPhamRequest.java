@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class SanPhamRequest {
 
+    private Long id;
+
     private String slug;
 
     private String ten;

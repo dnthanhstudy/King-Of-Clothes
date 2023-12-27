@@ -49,9 +49,10 @@ public class HoaDonConverter {
             response.setTenKhachHang(entity.getKhachHang().getTen());
             response.setSoDienThoaiKhachHang(entity.getKhachHang().getSoDienThoai());
         }
-        List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream().map(
-                item -> hoaDonChiTietConverter.convertToResponse(item)
-        ).collect(Collectors.toList());
+        List<HoaDonChiTietResponse> hoaDonChiTiet = entity.getHoaDonChiTietEntities().stream()
+                .filter(item -> !item.getTrangThai().equals("CHANGEVARIANT"))
+                .map(item -> hoaDonChiTietConverter.convertToResponse(item))
+                .collect(Collectors.toList());
         response.setTenNhanVien(entity.getNhanVien().getTen());
         response.setHoaDonChiTiet(hoaDonChiTiet);
         return response;

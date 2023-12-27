@@ -77,6 +77,7 @@ public class GioHangChiTietConveter {
             giaMua = bienTheEntity.getGia();
         }
 
+        response.setSlug(sanPhamResponse.getSlug());
         response.setTenSanPham(sanPhamResponse.getTen());
         response.setImage(image);
         response.setThuocTinh(thuocTinh);

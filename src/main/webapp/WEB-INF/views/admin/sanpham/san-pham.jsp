@@ -27,14 +27,14 @@
         </div>
 
         <div class="group123 ">
-                <svg  id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
-                     viewBox="0 0 512 512">
-                    <style>svg {
-                        fill: #ebeef4
-                    }</style>
-                    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
-                </svg>
-                <input placeholder="Tìm sản phẩm" id="searchAll" type="search" class="inputghichu w-100">
+            <svg id="searchButton" xmlns="http://www.w3.org/2000/svg" class="icon" aria-hidden="true"
+                 viewBox="0 0 512 512">
+                <style>svg {
+                    fill: #ebeef4
+                }</style>
+                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+            </svg>
+            <input placeholder="Tìm sản phẩm" id="searchAll" type="search" class="inputghichu w-100">
         </div>
 
         <p class="mt-3" id="iemty"></p>
@@ -64,7 +64,7 @@
                 </table>
             </div>
         </div>
-        <ul class="pagination d-flex justify-content-center"  id="pagination"></ul>
+        <ul class="pagination d-flex justify-content-center" id="pagination"></ul>
     </div>
 </div>
 <script>
@@ -72,20 +72,27 @@
     let pageCurrent = 1;
     let limit = 5;
     loadAllProduct();
-    function loadAllProduct(){
+
+    function loadAllProduct() {
         $.ajax({
-            url: "/api/san-pham?page="+pageCurrent + "&limit=" + limit,
+            url: "/api/san-pham?page=" + pageCurrent + "&limit=" + limit,
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
                 let html = '';
                 $.each(response.data, (index, item) => {
-                    let isChecked = item.trangThai === "ACTIVE" ? "checked": "";
+                    let isChecked = item.trangThai === "ACTIVE" ? "checked" : "";
                     html += `<tr>
                                     <td>\${index+1}</td>
-                                    <td><img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
-                                    <td>\${item.ten}</td>
+                                    <td>
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">
+                                            <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a>
+                                    </td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.danhMuc.ten}</td>
                                     <td>\${item.thuongHieu.ten}</td>
@@ -107,19 +114,19 @@
                     totalPages: response.meta.totalPage,
                     startPage: response.meta.pageCurrent,
                     onPageClick: function (event, page) {
-                        if(page !== pageCurrent){
+                        if (page !== pageCurrent) {
                             event.preventDefault();
                             pageCurrent = page;
-                            if(param != ''){
+                            if (param != '') {
                                 searchSanPham(param)
-                            }else{
+                            } else {
                                 loadAllProduct();
                             }
                         }
                     },
                 });
 
-                $('.checked-update-status').on('change', function(){
+                $('.checked-update-status').on('change', function () {
                     const slug = $(this).closest("tr").find('.product-slug').val();
                     if ($(this).is(":checked")) {
                         updateTrangThai(slug, "ACTIVE");
@@ -134,19 +141,19 @@
         });
     }
 
-    function searchSanPham(param){
+    function searchSanPham(param) {
         $.ajax({
-            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit="+limit,
+            url: '/api/san-pham/search?q=' + param + "&page=" + pageCurrent + "&limit=" + limit,
             method: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (response) => {
-                if(response.data.length === 0){
+                if (response.data.length === 0) {
                     $('#iemty').removeClass('d-none')
                     $('#iemty').text("Không tìm thấy sản phẩm nào như thế !")
                     $('#cardSP').addClass('d-none');
                     $('#pagination').addClass('d-none');
-                }else {
+                } else {
                     $('#iemty').addClass('d-none')
                     $('#cardSP').removeClass('d-none');
                     $('#pagination').removeClass('d-none');
@@ -155,9 +162,13 @@
                         html += `<tr>
                                 <td>\${index+1}</td>
                                 <td>
-                                    <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                    <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">
+                                        <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                    </a>
                                 </td>
-                                <td>\${item.ten}</td>
+                                <td>
+                                    <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a>
+                                </td>
                                 <td>\${item.gia}</td>
                                 <td>\${item.danhMuc.ten}</td>
                                 <td>\${item.thuongHieu.ten}</td>
@@ -182,9 +193,9 @@
                             if (page !== pageCurrent) {
                                 event.preventDefault();
                                 pageCurrent = page;
-                                if(param != ''){
+                                if (param != '') {
                                     searchSanPham(param)
-                                }else{
+                                } else {
                                     loadAllProduct();
                                 }
                             }
@@ -198,13 +209,13 @@
         });
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var searchButton = $('#searchAll');
         pageCurrent = 1;
-        searchButton.on('keydown', function(event) {
+        searchButton.on('keydown', function (event) {
             if (event.which === 13) {
                 param = searchButton.val().trim();
-                if(pageCurrent > 1){
+                if (pageCurrent > 1) {
                     pageCurrent = 1;
                 }
                 searchSanPham(param);
@@ -212,12 +223,12 @@
         });
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Xác định thẻ table và thẻ th
         var table = $("table");
         var th = table.find("th");
         // Bắt đầu sắp xếp khi thẻ th được nhấp
-        th.click(function() {
+        th.click(function () {
             var table = $(this).parents("table").eq(0);
             var rows = table.find('tr:gt(0)').toArray().sort(compare($(this).index()));
 
@@ -231,31 +242,33 @@
                 table.append(rows[i]);
             }
         });
+
         // Hàm so sánh để sắp xếp dữ liệu
         function compare(index) {
-            return function(a, b) {
+            return function (a, b) {
                 var valA = getCellValue(a, index);
                 var valB = getCellValue(b, index);
                 return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB);
             };
         }
+
         // Lấy giá trị của ô cụ thể trong dòng
         function getCellValue(row, index) {
             return $(row).children('td').eq(index).text();
         }
     });
 
-    $('#filter-quantity').on('change', function(){
+    $('#filter-quantity').on('change', function () {
         let quantity = $(this).val();
         limit = quantity;
-        if(param !== ""){
+        if (param !== "") {
             searchSanPham(param)
-        }else{
+        } else {
             loadAllProduct()
         }
     });
 
-    function updateTrangThai(slug, trangThai){
+    function updateTrangThai(slug, trangThai) {
         $.ajax({
             url: "/api/san-pham/update/" + slug,
             method: "POST",

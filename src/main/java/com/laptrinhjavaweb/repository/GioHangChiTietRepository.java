@@ -54,4 +54,10 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     GioHangChiTietEntity findByGioHang_idAndBienThe_id(Long idGioHang, Long idBienThe);
 
     List<GioHangChiTietEntity> findAllByIdInAndGioHang_KhachHang_Ma(List<Long> ids, String maKhachHang);
+
+    List<GioHangChiTietEntity> findAllByBienThe_IdIn (List<Long> idsBienThe);
+
+    @Modifying
+    @Query("update GioHangChiTietEntity g set g.trangThai = 'CHANGEVARIANT', g.bienThe = null WHERE g.bienThe.id in ?1")
+    void updateVariant (List<Long> idsBienThe);
 }

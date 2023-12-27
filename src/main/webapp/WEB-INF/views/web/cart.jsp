@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
-<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -239,7 +238,7 @@
                         <div class="col-6">
                             Tổng thanh toán (<span class="total-checked">0</span> sản phẩm):
                             <div class="btn-group">
-                                <span class="dropdown-toggle text-danger total-buy" style="font-size: 25px"
+                                <span class="dropdown-toggle text-danger total-buy product-price-custom-vnd" style="font-size: 25px"
                                       data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                                     0
                                 </span>
@@ -253,21 +252,21 @@
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Tổng tiền hàng:</span>
-                                            <span class="total-cart">0</span>
+                                            <span class="total-cart product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Số tiền giảm:</span>
-                                            <span class="total-discount">0</span>
+                                            <span class="total-discount product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="d-flex justify-content-between mt-2"
                                              style="border-bottom: 1px solid #dedede; padding: 10px">
                                             <span>Tổng số tiền:</span>
-                                            <span class="total-buy">0</span>
+                                            <span class="total-buy product-price-custom-vnd">0</span>
                                         </div>
                                     </li>
                                 </ul>
