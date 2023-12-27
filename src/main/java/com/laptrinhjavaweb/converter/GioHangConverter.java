@@ -24,17 +24,17 @@ public class GioHangConverter {
     @Autowired
     private GioHangChiTietConveter gioHangChiTietConveter;
 
-    public GioHangEntity convertToEntity(GioHangRequest request){
+    public GioHangEntity convertToEntity(GioHangRequest request) {
         GioHangEntity entity = modelMapper.map(request, GioHangEntity.class);
         entity.setKhachHang(khachHangRepository.findByMa(request.getMaKhachHang()));
         return entity;
     }
 
-    public GioHangResponse convertToResponse(GioHangEntity entity){
+    public GioHangResponse convertToResponse(GioHangEntity entity) {
         GioHangResponse response = modelMapper.map(entity, GioHangResponse.class);
-        List<GioHangChiTietResponse> listGioHangChiTiet = entity.getGioHangChiTietEntities().stream().map(
-                item -> gioHangChiTietConveter.convertToResponse(item)
-        ).collect(Collectors.toList());
+        List<GioHangChiTietResponse> listGioHangChiTiet = entity.getGioHangChiTietEntities().stream()
+                .map( item -> gioHangChiTietConveter.convertToResponse(item))
+                .collect(Collectors.toList());
 
         response.setGioHang(listGioHangChiTiet);
         return response;

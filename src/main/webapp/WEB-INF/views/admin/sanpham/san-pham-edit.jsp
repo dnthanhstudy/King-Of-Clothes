@@ -106,13 +106,14 @@
                                         <div class="input-group">
                                             <input
                                                     type="text"
+                                                    id="price-all"
                                                     class="form-control"
                                                     placeholder="Thiết lập giá cho tất cả thuộc tính"
                                             />
                                             <button
                                                     class="btn btn-primary"
                                                     type="button"
-                                                    id="btn-search"
+                                                    id="btn-set-price"
                                             >
                                                 Xác nhận!
                                             </button>
@@ -175,20 +176,18 @@
                         </label>
                     </div>
                 </div>
-
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
         </div>
 
     </div>
 </div>
-
+<input type="hidden" name="" value="" id="product-id">
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 
 <script>
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");
     let ckeMoTaSanPham = CKEDITOR.replace("motasanpham");
-
 
     function detailSP() {
         var url = window.location.pathname.split("/");
@@ -198,6 +197,7 @@
             method: 'GET',
             dataType: 'json',
             success: function (req) {
+                $('#product-id').val(req.id);
                 $("#slug").val(req.slug);
                 $("#ten").val(req.ten);
                 $("#gia").val(req.gia);
@@ -269,5 +269,9 @@
     }
     detailSP();
 </script>
+<script src="<c:url value='/assets/js/defined.js'/>"></script>
+<script src="<c:url value='/assets/js/validate.js'/>"></script>
+<script src="<c:url value='/assets/js/product-attribute.js'/>"></script>
+<script src="<c:url value='/assets/api/admin/product.js'/>"></script>
 </body>
 </html>

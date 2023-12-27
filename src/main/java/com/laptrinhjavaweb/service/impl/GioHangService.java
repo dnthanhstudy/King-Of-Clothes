@@ -36,6 +36,9 @@ public class GioHangService implements IGioHangService {
     @Override
     public GioHangResponse findByMaKhachHang(String maKhachHang) {
         GioHangEntity gioHangEntity = gioHangRepository.findByKhachHang_ma(maKhachHang);
+        if(gioHangEntity == null){
+            return null;
+        }
         return gioHangConverter.convertToResponse(gioHangEntity);
     }
 }

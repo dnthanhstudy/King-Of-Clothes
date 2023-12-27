@@ -32,9 +32,6 @@ public class BienTheConverter {
 	public BienTheResponse convertToResponse(BienTheEntity entity) {
 		BienTheResponse response = modelMapper.map(entity, BienTheResponse.class);
 		KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(entity.getSanPham().getId(), SystemConstant.ACTICE, entity.getSanPham().getId(), SystemConstant.UPCOMING);
-		if(entity.getGia() == null){
-			entity.setGia(entity.getSanPham().getGia());
-		}
 		if(khuyenMaiSanPhamEntity != null){
 			KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = khuyenMaiConvert.convertToHienThiResponse(khuyenMaiSanPhamEntity.getKhuyenMai());
 			Double giaBan = null;

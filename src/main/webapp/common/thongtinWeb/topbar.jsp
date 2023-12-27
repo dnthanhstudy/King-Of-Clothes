@@ -5,7 +5,8 @@
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="/trang-chu" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">K.O.C</span>SHOP</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                        class="text-primary font-weight-bold border px-3 mr-1">K.O.C</span>SHOP</h1>
             </a>
         </div>
 
@@ -22,8 +23,9 @@
             </form>
         </div>
         <div class="col-lg-3 col-6 text-right">
-            <a href="?lang=vi" class="btn border" ><img src="/template/web/img/vietnam.jpg" style="width: 30px" alt=""></a>
-            <a href="?lang=en" class="btn border" ><img src="/template/web/img/my.jpg"  style="width: 30px" alt=""></a>
+            <a href="?lang=vi" class="btn border"><img src="/template/web/img/vietnam.jpg" style="width: 30px"
+                                                       alt=""></a>
+            <a href="?lang=en" class="btn border"><img src="/template/web/img/my.jpg" style="width: 30px" alt=""></a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
                 <span class="quantity-cart">0</span>
@@ -42,8 +44,12 @@
         method: "GET",
         dataType: "json",
         success: (response) => {
-            const size = response.gioHang.length;
-            $('.quantity-cart').text(size);
+            if (response === null) {
+                $('.quantity-cart').text(0);
+            } else {
+                const size = response.gioHang.length;
+                $('.quantity-cart').text(size);
+            }
         },
         error: (error) => {
         }

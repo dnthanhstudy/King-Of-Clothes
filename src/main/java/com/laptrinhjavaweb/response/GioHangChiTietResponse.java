@@ -11,6 +11,8 @@ public class GioHangChiTietResponse {
 
     private Long id;
 
+    private String slug;
+
     private String tenSanPham;
 
     private String image;

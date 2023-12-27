@@ -1,5 +1,9 @@
 loadProductActive();
 
+function formatNumber(number) {
+    return new Intl.NumberFormat('vi-VN').format(number);
+}
+
 $('.checked-all').on('click', function () {
     if ($(this).is(":checked")) {
         $('.checked-one').each((index, item) => {
@@ -10,13 +14,13 @@ $('.checked-all').on('click', function () {
             $(item).prop('checked', false);
         })
     }
-    const checked = findÁllChecked();
+    const checked = findAllChecked();
     $('.total-checked').text(checked.length)
     loadTotalCart(checked);
 })
 
 $('#buy-product').on('click', function () {
-    const checked = findÁllChecked();
+    const checked = findAllChecked();
     if (checked.length === 0) {
         showError("Vui lòng chọn sản phẩm cần mua");
         return false;
@@ -46,7 +50,7 @@ $('#cart').on('click', function (e) {
     } else if (eleClick.hasClass('btn-change-variant')) {
         updateVariant(eleClick);
     } else if (eleClick.hasClass('checked-one')) {
-        const checked = findÁllChecked();
+        const checked = findAllChecked();
         $('.total-checked').text(checked.length)
         loadTotalCart(checked);
     } else if (eleClick.hasClass('btn-remove-cart-item')) {
@@ -57,12 +61,26 @@ $('#cart').on('click', function (e) {
     }
 
     const eleNameAttr = eleClick.closest('.cart-item').find('.list-attr-name');
-    if(!eleNameAttr.hasClass('show')){
+    if (!eleNameAttr.hasClass('show')) {
         removeIonChecked(eleClick);
     }
 })
 
-function findÁllChecked() {
+$('#cart').on('input', function (e) {
+    const eleClick = $(e.target);
+    if(eleClick.hasClass('product-quantity')){
+        let enteredQuantity = parseInt(eleClick.val());
+        if (isNaN(enteredQuantity) || enteredQuantity <= 0) {
+            enteredQuantity = 1;
+        }
+
+        eleClick.val(enteredQuantity);
+        updateCart(eleClick);
+    }
+
+})
+
+function findAllChecked() {
     let checked = [];
     $('.checked-one:checked').each((index, item) => {
         checked.push(parseInt($(item).val()));
@@ -79,14 +97,14 @@ function loadTotalCart(data) {
         data: JSON.stringify(data),
         success: (response) => {
             if (data.length === 0) {
-                $('.total-cart').text(0);
-                $('.total-discount').text(0);
-                $('.total-buy').text(0)
+                $('.total-cart').text(0 + " ₫");
+                $('.total-discount').text(0 + " ₫");
+                $('.total-buy').text(0 + " ₫")
                 $('.total-checked').text(0)
             } else {
-                $('.total-cart').text(response.tongTienHang);
-                $('.total-discount').text(response.tietKiem);
-                $('.total-buy').text(response.tongSoTien)
+                $('.total-cart').text(formatNumber(response.tongTienHang) + " ₫");
+                $('.total-discount').text(formatNumber(response.tietKiem) + " ₫");
+                $('.total-buy').text(formatNumber(response.tongSoTien) + " ₫")
             }
 
         },
@@ -113,7 +131,7 @@ function loadProductActive() {
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
                                           <div class="col-lg-3">
-                                            <a href="">
+                                            <a href="/san-pham/${item.slug}">
                                               <img
                                                 src="/repository/${item.image}"
                                                 class="img-fluid rounded-start cart-item-image"
@@ -123,7 +141,7 @@ function loadProductActive() {
                                           </div>
                                           <div class="col-lg-9">
                                             <div class="card-body">
-                                              <a style="color: black; text-decoration: none" href=""
+                                              <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
                                                 ><h5 class="card-title line-clamp-2">${item.tenSanPham}</h5></a
                                               >
                                               <div class="btn-group">
@@ -196,8 +214,8 @@ function loadProductActive() {
                       </div>
                     </div>
                     <div class="col-2 d-flex">
-                        <del class="price-origin">${item.donGia}</del>
-                        <p class="ms-2 price-discount">${item.giaMua}</p>
+                        <del class="price-origin product-price-custom-vnd">${item.donGia}</del>
+                        <p class="ms-2 price-discount product-price-custom-vnd">${item.giaMua}</p>
                     </div>
                     <div class="col-2">
                       <span>
@@ -221,7 +239,7 @@ function loadProductActive() {
                       </span>
                     </div>
                     <div class="col-2">
-                      <b class="price-buy">${item.soTien}</b>
+                      <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
                     </div>
                     <div class="col-1">
                       <a class="btn-remove-cart-item" style="cursor: pointer">Xóa</a>
@@ -230,6 +248,15 @@ function loadProductActive() {
                 </div>`;
             })
             $('#cart').html(html);
+
+            $('.product-price-custom-vnd').each(function(index, item) {
+                let res = $(item).html();
+                if(res.indexOf("đ") === -1){
+                    let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                    $(item).html(formattedValue);
+                }
+            });
         },
         error: (error) => {
 
@@ -272,28 +299,31 @@ function updateCart(ele) {
 
         },
         error: (error) => {
-            console.log(error)
+            showError(error.responseJSON.error)
         }
     });
 }
 
 function updateQuantity(ele, operator) {
     const eleParent = ele.closest('.change-quantity');
-    let eleInput = eleParent.find('input');
+    const eleInput = eleParent.find('input');
     let quantity = parseInt(eleInput.val());
+
+    let quantityCurrent = quantity;
 
     if (operator === "+") {
         quantity += 1;
     } else {
-        if (quantity === 1) {
-            quantity = 1;
-        } else {
+        if (quantity > 1) {
             quantity -= 1;
         }
     }
-    eleInput.val(quantity);
+    if (quantityCurrent == 1 && operator === '-') {
 
-    updateCart(ele)
+    } else {
+        eleInput.val(quantity);
+        updateCart(ele);
+    }
 }
 
 function updateVariant(ele) {
@@ -339,12 +369,11 @@ function changeVariant(data, successCallback, errorCallback) {
 function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.cart-item-image').attr('src', `/repository/${data.image}`);
     eleCartItem.find('.product-quantity').val(data.soLuong);
-    eleCartItem.find('.price-origin').text(data.donGia);
-    eleCartItem.find('.price-discount').text(data.giaMua);
-    eleCartItem.find('.price-buy').text(data.soTien);
+    eleCartItem.find('.price-origin').text(formatNumber(data.donGia) + " đ");
+    eleCartItem.find('.price-discount').text(formatNumber(data.giaMua) + " đ");
+    eleCartItem.find('.price-buy').text(formatNumber(data.soTien) + " đ");
 
     const listAttrName = eleCartItem.find('.list-attr-name');
-    console.log(listAttrName)
 
     let nameVariant = [];
     let htmlThuocTinh = '';
@@ -380,7 +409,7 @@ function loadOneCartItem(data, eleCartItem) {
         htmlThuocTinh += htmlGiaTriThuocTinh;
     })
     htmlThuocTinh += ` <li class="text-right mt-2">
-                                        <button type="button" class="btn btn-light">
+                                        <button type="button" class="btn btn-light btn-not-change">
                                           Cancel
                                         </button>
                                         <button
@@ -398,7 +427,7 @@ function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.name-variant').text(nameVariant.join(" , "));
     $('.variant-id').val(data.idBienThe)
 
-    const checked = findÁllChecked();
+    const checked = findAllChecked();
     $('.total-checked').text(checked.length)
     loadTotalCart(checked);
 }
@@ -427,7 +456,7 @@ function deleteCart(eleClick) {
         });
 }
 
-function removeIonChecked(eleClick){
+function removeIonChecked(eleClick) {
     let nameVariants = eleClick.closest('.cart-item').find('.name-variant').text();
 
     let nameVariant = nameVariants.split(" , ");
@@ -438,9 +467,10 @@ function removeIonChecked(eleClick){
     eleParent.find('button').each((index, item) => {
         let textButton = $(item).text().trim();
         nameVariant.forEach(itemButton => {
-            if(textButton === itemButton){
+            if (textButton === itemButton) {
                 $(item).prepend(`<i class="fas fa-check"></i>`);
             }
         })
     });
 }
+
