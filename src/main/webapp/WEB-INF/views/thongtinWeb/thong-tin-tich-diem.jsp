@@ -45,6 +45,7 @@
                     <th>Mã hóa đơn</th>
                     <th>Số điểm tích được</th>
                     <th>Số điểm dùng</th>
+                    <th>Số điểm hoàn</th>
                     <th>Ngày tích</th>
                 </tr>
                 </thead>
@@ -88,8 +89,9 @@
                             <tr class="text-center">
                                 <td>\${++index}</td>
                                 <td>\${item.maHoaDon}</td>
-                                 <td>\${item.soDiemTichDuoc}</td>
+                                 <td>\${item.soDiemTichDuoc != null ? item.soDiemTichDuoc : 0}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
+                                 <td>\${item.soDiemHoan != null ? item.soDiemHoan : 0}</td>
                                  <td>\${getDateTime(item.ngayTao)}</td>
                             </tr>
                         `;

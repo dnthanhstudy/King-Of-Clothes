@@ -10,4 +10,6 @@ public interface LichSuTichDiemRepository extends JpaRepository<LichSuTichDiemEn
     List<LichSuTichDiemEntity> findAllByOrderByNgayTaoDesc();
 
     List<LichSuTichDiemEntity> findAllByKhachHang_idOrderByNgayTaoDesc(Long idKhachHang);
+
+    LichSuTichDiemEntity findByHoaDon_maAndTrangThai(String maHoaDon, String trangThai);
 }

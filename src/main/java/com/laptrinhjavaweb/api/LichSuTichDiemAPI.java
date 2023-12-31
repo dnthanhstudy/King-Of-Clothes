@@ -29,7 +29,7 @@ public class LichSuTichDiemAPI {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchs(@RequestParam(name = "sdtKhachHang") String sdtKhachHang){
+    public ResponseEntity<?> searchs(@RequestParam(name = "sdtKhachHang") String sdtKhachHang ){
         List<LichSuTichDiemResponse> result = lichSuTichDiemService.findAllByIdKhachHang(sdtKhachHang);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

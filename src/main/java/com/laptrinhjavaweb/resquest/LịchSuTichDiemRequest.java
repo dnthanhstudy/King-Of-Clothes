@@ -15,5 +15,7 @@ public class LịchSuTichDiemRequest {
 
     private Integer soDiemTichDuoc;
 
-    private String trangThai = "ACTIVE";
+    private Integer soDiemHoan;
+
+    private String trangThai = "CONGDIEM";
 }

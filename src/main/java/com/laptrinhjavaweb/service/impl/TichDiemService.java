@@ -30,6 +30,8 @@ public class TichDiemService implements ITichDiemService {
         tichDiemRepository.save(entity);
     }
 
+
+
     @Override
     public Integer soDiemFindByKhachHang(String ma) {
         TichDiemEntity entity = tichDiemRepository.findByKhachHang_ma(ma);

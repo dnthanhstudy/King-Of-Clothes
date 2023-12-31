@@ -1,10 +1,8 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.LichSuTichDiemEntity;
-import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
-import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
 import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
 import org.modelmapper.ModelMapper;
@@ -23,12 +21,6 @@ public class LichSuTichDiemConverter {
     @Autowired
     private KhachHangRepository khachHangRepository;
 
-    @Autowired
-    private KhachHangConverter khachHangConverter;
-
-    @Autowired
-    private HoaDonConverter hoaDonConverter;
-
     public LichSuTichDiemEntity convertToEntity(LịchSuTichDiemRequest request){
         LichSuTichDiemEntity entity = modelMapper.map(request, LichSuTichDiemEntity.class);
         entity.setHoaDon(hoaDonRepository.findByMa(request.getMaHoaDon()));
@@ -45,5 +37,6 @@ public class LichSuTichDiemConverter {
             entity.setSoDiemDung(0);
         }
         return response;
+
     }
 }

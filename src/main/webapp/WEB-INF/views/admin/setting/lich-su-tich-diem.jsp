@@ -45,6 +45,7 @@
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Số điểm tích được</th>
                         <th scope="col">Số điểm dùng</th>
+                        <th scope="col">Số điểm hoàn</th>
                         <th scope="col">Ngày tích</th>
                     </tr>
                     </thead>
@@ -75,8 +76,9 @@
                                  <td>\${item.maHoaDon}</td>
                                  <td>\${item.tenKhachHang}</td>
                                  <td>\${item.soDienThoai}</td>
-                                 <td>\${item.soDiemTichDuoc}</td>
+                                 <td>\${item.soDiemTichDuoc != null ? item.soDiemTichDuoc : 0}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
+                                 <td>\${item.soDiemHoan != null ? item.soDiemHoan : 0}</td>
                                  <td>\${formatDateInput(item.ngayTao)}</td>
                             </tr>
                         `;
@@ -117,8 +119,9 @@
                                  <td>\${item.maHoaDon}</td>
                                  <td>\${item.tenKhachHang}</td>
                                  <td>\${item.soDienThoai}</td>
-                                 <td>\${item.soDiemTichDuoc}</td>
+                                 <td>\${item.soDiemTichDuoc != null ? item.soDiemTichDuoc : 0}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
+                                 <td>\${item.soDiemHoan != null ? item.soDiemHoan : 0}</td>
                                  <td>\${formatDateInput(item.ngayTao)}</td>
                             </tr>
                         `;
