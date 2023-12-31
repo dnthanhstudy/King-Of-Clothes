@@ -84,8 +84,14 @@
                     let isChecked = item.trangThai === "ACTIVE" ? "checked": "";
                     html += `<tr>
                                     <td>\${index+1}</td>
-                                    <td><img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;"></td>
-                                    <td>\${item.ten}</td>
+                                    <td>
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">
+                                            <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a>
+                                    </td>
                                     <td>\${item.gia}</td>
                                     <td>\${item.danhMuc.ten}</td>
                                     <td>\${item.thuongHieu.ten}</td>
