@@ -4,7 +4,6 @@ import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 
 import java.util.List;
-import java.util.Map;
 
 public interface IHoaDonService {
 
@@ -19,5 +18,7 @@ public interface IHoaDonService {
     String delete(String ma);
 
     List<HoaDonResponse> searchs(String param, String trangThai);
+
+    void deleteStatus(String ma);
 
 }

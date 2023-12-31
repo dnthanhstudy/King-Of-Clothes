@@ -27,4 +27,7 @@ public class LichSuTichDiemEntity extends BaseEntity{
 
 	@Column(name = "sodiemtichduoc")
 	private Integer soDiemTichDuoc;
+
+	@Column(name = "sodiemhoan")
+	private Integer soDiemHoan;
 }

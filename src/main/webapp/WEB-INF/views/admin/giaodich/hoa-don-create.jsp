@@ -363,15 +363,26 @@
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
     let isPayment = true;
+    let param = '';
+    let pageCurrent = 1;
 
     setInterval(time, 1000);
+
+    function time() {
+        var currentDate = new Date();
+        var formattedTime = ('0' + currentDate.getDate()).slice(-2) + '/'
+            + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '/'
+            + currentDate.getFullYear() + ' '
+            + ('0' + currentDate.getHours()).slice(-2) + ':'
+            + ('0' + currentDate.getMinutes()).slice(-2) + ':'
+            + ('0' + currentDate.getSeconds()).slice(-2);
+        $('#thoiGian').text(formattedTime);
+    }
 
     function formatNumber(number) {
         return new Intl.NumberFormat('vi-VN').format(number);
     }
 
-    let param = '';
-    let pageCurrent = 1;
     loadAllProduct();
 
     loadHoaDon();
@@ -436,26 +447,31 @@
     })
 
     $('#btn-paymant-invoice').on('click', function () {
-        var res = paymentInvoice()
-        if ($('#code-customer').val() !== "" && res !== false) {
-            tienQuyDiem(
-                function (response) {
-                    let data = {};
-                    data['maKhachHang'] = $('#code-customer').val();
-                    data['soDiemDung'] = parseInt($('#input-point').val().trim())
-                    data['soDiemTichDuoc'] = response;
-                    data['maHoaDon'] = maHoaDon;
+        showConfirm("Bạn có chắc chắn muốn thanh toán hóa đơn?")
+            .then((confirmed) => {
+                if (confirmed) {
+                    var res = paymentInvoice();
+                    if ($('#code-customer').val() !== "" && res !== false) {
+                        tienQuyDiem(
+                            function (response) {
+                                let data = {};
+                                data['maKhachHang'] = $('#code-customer').val();
+                                data['soDiemDung'] = parseInt($('#input-point').val().trim())
+                                data['soDiemTichDuoc'] = response;
+                                data['maHoaDon'] = maHoaDon;
 
-                    tichDiem(data);
+                                tichDiem(data);
 
-                    luuLichSu(data);
+                                luuLichSu(data);
 
-                },
-                function (error) {
-                    console.log(error)
-                })
-        }
-    })
+                            },
+                            function (error) {
+                                console.log(error);
+                            });
+                    }
+                }
+            });
+    });
 
     $("#input-point").keyup(function () {
         if ($(this).val() !== '') {
@@ -467,17 +483,6 @@
 
         }
     });
-
-    function time() {
-        var currentDate = new Date();
-        var formattedTime = ('0' + currentDate.getDate()).slice(-2) + '/'
-            + ('0' + (currentDate.getMonth() + 1)).slice(-2) + '/'
-            + currentDate.getFullYear() + ' '
-            + ('0' + currentDate.getHours()).slice(-2) + ':'
-            + ('0' + currentDate.getMinutes()).slice(-2) + ':'
-            + ('0' + currentDate.getSeconds()).slice(-2);
-        $('#thoiGian').text(formattedTime);
-    }
 
     function loadAllProduct() {
         $.ajax({
@@ -869,6 +874,7 @@
     });
 
     let customers = [];
+
     $.ajax({
         url: '/api/khach-hang/all',
         method: "GET",
@@ -878,9 +884,9 @@
                 let customer = {
                     "value": item.soDienThoai + " - " + item.ten,
                     "ma": item.ma
-                }
+                };
                 customers.push(customer);
-            })
+            });
             loadSuggestions(customers);
         },
         error: function (error) {
@@ -889,14 +895,23 @@
     });
 
     function loadSuggestions(options) {
+        let searchCustomerInput = $('#search-customer');
+
         $('#search-customer').autocomplete({
             lookup: options,
             minChars: 0,
             onSelect: function (suggestion) {
                 $('#code-customer').val(suggestion.ma);
-                $('#search-customer').val(suggestion.value);
+                searchCustomerInput.val(suggestion.value);
                 $('#input-point').attr('disabled', false);
                 loadSoDiem(suggestion.ma);
+            }
+        });
+
+        searchCustomerInput.on('input', function () {
+            if (!searchCustomerInput.val().trim()) {
+                $('#code-customer').val('');
+                $('#point-customer').text("Không có");
             }
         });
     }
@@ -1034,7 +1049,6 @@
                         })
 
                         $('.btn-add-product').on('click', function () {
-                            console.log("abc");
                             let quantity = parseInt($(this).closest('.action').find('.invoice-detail-quantity').val());
                             quantity += 1;
                             let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
@@ -1130,24 +1144,30 @@
             },
             error: (error) => {
                 isPayment = false;
-                //showError(error.responseJSON.error)
-                console.log(error)
+                showError(error.responseJSON.error)
             }
         });
     }
 
     function loadSoDiem(ma) {
-        $.ajax({
-            url: "/api/tich-diem/" + ma,
-            method: "GET",
-            dataType: "json",
-            success: (response) => {
-                $('#point-customer').text(response);
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
+        if(ma === null)
+        {
+            $('#point-customer').text("Không có");
+        }
+        else
+        {
+            $.ajax({
+                url: "/api/tich-diem/" + ma,
+                method: "GET",
+                dataType: "json",
+                success: (response) => {
+                    $('#point-customer').text(response);
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
     }
 
     function validateForm() {
@@ -1168,17 +1188,19 @@
     $('#invoice-customer-payment').on('input', validateForm);
 
     function paymentInvoice() {
-        if(isPayment === false){
+        if (isPayment === false) {
             showError("Số lượng không hợp lệ. Xin kiểm tra lại");
             return false;
         }
+
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
+
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
             showError("Số tiền khách trả chưa đủ");
             return false;
-        }else if(parseInt($('#input-point').val()) > parseInt($('#point-customer').text())){
+        } else if (parseInt($('#input-point').val()) > parseInt($('#point-customer').text())) {
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
             return false;
         } else {
@@ -1192,38 +1214,33 @@
             data['tienKhachTra'] = tienKhachTra;
             data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
             data['maNhanVien'] = ma;
-            data['tienGiamGia'] = tienGiamGia
+            data['tienGiamGia'] = tienGiamGia;
 
-            showConfirm("Bạn có chắc chắn muốn thanh toán hóa đơn?")
-                .then((confirmed) => {
-                    if (confirmed) {
-                        // Proceed with the payment
-                        showConfirm("Bạn có muốn in hóa đơn hay không?")
-                            .then((confirmedPrint) => {
-                                $.ajax({
-                                    url: "/api/hoa-don-off",
-                                    method: "PUT",
-                                    contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
-                                    data: JSON.stringify(data),
-                                    success: (response) => {
-                                        console.log(response)
-                                    },
-                                    error: (error) => {
-                                        console.log(error)
-                                    }
-                                });
-                                if (confirmedPrint) {
-                                    window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
-                                } else {
-                                    window.location.href = "/admin/giao-dich/hoa-don-off";
-                                    showSuccess("Thanh toán hóa đơn thành công");
-                                }
-                            });
-                    }
+            showConfirm("Bạn có muốn in hóa đơn hay không?")
+                .then((confirmedPrint) => {
+                    $.ajax({
+                        url: "/api/hoa-don-off",
+                        method: "PUT",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(data),
+                        success: (response) => {
+                            if (confirmedPrint) {
+                                window.location.href = "/admin/hoa-don/printf/" + maHoaDon;
+                            } else {
+                                window.location.href = "/admin/giao-dich/hoa-don-off";
+                                showSuccess("Thanh toán hóa đơn thành công");
+                            }
+                        },
+                        error: (error) => {
+                            console.log(error);
+                        }
+                    });
                 });
         }
     }
+
+
 
     function tichDiem(data) {
         $.ajax({
