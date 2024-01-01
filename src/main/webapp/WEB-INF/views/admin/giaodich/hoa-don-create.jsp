@@ -1240,8 +1240,6 @@
         }
     }
 
-
-
     function tichDiem(data) {
         $.ajax({
             url: "/api/tich-diem",

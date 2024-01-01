@@ -159,7 +159,6 @@
                                 <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                 <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
                                 <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
-                                <button class="btn btn-danger btn-deleteStatus" value="\${item.ma}">Hủy</button>
                             </td>
                         </tr>
                     `;
@@ -169,7 +168,6 @@
 
                 if (value === "TREO") {
                     $(".detail").hide();
-                    $(".btn-deleteStatus").hide();
                 }
                 if (value === "THANHCONG") {
                     $(".btn-delete").hide();
@@ -178,7 +176,6 @@
                 if (value === "HUYDON") {
                     $(".btn-delete").hide();
                     $(".create").hide();
-                    $(".btn-deleteStatus").hide();
                 }
             },
             error: (error) => {
@@ -270,7 +267,6 @@
                                 <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                 <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
                                 <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
-                                <button class="btn btn-danger btn-deleteStatus" value="\${item.ma}">Hủy</button>
                             </td>
                         </tr>
                     `;
@@ -278,18 +274,16 @@
                     });
                 }
 
-                if (value === "TREO") {
+                if (trangThai  === "TREO") {
                     $(".detail").hide();
-                    $(".btn-deleteStatus").hide();
                 }
-                if (value === "THANHCONG") {
+                if (trangThai === "THANHCONG") {
                     $(".btn-delete").hide();
                     $(".create").hide();
                 }
-                if (value === "HUYDON") {
+                if (trangThai === "HUYDON") {
                     $(".btn-delete").hide();
                     $(".create").hide();
-                    $(".btn-deleteStatus").hide();
                 }
             },
             error: (error) => {
@@ -298,28 +292,6 @@
         });
 
     }
-
-    $('.tbody-hoadon').on('click', (e) => {
-        if ($(e.target).hasClass('btn-deleteStatus') && !$(e.target).is(":hidden")) {
-            let ma = $(e.target).val();
-            showConfirm("Bạn có muốn hủy không?", ma)
-                .then((confirmed) => {
-                    if (confirmed) {
-                        $.ajax({
-                            url: '/api/hoa-don-off/deleteStatus/' + ma,
-                            method: 'PUT',
-                            success: function (req) {
-                                getHoaDon(trangThai);
-                                showSuccess("Hủy thành công!");
-                            },
-                            error: function (xhr, status, error) {
-                                showError("Hủy thất bại");
-                            }
-                        });
-                    }
-                })
-        }
-    })
 
 </script>
 </body>

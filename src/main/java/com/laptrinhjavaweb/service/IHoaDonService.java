@@ -19,6 +19,6 @@ public interface IHoaDonService {
 
     List<HoaDonResponse> searchs(String param, String trangThai);
 
-    void deleteStatus(String ma);
+    void deleteStatus(String ma, Long idHuyDon);
 
 }

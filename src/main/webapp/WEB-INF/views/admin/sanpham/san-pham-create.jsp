@@ -168,7 +168,7 @@
 
     </div>
 </div>
-
+<input type="hidden" name="" value="" id="product-id">
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script>
     let ckeChiTietSanPham = CKEDITOR.replace("chitietsanpham");

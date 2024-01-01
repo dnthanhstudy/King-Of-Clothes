@@ -18,8 +18,11 @@ function validateProduct() {
 
 $(".btn-add-product").on("click", function (event) {
     event.preventDefault();
+    let method = "POST";
+    let message = "Thêm sản phẩm thành công";
     if (validateProduct()) {
         let data = getDataFromForm();
+        data["id"] = $('#product-id').val();
         data["anh"] = getImageOfProduct();
         if (data["anh"].length === 0) {
             showError("Vui lòng chọn hình ảnh của sản phẩm");
@@ -52,18 +55,28 @@ $(".btn-add-product").on("click", function (event) {
             }
         });
 
+        if(data["id"] !== "")
+        {
+            data["id"] = parseInt(data["id"]);
+            method = "PUT";
+            message = "Cập nhật sản phẩm thành công";
+        }else{
+            data["id"] = null;
+        }
+        console.log(data);
+
         $.ajax({
             url: "/api/san-pham",
-            method: "POST",
+            method: method,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(data),
             success: (response) => {
-                showSuccess("Thêm sản phẩm thành công");
+                showSuccess(message);
                 window.location.href = "/admin/san-pham";
             },
             error: (error) => {
-                console.log(error);
+                showError(error.responseJSON.error)
             }
         });
     }

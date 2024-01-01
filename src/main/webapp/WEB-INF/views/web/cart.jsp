@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
-<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <!doctype html>
 <html lang="en">
 <head>

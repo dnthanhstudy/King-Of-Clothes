@@ -299,7 +299,7 @@ function updateCart(ele) {
 
         },
         error: (error) => {
-            console.log(error)
+            showError(error.responseJSON.error)
         }
     });
 }

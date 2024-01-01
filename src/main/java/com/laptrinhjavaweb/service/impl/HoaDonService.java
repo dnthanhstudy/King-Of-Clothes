@@ -44,6 +44,10 @@ public class HoaDonService implements IHoaDonService {
     @Autowired
     private LichSuTichDiemRepository lichSuTichDiemRepository;
 
+    @Autowired
+    private LyDoHuyDonRepository lyDoHuyDonRepository;
+
+
     @Override
     @Transactional
     public HoaDonResponse save(HoaDonResquest hoaDonResquest) {
@@ -129,10 +133,10 @@ public class HoaDonService implements IHoaDonService {
 
     @Override
     @Transactional
-    public void deleteStatus(String ma) {
+    public void deleteStatus(String ma, Long idHuyDon) {
         HoaDonEntity hoaDonEntity = hoaDonRepository.findByMa(ma);
 
-        if (hoaDonEntity != null && hoaDonEntity.getKhachHang() != null) {
+        if (hoaDonEntity.getKhachHang() != null) {
             KhachHangEntity khachHangEntity = hoaDonEntity.getKhachHang();
 
             LichSuTichDiemEntity lichSuTichDiemEntity = lichSuTichDiemRepository.findByHoaDon_maAndTrangThai(ma, SystemConstant.CONGDIEM);
@@ -147,26 +151,18 @@ public class HoaDonService implements IHoaDonService {
             newLichSu.setKhachHang(khachHangEntity);
             newLichSu.setHoaDon(hoaDonEntity);
             lichSuTichDiemRepository.save(newLichSu);
-
-            List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
-            hoaDonChiTietEntities.forEach(item -> {
-                BienTheEntity bienTheEntity = item.getBienThe();
-                bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
-                bienTheRepository.save(bienTheEntity);
-            });
-
-            hoaDonEntity.setTrangThai("HUYDON");
-            hoaDonRepository.save(hoaDonEntity);
-        } else {
-            List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
-            hoaDonChiTietEntities.forEach(item -> {
-                BienTheEntity bienTheEntity = item.getBienThe();
-                bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
-                bienTheRepository.save(bienTheEntity);
-            });
-            hoaDonEntity.setTrangThai("HUYDON");
-            hoaDonRepository.save(hoaDonEntity);
         }
+        List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
+        hoaDonChiTietEntities.forEach(item -> {
+            BienTheEntity bienTheEntity = item.getBienThe();
+            bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
+            bienTheRepository.save(bienTheEntity);
+        });
+
+        LyDoHuyDonEntity lyDoHuyDonEntity = lyDoHuyDonRepository.findById(idHuyDon).get();
+        hoaDonEntity.setLyDoHuyDon(lyDoHuyDonEntity);
+        hoaDonEntity.setTrangThai("HUYDON");
+        hoaDonRepository.save(hoaDonEntity);
     }
 
 }
