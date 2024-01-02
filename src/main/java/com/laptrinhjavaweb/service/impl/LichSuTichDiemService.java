@@ -1,13 +1,12 @@
 package com.laptrinhjavaweb.service.impl;
 
-import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.LichSuTichDiemConverter;
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.LichSuTichDiemEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.LichSuTichDiemRepository;
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
-import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
+import com.laptrinhjavaweb.resquest.LichSuTichDiemRequest;
 import com.laptrinhjavaweb.service.ILichSuTichDiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
     private KhachHangRepository khachHangRepository;
 
     @Override
-    public void save(LịchSuTichDiemRequest request) {
+    public void save(LichSuTichDiemRequest request) {
         LichSuTichDiemEntity entity = lichSuTichDiemConverter.convertToEntity(request);
         lichSuTichDiemRepository.save(entity);
     }
