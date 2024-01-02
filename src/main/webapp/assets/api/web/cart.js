@@ -27,7 +27,9 @@ $('#buy-product').on('click', function () {
     }
     checkQuantity(checked,
         function () {
-            showSuccess("Bạn có thể mua được hàng nè");
+
+          //  showSuccess("Bạn có thể mua được hàng nè");
+            muaHang();
         },
         function (error) {
             showError(error.responseJSON.error)
@@ -126,7 +128,7 @@ function loadProductActive() {
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
-                                    <input value="${item.id}" class="form-check-input checked-one cart-detail-id" type="checkbox" />
+                                    <input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />
                                     <label class="form-check-label">
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp" %>
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -284,6 +285,37 @@
         </div>
     </div>
 </div>
+<script>
+    var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+    function muaHang(){
+        var listsp = getValByCheckbox();
+        var listspAsNumbers = listsp.map(str => Number(str));
+
+        var data = JSON.stringify({
+            dsghct: listspAsNumbers,
+        });
+        $.ajax({
+            url: '/api/user/giohang/dathang/' + idkh,
+            method: 'POST',
+            contentType: 'application/json',
+            data: data,
+            success: async function (req) {
+                //     console.log(req)
+                window.location.href = "/checkout";
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+                showError("Có lỗi xảy ra");
+            }
+        });
+    }
+
+    function getValByCheckbox() {
+        return $("input[name='idghct']:checked").map(function () {
+            return this.value;
+        }).get();
+    }
+</script>
 <script src="<c:url value='/assets/api/web/cart.js'/>"></script>
 </body>
 </html>
