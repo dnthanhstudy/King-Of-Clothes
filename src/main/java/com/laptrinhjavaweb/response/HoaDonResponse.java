@@ -33,4 +33,8 @@ public class HoaDonResponse {
     private String tenNhanVien;
 
     private String trangThai;
+
+    private String nguoiSua;
+
+    private LyDoHuyDonReponse lyDoHuyDon;
 }

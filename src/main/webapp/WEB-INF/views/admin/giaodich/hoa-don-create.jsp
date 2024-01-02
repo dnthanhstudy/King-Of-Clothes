@@ -450,25 +450,24 @@
         showConfirm("Bạn có chắc chắn muốn thanh toán hóa đơn?")
             .then((confirmed) => {
                 if (confirmed) {
-                    var res = paymentInvoice();
-                    if ($('#code-customer').val() !== "" && res !== false) {
+                    paymentInvoice();
+                    if ($('#code-customer').val() !== "") {
                         tienQuyDiem(
                             function (response) {
                                 let data = {};
                                 data['maKhachHang'] = $('#code-customer').val();
-                                data['soDiemDung'] = parseInt($('#input-point').val().trim())
+                                data['soDiemDung'] = $('#input-point').val() === "" ? 0 : parseInt($('#input-point').val().trim())
                                 data['soDiemTichDuoc'] = response;
                                 data['maHoaDon'] = maHoaDon;
-
                                 tichDiem(data);
 
                                 luuLichSu(data);
-
                             },
                             function (error) {
                                 console.log(error);
                             });
                     }
+
                 }
             });
     });
@@ -1247,7 +1246,6 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
             success: (response) => {
-
             },
             error: (error) => {
                 console.log(error)

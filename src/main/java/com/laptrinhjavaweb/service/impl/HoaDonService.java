@@ -10,9 +10,11 @@ import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -142,6 +144,7 @@ public class HoaDonService implements IHoaDonService {
             LichSuTichDiemEntity lichSuTichDiemEntity = lichSuTichDiemRepository.findByHoaDon_maAndTrangThai(ma, SystemConstant.CONGDIEM);
 
             TichDiemEntity tichDiemEntity = tichDiemRepository.findByKhachHang_ma(khachHangEntity.getMa());
+
             tichDiemEntity.setSoDiem(tichDiemEntity.getSoDiem() - lichSuTichDiemEntity.getSoDiemTichDuoc());
             tichDiemRepository.save(tichDiemEntity);
 
@@ -152,7 +155,9 @@ public class HoaDonService implements IHoaDonService {
             newLichSu.setHoaDon(hoaDonEntity);
             lichSuTichDiemRepository.save(newLichSu);
         }
+
         List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
+
         hoaDonChiTietEntities.forEach(item -> {
             BienTheEntity bienTheEntity = item.getBienThe();
             bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
@@ -160,9 +165,10 @@ public class HoaDonService implements IHoaDonService {
         });
 
         LyDoHuyDonEntity lyDoHuyDonEntity = lyDoHuyDonRepository.findById(idHuyDon).get();
+
         hoaDonEntity.setLyDoHuyDon(lyDoHuyDonEntity);
         hoaDonEntity.setTrangThai("HUYDON");
         hoaDonRepository.save(hoaDonEntity);
-    }
 
+    }
 }

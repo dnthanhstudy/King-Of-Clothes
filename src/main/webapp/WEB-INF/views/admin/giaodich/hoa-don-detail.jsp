@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Detail Hóa Đơn</title>
+    <title>Chi tiết hóa đơn</title>
 </head>
 <body>
  <section>
@@ -132,8 +132,8 @@
                                  <span class="fs-5" id="tenNhanVien"></span>
                          </div>
                          <div class="row mt-3">
-                                <span class="fs-5">Ghi chú:</span>
-                                 <textarea class="form-control"></textarea>
+                             <span class="fs-5">Ghi chú:</span>
+                             <textarea class="form-control"></textarea>
                          </div>
                      </div>
                  </div>
@@ -144,6 +144,7 @@
 
 
  <script>
+     let maHoaDon = null;
      loadHoaDon();
 
      function getDateTimeFromTimestamp(unixTimeStamp) {
@@ -161,9 +162,9 @@
      }
 
      function loadHoaDon() {
-         var ma = getMaHoaDon();
+         maHoaDon = getMaHoaDon();
          $.ajax({
-             url: '/api/hoa-don-off/' + ma,
+             url: '/api/hoa-don-off/' + maHoaDon,
              method: 'GET',
              dataType: 'json',
              success: function (req) {
@@ -175,6 +176,7 @@
                  $("#soDienThoaiKhachHang").text(req.soDienThoaiKhachHang);
                  $("#tenNhanVien").text(req.tenNhanVien);
                  $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
+                 $("#trangThai").text(req.trangThai);
                  var tbody = $('#tblSanPham tbody');
                  tbody.empty();
                  var index = 0;
@@ -204,43 +206,54 @@
      }
 
      $('.btn-deleteStatus').on('click', () => {
-         var ma = getMaHoaDon();
-         let idHuyDon = $('#lyDo').val();
+         let lyDo = $('#lyDo').val().trim();
+         if (lyDo === "") {
+             showError("Vui lòng nhập lý do hủy đơn.");
+             return;
+         }
+         showConfirm("Bạn có muốn hủy không?")
+                 .then((confirmed) => {
+                     if (confirmed) {
+                         let data = { "lyDo": lyDo };
 
-         let data = { "idHuyDon": idHuyDon };
+                         cancelOrder(data,
+                             function (response) {
+                                 $.ajax({
+                                     url: '/api/hoa-don-off/deleteStatus/' + maHoaDon,
+                                     method: 'PUT',
+                                     contentType: 'application/json',
+                                     data: JSON.stringify(response.id),
+                                     success: function (response) {
+                                         showSuccess("Hủy đơn thành công!");
+                                         window.location.href = "/admin/giao-dich/hoa-don-off";
+                                     },
+                                     error: function (xhr, status, error) {
+                                         showError("Hủy đơn thất bại");
+                                     }
+                                 });
+                             },
+                             function (error) {
+                                console.log(error)
+                             })
+                     }
+                 });
+
+     });
+
+     function cancelOrder(data, successCallback, errorCallback){
          $.ajax({
              url: "/api/ly-do-huy-don",
              method: "POST",
              contentType: "application/json; charset=utf-8",
+             dataType: "json",
              data: JSON.stringify(data),
              success: function (response) {
-                 cancelOrder(ma, response.id);
+                 successCallback(response);
              },
              error: function (error) {
-                 showError("Lưu lý do hủy đơn thất bại");
+                 errorCallback(error);
              }
          });
-     });
-
-     function cancelOrder(ma, idHuyDon) {
-         showConfirm("Bạn có muốn hủy không?")
-             .then((confirmed) => {
-                 if (confirmed) {
-                     $.ajax({
-                         url: '/api/hoa-don-off/deleteStatus/' + ma,
-                         method: 'PUT',
-                         contentType: 'application/json',
-                         data: JSON.stringify({ "idHuyDon": idHuyDon }),
-                         success: function (response) {
-                             showSuccess("Hủy đơn thành công!");
-                             window.location.href = "/admin/giao-dich/hoa-don-off";
-                         },
-                         error: function (xhr, status, error) {
-                             showError("Hủy đơn thất bại");
-                         }
-                     });
-                 }
-             });
      }
  </script>
 </body>

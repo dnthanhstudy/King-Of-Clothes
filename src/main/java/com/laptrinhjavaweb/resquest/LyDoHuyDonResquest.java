@@ -8,6 +8,8 @@ import lombok.Setter;
 @Getter
 public class LyDoHuyDonResquest {
 
+    private Long id;
+
     private String lyDo;
 
     private String trangThai = "ACTIVE";

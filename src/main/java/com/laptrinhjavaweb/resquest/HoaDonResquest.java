@@ -29,6 +29,6 @@ public class HoaDonResquest{
 
     private String maKhachHang;
 
-    private Long idHuyDon;
+    private Long idLyDoHuyDon;
 
 }

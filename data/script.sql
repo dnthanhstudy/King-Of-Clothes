@@ -369,9 +369,9 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(89, NULL, '2023-11-27 03:16:46', NULL, 'admin9193', 'ACTIVE', 100000, 'dxcYK1.jpg', 'HbVo72zr', 12000, 'Xám,M', 22),
 	(90, NULL, '2023-11-27 03:16:46', NULL, 'admin9193', 'ACTIVE', 95000, 'EmU376.jpg', 'Jq9yqoVM', 12000, 'Xám,XL', 22),
 	(91, NULL, '2023-11-27 03:20:51', NULL, 'admin9193', 'ACTIVE', 129000, 'IZnU21.jpg', 'Yd0HSDhe', 12000, 'Trắng', 23),
-	(92, '2023-12-31 07:00:57', '2023-11-27 03:20:51', 'admin9193', 'admin9193', 'ACTIVE', 135000, '0PQldf.jpg', '8tHKHQEX', 11996, 'Xanh', 23),
+	(92, '2024-01-02 03:22:36', '2023-11-27 03:20:51', 'admin9193', 'admin9193', 'ACTIVE', 135000, '0PQldf.jpg', '8tHKHQEX', 11995, 'Xanh', 23),
 	(93, NULL, '2023-11-27 03:20:51', NULL, 'admin9193', 'ACTIVE', 129000, 'B4S4VY.jpg', 'Qpdfpsad', 12000, 'Xám', 23),
-	(94, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 299000, 'cGhYcg.jpg', 'IZMfKTRq', 12000, 'Be', 24),
+	(94, '2024-01-02 03:23:02', '2023-11-27 03:25:03', 'admin9193', 'admin9193', 'ACTIVE', 299000, 'cGhYcg.jpg', 'IZMfKTRq', 11999, 'Be', 24),
 	(95, '2023-12-31 06:59:43', '2023-11-27 03:25:03', 'admin9193', 'admin9193', 'ACTIVE', 305000, '0sECSg.jpg', '1jqXfagn', 12000, 'Nâu', 24),
 	(96, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 295000, 'rdDDQU.jpg', 'l8DhIXQO', 12000, 'Xám', 24),
 	(97, NULL, '2023-11-27 03:25:03', NULL, 'admin9193', 'ACTIVE', 300000, 'gICuWg.jpg', 'yuUDjETB', 12000, 'Đen', 24),
@@ -589,10 +589,10 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(309, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 245000, NULL, 'FxQN5xVl', 12000, 'Be,XL,Vải Corona', 46),
 	(310, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 249000, NULL, 'sLxgWA13', 12000, 'Be,S,Vải Cotton', 46),
 	(311, NULL, '2023-12-09 05:33:10', NULL, 'admin9193', 'ACTIVE', 249000, NULL, 'n1dZ7VZr', 12000, 'Be,S,Vải Corona', 46),
-	(312, '2023-12-31 03:58:57', '2023-12-09 05:35:35', 'admin9193', 'admin9193', 'ACTIVE', 279000, '1cdaBH.jpg', 'bHPu0jZd', 10427, 'Xanh,S,Logo', 47),
+	(312, '2024-01-02 03:27:49', '2023-12-09 05:35:35', 'admin9193', 'admin9193', 'ACTIVE', 279000, '1cdaBH.jpg', 'bHPu0jZd', 10419, 'Xanh,S,Logo', 47),
 	(313, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 280000, NULL, 'FyQF31BY', 12000, 'Xanh,S,Chữ cái', 47),
 	(314, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, '1MrpcfPG', 11999, 'Xanh,L,Logo', 47),
-	(315, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 285000, NULL, 'qRNXM91s', 12000, 'Xanh,L,Chữ cái', 47),
+	(315, '2024-01-01 16:15:40', '2023-12-09 05:35:35', 'admin9193', 'admin9193', 'ACTIVE', 285000, NULL, 'qRNXM91s', 11995, 'Xanh,L,Chữ cái', 47),
 	(316, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 280000, NULL, 'S8LBjd3W', 12000, 'Xanh,XL,Logo', 47),
 	(317, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, '7LGppDQL', 12000, 'Xanh,XL,Chữ cái', 47),
 	(318, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 279000, NULL, 'JrnncEz9', 12000, 'Xanh,XXL,Logo', 47),
@@ -605,7 +605,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(325, '2023-12-28 08:11:36', '2023-12-09 05:35:35', 'admin9193', 'admin9193', 'ACTIVE', 280000, NULL, 'mHvj1f9p', 11999, 'Trắng,XL,Chữ cái', 47),
 	(326, '2023-12-28 12:20:14', '2023-12-09 05:35:35', 'admin9193', 'admin9193', 'ACTIVE', 279000, NULL, 'b6ZNdxHP', 11994, 'Trắng,XXL,Logo', 47),
 	(327, NULL, '2023-12-09 05:35:35', NULL, 'admin9193', 'ACTIVE', 289000, NULL, 'rVEkEKek', 12000, 'Trắng,XXL,Chữ cái', 47),
-	(328, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, 'fxk6ku.jpg', 'yHWALpxb', 12000, 'Xanh,M,Vải Cotton,Địa Cầu', 48),
+	(328, '2024-01-01 16:37:43', '2023-12-09 05:42:32', 'admin9193', 'admin9193', 'ACTIVE', 135000, 'fxk6ku.jpg', 'yHWALpxb', 12000, 'Xanh,M,Vải Cotton,Địa Cầu', 48),
 	(329, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 140000, NULL, 'zn5h0FgK', 12000, 'Xanh,M,Vải Cotton,Mặt Trăng', 48),
 	(330, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 145000, NULL, 'GrqyqNKV', 12000, 'Xanh,M,Vải Cotton,Bầu Trời', 48),
 	(331, NULL, '2023-12-09 05:42:32', NULL, 'admin9193', 'ACTIVE', 135000, NULL, 'sRdGuKD1', 12000, 'Xanh,M,Vải Cotton,Họa Hình', 48),
@@ -823,7 +823,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(543, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'GpL8oSkH', 12000, 'Xám,L,Vải Corolan,Tay lỡ', 49),
 	(544, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 80000, NULL, '6PZEVfsV', 11999, 'Xám,XL,Vải Cotton,Tay ngắn', 49),
 	(545, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, '0ASPLVXb', 12000, 'Xám,XL,Vải Cotton,Tay lỡ', 49),
-	(546, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'CM0ykSbH', 12000, 'Xám,XL,Vải Corolan,Tay ngắn', 49),
+	(546, '2024-01-01 16:14:12', '2023-12-09 05:47:44', 'admin9193', 'admin9193', 'ACTIVE', 79000, NULL, 'CM0ykSbH', 12000, 'Xám,XL,Vải Corolan,Tay ngắn', 49),
 	(547, '2023-12-25 14:16:34', '2023-12-09 05:47:44', 'admin9193', 'admin9193', 'ACTIVE', 80000, NULL, 'tC69Ws4R', 11996, 'Xám,XL,Vải Corolan,Tay lỡ', 49),
 	(548, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'fC7eFF4G', 12000, 'Xám,XXL,Vải Cotton,Tay ngắn', 49),
 	(549, NULL, '2023-12-09 05:47:44', NULL, 'admin9193', 'ACTIVE', 89000, NULL, 'DuaEb5y8', 12000, 'Xám,XXL,Vải Cotton,Tay lỡ', 49),
@@ -847,32 +847,32 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(567, NULL, '2023-12-09 05:47:45', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'vQiacqZL', 12000, 'Trắng,XXL,Vải Corolan,Tay lỡ', 49),
 	(568, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'gAbxQi1q', 12000, 'Đỏ', 50),
 	(569, NULL, '2023-12-17 06:14:05', NULL, 'admin9193', 'ACTIVE', 210000, NULL, 'xQWY6z0B', 12000, 'Xanh', 50),
-	(570, '2023-12-27 16:48:35', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'bQBVhMBg', 11993, 'Xanh,Xl', 51),
-	(571, '2023-12-31 07:15:08', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'yPtRjUvr', 11991, 'Xanh,L', 51),
-	(572, NULL, '2023-12-17 06:30:37', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'xc65qcOd', 12000, 'Đỏ,Xl', 51),
-	(573, '2023-12-27 16:38:51', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'rpoVOOb9', 11988, 'Đỏ,L', 51),
+	(570, '2024-01-02 03:44:36', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'bQBVhMBg', 11987, 'Xanh,Xl', 51),
+	(571, '2024-01-02 03:57:20', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'yPtRjUvr', 11986, 'Xanh,L', 51),
+	(572, '2024-01-01 16:35:54', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'xc65qcOd', 11999, 'Đỏ,Xl', 51),
+	(573, '2024-01-02 06:57:40', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'rpoVOOb9', 11970, 'Đỏ,L', 51),
 	(574, '2023-12-31 07:10:22', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'Lt27ypYY', 11992, 'S', 56),
-	(575, '2023-12-31 06:57:09', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, '6F4mcAEb', 11996, 'XL', 56),
-	(576, '2023-12-27 09:49:58', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'DHrWL9DS', 11998, 'XS,Xanh', 57),
+	(575, '2024-01-02 04:04:22', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, '6F4mcAEb', 11993, 'XL', 56),
+	(576, '2024-01-02 03:35:57', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'DHrWL9DS', 11992, 'XS,Xanh', 57),
 	(577, '2023-12-31 07:14:29', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'qqmLI09J', 11997, 'XS,Đỏ', 57),
 	(578, '2023-12-19 05:15:11', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'LAEemhRN', 11999, 'XXL,Xanh', 57),
-	(579, '2023-12-31 10:17:12', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'D3soJoCH', 11999, 'XXL,Đỏ', 57),
+	(579, '2024-01-02 04:04:22', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'D3soJoCH', 11994, 'XXL,Đỏ', 57),
 	(580, '2023-12-31 07:49:48', '2023-12-19 05:54:26', 'admin9193', 'admin9193', 'ACTIVE', 250000, NULL, 'jWKUuN3b', 39, 'S', 58),
 	(581, '2023-12-31 10:30:02', '2023-12-19 05:54:26', 'admin9193', 'admin9193', 'ACTIVE', 250000, NULL, 'X2HOvgsm', 14, 'M', 58),
 	(582, '2023-12-31 14:53:56', '2023-12-19 05:54:26', 'admin9193', 'admin9193', 'ACTIVE', 250000, NULL, 'z0Q9YCNO', 16, 'L', 58),
 	(583, NULL, '2023-12-19 07:41:57', NULL, 'admin9193', 'ACTIVE', 200000, NULL, 'KS2HRvT5', 12, 'S,Đỏ', 59),
 	(584, '2023-12-28 08:31:52', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'O6qeUFqo', 40, 'S,Đen', 59),
 	(585, '2023-12-28 08:28:31', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'b3rykO7r', 7, 'XS,Đỏ', 59),
-	(586, '2023-12-28 12:17:44', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'WOJASaSE', 10, 'XS,Đen', 59),
+	(586, '2024-01-02 03:50:27', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'WOJASaSE', 4, 'XS,Đen', 59),
 	(587, '2023-12-31 03:46:52', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'iqoQRfSH', 0, 'Đỏ,XS', 60),
 	(588, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 240000, NULL, 'CvNXWeYy', 15, 'Đỏ,XL', 60),
 	(589, '2023-12-31 14:52:01', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'yWOjHI4g', 19, 'Đen,XS', 60),
 	(590, '2023-12-31 06:59:43', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'D3VkVWaO', 12, 'Đen,XL', 60),
 	(591, NULL, '2023-12-19 08:38:09', NULL, 'admin9193', 'ACTIVE', 120000, NULL, 'MhzuNEW2', 12, 'a,10', 61),
 	(594, '2023-12-31 02:27:03', '2023-12-19 09:08:33', 'admin9193', 'admin9193', 'ACTIVE', 10000, NULL, 'VKXfBdnI', 8, 'S', 63),
-	(595, '2023-12-28 12:44:22', '2023-12-19 09:08:33', 'admin9193', 'admin9193', 'ACTIVE', 10000, NULL, 'IQupM58u', 22, 'XL', 63),
-	(604, NULL, '2024-01-01 03:33:46', NULL, 'admin9193', 'ACTIVE', 254000, NULL, '98DQrsZC', 55, 'S', 62),
-	(605, NULL, '2024-01-01 03:33:46', NULL, 'admin9193', 'ACTIVE', 423000, NULL, 'SL7QmAfm', 77, 'XL', 62);
+	(595, '2024-01-02 03:48:56', '2023-12-19 09:08:33', 'admin9193', 'admin9193', 'ACTIVE', 10000, NULL, 'IQupM58u', 10, 'XL', 63),
+	(604, '2024-01-01 16:31:42', '2024-01-01 03:33:46', 'admin9193', 'admin9193', 'ACTIVE', 254000, NULL, '98DQrsZC', 40, 'S', 62),
+	(605, '2024-01-02 03:50:27', '2024-01-01 03:33:46', 'admin9193', 'admin9193', 'ACTIVE', 423000, NULL, 'SL7QmAfm', 65, 'XL', 62);
 
 -- Dumping structure for table duantotnghiep.calam
 CREATE TABLE IF NOT EXISTS `calam` (
@@ -3134,9 +3134,9 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   CONSTRAINT `FKdwfy15k3xk5wta4dkl3ff0t9t` FOREIGN KEY (`idlydohuydon`) REFERENCES `lydohuydon` (`id`),
   CONSTRAINT `FKlwt6og8a59ih2g8k9le1n7bpy` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`),
   CONSTRAINT `FKotnlgqnkhi19yrgi907nev953` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=334 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=368 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadon: ~8 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadon: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.hoadonchitiet
 CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
@@ -3163,9 +3163,9 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   CONSTRAINT `FK72nghe3o7s1prylbbnvfwub2k` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FK8g5acmm1r0ha2hua47ul4rdia` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKhv6nwlu151jpu9ikpe9fonvi6` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=336 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=369 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadonchitiet: ~6 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadonchitiet: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.khachhang
 CREATE TABLE IF NOT EXISTS `khachhang` (
@@ -3339,9 +3339,9 @@ CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
   CONSTRAINT `FKo20v7m85j3ybwep3vv1lop3ik` FOREIGN KEY (`idtichdiem`) REFERENCES `tichdiem` (`id`),
   CONSTRAINT `FKobdibrqqyn0p33ymjekbpbd1q` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKrabwvgudhyvmny1diurrq8lo` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lichsutichdiem: ~10 rows (approximately)
+-- Dumping data for table duantotnghiep.lichsutichdiem: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.lydohuydon
 CREATE TABLE IF NOT EXISTS `lydohuydon` (
@@ -3354,7 +3354,7 @@ CREATE TABLE IF NOT EXISTS `lydohuydon` (
   `lydo` text,
   `mota` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
 
 -- Dumping data for table duantotnghiep.lydohuydon: ~0 rows (approximately)
 
@@ -3753,9 +3753,9 @@ CREATE TABLE IF NOT EXISTS `tichdiem` (
   PRIMARY KEY (`id`),
   KEY `FK3cn0i0s6nyyqp3m7fb1uwyqv0` (`idkhachhang`),
   CONSTRAINT `FK3cn0i0s6nyyqp3m7fb1uwyqv0` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.tichdiem: ~3 rows (approximately)
+-- Dumping data for table duantotnghiep.tichdiem: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.timkiemsanpham
 CREATE TABLE IF NOT EXISTS `timkiemsanpham` (

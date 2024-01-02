@@ -29,4 +29,9 @@ public class HoaDonController {
         return "admin/giaodich/hoa-don-detail";
     }
 
+    @GetMapping("/hoa-don-huy/{ma}")
+    public String detailhoadonhuy(){
+        return "admin/giaodich/hoa-don-detail-huy";
+    }
+
 }

@@ -159,6 +159,7 @@
                                 <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                 <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
                                 <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
+                                <a href="/admin/giao-dich/hoa-don-huy/\${item.ma}" class="btn btn-info detail-huy">Chi tiết</a>
                             </td>
                         </tr>
                     `;
@@ -168,14 +169,17 @@
 
                 if (value === "TREO") {
                     $(".detail").hide();
+                    $(".detail-huy").hide();
                 }
                 if (value === "THANHCONG") {
                     $(".btn-delete").hide();
                     $(".create").hide();
+                    $(".detail-huy").hide();
                 }
                 if (value === "HUYDON") {
                     $(".btn-delete").hide();
                     $(".create").hide();
+                    $(".detail").hide();
                 }
             },
             error: (error) => {
@@ -267,6 +271,7 @@
                                 <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                 <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
                                 <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
+                                <a href="/admin/giao-dich/hoa-don-huy/\${item.ma}" class="btn btn-info detail-huy">Chi tiết</a>
                             </td>
                         </tr>
                     `;
@@ -276,14 +281,17 @@
 
                 if (trangThai  === "TREO") {
                     $(".detail").hide();
+                    $(".detail-huy").hide();
                 }
                 if (trangThai === "THANHCONG") {
                     $(".btn-delete").hide();
                     $(".create").hide();
+                    $(".detai-huy").hide();
                 }
                 if (trangThai === "HUYDON") {
                     $(".btn-delete").hide();
                     $(".create").hide();
+                    $(".detail").hide();
                 }
             },
             error: (error) => {

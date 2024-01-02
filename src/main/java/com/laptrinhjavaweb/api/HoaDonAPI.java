@@ -110,7 +110,6 @@ public class HoaDonAPI {
     @PutMapping("/deleteStatus/{ma}")
     public ResponseEntity<?> deleteStatus(@PathVariable String ma, @RequestBody Long idHuyDon){
         hoaDonService.deleteStatus(ma, idHuyDon);
-
         return new ResponseEntity<>("Hủy thành công", HttpStatus.OK);
     }
 }
