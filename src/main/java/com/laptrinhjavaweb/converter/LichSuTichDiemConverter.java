@@ -4,7 +4,7 @@ import com.laptrinhjavaweb.entity.LichSuTichDiemEntity;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
-import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
+import com.laptrinhjavaweb.resquest.LichSuTichDiemRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class LichSuTichDiemConverter {
     @Autowired
     private KhachHangRepository khachHangRepository;
 
-    public LichSuTichDiemEntity convertToEntity(LịchSuTichDiemRequest request){
+    public LichSuTichDiemEntity convertToEntity(LichSuTichDiemRequest request){
         LichSuTichDiemEntity entity = modelMapper.map(request, LichSuTichDiemEntity.class);
         entity.setHoaDon(hoaDonRepository.findByMa(request.getMaHoaDon()));
         entity.setKhachHang(khachHangRepository.findByMa(request.getMaKhachHang()));

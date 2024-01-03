@@ -104,28 +104,28 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonRepository.save(hoaDon);
         }
 
-        String check = null;
-        for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
-            BienTheEntity bienThe = gioHangChiTiet.getBienThe();
-            if (bienThe.getSoLuong() < gioHangChiTiet.getSoLuong()) {
-                if (bienThe.getSoLuong()==0){
-                    gioHangChiTiet.setTrangThai("DAHETHANG");
-                }else{
-                    Integer sl = bienThe.getSoLuong();
-                    if (sl>10){
-                        gioHangChiTiet.setSoLuong(10);
-                    }else{
-                        gioHangChiTiet.setSoLuong(sl);
-                    }
-                }
-                gioHangChiTietRepository.save(gioHangChiTiet);
-                check= "1";
-            }
-        }
-        if (check!=null){
-            return check;
-        }
-        int checkSl = 0;
+//        String check = null;
+//        for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
+//            BienTheEntity bienThe = gioHangChiTiet.getBienThe();
+//            if (bienThe.getSoLuong() < gioHangChiTiet.getSoLuong()) {
+//                if (bienThe.getSoLuong()==0){
+//                    gioHangChiTiet.setTrangThai("DAHETHANG");
+//                }else{
+//                    Integer sl = bienThe.getSoLuong();
+//                    if (sl>10){
+//                        gioHangChiTiet.setSoLuong(10);
+//                    }else{
+//                        gioHangChiTiet.setSoLuong(sl);
+//                    }
+//                }
+//                gioHangChiTietRepository.save(gioHangChiTiet);
+//                check= "1";
+//            }
+//        }
+//        if (check!=null){
+//            return check;
+//        }
+//        int checkSl = 0;
         for (GioHangChiTietEntity gioHangChiTiet:gioHangChiTietRepository.dsGioHangChiTiet(dsghct)) {
             BienTheEntity bienThe = gioHangChiTiet.getBienThe();
             HoaDonChiTietEntity hoaDonChiTiet = new HoaDonChiTietEntity();
@@ -135,12 +135,9 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonChiTiet.setGia(bienThe.getGia());
             hoaDonChiTiet.setHoaDon(hoaDon);
             gioHangChiTiet.setTrangThai("PENDING");
-            checkSl+=gioHangChiTiet.getSoLuong();
             hoaDonChiTietRepository.save(hoaDonChiTiet);
         }
-        if (checkSl>10){
-            return "2";
-        }
+
         return null;
     }
 

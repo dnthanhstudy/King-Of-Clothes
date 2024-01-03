@@ -22,15 +22,17 @@ $('.checked-all').on('click', function () {
 $('#buy-product').on('click', function () {
     const checked = findAllChecked();
     if (checked.length === 0) {
-        showError("Vui lòng chọn sản phẩm cần mua");
+        showModalError("Vui lòng chọn sản phẩm cần mua");
         return false;
     }
     checkQuantity(checked,
         function () {
-            showSuccess("Bạn có thể mua được hàng nè");
+
+          //  showSuccess("Bạn có thể mua được hàng nè");
+            muaHang();
         },
         function (error) {
-            showError(error.responseJSON.error)
+            showModalError(error.responseJSON.error)
         });
 
 })
@@ -113,6 +115,18 @@ function loadTotalCart(data) {
         }
     });
 }
+function loadGia(donGia,giaMua) {
+    if (donGia==giaMua){
+        return `
+            <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
+        `;
+    }else{
+        return `
+            <del class="price-origin product-price-custom-vnd">${donGia}</del>
+            <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
+        `;
+    }
+}
 
 function loadProductActive() {
     $.ajax({
@@ -120,13 +134,14 @@ function loadProductActive() {
         method: "GET",
         dataType: "json",
         success: (response) => {
+            console.log(response)
             let html = '';
             $.each(response.gioHang, (index, item) => {
                 html += `<div style="border-bottom: 1px solid #dedede" class="cart-item">
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
-                                    <input value="${item.id}" class="form-check-input checked-one cart-detail-id" type="checkbox" />
+                                    <input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />
                                     <label class="form-check-label">
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
@@ -214,8 +229,7 @@ function loadProductActive() {
                       </div>
                     </div>
                     <div class="col-2 d-flex">
-                        <del class="price-origin product-price-custom-vnd">${item.donGia}</del>
-                        <p class="ms-2 price-discount product-price-custom-vnd">${item.giaMua}</p>
+                   ${loadGia(item.donGia,item.giaMua)}
                     </div>
                     <div class="col-2">
                       <span>
