@@ -18,4 +18,6 @@ public interface SanPhamRepositoryCustom {
 			Integer limit);
 
 	List<SanPhamEntity> same(String slug);
+
+	//void removeMultipleTable (Long idSanPham);
 }

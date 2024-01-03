@@ -1,5 +1,7 @@
 package com.laptrinhjavaweb.utils;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +25,7 @@ public class ReadFileUtils extends HttpServlet {
         }
         ServletOutputStream outStream;
         outStream = response.getOutputStream();
-        FileInputStream fin = new FileInputStream("D:/images" + relativeImagePath);
+        FileInputStream fin = new FileInputStream(SystemConstant.path + relativeImagePath);
         BufferedInputStream bin = new BufferedInputStream(fin);
         BufferedOutputStream bout = new BufferedOutputStream(outStream);
         int ch = 0;

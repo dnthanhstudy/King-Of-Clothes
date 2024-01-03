@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LịchSuTichDiemRequest {
+public class LichSuTichDiemRequest {
 
     private String maHoaDon;
 

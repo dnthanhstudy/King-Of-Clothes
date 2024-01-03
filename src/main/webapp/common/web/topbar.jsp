@@ -102,8 +102,12 @@
         method: "GET",
         dataType: "json",
         success: (response) => {
-            const size = response.gioHang.length;
-            $('.quantity-cart').text(size);
+            if(response === null){
+                $('.quantity-cart').text(0);
+            }else{
+                const size = response.gioHang.length;
+                $('.quantity-cart').text(size);
+            }
         },
         error: (error) => {
         }

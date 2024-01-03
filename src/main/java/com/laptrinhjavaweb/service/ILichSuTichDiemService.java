@@ -1,14 +1,13 @@
 package com.laptrinhjavaweb.service;
 
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
-import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
+import com.laptrinhjavaweb.resquest.LichSuTichDiemRequest;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ILichSuTichDiemService {
 
-    void save(LịchSuTichDiemRequest request);
+    void save(LichSuTichDiemRequest request);
 
    List<LichSuTichDiemResponse> findAll();
 

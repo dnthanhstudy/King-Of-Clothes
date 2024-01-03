@@ -31,4 +31,6 @@ public interface ISanPhamService {
 	Map<String, Object> findÁll(Integer pageCurrent, Integer limit);
 
 	List<SanPhamResponse> findAll();
+
+	SanPhamResponse update (SanPhamRequest sanPhamRequest);
 }

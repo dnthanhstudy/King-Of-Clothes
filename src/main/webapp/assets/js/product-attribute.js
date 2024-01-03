@@ -65,7 +65,7 @@ $("#card-attribute .card-body").on("click", function (e) {
                         generateVariant();
                     }
                 } else {
-                    messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
+                    showError("Không được để trống giá trị thuộc tính")
                 }
 
                 eleClick.val("");
