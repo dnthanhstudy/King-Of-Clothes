@@ -26,7 +26,7 @@
             <a href="?lang=en" class="btn border" ><img src="/template/web/img/my.jpg"  style="width: 30px" alt=""></a>
             <a href="/cart" class="btn border">
                 <i class="fas fa-shopping-cart text-primary"></i>
-                <span class="" id="soLuongGioHang">0</span>
+                <span class="quantity-cart">0</span>
             </a>
         </div>
     </div>
@@ -36,6 +36,16 @@
 <input type="hidden" id="customer-id" value="<%=SecurityUtils.getPrincipal().getId()%>">
 <!-- Topbar End -->
 <script>
-    const customerIdWhenLogin = $('#customer-id').val();
-    getSoLuongGioHang(customerIdWhenLogin);
+    const customerCodeWhenLogin = $('#customer-code').val();
+    $.ajax({
+        url: "/api/gio-hang/" + customerCodeWhenLogin,
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            const size = response.gioHang.length;
+            $('.quantity-cart').text(size);
+        },
+        error: (error) => {
+        }
+    });
 </script>

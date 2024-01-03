@@ -10,7 +10,7 @@ public class ConnectionUtils {
 
     public static final String USER = "root";
 
-    public static final String PASS = "123456";
+    public static final String PASS = "123456789";
 
     public static final Connection getConection() {
         Connection con = null;

@@ -54,11 +54,19 @@
         <pattern>/doi-mat-khau</pattern>
     </decorator>
 
+    <decorator name="thong-tin-tich-diem" page="thongtinWeb.jsp">
+        <pattern>/thong-tin-tich-diem</pattern>
+    </decorator>
+
     <decorator name="thu3" page="thu3.jsp">
         <pattern>/thu3</pattern>
     </decorator>
 
     <decorator name="xuat-hoa-don" page="xuat-hoa-don.jsp">
         <pattern>/admin/hoa-don/printf/**</pattern>
+    </decorator>
+
+    <decorator name="tra-hang" page="tra-hang.jsp">
+        <pattern>/admin/tra-hang</pattern>
     </decorator>
 </decorators>

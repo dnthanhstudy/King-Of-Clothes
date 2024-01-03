@@ -80,15 +80,6 @@
                             </div>
                             <!-- End Form Group -->
 
-                            <!-- Checkbox -->
-                            <div class="form-group">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox">
-                                    <label class="custom-control-label text-muted" for="termsCheckbox"> Nhớ mật khẩu</label>
-                                </div>
-                            </div>
-                            <!-- End Checkbox -->
-
                             <button type="submit" class="btn btn-lg btn-block btn-primary">Đăng nhập</button>
                         </form>
                         <!-- End Form -->

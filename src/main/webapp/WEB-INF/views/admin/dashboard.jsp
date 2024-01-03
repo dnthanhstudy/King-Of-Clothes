@@ -375,17 +375,17 @@
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Thống kê doanh thu
+                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><h5>Thống kê doanh thu</h5>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
-                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><h5>Thống kê hoá đơn</h5>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
-                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thống kê hoá đơn
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><h5>Thống kê hoá đơn theo ngày</h5>
                 </button>
             </li>
 
@@ -396,7 +396,7 @@
                 <div class="container-fluid">
                     <div class="form-head mb-sm-5 mb-3">
                         <div class="d-flex justify-content-end">
-                            <h5 class="mt-3 me-2">Thống kê theo: </h5>
+                            <h5 class="mt-1 mb-2 me-2">Thống kê theo: </h5>
                             <div>
                                 <select id="cbbthongke" class="form-control">
                                     <option value="1">Ngày</option>
@@ -475,11 +475,11 @@
                         <div class="col-xl-3 col-sm-6 m-t35">
                             <div class="card card-coin h-100">
                                 <div class="card-body text-center">
-                                    <svg class="mb-3 currency-icon" xmlns="http://www.w3.org/2000/svg" width="80"
-                                         fill="none" height="80" viewBox="0 0 512 512">
-                                        <circle cx="40" cy="40" r="40" fill="white"></circle>
-                                        <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z "
-                                              fill="#EB8153"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-3 currency-icon" fill="none"
+                                         width="80" height="80" viewBox="0 0 512 512">
+                                        <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                                        <path d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-141.7-35.3c4.9-33-20.2-50.7-54.6-62.6l11.1-44.7-27.2-6.8-10.9 43.5c-7.2-1.8-14.5-3.5-21.8-5.1l10.9-43.8-27.2-6.8-11.2 44.7c-5.9-1.3-11.7-2.7-17.4-4.1l0-.1-37.5-9.4-7.2 29.1s20.2 4.6 19.8 4.9c11 2.8 13 10 12.7 15.8l-12.7 50.9c.8 .2 1.7 .5 2.8 .9-.9-.2-1.9-.5-2.9-.7l-17.8 71.3c-1.3 3.3-4.8 8.4-12.5 6.5 .3 .4-19.8-4.9-19.8-4.9l-13.5 31.1 35.4 8.8c6.6 1.7 13 3.4 19.4 5l-11.3 45.2 27.2 6.8 11.2-44.7a1038.2 1038.2 0 0 0 21.7 5.6l-11.1 44.5 27.2 6.8 11.3-45.1c46.4 8.8 81.3 5.2 96-36.7 11.8-33.8-.6-53.3-25-66 17.8-4.1 31.2-15.8 34.7-39.9zm-62.2 87.2c-8.4 33.8-65.3 15.5-83.8 10.9l14.9-59.9c18.4 4.6 77.6 13.7 68.8 49zm8.4-87.7c-7.7 30.7-55 15.1-70.4 11.3l13.5-54.3c15.4 3.8 64.8 11 56.8 43z"
+                                              fill="#FFAB2D"/>
                                     </svg>
                                     <h4 class="text-danger-emphasis"><i>Số lượng khuyến mãi đã bán <span
                                             class="thoiGian"></span></i></h4>
@@ -553,12 +553,7 @@
 
             </div>
             <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <h1>Thống kê danh sách hoá đơn</h1>
-                    </div>
 
-                </div>
                 <form id="formsearchhd">
                     <div class="row" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
                         <div class="col-2">
@@ -595,13 +590,22 @@
                         </div>
                     </div>
                 </form>
+
                 <div class="row mt-3" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <h4>Danh sách hoá đơn</h4>
+                        </div>
+                        <hr>
+
+                    </div>
                     <table class="table table table-striped" id="tblhoadon" >
                         <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Mã hoá đơn</th>
                             <th scope="col">Ngày đặt</th>
+                            <th scope="col">Ngày thanh toán</th>
                             <th scope="col">Mã khách hàng</th>
                             <th scope="col">Tên người đặt</th>
                             <th scope="col">Tổng tiền hàng</th>
@@ -644,8 +648,10 @@
             </div>
             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
                 <div class="row mt-4">
-                    <h5 class="mb-3">Thống kê danh sách hoá đơn</h5>
+
                     <div class="card">
+                        <h4 class="mt-3">Danh sách hoá đơn theo ngày</h4>
+                        <hr>
                         <table class="table table-hover table-striped" id="tblThongKeHoaDon">
                             <thead>
                             <tr>
@@ -653,6 +659,7 @@
                                 <th scope="col">Ngày</th>
                                 <th scope="col">Tổng hóa đơn</th>
                                 <th scope="col">Tổng sản phẩm đã bán</th>
+                                <th scope="col">Số lượng khuyến mãi đã bán</th>
                                 <th scope="col">Tổng doanh thu</th>
                             </tr>
                             </thead>
@@ -669,6 +676,8 @@
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     $('#cbbthongke').on('change', function () {
         loadThongKe($(this).val())
@@ -853,19 +862,20 @@
             jsonObject[this.name] = this.value || '';
         });
 
-        var startDate = new Date(jsonObject.startDate);
-        var endDate = new Date(jsonObject.endDate);
+        var startDate = moment(jsonObject.startDate);
+        var endDate = moment(jsonObject.endDate);
 
-        if (isNaN(startDate.getTime())) {
-            startDate = new Date(1990, 0, 1);
+        if (!startDate.isValid()) {
+            startDate = moment('1990-01-01');
         }
 
-        if (isNaN(endDate.getTime())) {
-            endDate = new Date();
+        if (!endDate.isValid()) {
+            endDate = moment().add(1, 'day');
         }
 
-        jsonObject.startDate = startDate.toISOString().slice(0, 10);
-        jsonObject.endDate = endDate.toISOString().slice(0, 10);
+        jsonObject.startDate = startDate.format('YYYY-MM-DD');
+        jsonObject.endDate = endDate.format('YYYY-MM-DD');
+
 
         var queryParams = $.param(jsonObject);
         var url = `/api/hoadon/dshoadonresponse?\${queryParams}`;
@@ -882,6 +892,7 @@
                         <th scope="row">\${index+1}</th>
                         <td>\${item.ma}</td>
                         <td>\${formatDate(item.ngayDat)}</td>
+                        <td>\${formatDate(item.ngayThanhToan)}</td>
                         <td>\${item.maKhachHang}</td>
                         <td>\${item.tenNguoiDat}</td>
                         <td>\${convertVND(item.tongTienHang)}</td>
@@ -904,6 +915,9 @@
 
     $("#formsearchhd").submit();
     function formatDate(date) {
+        if (!date){
+            return "";
+        }
         date = new Date(date)
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -926,6 +940,7 @@
                                 <td>\${getFormattedDate(item.ngay)}</td>
                                 <td>\${item.tongHoaDonBanDuoc}</td>
                                 <td>\${item.soLuong}</td>
+                                <td>\${item.soLuongKhuyenMai}</td>
                                 <td>\${convertVND(item.tongTienHang)}</td>
                             </tr>
                         `;

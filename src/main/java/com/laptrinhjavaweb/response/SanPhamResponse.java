@@ -42,4 +42,6 @@ public class SanPhamResponse {
 	private Double giaBan;
 
 	private KhuyenMaiHienThiResponse khuyenMaiHienThiResponse;
+
+	private String trangThai;
 }

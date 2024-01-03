@@ -9,4 +9,5 @@ public interface ThongKeHoaDonResponse {
     Long getTongHoaDonBanDuoc();
     BigDecimal getTongTienHang();
     Long getSoLuong();
+    Long getSoLuongKhuyenMai();
 }

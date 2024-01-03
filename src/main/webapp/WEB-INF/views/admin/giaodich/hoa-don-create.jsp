@@ -362,6 +362,7 @@
     const currentUrl = window.location.href;
     const results = currentUrl.split('/');
     const maHoaDon = results[results.length - 1];
+    let isPayment = true;
 
     setInterval(time, 1000);
 
@@ -383,7 +384,7 @@
                 let data = {};
                 data['maNhanVien'] = ma;
                 data['trangThai'] = "TREO";
-                data['loai'] = "Offline";
+                data['loai'] = "OFFLINE";
 
                 $.ajax({
                     url: "/api/hoa-don-off",
@@ -435,8 +436,8 @@
     })
 
     $('#btn-paymant-invoice').on('click', function () {
-        paymentInvoice()
-        if ($('#code-customer').val() !== "") {
+        var res = paymentInvoice()
+        if ($('#code-customer').val() !== "" && res !== false) {
             tienQuyDiem(
                 function (response) {
                     let data = {};
@@ -454,12 +455,16 @@
                     console.log(error)
                 })
         }
-
     })
 
     $("#input-point").keyup(function () {
         if ($(this).val() !== '') {
             diemQuyTien(parseInt($(this).val()));
+        }
+        else {
+            $('#discount').text("0");
+            $('#invoice-after-point').text($('.invoice-total:first').text());
+
         }
     });
 
@@ -491,17 +496,18 @@
                         htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
                     html += `<div class="col-lg-6">
-                        <div class="card card-item-product mb-3" style=" height: 375px">
+                        <div class="card card-item-product mb-3" style=" height: 390px">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                    <img src="/repository/\${item.anh[0].hinhAnh}"
                                          class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title line-clamp-2">\${item.ten}</h5>`;
-                    html += htmlcoupon;
-                    html +=    `<h5 class="badge bg-success text-wrap">\${item.soLuong}</h5>`;
+                    html += htmlcoupon + `<p>
+                                            Sản phẩm có sẵn: <span class="product-quantity">\${item.soLuong}</span>
+                                        </p>`;
                     html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                     let htmlThuocTinh = `<div class="row mt-2">`;
@@ -585,15 +591,19 @@
                             data: JSON.stringify(attributeId),
                             success: (response) => {
                                 variantId = response.id;
-                                couponId = response.khuyenMaiHienThiResponse.id;
+                                if(response.khuyenMaiHienThiResponse !== null){
+                                    couponId = response.khuyenMaiHienThiResponse.id;
+                                }
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
                                 if (response.hinhAnh !== null) {
-                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                 }
                                 if (response.khuyenMaiHienThiResponse !== null) {
                                     $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
                                 }
+
+                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
 
                                 $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
                                     let res = $(item).html();
@@ -683,14 +693,15 @@
                         <div class="card card-item-product mb-3" style=" height: 375px">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/assets/images/sanpham/\${item.anh[0].hinhAnh}"
+                                    <img src="/repository/\${item.anh[0].hinhAnh}"
                                          class="img-fluid rounded-start w-100 product-image-primary" style="height: 180px"  alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                        <h5 class="card-title line-clamp-2">\${item.ten}</h5>`;
-                        html += htmlcoupon;
-                        html +=    `<h5 class="badge bg-success text-wrap">\${item.soLuong}</h5>`;
+                        html += htmlcoupon + `<p>
+                                            Sản phẩm có sẵn: <span class="product-quantity">\${item.soLuong}</span>
+                                        </p>`;
                         html += `</div></div></div><input type="hidden" value="\${lenAttrbute}" class="len-attribute">`;
 
                         let htmlThuocTinh = `<div class="row mt-2">`;
@@ -757,8 +768,6 @@
                     $("#list-products").on("change", "input[type='radio']", function () {
                         let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
                         const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
-
-
                         if (lenChecked === lenOfAttribute) {
                             let attributeId = [];
                             $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
@@ -771,12 +780,16 @@
                                 dataType: "json",
                                 data: JSON.stringify(attributeId),
                                 success: (response) => {
+                                    console.log(response);
                                     variantId = response.id;
                                     couponId = response.khuyenMaiHienThiResponse.id;
+
                                     $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
+                                    $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong);
+
                                     if (response.hinhAnh !== null) {
-                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/assets/images/sanpham/' + response.hinhAnh);
+                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                     }
                                     if (response.khuyenMaiHienThiResponse !== null) {
                                         $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
@@ -993,7 +1006,7 @@
                                     $("#gia").text(formatNumber(response.gia));
                                     $("#soLuong").text(response.soLuong);
                                     $("#tenThuongHieu").text(response.tenThuongHieu);
-                                    $("#image").attr('src', '/assets/images/sanpham/' + response.image);
+                                    $("#image").attr('src', '/repository/' + response.image);
                                     const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
                                     let htmlThuocTinh = '';
                                     $.each(response.thuocTinh, (index, item) => {
@@ -1110,12 +1123,15 @@
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(quantity),
             success: (response) => {
+                isPayment = true;
                 showSuccess("Cập nhật số lượng hóa đơn thành công")
                 loadHoaDon()
+
             },
             error: (error) => {
+                isPayment = false;
+                //showError(error.responseJSON.error)
                 console.log(error)
-                showError(error.responseJSON.error)
             }
         });
     }
@@ -1152,13 +1168,17 @@
     $('#invoice-customer-payment').on('input', validateForm);
 
     function paymentInvoice() {
+        if(isPayment === false){
+            showError("Số lượng không hợp lệ. Xin kiểm tra lại");
+            return false;
+        }
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
         let tienGiamGia = parseFloat($('#discount').text());
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
             showError("Số tiền khách trả chưa đủ");
             return false;
-        } else if (parseInt($('#input-point').val()) > parseInt($('#point-customer').text())) {
+        }else if(parseInt($('#input-point').val()) > parseInt($('#point-customer').text())){
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
             return false;
         } else {
@@ -1282,7 +1302,6 @@
         data['maNhanVien'] = ma;
         data['tienGiamGia'] = parseFloat($('#discount').text());
 
-        console.log(data)
         $.ajax({
             url: "/api/hoa-don-off",
             method: "PUT",

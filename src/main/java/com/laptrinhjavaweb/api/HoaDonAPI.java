@@ -33,19 +33,19 @@ public class HoaDonAPI {
         HoaDonResponse result = hoaDonService.findByMa(ma);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-//    tìm kiếm theo trạng thái
+
     @GetMapping("/find-by-status")
     public ResponseEntity<?> findByStatus(@RequestParam String trangThai){
         List<HoaDonResponse> result = hoaDonService.findByMaStatus(trangThai);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-//  update hoa don theo ma
+
     @PutMapping()
     public ResponseEntity<?> update(@RequestBody HoaDonResquest hoaDonResquest){
         HoaDonResponse result = hoaDonService.update(hoaDonResquest);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-    //  delete hoa don theo ma, xoa db
+
     @DeleteMapping("/{ma}")
     public ResponseEntity<?> delete(@PathVariable("ma") String ma){
         String result = hoaDonService.delete(ma);
@@ -99,5 +99,11 @@ public class HoaDonAPI {
         outputStream.close();
     }
 
-
+    @GetMapping("/search")
+    public ResponseEntity<?> search(
+            @RequestParam (name = "q") String param,
+            @RequestParam String trangThai){
+        List<HoaDonResponse> result = hoaDonService.searchs(param,trangThai);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

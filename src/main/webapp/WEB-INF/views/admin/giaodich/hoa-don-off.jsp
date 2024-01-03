@@ -18,9 +18,10 @@
             </li>
         </ul>
 
-        <div class="card card-body hstack gap-3 mt-4">
+        <div class="card card-body hstack gap-2 mt-4">
             <div class="p-2">
-                <a id="create-hoa-don" class="Btnaddkh" type="button" style="text-decoration: none">
+
+                <a class="Btnaddkh text-light" id="create-hoa-don" type="button" style="text-decoration: none">Add
                     <svg xmlns="http://www.w3.org/2000/svg" class="svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style>
                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </a>
@@ -123,6 +124,7 @@
     }
 
     var trangThai = $('#trangThai option:selected').val();
+
     function getHoaDon(value){
         $.ajax({
             url: "/api/hoa-don-off/find-by-status?trangThai=" + value,
@@ -175,13 +177,14 @@
     }
     getHoaDon(trangThai);
 
-    $(document).ready(function () {
-        $("#trangThai").change(function () {
-            var selectedValue = $(this).val();
-            getHoaDon(selectedValue);
-        });
 
+
+    $("#trangThai").change(function () {
+        var selectedValue = $(this).val();
+        trangThai = selectedValue;
+        getHoaDon(trangThai);
     });
+
 
     $('.tbody-hoadon').on('click', (e) => {
         if ($(e.target).hasClass('btn-delete') && !$(e.target).is(":hidden")) {
@@ -214,6 +217,68 @@
             showError("Bạn chỉ có thể xuất hóa đơn đã thanh toán!");
         }
     });
+
+    $('#searchButton').on('click', (e) =>{
+        e.preventDefault();
+        param = $('#searchAll').val().trim();
+        if(param != ''){
+            search(param);
+        }else{
+            getHoaDon(trangThai);
+        }
+    })
+
+    function search(param){
+        $.ajax({
+            url: "/api/hoa-don-off/search?q=" + param + '&trangThai=' + trangThai,
+            method: "GET",
+            success: (response) => {
+                console.log(response)
+                var tbody = $('#tblHoaDonOff tbody');
+                tbody.empty();
+                var index = 0;
+                response.forEach(function(item) {
+                    var row = `
+                            <tr class="text-center">
+                                <td>\${++index}</td>
+                                <td>\${item.ma}</td>
+                                 <td>\${item.tenKhachHang}</td>
+                                 <td>\${item.tenNhanVien}</td>
+                                 <td>\${getFormattedDate(item.ngayTao)}</td>
+                                 <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
+                                 <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
+                                 <td>
+                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
+                                     <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                    <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
+                                 </td>
+                            </tr>
+                        `;
+                    tbody.append(row);
+                });
+
+                if (trangThai === "TREO") {
+                    $(".detail").hide();
+                } else {
+                    $(".detail").show();
+                }
+                if (trangThai === "THANHCONG") {
+                    $(".btn-delete").hide();
+                    $(".create").hide();
+
+                } else {
+                    $(".btn-delete").show();
+                    $(".create").show();
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        });
+
+    }
+
 </script>
 </body>
 </html>

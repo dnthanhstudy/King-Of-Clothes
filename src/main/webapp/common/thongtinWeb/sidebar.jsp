@@ -17,6 +17,7 @@
             <a href="/web/account" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="bi bi-person-circle me-2"></i> <s:message code="web.ttweb.account"/></a>
             <a href="/web/all" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="bi bi-card-checklist me-2"></i> <s:message code="web.ttweb.purchaseOrder"/></a>
             <a href="/vi-dien-tu" class="text-decoration-none a mb-3 " style="font-size: 18px"><i class="bi bi-wallet2 me-2"></i> <s:message code="web.ttweb.ElectronicWallet"/></a>
+            <a href="/thong-tin-tich-diem" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="bi bi-piggy-bank me-2"></i> <s:message code="web.ttweb.point"/></a>
             <a href="/doi-mat-khau" class="text-decoration-none a mb-3" style="font-size: 18px"><i class="fas fa-key me-2"></i> <s:message code="web.ttweb.changPass"/></a>
             <a href="/logout" class="text-decoration-none a " style="font-size: 18px"><i class="bi bi-box-arrow-left me-2"></i> <s:message code="web.navbar.logout"/></a>
 

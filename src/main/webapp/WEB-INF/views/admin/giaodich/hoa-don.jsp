@@ -388,11 +388,11 @@
         padding: 20px; background-color: #fff">
                     <div class=" hstack gap-3">
                         <div class="">
-                            <h4>Danh sách hóa đơn</h4>
+                            <h4 >Danh sách hóa đơn</h4>
                         </div>
                         <div class="ms-auto">
-                            <label for="tthd">Trạng thái hoá đơn</label><select id="tthd" class="form-select">
-                                <option value="" selected>Tất cả</option>
+                            <select id="tthd" class="form-select">
+                                <option value="" selected>Trạng thái hóa đơn</option>
                                 <option value="CHONHANDON">Chờ nhận đơn</option>
                                 <option value="DANHANDON">Đã nhận đơn</option>
                                 <option value="DANGGIAOHANG">Đang giao hàng</option>

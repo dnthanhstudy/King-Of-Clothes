@@ -3,6 +3,10 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 import com.laptrinhjavaweb.converter.CaLamConverter;
 import com.laptrinhjavaweb.entity.*;
+import com.laptrinhjavaweb.entity.CaLamEntity;
+import com.laptrinhjavaweb.entity.ChiTieuEntity;
+import com.laptrinhjavaweb.entity.HoaDonEntity;
+import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
@@ -43,12 +47,6 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     GioHangChiTietRepository gioHangChiTietRepository;
-
-    @Autowired
-    private CaLamRepository caLamRepository;
-
-    @Autowired
-    private CaLamConverter caLamConverter;
 
     @Autowired
     private TichDiemRepository tichDiemRepository;
@@ -159,6 +157,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()+hoaDon.getTienKhachTra());
                 chiTieuRepository.save(chiTieu);
                 viDienTuRepository.save(viDienTuEntity);
+
                 hoaDonRepository.updateLaiSoLuongKhiHuyDon(idhd);
             }
 

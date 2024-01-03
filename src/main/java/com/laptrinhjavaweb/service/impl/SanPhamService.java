@@ -2,8 +2,8 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.SanPhamConverter;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
-import com.laptrinhjavaweb.repository.SanPhamRepository;
+import com.laptrinhjavaweb.entity.*;
+import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.PageableResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
@@ -44,13 +44,34 @@ public class SanPhamService implements ISanPhamService{
 	@Autowired
 	private IBienTheService bienTheService;
 
+	@Autowired
+	private AnhSanPhamRepository anhSanPhamRepository;
+
+	@Autowired
+	private GiaTriThuocTinhRepository giaTriThuocTinhRepository;
+
+	@Autowired
+	private ThuocTinhRepository thuocTinhRepository;
+
+	@Autowired
+	private GiaTriThuocTinhBienTheRepository giaTriThuocTinhBienTheRepository;
+
+	@Autowired
+	private BienTheRepository bienTheRepository;
+
+	@Autowired
+	private GioHangChiTietRepository gioHangChiTietRepository;
+
+	@Autowired
+	private HoaDonChiTietRepository hoaDonChiTietRepository;
+
 	@Override
 	public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> fliters, String slug) {
 		Map<String, Object> results = new HashMap<>();
 		Boolean isAll = false;
 		Page<SanPhamEntity> page = null;
 		List<SanPhamResponse> listSanPhamResponse = new ArrayList<>();
-		if(pageCurrent == null && limit == null) {
+		if (pageCurrent == null && limit == null) {
 			isAll = true;
 			Pageable wholePage = Pageable.unpaged();
 			page = sanPhamRepository.findByTrangThaiOrderByNgayTaoDesc(SystemConstant.ACTICE,wholePage);
@@ -176,6 +197,89 @@ public class SanPhamService implements ISanPhamService{
 		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
 		sanPhamEntity.setTrangThai("INACTIVE");
 		sanPhamRepository.save(sanPhamEntity);
+	}
+
+	@Override
+	public void updateTrangThai(String slug, String trangThai) {
+		SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
+		sanPhamEntity.setTrangThai(trangThai);
+		sanPhamRepository.save(sanPhamEntity);
+	}
+
+	@Override
+	public Map<String, Object> findÁll(Integer pageCurrent, Integer limit) {
+		Map<String, Object> results = new HashMap<>();
+		Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
+		Page<SanPhamEntity> page = sanPhamRepository.findAllByOrderByNgayTaoDesc(pageable);
+
+		List<SanPhamResponse> listSanPhamResponse = page.getContent().stream().map(
+				item -> sanPhamConvert.convertToResponse(item)
+		).collect(Collectors.toList());
+
+		PageableResponse pageableResponse = new PageableResponse();
+		pageableResponse.setPageCurrent(pageCurrent);
+		pageableResponse.setTotalPage(page.getTotalPages());
+		results.put("meta", pageableResponse);
+		results.put("data", listSanPhamResponse);
+		return results;
+	}
+
+	@Override
+	public List<SanPhamResponse> findAll() {
+		List<SanPhamResponse> results = sanPhamRepository.findAll().stream().map(
+				item -> sanPhamConvert.convertToResponse(item)
+		).collect(Collectors.toList());
+		return results;
+	}
+
+	public void remove(Long id) {
+		SanPhamEntity sanPham = sanPhamRepository.findById(id).orElse(null);
+		if (sanPham != null) {
+			List<AnhSanPhamEntity> listAnh = sanPham.getAnhSanPhamEntities();
+			anhSanPhamRepository.deleteAll(listAnh);
+// 			xoa gia tri thuoc tinh bien the + bien the
+			List<BienTheEntity> listBienThe = sanPham.getBienTheEntities();
+
+			List<Long> listIdBienThe = listBienThe.stream()
+					.peek(bienThe -> {
+						List<GiaTriThuocTinhBienTheEntity> listGiaTriThuocTinhBienThe = bienThe.getGiaTriThuocTinhBienTheEntities();
+						giaTriThuocTinhBienTheRepository.deleteAll(listGiaTriThuocTinhBienThe);
+						List<GioHangChiTietEntity> listGioHangChiTiet = gioHangChiTietRepository.findAllByBienThe_id(bienThe.getId());
+						List<HoaDonChiTietEntity> listHoaDonChiTiet = bienThe.getHoaDonChiTietEntities();
+						if (bienThe.getHoaDonChiTietEntities() != null || listGioHangChiTiet != null) {
+							findAllHoaDonChiTiet(listHoaDonChiTiet);
+							findAllGioHangChiTiet(listGioHangChiTiet);
+							bienTheRepository.updateStatus(bienThe.getId());
+						} else {
+							bienTheRepository.delete(bienThe);
+						}
+					})
+					.map(BienTheEntity::getId)
+					.collect(Collectors.toList());
+
+//			xoa gia tri thuoc tinh + thuoc tinh
+			List<ThuocTinhEntity> listThuocTinh = sanPham.getThuocTinhEntities();
+			listThuocTinh.forEach(thuocTinh -> {
+				List<GiaTriThuocTinhEntity> listGiaTriThuocTinh = thuocTinh.getGiaTriThuocTinhEntities();
+				giaTriThuocTinhRepository.deleteAll(listGiaTriThuocTinh);
+			});
+			thuocTinhRepository.deleteAll(listThuocTinh);
+		}
+	}
+
+
+	private void findAllGioHangChiTiet(List<GioHangChiTietEntity> listGioHangChiTiet) {
+		listGioHangChiTiet.forEach(gioHangChiTiet -> {
+			gioHangChiTiet.setTrangThai("CHANGEVARIANT");
+			gioHangChiTietRepository.save(gioHangChiTiet);
+		});
+	}
+
+	private void findAllHoaDonChiTiet(List<HoaDonChiTietEntity> listHoaDonChiTiet) {
+		listHoaDonChiTiet.forEach(hoaDonChiTiet -> {
+			hoaDonChiTiet.setTrangThai("CHANGEVARIANT");
+			hoaDonChiTietRepository.save(hoaDonChiTiet);
+		});
 	}
 
 }

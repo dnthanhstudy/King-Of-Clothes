@@ -46,6 +46,8 @@ public class BienTheConverter {
 			}
 			response.setGiaBan(giaBan);
 			response.setKhuyenMaiHienThiResponse(khuyenMaiHienThiResponse);
+		}else{
+			response.setGiaBan(entity.getGia());
 		}
 		return response;
 	}

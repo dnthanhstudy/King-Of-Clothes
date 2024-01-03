@@ -219,12 +219,11 @@
     $("#maKM").val(genMa);
     function loadKhuyenMai() {
         $.ajax({
-            url: '/api/san-pham',
+            url: '/api/san-pham/find-all',
             method: 'GET',
             success: function (response) {
                 let html = '';
-                console.log(response.data);
-                $.each(response.data, (index, item) => {
+                $.each(response, (index, item) => {
                     let isCheck = false;
                     checkedValues.forEach(function (x){
                         if (item.slug === x) {

@@ -18,4 +18,6 @@ public interface IHoaDonService {
 
     String delete(String ma);
 
+    List<HoaDonResponse> searchs(String param, String trangThai);
+
 }

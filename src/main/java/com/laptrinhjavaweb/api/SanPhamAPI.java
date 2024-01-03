@@ -40,8 +40,9 @@ public class SanPhamAPI {
 	}
 
 	@GetMapping
-	public ResponseEntity<?> findAll(){
-		Map<String, Object> results = sanPhamService.pagingOrSearchOrFindAllOrFilterOrCategories(null, null, null, null,null);
+	public ResponseEntity<?> findAll(@RequestParam(name = "page", defaultValue = "1") Integer page,
+									 @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
+		Map<String, Object> results = sanPhamService.findÁll(page, limit);
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
@@ -102,4 +103,14 @@ public class SanPhamAPI {
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
+	@PostMapping("/update/{slug}")
+	public void updatedTrangThai(@PathVariable("slug") String slug, @RequestBody String trangThai){
+		sanPhamService.updateTrangThai(slug, trangThai);
+	}
+
+	@GetMapping("/find-all")
+	public ResponseEntity<?> findAll(){
+		List<SanPhamResponse> results = sanPhamService.findAll();
+		return new ResponseEntity<>(results, HttpStatus.OK);
+	}
 }

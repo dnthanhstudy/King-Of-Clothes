@@ -176,7 +176,7 @@
                 html +=  `<tr>
                                 <td>\${i}</td>
                                 <td>
-                                    <img src='/assets/images/sanpham/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                    <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
                                 </td>
                                 <td>\${item.sanPhamResponse.ten}</td>
 

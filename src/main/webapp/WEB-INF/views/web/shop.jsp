@@ -122,7 +122,7 @@
                                         <div class="card product-item border-0 mb-4 hovers">
                                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                                 <img class="img-fluid w-100"
-                                                     src="/assets/images/sanpham/${item.anh[0].hinhAnh}" style="height:350px" alt="">
+                                                     src="/repository/${item.anh[0].hinhAnh}" style="height:350px" alt="">
                                             </div>
                                             <div class="card-body border-left border-right border text-center p-0 pt-4 pb-3">
                                                 <h6 class="text-truncate mb-3">${item.ten}</h6>

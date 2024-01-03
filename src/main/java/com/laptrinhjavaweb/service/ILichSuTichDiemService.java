@@ -13,4 +13,6 @@ public interface ILichSuTichDiemService {
    List<LichSuTichDiemResponse> findAll();
 
    List<LichSuTichDiemResponse> findAllByIdKhachHang(String sdtKhachHang);
+
+   List<LichSuTichDiemResponse> findAllByMaKH(String ma);
 }

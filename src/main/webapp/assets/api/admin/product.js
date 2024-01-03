@@ -1,8 +1,6 @@
 function validateProduct() {
     let ten = $("#ten").val();
     let gia = $("#gia").val();
-    let soLuong = $("#so-luong").val();
-
     if (ten === "") {
         showError("Tên sản phẩm không được để trống");
         return false;
@@ -11,13 +9,10 @@ function validateProduct() {
         showError("Giá không được để trống");
         return false;
     }
-
-    if (soLuong === "") {
-        showError("Số lượng không được để trống");
+    if(isNaN(gia)){
+        showError("Giá không hợp lệ. Vui lòng nhập số");
         return false;
     }
-
-
     return true;
 }
 
@@ -32,6 +27,12 @@ $(".btn-add-product").on("click", function (event) {
         }
         let hasEmptyGiaTris = false;
         data["thuocTinh"] = getAttributeValues();
+
+        if(data["thuocTinh"].length === 0){
+            showError("Vui lòng nhập thuộc tính của sản phẩm");
+            return false;
+        }
+
         $.each(data["thuocTinh"], function (index, item) {
             if (item.giaTris.length === 0) {
                 showError("Vui lòng nhập giá trị thuộc tính");
@@ -43,6 +44,14 @@ $(".btn-add-product").on("click", function (event) {
             return false;
         }
         data["bienThe"] = getVariants();
+        $.each(data["bienThe"], function (index, item) {
+            if (isNumber(item.gia) === false || isNumber(item.soLuong) === false) {
+                showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
+                hasEmptyGiaTris = true;
+                return false;
+            }
+        });
+
         $.ajax({
             url: "/api/san-pham",
             method: "POST",
