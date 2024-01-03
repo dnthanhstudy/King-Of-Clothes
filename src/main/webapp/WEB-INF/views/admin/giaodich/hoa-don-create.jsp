@@ -69,12 +69,7 @@
                                         <span id="tenThuongHieu"></span>
                                     </div>
                                 </div>
-                                <div class="row mt-3">
-                                    <div>
-                                        <button class="btn text-light variant-update" style="background-color: #EB8153;">Cập nhật</button>
-                                    </div>
-                                </div>
-                            </div>  
+                            </div>
                         </div>
 
                     </div>

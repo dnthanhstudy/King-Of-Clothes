@@ -73,6 +73,7 @@
                              <thead>
                              <tr class="table-warning text-center">
                                  <th scope="col">STT</th>
+                                 <th scope="col">Hình ảnh</th>
                                  <th scope="col">Tên sản phẩm </th>
                                  <th scope="col">Tên thuộc tính</th>
                                  <th scope="col">Số lượng</th>
@@ -187,8 +188,11 @@
                      var row = `
                             <tr>
                                  <td class="text-center">\${++index}</td>
-                                 <td style="max-width: 350px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</td>
-                                <td class="text-center">`;
+                                 <td class="text-center">
+                                     <img src='/repository/\${item.image}' style="width: 120px;">
+                                </td>
+                                 <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</td>
+                                 <td class="text-center">`;
                      var nameVariant = [];
                      item.thuocTinh.forEach(function (itemThuocTinh) {
                          itemThuocTinh.giaTriThuocTinh.forEach(function (itemGiaTriThuocTinh) {
