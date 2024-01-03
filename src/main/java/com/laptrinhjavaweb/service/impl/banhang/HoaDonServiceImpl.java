@@ -2,10 +2,7 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 
 import com.laptrinhjavaweb.converter.CaLamConverter;
-import com.laptrinhjavaweb.entity.CaLamEntity;
-import com.laptrinhjavaweb.entity.ChiTieuEntity;
-import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.entity.ViDienTuEntity;
+import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
@@ -20,14 +17,15 @@ import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
+import com.laptrinhjavaweb.service.impl.QuyDoiDiemService;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import com.laptrinhjavaweb.utils.ResponseObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,6 +49,15 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     private CaLamConverter caLamConverter;
+
+    @Autowired
+    private TichDiemRepository tichDiemRepository;
+
+    @Autowired
+    private QuyDoiDiemService quyDoiDiemService;
+
+    @Autowired
+    private LichSuTichDiemRepository lichSuTichDiemRepository;
 
 //    @Autowired
 //    BienTheRepository bienTheRepository;
@@ -152,16 +159,19 @@ public class HoaDonServiceImpl implements HoaDonService {
                 viDienTuEntity.setSoTien(viDienTuEntity.getSoTien()+hoaDon.getTienKhachTra());
                 chiTieuRepository.save(chiTieu);
                 viDienTuRepository.save(viDienTuEntity);
-
                 hoaDonRepository.updateLaiSoLuongKhiHuyDon(idhd);
             }
 
             if (trangThai.equals(TrangThaiHoaDon.DANHANHANG)&&!hoaDon.getLoaiThanhToan()){
                 hoaDon.setNgayThanhToan(new java.util.Date());
             }
+
             hoaDon.setTrangThai(trangThai);
             hoaDon.setMoTa(luuy);
             hoaDonRepository.save(hoaDon);
+            if (trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
+                saveTichDiemOnline(hoaDon);
+            }
             return hoaDon;
         }catch (Exception e){
             return null;
@@ -301,5 +311,28 @@ public class HoaDonServiceImpl implements HoaDonService {
         result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
         return result;
     }
+
+    public void saveTichDiemOnline(HoaDonEntity hoaDonEntity){
+            TichDiemEntity entity = tichDiemRepository.findByKhachHang_ma(hoaDonEntity.getKhachHang().getMa());
+            Integer soDiemTichDuoc = quyDoiDiemService.TienQuyDiem(hoaDonEntity.getTongTienHang());
+            if(entity != null){
+                entity.setSoDiem(entity.getSoDiem() - 0 + soDiemTichDuoc);
+                tichDiemRepository.save(entity);
+            }else{
+                TichDiemEntity diemEntity = new TichDiemEntity();
+                diemEntity.setSoDiem(soDiemTichDuoc);
+                diemEntity.setKhachHang(hoaDonEntity.getKhachHang());
+                diemEntity.setTrangThai("ACTIVE");
+                tichDiemRepository.save(diemEntity);
+            }
+            LichSuTichDiemEntity lichSuTichDiemEntity = new LichSuTichDiemEntity();
+            lichSuTichDiemEntity.setSoDiemTichDuoc(soDiemTichDuoc);
+            lichSuTichDiemEntity.setSoDiemDung(0);
+            lichSuTichDiemEntity.setKhachHang(hoaDonEntity.getKhachHang());
+            lichSuTichDiemEntity.setHoaDon(hoaDonEntity);
+            lichSuTichDiemEntity.setTrangThai("ACTIVE");
+            lichSuTichDiemRepository.save(lichSuTichDiemEntity);
+    }
+
 
 }
