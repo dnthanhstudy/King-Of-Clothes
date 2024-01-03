@@ -28,7 +28,6 @@ $(".btn-add-product").on("click", function (event) {
             showError("Vui lòng chọn hình ảnh của sản phẩm");
             return false;
         }
-        let hasEmptyGiaTris = false;
         data["thuocTinh"] = getAttributeValues();
 
         if(data["thuocTinh"].length === 0){
@@ -36,24 +35,31 @@ $(".btn-add-product").on("click", function (event) {
             return false;
         }
 
+        let hasEmptyGiaTris = false;
         $.each(data["thuocTinh"], function (index, item) {
             if (item.giaTris.length === 0) {
-                showError("Vui lòng nhập giá trị thuộc tính");
                 hasEmptyGiaTris = true;
                 return false;
             }
         });
         if (hasEmptyGiaTris) {
+            showError("Vui lòng nhập giá trị thuộc tính");
             return false;
         }
         data["bienThe"] = getVariants();
+        if(data["bienThe"].length === 0){
+
+        }
         $.each(data["bienThe"], function (index, item) {
             if (isNumber(item.gia) === false || isNumber(item.soLuong) === false) {
-                showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
                 hasEmptyGiaTris = true;
                 return false;
             }
         });
+        if (hasEmptyGiaTris) {
+            showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
+            return false;
+        }
 
         if(data["id"] !== "")
         {
