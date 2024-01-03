@@ -46,9 +46,10 @@
                         <hr>
                         <table class="table table-hover table-striped" id="tblSanPham">
                             <thead>
-                            <tr class="table-warning">
+                            <tr class="table-warning text-center">
                                 <th scope="col">STT</th>
                                 <th scope="col">Tên sản phẩm </th>
+                                <th scope="col">Tên thuộc tính</th>
                                 <th scope="col">Số lượng</th>
                                 <th scope="col">Đơn giá</th>
                                 <th scope="col">Thành tiền</th>
@@ -116,7 +117,7 @@
                         </div>
                         <div class="row mt-3">
                             <span class="fs-5">Lý do hủy đơn:</span>
-                            <textarea class="form-control" class="lyDo" id="lyDo" disabled></textarea>
+                            <textarea class="form-control mt-2" class="lyDo" id="lyDo" disabled></textarea>
                         </div>
                     </div>
                 </div>
@@ -170,13 +171,24 @@
                     toatlQuantity += item.soLuong;
                     var row = `
                             <tr>
-                                <td>\${++index}</td>
-                                <td>\${item.tenSanPham}</td>
-                                 <td>\${item.soLuong}</td>
-                                 <td>\${formatNumber(item.gia)} đ</td>
-                                 <td>\${formatNumber(item.thanhTien)} đ</td>
-                            </tr>
-                        `;
+                                 <td class="text-center">\${++index}</td>
+                                 <td style="max-width: 350px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</td>
+                                <td class="text-center">`;
+                    var nameVariant = [];
+                    item.thuocTinh.forEach(function (itemThuocTinh) {
+                        itemThuocTinh.giaTriThuocTinh.forEach(function (itemGiaTriThuocTinh) {
+                            item.giaTriThuocTinhChecked.forEach(function (itemGiaTriThuocTinhChecked){
+                                if (itemGiaTriThuocTinhChecked === itemGiaTriThuocTinh.id) {
+                                    nameVariant.push(itemGiaTriThuocTinh.giaTri);
+                                }
+                            })
+                        });
+                    });
+                    row += `\${nameVariant.join(", ")}</td>
+                             <td class="text-center">\${item.soLuong}</td>
+                             <td class="text-center">\${formatNumber(item.gia)} đ</td>
+                             <td class="text-center">\${formatNumber(item.thanhTien)} đ</td>
+                        </tr>`;
                     tbody.append(row);
                     $('#invoice-quantity').text(toatlQuantity);
                     $('.invoice-total').text(formatNumber(totalInvoice));

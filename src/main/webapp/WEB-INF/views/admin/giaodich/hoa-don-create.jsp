@@ -69,7 +69,12 @@
                                         <span id="tenThuongHieu"></span>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row mt-3">
+                                    <div>
+                                        <button class="btn text-light variant-update" style="background-color: #EB8153;">Cập nhật</button>
+                                    </div>
+                                </div>
+                            </div>  
                         </div>
 
                     </div>
@@ -391,7 +396,7 @@
         e.preventDefault();
 
         updateInvoiceTreo(
-            function(){
+            function () {
                 let data = {};
                 data['maNhanVien'] = ma;
                 data['trangThai'] = "TREO";
@@ -412,38 +417,38 @@
                     }
                 });
             },
-            function(error){
+            function (error) {
                 console.log("Error: " + error);
             }
-
         );
     })
 
     $('#btn-add-customer').on('click', () => {
-            let dataForm = $('#form-data-customer').serializeArray();
-            let data = {};
-            $.each(dataForm, (index, value) => {
-                let propertyName = value.name;
-                let propertyValue = value.value;
-                data[propertyName] = propertyValue;
-            });
-            $.ajax({
-                url: "/api/khach-hang",
-                method: "POST",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(data),
-                success: (response) => {
-                    console.log(response);
-                    $('#exampleModal1').removeClass('show');
-                    $('.modal-backdrop').addClass('d-none');
-                    $('#search-customer').val(response.soDienThoai + " - " + response.ten);
-                    $('#code-customer').val(response.ma);
-                },
-                error: (error) => {
-                   showError(error.responseJSON.error)
-                }
-            });
+        let dataForm = $('#form-data-customer').serializeArray();
+        let data = {};
+        $.each(dataForm, (index, value) => {
+            let propertyName = value.name;
+            let propertyValue = value.value;
+            data[propertyName] = propertyValue;
+        });
+        $.ajax({
+            url: "/api/khach-hang",
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(data),
+            success: (response) => {
+                console.log(response);
+                $('#exampleModal1').removeClass('show');
+                $('.modal-backdrop').addClass('d-none');
+                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
+                $('#code-customer').val(response.ma);
+            },
+            error: (error) => {
+                showError(error.responseJSON.error)
+                endLoadingBody()
+            }
+        });
     })
 
     $('#btn-paymant-invoice').on('click', function () {
@@ -475,8 +480,7 @@
     $("#input-point").keyup(function () {
         if ($(this).val() !== '') {
             diemQuyTien(parseInt($(this).val()));
-        }
-        else {
+        } else {
             $('#discount').text("0");
             $('#invoice-after-point').text($('.invoice-total:first').text());
 
@@ -595,19 +599,17 @@
                             data: JSON.stringify(attributeId),
                             success: (response) => {
                                 variantId = response.id;
-                                if(response.khuyenMaiHienThiResponse !== null){
+                                if (response.khuyenMaiHienThiResponse !== null) {
                                     couponId = response.khuyenMaiHienThiResponse.id;
                                 }
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
+                                $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+
 
                                 if (response.hinhAnh !== null) {
                                     $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                 }
-                                if (response.khuyenMaiHienThiResponse !== null) {
-                                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
-                                }
-
-                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
 
                                 $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
                                     let res = $(item).html();
@@ -921,6 +923,7 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
+                console.log(response)
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = ``;
@@ -933,6 +936,16 @@
                     $.each(response.hoaDonChiTiet, (index, item) => {
                         totalInvoice += item.thanhTien;
                         toatlQuantity += item.soLuong;
+                        var nameVariant = [];
+                        $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                            $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                                $.each(item.giaTriThuocTinhChecked, (indexGiaTriThuocTinhChecked, itemGiaTriThuocTinhChecked) => {
+                                    if (itemGiaTriThuocTinhChecked === itemGiaTriThuocTinh.id) {
+                                        nameVariant.push(itemGiaTriThuocTinh.giaTri);
+                                    }
+                                })
+                            });
+                        });
                         html += `<div class="card card-body mb-2 card-body-invoice-detail" style="border-radius: 10px;">
                                     <div class="row">
                                         <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
@@ -942,16 +955,15 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xl-4 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
                                                     <span>Tên sản phẩm</span>
-                                                    <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-2">\${item.tenSanPham}</h5>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black" style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</h5>
+                                                    <div class="name-variant mb-0 pt-1 text-success">\${nameVariant.join(", ")}</div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-2">
@@ -1149,12 +1161,9 @@
     }
 
     function loadSoDiem(ma) {
-        if(ma === null)
-        {
+        if (ma === null) {
             $('#point-customer').text("Không có");
-        }
-        else
-        {
+        } else {
             $.ajax({
                 url: "/api/tich-diem/" + ma,
                 method: "GET",
@@ -1178,7 +1187,7 @@
             tienKhachTra = 0;
         }
 
-        let tienThua = tienKhachTra - (tongTienHang - tienGiamGia) ;
+        let tienThua = tienKhachTra - (tongTienHang - tienGiamGia);
         tienThua = Math.max(0, tienThua);
 
         $('#money-change').text(formatNumber(tienThua));

@@ -4,12 +4,12 @@ $(".input-name-atrribute").on("keypress", function (e) {
         e.preventDefault();
         let nameAttribute = $(e.target).val();
         if (!nameAttribute) {
-            showError("Thuộc tính này đã tòn tại")
+            showError("Thuộc tính không được để trống");
         } else {
             $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
             if (findBySlug(slugAttribute) !== undefined) {
-                messageNotication(attributeExsits, "rgba(255, 99, 71, 1)");
+                showError("Thuộc tính này đã tòn tại")
             } else {
                 const eleDivProductsHasAtributes = $(
                     `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
@@ -76,6 +76,9 @@ $("#card-attribute .card-body").on("click", function (e) {
 
 // Delete attribute
 $("#card-attribute").on("click", (e) => {
+    if($(e.target).hasClass("input-name-atrribute") || $(e.target).hasClass("input-value-attribute")){
+        return;
+    }
     if ($(e.target).hasClass("btn-remove-children")) {
         $(e.target).parent().remove();
     } else if ($(e.target).hasClass("btn-remove-children-trash")) {

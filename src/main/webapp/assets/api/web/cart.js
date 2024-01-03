@@ -215,7 +215,7 @@ function loadProductActive() {
                                         </button>
                                       </li></ul></div>
                                         <div class="mt-2">
-<p class="name-variant">${nameVariant.join(" , ")}</p>
+                                            <p class="name-variant">${nameVariant.join(" , ")}</p>
                                             <input class="variant-id" type="hidden" name="" value="${item.idBienThe}">
                                         </div>`;
 
@@ -309,7 +309,27 @@ function updateCart(ele) {
         data: JSON.stringify(data),
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
-            loadOneCartItem(response, eleCartItem);
+            console.log(response);
+            if(response.isLoadCart){
+                loadProductActive();
+            }else{
+                loadOneCartItem(response, eleCartItem);
+            }
+            $.ajax({
+                url: "/api/gio-hang/" + customerCodeWhenLogin,
+                method: "GET",
+                dataType: "json",
+                success: (response) => {
+                    if(response === null){
+                        $('.quantity-cart').text(0);
+                    }else{
+                        const size = response.gioHang.length;
+                        $('.quantity-cart').text(size);
+                    }
+                },
+                error: (error) => {
+                }
+            });
         },
         error: (error) => {
             showError(error.responseJSON.error)
@@ -385,6 +405,7 @@ function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.price-origin').text(formatNumber(data.donGia) + " đ");
     eleCartItem.find('.price-discount').text(formatNumber(data.giaMua) + " đ");
     eleCartItem.find('.price-buy').text(formatNumber(data.soTien) + " đ");
+
     const listAttrName = eleCartItem.find('.list-attr-name');
 
     let nameVariant = [];
