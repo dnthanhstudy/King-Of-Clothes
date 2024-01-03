@@ -441,7 +441,6 @@
             },
             error: (error) => {
                 showError(error.responseJSON.error)
-                endLoadingBody()
             }
         });
     })
@@ -1201,7 +1200,7 @@
         let tienGiamGia = parseFloat($('#discount').text());
 
         if (isNaN(tienKhachTra) || tienKhachTra < (tongTienHang - tienGiamGia)) {
-            showError("Số tiền khách trả chưa đủ");
+            showError("Số tiền khách thanh toán chưa đủ");
             return false;
         } else if (parseInt($('#input-point').val()) > parseInt($('#point-customer').text())) {
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
