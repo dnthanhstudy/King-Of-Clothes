@@ -441,7 +441,8 @@
                     $('#code-customer').val(response.ma);
                 },
                 error: (error) => {
-                   showError(error.responseJSON.error)
+                    showError(error.responseJSON.error)
+                    endLoadingBody()
                 }
             });
     })
@@ -921,6 +922,7 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
+                console.log(response)
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = ``;
