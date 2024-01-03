@@ -295,8 +295,27 @@ function updateCart(ele) {
         data: JSON.stringify(data),
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
-            loadOneCartItem(response, eleCartItem);
-
+            console.log(response);
+            if(response.isLoadCart){
+                loadProductActive();
+            }else{
+                loadOneCartItem(response, eleCartItem);
+            }
+            $.ajax({
+                url: "/api/gio-hang/" + customerCodeWhenLogin,
+                method: "GET",
+                dataType: "json",
+                success: (response) => {
+                    if(response === null){
+                        $('.quantity-cart').text(0);
+                    }else{
+                        const size = response.gioHang.length;
+                        $('.quantity-cart').text(size);
+                    }
+                },
+                error: (error) => {
+                }
+            });
         },
         error: (error) => {
             showError(error.responseJSON.error)

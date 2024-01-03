@@ -595,15 +595,13 @@
                                     couponId = response.khuyenMaiHienThiResponse.id;
                                 }
                                 $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
+                                $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+
 
                                 if (response.hinhAnh !== null) {
                                     $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
                                 }
-                                if (response.khuyenMaiHienThiResponse !== null) {
-                                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
-                                }
-
-                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
 
                                 $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
                                     let res = $(item).html();

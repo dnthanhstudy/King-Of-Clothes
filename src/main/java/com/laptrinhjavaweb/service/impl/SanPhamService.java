@@ -331,4 +331,9 @@ public class SanPhamService implements ISanPhamService {
         }
         hoaDonChiTietRepository.updateVariant(idsBienThe);
     }
+
+    @Transactional
+    public void updateVariant (SanPhamRequest sanPhamRequest){
+
+    }
 }
