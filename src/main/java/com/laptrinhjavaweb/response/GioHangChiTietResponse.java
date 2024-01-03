@@ -30,4 +30,6 @@ public class GioHangChiTietResponse {
     private List<Long> giaTriThuocTinhChecked;
 
     private Long idBienThe;
+
+    private Boolean isLoadCart;
 }
