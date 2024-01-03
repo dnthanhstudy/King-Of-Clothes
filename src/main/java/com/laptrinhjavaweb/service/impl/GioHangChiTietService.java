@@ -86,19 +86,24 @@ public class GioHangChiTietService implements IGioHangChiTietService {
         }
 
         Boolean isLoadCart = false;
-        GioHangChiTietEntity gioHangChiTietEntityExsits = gioHangChiTietEntity.getGioHang().getGioHangChiTietEntities()
-                .stream()
-                .filter(item -> item.getBienThe().getId().equals(gioHangChiTietRequest.getIdBienThe()))
-                .findFirst()
-                .orElse(null);
-
-        if (gioHangChiTietEntityExsits != null) {
-            isLoadCart = true;
-            gioHangChiTietRepository.deleteById(gioHangChiTietEntityExsits.getId());
-            gioHangChiTietEntity.setSoLuong(gioHangChiTietRequest.getSoLuong() + gioHangChiTietEntity.getSoLuong());
-        } else {
+        if(gioHangChiTietEntity.getBienThe().getId().equals(gioHangChiTietRequest.getIdBienThe())){
             gioHangChiTietEntity.setSoLuong(gioHangChiTietRequest.getSoLuong());
+        }else{
+            GioHangChiTietEntity gioHangChiTietEntityExsits = gioHangChiTietEntity.getGioHang().getGioHangChiTietEntities()
+                    .stream()
+                    .filter(item -> item.getBienThe().getId().equals(gioHangChiTietRequest.getIdBienThe()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (gioHangChiTietEntityExsits != null) {
+                isLoadCart = true;
+                gioHangChiTietRepository.deleteById(gioHangChiTietEntityExsits.getId());
+                gioHangChiTietEntity.setSoLuong(gioHangChiTietRequest.getSoLuong() + gioHangChiTietEntityExsits.getSoLuong());
+            } else {
+                gioHangChiTietEntity.setSoLuong(gioHangChiTietRequest.getSoLuong());
+            }
         }
+
         gioHangChiTietEntity.setBienThe(bienTheRepository.findById(gioHangChiTietRequest.getIdBienThe()).get());
         gioHangChiTietRepository.save(gioHangChiTietEntity);
 
