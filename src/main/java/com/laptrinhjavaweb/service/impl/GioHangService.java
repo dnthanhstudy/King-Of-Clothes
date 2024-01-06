@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.converter.GioHangConverter;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.entity.GioHangEntity;
 import com.laptrinhjavaweb.exception.ClientError;
+import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
 import com.laptrinhjavaweb.response.GioHangResponse;
 import com.laptrinhjavaweb.response.TotalCartResponse;
@@ -23,6 +24,9 @@ public class GioHangService implements IGioHangService {
     @Autowired
     private GioHangConverter gioHangConverter;
 
+    @Autowired
+    private GioHangChiTietRepository gioHangChiTietRepository;
+
     @Override
     public Long save(GioHangRequest gioHangRequest) {
         GioHangEntity gioHangEntity = gioHangRepository.findByKhachHang_ma(gioHangRequest.getMaKhachHang());
@@ -39,6 +43,8 @@ public class GioHangService implements IGioHangService {
         if(gioHangEntity == null){
             return null;
         }
+        List<GioHangChiTietEntity> list = gioHangChiTietRepository.findAllByGioHang_IdAndTrangThai(gioHangEntity.getId(),"ACTIVE");
+        gioHangEntity.setGioHangChiTietEntities(list);
         return gioHangConverter.convertToResponse(gioHangEntity);
     }
 }

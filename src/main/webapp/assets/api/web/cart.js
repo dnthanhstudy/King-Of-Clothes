@@ -1,5 +1,43 @@
 loadProductActive();
 loadProductInActive();
+checkChuanBiDat();
+
+async function huyDatHang(){
+    await $.ajax({
+        url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
+        method: 'GET',
+        success: function(req) {
+            loadProductActive()
+        },
+        error: function(xhr, status, error) {
+            showError('Có lỗi xảy ra, hãy liên hệ admin');
+        }
+    });
+}
+
+async function checkChuanBiDat(){
+    loadProductActive();
+    await $.ajax({
+        url: '/api/hoadon/chuanbidat/'+customerIdWhenLogin,
+        method: 'GET',
+        success: async function (req) {
+            var data = req.data;
+            console.log(data)
+            if (data.length != 0) {
+                if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
+                    window.location.href = "/checkout"
+                }
+                else {
+                    await huyDatHang()
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log("false")
+            console.log('Có lỗi xảy ra: ' + error);
+        }
+    });
+}
 
 function formatNumber(number) {
     return new Intl.NumberFormat('vi-VN').format(number);
@@ -29,7 +67,7 @@ $('#buy-product').on('click', function () {
     checkQuantity(checked,
         function () {
 
-            //  showSuccess("Bạn có thể mua được hàng nè");
+          //  showSuccess("Bạn có thể mua được hàng nè");
             muaHang();
         },
         function (error) {
@@ -122,7 +160,7 @@ function loadGia(donGia, giaMua) {
         return `
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
         `;
-    } else {
+    }else{
         return `
             <del class="price-origin product-price-custom-vnd">${donGia}</del>
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
@@ -278,14 +316,11 @@ function loadProductActive() {
             })
             $('#cart').html(html);
 
-            $('.product-price-custom-vnd').each(function (index, item) {
+            $('.product-price-custom-vnd').each(function(index, item) {
                 let res = $(item).html();
-                if (res.indexOf("đ") === -1) {
+                if(res.indexOf("đ") === -1){
                     let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                    let formattedValue = new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND'
-                    }).format(numericValue);
+                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
                     $(item).html(formattedValue);
                 }
             });
@@ -534,66 +569,64 @@ function loadProductInActive() {
             console.log(response)
             let html = '';
             $.each(response, (index, item) => {
-                html += `<div style="border-bottom: 1px solid #dedede" class="cart-item">
-                              <div class="row mt-2 d-flex justify-content-center align-items-center">
+                html += `<div class="special-card" style="border-bottom: 1px solid #dedede">
+                            <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
-                                  <div class="form-check align-items-center justify-content-between mb-3 datacart">
-                                    <input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />
-                                    <label class="form-check-label">
-                                      <div class="mb-3" style="max-width: 540px">
-                                        <div class="row g-0">
-                                          <div class="col-lg-3">
-                                            <a href="/san-pham/${item.slug}">
-                                              <img
-                                                src="/repository/${item.anh}"
-                                                class="img-fluid rounded-start cart-item-image"
-                                                alt="..."
-                                              />
-                                            </a>
-                                          </div>
-                                          <div class="col-lg-9">
-                                            <div class="card-body">
-                                              <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
-                                                ><h5 class="card-title line-clamp-2">${item.ten}</h5></a
-                                              >
-                                              <span>Phân loại hàng</span>
-                                              <p class="text-primary mt-2">${item.giaTriBienThe}</p>
+                                    <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                        <input class="form-check-input" type="checkbox">
+                                        <label class="form-check-label">
+                                            <div class="mb-3" style="max-width: 540px;">
+                                                <div class="row g-0">
+                                                    <div class="col-lg-3">
+                                                        <a href="">
+                                                            <img src="/repository/${item.anh}"
+                                                                 class="img-fluid rounded-start" alt="...">
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="card-body">
+                                                            <a style="color: black; text-decoration: none;" href=""><h5
+                                                                    class="card-title line-clamp-2">${item.ten}</h5></a>
+                                                            <div class="btn-group">
+                                                                <span class="dropdown-toggle" data-bs-toggle="dropdown"
+                                                                      data-bs-auto-close="false" aria-expanded="false">
+                                                                    Phân loại hàng
+                                                                </span>
+                                                            </div>
+                                                            <p class="text-primary mt-3">${item.giaTriBienThe}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </label>
-                                  </div>
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="col-2 d-flex">
-                                     ${loadGiaInActice(item.giaGoc, item.giaMua)}
+                                    ${loadGiaInActice(item.giaGoc, item.giaMua)}
                                 </div>
                                 <div class="col-2">
-                                    <span>
-                                        <div class="input-group " style="width: 100px;">
-                                            ${item.soLuong}
-                                        </div>
-                                    </span>
+                                <span>
+                                    <div class="input-group " style="width: 100px;">
+                                        ${item.soLuong}
+                                    </div>
+                                </span>
                                 </div>
                                 <div class="col-2">
-                                  <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
+                                    <b>${item.thanhTien}</b>
                                 </div>
-                                <div class="col-1">
-                                  <a class="btn-remove-cart-item" style="cursor: pointer">Xóa</a>
+                                <div class="col-1" style="background: #fff;">
+                                    <a class="text-dark" style="cursor: pointer; opacity: 1;">Xóa</a>
                                 </div>
-                              </div>
-                        </div>`;
+                            </div>
+                    </div>`;
             })
             $('#cart-disable').html(html);
 
-            $('.product-price-custom-vnd').each(function (index, item) {
+            $('.product-price-custom-vnd').each(function(index, item) {
                 let res = $(item).html();
-                if (res.indexOf("đ") === -1) {
+                if(res.indexOf("đ") === -1){
                     let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                    let formattedValue = new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND'
-                    }).format(numericValue);
+                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
                     $(item).html(formattedValue);
                 }
             });
