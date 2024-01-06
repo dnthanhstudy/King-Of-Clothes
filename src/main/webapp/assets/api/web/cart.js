@@ -1,4 +1,28 @@
-loadProductActive();
+checkChuanBiDat()
+
+async function checkChuanBiDat(){
+    loadProductActive();
+    await $.ajax({
+        url: '/api/hoadon/chuanbidat/'+customerIdWhenLogin,
+        method: 'GET',
+        success: async function (req) {
+            var data = req.data;
+            console.log(data)
+            if (data.length != 0) {
+                if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
+                    window.location.href = "/checkout"
+                }
+                else {
+                    await huyDatHang()
+                }
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log("false")
+            console.log('Có lỗi xảy ra: ' + error);
+        }
+    });
+}
 
 function formatNumber(number) {
     return new Intl.NumberFormat('vi-VN').format(number);

@@ -68,6 +68,7 @@
 
     let histories = [];
     let customerCodeWhenLogin = $('#customer-code').val();
+    const customerIdWhenLogin = $('#customer-id').val();
     if (customerCodeWhenLogin !== "null") {
         $.ajax({
             url: '/api/khach-hang/histories?ma=' + customerCodeWhenLogin,
