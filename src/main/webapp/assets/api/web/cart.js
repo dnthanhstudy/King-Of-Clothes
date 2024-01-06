@@ -1,4 +1,16 @@
 checkChuanBiDat()
+async function huyDatHang(){
+    await $.ajax({
+        url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
+        method: 'GET',
+        success: function(req) {
+            loadProductActive()
+        },
+        error: function(xhr, status, error) {
+            showError('Có lỗi xảy ra, hãy liên hệ admin');
+        }
+    });
+}
 
 async function checkChuanBiDat(){
     loadProductActive();
