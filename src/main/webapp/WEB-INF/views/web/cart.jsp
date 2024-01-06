@@ -55,7 +55,7 @@
         </div>
 
         <div class="khung mb-5">
-            <span class="fs-4">Danh Sách Sản Phẩm Không Hoạt Động</span>
+            <span class="fs-4">Danh Sách Sản Phẩm Đã Hết Hàng</span>
             <div id="cart-disable">
                 <div class="special-card" style="border-bottom: 1px solid #dedede">
                     <div class="row mt-2 d-flex justify-content-center align-items-center">

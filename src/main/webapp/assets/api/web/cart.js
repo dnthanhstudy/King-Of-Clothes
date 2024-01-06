@@ -1,4 +1,5 @@
 loadProductActive();
+loadProductInActive();
 
 function formatNumber(number) {
     return new Intl.NumberFormat('vi-VN').format(number);
@@ -28,7 +29,7 @@ $('#buy-product').on('click', function () {
     checkQuantity(checked,
         function () {
 
-          //  showSuccess("Bạn có thể mua được hàng nè");
+            //  showSuccess("Bạn có thể mua được hàng nè");
             muaHang();
         },
         function (error) {
@@ -70,7 +71,7 @@ $('#cart').on('click', function (e) {
 
 $('#cart').on('input', function (e) {
     const eleClick = $(e.target);
-    if(eleClick.hasClass('product-quantity')){
+    if (eleClick.hasClass('product-quantity')) {
         let enteredQuantity = parseInt(eleClick.val());
         if (isNaN(enteredQuantity) || enteredQuantity <= 0) {
             enteredQuantity = 1;
@@ -115,14 +116,28 @@ function loadTotalCart(data) {
         }
     });
 }
-function loadGia(donGia,giaMua) {
-    if (donGia==giaMua){
+
+function loadGia(donGia, giaMua) {
+    if (donGia == giaMua) {
         return `
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
         `;
-    }else{
+    } else {
         return `
             <del class="price-origin product-price-custom-vnd">${donGia}</del>
+            <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
+        `;
+    }
+}
+
+function loadGiaInActice(giaGoc, giaMua) {
+    if (giaGoc == giaMua) {
+        return `
+            <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
+        `;
+    } else {
+        return `
+            <del class="price-origin product-price-custom-vnd">${giaGoc}</del>
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
         `;
     }
@@ -229,7 +244,7 @@ function loadProductActive() {
                       </div>
                     </div>
                     <div class="col-2 d-flex">
-                   ${loadGia(item.donGia,item.giaMua)}
+                   ${loadGia(item.donGia, item.giaMua)}
                     </div>
                     <div class="col-2">
                       <span>
@@ -263,11 +278,14 @@ function loadProductActive() {
             })
             $('#cart').html(html);
 
-            $('.product-price-custom-vnd').each(function(index, item) {
+            $('.product-price-custom-vnd').each(function (index, item) {
                 let res = $(item).html();
-                if(res.indexOf("đ") === -1){
+                if (res.indexOf("đ") === -1) {
                     let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                    let formattedValue = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(numericValue);
                     $(item).html(formattedValue);
                 }
             });
@@ -310,9 +328,9 @@ function updateCart(ele) {
         success: (response) => {
             showSuccess("Cập nhật giỏ hàng thành công");
             console.log(response);
-            if(response.isLoadCart){
+            if (response.isLoadCart) {
                 loadProductActive();
-            }else{
+            } else {
                 loadOneCartItem(response, eleCartItem);
             }
             $.ajax({
@@ -320,9 +338,9 @@ function updateCart(ele) {
                 method: "GET",
                 dataType: "json",
                 success: (response) => {
-                    if(response === null){
+                    if (response === null) {
                         $('.quantity-cart').text(0);
-                    }else{
+                    } else {
                         const size = response.gioHang.length;
                         $('.quantity-cart').text(size);
                     }
@@ -507,3 +525,81 @@ function removeIonChecked(eleClick) {
     });
 }
 
+function loadProductInActive() {
+    $.ajax({
+        url: "/api/xoa-bien-the/cart/" + customerCodeWhenLogin,
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            console.log(response)
+            let html = '';
+            $.each(response, (index, item) => {
+                html += `<div style="border-bottom: 1px solid #dedede" class="cart-item">
+                              <div class="row mt-2 d-flex justify-content-center align-items-center">
+                                <div class="col-5">
+                                  <div class="form-check align-items-center justify-content-between mb-3 datacart">
+                                    <input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />
+                                    <label class="form-check-label">
+                                      <div class="mb-3" style="max-width: 540px">
+                                        <div class="row g-0">
+                                          <div class="col-lg-3">
+                                            <a href="/san-pham/${item.slug}">
+                                              <img
+                                                src="/repository/${item.anh}"
+                                                class="img-fluid rounded-start cart-item-image"
+                                                alt="..."
+                                              />
+                                            </a>
+                                          </div>
+                                          <div class="col-lg-9">
+                                            <div class="card-body">
+                                              <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
+                                                ><h5 class="card-title line-clamp-2">${item.ten}</h5></a
+                                              >
+                                              <span>Phân loại hàng</span>
+                                              <p class="text-primary mt-2">${item.giaTriBienThe}</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="col-2 d-flex">
+                                     ${loadGiaInActice(item.giaGoc, item.giaMua)}
+                                </div>
+                                <div class="col-2">
+                                    <span>
+                                        <div class="input-group " style="width: 100px;">
+                                            ${item.soLuong}
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-2">
+                                  <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
+                                </div>
+                                <div class="col-1">
+                                  <a class="btn-remove-cart-item" style="cursor: pointer">Xóa</a>
+                                </div>
+                              </div>
+                        </div>`;
+            })
+            $('#cart-disable').html(html);
+
+            $('.product-price-custom-vnd').each(function (index, item) {
+                let res = $(item).html();
+                if (res.indexOf("đ") === -1) {
+                    let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                    let formattedValue = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(numericValue);
+                    $(item).html(formattedValue);
+                }
+            });
+        },
+        error: (error) => {
+
+        }
+    });
+}
