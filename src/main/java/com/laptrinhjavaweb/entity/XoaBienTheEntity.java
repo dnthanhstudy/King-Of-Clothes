@@ -35,4 +35,7 @@ public class XoaBienTheEntity extends BaseEntity {
 
     @Column(name = "mahoadon")
     private String maHoaDon;
+
+    @Column(name = "url")
+    private String url;
 }
