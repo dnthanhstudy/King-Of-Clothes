@@ -309,7 +309,7 @@ function loadProductActive() {
                       <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
                     </div>
                     <div class="col-1">
-                      <a class="btn-remove-cart-item" style="cursor: pointer">Xóa</a>
+                      <a class="btn-remove-cart-item fs-5" style="cursor: pointer">Xóa</a>
                     </div>
                   </div>
                 </div>`;
@@ -573,8 +573,6 @@ function loadProductInActive() {
                             <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                     <div class="form-check align-items-center justify-content-between mb-3 datacart">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label">
                                             <div class="mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-lg-3">
@@ -588,12 +586,11 @@ function loadProductInActive() {
                                                             <a style="color: black; text-decoration: none;" href=""><h5
                                                                     class="card-title line-clamp-2">${item.ten}</h5></a>
                                                             <div class="btn-group">
-                                                                <span class="dropdown-toggle" data-bs-toggle="dropdown"
-                                                                      data-bs-auto-close="false" aria-expanded="false">
+                                                                <span class="dropdown-toggle">
                                                                     Phân loại hàng
                                                                 </span>
                                                             </div>
-                                                            <p class="text-primary mt-3">${item.giaTriBienThe}</p>
+                                                            <p class="text-dark mt-3">${item.giaTriBienThe}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -612,10 +609,10 @@ function loadProductInActive() {
                                 </span>
                                 </div>
                                 <div class="col-2">
-                                    <b>${item.thanhTien}</b>
+                                    <b class="product-price-custom-vnd">${item.thanhTien}</b>
                                 </div>
-                                <div class="col-1" style="background: #fff;">
-                                    <a class="text-dark" style="cursor: pointer; opacity: 1;">Xóa</a>
+                                <div class="col-1" style="background: #fff;height: 200px">
+                                    <a class=" fs-5 d-flex justify-content-center align-items-center" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
                                 </div>
                             </div>
                     </div>`;

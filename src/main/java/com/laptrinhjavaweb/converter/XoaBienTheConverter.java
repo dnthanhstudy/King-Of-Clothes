@@ -14,6 +14,8 @@ public class XoaBienTheConverter {
 
     public XoaBienTheResponse convertToResponse(XoaBienTheEntity xoaBienTheEntity) {
         XoaBienTheResponse response = modelMapper.map(xoaBienTheEntity, XoaBienTheResponse.class);
+
+        response.setThanhTien(response.getGiaMua() * response.getSoLuong());
         return response;
     }
 }

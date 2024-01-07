@@ -22,4 +22,6 @@ public class XoaBienTheResponse {
     private String maKhachHang;
 
     private String maHoaDon;
+
+    private Double thanhTien;
 }
