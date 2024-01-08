@@ -1,12 +1,7 @@
 package com.laptrinhjavaweb.service.impl.banhang;
 
 
-import com.laptrinhjavaweb.converter.CaLamConverter;
 import com.laptrinhjavaweb.entity.*;
-import com.laptrinhjavaweb.entity.CaLamEntity;
-import com.laptrinhjavaweb.entity.ChiTieuEntity;
-import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
@@ -19,7 +14,6 @@ import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.*;
-import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.service.impl.QuyDoiDiemService;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
@@ -288,28 +282,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 //        result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
 //        return result;
 //    }
-    public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
-        CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
-        CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
-        List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
 
-        Double tongTienMat = 0.0;
-        Double tongTienChuyenKhoan = 0.0;
-        for (HoaDonEntity hoaDonEntity : listHoaDon) {
-            if(hoaDonEntity.getPhuongThuc().equals("Tiền mặt")){
-                tongTienMat += hoaDonEntity.getTongTienHang();
-            }else if(hoaDonEntity.getPhuongThuc().equals("Chuyển khoản")){
-                tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
-            }
-        }
-
-        result.setTongHoaDon(listHoaDon.size());
-        result.setTongTienMat(tongTienMat);
-        result.setTongTienChuyenKhoan(tongTienChuyenKhoan);
-        result.setTongTienTrongCa(result.getTongTienMat() + result.getTongTienChuyenKhoan());
-        result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
-        return result;
-    }
 
     public void saveTichDiemOnline(HoaDonEntity hoaDonEntity){
             TichDiemEntity entity = tichDiemRepository.findByKhachHang_ma(hoaDonEntity.getKhachHang().getMa());

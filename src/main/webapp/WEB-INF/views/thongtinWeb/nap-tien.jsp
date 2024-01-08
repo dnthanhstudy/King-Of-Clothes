@@ -120,12 +120,10 @@
     // tự động chuyển dấu
     function updateFormattedValue() {
         var inputValue = $("#soTienNap").val().replace(/\./g, ''); // Remove existing periods
-
         // Check if the input is emty or not a valid number
         if (inputValue === "" || isNaN(inputValue)) {
             inputValue = "0";
         }
-
         var formattedValue = formatNumber(parseFloat(inputValue));
         $("#soTienNap").val(formattedValue);
         updateAmounts(formattedValue);

@@ -17,4 +17,9 @@ public class ViDienTuController {
     public String naptien() {
         return "thongtinWeb/nap-tien";
     }
+
+    @GetMapping("/doi-diem")
+    public String doiDiem() {
+        return "thongtinWeb/doi-diem";
+    }
 }

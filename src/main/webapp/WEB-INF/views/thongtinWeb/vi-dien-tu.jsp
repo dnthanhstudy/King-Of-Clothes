@@ -24,8 +24,14 @@
                             <h5 class="text-primary">Nạp tiền</h5>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="btn btn-default" href="/vi-dien-tu/doi-diem">
+                            <i class="bi bi-cash-coin fs-2"></i>
+                            <h5 class="text-primary">Đổi điểm</h5>
+                        </a>
+                    </li>
                     <li class="nav-item ms-5">
-                        <button id="lichSuButton" class="btn btn-default" onclick="lichSu()">
+                        <button id="lichSuButton" class="btn btn-default">
                             <i class="bi bi-receipt fs-2"></i>
                             <h5 class="text-primary">Lịch sử</h5>
                         </button>
@@ -53,8 +59,8 @@
     document.addEventListener("DOMContentLoaded", function () {
         var lichSuButton = document.getElementById("lichSuButton");
         var lichSuContainer = document.getElementById("lichSuContainer");
-
         lichSuButton.addEventListener("click", function () {
+            lichSu();
             var isHidden = lichSuContainer.style.display === "none";
 
             if (isHidden) {
@@ -64,6 +70,8 @@
             }
         });
     });
+
+
     var idkh = '<%= idkh %>';
     var idVi = -1;
     console.log(idkh);
@@ -74,7 +82,7 @@
             console.log(data);
             idVi = data.id;
             $("#soDuVi").text(formatNumber(data.soTien));
-            $("#lichSuButton").trigger("click")
+            // $("#lichSuButton").trigger("click")
         },
         error: function(xhr, status, error) {
             alert('Có lỗi xảy ra: ' + error);
@@ -96,6 +104,8 @@
                         loaiChiTieuStr = "Thanh toán";
                     }else if (item.loaiChiTieu == 2) {
                         loaiChiTieuStr = "Hoàn tiền";
+                    }else if (item.loaiChiTieu == 3) {
+                        loaiChiTieuStr = "Đổi điểm";
                     } else{
                         loaiChiTieuStr = "Nạp tiền";
                     }

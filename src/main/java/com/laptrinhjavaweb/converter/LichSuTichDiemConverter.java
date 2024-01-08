@@ -1,10 +1,8 @@
 package com.laptrinhjavaweb.converter;
 
 import com.laptrinhjavaweb.entity.LichSuTichDiemEntity;
-import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
-import com.laptrinhjavaweb.response.KhacHangResponse;
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
 import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
 import org.modelmapper.ModelMapper;
@@ -38,7 +36,11 @@ public class LichSuTichDiemConverter {
 
     public LichSuTichDiemResponse convertToResponse(LichSuTichDiemEntity entity){
         LichSuTichDiemResponse response = modelMapper.map(entity, LichSuTichDiemResponse.class);
-        response.setMaHoaDon(entity.getHoaDon().getMa());
+        if(entity.getHoaDon() == null){
+            response.setMaHoaDon("");
+        }else{
+            response.setMaHoaDon(entity.getHoaDon().getMa());
+        }
         response.setTenKhachHang(entity.getKhachHang().getTen());
         response.setSoDienThoai(entity.getKhachHang().getSoDienThoai());
         if(entity.getSoDiemDung() == null){
