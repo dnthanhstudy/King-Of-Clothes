@@ -19,6 +19,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
             "ghct.trangThai not in ('DELETE','PENDING','DAHETHANG')")
     List<Long> dsspCuaGioHang(@Param("idkh")Long idkh);
 
+    List<GioHangChiTietEntity> findAllByGioHang_IdAndTrangThai(Long idGioHang,String trangThai);
+
     @Query("select ghct from GioHangChiTietEntity ghct" +
             " where ghct.gioHang.khachHang.id=:idkh and ghct.bienThe.sanPham.id=:idsp and ghct.trangThai " +
             "not in ('DELETE','PENDING','DAHETHANG') order by ghct.ngayTao desc,ghct.ngaySua desc ")
@@ -53,7 +55,11 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
 
     GioHangChiTietEntity findByGioHang_idAndBienThe_id(Long idGioHang, Long idBienThe);
 
-    List<GioHangChiTietEntity> findAllByBienThe_id(Long id);
-
     List<GioHangChiTietEntity> findAllByIdInAndGioHang_KhachHang_Ma(List<Long> ids, String maKhachHang);
+
+    List<GioHangChiTietEntity> findAllByBienThe_IdIn (List<Long> idsBienThe);
+
+    @Modifying
+    @Query("delete from GioHangChiTietEntity g WHERE g.bienThe.id in ?1")
+    void updateVariant (List<Long> idsBienThe);
 }

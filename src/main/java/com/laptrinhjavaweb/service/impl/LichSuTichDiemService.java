@@ -6,7 +6,7 @@ import com.laptrinhjavaweb.entity.LichSuTichDiemEntity;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.LichSuTichDiemRepository;
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
-import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
+import com.laptrinhjavaweb.resquest.LichSuTichDiemRequest;
 import com.laptrinhjavaweb.service.ILichSuTichDiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
     private KhachHangRepository khachHangRepository;
 
     @Override
-    public void save(LịchSuTichDiemRequest request) {
+    public void save(LichSuTichDiemRequest request) {
         LichSuTichDiemEntity entity = lichSuTichDiemConverter.convertToEntity(request);
         lichSuTichDiemRepository.save(entity);
     }
@@ -59,7 +59,6 @@ public class LichSuTichDiemService implements ILichSuTichDiemService {
     public List<LichSuTichDiemResponse> findAllByMaKH(String ma) {
         KhachHangEntity kh = khachHangRepository.findByMa(ma);
         List<LichSuTichDiemEntity> entity = lichSuTichDiemRepository.findAllByKhachHang_idOrderByNgayTaoDesc(kh.getId());
-
         List<LichSuTichDiemResponse> result = entity.stream().map(
                 item ->
                         lichSuTichDiemConverter.convertToResponse(item)

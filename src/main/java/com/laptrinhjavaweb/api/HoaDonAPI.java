@@ -106,4 +106,10 @@ public class HoaDonAPI {
         List<HoaDonResponse> result = hoaDonService.searchs(param,trangThai);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @PutMapping("/deleteStatus/{ma}")
+    public ResponseEntity<?> deleteStatus(@PathVariable String ma, @RequestBody Long idHuyDon){
+        hoaDonService.deleteStatus(ma, idHuyDon);
+        return new ResponseEntity<>("Hủy thành công", HttpStatus.OK);
+    }
 }

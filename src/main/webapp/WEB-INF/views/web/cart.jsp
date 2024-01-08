@@ -50,172 +50,14 @@
 
         <div class="khung mb-5">
             <div id="cart">
-                <div style="border-bottom: 1px solid #dedede">
-                    <div class="row mt-2 d-flex justify-content-center align-items-center">
-                        <div class="col-5">
-                            <div class="form-check align-items-center justify-content-between mb-3">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label">
-                                    <div class="mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-lg-3">
-                                                <a href="">
-                                                    <img src="/repository/0PQldf.jpg"
-                                                         class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <div class="card-body">
-                                                    <a style="color: black; text-decoration: none;" href=""><h5
-                                                            class="card-title line-clamp-2">Áo polo</h5></a>
-                                                    <div class="btn-group">
-                                                    <span class="dropdown-toggle" data-bs-toggle="dropdown"
-                                                          data-bs-auto-close="false" aria-expanded="false">
-                                                        Phân loại hàng
-                                                    </span>
-                                                        <ul class="dropdown-menu p-3">
-                                                            <li>
-                                                                <div class="color-selector">
-                                                                    <label>Color:</label>
-                                                                    <div class="color-buttons">
-                                                                        <button class="color-button" data-color="black">
-                                                                            Black
-                                                                        </button>
-                                                                        <button class="color-button" data-color="red">
-                                                                            Red
-                                                                        </button>
-                                                                        <button class="color-button" data-color="blue">
-                                                                            BLue
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="color-selector">
-                                                                    <label>Size:</label>
-                                                                    <div class="color-buttons">
-                                                                        <button class="size-button" data-color="s">Size
-                                                                            S
-                                                                        </button>
-                                                                        <button class="size-button" data-color="m">Size
-                                                                            M
-                                                                        </button>
-                                                                        <button class="size-button" data-color="l">Size
-                                                                            L
-                                                                        </button>
-                                                                        <button class="size-button" data-color="xl">Size
-                                                                            XL
-                                                                        </button>
-                                                                        <button class="size-button" data-color="xxl">
-                                                                            Size XXL
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="text-right ">
-                                                                <button type="button" class="btn btn-light">Cancel
-                                                                </button>
-                                                                <button type="button" class="btn text-light"
-                                                                        style="background-color: #C3817B">Submit
-                                                                </button>
-                                                            </li>
-                                                        </ul>
 
-                                                    </div>
-                                                    <p id="">Trắng, L</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            300000
-                        </div>
-                        <div class="col-2">
-                        <span>
-                            <div class="input-group " style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus">
-                                                <i class="fa fa-minus"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text"
-                                               class="form-control form-control-sm bg-secondary text-center slthis"
-                                               value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                        </span>
-                        </div>
-                        <div class="col-2">
-                            <b>500000</b>
-                        </div>
-                        <div class="col-1">
-                            <a style="cursor: pointer">Xóa</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
         <div class="khung mb-5">
-            <span class="fs-4">Danh Sách Sản Phẩm Không Hoạt Động</span>
+            <span class="fs-4">Danh Sách Sản Phẩm Đã Hết Hàng</span>
             <div id="cart-disable">
-                <div class="special-card" style="border-bottom: 1px solid #dedede">
-                    <div class="row mt-2 d-flex justify-content-center align-items-center">
-                        <div class="col-5">
-                            <div class="form-check align-items-center justify-content-between mb-3 datacart">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label">
-                                    <div class="mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-lg-3">
-                                                <a href="">
-                                                    <img src="/repository/0PQldf.jpg"
-                                                         class="img-fluid rounded-start" alt="...">
-                                                </a>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <div class="card-body">
-                                                    <a style="color: black; text-decoration: none;" href=""><h5
-                                                            class="card-title line-clamp-2">Áo polo</h5></a>
-                                                    <div class="btn-group">
-                                                        <span class="dropdown-toggle" data-bs-toggle="dropdown"
-                                                              data-bs-auto-close="false" aria-expanded="false">
-                                                            Phân loại hàng
-                                                        </span>
-                                                    </div>
-                                                    <p>Trắng, L</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            300000
-                        </div>
-                        <div class="col-2">
-                        <span>
-                            <div class="input-group " style="width: 100px;">
-                                1
-                            </div>
-                        </span>
-                        </div>
-                        <div class="col-2">
-                            <b>500000</b>
-                        </div>
-                        <div class="col-1" style="background: #fff;">
-                            <a class="text-dark" style="cursor: pointer; opacity: 1;">Xóa</a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -285,6 +127,37 @@
         </div>
     </div>
 </div>
+<script>
+    var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+    function muaHang(){
+        var listsp = getValByCheckbox();
+        var listspAsNumbers = listsp.map(str => Number(str));
+
+        var data = JSON.stringify({
+            dsghct: listspAsNumbers,
+        });
+        $.ajax({
+            url: '/api/user/giohang/dathang/' + idkh,
+            method: 'POST',
+            contentType: 'application/json',
+            data: data,
+            success: async function (req) {
+                //     console.log(req)
+                window.location.href = "/checkout";
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+                showError("Có lỗi xảy ra");
+            }
+        });
+    }
+
+    function getValByCheckbox() {
+        return $("input[name='idghct']:checked").map(function () {
+            return this.value;
+        }).get();
+    }
+</script>
 <script src="<c:url value='/assets/api/web/cart.js'/>"></script>
 </body>
 </html>

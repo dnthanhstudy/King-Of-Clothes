@@ -85,10 +85,13 @@ public class SanPhamAPI {
 	@PostMapping
 	public ResponseEntity<?> createdSanPham(@RequestBody SanPhamRequest request){
 		SanPhamResponse result = sanPhamService.save(request);
-		if(result == null){
-			throw new ClientError("Slug này đã tồn tại. Xin kiểm tra lại!");
-		}
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
+	}
+
+	@PutMapping
+	public ResponseEntity<?> updated(@RequestBody SanPhamRequest request){
+		SanPhamResponse result = sanPhamService.update(request);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{slug}")

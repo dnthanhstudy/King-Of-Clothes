@@ -37,7 +37,7 @@
         <div class="row mt-3">
             <table class="table table-hover table-bordered border-dark">
                 <thead>
-                <tr>
+                <tr class="text-center">
                     <th scope="col">STT</th>
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Số lượng</th>
@@ -70,7 +70,8 @@
     </div>
 </div>
 <div class="container pt-4">
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between">
+        <a href="/admin/giao-dich/hoa-don-off" class="btn btn-outline-dark">Back ></a>
         <button id="printf-invoice" class="btn btn-outline-dark">In hóa đơn</button>
     </div>
 </div>
@@ -81,6 +82,10 @@
     const maHoaDon = results[results.length - 1];
 
     loadHoaDon();
+
+    function formatNumber(number) {
+        return new Intl.NumberFormat('vi-VN').format(number);
+    }
 
     function loadHoaDon() {
         $.ajax({
@@ -94,19 +99,19 @@
                 $.each(response.hoaDonChiTiet, (index, item) => {
                     totalInvoice += item.thanhTien;
                     html += ` <tr>
-                                <th scope="row">\${++index}</th>
+                                <td class="text-center">\${++index}</td>
                                 <td>\${item.tenSanPham}</td>
-                                <td>\${item.soLuong}</td>
-                                <td>\${item.gia}</td>
-                                <td>\${item.thanhTien}</td>
+                                <td class="text-center">\${item.soLuong}</td>
+                                <td class="text-center">\${formatNumber(item.gia)}</td>
+                                <td class="text-center">\${formatNumber(item.thanhTien)}</td>
                             </tr>`;
                 });
 
                 let totalAmount = response.tienGiamGia !== null ? totalInvoice - response.tienGiamGia : totalInvoice;
 
                 html += `<tr>
-                        <td scope="col" colspan="3"></td>
-                        <th scope="col" colspan="2" class="fs-4 text-center">Tổng tiền: \${totalAmount}</th>
+                        <td scope="col" colspan="2"></td>
+                        <th scope="col" colspan="3" class="fs-4 text-center">Tổng tiền: \${formatNumber(totalAmount)}</th>
                     </tr>`;
 
                 $('#tbody-invoice').html(html);

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Detail Hóa Đơn</title>
+    <title>Chi tiết hóa đơn</title>
 </head>
 <body>
  <section>
@@ -28,10 +28,31 @@
     padding: 20px; background-color: #fff">
                         <div class="d-flex justify-content-between">
                             <h4>Thông tin khách hàng</h4>
-                            <button type="button" class="buttonExport" id="exportButton">
-                                <span class="button__text">Export</span>
-                                <span class="button__icon"><svg class="svgExport" data-name="Layer 2" id="bdd05811-e15d-428c-bb53-8661459f9307" viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg"><path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path><path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path><path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path></svg></span>
+                            <button type="button" class="buttonExport" id="exportButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span class="button__text">Hủy đơn</span>
+                                <span class="button__icon">
+                                    <svg class="svgExport" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/>
+                                    </svg>
+                                </span>
                             </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lý do hủy đơn:</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea id="lyDo" class="form-control" placeholder="Nhập lý do hủy đơn"></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-deleteStatus">Hủy đơn</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
                         <div class="row">
@@ -50,9 +71,11 @@
                          <hr>
                          <table class="table table-hover table-striped" id="tblSanPham">
                              <thead>
-                             <tr class="table-warning">
+                             <tr class="table-warning text-center">
                                  <th scope="col">STT</th>
+                                 <th scope="col">Hình ảnh</th>
                                  <th scope="col">Tên sản phẩm </th>
+                                 <th scope="col">Tên thuộc tính</th>
                                  <th scope="col">Số lượng</th>
                                  <th scope="col">Đơn giá</th>
                                  <th scope="col">Thành tiền</th>
@@ -111,8 +134,8 @@
                                  <span class="fs-5" id="tenNhanVien"></span>
                          </div>
                          <div class="row mt-3">
-                                <span class="fs-5">Ghi chú:</span>
-                                 <textarea class="form-control"></textarea>
+                             <span class="fs-5">Ghi chú:</span>
+                             <textarea class="form-control"></textarea>
                          </div>
                      </div>
                  </div>
@@ -123,6 +146,7 @@
 
 
  <script>
+     let maHoaDon = null;
      loadHoaDon();
 
      function getDateTimeFromTimestamp(unixTimeStamp) {
@@ -134,11 +158,15 @@
          return new Intl.NumberFormat('vi-VN').format(number);
      }
 
+     function getMaHoaDon() {
+         var urlSegments = window.location.pathname.split("/");
+         return urlSegments[urlSegments.length - 1];
+     }
+
      function loadHoaDon() {
-         var url = window.location.pathname.split("/");
-         var ma = url[url.length - 1];
+         maHoaDon = getMaHoaDon();
          $.ajax({
-             url: '/api/hoa-don-off/' + ma,
+             url: '/api/hoa-don-off/' + maHoaDon,
              method: 'GET',
              dataType: 'json',
              success: function (req) {
@@ -150,6 +178,7 @@
                  $("#soDienThoaiKhachHang").text(req.soDienThoaiKhachHang);
                  $("#tenNhanVien").text(req.tenNhanVien);
                  $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
+                 $("#trangThai").text(req.trangThai);
                  var tbody = $('#tblSanPham tbody');
                  tbody.empty();
                  var index = 0;
@@ -158,13 +187,27 @@
                      toatlQuantity += item.soLuong;
                      var row = `
                             <tr>
-                                <td>\${++index}</td>
-                                <td>\${item.tenSanPham}</td>
-                                 <td>\${item.soLuong}</td>
-                                 <td>\${formatNumber(item.gia)} đ</td>
-                                 <td>\${formatNumber(item.thanhTien)} đ</td>
-                            </tr>
-                        `;
+                                 <td class="text-center">\${++index}</td>
+                                 <td class="text-center">
+                                     <img src='/repository/\${item.image}' style="width: 120px;">
+                                </td>
+                                 <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</td>
+                                 <td class="text-center">`;
+                     var nameVariant = [];
+                     item.thuocTinh.forEach(function (itemThuocTinh) {
+                         itemThuocTinh.giaTriThuocTinh.forEach(function (itemGiaTriThuocTinh) {
+                            item.giaTriThuocTinhChecked.forEach(function (itemGiaTriThuocTinhChecked){
+                                 if (itemGiaTriThuocTinhChecked === itemGiaTriThuocTinh.id) {
+                                     nameVariant.push(itemGiaTriThuocTinh.giaTri);
+                                 }
+                             })
+                         });
+                     });
+                     row += `\${nameVariant.join(", ")}</td>
+                             <td class="text-center">\${item.soLuong}</td>
+                             <td class="text-center">\${formatNumber(item.gia)} đ</td>
+                             <td class="text-center">\${formatNumber(item.thanhTien)} đ</td>
+                        </tr>`;
                      tbody.append(row);
                      $('#invoice-quantity').text(toatlQuantity);
                      $('.invoice-total').text(formatNumber(totalInvoice));
@@ -176,6 +219,57 @@
                  console.log(error);
              }
          })
+     }
+
+     $('.btn-deleteStatus').on('click', () => {
+         let lyDo = $('#lyDo').val().trim();
+         if (lyDo === "") {
+             showError("Vui lòng nhập lý do hủy đơn.");
+             return;
+         }
+         showConfirm("Bạn có muốn hủy không?")
+                 .then((confirmed) => {
+                     if (confirmed) {
+                         let data = { "lyDo": lyDo };
+
+                         cancelOrder(data,
+                             function (response) {
+                                 $.ajax({
+                                     url: '/api/hoa-don-off/deleteStatus/' + maHoaDon,
+                                     method: 'PUT',
+                                     contentType: 'application/json',
+                                     data: JSON.stringify(response.id),
+                                     success: function (response) {
+                                         showSuccess("Hủy đơn thành công!");
+                                         window.location.href = "/admin/giao-dich/hoa-don-off";
+                                     },
+                                     error: function (xhr, status, error) {
+                                         showError("Hủy đơn thất bại");
+                                     }
+                                 });
+                             },
+                             function (error) {
+                                console.log(error)
+                             })
+                     }
+                 });
+
+     });
+
+     function cancelOrder(data, successCallback, errorCallback){
+         $.ajax({
+             url: "/api/ly-do-huy-don",
+             method: "POST",
+             contentType: "application/json; charset=utf-8",
+             dataType: "json",
+             data: JSON.stringify(data),
+             success: function (response) {
+                 successCallback(response);
+             },
+             error: function (error) {
+                 errorCallback(error);
+             }
+         });
      }
  </script>
 </body>

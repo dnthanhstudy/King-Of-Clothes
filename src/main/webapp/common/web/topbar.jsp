@@ -68,6 +68,7 @@
 
     let histories = [];
     let customerCodeWhenLogin = $('#customer-code').val();
+    const customerIdWhenLogin = $('#customer-id').val();
     if (customerCodeWhenLogin !== "null") {
         $.ajax({
             url: '/api/khach-hang/histories?ma=' + customerCodeWhenLogin,
@@ -102,8 +103,12 @@
         method: "GET",
         dataType: "json",
         success: (response) => {
-            const size = response.gioHang.length;
-            $('.quantity-cart').text(size);
+            if(response === null){
+                $('.quantity-cart').text(0);
+            }else{
+                const size = response.gioHang.length;
+                $('.quantity-cart').text(size);
+            }
         },
         error: (error) => {
         }

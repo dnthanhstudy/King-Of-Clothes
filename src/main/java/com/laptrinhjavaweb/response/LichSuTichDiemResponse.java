@@ -8,6 +8,7 @@ import java.util.Date;
 @Setter
 @Getter
 public class LichSuTichDiemResponse {
+
     private Long id;
 
     private String tenKhachHang;
@@ -21,4 +22,6 @@ public class LichSuTichDiemResponse {
     private Integer soDiemTichDuoc;
 
     private Date ngayTao;
+
+    private Integer soDiemHoan;
 }

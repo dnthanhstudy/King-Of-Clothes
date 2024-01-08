@@ -69,7 +69,10 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<BienTheEntity> bienTheEntities = new ArrayList<>();
-	
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
+	private List<GiaTriThuocTinhEntity> giaTriThuocTinhEntities = new ArrayList<>();
+
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<GioHangChiTietEntity> gioHangChiTietEntities = new ArrayList<>();
 	

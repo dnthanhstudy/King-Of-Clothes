@@ -18,14 +18,16 @@ function validateProduct() {
 
 $(".btn-add-product").on("click", function (event) {
     event.preventDefault();
+    let method = "POST";
+    let message = "Thêm sản phẩm thành công";
     if (validateProduct()) {
         let data = getDataFromForm();
+        data["id"] = $('#product-id').val();
         data["anh"] = getImageOfProduct();
         if (data["anh"].length === 0) {
             showError("Vui lòng chọn hình ảnh của sản phẩm");
             return false;
         }
-        let hasEmptyGiaTris = false;
         data["thuocTinh"] = getAttributeValues();
 
         if(data["thuocTinh"].length === 0){
@@ -33,37 +35,54 @@ $(".btn-add-product").on("click", function (event) {
             return false;
         }
 
+        let hasEmptyGiaTris = false;
         $.each(data["thuocTinh"], function (index, item) {
             if (item.giaTris.length === 0) {
-                showError("Vui lòng nhập giá trị thuộc tính");
                 hasEmptyGiaTris = true;
                 return false;
             }
         });
         if (hasEmptyGiaTris) {
+            showError("Vui lòng nhập giá trị thuộc tính");
             return false;
         }
         data["bienThe"] = getVariants();
+        if(data["bienThe"].length === 0){
+
+        }
         $.each(data["bienThe"], function (index, item) {
             if (isNumber(item.gia) === false || isNumber(item.soLuong) === false) {
-                showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
                 hasEmptyGiaTris = true;
                 return false;
             }
         });
+        if (hasEmptyGiaTris) {
+            showError("Số lượng hoặc giá không đúng định dạng. Xin kiểm tra lại");
+            return false;
+        }
+
+        if(data["id"] !== "")
+        {
+            data["id"] = parseInt(data["id"]);
+            method = "PUT";
+            message = "Cập nhật sản phẩm thành công";
+        }else{
+            data["id"] = null;
+        }
+        console.log(data);
 
         $.ajax({
             url: "/api/san-pham",
-            method: "POST",
+            method: method,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(data),
             success: (response) => {
-                showSuccess("Thêm sản phẩm thành công");
+                showSuccess(message);
                 window.location.href = "/admin/san-pham";
             },
             error: (error) => {
-                console.log(error);
+                showError(error.responseJSON.error)
             }
         });
     }

@@ -35,24 +35,9 @@ public class BienTheEntity extends BaseEntity{
 	@JoinColumn(name = "idsanpham")
 	private SanPhamEntity sanPham;
 
-		
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<GiaTriThuocTinhBienTheEntity> giaTriThuocTinhBienTheEntities = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "bienThe", fetch = FetchType.LAZY)
 	private List<HoaDonChiTietEntity> hoaDonChiTietEntities = new ArrayList<>();
-
-	public Double getGia() {
-		if (gia==null){
-			return sanPham.getGia();
-		}
-		return gia;
-	}
-
-	public Integer getSoLuong() {
-		if (soLuong==null){
-			return 0;
-		}
-		return soLuong;
-	}
 }

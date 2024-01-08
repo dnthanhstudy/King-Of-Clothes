@@ -253,37 +253,6 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
 
-    //    @Override
-//    public CaLamResponse findAllByMaNhanVienAndHoaDon(String ngay, String maNhanVien) {
-//        CaLamEntity caLamEntity = caLamRepository.findByCurrentDateAndMaNhanVien(ngay, maNhanVien);
-//        CaLamResponse result = caLamConverter.convertToResponse(caLamEntity);
-//        List<HoaDonEntity> listHoaDon = hoaDonRepository.findAllByCurrentDateAndMaNhanVien(ngay, maNhanVien);
-////        Double tongTienMat = listHoaDon.stream().filter(
-////                item -> item.getPhuongThucThanhToan().equals("Tiền mặt")
-////        ).mapToDouble(item -> item.getTongTienHang()).sum();
-////        Double tongTienChuyenKhoan = listHoaDon.stream().filter(
-////                item -> item.getPhuongThucThanhToan().equals("Chuyển khoản")
-////        ).mapToDouble(item -> item.getTongTienHang()).sum();
-//
-//        Double tongTienMat = 0.0;
-//        Double tongTienChuyenKhoan = 0.0;
-//        for (HoaDonEntity hoaDonEntity : listHoaDon) {
-//            if(hoaDonEntity.getPhuongThucThanhToan().equals("Tiền mặt")){
-//                tongTienMat += hoaDonEntity.getTongTienHang();
-//            }else if(hoaDonEntity.getPhuongThucThanhToan().equals("Chuyển khoản")){
-//                tongTienChuyenKhoan += hoaDonEntity.getTongTienHang();
-//            }
-//        }
-//
-//        result.setTongHoaDon(listHoaDon.size());
-//        result.setTongTienMat(tongTienMat);
-//        result.setTongTienChuyenKhoan(tongTienChuyenKhoan);
-//        result.setTongTienTrongCa(result.getTongTienMat() + result.getTongTienChuyenKhoan());
-//        result.setSoTienCuoiCa(result.getSoTienDauCa() + result.getTongTienTrongCa());
-//        return result;
-//    }
-
-
     public void saveTichDiemOnline(HoaDonEntity hoaDonEntity){
             TichDiemEntity entity = tichDiemRepository.findByKhachHang_ma(hoaDonEntity.getKhachHang().getMa());
             Integer soDiemTichDuoc = quyDoiDiemService.TienQuyDiem(hoaDonEntity.getTongTienHang());

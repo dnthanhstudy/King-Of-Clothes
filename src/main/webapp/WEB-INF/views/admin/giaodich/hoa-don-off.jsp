@@ -67,6 +67,7 @@
                         <select name="" id="trangThai" class="form-control" style="width: 150px">
                             <option value="TREO">Chờ thanh toán</option>
                             <option value="THANHCONG">Đã thanh toán</option>
+                            <option value="HUYDON">Hủy đơn</option>
                         </select>
                     </div>
                 </div>
@@ -133,40 +134,52 @@
                 console.log(response)
                 var tbody = $('#tblHoaDonOff tbody');
                 tbody.empty();
-                var index = 0;
-                response.forEach(function(item) {
-                    var row = `
-                            <tr class="text-center">
-                                <td>\${++index}</td>
-                                <td>\${item.ma}</td>
-                                 <td>\${item.tenKhachHang}</td>
-                                 <td>\${item.tenNhanVien}</td>
-                                 <td>\${getFormattedDate(item.ngayTao)}</td>
-                                 <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
-                                 <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
-                                 <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
-                                 <td>
-                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
-                                     <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
-                                    <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
-                                 </td>
-                            </tr>
-                        `;
-                    tbody.append(row);
-                });
+
+                if (response.length === 0) {
+                    var noDataMessage = `
+                    <tr class="text-center">
+                        <td colspan="9">Không có hóa đơn nào</td>
+                    </tr>
+                `;
+                    tbody.append(noDataMessage);
+                } else {
+                    var index = 0;
+                    response.forEach(function (item) {
+                        var row = `
+                        <tr class="text-center">
+                            <td>\${++index}</td>
+                            <td>\${item.ma}</td>
+                            <td>\${item.tenKhachHang}</td>
+                            <td>\${item.tenNhanVien}</td>
+                            <td>\${getFormattedDate(item.ngayTao)}</td>
+                            <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
+                            <td>
+                                <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
+                                <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
+                                <a href="/admin/giao-dich/hoa-don-huy/\${item.ma}" class="btn btn-info detail-huy">Chi tiết</a>
+                            </td>
+                        </tr>
+                    `;
+                        tbody.append(row);
+                    });
+                }
 
                 if (value === "TREO") {
                     $(".detail").hide();
-                } else {
-                    $(".detail").show();
+                    $(".detail-huy").hide();
                 }
                 if (value === "THANHCONG") {
                     $(".btn-delete").hide();
                     $(".create").hide();
-
-                } else {
-                    $(".btn-delete").show();
-                    $(".create").show();
+                    $(".detail-huy").hide();
+                }
+                if (value === "HUYDON") {
+                    $(".btn-delete").hide();
+                    $(".create").hide();
+                    $(".detail").hide();
                 }
             },
             error: (error) => {
@@ -177,19 +190,16 @@
     }
     getHoaDon(trangThai);
 
-
-
     $("#trangThai").change(function () {
         var selectedValue = $(this).val();
         trangThai = selectedValue;
         getHoaDon(trangThai);
     });
 
-
     $('.tbody-hoadon').on('click', (e) => {
         if ($(e.target).hasClass('btn-delete') && !$(e.target).is(":hidden")) {
             let ma = $(e.target).val();
-            showConfirm("Bạn có muốn xóa?", ma)
+            showConfirm("Bạn có muốn xóa không?", ma)
                 .then((confirmed) => {
                     if (confirmed) {
                         $.ajax({
@@ -236,40 +246,52 @@
                 console.log(response)
                 var tbody = $('#tblHoaDonOff tbody');
                 tbody.empty();
-                var index = 0;
-                response.forEach(function(item) {
-                    var row = `
-                            <tr class="text-center">
-                                <td>\${++index}</td>
-                                <td>\${item.ma}</td>
-                                 <td>\${item.tenKhachHang}</td>
-                                 <td>\${item.tenNhanVien}</td>
-                                 <td>\${getFormattedDate(item.ngayTao)}</td>
-                                 <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
-                                 <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
-                                 <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
-                                 <td>
-                                    <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
-                                     <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
-                                    <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
-                                 </td>
-                            </tr>
-                        `;
-                    tbody.append(row);
-                });
 
-                if (trangThai === "TREO") {
-                    $(".detail").hide();
+                if (response.length === 0) {
+                    var noDataMessage = `
+                    <tr class="text-center">
+                        <td colspan="9">Không có hóa đơn nào</td>
+                    </tr>
+                `;
+                    tbody.append(noDataMessage);
                 } else {
-                    $(".detail").show();
+                    var index = 0;
+                    response.forEach(function (item) {
+                        var row = `
+                        <tr class="text-center">
+                            <td>\${++index}</td>
+                            <td>\${item.ma}</td>
+                            <td>\${item.tenKhachHang}</td>
+                            <td>\${item.tenNhanVien}</td>
+                            <td>\${getFormattedDate(item.ngayTao)}</td>
+                            <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
+                            <td>
+                                <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
+                                <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>
+                                <a href="/admin/giao-dich/detail/\${item.ma}" class="btn btn-info detail">Chi tiết</a>
+                                <a href="/admin/giao-dich/hoa-don-huy/\${item.ma}" class="btn btn-info detail-huy">Chi tiết</a>
+                            </td>
+                        </tr>
+                    `;
+                        tbody.append(row);
+                    });
+                }
+
+                if (trangThai  === "TREO") {
+                    $(".detail").hide();
+                    $(".detail-huy").hide();
                 }
                 if (trangThai === "THANHCONG") {
                     $(".btn-delete").hide();
                     $(".create").hide();
-
-                } else {
-                    $(".btn-delete").show();
-                    $(".create").show();
+                    $(".detai-huy").hide();
+                }
+                if (trangThai === "HUYDON") {
+                    $(".btn-delete").hide();
+                    $(".create").hide();
+                    $(".detail").hide();
                 }
             },
             error: (error) => {

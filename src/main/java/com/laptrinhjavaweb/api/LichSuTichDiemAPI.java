@@ -1,7 +1,7 @@
 package com.laptrinhjavaweb.api;
 
 import com.laptrinhjavaweb.response.LichSuTichDiemResponse;
-import com.laptrinhjavaweb.resquest.LịchSuTichDiemRequest;
+import com.laptrinhjavaweb.resquest.LichSuTichDiemRequest;
 import com.laptrinhjavaweb.service.ILichSuTichDiemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ public class LichSuTichDiemAPI {
     private ILichSuTichDiemService lichSuTichDiemService;
 
     @PostMapping
-    public void save(@RequestBody LịchSuTichDiemRequest request){
+    public void save(@RequestBody LichSuTichDiemRequest request){
         lichSuTichDiemService.save(request);
     }
 
@@ -29,7 +29,7 @@ public class LichSuTichDiemAPI {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> searchs(@RequestParam(name = "sdtKhachHang") String sdtKhachHang){
+    public ResponseEntity<?> searchs(@RequestParam(name = "sdtKhachHang") String sdtKhachHang ){
         List<LichSuTichDiemResponse> result = lichSuTichDiemService.findAllByIdKhachHang(sdtKhachHang);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

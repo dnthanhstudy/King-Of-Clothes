@@ -85,6 +85,11 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 		return query.getResultList();
 	}
 
+//	@Override
+//	public void removeMultipleTable(Long idSanPham) {
+//
+//	}
+
 	private String buildSQL(Map<String, Object> params, String joinDanhMuc, String queryDanhMuc, String querySearch) {
 		StringBuffer queryFinal = new StringBuffer("SELECT subquery.* FROM " +
 				"(  SELECT " +

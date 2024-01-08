@@ -1,10 +1,8 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.HoaDonConverter;
-import com.laptrinhjavaweb.entity.BienTheEntity;
-import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
-import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.HoaDonResponse;
@@ -12,9 +10,11 @@ import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +39,16 @@ public class HoaDonService implements IHoaDonService {
 
     @Autowired
     private BienTheRepository bienTheRepository;
+
+    @Autowired
+    private TichDiemRepository tichDiemRepository;
+
+    @Autowired
+    private LichSuTichDiemRepository lichSuTichDiemRepository;
+
+    @Autowired
+    private LyDoHuyDonRepository lyDoHuyDonRepository;
+
 
     @Override
     @Transactional
@@ -76,19 +86,19 @@ public class HoaDonService implements IHoaDonService {
             List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(hoaDonResquest.getMa());
             hoaDonChiTietEntities.forEach(
                     item -> {
-                            if (item.getBienThe() != null) {
-                                BienTheEntity bienTheEntity = item.getBienThe();
-                                bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
-                                bienTheRepository.save(bienTheEntity);
-                            } else {
-                                SanPhamEntity sanPhamEntity = item.getSanPham();
-                                sanPhamEntity.setSoLuong(sanPhamEntity.getSoLuong() - item.getSoLuong());
-                                sanPhamRepository.save(sanPhamEntity);
-                            }
+                        if (item.getBienThe() != null) {
+                            BienTheEntity bienTheEntity = item.getBienThe();
+                            bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
+                            bienTheRepository.save(bienTheEntity);
+                        } else {
+                            SanPhamEntity sanPhamEntity = item.getSanPham();
+                            sanPhamEntity.setSoLuong(sanPhamEntity.getSoLuong() - item.getSoLuong());
+                            sanPhamRepository.save(sanPhamEntity);
                         }
+                    }
             );
         }
-        if(hoaDonResquest.getTrangThai().equals("THANHCONG")){
+        if (hoaDonResquest.getTrangThai().equals("THANHCONG")) {
             entity.setNgayThanhToan(new Date());
         }
         HoaDonEntity result = hoaDonRepository.save(entity);
@@ -116,11 +126,49 @@ public class HoaDonService implements IHoaDonService {
 
     @Override
     public List<HoaDonResponse> searchs(String param, String trangThai) {
-        List<HoaDonEntity> list = hoaDonRepository.searchs(param,trangThai);
+        List<HoaDonEntity> list = hoaDonRepository.searchs(param, trangThai);
         List<HoaDonResponse> result = list.stream().map(
                 item -> hoaDonConverter.convertToResponse(item)
         ).collect(Collectors.toList());
         return result;
     }
 
+    @Override
+    @Transactional
+    public void deleteStatus(String ma, Long idHuyDon) {
+        HoaDonEntity hoaDonEntity = hoaDonRepository.findByMa(ma);
+
+        if (hoaDonEntity.getKhachHang() != null) {
+            KhachHangEntity khachHangEntity = hoaDonEntity.getKhachHang();
+
+            LichSuTichDiemEntity lichSuTichDiemEntity = lichSuTichDiemRepository.findByHoaDon_maAndTrangThai(ma, SystemConstant.CONGDIEM);
+
+            TichDiemEntity tichDiemEntity = tichDiemRepository.findByKhachHang_ma(khachHangEntity.getMa());
+
+            tichDiemEntity.setSoDiem(tichDiemEntity.getSoDiem() - lichSuTichDiemEntity.getSoDiemTichDuoc());
+            tichDiemRepository.save(tichDiemEntity);
+
+            LichSuTichDiemEntity newLichSu = new LichSuTichDiemEntity();
+            newLichSu.setSoDiemHoan(lichSuTichDiemEntity.getSoDiemTichDuoc());
+            newLichSu.setTrangThai("HOANDIEM");
+            newLichSu.setKhachHang(khachHangEntity);
+            newLichSu.setHoaDon(hoaDonEntity);
+            lichSuTichDiemRepository.save(newLichSu);
+        }
+
+        List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
+
+        hoaDonChiTietEntities.forEach(item -> {
+            BienTheEntity bienTheEntity = item.getBienThe();
+            bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
+            bienTheRepository.save(bienTheEntity);
+        });
+
+        LyDoHuyDonEntity lyDoHuyDonEntity = lyDoHuyDonRepository.findById(idHuyDon).get();
+
+        hoaDonEntity.setLyDoHuyDon(lyDoHuyDonEntity);
+        hoaDonEntity.setTrangThai("HUYDON");
+        hoaDonRepository.save(hoaDonEntity);
+
+    }
 }
