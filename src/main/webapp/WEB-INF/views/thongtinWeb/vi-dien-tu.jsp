@@ -26,7 +26,7 @@
                     </li>
                     <li class="nav-item ms-5">
                         <a class="btn btn-default" href="/vi-dien-tu/doi-diem">
-                            <i class="bi bi-cash-coin fs-2"></i>
+                            <i class="bi bi-currency-exchange fs-2"></i>
                             <h5 class="text-primary">Đổi điểm</h5>
                         </a>
                     </li>
