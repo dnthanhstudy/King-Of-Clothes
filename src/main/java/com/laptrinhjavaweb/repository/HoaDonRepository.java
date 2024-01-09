@@ -11,6 +11,7 @@ import com.laptrinhjavaweb.model.response.thongke.DoanhThuBanHangResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.custom.HoaDonRepositoryCustom;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -164,4 +165,9 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")
     void deleteHoaDon(@Param("id") Long id);
 
+    @Query("SELECT CASE WHEN count(hd) > 0 THEN true ELSE false END FROM HoaDonEntity hd JOIN hd.hoaDonChiTietEntities hdct" +
+            " WHERE (hd.trangThai = 'CHUANBIDATHANNG' OR hd.trangThai = 'CHONHANDON' OR hd.trangThai = 'DANHANDON' OR hd.trangThai = 'DANGVANCHUYEN' OR hd.trangThai = 'DANHANHANG'" +
+            " OR hd.trangThai = 'HUYDON') " +
+            " AND hdct.bienThe.id IN ?1")
+    boolean isNotUpdateProduct(List<Long> idsBienThe);
 }

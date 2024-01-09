@@ -46,4 +46,6 @@ public class SanPhamRequest {
     private Integer sanPhamPhoBien;
 
     private String trangThai = "ACTIVE";
+
+    private Boolean isNotUpdate;
 }

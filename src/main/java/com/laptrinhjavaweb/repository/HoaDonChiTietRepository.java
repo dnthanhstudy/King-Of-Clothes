@@ -36,6 +36,10 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTietEnti
     List<HoaDonChiTietEntity> findAllByBienThe_IdIn (List<Long> idsBienThe);
 
     @Modifying
-    @Query("delete from HoaDonChiTietEntity h WHERE h.bienThe.id in ?1")
-    void updateVariant (List<Long> idsBienThe);
+    @Query("delete from HoaDonChiTietEntity h WHERE h.bienThe.id in ?1 and h.trangThai = 'TREO'")
+    void updateVariantInHoaDonTreo (List<Long> idsBienThe);
+
+    @Modifying
+    @Query("update HoaDonChiTietEntity h set h.bienThe = null WHERE h.bienThe.id in ?1 and h.trangThai = 'THANHCONG'")
+    void updateVariantInHoaDonThanhCong (List<Long> idsBienThe);
 }
