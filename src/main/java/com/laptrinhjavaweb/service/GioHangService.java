@@ -29,4 +29,5 @@ public interface GioHangService {
 
     Long tongSoSanPhamTrongGioHang(Long idkh);
 
+    Boolean checkSoLanMua(Long idkh);
 }

@@ -134,6 +134,7 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
             hoaDonChiTiet.setGia(bienThe.getGia());
             hoaDonChiTiet.setHoaDon(hoaDon);
+            hoaDonChiTiet.setTenBienThe(bienThe.getTen());
             gioHangChiTiet.setTrangThai("PENDING");
             hoaDonChiTietRepository.save(hoaDonChiTiet);
         }
@@ -210,6 +211,11 @@ public class GioHangServiceImpl implements GioHangService {
         }
         List<GioHangResponse> dsGioHang = gioHangChiTietRepository.dsGioHangChiTietByIdKh(idkh);
         return (long) dsGioHang.size();
+    }
+
+    @Override
+    public Boolean checkSoLanMua(Long idkh) {
+        return hoaDonRepository.soLanMua(idkh)>=4;
     }
 
 //

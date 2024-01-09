@@ -129,7 +129,10 @@
 </div>
 <script>
     var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
-    function muaHang(){
+    async function muaHang() {
+        if (!(await checkSoLanMua())) {
+            return;
+        }
         var listsp = getValByCheckbox();
         var listspAsNumbers = listsp.map(str => Number(str));
 
@@ -150,6 +153,25 @@
                 showError("Có lỗi xảy ra");
             }
         });
+    }
+    async function checkSoLanMua(){
+        let flag = true;
+        await $.ajax({
+            url: '/api/user/giohang/checklanmua?idkh=' + idkh,
+            method: 'GET',
+            contentType: 'application/json',
+            success: async function (req) {
+                if (req==true){
+                    showModalError("Bạn chỉ có thể đặt hàng 4 lần trong 1 ngày")
+                    flag = false;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+                showError("Có lỗi xảy ra");
+            }
+        });
+        return flag;
     }
 
     function getValByCheckbox() {

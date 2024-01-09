@@ -27,7 +27,7 @@ public interface HoaDonChiTietResponse {
     Long getIdBienThe();
     @Value("#{target.bienThe.ma}")
     String getMaBienThe();
-    @Value("#{target.bienThe.ten}")
+    @Value("#{target.tenBienThe}")
     String getTenBienThe();
 
     @Value("#{target.hoaDon.khachHang.id}")

@@ -48,6 +48,8 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
+	@Column(name = "tenbienthe")
+	private String tenBienThe;
 
 	public Double getGiaTien(){
 		if (bienThe.getGia()==null){

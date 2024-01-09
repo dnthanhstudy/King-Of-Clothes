@@ -103,7 +103,9 @@ public class ApiGioHangController {
     ){
         return gioHangService.xoaGioHangChiTiet(idghct);
     }
-
-
+    @GetMapping("/checklanmua")
+    public Boolean checkSoLanMua(@RequestParam(name = "idkh")Long idkh){
+        return gioHangService.checkSoLanMua(idkh);
+    }
 
 }
