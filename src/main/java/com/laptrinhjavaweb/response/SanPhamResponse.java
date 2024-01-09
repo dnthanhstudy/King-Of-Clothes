@@ -44,4 +44,6 @@ public class SanPhamResponse {
 	private KhuyenMaiHienThiResponse khuyenMaiHienThiResponse;
 
 	private String trangThai;
+
+	private Boolean isNotUpdate;
 }

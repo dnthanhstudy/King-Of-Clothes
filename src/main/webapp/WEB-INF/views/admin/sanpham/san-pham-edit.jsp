@@ -201,8 +201,8 @@
                 $("#slug").val(req.slug);
                 $("#ten").val(req.ten);
                 $("#gia").val(req.gia);
-                $("#motasanpham").val(req.moTa);
-                $("#chitietsanpham").val(req.thongTinChiTiet);
+                $("#motasanpham").innerHTML = req.moTa;
+                $("#chitietsanpham").innerHTML = req.thongTinChiTiet;
                 $("#danh-muc select").val(req.danhMuc.slug)
                 $("#thuong-hieu select").val(req.thuongHieu.slug)
                 let htmlImage = '';
@@ -212,7 +212,7 @@
                 $(".list-images").append(htmlImage)
 
                 let htmlThuocTinh = '';
-                if(req.thuocTinh.length > 0){
+                if (req.thuocTinh.length > 0) {
                     $('.card-text-none-attribute').hide()
                 }
                 $.each(req.thuocTinh, (index, item) => {
@@ -247,6 +247,9 @@
                 $.each(req.bienThe, (index, item) => {
                     htmlBienThe += `
                         <tr>
+                             <td>
+                                <input type="text" value="\${item.id}" class="form-control id-variant">
+                              </td>
                               <td class="text-center name-variant">\${item.ten}</td>
                               <td>
                                 <input type="text" value="\${item.gia}" class="form-control price-variant">
@@ -267,6 +270,7 @@
             }
         });
     }
+
     detailSP();
 </script>
 <script src="<c:url value='/assets/js/defined.js'/>"></script>

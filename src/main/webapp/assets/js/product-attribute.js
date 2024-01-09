@@ -155,15 +155,18 @@ function displayVarinatsOnTable(attrs) {
     for (const attr of attrs) {
         let row = Object.values(attr).join(",");
         const trcontent = `<tr>
-                          <td class="text-center name-variant">${row}</td>
-                          <td>
-                            <input type="text" class="form-control price-variant" />
-                          </td>
-                          <td>
-                            <input type="text" class="form-control quantity-variant"/>
-                          </td>
-                          <td>                     
-                            <input class="form-control image-variant" type="file">
+                              <td>
+                                <input type="text" value="" class="form-control id-variant">
+                              </td>
+                              <td class="text-center name-variant">${row}</td>
+                              <td>
+                                <input type="text" class="form-control price-variant" />
+                              </td>
+                              <td>
+                                <input type="text" class="form-control quantity-variant"/>
+                              </td>
+                              <td>                     
+                                <input class="form-control image-variant" type="file">
                           </td>
                       </tr> `;
         $(".table-variant-body").append(trcontent);
@@ -248,6 +251,10 @@ function getAttributeValues() {
 function getVariants() {
     let variants = [];
     $(".table-variant-body tr").each((index, item) => {
+        let id = null;
+        if (item.querySelector(".id-variant").value !== "") {
+            gia = item.querySelector(".id-variant").value;
+        }
         const ten = item.querySelector(".name-variant").textContent;
         let soLuong = null;
         if (item.querySelector(".quantity-variant").value !== null) {
@@ -262,6 +269,7 @@ function getVariants() {
             hinhanhbase64 = item.querySelector(".hinhanhbase64").src;
         }
         let variant = {};
+        variant["id"] = id;
         variant["ten"] = ten;
         variant["gia"] = gia;
         variant["soLuong"] = soLuong;

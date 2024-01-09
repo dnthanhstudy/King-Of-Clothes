@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.converter;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.repository.DanhMucRepository;
+import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.KhuyenMaiSanPhamRepository;
 import com.laptrinhjavaweb.repository.ThuongHieuRepository;
 import com.laptrinhjavaweb.response.*;
@@ -47,6 +48,9 @@ public class SanPhamConverter {
 	@Autowired
 	private KhuyenMaiConvert khuyenMaiConvert;
 
+	@Autowired
+	private HoaDonRepository hoaDonRepository;
+
 	public SanPhamResponse convertToResponse(SanPhamEntity entity) {
 		SanPhamResponse response = modelMapper.map(entity, SanPhamResponse.class);
 		response.setDanhMuc(danhMucConverter.convertToResponse(entity.getDanhMuc()));
@@ -73,6 +77,12 @@ public class SanPhamConverter {
 		}else{
 			response.setGiaBan(entity.getGia());
 		}
+
+		List<Long> idsBienThe = entity.getBienTheEntities().stream().map(
+				item -> item.getId()
+		).collect(Collectors.toList());
+
+		response.setIsNotUpdate(hoaDonRepository.isNotUpdateProduct(idsBienThe));
 		response.setSoLuong(quantity);
 		response.setThuocTinh(thuocTinhResponses);
 		response.setBienThe(bienTheResponses);
