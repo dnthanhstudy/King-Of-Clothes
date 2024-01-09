@@ -81,8 +81,9 @@ public class SanPhamConverter {
 		List<Long> idsBienThe = entity.getBienTheEntities().stream().map(
 				item -> item.getId()
 		).collect(Collectors.toList());
-
-		response.setIsNotUpdate(hoaDonRepository.isNotUpdateProduct(idsBienThe));
+		if(!idsBienThe.isEmpty()){
+			response.setIsNotUpdate(hoaDonRepository.isNotUpdateProduct(idsBienThe));
+		}
 		response.setSoLuong(quantity);
 		response.setThuocTinh(thuocTinhResponses);
 		response.setBienThe(bienTheResponses);

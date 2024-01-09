@@ -155,7 +155,7 @@ function displayVarinatsOnTable(attrs) {
     for (const attr of attrs) {
         let row = Object.values(attr).join(",");
         const trcontent = `<tr>
-                                <input  type="hidden" value="" class="form-control id-variant">
+                                <input type="hidden" value="" class="form-control id-variant">
                               <td class="text-center name-variant">${row}</td>
                               <td>
                                 <input type="text" class="form-control price-variant" />

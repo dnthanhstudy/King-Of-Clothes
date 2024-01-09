@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BienTheRequest{
 
+    private Long id;
+
     private String ten;
 
     private Double gia;
