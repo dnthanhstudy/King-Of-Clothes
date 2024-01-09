@@ -88,6 +88,7 @@
         $.ajax({
             url: "/api/resetPasswordByToken",
             type: "POST",
+            contentType: "application/json; charset=utf-8",
             data: {
                 restToken: restToken,
                 matKhau: matKhau
@@ -97,7 +98,8 @@
                 showSuccess("Đổi mật khẩu thành công!");
             },
             error: function(xhr, textStatus, error) {
-                showError("Mã không chính xác hoặc đã hết hạm. Hãy kiểm tra lại..!");
+                var errorMessage = xhr.responseText;
+                showError(errorMessage);
             }
         });
     }

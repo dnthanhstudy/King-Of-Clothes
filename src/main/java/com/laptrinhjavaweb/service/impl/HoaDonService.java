@@ -10,11 +10,11 @@ import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
 import com.laptrinhjavaweb.utils.GenerateStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -137,6 +137,13 @@ public class HoaDonService implements IHoaDonService {
     @Transactional
     public void deleteStatus(String ma, Long idHuyDon) {
         HoaDonEntity hoaDonEntity = hoaDonRepository.findByMa(ma);
+
+        LocalDateTime ngayThanhToan = hoaDonEntity.getNgayThanhToan().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        LocalDateTime now = LocalDateTime.now();
+        if (now.isAfter(ngayThanhToan.plusDays(3))) {
+            throw new RuntimeException("Không được hủy đơn sau 3 ngày thanh toán !");
+        }
 
         if (hoaDonEntity.getKhachHang() != null) {
             KhachHangEntity khachHangEntity = hoaDonEntity.getKhachHang();

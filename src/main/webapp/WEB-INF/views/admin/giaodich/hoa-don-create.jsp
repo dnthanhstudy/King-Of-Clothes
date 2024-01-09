@@ -167,7 +167,7 @@
                                     <div>
                                         <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
-                                            <span class="invoice-total ms-4">0</span> đ
+                                            <span class="invoice-total product-price-custom-vnd ms-4">0</span>
                                         </h4>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
                     <div class="card card-body" style="border-radius: 10px; height: 593px">
                         <div class="row">
                             <div class="col-lg-6">
-                                <h5><strong>Nhân viên:</strong><%=SecurityUtils.getPrincipal().getTen()%>
+                                <h5><strong>Nhân viên: </strong> <%=SecurityUtils.getPrincipal().getTen()%>
                                 </h5>
                             </div>
                             <div class="col-lg-6 text-right">
@@ -222,15 +222,15 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <label>Họ và tên:</label>
-                                                            <input name="ten" type="text" class="form-control">
+                                                            <input name="ten" id="ten" type="text" class="form-control">
                                                         </div>
                                                         <div class="col">
                                                             <label>Số điện thoại:</label>
-                                                            <input name="soDienThoai" type="text" class="form-control">
+                                                            <input name="soDienThoai" id="soDienThoai" type="text" class="form-control">
                                                         </div>
                                                         <div class="col">
                                                             <label>Địa chỉ email:</label>
-                                                            <input name="email" type="email" class="form-control">
+                                                            <input name="email" id="email" type="email" class="form-control">
                                                         </div>
                                                     </div>
                                                     <div class="row mt-3">
@@ -281,7 +281,7 @@
                                 <h5>Tổng tiền hàng:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <span class="invoice-total fs-5">0</span> đ
+                                <span class="invoice-total product-price-custom-vnd fs-5">0</span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -315,8 +315,7 @@
                             </div>
                             <div class="col-6 text-right">
                                 <span style="color: #EB8153"><strong id="invoice-after-point"
-                                                                     class="invoice-total fs-5">0</strong></span> <span
-                                    style="color: #EB8153">đ</span>
+                                                                     class="invoice-total product-price-custom-vnd fs-5">0</strong></span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -418,31 +417,66 @@
         );
     })
 
+    function isValidPhoneNumber(soDienThoai) {
+        return /^[0-9]{10}$/.test(soDienThoai);
+    }
+
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validateFormKhachHang() {
+        let ten = $("#ten").val().trim();
+        let soDienThoai = $("#soDienThoai").val().trim();
+        let email = $("#email").val().trim();
+        if (ten === "") {
+            showError("Họ và tên không được để trống");
+            return false;
+        }
+        if (soDienThoai === "") {
+            showError("Số điện thoại không được để trống");
+            return false;
+        } else if (!isValidPhoneNumber(soDienThoai)) {
+            showError("Số điện thoại không hợp lệ");
+            return false;
+        }
+        if (email === "") {
+            showError("Địa chỉ email không được để trống");
+            return false;
+        } else if (!isValidEmail(email)) {
+            showError("Địa chỉ email không hợp lệ");
+            return false;
+        }
+        return true;
+    }
+
     $('#btn-add-customer').on('click', () => {
-        let dataForm = $('#form-data-customer').serializeArray();
-        let data = {};
-        $.each(dataForm, (index, value) => {
-            let propertyName = value.name;
-            let propertyValue = value.value;
-            data[propertyName] = propertyValue;
-        });
-        $.ajax({
-            url: "/api/khach-hang",
-            method: "POST",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(data),
-            success: (response) => {
-                console.log(response);
-                $('#exampleModal1').removeClass('show');
-                $('.modal-backdrop').addClass('d-none');
-                $('#search-customer').val(response.soDienThoai + " - " + response.ten);
-                $('#code-customer').val(response.ma);
-            },
-            error: (error) => {
-                showError(error.responseJSON.error)
-            }
-        });
+        if (validateFormKhachHang()) {
+            let dataForm = $('#form-data-customer').serializeArray();
+            let data = {};
+            $.each(dataForm, (index, value) => {
+                let propertyName = value.name;
+                let propertyValue = value.value;
+                data[propertyName] = propertyValue;
+            });
+            $.ajax({
+                url: "/api/khach-hang",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    console.log(response);
+                    $('#exampleModal1').removeClass('show');
+                    $('.modal-backdrop').addClass('d-none');
+                    $('#search-customer').val(response.soDienThoai + " - " + response.ten);
+                    $('#code-customer').val(response.ma);
+                },
+                error: (error) => {
+                    showError(error.responseJSON.error)
+                }
+            });
+        }
     })
 
     $('#btn-paymant-invoice').on('click', function () {
@@ -1106,6 +1140,15 @@
                             })
 
                         })
+
+                        $('.product-price-custom-vnd').each(function(index, item) {
+                            let res = $(item).html();
+                            if(res.indexOf("đ") === -1){
+                                let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                                let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                                $(item).html(formattedValue);
+                            }
+                        });
                     })
 
                 } else {

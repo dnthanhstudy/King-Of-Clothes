@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -49,6 +50,12 @@ public class SanPhamEntity extends BaseEntity{
 	
 	@Column(name = "sanphamphobien")
 	private Integer sanPhamPhoBien;
+
+	@Column(name = "experied_isnew")
+	private Date experied_isnew;
+
+	@Column(name = "experied_isPopular")
+	private Date experied_isPopular;
 	
 	@ManyToOne
 	@JoinColumn(name = "iddanhmuc")

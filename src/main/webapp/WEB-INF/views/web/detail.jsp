@@ -235,7 +235,7 @@
 </div>
 <input type="hidden" name="" id="product-id" value="${product.id}">
 </div>
-<script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>" onload="initializeEditor()"></script>
+<script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
 <script src="<c:url value='/assets/api/web/detail.js'/>"></script>
 <script>

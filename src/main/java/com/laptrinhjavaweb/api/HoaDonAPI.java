@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.api;
 
+import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
@@ -109,7 +110,11 @@ public class HoaDonAPI {
 
     @PutMapping("/deleteStatus/{ma}")
     public ResponseEntity<?> deleteStatus(@PathVariable String ma, @RequestBody Long idHuyDon){
-        hoaDonService.deleteStatus(ma, idHuyDon);
-        return new ResponseEntity<>("Hủy thành công", HttpStatus.OK);
+        try {
+            hoaDonService.deleteStatus(ma, idHuyDon);
+            return ResponseEntity.ok("Hủy thành công");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }

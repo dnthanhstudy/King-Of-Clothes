@@ -52,6 +52,15 @@ public class KhachHangEntity extends BaseEntity{
 	@Column(name = "loai")
 	private String loai;
 
+	@Column(name = "sodonhuytrongngay")
+	private Integer soDonHuyTrongNgay;
+
+	@Column(name = "solanhuydon")
+	private Integer soLanHuyDon;
+
+	@Column(name = "songaybiban")
+	private Integer soNgayBiBan;
+
 	@OneToMany(mappedBy = "khachHang", fetch = FetchType.LAZY)
 	private List<HoaDonEntity> hoaDonEntities  = new ArrayList<>();
 	

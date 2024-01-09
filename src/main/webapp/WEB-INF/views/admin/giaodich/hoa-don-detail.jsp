@@ -237,14 +237,17 @@
                                  $.ajax({
                                      url: '/api/hoa-don-off/deleteStatus/' + maHoaDon,
                                      method: 'PUT',
-                                     contentType: 'application/json',
+                                     contentType: "application/json; charset=utf-8",
+                                     dataType: "json",
                                      data: JSON.stringify(response.id),
                                      success: function (response) {
                                          showSuccess("Hủy đơn thành công!");
                                          window.location.href = "/admin/giao-dich/hoa-don-off";
                                      },
                                      error: function (xhr, status, error) {
-                                         showError("Hủy đơn thất bại");
+                                         var errorMessage = xhr.responseText;
+                                         showError(errorMessage);
+
                                      }
                                  });
                              },

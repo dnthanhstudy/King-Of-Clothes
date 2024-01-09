@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.api;
 import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.service.ISendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +54,9 @@ public class SendEmailAPI {
             } else {
                 return ResponseEntity.badRequest().body("Token không hợp lệ");
             }
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.badRequest().body("Người dùng không tồn tại");
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
