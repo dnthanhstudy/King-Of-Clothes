@@ -166,7 +166,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     void deleteHoaDon(@Param("id") Long id);
 
     @Query("SELECT CASE WHEN count(hd) > 0 THEN true ELSE false END FROM HoaDonEntity hd JOIN hd.hoaDonChiTietEntities hdct" +
-            " WHERE (hd.trangThai = 'CHUANBIDATHANNG' OR hd.trangThai = 'CHONHANDON' OR hd.trangThai = 'DANHANDON' OR hd.trangThai = 'DANGVANCHUYEN' OR hd.trangThai = 'DANHANHANG'" +
+            " WHERE (hd.trangThai = 'CHONHANDON' OR hd.trangThai = 'DANHANDON' OR hd.trangThai = 'DANGVANCHUYEN' OR hd.trangThai = 'DANHANHANG'" +
             " OR hd.trangThai = 'HUYDON') " +
             " AND hdct.bienThe.id IN ?1")
     boolean isNotUpdateProduct(List<Long> idsBienThe);

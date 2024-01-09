@@ -155,9 +155,7 @@ function displayVarinatsOnTable(attrs) {
     for (const attr of attrs) {
         let row = Object.values(attr).join(",");
         const trcontent = `<tr>
-                              <td>
-                                <input type="text" value="" class="form-control id-variant">
-                              </td>
+                                <input type="hidden" value="" class="form-control id-variant">
                               <td class="text-center name-variant">${row}</td>
                               <td>
                                 <input type="text" class="form-control price-variant" />
@@ -253,7 +251,7 @@ function getVariants() {
     $(".table-variant-body tr").each((index, item) => {
         let id = null;
         if (item.querySelector(".id-variant").value !== "") {
-            gia = item.querySelector(".id-variant").value;
+            id = item.querySelector(".id-variant").value;
         }
         const ten = item.querySelector(".name-variant").textContent;
         let soLuong = null;
