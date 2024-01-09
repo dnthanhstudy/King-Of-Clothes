@@ -1,6 +1,5 @@
 package com.laptrinhjavaweb.api;
 
-import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;

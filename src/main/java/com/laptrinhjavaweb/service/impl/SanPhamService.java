@@ -122,7 +122,8 @@ public class SanPhamService implements ISanPhamService {
         if (sanPhamEntity == null) {
             return null;
         }
-        return sanPhamConvert.convertToResponse(sanPhamEntity);
+        SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
+        return result;
     }
 
     @Override

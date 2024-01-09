@@ -80,7 +80,7 @@ public class SanPhamRepositoryImpl implements SanPhamRepositoryCustom {
 				"   		)" +
 				"        		AND sp1.id <> sp2.id" +
 				")" +
-				"ORDER BY ngaytao DESC, RAND() LIMIT 4";
+				" ORDER BY ngaytao DESC, RAND() LIMIT 4";
 		Query query = entityManager.createNativeQuery(sql, SanPhamEntity.class);
 		return query.getResultList();
 	}

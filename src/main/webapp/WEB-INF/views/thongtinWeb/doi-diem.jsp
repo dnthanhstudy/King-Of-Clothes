@@ -18,18 +18,16 @@
     <div style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; padding: 20px">
         <div class="row">
             <span class="fs-5" style="border-bottom: 1px solid #dedede;padding: 15px">
-                <div class="p-2">
-            <ul class="nav">
-                <li class="nav-item ms-5">
-                     <span class="fs-5" >Số điểm đổi : </span>
-                </li>
-                <li class="nav-item ms-auto">
-                    <span class="badge bg-primary text-wrap fs-3">
-                        <i class="bi bi-piggy-bank-fill me-2"></i><span class="" id="point-customer"> 0</span>
-                    </span>
-                </li>
-            </ul>
-        </div>
+                    <ul class="nav">
+                        <li class="nav-item">
+                             <span class="fs-5" >Chọn số điểm muốn đổi: </span>
+                        </li>
+                        <li class="nav-item ms-auto">
+                            <span class="badge bg-primary text-wrap fs-3">
+                                <i class="bi bi-piggy-bank-fill me-2"></i><span class="" id="point-customer"> 0</span>
+                            </span>
+                        </li>
+                    </ul>
             </span>
         </div>
 
@@ -64,8 +62,8 @@
         </div>
 
         <div class="row">
-            <div class="col-6"></div>
-            <div class="col-6">
+            <div class="col-8"></div>
+            <div class="col-4">
                 <div class="d-flex justify-content-between mt-4">
                     <div>
                         <span>Số điểm:</span>
@@ -98,6 +96,10 @@
 <script>
     var ma = '<%= ma %>';
     var selectedColor = null;
+    var soDiemKhachCo = 0;
+
+    loadSoDiem(ma);
+
     $(".color-button").on("click", function () {
         $(".color-button").removeClass("active");
         $(this).addClass("active");
@@ -112,11 +114,11 @@
     }
 
     $("#so-diem-doi").keyup(function () {
-        if ($(this).val() !== '' && !isNaN($(this).val())) {
-            var value = $("#so-diem-doi").val().replace(/\./g, ''); // Remove existing periods
-            diemQuyTien(value);
-        }
-        else {
+        var inputValue = $(this).val().replace(/\./g, ''); // Remove existing periods
+
+        if (inputValue !== '' && !isNaN(inputValue) && parseInt(inputValue) >= 0) {
+            diemQuyTien(inputValue);
+        } else {
             $('#so-diem').text("0");
             $('#so-tien-nhan').text("0");
         }
@@ -145,14 +147,15 @@
         }
 
     }
+
     $(document).ready(function() {
         $("#so-diem-doi").on("input", updateFormattedValue());
     });
-    // cập nhật value
+
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
-    var soDiemKhachCo = 0;
+
     function loadSoDiem(ma) {
         $.ajax({
             url: "/api/tich-diem/" + ma,
@@ -168,15 +171,17 @@
         });
     }
 
-    loadSoDiem(ma);
-
     $('#btn-doi-diem').on('click', function () {
         doiDiem()
     });
+
     function doiDiem(){
-        let soDiemDoi = $("#so-diem-doi").val().replace(/\./g, '');
-        if (isNaN(soDiemDoi) || soDiemDoi.trim() == "") {
-            showError("Số điểm khách hàng không hợp lệ. Vui lòng nhập số điểm là số!");
+        let soDiemDoi = $("#so-diem-doi").val().replace(/\./g, '').trim();
+        if (!/^\d+$/.test(soDiemDoi) || soDiemDoi.trim() === "" || parseInt(soDiemDoi) <= 0) {
+            showError("Số điểm khách hàng không hợp lệ.");
+            return false;
+        } else if (soDiemDoi > soDiemKhachCo) {
+            showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
             return false;
         } else if (soDiemDoi > soDiemKhachCo) {
             showError("Số điểm khách hàng không hợp lệ. Xin kiểm tra lại");
@@ -192,7 +197,6 @@
                 soTien: soTienDoi,
             };
 
-            // Use a different name for the AJAX function to avoid conflicts
             sendDoiDiemRequest(data);
             tichDiem(data);
             luuLichSu(data);
@@ -200,6 +204,7 @@
             showSuccess("Đổi điểm thành công");
         }
     }
+
     function tichDiem(data) {
         $.ajax({
             url: "/api/tich-diem",
@@ -214,6 +219,7 @@
             }
         });
     }
+
     function luuLichSu(data) {
         $.ajax({
             url: "/api/lich-su-tich-diem",
@@ -228,6 +234,7 @@
             }
         });
     }
+
     function sendDoiDiemRequest(data) {
         $.ajax({
             url: "/api/vi-dien-tu",

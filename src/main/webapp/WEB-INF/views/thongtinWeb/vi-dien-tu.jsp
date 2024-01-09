@@ -24,7 +24,7 @@
                             <h5 class="text-primary">Nạp tiền</h5>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ms-5">
                         <a class="btn btn-default" href="/vi-dien-tu/doi-diem">
                             <i class="bi bi-cash-coin fs-2"></i>
                             <h5 class="text-primary">Đổi điểm</h5>
