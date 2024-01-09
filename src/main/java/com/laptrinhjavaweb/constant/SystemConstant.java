@@ -14,7 +14,7 @@ public class SystemConstant {
 
     public static final String CONGDIEM = "CONGDIEM";
 
-    public static final String path = "G:/images";
+//    public static final String path = "G:/images";
 
-    //public static final String path = "D:/images";
+    public static final String path = "D:/images";
 }
