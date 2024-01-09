@@ -8,6 +8,7 @@ import com.laptrinhjavaweb.repository.ChiTieuRepository;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.repository.ViDienTuRepository;
 import com.laptrinhjavaweb.response.ViDienTuResponse;
+import com.laptrinhjavaweb.resquest.ViDienTuRequest;
 import com.laptrinhjavaweb.service.IViDienTuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,20 @@ public class ViDienTuService implements IViDienTuService {
         chiTieuEntity.setLoaiChiTieu(1);
         chiTieuEntity.setViDienTu(entity);
         chiTieuEntity.setSoTien(soTien);
+        chiTieuRepository.save(chiTieuEntity);
+    }
+
+    @Override
+    @Transactional
+    public void saveDoiDiem(ViDienTuRequest request) {
+        ViDienTuEntity entity = viDienTuRepository.findByKhachHang_ma(request.getMaKhachHang());
+        Double soDUMoi = entity.getSoTien() + request.getSoTien();
+        entity.setSoTien(soDUMoi);
+        viDienTuRepository.save(entity);
+        ChiTieuEntity chiTieuEntity = new ChiTieuEntity();
+        chiTieuEntity.setLoaiChiTieu(3);
+        chiTieuEntity.setViDienTu(entity);
+        chiTieuEntity.setSoTien(request.getSoTien());
         chiTieuRepository.save(chiTieuEntity);
     }
 

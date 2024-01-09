@@ -2,10 +2,6 @@ package com.laptrinhjavaweb.service.impl.banhang;
 
 
 import com.laptrinhjavaweb.entity.*;
-import com.laptrinhjavaweb.entity.CaLamEntity;
-import com.laptrinhjavaweb.entity.ChiTieuEntity;
-import com.laptrinhjavaweb.entity.HoaDonEntity;
-import com.laptrinhjavaweb.entity.ViDienTuEntity;
 import com.laptrinhjavaweb.model.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.model.response.HoaDonResponse;
 import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
@@ -18,7 +14,6 @@ import com.laptrinhjavaweb.model.response.thongke.DanhSachHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.ThongKeHoaDonResponse;
 import com.laptrinhjavaweb.model.response.thongke.TopResponse;
 import com.laptrinhjavaweb.repository.*;
-import com.laptrinhjavaweb.response.CaLamResponse;
 import com.laptrinhjavaweb.service.HoaDonService;
 import com.laptrinhjavaweb.service.impl.QuyDoiDiemService;
 import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;

@@ -30,7 +30,11 @@ public class LichSuTichDiemConverter {
 
     public LichSuTichDiemResponse convertToResponse(LichSuTichDiemEntity entity){
         LichSuTichDiemResponse response = modelMapper.map(entity, LichSuTichDiemResponse.class);
-        response.setMaHoaDon(entity.getHoaDon().getMa());
+        if(entity.getHoaDon() == null){
+            response.setMaHoaDon("");
+        }else{
+            response.setMaHoaDon(entity.getHoaDon().getMa());
+        }
         response.setTenKhachHang(entity.getKhachHang().getTen());
         response.setSoDienThoai(entity.getKhachHang().getSoDienThoai());
         if(entity.getSoDiemDung() == null){

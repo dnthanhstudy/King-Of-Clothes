@@ -88,7 +88,7 @@
                     var row = `
                             <tr class="text-center">
                                 <td>\${++index}</td>
-                                <td>\${item.maHoaDon}</td>
+                                <td>\${item.maHoaDon == '' ? 'Đổi điểm' : item.maHoaDon}</td>
                                  <td>\${item.soDiemTichDuoc != null ? item.soDiemTichDuoc : 0}</td>
                                  <td>\${item.soDiemDung != null ? item.soDiemDung : 0}</td>
                                  <td>\${item.soDiemHoan != null ? item.soDiemHoan : 0}</td>
