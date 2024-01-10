@@ -40,7 +40,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query("select hd from HoaDonEntity hd where hd.ma=:mahd")
     ThongTinHoaDonResponse getHoaDonResponse(@Param("mahd")String idhd);
 
-    @Query(value = " select * from vw_thongkedshoadon",nativeQuery = true)
+    @Query(value = "select * from vw_thongkedshoadon",nativeQuery = true)
     List<ThongKeHoaDonResponse> thongKeDsHoaDon();
     HoaDonEntity findByMa(String maHoaDon);
 

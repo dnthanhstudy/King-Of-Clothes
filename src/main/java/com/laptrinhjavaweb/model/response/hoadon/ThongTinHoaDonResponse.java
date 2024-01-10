@@ -23,5 +23,8 @@ public interface ThongTinHoaDonResponse {
     @Value("#{target.tienShip}")
     Double getTienShip();
 
+    @Value("#{target.trangThai}")
+    String getTrangThaiHoaDon();
+
 
 }

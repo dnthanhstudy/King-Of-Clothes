@@ -1,4 +1,4 @@
-loadProductActive();
+// loadProductActive();
 loadProductInActive();
 checkChuanBiDat();
 
@@ -180,6 +180,10 @@ function loadGiaInActice(giaGoc, giaMua) {
         `;
     }
 }
+function checkHetHangGioHang(item) {
+    let flag = item.trangThaiSanPham&&item.soLuongConLaiBienThe>0;
+    return flag;
+}
 
 function loadProductActive() {
     $.ajax({
@@ -190,11 +194,15 @@ function loadProductActive() {
             console.log(response)
             let html = '';
             $.each(response.gioHang, (index, item) => {
-                html += `<div style="border-bottom: 1px solid #dedede" class="cart-item">
+                let checkHetHang = checkHetHangGioHang(item);
+                let genderInput = checkHetHang ==true?`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />`:`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
+                let setClassCart = checkHetHang == true ?"cart-item":"special-card";
+                console.log(checkHetHang)
+                html += `<div style="border-bottom: 1px solid #dedede" class="${setClassCart}">
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
-                                    <input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />
+                                    ${genderInput}
                                     <label class="form-check-label">
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
@@ -347,13 +355,14 @@ function checkQuantity(data, successCallback, errorCallback) {
 }
 
 function updateCart(ele) {
-    const eleCartItem = ele.closest('.cart-item');
-
+    let eleCartItem = ele.closest('.cart-item');
+    if (!eleCartItem.length) {
+        eleCartItem = ele.closest('.special-card');
+    }
     let data = {};
     data['id'] = eleCartItem.find('.cart-detail-id').val();
     data['soLuong'] = eleCartItem.find('.product-quantity').val();
     data['idBienThe'] = eleCartItem.find('.variant-id').val();
-
     $.ajax({
         url: "/api/gio-hang-chi-tiet",
         method: "PUT",
@@ -427,12 +436,18 @@ function updateVariant(ele) {
             showConfirm("Bạn muốn thay đổi sản phẩm phải không?")
                 .then((confirmed) => {
                     if (confirmed) {
-                        ele.closest('.cart-item').find('.variant-id').val(response.id)
-                        updateCart(ele)
+                        var cartItem = ele.closest('.cart-item');
+                        if (!cartItem.length) {
+                            cartItem = ele.closest('.special-card');
+                        }
+                        cartItem.find('.variant-id').val(response.id);
+                        updateCart(ele);
+                        // ele.closest('.cart-item').find('.variant-id').val(response.id)
+                        // updateCart(ele)
                     }
                 });
         }, function (error) {
-
+            showModalError("Có lỗi xảy ra")
         })
 }
 
@@ -567,6 +582,8 @@ function loadProductInActive() {
         dataType: "json",
         success: (response) => {
             console.log(response)
+
+
             let html = '';
             $.each(response, (index, item) => {
                 html += `<div class="special-card" style="border-bottom: 1px solid #dedede">

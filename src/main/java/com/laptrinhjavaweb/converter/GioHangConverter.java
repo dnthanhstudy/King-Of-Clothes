@@ -35,7 +35,6 @@ public class GioHangConverter {
         List<GioHangChiTietResponse> listGioHangChiTiet = entity.getGioHangChiTietEntities().stream()
                 .map( item -> gioHangChiTietConveter.convertToResponse(item))
                 .collect(Collectors.toList());
-
         response.setGioHang(listGioHangChiTiet);
         return response;
     }

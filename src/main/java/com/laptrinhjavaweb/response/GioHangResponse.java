@@ -8,6 +8,5 @@ import java.util.List;
 @Getter
 @Setter
 public class GioHangResponse {
-
     private List<GioHangChiTietResponse> gioHang;
 }

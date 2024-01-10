@@ -81,7 +81,7 @@
                     <span class="text-danger" id="tienShip"></span><span class="text-danger">đ</span>
                 </div>
             </div>
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-between ">
                 <div class="col">
                     Tổng tiền giảm giá:
                 </div>
@@ -90,7 +90,7 @@
                     <span class="text-danger" id="giaGiam"></span><span class="text-danger">đ</span>
                 </div>
             </div>
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-between mb-5">
                 <div class="col">
                     Thành tiền:
                 </div>
@@ -98,6 +98,9 @@
                     <span class="text-danger" style="font-size: 25px" id="tienKhachTra"></span><span class="text-danger">đ</span>
                 </div>
             </div>
+        <div id="tthd" style="text-align: right;">
+
+        </div>
         </div>
     </div>
 </div>
@@ -111,6 +114,9 @@
         return paramValue;
     }
 
+    function genderHuyDon(idhd) {
+        $("#tthd").append(`<button class="btn btn-danger me-2 huydonttweb"  onclick="thayDoiTrangThaiHoaDon(\${idhd},'HUYDON')">Hủy đơn</button>`);
+    }
     function loadChiTietHoaDon(){
         $.ajax({
             url: '/api/hoadon/alltt?mahoadon='+getMaHoaDon(),
@@ -121,6 +127,9 @@
                 getTrangThaiGiaoHang(data.trangThaiGiaoHang);
                 getTongTien(data.tongTien);
                 getHDCT(data.dsHoaDonChiTiet);
+                if (data.hoaDon.trangThaiHoaDon=="Chờ nhận đơn"){
+                    genderHuyDon(data.hoaDon.id)
+                }
             },
             error: function(xhr, status, error) {
                 alert('Có lỗi xảy ra: ' + error);

@@ -12,20 +12,20 @@ public interface HDCTResponse {
     Long getIdHdct();
 
 
-    @Value("#{target.bienThe.sanPham.ten}")
+    @Value("#{target.sanPham.ten}")
     String getTenSanPham();
 
-    @Value("#{target.bienThe.sanPham.slug}")
+    @Value("#{target.sanPham.slug}")
     String getSlugSP();
 
     @Value("#{target.hinhAnh}")
     String getImage();
 
-    @Value("#{target.bienThe.id}")
-    Long getIdBienThe();
-    @Value("#{target.bienThe.ma}")
-    String getMaBienThe();
-    @Value("#{target.bienThe.ten}")
+//    @Value("#{target.bienThe.id}")
+//    Long getIdBienThe();
+//    @Value("#{target.bienThe.ma}")
+//    String getMaBienThe();
+    @Value("#{target.tenBienThe}")
     String getTenBienThe();
 
 
@@ -39,7 +39,7 @@ public interface HDCTResponse {
     BigDecimal getGiaTienKm();
 
 
-    @Value("#{target.bienThe.sanPham.danhMuc.ten}")
+    @Value("#{target.sanPham.danhMuc.ten}")
     String getTenDanhMuc();
 
     @Value("#{target.hoaDon.trangThai}")
