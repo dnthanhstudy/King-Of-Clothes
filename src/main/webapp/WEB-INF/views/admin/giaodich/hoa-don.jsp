@@ -550,8 +550,10 @@
                     <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
-                                <span>Mã biến thể</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black" ><a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">\${item.maBienThe}</a></h5>
+                                <span>Hình ảnh</span>
+                                <a class="text-decoration-none" href="/san-pham/\${item.slugSP}">
+                                    <img src='/repository/\${item.image}' style="width: 120px;">
+                                </a>
                             </div>
                         </div>
                     </div>

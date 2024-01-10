@@ -601,7 +601,7 @@
                     </div>
                     <table class="table table table-striped" id="tblhoadon" >
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Mã hoá đơn</th>
                             <th scope="col">Ngày đặt</th>
@@ -616,30 +616,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>Thornton</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td colspan="2">Larry the Bird</td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -654,7 +631,7 @@
                         <hr>
                         <table class="table table-hover table-striped" id="tblThongKeHoaDon">
                             <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">#</th>
                                 <th scope="col">Ngày</th>
                                 <th scope="col">Tổng hóa đơn</th>
@@ -784,8 +761,10 @@
                     <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
                         <div class="d-flex align-items-center">
                             <div class="ml-2">
-                                <span>Mã biến thể</span>
-                                <h5 class="mb-0 pt-1 font-w500 text-black" ><a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">\${item.maBienThe}</a></h5>
+                               <span>Hình ảnh</span>
+                                <a class="text-decoration-none" href="/san-pham/\${item.slugSP}">
+                                    <img src='/repository/\${item.image}' style="width: 120px;">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -795,7 +774,7 @@
                                 <span>Tên sản phẩm</span>
                             <a style="text-decoration: none;color: black" href="/san-pham/\${item.slugSP}">
                                 <h5 class="mb-0 pt-1 font-w500 text-black line-clamp-2">\${item.tenSanPham}</h5>
-                                <div class="text-success" >\${item.tenBienThe}</div>
+                                <div class="text-success mt-2" >\${item.tenBienThe}</div>
                             </a>
                             </div>
                         </div>
@@ -888,8 +867,8 @@
                 tbody.empty();
                 req.forEach(function (item,index){
                     tbody.append(`
-                    <tr>
-                        <th scope="row">\${index+1}</th>
+                    <tr class="text-center">
+                        <td>\${index+1}</td>
                         <td>\${item.ma}</td>
                         <td>\${formatDate(item.ngayDat)}</td>
                         <td>\${formatDate(item.ngayThanhToan)}</td>
@@ -935,7 +914,7 @@
                 var index = 0;
                 response.forEach(function (item) {
                     var row = `
-                            <tr>
+                            <tr class="text-center">
                                 <td>\${++index}</td>
                                 <td>\${getFormattedDate(item.ngay)}</td>
                                 <td>\${item.tongHoaDonBanDuoc}</td>
