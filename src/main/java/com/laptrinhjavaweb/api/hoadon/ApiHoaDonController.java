@@ -136,7 +136,7 @@ public class ApiHoaDonController {
     }
 
     @PostMapping("/datvidientu")
-    public ResponseObject datHangViDienThu(@RequestBody ThongTinNhanHangRequest request
+    public ResponseObject datHangViDienTu(@RequestBody ThongTinNhanHangRequest request
     ){
         HoaDonEntity hoaDon = giaoHangService.thanhToan(request.getIdkh(),request.getTtgh(),
                 "VIDIENTU", request.getPhiship(),request.getLuuy(),request.getTongTien());

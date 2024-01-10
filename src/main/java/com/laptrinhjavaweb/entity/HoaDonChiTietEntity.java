@@ -110,4 +110,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 				bienThe.getSanPham().getAnhSanPhamEntities().get(0).getHinhAnh(): bienThe.getHinhAnh();
 	}
 
+	public BienTheEntity getBienThe() {
+		return bienThe ==null?null:bienThe;
+	}
 }

@@ -14,19 +14,19 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.hoaDon.ma}")
     String getMaHoaDon();
 
-    @Value("#{target.bienThe.sanPham.ten}")
+    @Value("#{target.sanPham.ten}")
     String getTenSanPham();
 
-    @Value("#{target.bienThe.sanPham.slug}")
+    @Value("#{target.sanPham.slug}")
     String getSlugSP();
 
     @Value("#{target.hinhAnh}")
     String getImage();
 
-    @Value("#{target.bienThe.id}")
-    Long getIdBienThe();
-    @Value("#{target.bienThe.ma}")
-    String getMaBienThe();
+//    @Value("#{target.bienThe.id}")
+//    Long getIdBienThe();
+//    @Value("#{target.bienThe.ma}")
+//    String getMaBienThe();
     @Value("#{target.tenBienThe}")
     String getTenBienThe();
 
@@ -46,7 +46,7 @@ public interface HoaDonChiTietResponse {
     BigDecimal getGiaTienKm();
 
 
-    @Value("#{target.bienThe.sanPham.danhMuc.ten}")
+    @Value("#{target.sanPham.danhMuc.ten}")
     String getTenDanhMuc();
 
     @Value("#{target.hoaDon.id}")
