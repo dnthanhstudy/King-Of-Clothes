@@ -112,7 +112,7 @@ public class HoaDonAPI {
     public ResponseEntity<?> deleteStatus(@PathVariable String ma, @RequestBody Long idHuyDon){
         try {
             hoaDonService.deleteStatus(ma, idHuyDon);
-            return ResponseEntity.ok("Hủy thành công");
+            return ResponseEntity.ok("Hủy đơn thành công");
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }

@@ -134,7 +134,7 @@
             <div class="row mt-3">
                 <div class="col-lg-8">
                     <p id="invoice-non">Thêm sản phẩm vào hóa đơn nào!!!</p>
-                    <div id="invoice" style="max-height: 500px; overflow-y: scroll;">
+                    <div id="invoice" style="max-height: 410px; overflow-y: scroll;">
 
                     </div>
                     <div id="invoice-money-quantity" class="card card-body mt-3" style="border-radius: 10px">
@@ -152,7 +152,7 @@
                                     <input placeholder="Ghi chú đơn hàng" type="search" class="inputghichu w-100">
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="d-flex justify-content-center">
                                     <div>
                                         <h4 class="text-right">
@@ -162,17 +162,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
+                            <div class="col-5">
                                 <div class="d-flex justify-content-center">
                                     <div>
                                         <h4 class="text-right">
                                             <strong>Tổng tiền hàng:</strong>
-                                            <span class="invoice-total product-price-custom-vnd ms-4">0</span>
+                                            <span class="invoice-total">0</span>
                                         </h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div id="invoice-disable" style="max-height: 140px; overflow-y: scroll;">
+
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -281,7 +284,7 @@
                                 <h5>Tổng tiền hàng:</h5>
                             </div>
                             <div class="col-6 text-right">
-                                <span class="invoice-total product-price-custom-vnd fs-5">0</span>
+                                <span class="invoice-total fs-5">0</span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -315,7 +318,7 @@
                             </div>
                             <div class="col-6 text-right">
                                 <span style="color: #EB8153"><strong id="invoice-after-point"
-                                                                     class="invoice-total product-price-custom-vnd fs-5">0</strong></span>
+                                                                     class="invoice-total fs-5">0</strong></span>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -1140,15 +1143,6 @@
                             })
 
                         })
-
-                        $('.product-price-custom-vnd').each(function(index, item) {
-                            let res = $(item).html();
-                            if(res.indexOf("đ") === -1){
-                                let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                                let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
-                                $(item).html(formattedValue);
-                            }
-                        });
                     })
 
                 } else {

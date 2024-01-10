@@ -238,7 +238,6 @@
                                      url: '/api/hoa-don-off/deleteStatus/' + maHoaDon,
                                      method: 'PUT',
                                      contentType: "application/json; charset=utf-8",
-                                     dataType: "json",
                                      data: JSON.stringify(response.id),
                                      success: function (response) {
                                          showSuccess("Hủy đơn thành công!");
