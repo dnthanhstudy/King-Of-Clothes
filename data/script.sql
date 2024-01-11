@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `anhsanpham` (
   PRIMARY KEY (`id`),
   KEY `FKl2yrbw1jmokavcq0mcl2215j3` (`idsanpham`),
   CONSTRAINT `FKl2yrbw1jmokavcq0mcl2215j3` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=257 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=269 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.anhsanpham: ~226 rows (approximately)
+-- Dumping data for table duantotnghiep.anhsanpham: ~251 rows (approximately)
 INSERT INTO `anhsanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `hinhanh`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'TBpuvQ.jpg', 1),
 	(2, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'hCuy1c.jpg', 1),
@@ -266,7 +266,19 @@ INSERT INTO `anhsanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `t
 	(245, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', '3u52GK.jpg', 64),
 	(246, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', '9AlQkl.jpg', 64),
 	(247, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 'SZrnqz.jpg', 65),
-	(248, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', '4N7ROP.jpg', 65);
+	(248, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', '4N7ROP.jpg', 65),
+	(257, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'x19X6M.jpg', 68),
+	(258, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'UZQIQa.jpg', 68),
+	(259, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'LxAvNr.jpg', 68),
+	(260, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'Ns2iZi.jpg', 68),
+	(261, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'orGq9F.jpg', 69),
+	(262, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'X1VUa2.jpg', 69),
+	(263, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'ODXJKi.jpg', 69),
+	(264, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'WAj07q.jpg', 69),
+	(265, NULL, '2024-01-10 09:33:28', NULL, 'admin9193', 'ACTIVE', 'RnsKxf.jpg', 70),
+	(266, NULL, '2024-01-10 09:33:28', NULL, 'admin9193', 'ACTIVE', '1j2aBX.jpg', 70),
+	(267, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'sUAtZM.jpg', 70),
+	(268, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'CE5xhz.jpg', 70);
 
 -- Dumping structure for table duantotnghiep.bienthe
 CREATE TABLE IF NOT EXISTS `bienthe` (
@@ -286,9 +298,9 @@ CREATE TABLE IF NOT EXISTS `bienthe` (
   UNIQUE KEY `UK_1i0avoe2xfvbl86pcd6fltolm` (`ma`),
   KEY `FK5wqyagvu9na935be2xsh2a9xv` (`idsanpham`),
   CONSTRAINT `FK5wqyagvu9na935be2xsh2a9xv` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=635 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=669 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.bienthe: ~588 rows (approximately)
+-- Dumping data for table duantotnghiep.bienthe: ~651 rows (approximately)
 INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `hinhanh`, `ma`, `soluong`, `ten`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 128000, 'PrSCiL.jpg', 'SLG3RP0y', 12000, 'Trắng,M', 1),
 	(2, '2023-12-28 08:10:13', '2023-11-22 16:26:03', 'admin9193', 'admin9193', 'ACTIVE', 138000, NULL, 'Ilbl9LXU', 11998, 'Trắng,L', 1),
@@ -333,7 +345,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(41, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 79000, NULL, '2bsBNuMF', 12000, 'Trắng,XL', 4),
 	(42, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 80000, NULL, 'Ok8koyFr', 12000, 'Đen,S', 4),
 	(43, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 85000, NULL, 'jQaM3mg4', 12000, 'Đen,M', 4),
-	(44, '2024-01-08 05:53:05', '2023-11-22 18:33:38', 'admin9193', 'admin9193', 'ACTIVE', 79000, NULL, 'dkVvR2A4', 11999, 'Đen,L', 4),
+	(44, '2024-01-10 08:55:52', '2023-11-22 18:33:38', 'admin9193', 'admin9193', 'ACTIVE', 79000, NULL, 'dkVvR2A4', 12000, 'Đen,L', 4),
 	(45, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'L9H5Wt8H', 12000, 'Đen,XL', 4),
 	(46, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 75000, NULL, 'nxMhhPBO', 12000, 'Hồng,S', 4),
 	(47, NULL, '2023-11-22 18:33:38', NULL, 'admin9193', 'ACTIVE', 79000, NULL, 'aEsPfNK2', 12000, 'Hồng,M', 4),
@@ -347,14 +359,14 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(55, NULL, '2023-11-27 02:39:53', NULL, 'admin9193', 'ACTIVE', 289000, 'pzkpct.jpg', 'NbYLxVn5', 12000, 'Be,L', 7),
 	(56, NULL, '2023-11-27 02:39:53', NULL, 'admin9193', 'ACTIVE', 270000, '4SmTyN.jpg', 'GmCQtQqt', 12000, 'Đen,M', 7),
 	(57, NULL, '2023-11-27 02:39:53', NULL, 'admin9193', 'ACTIVE', 279000, 'RCvnAR.jpg', 'xGV66qLe', 12000, 'Đen,L', 7),
-	(58, '2024-01-08 05:53:05', '2023-11-27 02:43:46', 'admin9193', 'admin9193', 'ACTIVE', 259000, 'x6F7PO.jpg', '9tJJJBr3', 11999, 'Đen,L', 8),
+	(58, '2024-01-10 08:55:52', '2023-11-27 02:43:46', 'admin9193', 'admin9193', 'ACTIVE', 259000, 'x6F7PO.jpg', '9tJJJBr3', 12000, 'Đen,L', 8),
 	(59, NULL, '2023-11-27 02:43:46', NULL, 'admin9193', 'ACTIVE', 269000, '6r6Bxo.jpg', '6ubTfoUS', 11999, 'Đen,XL', 8),
 	(60, NULL, '2023-11-27 02:46:17', NULL, 'admin9193', 'ACTIVE', 345000, 'ophxa5.jpg', 'sGxcr8Ap', 12000, 'Đen,L', 9),
 	(61, NULL, '2023-11-27 02:46:17', NULL, 'admin9193', 'ACTIVE', 360000, 'oxjvWV.jpg', 'X8JncyDE', 12000, 'Đen,XL', 9),
 	(62, NULL, '2023-11-27 02:48:58', NULL, 'admin9193', 'ACTIVE', 340000, 'i4mTHm.jpg', 'SCFdtGr5', 12000, 'Đen,M', 10),
-	(63, NULL, '2023-11-27 02:48:58', NULL, 'admin9193', 'ACTIVE', 355000, 'ycg5P2.jpg', '6fzo9LCS', 12000, 'Đen,L', 10),
+	(63, '2024-01-10 09:08:24', '2023-11-27 02:48:58', 'admin9193', 'admin9193', 'ACTIVE', 355000, 'ycg5P2.jpg', '6fzo9LCS', 11999, 'Đen,L', 10),
 	(64, NULL, '2023-11-27 02:53:09', NULL, 'admin9193', 'ACTIVE', 155000, 'oX72hg.jpg', 'TGod8s6H', 12000, 'Đen,M', 11),
-	(65, '2024-01-08 05:53:05', '2023-11-27 02:53:09', 'admin9193', 'admin9193', 'ACTIVE', 165000, 'cd7KVX.jpg', 'OmjkFhP1', 11999, 'Đen,XL', 11),
+	(65, '2024-01-10 08:55:52', '2023-11-27 02:53:09', 'admin9193', 'admin9193', 'ACTIVE', 165000, 'cd7KVX.jpg', 'OmjkFhP1', 12000, 'Đen,XL', 11),
 	(66, NULL, '2023-11-27 02:53:09', NULL, 'admin9193', 'ACTIVE', 145000, 'W4x7fM.jpg', 'GirCZsxV', 12000, 'Be,M', 11),
 	(67, NULL, '2023-11-27 02:53:09', NULL, 'admin9193', 'ACTIVE', 155000, 'FSFhCo.jpg', 'ZpBR22Kz', 12000, 'Be,XL', 11),
 	(68, NULL, '2023-11-27 02:56:20', NULL, 'admin9193', 'ACTIVE', 169000, 'ihTckW.jpg', 'CBCrFbC7', 12000, 'Đen,M', 12),
@@ -855,10 +867,10 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(570, '2024-01-09 06:50:52', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'bQBVhMBg', 11987, 'Xanh,Xl', 51),
 	(571, '2024-01-02 03:57:20', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'yPtRjUvr', 11985, 'Xanh,L', 51),
 	(572, '2024-01-01 16:35:54', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'xc65qcOd', 11999, 'Đỏ,Xl', 51),
-	(573, '2024-01-09 06:44:51', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'rpoVOOb9', 11969, 'Đỏ,L', 51),
+	(573, '2024-01-10 09:08:24', '2023-12-17 06:30:37', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'rpoVOOb9', 11968, 'Đỏ,L', 51),
 	(574, '2023-12-31 07:10:22', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'Lt27ypYY', 11989, 'S', 56),
 	(575, '2024-01-02 04:04:22', '2023-12-18 07:46:17', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, '6F4mcAEb', 11993, 'XL', 56),
-	(576, '2024-01-02 03:35:57', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'DHrWL9DS', 11992, 'XS,Xanh', 57),
+	(576, '2024-01-10 09:09:22', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'DHrWL9DS', 11991, 'XS,Xanh', 57),
 	(577, '2023-12-31 07:14:29', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'qqmLI09J', 11997, 'XS,Đỏ', 57),
 	(578, '2023-12-19 05:15:11', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'LAEemhRN', 11999, 'XXL,Xanh', 57),
 	(579, '2024-01-02 04:04:22', '2023-12-19 04:44:28', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'D3soJoCH', 11994, 'XXL,Đỏ', 57),
@@ -869,7 +881,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(584, '2023-12-28 08:31:52', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 210000, NULL, 'O6qeUFqo', 15000, 'S,Đen', 59),
 	(585, '2023-12-28 08:28:31', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, 'b3rykO7r', 15000, 'XS,Đỏ', 59),
 	(586, '2024-01-02 03:50:27', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 190000, NULL, 'WOJASaSE', 15000, 'XS,Đen', 59),
-	(587, '2024-01-08 05:55:11', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'iqoQRfSH', 14999, 'Đỏ,XS', 60),
+	(587, '2024-01-10 08:52:28', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'iqoQRfSH', 15000, 'Đỏ,XS', 60),
 	(588, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 240000, NULL, 'CvNXWeYy', 15000, 'Đỏ,XL', 60),
 	(589, '2023-12-31 14:52:01', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'yWOjHI4g', 15000, 'Đen,XS', 60),
 	(590, '2023-12-31 06:59:43', '2023-12-19 08:25:13', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'D3VkVWaO', 14998, 'Đen,XL', 60),
@@ -877,7 +889,7 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(594, '2023-12-31 02:27:03', '2023-12-19 09:08:33', 'admin9193', 'admin9193', 'ACTIVE', 342000, NULL, 'VKXfBdnI', 15000, 'S', 63),
 	(595, '2024-01-09 06:32:54', '2023-12-19 09:08:33', 'admin9193', 'admin9193', 'ACTIVE', 399000, NULL, 'IQupM58u', 14999, 'XL', 63),
 	(604, '2024-01-01 16:31:42', '2024-01-01 03:33:46', 'admin9193', 'admin9193', 'ACTIVE', 254000, NULL, '98DQrsZC', 15000, 'S', 62),
-	(605, '2024-01-02 03:50:27', '2024-01-01 03:33:46', 'admin9193', 'admin9193', 'ACTIVE', 423000, NULL, 'SL7QmAfm', 15000, 'XL', 62),
+	(605, '2024-01-10 09:09:22', '2024-01-01 03:33:46', 'admin9193', 'admin9193', 'ACTIVE', 423000, NULL, 'SL7QmAfm', 14999, 'XL', 62),
 	(606, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 160000, NULL, 'xKN3FTS4', 100, 'Đen,S', 64),
 	(607, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 150000, NULL, '0p0aET4k', 119, 'Đen,M', 64),
 	(608, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 170000, NULL, 'Ix2JWpFF', 100, 'Đen,L', 64),
@@ -893,8 +905,42 @@ INSERT INTO `bienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(618, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 170000, NULL, '97J9SrRB', 150, 'Xanh dương,L', 64),
 	(619, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 160000, NULL, 'dTrYiQuE', 120, 'Xanh dương,XXL', 64),
 	(620, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 150000, NULL, 'zaQWhrmJ', 149, 'Xanh dương,XL', 64),
-	(621, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 230000, NULL, 'qnOaTJbO', 147, 'Be', 65),
-	(634, NULL, '2023-11-27 16:29:04', NULL, 'admin9193', 'ACTIVE', 300000, NULL, 'fkgjtmne', 1999, 'Đen', 40);
+	(621, '2024-01-10 09:11:57', '2024-01-09 08:13:33', 'admin9193', 'admin9193', 'ACTIVE', 230000, NULL, 'qnOaTJbO', 147, 'Be', 65),
+	(634, NULL, '2023-11-27 16:29:04', NULL, 'admin9193', 'ACTIVE', 300000, NULL, 'fkgjtmne', 1999, 'Đen', 40),
+	(635, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 180000, NULL, 'UDh8foYm', 150, 'Đen,M', 68),
+	(636, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 185000, NULL, 'CZcljaTr', 130, 'Đen,L', 68),
+	(637, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 190000, NULL, 'gtbUGPnz', 118, 'Đen,XL', 68),
+	(638, '2024-01-10 09:08:24', '2024-01-09 15:20:05', 'admin9193', 'admin9193', 'ACTIVE', 200000, NULL, '3KnTS9AE', 149, 'Trắng,M', 68),
+	(639, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 185000, NULL, 'Hqqs5AjM', 130, 'Trắng,L', 68),
+	(640, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 200000, NULL, '5QsbRRmo', 120, 'Trắng,XL', 68),
+	(641, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, '2iZlkJXm', 300, 'Ghi,50-60kg', 69),
+	(642, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'EI00r3eV', 160, 'Ghi,60-70kg', 69),
+	(643, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'AuaAOGzX', 210, 'Ghi,70-80kg', 69),
+	(644, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'SWDPigAI', 300, 'Xanh than,50-60kg', 69),
+	(645, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'mgxKndiO', 250, 'Xanh than,60-70kg', 69),
+	(646, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'MLXVGuyA', 210, 'Xanh than,70-80kg', 69),
+	(647, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'scZ5fRnQ', 300, 'Nâu,50-60kg', 69),
+	(648, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'tc00ZV8E', 160, 'Nâu,60-70kg', 69),
+	(649, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'LNGuatpJ', 250, 'Nâu,70-80kg', 69),
+	(650, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'QaBoPt4M', 300, 'Xanh tím,50-60kg', 69),
+	(651, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'fM3GXnbJ', 210, 'Xanh tím,60-70kg', 69),
+	(652, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, NULL, 'pHLRHIlk', 160, 'Xanh tím,70-80kg', 69),
+	(653, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'EctF7RCV', 500, 'Đen,M 40-52KG', 70),
+	(654, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'BjzTtFh5', 500, 'Đen,L 52-60KG', 70),
+	(655, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'CnSrgI38', 500, 'Đen,XL 60-70KG', 70),
+	(656, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, '44uaVQmV', 500, 'Đen,2XL 70-80KG', 70),
+	(657, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'iInsRF01', 500, 'Than,M 40-52KG', 70),
+	(658, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'q89kYxCT', 500, 'Than,L 52-60KG', 70),
+	(659, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'aVsoMCGd', 500, 'Than,XL 60-70KG', 70),
+	(660, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'Bg18BuoZ', 500, 'Than,2XL 70-80KG', 70),
+	(661, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, '4xmpryku', 500, 'Ghi,M 40-52KG', 70),
+	(662, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'Li2rOLP9', 500, 'Ghi,L 52-60KG', 70),
+	(663, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, '8FGztbW9', 500, 'Ghi,XL 60-70KG', 70),
+	(664, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'UIddaSS5', 500, 'Ghi,2XL 70-80KG', 70),
+	(665, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'PGdun6kj', 500, 'Trắng,M 40-52KG', 70),
+	(666, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'zdQPVcss', 500, 'Trắng,L 52-60KG', 70),
+	(667, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'yGqD4c2i', 500, 'Trắng,XL 60-70KG', 70),
+	(668, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 290000, NULL, 'pqig2uhe', 500, 'Trắng,2XL 70-80KG', 70);
 
 -- Dumping structure for table duantotnghiep.calam
 CREATE TABLE IF NOT EXISTS `calam` (
@@ -952,9 +998,9 @@ CREATE TABLE IF NOT EXISTS `chitieu` (
   PRIMARY KEY (`id`),
   KEY `FK7fr74dox50p8nxx296nhl6740` (`idvidientu`),
   CONSTRAINT `FK7fr74dox50p8nxx296nhl6740` FOREIGN KEY (`idvidientu`) REFERENCES `vidientu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.chitieu: ~37 rows (approximately)
+-- Dumping data for table duantotnghiep.chitieu: ~45 rows (approximately)
 INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `loaichitieu`, `sotien`, `idvidientu`) VALUES
 	(1, NULL, '2023-11-19 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 1, 110000, 1),
 	(2, NULL, '2023-11-18 16:59:26', NULL, 'doquochuy8173', 'ACTIVE', 0, 220000, 1),
@@ -995,13 +1041,12 @@ INSERT INTO `chitieu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(37, NULL, '2024-01-08 05:47:20', NULL, 'dangngocthanh0133', NULL, 0, 465301, 2),
 	(38, NULL, '2024-01-09 09:47:59', NULL, 'dinhanhtuan0812', NULL, 3, 10000, 3),
 	(39, NULL, '2024-01-09 09:48:25', NULL, 'dinhanhtuan0812', NULL, 3, 3000, 3),
-	(40, NULL, '2024-01-09 09:49:48', NULL, 'dinhanhtuan0812', NULL, 3, -3000, 3),
-	(41, NULL, '2024-01-09 09:58:13', NULL, 'dinhanhtuan0812', NULL, 3, -10000, 3),
-	(42, NULL, '2024-01-09 11:00:04', NULL, 'dinhanhtuan0812', NULL, 3, 0, 3),
 	(43, NULL, '2024-01-09 11:04:14', NULL, 'dinhanhtuan0812', NULL, 3, 11000, 3),
 	(44, NULL, '2024-01-09 11:07:37', NULL, 'dinhanhtuan0812', NULL, 3, 1000, 3),
 	(45, NULL, '2024-01-09 11:08:18', NULL, 'dinhanhtuan0812', NULL, 3, 2000, 3),
-	(46, NULL, '2024-01-09 13:53:07', NULL, 'dangngocthanh0133', NULL, 0, 185301, 2);
+	(46, NULL, '2024-01-09 13:53:07', NULL, 'dangngocthanh0133', NULL, 0, 185301, 2),
+	(47, NULL, '2024-01-09 14:01:03', NULL, 'dangngocthanh0133', NULL, 3, 1000, 2),
+	(48, NULL, '2024-01-10 15:17:23', NULL, 'dinhanhtuan0812', NULL, 3, 1000, 3);
 
 -- Dumping structure for table duantotnghiep.chucvu
 CREATE TABLE IF NOT EXISTS `chucvu` (
@@ -1089,9 +1134,9 @@ CREATE TABLE IF NOT EXISTS `giatrithuoctinh` (
   KEY `FK6y4ueyayt8cgynk5a14wylvun` (`idthuoctinh`),
   CONSTRAINT `FK6y4ueyayt8cgynk5a14wylvun` FOREIGN KEY (`idthuoctinh`) REFERENCES `thuoctinh` (`id`),
   CONSTRAINT `FKpm5svcqbt5m7ipbbihqu6d139` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=342 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giatrithuoctinh: ~267 rows (approximately)
+-- Dumping data for table duantotnghiep.giatrithuoctinh: ~297 rows (approximately)
 INSERT INTO `giatrithuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `giatri`, `idsanpham`, `idthuoctinh`) VALUES
 	(1, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'Trắng', 1, 1),
 	(2, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'Đen', 1, 1),
@@ -1354,8 +1399,8 @@ INSERT INTO `giatrithuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao
 	(282, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'Đen', 60, 106),
 	(283, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'XS', 60, 107),
 	(284, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 'XL', 60, 107),
-	(285, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 'a', 61, 108),
-	(286, NULL, '2023-12-19 08:38:09', NULL, 'admin9193', 'ACTIVE', '10', 61, 109),
+	(285, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 'Dây chuyền', 61, 108),
+	(286, NULL, '2023-12-19 08:38:09', NULL, 'admin9193', 'ACTIVE', 'Than', 61, 109),
 	(289, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'S', 63, 111),
 	(290, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 'XL', 63, 111),
 	(300, NULL, '2024-01-01 03:33:46', NULL, 'admin9193', 'ACTIVE', 'S', 62, 116),
@@ -1369,7 +1414,27 @@ INSERT INTO `giatrithuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao
 	(308, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 'XXL', 64, 118),
 	(309, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 'XL', 64, 118),
 	(310, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 'Be', 65, 119),
-	(321, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 'Đen', 40, 124);
+	(321, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 'Đen', 40, 124),
+	(322, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'Đen', 68, 125),
+	(323, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 'Trắng', 68, 125),
+	(324, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 'M', 68, 126),
+	(325, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 'L', 68, 126),
+	(326, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 'XL', 68, 126),
+	(327, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'Ghi', 69, 127),
+	(328, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'Xanh than', 69, 127),
+	(329, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'Nâu', 69, 127),
+	(330, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'Xanh tím', 69, 127),
+	(331, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', '50-60kg', 69, 128),
+	(332, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', '60-70kg', 69, 128),
+	(333, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', '70-80kg', 69, 128),
+	(334, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'Đen', 70, 129),
+	(335, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'Than', 70, 129),
+	(336, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'Ghi', 70, 129),
+	(337, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'Trắng', 70, 129),
+	(338, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'M 40-52KG', 70, 130),
+	(339, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'L 52-60KG', 70, 130),
+	(340, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'XL 60-70KG', 70, 130),
+	(341, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', '2XL 70-80KG', 70, 130);
 
 -- Dumping structure for table duantotnghiep.giatrithuoctinhbienthe
 CREATE TABLE IF NOT EXISTS `giatrithuoctinhbienthe` (
@@ -1386,9 +1451,9 @@ CREATE TABLE IF NOT EXISTS `giatrithuoctinhbienthe` (
   KEY `FKnj57apbbxsmiwq7187rsgtp7s` (`idgiatrithuoctinh`),
   CONSTRAINT `FKnj57apbbxsmiwq7187rsgtp7s` FOREIGN KEY (`idgiatrithuoctinh`) REFERENCES `giatrithuoctinh` (`id`),
   CONSTRAINT `FKobw0qcs615au67nx2d0ktp41d` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2890 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2992 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giatrithuoctinhbienthe: ~1,703 rows (approximately)
+-- Dumping data for table duantotnghiep.giatrithuoctinhbienthe: ~1,827 rows (approximately)
 INSERT INTO `giatrithuoctinhbienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `idbienthe`, `idgiatrithuoctinh`) VALUES
 	(148, NULL, NULL, NULL, NULL, 'ACTIVE', 1, 1),
 	(149, NULL, NULL, NULL, NULL, 'ACTIVE', 1, 3),
@@ -3124,7 +3189,75 @@ INSERT INTO `giatrithuoctinhbienthe` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `n
 	(2849, NULL, NULL, NULL, NULL, 'ACTIVE', 620, 304),
 	(2850, NULL, NULL, NULL, NULL, 'ACTIVE', 620, 309),
 	(2852, NULL, NULL, NULL, NULL, 'ACTIVE', 621, 310),
-	(2889, NULL, NULL, NULL, NULL, 'ACTIVE', 634, 321);
+	(2889, NULL, NULL, NULL, NULL, 'ACTIVE', 634, 321),
+	(2890, NULL, NULL, NULL, NULL, 'ACTIVE', 635, 322),
+	(2891, NULL, NULL, NULL, NULL, 'ACTIVE', 635, 324),
+	(2893, NULL, NULL, NULL, NULL, 'ACTIVE', 636, 322),
+	(2894, NULL, NULL, NULL, NULL, 'ACTIVE', 636, 325),
+	(2896, NULL, NULL, NULL, NULL, 'ACTIVE', 637, 322),
+	(2897, NULL, NULL, NULL, NULL, 'ACTIVE', 637, 326),
+	(2899, NULL, NULL, NULL, NULL, 'ACTIVE', 638, 323),
+	(2900, NULL, NULL, NULL, NULL, 'ACTIVE', 638, 324),
+	(2902, NULL, NULL, NULL, NULL, 'ACTIVE', 639, 323),
+	(2903, NULL, NULL, NULL, NULL, 'ACTIVE', 639, 325),
+	(2905, NULL, NULL, NULL, NULL, 'ACTIVE', 640, 323),
+	(2906, NULL, NULL, NULL, NULL, 'ACTIVE', 640, 326),
+	(2908, NULL, NULL, NULL, NULL, 'ACTIVE', 641, 327),
+	(2909, NULL, NULL, NULL, NULL, 'ACTIVE', 641, 331),
+	(2911, NULL, NULL, NULL, NULL, 'ACTIVE', 642, 327),
+	(2912, NULL, NULL, NULL, NULL, 'ACTIVE', 642, 332),
+	(2914, NULL, NULL, NULL, NULL, 'ACTIVE', 643, 327),
+	(2915, NULL, NULL, NULL, NULL, 'ACTIVE', 643, 333),
+	(2917, NULL, NULL, NULL, NULL, 'ACTIVE', 644, 328),
+	(2918, NULL, NULL, NULL, NULL, 'ACTIVE', 644, 331),
+	(2920, NULL, NULL, NULL, NULL, 'ACTIVE', 645, 328),
+	(2921, NULL, NULL, NULL, NULL, 'ACTIVE', 645, 332),
+	(2923, NULL, NULL, NULL, NULL, 'ACTIVE', 646, 328),
+	(2924, NULL, NULL, NULL, NULL, 'ACTIVE', 646, 333),
+	(2926, NULL, NULL, NULL, NULL, 'ACTIVE', 647, 329),
+	(2927, NULL, NULL, NULL, NULL, 'ACTIVE', 647, 331),
+	(2929, NULL, NULL, NULL, NULL, 'ACTIVE', 648, 329),
+	(2930, NULL, NULL, NULL, NULL, 'ACTIVE', 648, 332),
+	(2932, NULL, NULL, NULL, NULL, 'ACTIVE', 649, 329),
+	(2933, NULL, NULL, NULL, NULL, 'ACTIVE', 649, 333),
+	(2935, NULL, NULL, NULL, NULL, 'ACTIVE', 650, 330),
+	(2936, NULL, NULL, NULL, NULL, 'ACTIVE', 650, 331),
+	(2938, NULL, NULL, NULL, NULL, 'ACTIVE', 651, 330),
+	(2939, NULL, NULL, NULL, NULL, 'ACTIVE', 651, 332),
+	(2941, NULL, NULL, NULL, NULL, 'ACTIVE', 652, 330),
+	(2942, NULL, NULL, NULL, NULL, 'ACTIVE', 652, 333),
+	(2944, NULL, NULL, NULL, NULL, 'ACTIVE', 653, 334),
+	(2945, NULL, NULL, NULL, NULL, 'ACTIVE', 653, 338),
+	(2947, NULL, NULL, NULL, NULL, 'ACTIVE', 654, 334),
+	(2948, NULL, NULL, NULL, NULL, 'ACTIVE', 654, 339),
+	(2950, NULL, NULL, NULL, NULL, 'ACTIVE', 655, 334),
+	(2951, NULL, NULL, NULL, NULL, 'ACTIVE', 655, 340),
+	(2953, NULL, NULL, NULL, NULL, 'ACTIVE', 656, 334),
+	(2954, NULL, NULL, NULL, NULL, 'ACTIVE', 656, 341),
+	(2956, NULL, NULL, NULL, NULL, 'ACTIVE', 657, 335),
+	(2957, NULL, NULL, NULL, NULL, 'ACTIVE', 657, 338),
+	(2959, NULL, NULL, NULL, NULL, 'ACTIVE', 658, 335),
+	(2960, NULL, NULL, NULL, NULL, 'ACTIVE', 658, 339),
+	(2962, NULL, NULL, NULL, NULL, 'ACTIVE', 659, 335),
+	(2963, NULL, NULL, NULL, NULL, 'ACTIVE', 659, 340),
+	(2965, NULL, NULL, NULL, NULL, 'ACTIVE', 660, 335),
+	(2966, NULL, NULL, NULL, NULL, 'ACTIVE', 660, 341),
+	(2968, NULL, NULL, NULL, NULL, 'ACTIVE', 661, 336),
+	(2969, NULL, NULL, NULL, NULL, 'ACTIVE', 661, 338),
+	(2971, NULL, NULL, NULL, NULL, 'ACTIVE', 662, 336),
+	(2972, NULL, NULL, NULL, NULL, 'ACTIVE', 662, 339),
+	(2974, NULL, NULL, NULL, NULL, 'ACTIVE', 663, 336),
+	(2975, NULL, NULL, NULL, NULL, 'ACTIVE', 663, 340),
+	(2977, NULL, NULL, NULL, NULL, 'ACTIVE', 664, 336),
+	(2978, NULL, NULL, NULL, NULL, 'ACTIVE', 664, 341),
+	(2980, NULL, NULL, NULL, NULL, 'ACTIVE', 665, 337),
+	(2981, NULL, NULL, NULL, NULL, 'ACTIVE', 665, 338),
+	(2983, NULL, NULL, NULL, NULL, 'ACTIVE', 666, 337),
+	(2984, NULL, NULL, NULL, NULL, 'ACTIVE', 666, 339),
+	(2986, NULL, NULL, NULL, NULL, 'ACTIVE', 667, 337),
+	(2987, NULL, NULL, NULL, NULL, 'ACTIVE', 667, 340),
+	(2989, NULL, NULL, NULL, NULL, 'ACTIVE', 668, 337),
+	(2990, NULL, NULL, NULL, NULL, 'ACTIVE', 668, 341);
 
 -- Dumping structure for table duantotnghiep.giohang
 CREATE TABLE IF NOT EXISTS `giohang` (
@@ -3166,9 +3299,9 @@ CREATE TABLE IF NOT EXISTS `giohangchitiet` (
   CONSTRAINT `FK8j5vpdk26mdy519f0uoeh1dix` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKpubdi51v0ipjgpy3hfa7egsjq` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`),
   CONSTRAINT `FKrxrj4t2nvkmcprh4ee0ehbvwi` FOREIGN KEY (`idgiohang`) REFERENCES `giohang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.giohangchitiet: ~9 rows (approximately)
+-- Dumping data for table duantotnghiep.giohangchitiet: ~23 rows (approximately)
 INSERT INTO `giohangchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `idbienthe`, `idgiohang`, `idsanpham`) VALUES
 	(88, '2024-01-08 05:39:00', '2023-12-25 14:48:03', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 1, 308, 17, 46),
 	(89, '2024-01-08 05:39:00', '2023-12-25 14:49:50', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 3, 574, 17, 56),
@@ -3189,7 +3322,10 @@ INSERT INTO `giohangchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`
 	(104, '2024-01-09 11:30:38', '2024-01-09 09:09:36', 'dangngocthanh0133', 'dangngocthanh0133', 'DELETE', NULL, 1, 621, 18, 65),
 	(105, '2024-01-09 11:30:38', '2024-01-09 11:30:28', 'dangngocthanh0133', 'dangngocthanh0133', 'DELETE', NULL, 1, 634, 18, 40),
 	(106, '2024-01-09 13:52:59', '2024-01-09 13:52:48', 'dangngocthanh0133', 'dangngocthanh0133', 'DELETE', NULL, 1, 610, 18, 64),
-	(107, '2024-01-09 13:54:23', '2024-01-09 13:54:17', 'dangngocthanh0133', 'dangngocthanh0133', 'DELETE', NULL, 1, 621, 18, 65);
+	(107, '2024-01-09 13:54:23', '2024-01-09 13:54:17', 'dangngocthanh0133', 'dangngocthanh0133', 'DELETE', NULL, 1, 621, 18, 65),
+	(108, NULL, '2024-01-09 15:13:26', NULL, 'dangngocthanh0133', 'ACTIVE', NULL, 21, 585, 18, 59),
+	(109, '2024-01-10 06:09:38', '2024-01-09 16:34:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'DELETE', NULL, 2, 637, 17, 68),
+	(110, NULL, '2024-01-10 06:09:29', NULL, 'dinhanhtuan0812', 'ACTIVE', NULL, 1, 636, 17, 68);
 
 -- Dumping structure for table duantotnghiep.hoadon
 CREATE TABLE IF NOT EXISTS `hoadon` (
@@ -3227,27 +3363,14 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   CONSTRAINT `FKdwfy15k3xk5wta4dkl3ff0t9t` FOREIGN KEY (`idlydohuydon`) REFERENCES `lydohuydon` (`id`),
   CONSTRAINT `FKlwt6og8a59ih2g8k9le1n7bpy` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`),
   CONSTRAINT `FKotnlgqnkhi19yrgi907nev953` FOREIGN KEY (`idnhanvien`) REFERENCES `nhanvien` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=393 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadon: ~10 rows (approximately)
+-- Dumping data for table duantotnghiep.hoadon: ~4 rows (approximately)
 INSERT INTO `hoadon` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `diachi`, `ma`, `mota`, `ngaydat`, `ngaydukiengiaohang`, `ngaynhanhang`, `ngaythanhtoan`, `phuongthucthanhtoan`, `sodienthoai`, `tennguoinhan`, `tienkhachtra`, `tienship`, `tongtienhang`, `idkhachhang`, `idlydohuydon`, `idnhanvien`, `magiaohang`, `loai`, `ngaygiaohang`, `tiengiamgia`) VALUES
-	(368, '2024-01-08 05:49:52', '2024-01-08 05:39:00', 'admin9193', 'dinhanhtuan0812', 'DANHANHANG', 'Trịnh Văn Bô, Phường Xuân Phương, Quận Nam Từ Liêm, Hà Nội, Vietnam', 'HD368', '', '2024-01-08 05:39:16', '2024-01-08 23:59:59', NULL, '2024-01-08 05:49:52', 'THANHTOANNHANHANG', '0915812752', 'Tuấn', 1199800, 30800, 1169000, 2, NULL, NULL, 'LF7NPA', 'Online', NULL, NULL),
-	(369, '2024-01-08 05:49:48', '2024-01-08 05:47:09', 'admin9193', 'dangngocthanh0133', 'DANHANHANG', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD369', '', '2024-01-08 05:47:20', '2024-01-10 23:59:59', NULL, '2024-01-08 05:47:20', 'VIDIENTU', '0981517242', 'Nguyễn Văn A', 465301, 25301, 440000, 1, NULL, NULL, 'LF7NPX', 'Online', NULL, NULL),
-	(370, '2024-01-08 05:49:50', '2024-01-08 05:48:20', 'admin9193', 'nguyenthikhanhlinh1711', 'DANHANHANG', 'số 2, Xã Ngọc Lương, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD370', '', '2024-01-08 05:48:40', '2024-01-10 23:59:59', NULL, '2024-01-08 05:48:40', 'CHUYENKHOAN', '0345165478', 'Linh', 838301, 25301, 813000, 3, NULL, NULL, 'LF7NPH', 'Online', NULL, NULL),
-	(371, '2024-01-08 05:55:11', '2024-01-08 05:52:23', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'jk4hHb', NULL, NULL, NULL, NULL, '2024-01-08 05:55:11', 'TIENMAT', NULL, NULL, 230000, NULL, 230000, 3, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(372, '2024-01-08 05:53:05', '2024-01-08 05:52:25', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'Dg6VSr', NULL, NULL, NULL, NULL, '2024-01-08 05:53:05', 'TIENMAT', NULL, NULL, 500000, NULL, 503000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 3000),
-	(373, '2024-01-08 06:00:17', '2024-01-08 05:59:19', 'admin9193', 'admin9193', 'THANHCONG', NULL, '8zROi7', NULL, NULL, NULL, NULL, '2024-01-08 06:00:17', 'TIENMAT', NULL, NULL, 840950, NULL, 842950, 1, NULL, 2, NULL, 'OFFLINE', NULL, 2000),
-	(374, '2024-01-09 05:36:28', '2024-01-08 08:50:34', 'admin9193', 'admin9193', 'HUYDON', NULL, 'zlzphD', NULL, NULL, NULL, NULL, '2024-01-09 05:32:58', 'TIENMAT', NULL, NULL, 275000, NULL, 275000, 36, 15, 2, NULL, 'OFFLINE', NULL, 0),
-	(375, '2024-01-09 05:34:20', '2024-01-09 05:32:22', 'admin9193', 'admin9193', 'HUYDON', NULL, 'cDM0NP', NULL, NULL, NULL, NULL, '2024-01-09 05:32:58', 'TIENMAT', NULL, NULL, 1450000, NULL, 1450000, 36, 14, 2, NULL, 'OFFLINE', NULL, 0),
-	(376, '2024-01-09 05:49:58', '2024-01-09 05:48:10', 'admin9193', 'admin9193', 'HUYDON', NULL, 'B7lC6Z', NULL, NULL, NULL, NULL, '2024-01-09 05:48:10', 'TIENMAT', NULL, NULL, 303200, NULL, 303200, 36, 16, 2, NULL, 'OFFLINE', NULL, 0),
-	(377, '2024-01-09 06:32:54', '2024-01-09 05:56:22', 'admin9193', 'admin9193', 'HUYDON', NULL, 'tW5BD6', NULL, NULL, NULL, NULL, '2024-01-09 05:56:22', 'TIENMAT', NULL, NULL, 399000, NULL, 399000, 36, 17, 2, NULL, 'OFFLINE', NULL, 0),
-	(378, '2024-01-09 06:43:43', '2024-01-09 06:40:08', 'admin9193', 'admin9193', 'HUYDON', NULL, 'FnCDz5', NULL, NULL, NULL, NULL, '2024-01-09 06:40:08', 'TIENMAT', NULL, NULL, 190000, NULL, 190000, 36, 18, 2, NULL, 'OFFLINE', NULL, 0),
-	(379, '2024-01-09 06:44:51', '2024-01-09 06:44:29', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'p9Nd7r', NULL, NULL, NULL, NULL, '2024-01-05 06:44:51', 'TIENMAT', NULL, NULL, 190000, NULL, 190000, 36, NULL, 2, NULL, 'OFFLINE', NULL, 0),
-	(380, '2024-01-09 06:50:52', '2024-01-09 06:46:15', 'admin9193', 'admin9193', 'HUYDON', NULL, 'm52uKk', NULL, NULL, NULL, NULL, '2024-01-07 06:46:58', 'TIENMAT', NULL, NULL, 210000, NULL, 210000, 36, 25, 2, NULL, 'OFFLINE', NULL, 0),
-	(381, NULL, '2024-01-09 06:48:19', NULL, 'admin9193', 'TREO', NULL, 'Uvqp2K', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
-	(384, '2024-01-09 13:54:54', '2024-01-09 11:30:38', 'admin9193', 'dangngocthanh0133', 'DANGGIAOHANG', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD384', '', '2024-01-09 11:30:43', '2024-01-11 23:59:59', NULL, NULL, 'THANHTOANNHANHANG', '0981517242', 'Nguyễn Văn A', 1350901, 31901, 1319000, 1, NULL, NULL, 'LF7DLQ', 'Online', NULL, NULL),
-	(385, '2024-01-09 13:54:57', '2024-01-09 13:52:59', 'admin9193', 'dangngocthanh0133', 'DANHANDON', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD385', '', '2024-01-09 13:53:07', '2024-01-11 23:59:59', NULL, '2024-01-09 13:53:07', 'VIDIENTU', '0981517242', 'Nguyễn Văn A', 185301, 25301, 160000, 1, NULL, NULL, 'LF7DLF', 'Online', NULL, NULL),
-	(386, '2024-01-09 13:54:27', '2024-01-09 13:54:23', 'dangngocthanh0133', 'dangngocthanh0133', 'CHONHANDON', 'Đổ xăng, Thị trấn Hàng Trạm, Huyện Yên Thủy, Hòa Bình, Vietnam', 'HD386', '', '2024-01-09 13:54:27', NULL, NULL, NULL, 'THANHTOANNHANHANG', '0981517242', 'Nguyễn Văn A', 255301, 25301, 230000, 1, NULL, NULL, NULL, 'Online', NULL, NULL);
+	(389, '2024-01-10 09:08:24', '2024-01-10 09:02:26', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'iu1gCK', NULL, NULL, NULL, NULL, '2024-01-10 09:08:24', 'TIENMAT', NULL, NULL, 745000, NULL, 745000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 0),
+	(390, '2024-01-10 09:09:22', '2024-01-10 09:08:36', 'admin9193', 'admin9193', 'THANHCONG', NULL, 'VQnkF8', NULL, NULL, NULL, NULL, '2024-01-10 09:09:22', 'TIENMAT', NULL, NULL, 650000, NULL, 623000, 2, NULL, 2, NULL, 'OFFLINE', NULL, 2000),
+	(391, NULL, '2024-01-10 09:09:32', NULL, 'admin9193', 'TREO', NULL, 'ClAzAW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, 'OFFLINE', NULL, NULL),
+	(392, '2024-01-10 09:11:57', '2024-01-10 09:09:39', 'admin9193', 'admin9193', 'HUYDON', NULL, 'aVZDuN', NULL, NULL, NULL, NULL, '2024-01-10 09:09:22', 'TIENMAT', NULL, NULL, 250000, NULL, 230000, 2, 36, 2, NULL, 'OFFLINE', NULL, 0);
 
 -- Dumping structure for table duantotnghiep.hoadonchitiet
 CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
@@ -3265,6 +3388,7 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   `idkhuyenmai` bigint DEFAULT NULL,
   `sotiengiam` double DEFAULT NULL,
   `idsanpham` bigint DEFAULT NULL,
+  `tenbienthe` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK8g5acmm1r0ha2hua47ul4rdia` (`idbienthe`),
   KEY `FK72nghe3o7s1prylbbnvfwub2k` (`idhoadon`),
@@ -3274,48 +3398,16 @@ CREATE TABLE IF NOT EXISTS `hoadonchitiet` (
   CONSTRAINT `FK72nghe3o7s1prylbbnvfwub2k` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FK8g5acmm1r0ha2hua47ul4rdia` FOREIGN KEY (`idbienthe`) REFERENCES `bienthe` (`id`),
   CONSTRAINT `FKhv6nwlu151jpu9ikpe9fonvi6` FOREIGN KEY (`idkhuyenmai`) REFERENCES `khuyenmai` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=411 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=419 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.hoadonchitiet: ~22 rows (approximately)
-INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `thanhtien`, `idbienthe`, `idhoadon`, `idkhuyenmai`, `sotiengiam`, `idsanpham`) VALUES
-	(369, NULL, '2024-01-08 05:39:00', NULL, 'dinhanhtuan0812', NULL, 250000, 1, 240000, 308, 368, 22, 10000, NULL),
-	(370, NULL, '2024-01-08 05:39:00', NULL, 'dinhanhtuan0812', NULL, 570000, 3, 570000, 574, 368, NULL, 0, NULL),
-	(371, NULL, '2024-01-08 05:39:00', NULL, 'dinhanhtuan0812', NULL, 245000, 1, 235000, 298, 368, 22, 10000, NULL),
-	(372, NULL, '2024-01-08 05:39:00', NULL, 'dinhanhtuan0812', NULL, 134000, 1, 124000, 287, 368, 22, 10000, NULL),
-	(373, NULL, '2024-01-08 05:47:09', NULL, 'dangngocthanh0133', NULL, 190000, 1, 190000, 571, 369, NULL, 0, NULL),
-	(374, NULL, '2024-01-08 05:47:09', NULL, 'dangngocthanh0133', NULL, 250000, 1, 250000, 581, 369, NULL, 0, NULL),
-	(375, NULL, '2024-01-08 05:48:20', NULL, 'nguyenthikhanhlinh1711', NULL, 230000, 1, 230000, 590, 370, NULL, 0, NULL),
-	(376, NULL, '2024-01-08 05:48:20', NULL, 'nguyenthikhanhlinh1711', NULL, 299000, 1, 299000, 94, 370, NULL, 0, NULL),
-	(377, NULL, '2024-01-08 05:48:20', NULL, 'nguyenthikhanhlinh1711', NULL, 355000, 1, 284000, 234, 370, 21, 71000, NULL),
-	(378, NULL, '2024-01-08 05:52:36', NULL, 'admin9193', 'ACTIVE', 79000, 1, 79000, 44, 372, NULL, NULL, 4),
-	(379, NULL, '2024-01-08 05:52:40', NULL, 'admin9193', 'ACTIVE', 259000, 1, 259000, 58, 372, NULL, NULL, 8),
-	(380, NULL, '2024-01-08 05:52:43', NULL, 'admin9193', 'ACTIVE', 165000, 1, 165000, 65, 372, NULL, NULL, 11),
-	(381, NULL, '2024-01-08 05:54:58', NULL, 'admin9193', 'ACTIVE', 230000, 1, 230000, 587, 371, NULL, NULL, 60),
-	(382, NULL, '2024-01-08 05:59:32', NULL, 'admin9193', 'ACTIVE', 87750, 1, 87750, 458, 373, 23, NULL, 48),
-	(383, NULL, '2024-01-08 05:59:36', NULL, 'admin9193', 'ACTIVE', 182000, 1, 182000, 325, 373, 23, NULL, 47),
-	(384, NULL, '2024-01-08 05:59:43', NULL, 'admin9193', 'ACTIVE', 270000, 1, 270000, 227, 373, 20, NULL, 38),
-	(385, NULL, '2024-01-08 06:00:01', NULL, 'admin9193', 'ACTIVE', 303200, 1, 303200, 238, 373, 21, NULL, 43),
-	(386, NULL, '2024-01-08 08:50:49', NULL, 'admin9193', 'ACTIVE', 275000, 1, 275000, 226, 374, 20, NULL, 38),
-	(387, '2024-01-09 05:32:52', '2024-01-09 05:32:42', 'admin9193', 'admin9193', 'ACTIVE', 135000, 2, 270000, 92, 375, NULL, NULL, 23),
-	(388, '2024-01-09 05:32:51', '2024-01-09 05:32:45', 'admin9193', 'admin9193', 'ACTIVE', 295000, 4, 1180000, 96, 375, NULL, NULL, 24),
-	(389, NULL, '2024-01-09 05:48:33', NULL, 'admin9193', 'ACTIVE', 303200, 1, 303200, 238, 376, 21, NULL, 43),
-	(390, '2024-01-09 06:31:27', '2024-01-09 05:56:28', 'admin9193', 'admin9193', 'ACTIVE', 399000, 1, 399000, 595, 377, NULL, NULL, 63),
-	(391, NULL, '2024-01-09 06:40:18', NULL, 'admin9193', 'ACTIVE', 190000, 1, 190000, 573, 378, NULL, NULL, 51),
-	(392, NULL, '2024-01-09 06:44:40', NULL, 'admin9193', 'ACTIVE', 190000, 1, 190000, 573, 379, NULL, NULL, 51),
-	(393, NULL, '2024-01-09 06:46:43', NULL, 'admin9193', 'ACTIVE', 210000, 1, 210000, 570, 380, NULL, NULL, 51),
-	(394, NULL, '2024-01-09 07:27:24', NULL, 'admin9193', 'ACTIVE', 399000, 1, 399000, 595, 381, NULL, NULL, 63),
-	(395, NULL, '2024-01-09 07:39:38', NULL, 'admin9193', 'ACTIVE', 254000, 1, 254000, 604, 381, NULL, NULL, 62),
-	(396, NULL, '2024-01-09 07:39:40', NULL, 'admin9193', 'ACTIVE', 230000, 1, 230000, 590, 381, NULL, NULL, 60),
-	(397, '2024-01-09 08:23:04', '2024-01-09 07:39:44', 'admin9193', 'admin9193', 'ACTIVE', 250000, 2, 500000, 581, 381, NULL, NULL, 58),
-	(398, NULL, '2024-01-09 07:39:47', NULL, 'admin9193', 'ACTIVE', 190000, 1, 190000, 575, 381, NULL, NULL, 56),
-	(399, NULL, '2024-01-09 08:20:46', NULL, 'admin9193', 'ACTIVE', 340000, 1, 340000, 230, 381, 20, NULL, 39),
-	(404, NULL, '2024-01-09 11:30:38', NULL, 'dangngocthanh0133', NULL, 399000, 1, 399000, 595, 384, NULL, 0, NULL),
-	(405, NULL, '2024-01-09 11:30:38', NULL, 'dangngocthanh0133', NULL, 230000, 1, 230000, 590, 384, NULL, 0, NULL),
-	(406, NULL, '2024-01-09 11:30:38', NULL, 'dangngocthanh0133', NULL, 160000, 1, 160000, 614, 384, NULL, 0, NULL),
-	(407, NULL, '2024-01-09 11:30:38', NULL, 'dangngocthanh0133', NULL, 230000, 1, 230000, 621, 384, NULL, 0, NULL),
-	(408, NULL, '2024-01-09 11:30:38', NULL, 'dangngocthanh0133', NULL, 300000, 1, 300000, 634, 384, NULL, 0, NULL),
-	(409, NULL, '2024-01-09 13:52:59', NULL, 'dangngocthanh0133', NULL, 160000, 1, 160000, 610, 385, NULL, 0, NULL),
-	(410, NULL, '2024-01-09 13:54:23', NULL, 'dangngocthanh0133', NULL, 230000, 1, 230000, 621, 386, NULL, 0, NULL);
+-- Dumping data for table duantotnghiep.hoadonchitiet: ~6 rows (approximately)
+INSERT INTO `hoadonchitiet` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `soluong`, `thanhtien`, `idbienthe`, `idhoadon`, `idkhuyenmai`, `sotiengiam`, `idsanpham`, `tenbienthe`) VALUES
+	(413, '2024-01-10 09:06:00', '2024-01-10 09:02:47', 'admin9193', 'admin9193', 'ACTIVE', 200000, 1, 200000, 638, 389, NULL, NULL, 68, NULL),
+	(414, NULL, '2024-01-10 09:08:04', NULL, 'admin9193', 'ACTIVE', 190000, 1, 190000, 573, 389, NULL, NULL, 51, NULL),
+	(415, NULL, '2024-01-10 09:08:09', NULL, 'admin9193', 'ACTIVE', 355000, 1, 355000, 63, 389, NULL, NULL, 10, NULL),
+	(416, NULL, '2024-01-10 09:08:45', NULL, 'admin9193', 'ACTIVE', 200000, 1, 200000, 576, 390, NULL, NULL, 57, NULL),
+	(417, NULL, '2024-01-10 09:08:55', NULL, 'admin9193', 'ACTIVE', 423000, 1, 423000, 605, 390, NULL, NULL, 62, NULL),
+	(418, NULL, '2024-01-10 09:09:47', NULL, 'admin9193', 'ACTIVE', 230000, 1, 230000, 621, 392, NULL, NULL, 65, NULL);
 
 -- Dumping structure for table duantotnghiep.khachhang
 CREATE TABLE IF NOT EXISTS `khachhang` (
@@ -3344,7 +3436,7 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   UNIQUE KEY `UK_h52m162a489iuk0ffo82aa16w` (`sodienthoai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.khachhang: ~23 rows (approximately)
+-- Dumping data for table duantotnghiep.khachhang: ~20 rows (approximately)
 INSERT INTO `khachhang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `email`, `gioitinh`, `ma`, `matkhau`, `mota`, `ngaysinh`, `sodienthoai`, `ten`, `expiretime`, `resttoken`, `loai`, `sodonhuytrongngay`, `solanhuydon`, `songaybiban`) VALUES
 	(1, NULL, '2023-11-19 16:57:34', NULL, 'nguyenvana@gmail.com', 'ACTIVE', 'dangngocthanh@gmail.com', 'Nam', 'dangngocthanh0133', '$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCYG', NULL, '2003-11-19 16:57:25', '0372092723', 'Đặng Ngọc Thanh', NULL, NULL, NULL, NULL, NULL, NULL),
 	(2, '2023-12-16 16:01:30', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'dinhanhtuan0812', 'ACTIVE', 'dinhanhtuan@gmail.com', 'Nam', 'dinhanhtuan0812', '$2a$10$nGSToRTIXfyL3lz0aG02mO0kQFMwxOVVMJlY4KJFb/F64.r7irDYW', '', '2003-12-08 00:00:00', '0384082003', 'Đinh Anh Tuấn', NULL, NULL, NULL, NULL, NULL, NULL),
@@ -3489,37 +3581,15 @@ CREATE TABLE IF NOT EXISTS `lichsutichdiem` (
   CONSTRAINT `FKo20v7m85j3ybwep3vv1lop3ik` FOREIGN KEY (`idtichdiem`) REFERENCES `tichdiem` (`id`),
   CONSTRAINT `FKobdibrqqyn0p33ymjekbpbd1q` FOREIGN KEY (`idhoadon`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKrabwvgudhyvmny1diurrq8lo` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=229 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=237 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lichsutichdiem: ~12 rows (approximately)
+-- Dumping data for table duantotnghiep.lichsutichdiem: ~5 rows (approximately)
 INSERT INTO `lichsutichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiemdung`, `sodiemtichduoc`, `idhoadon`, `idtichdiem`, `idkhachhang`, `sodiemhoan`) VALUES
-	(202, NULL, '2024-01-08 05:49:48', NULL, 'admin9193', 'ACTIVE', 0, 4, 369, NULL, 1, NULL),
-	(203, NULL, '2024-01-08 05:49:50', NULL, 'admin9193', 'ACTIVE', 0, 8, 370, NULL, 3, NULL),
-	(204, NULL, '2024-01-08 05:49:52', NULL, 'admin9193', 'ACTIVE', 0, 11, 368, NULL, 2, NULL),
-	(205, NULL, '2024-01-08 05:53:04', NULL, 'admin9193', 'CONGDIEM', 3, 5, 372, NULL, 2, NULL),
-	(206, NULL, '2024-01-08 05:55:10', NULL, 'admin9193', 'CONGDIEM', 0, 2, 371, NULL, 3, NULL),
-	(207, NULL, '2024-01-08 06:00:17', NULL, 'admin9193', 'CONGDIEM', 2, 8, 373, NULL, 1, NULL),
-	(208, NULL, '2024-01-09 05:32:57', NULL, 'admin9193', 'CONGDIEM', 0, 14, 375, NULL, 36, NULL),
-	(209, NULL, '2024-01-09 05:34:20', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 375, NULL, 36, 14),
-	(210, NULL, '2024-01-09 05:34:59', NULL, 'admin9193', 'CONGDIEM', 0, 2, 374, NULL, 36, NULL),
-	(211, NULL, '2024-01-09 05:36:28', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 374, NULL, 36, 2),
-	(212, NULL, '2024-01-09 05:48:52', NULL, 'admin9193', 'CONGDIEM', 0, 3, 376, NULL, 36, NULL),
-	(213, NULL, '2024-01-09 05:49:58', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 376, NULL, 36, 3),
-	(214, NULL, '2024-01-09 06:31:48', NULL, 'admin9193', 'CONGDIEM', 0, 3, 377, NULL, 36, NULL),
-	(215, NULL, '2024-01-09 06:32:54', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 377, NULL, 36, 3),
-	(216, NULL, '2024-01-09 06:40:31', NULL, 'admin9193', 'CONGDIEM', 0, 1, 378, NULL, 36, NULL),
-	(217, NULL, '2024-01-09 06:43:43', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 378, NULL, 36, 1),
-	(218, NULL, '2024-01-09 06:44:50', NULL, 'admin9193', 'CONGDIEM', 0, 1, 379, NULL, 36, NULL),
-	(219, NULL, '2024-01-09 06:46:58', NULL, 'admin9193', 'CONGDIEM', 0, 2, 380, NULL, 36, NULL),
-	(220, NULL, '2024-01-09 06:50:52', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 380, NULL, 36, 2),
-	(221, NULL, '2024-01-09 09:47:59', NULL, 'dinhanhtuan0812', 'CONGDIEM', 10, 0, NULL, NULL, 2, NULL),
-	(222, NULL, '2024-01-09 09:48:25', NULL, 'dinhanhtuan0812', 'CONGDIEM', 3, 0, NULL, NULL, 2, NULL),
-	(223, NULL, '2024-01-09 09:49:48', NULL, 'dinhanhtuan0812', 'CONGDIEM', -3, 0, NULL, NULL, 2, NULL),
-	(224, NULL, '2024-01-09 09:58:13', NULL, 'dinhanhtuan0812', 'CONGDIEM', -10, 0, NULL, NULL, 2, NULL),
-	(225, NULL, '2024-01-09 11:00:04', NULL, 'dinhanhtuan0812', 'CONGDIEM', -1, 0, NULL, NULL, 2, NULL),
-	(226, NULL, '2024-01-09 11:04:14', NULL, 'dinhanhtuan0812', 'CONGDIEM', 11, 0, NULL, NULL, 2, NULL),
-	(227, NULL, '2024-01-09 11:07:37', NULL, 'dinhanhtuan0812', 'CONGDIEM', 1, 0, NULL, NULL, 2, NULL),
-	(228, NULL, '2024-01-09 11:08:18', NULL, 'dinhanhtuan0812', 'CONGDIEM', 2, 0, NULL, NULL, 2, NULL);
+	(232, NULL, '2024-01-10 09:08:23', NULL, 'admin9193', 'CONGDIEM', 0, 7, 389, NULL, 2, NULL),
+	(233, NULL, '2024-01-10 09:09:21', NULL, 'admin9193', 'CONGDIEM', 2, 6, 390, NULL, 2, NULL),
+	(234, NULL, '2024-01-10 09:10:08', NULL, 'admin9193', 'CONGDIEM', 0, 2, 392, NULL, 2, NULL),
+	(235, NULL, '2024-01-10 09:11:57', NULL, 'admin9193', 'HOANDIEM', NULL, NULL, 392, NULL, 2, 2),
+	(236, NULL, '2024-01-10 15:17:23', NULL, 'dinhanhtuan0812', 'CONGDIEM', 1, 0, NULL, NULL, 2, NULL);
 
 -- Dumping structure for table duantotnghiep.lydohuydon
 CREATE TABLE IF NOT EXISTS `lydohuydon` (
@@ -3532,27 +3602,12 @@ CREATE TABLE IF NOT EXISTS `lydohuydon` (
   `lydo` text,
   `mota` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.lydohuydon: ~3 rows (approximately)
+-- Dumping data for table duantotnghiep.lydohuydon: ~2 rows (approximately)
 INSERT INTO `lydohuydon` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `lydo`, `mota`) VALUES
-	(14, NULL, '2024-01-09 05:34:20', NULL, 'admin9193', 'ACTIVE', 'nhân viên chọn nhầm sản phẩm', NULL),
-	(15, NULL, '2024-01-09 05:36:28', NULL, 'admin9193', 'ACTIVE', 'aaa', NULL),
-	(16, NULL, '2024-01-09 05:49:58', NULL, 'admin9193', 'ACTIVE', 'ghg', NULL),
-	(17, NULL, '2024-01-09 06:32:54', NULL, 'admin9193', 'ACTIVE', 'i', NULL),
-	(18, NULL, '2024-01-09 06:41:37', NULL, 'admin9193', 'ACTIVE', 'm,', NULL),
-	(19, NULL, '2024-01-09 06:45:14', NULL, 'admin9193', 'ACTIVE', 'j', NULL),
-	(20, NULL, '2024-01-09 06:47:23', NULL, 'admin9193', 'ACTIVE', 'ok', NULL),
-	(21, NULL, '2024-01-09 06:48:00', NULL, 'admin9193', 'ACTIVE', 'jg', NULL),
-	(22, NULL, '2024-01-09 06:49:31', NULL, 'admin9193', 'ACTIVE', 'l', NULL),
-	(23, NULL, '2024-01-09 06:49:51', NULL, 'admin9193', 'ACTIVE', 'l', NULL),
-	(24, NULL, '2024-01-09 06:50:12', NULL, 'admin9193', 'ACTIVE', 'lhjk', NULL),
-	(25, NULL, '2024-01-09 06:50:52', NULL, 'admin9193', 'ACTIVE', 'uyt', NULL),
-	(26, NULL, '2024-01-09 06:51:03', NULL, 'admin9193', 'ACTIVE', 'tyu', NULL),
-	(27, NULL, '2024-01-09 07:32:55', NULL, 'admin9193', 'ACTIVE', 'ln', NULL),
-	(28, NULL, '2024-01-09 07:33:01', NULL, 'admin9193', 'ACTIVE', 'ln', NULL),
-	(29, NULL, '2024-01-09 07:37:02', NULL, 'admin9193', 'ACTIVE', 'fgdf', NULL),
-	(30, NULL, '2024-01-09 07:38:21', NULL, 'admin9193', 'ACTIVE', 'fgjh', NULL);
+	(35, NULL, '2024-01-10 09:11:26', NULL, 'admin9193', 'ACTIVE', 'Trả hàng', NULL),
+	(36, NULL, '2024-01-10 09:11:57', NULL, 'admin9193', 'ACTIVE', 'Chọn nhầm sản phẩm', NULL);
 
 -- Dumping structure for table duantotnghiep.nhanvien
 CREATE TABLE IF NOT EXISTS `nhanvien` (
@@ -3643,9 +3698,9 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
   KEY `FKsy6e9nghw4psfd0tt2vy232rb` (`idthuonghieu`),
   CONSTRAINT `FKsus861gvf6ywadlvg0s2o3003` FOREIGN KEY (`iddanhmuc`) REFERENCES `danhmuc` (`id`),
   CONSTRAINT `FKsy6e9nghw4psfd0tt2vy232rb` FOREIGN KEY (`idthuonghieu`) REFERENCES `thuonghieu` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.sanpham: ~52 rows (approximately)
+-- Dumping data for table duantotnghiep.sanpham: ~57 rows (approximately)
 INSERT INTO `sanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `gia`, `mota`, `sanphammoi`, `sanphamnhieuluotxem`, `sanphamnoibat`, `sanphamphobien`, `slug`, `soluong`, `ten`, `thongtinchitiet`, `iddanhmuc`, `idthuonghieu`, `sanphambanchay`, `experied_is_popular`, `experied_isnew`) VALUES
 	(1, NULL, '2023-11-22 16:26:00', NULL, 'admin9193', 'ACTIVE', 128000, '<p>Quyền lợi của khách mua áo polo nam tại THE BASIC:</p>\n\n<p>Sản phẩm giống mô tả và hình ảnh thật 100% của Shop giữ bản quyền hình ảnh</p>\n\n<p>Đảm bảo chất lượng sản phẩm luôn ở mức cao nhất</p>\n\n<p>Áo được kiểm tra cẩn thận khi gói hàng giao cho Quý Khách</p>\n\n<p>Hoàn tiền nếu sản phẩm không giống với mô tả</p>\n\n<p>&nbsp;</p>\n\n<p>Để chứng minh vẻ trưởng thành của đấng mày râu thì không quá khó, chỉ cần khoác lên mình một chiếc Polo thì vẻ trưởng thành, đứng đắn đó đã có thừa.</p>\n\n<p>Đến với chiếc Polo Marc Coun ngoài việc “đánh thức” vẻ trưởng thành đó, nó còn khiến cho bạn trở nên lịch lãm và sang trọng hơn.</p>\n\n<p>Sự khéo léo từ việc may phối màu ngực trái đến thêu chữ nổi trước ngực càng khiến cho chiếc Marc Coun đẹp lạ hơn.</p>\n\n<p>Vậy nên ngay lúc này, bạn hãy chọn cho mình 1 size áo phù hợp nhất hoặc nếu cần tư vấn, bạn đừng ngần ngại nhắn tin ngay cho shop để được nhân viên bán hàng hỗ trợ ngay nhé:</p>\n\n<p>Size Chiều cao Cân nặng Ngang Dài áo</p>\n\n<p>M &lt; 1m70 &lt;60kg 46cm 64cm</p>\n\n<p>L &lt; 1m75 61 ~ 68kg 49cm 67cm</p>\n\n<p>XL &lt; 1m75 69 ~ 75kg 51cm 70cm</p>\n\n<p>2XL &lt; 1m80 76 - 85kg 54cm 71cm</p>\n\n<p>3XL &lt; 1m85 86 ~ 95kg 57cm 72cm</p>\n\n<p>Thông số trên có thể sai lệch ~ 0,5cm do sai số trong quá trình sản xuất</p>\n\n<p>&nbsp;</p>\n\n<p>Hướng dẫn sử dụng sản phẩm: Áo polo nam phối màu COUNTERE big size 3xl 90kg thoải mái</p>\n\n<p>&nbsp;Giặt với nước mát thông thường, tách riêng các sản phẩm trắng và các sản phẩm màu đậm</p>\n\n<p>&nbsp;Không được dùng hóa chất tẩy</p>\n\n<p>&nbsp;Tránh phơi dưới ánh nắng trực tiếp hoặc sử dụng bàn ủi với nhiệt độ quá cao</p>\n\n<p>&nbsp;</p>\n\n<p>&nbsp;Chính sách &amp; điều kiện đổi / trả sản phẩm:</p>\n\n<p>&nbsp;Cam kết chất lượng và mẫu mã sản phẩm giống với hình ảnh</p>\n\n<p>&nbsp;Cam kết được đổi trả hàng trong vòng 7 ngày</p>\n\n<p>&nbsp;Điều kiện duy nhất là sản phẩm còn đầy đủ tem/tag &amp; chưa qua sử dụng bạn nhé</p>\n\n<p>&nbsp;</p>\n\n<p>#ao #thun #phong #polo #nam #hoa #tiet #soc #mo #neo #trung #nien #tui #cotton #ca #sau #lacoste #vnxk #big #size #bigsize #3xl #xxxl #90kg #100kg #dep #thoai #mai #xuat #xin #cao #cap #hang #hieu #basic</p>\n', 1, 1, 1, 1, 'ao-polo-nam-big-size-3xl-90kg-marc-coun-phoi-mau-tre-trung-cotton-lanh-thoang-mat', 1391, 'Áo polo nam big size 3xl 90kg Marc Coun phối màu trẻ trung - cotton lạnh thoáng mát', '', 3, 1, NULL, NULL, NULL),
 	(2, NULL, '2023-11-22 16:30:53', NULL, 'admin9193', 'ACTIVE', 198000, '<p>Áo thun nam polo Thiết kế màu xanh đen phối cổ vải cá sấu cotton cao cấp mềm mịn, áo phông polo nam đẹp cổ bẻ ngắn tay có đủ bảng màu cực hot Shop Áo Polo VNXK hân hạnh được phục vụ quý khách. Những sản phẩm mới nhất vẫn liên tục được cập nhật mỗi ngày phù hợp với nhiều lứa tuổi. 1. GIỚI THIỆU SẢN PHẨM - Áo phông Polo nam thiết kế là sự lựa chọn hoàn hảo cho các chàng trai. Áo 3 màu trung tính rất dễ mặc, form áo vừa vặn cơ thể, thoải mái theo từng cử động. - Màu sắc trung tính và phối màu tuyệt vời mà rất ít áo polo có tạo nên sự dễ dàng trong việc phối đồ và tạo ra cho mình nhiều phong cách khác nhau. - Áo được làm từ chất liệu cá sấu cotton co giãn với bề mặt vải mềm mại, thấm hút mồ hôi tốt tạo cảm giác thoải mái, thoáng mát cho người mặc. Đây cũng là chất liệu dễ giặt sạch, giúp bạn tiết kiệm một khoảng thời gian đáng kể. - Áo chống nhăn tốt, dễ giặt sạch, nhanh khô. -Giặt tay hay giặt máy thoải mái không sợ ra màu, nhăn , mất form 2. THÔNG TIN SẢN PHẨM - Chất liệu: 100% chất cotton cá sấu, thấm hút mồ hôi , giặt không ra màu , không mất form - Các Size S - M - L- XL- XXL - XXXL + Size S : 35-47 kg cao 1m5-1m55 + Size M : 48 - 59 kg cao 1m55 - 1m65 + Size L : 60 - 67kg cao 1m65 - 1m80 + Size XL : 68- 75kg cao 1m65 - 1m80 + Size XXL : 76 - 85kg cao 1m65 - 1m85 + Size XXXL : 86 - 95kg cao 1m65 - 1m85 - Form áo slim dễ phối đồ 3. CHÍNH SÁCH BÁN HÀNG: - FREESHIP hoặc hỗ trợ 40K cho đơn hàng từ 99K toàn quốc - Ngoài ra, Chúng tôi tặng mã voucher hoặc hoàn xu cho toàn bộ đơn hàng - Cam kết chất lượng và mẫu mã sản phẩm giống với hình ảnh. - Hoàn tiền nếu sản phẩm không giống với mô tả. - Cam kết được đổi trả hàng trong vòng 2 ngày. 4. HƯỚNG DẪN CÁCH ĐẶT HÀNG - Bước 1: Cách chọn size, shop có bảng size mẫu. Bạn NÊN INBOX, cung cấp chiều cao, cân nặng để SHOP TƯ VẤN SIZE - Bước 2: Cách đặt hàng: Nếu bạn muốn mua 2 sản phẩm khác nhau hoặc 2 size khác nhau, để được freeship + Bạn chọn từng sản phẩm rồi thêm vào giỏ hàng + Khi giỏ hàng đã có đầy đủ các sản phẩm cần mua, bạn mới tiến hành ấn nút “ Thanh toán” - Shop luôn sẵn sàng trả lời inbox để tư vấn.</p>\n\n<p>Tham khảo thêm các sản phẩm khác tại: #áothunnamcócổ #aothunnamcoco #áothunnamcócổtayngắn #aopolonam #áopolonam #aopolonamhangmysaleoff #aopolonamdep #aopolonamnu #AOTHUNHANQUOC #áothunnam #aothunnambody #aothunnam #aothunnamnu #áothunnamtayngắn #aothunnamdep #aothunnama</p>\n', 1, 1, 1, 1, 'ao-thun-nam-polo-thiet-ke-vai-ca-sau-cotton-cao-cap-ngan-tay', 1013, 'Áo POLO nam thiết kế vải cá sấu cotton cao cấp ngắn tay', '', 3, 7, NULL, NULL, NULL),
@@ -3696,11 +3751,14 @@ INSERT INTO `sanpham` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tran
 	(58, NULL, '2023-12-19 05:54:26', NULL, 'admin9193', 'ACTIVE', 300000, '', 1, NULL, 1, NULL, 'ao-vai-truyen-thong', 500, 'áo vải truyền thống ', '', 1, 7, NULL, NULL, NULL),
 	(59, '2023-12-19 07:43:06', '2023-12-19 07:41:57', 'admin9193', 'admin9193', 'ACTIVE', 120000, '<p>- Đảm bảo vải chuẩn cotton chất lượng cao.<br />\n- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .<br />\n- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.<br />\n- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).<br />\n- Giao hàng toàn quốc, thanh toán khi nhận hàng.<br />\n- Hỗ trợ đổi trả theo quy định của Shopee.<br />\n&nbsp;</p>\n', 1, NULL, 1, NULL, 'ao-polo-nam-ao-thun-polo-nam-phoi-ke-tre-trung-vai-ca-sau-cao-cap', 23, 'Áo Polo Nam áo thun polo nam phối kẻ trẻ trung vải Cá Sấu cao cấp', '<p>- Hỗ trợ trong vòng 03 ngày từ khi nhận hàng.<br />\n- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.<br />\n- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.<br />\n&nbsp;</p>\n', 3, 2, NULL, NULL, NULL),
 	(60, NULL, '2023-12-19 08:25:13', NULL, 'admin9193', 'ACTIVE', 200000, '<p>- Hàng có sẵn, giao hàng ngay khi nhận được đơn đặt hàng .<br />\n- Hoàn tiền 100% nếu sản phẩm lỗi, nhầm hoặc không giống với mô tả.<br />\n- Chấp nhận đổi hàng khi size không vừa (vui lòng nhắn tin riêng cho shop).<br />\n- Giao hàng toàn quốc, thanh toán khi nhận hàng.<br />\n- Hỗ trợ đổi trả theo quy định của Shop.</p>\n', 1, NULL, 1, NULL, 'quan-nam-phoi-ke-tre-trung-vai-ca-sau-cao-cap', 23, 'Quần Nam phối kẻ trẻ trung vải Cá Sấu cao cấp', '<p>- Hàng hoá vẫn còn mới nguyên tem mác, chưa qua sử dụng.<br />\n- Hàng hoá bị lỗi hoặc hư hỏng do vận chuyển hoặc do nhà sản xuất.</p>\n', 2, 2, NULL, NULL, NULL),
-	(61, NULL, '2023-12-19 08:38:08', NULL, 'admin9193', 'ACTIVE', 120000, '', 1, NULL, NULL, NULL, 'ao-thun', 2, 'áo thun', '', 3, 2, NULL, NULL, NULL),
+	(61, '2024-01-10 09:46:08', '2023-12-19 08:38:08', 'admin9193', 'admin9193', 'INACTIVE', 120000, '', 1, NULL, NULL, NULL, 'ao-thun', 2, 'áo thun', '', 3, 2, NULL, NULL, NULL),
 	(62, '2024-01-01 03:33:46', '2023-12-19 08:51:40', 'admin9193', 'admin9193', 'ACTIVE', 10000, '', NULL, NULL, NULL, NULL, 'quan-au', NULL, 'quần âu', '', 2, 2, NULL, NULL, NULL),
 	(63, NULL, '2023-12-19 09:08:33', NULL, 'admin9193', 'ACTIVE', 120000, '', NULL, NULL, NULL, NULL, 'ao-phong', 9, 'áo phông', '', 2, 1, NULL, NULL, NULL),
-	(64, NULL, '2024-01-09 07:53:39', NULL, 'admin9193', 'ACTIVE', 195000, '<p>Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002</p>\n\n<p>𝓣𝓱𝓸̂𝓷𝓰 𝓽𝓲𝓷 𝓼𝓪̉𝓷 𝓹𝓱𝓪̂̉𝓶</p>\n\n<p>◈ Sản phẩm:Áo khoác thu đông thể thao nam</p>\n\n<p>◈ Mã sản phẩm: AO KHOAC NAM 002</p>\n\n<p>◈ Xuất xứ: Việt Nam</p>\n\n<p>◈ Chất liệu: Áo khoác thể thao nam sử dụng chất vải nỉ trơn dày dặn, chất liệu mềm mại, mịn màng, co giãn nhẹ</p>\n\n<p>◈ Kiểu dáng: Áo dáng suông rộng tạo cảm giác thoải mái cho người mặc, phối họa tiết độc đáo trẻ trung tạo sự năng động cá tính</p>\n\n<p>◈ Áo khoác nam phù hợp nhiều hoàn cảnh: mặc đi làm, đi học, đi chơi, đi du lịch, mặc đội nhóm...</p>\n\n<p>&nbsp;</p>\n\n<p>Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002</p>\n\n<p>𝓗𝓾̛𝓸̛́𝓷𝓰 𝓭𝓪̂̃𝓷 𝓬𝓱𝓸̣𝓷 𝓼𝓲𝔃𝓮</p>\n\n<p>◈ Size XS: Dành cho người trên 40kg , chiều cao từ 1m6 đổ xuống</p>\n\n<p>◈ Size S: Dành cho người từ 48kg đổ xuống, chiều cao từ 1m6 đổ lên</p>\n\n<p>◈ Size M: Dành cho người từ 55kg đổ xuống, chiều cao từ 1m65 đổ xuống</p>\n\n<p>◈ Size L: Dành cho người từ 60kg đổ xuống, chiều cao từ 1m7 đổ xuống</p>\n\n<p>◈ Size XL: Dành cho người từ 65kg đổ xuống, chiều cao từ 1m75 đổ xuống</p>\n\n<p>Lưu ý: Nên giặt bằng tay, nếu giặt bằng máy bạn nên giặt với nhiệt độ nước không quá 40 độ C để đảm bảo sản phẩm bền lâu và giữ được màu sắc ban đầu</p>\n\n<p>----------------------------------------------------------------------</p>\n\n<p>𝐒𝐓𝐘𝐋𝐄 𝐌𝐀𝐑𝐕𝐄𝐍 - 𝐌𝐀𝐍𝐆 Đ𝐄̂́𝐍 𝐓𝐑𝐀̉𝐈 𝐍𝐆𝐇𝐈𝐄̣̂𝐌 𝐓𝐇𝐔́ 𝐕𝐈̣ 𝐕𝐄̂̀ 𝐓𝐇𝐎̛̀𝐈 𝐓𝐑𝐀𝐍𝐆</p>\n\n<p>♛ Cam kết sản phẩm giống y hình, hình ảnh do shop tự chụp.</p>\n\n<p>♛ Đảm bảo chất lượng, dịch vụ tốt, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng.</p>\n\n<p>&nbsp;</p>\n\n<p>➥ CHÍNH SÁCH ĐỔI TRẢ VÀ BẢO HÀNH</p>\n\n<p>- Hỗ trợ đổi Size hoặc đổi mẫu trong vòng 3 ngày (Miễn cước đổi trả khi Shop giao sai hàng, khách hàng chịu cước đổi trả nếu khách hàng là người chủ động muốn đổi size hoặc đổi mẫu)</p>\n\n<p>- Khách hàng được đổi sang các sản phẩm ngang giá hoặc hơn giá (Sản phẩm thấp giá hơn sẽ không được nhận lại giá chênh lệch giữa 2 sản phẩm)</p>\n\n<p>- Mỗi sản phẩm chỉ được đổi hàng duy nhất 1 lần</p>\n\n<p>- Không hỗ trợ đổi hàng với các sản phẩm đã qua sử dụng, sản phẩm có tình trạng bẩn, rách, ố vàng,…</p>\n\n<p>&nbsp;</p>\n\n<p>HÃY ĐÁNH GIÁ ⭐️⭐️⭐️⭐️⭐️ NẾU BẠN YÊU THÍCH SẢN PHẨM CỦA STYLEMARVEN NHÉ !</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-lien-mu-chu-n-hoa-tiet-ngoi-sao-ben-tay-stylt-marven-ao-khoac-nam-002', 4000, 'Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002', '<p>Chất liệu</p>\n\n<p>Nỉ</p>\n\n<p>Xuất xứ</p>\n\n<p>Việt Nam</p>\n\n<p>Số lượng hàng khuyến mãi</p>\n\n<p>739</p>\n\n<p>Số sản phẩm còn lại</p>\n\n<p>47388</p>\n\n<p>Gửi từ</p>\n\n<p>Hà Nội</p>\n', 5, 5, NULL, NULL, NULL),
-	(65, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 249000, '<p>Áo khoác dù, áo khoác gió Unisex - CHẤT DÙ SIÊU ĐẸP - 2 LỚP CHỐNG MƯA NẮNG ĐƯỢC HẾT</p>\n\n<p>👉 Size: M, L, XL, XXL ( 40-85kg )</p>\n\n<p>🍓 Bảng SIZE: (Mang tính chất THAM KHẢO, các bạn có thể nhắn tin cho shop để được tư vấn size sau 1s nha)</p>\n\n<p>-Size M: 40 - 55kg, Cao dưới 1m60</p>\n\n<p>-Size L: từ 56 - 65kg , Cao 1m61 - 1m70</p>\n\n<p>-Size XL: từ 66 - 75 kg, Cao : 1m62 - 1m85</p>\n\n<p>-Size XXL: từ 76- 85 kg, Cao : 1m62 - 1m85</p>\n\n<p>✈ Form rộng Unisex cho cả nam và nữ</p>\n\n<p>Áo khoác dù; Áo khoác gió unisex</p>\n\n<p>🌸 Hình Shop tự chụp, hàng được lựa chọn kỹ, đảm bảo mặc lên form đẹp như ảnh</p>\n\n<p>🌸 Vải đẹp , không xù , không co rút , mềm mịn dày dặn , hút mồ hôi cực nhanh, mặc siêu mát .</p>\n\n<p>Áo khoác dù Unisex chống tia UV cực tốt.</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-gio-nam-nu-2-lop-co-tui-trong-ao-khoac-du-chat-lieu-vai-gio-cao-cap-khang-nuoc-full-tem-tag-phu-kien', NULL, 'Áo khoác gió nam-nữ 2 lớp có túi trong, Áo khoác dù chất liệu vải gió cao cấp kháng nước full tem tag phụ kiện', '', 5, 9, NULL, NULL, NULL);
+	(64, '2024-01-09 16:24:41', '2024-01-09 07:53:39', 'admin9193', 'admin9193', 'ACTIVE', 195000, '<p>Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002</p>\n\n<p>𝓣𝓱𝓸̂𝓷𝓰 𝓽𝓲𝓷 𝓼𝓪̉𝓷 𝓹𝓱𝓪̂̉𝓶</p>\n\n<p>◈ Sản phẩm:Áo khoác thu đông thể thao nam</p>\n\n<p>◈ Mã sản phẩm: AO KHOAC NAM 002</p>\n\n<p>◈ Xuất xứ: Việt Nam</p>\n\n<p>◈ Chất liệu: Áo khoác thể thao nam sử dụng chất vải nỉ trơn dày dặn, chất liệu mềm mại, mịn màng, co giãn nhẹ</p>\n\n<p>◈ Kiểu dáng: Áo dáng suông rộng tạo cảm giác thoải mái cho người mặc, phối họa tiết độc đáo trẻ trung tạo sự năng động cá tính</p>\n\n<p>◈ Áo khoác nam phù hợp nhiều hoàn cảnh: mặc đi làm, đi học, đi chơi, đi du lịch, mặc đội nhóm...</p>\n\n<p>&nbsp;</p>\n\n<p>Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002</p>\n\n<p>𝓗𝓾̛𝓸̛́𝓷𝓰 𝓭𝓪̂̃𝓷 𝓬𝓱𝓸̣𝓷 𝓼𝓲𝔃𝓮</p>\n\n<p>◈ Size XS: Dành cho người trên 40kg , chiều cao từ 1m6 đổ xuống</p>\n\n<p>◈ Size S: Dành cho người từ 48kg đổ xuống, chiều cao từ 1m6 đổ lên</p>\n\n<p>◈ Size M: Dành cho người từ 55kg đổ xuống, chiều cao từ 1m65 đổ xuống</p>\n\n<p>◈ Size L: Dành cho người từ 60kg đổ xuống, chiều cao từ 1m7 đổ xuống</p>\n\n<p>◈ Size XL: Dành cho người từ 65kg đổ xuống, chiều cao từ 1m75 đổ xuống</p>\n\n<p>Lưu ý: Nên giặt bằng tay, nếu giặt bằng máy bạn nên giặt với nhiệt độ nước không quá 40 độ C để đảm bảo sản phẩm bền lâu và giữ được màu sắc ban đầu</p>\n\n<p>----------------------------------------------------------------------</p>\n\n<p>𝐒𝐓𝐘𝐋𝐄 𝐌𝐀𝐑𝐕𝐄𝐍 - 𝐌𝐀𝐍𝐆 Đ𝐄̂́𝐍 𝐓𝐑𝐀̉𝐈 𝐍𝐆𝐇𝐈𝐄̣̂𝐌 𝐓𝐇𝐔́ 𝐕𝐈̣ 𝐕𝐄̂̀ 𝐓𝐇𝐎̛̀𝐈 𝐓𝐑𝐀𝐍𝐆</p>\n\n<p>♛ Cam kết sản phẩm giống y hình, hình ảnh do shop tự chụp.</p>\n\n<p>♛ Đảm bảo chất lượng, dịch vụ tốt, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng.</p>\n\n<p>&nbsp;</p>\n\n<p>➥ CHÍNH SÁCH ĐỔI TRẢ VÀ BẢO HÀNH</p>\n\n<p>- Hỗ trợ đổi Size hoặc đổi mẫu trong vòng 3 ngày (Miễn cước đổi trả khi Shop giao sai hàng, khách hàng chịu cước đổi trả nếu khách hàng là người chủ động muốn đổi size hoặc đổi mẫu)</p>\n\n<p>- Khách hàng được đổi sang các sản phẩm ngang giá hoặc hơn giá (Sản phẩm thấp giá hơn sẽ không được nhận lại giá chênh lệch giữa 2 sản phẩm)</p>\n\n<p>- Mỗi sản phẩm chỉ được đổi hàng duy nhất 1 lần</p>\n\n<p>- Không hỗ trợ đổi hàng với các sản phẩm đã qua sử dụng, sản phẩm có tình trạng bẩn, rách, ố vàng,…</p>\n\n<p>&nbsp;</p>\n\n<p>HÃY ĐÁNH GIÁ ⭐️⭐️⭐️⭐️⭐️ NẾU BẠN YÊU THÍCH SẢN PHẨM CỦA STYLEMARVEN NHÉ !</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-lien-mu-chu-n-hoa-tiet-ngoi-sao-ben-tay-stylt-marven-ao-khoac-nam-002', 4000, 'Áo khoác liền mũ chữ N họa tiết ngôi sao bên tay STYLT MARVEN - AO KHOAC NAM 002', '<p>Chất liệu</p>\n\n<p>Nỉ</p>\n\n<p>Xuất xứ</p>\n\n<p>Việt Nam</p>\n\n<p>Số lượng hàng khuyến mãi</p>\n\n<p>739</p>\n\n<p>Số sản phẩm còn lại</p>\n\n<p>47388</p>\n\n<p>Gửi từ</p>\n\n<p>Hà Nội</p>\n', 5, 5, NULL, NULL, NULL),
+	(65, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 249000, '<p>Áo khoác dù, áo khoác gió Unisex - CHẤT DÙ SIÊU ĐẸP - 2 LỚP CHỐNG MƯA NẮNG ĐƯỢC HẾT</p>\n\n<p>👉 Size: M, L, XL, XXL ( 40-85kg )</p>\n\n<p>🍓 Bảng SIZE: (Mang tính chất THAM KHẢO, các bạn có thể nhắn tin cho shop để được tư vấn size sau 1s nha)</p>\n\n<p>-Size M: 40 - 55kg, Cao dưới 1m60</p>\n\n<p>-Size L: từ 56 - 65kg , Cao 1m61 - 1m70</p>\n\n<p>-Size XL: từ 66 - 75 kg, Cao : 1m62 - 1m85</p>\n\n<p>-Size XXL: từ 76- 85 kg, Cao : 1m62 - 1m85</p>\n\n<p>✈ Form rộng Unisex cho cả nam và nữ</p>\n\n<p>Áo khoác dù; Áo khoác gió unisex</p>\n\n<p>🌸 Hình Shop tự chụp, hàng được lựa chọn kỹ, đảm bảo mặc lên form đẹp như ảnh</p>\n\n<p>🌸 Vải đẹp , không xù , không co rút , mềm mịn dày dặn , hút mồ hôi cực nhanh, mặc siêu mát .</p>\n\n<p>Áo khoác dù Unisex chống tia UV cực tốt.</p>\n', NULL, NULL, NULL, NULL, 'ao-khoac-gio-nam-nu-2-lop-co-tui-trong-ao-khoac-du-chat-lieu-vai-gio-cao-cap-khang-nuoc-full-tem-tag-phu-kien', NULL, 'Áo khoác gió nam-nữ 2 lớp có túi trong, Áo khoác dù chất liệu vải gió cao cấp kháng nước full tem tag phụ kiện', '', 5, 9, NULL, NULL, NULL),
+	(68, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 199000, '<p>🌿 Bảng Size: Size M :Nặng 45-55kg, Size L :Nặng 55-65 kg, Size XL:Nặng 65-75 kg, I. CAM KẾT CỦA SHOP - Sản phẩm giống hình và mô tả - Chấp nhận đổi hàng khi size không vừa trong vòng 3 ngày - Hàng có sẵn, giao hàng ngay khi nhận được đơn của quý khách - Hoàn tiền nếu sản phẩm không giống với mô tả - Chấp nhận đổi hàng khi size không vừa - Giao hàng trên toàn quốc, nhận hàng trả tiền II. HỖ TRỢ ĐỔI TRẢ THEO QUY ĐỊNH CỦA SHOPEE - Điều kiện áp dụng (trong vòng 3 ngày kể từ khi nhận sản phẩm) - Hàng hoá bị rách, in lỗi, bung chỉ, và các lỗi do vận chuyển hoặc do nhà sản xuất. 1. Trường hợp được chấp nhận: - Hàng giao sai size khách đã đặt hàng - Giao thiếu hàng 2. Trường hợp không đủ điều kiện áp dụng chính sách: - Quá 2 ngày kể từ khi Quý khách nhận hàng - Gửi lại hàng không đúng mẫu mã, không phải sản phẩm của Shop - Không thích, không hợp, đặt nhầm mã, nhầm màu,... III. MÔ TẢ SẢN PHẨM - Xuất xứ: Việt Nam - Chất liệu: chất UMI thấm hút mồ hôi tốt, thoáng mát - Đường may tỉ mỉ chắc chắc - Thiết kế: hiện đại, trẻ trung, dễ phối - Đủ size: M - L - XL (các bạn tham khảo tại bảng size nhé) ---------------------------------------------------------------------------------- ❤️ Quy định bảo hành, đổi trả đối với sản phẩm đúng quy định của Shopee 💚 Điều kiện áp dụng (trong vòng 03 ngày kể từ khi nhận sản phẩm): Hàng hoá vẫn còn mới, chưa qua sử dụng Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất. 💚 Trường hợp được chấp nhận: Hàng không đúng size, kiểu dáng như quý khách đặt hàng Không đủ số lượng như trong đơn hàng 💚 Trường hợp không đủ điều kiện áp dụng chính sách Đổi/Trả : Quá 03 ngày kể từ khi Quý khách nhận hàng Gửi lại hàng không đúng mẫu mã, không phải hàng của shop</p>\n', NULL, NULL, NULL, NULL, 'ao-phong-nam-nu-tommy-hilfiger-in-vach-soc-den-trang-do-chu-ki-quanh-ao-ao-thun-unisex-form-unisex-sieu-hot-2023', NULL, 'Áo phông nam nữ Tommy Hilfiger in vạch sọc đen trắng đỏ chữ kí quanh áo. Áo Thun Unisex Form Unisex Siêu Hot 2023', '', 1, 8, NULL, NULL, NULL),
+	(69, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 169000, '<p>Áo len cho bố nam trung niên hàng quảng châu đẹp dày dặn mềm mịn quà tặng cho bố tặng ông lớn tuổi mặc mùa đôn</p>\n\n<p>Áo len nam trung niên loại đẹp dày dặn mềm mịn hàng quảng châu dành tặng cho bố tặng ông lớn tuổi mặc mùa đông</p>\n\n<p>Áo thun nam trung niên dày dặn ấm tặng bố Áo len nam trung niên cho bố hàng quảng châu áo thun nam trung niên thu đông ấm áp quà tặng cho bố ông lớn tuổi</p>\n\n<p>Chất len ko xù ko nhão mặc đẹp</p>\n\n<p>Các màu: chì sáng, chì tối, ghi, nâu</p>\n\n<p>- size L : 50 - 60kg</p>\n\n<p>- size XL.: 60 - 70kg</p>\n\n<p>- szie 2XL : 70 - 80kg</p>\n\n<p>LƯU Ý: GIẶT TRƯỚC KHI MẶC, VÌ LEN LẦN ĐẦU MẶC SẼ CẢM GIÁC HƠI KHÓ CHỊU, hơi dặm, CAM KẾT CHẤT ĐẸP LEN MỊN</p>\n\n<p>Áo Len Nam Trung Niên Cho Bố Cho Ông Lót Nỉ Dày Ấm.</p>\n\n<p>&nbsp;</p>\n\n<p>Áo len dày mặc bao ấm ạ! Khách cần nên e vẫn nhập thường xuyên nha mn!</p>\n\n<p>Màu dễ mặc, họa tiết nhã nhặn, rất hợp với người trung tuổi và cao tuổi ạ.</p>\n\n<p>Bảng size áo len trung niên&nbsp; tham khảo:</p>\n\n<p>Size L: 50-62kg</p>\n\n<p>Size XL: 62-72kg</p>\n\n<p>Size 2XL: 70-78kg.</p>\n\n<p>Áo len nam trung niên Form to nên mn đừng lấy trừ hao nhiều sẽ bị rộng ạ!</p>\n\n<p>&nbsp;</p>\n\n<p>📌 LƯU Ý KHI SỬ DỤNG CÁC SẢN PHẨM CỦA SHOP:</p>\n\n<p>👉 Đối với sản phẩm mới mua về, nên giặt nhẹ với ít bột (nước) giặt pha loãng, giặt riêng quần áo màu vì sản phẩm mới được nhuộm có thể sẽ ra màu làm loang sang quần áo khác nếu giặt chung.</p>\n\n<p>👉 Đối với sản phẩm thường có thể giặt máy thoải mái và nên phân loại sản phẩm cùng màu, cùng loại vải khi giặt. Nên dùng túi giặt cho các loại chất liệu mềm như len, đũi, lanh... để giữ được độ bền lâu hơn.</p>\n\n<p>👉 Đối với sản phẩm cao cấp, sang chảnh, đa dạng về chất liệu, kiểu dáng như tơ lụa, voan, ren... cách bảo quản sản phẩm tốt nhất là giặt tay với bột / nước giặt nhẹ để giữ được độ bền của vải, tránh bị phai màu, mất form dáng.</p>\n\n<p>👉 Nên phơi sản phẩm ở nơi thoáng mát, tránh để ẩm ướt kéo dài gây mốc, phơi ở những điểm đón gió, tránh ánh nắng trực tiếp sẽ giữ được màu sắc và độ bền tốt hơn.</p>\n\n<p>*****************************</p>\n\n<p>📌 Mọi thắc mắc xin Quý khách vui lòng nhắn tin để shop có thể tư vấn và hỗ trợ đổi trả hàng theo đúng quy định với những sản phẩm lỗi do nhà sản xuất.</p>\n\n<p>📌 ĐẶC BIỆT : Shop hỗ trợ đổi size, mẫu cho Khách hàng có nhu cầu.</p>\n\n<p>📌 Các bạn nhớ lấy mã giảm giá ở trong bài (nếu có) để được hỗ trợ tối đa nhé!</p>\n\n<p>📌 Nếu thấy sản phẩm chất lượng tốt hãy đánh giá cho shop 5 sao để shop có động lực phục vụ tốt hơn nữa nha!</p>\n', NULL, NULL, NULL, NULL, 'ao-len-nam-trung-nien-cho-bo-hang-quang-chau-ao-thun-tay-dai-nam-trung-nien-thu-dong-am-ap-qua-tang-cho-bo-ong-lon-tuoi', NULL, 'Áo len nam trung niên cho bố hàng quảng châu áo thun tay dài nam trung niên thu đông ấm áp quà tặng cho bố ông lớn tuổi', '', 4, 3, NULL, NULL, NULL),
+	(70, NULL, '2024-01-10 09:33:28', NULL, 'admin9193', 'ACTIVE', 299000, '<p>Áo giữ nhiệt cổ cao nam , áo tay dài lót nỉ siêu ấm chất dày dặn co giãn</p>\n\n<p>&nbsp;</p>\n\n<p>❌ƯU ĐÃI BẢO HÀNH CỦA AN SPORT ❌</p>\n\n<p>&nbsp;</p>\n\n<p>👉 Tất cả các sản phẩm đều được shop bảo hành, đổi trả (trong vòng 7 ngày (kể từ ngày nhận đơn hàng).</p>\n\n<p>👉 Nếu có bất cứ vấn đề về sản phẩm, quý khách xin vui lòng nhắn tin/gọi ngay cho shop trong vòng 7 ngày (kể từ ngày nhận đơn hàng).</p>\n\n<p>👉Nếu quá thời hạn 7 ngày kể từ ngày nhận đơn hàng, chế độ bảo hành của AN SPORT sẽ hết hiệu lực.</p>\n\n<p>&nbsp;</p>\n\n<p>✔️CAM KẾT CỦA AN SPORT:</p>\n\n<p>&nbsp;</p>\n\n<p>👉 AN SPORT cam kết mang đến cho khách hàng những sản phẩm với chất lượng tốt nhất trong tầm giá.</p>\n\n<p>👉 AN SPORT cam kết chính sách bảo hành tốt nhất (Hỗ trợ đổi size, Hỗ trợ đổi Sản phẩm lỗi).</p>\n\n<p>&nbsp;</p>\n\n<p>=====================================</p>\n\n<p>&nbsp;</p>\n\n<p>⭐️ Thông tin sản phẩm : Áo thun nam tay dài - Áo giữ nhiệt AN SPORT:</p>\n\n<p>- Thiết kế: thiết kế theo form chuẩn mới nhất, phù hợp với dáng người Việt Nam</p>\n\n<p>- Kiểu dáng: Theo dáng thể thao, không bị mất form khi giặt nhiều lần</p>\n\n<p>- Chất liệu: Thun cao cấp, co giãn, thoải mái khi vận động</p>\n\n<p>- Đặc biệt: mềm mịn, vải nhẹ, thoáng khi và nhanh khô khi giặt</p>\n\n<p>- Mặc đi tập gym, chạy bộ, coffe, du lịch hoặc mặc thường ngày đều ổn</p>\n\n<p>- Màu sắc: Đen, Than, Xám, Trắng cực dễ phối đồ</p>\n\n<p>- Nơi sản xuất: Việt Nam</p>\n\n<p>&nbsp;</p>\n\n<p>⭐️ Cách bảo quản:</p>\n\n<p>&nbsp;</p>\n\n<p>- Đối với sản phẩm quần áo mới mua về, nên giặt tay lần đâu tiên để tránh phai màu sang quần áo khác.</p>\n\n<p>- Khi giặt nên lộn mặt trái ra để đảm bảo độ bền của hình in/decal.</p>\n\n<p>- Sản phẩm phù hợp cho giặt máy/giặt tay.</p>\n\n<p>&nbsp;</p>\n\n<p>⭐️ Hướng dẫn chọn size:</p>\n\n<p>&nbsp;</p>\n\n<p>- M (40 - 52 kg, &lt; 1m65)</p>\n\n<p>- L (52 - 60 Kg, &lt; 1m70)</p>\n\n<p>- XL (60 - 70 kg, &lt; 1m75)</p>\n\n<p>- 2XL (70 - 80 Kg, &lt;1m8)</p>\n\n<p>Quý khách nếu thích mặc form thoải mái nên lấy tăng 1 - 2 size.</p>\n\n<p>&nbsp;</p>\n\n<p>💢 Lưu ý:</p>\n\n<p>&nbsp;</p>\n\n<p>- Nếu chưa chắc chắn về chọn size sản phẩm .</p>\n\n<p>- Nếu khách form người không cân đối (Béo, gầy, thấp...) .</p>\n\n<p>- Nếu khách thích mặc ôm body hoặc mặc rộng thoải mái INBOX trực tiếp cho shop để được tư vấn size nhé.</p>\n\n<p>&nbsp;</p>\n\n<p>☎ Hotline: 09777.94335</p>\n', NULL, NULL, NULL, NULL, 'ao-giu-nhiet-co-cao-nam-ao-tay-dai-lot-ni-sieu-am-chat-day-dan-co-gian', NULL, 'Áo giữ nhiệt cổ cao nam , áo tay dài lót nỉ siêu ấm chất dày dặn co giãn', '', 1, 4, NULL, NULL, NULL);
 
 -- Dumping structure for table duantotnghiep.slider
 CREATE TABLE IF NOT EXISTS `slider` (
@@ -3811,9 +3869,9 @@ CREATE TABLE IF NOT EXISTS `thuoctinh` (
   PRIMARY KEY (`id`),
   KEY `FKpe2rbqisgm92mmclx5ddxr5te` (`idsanpham`),
   CONSTRAINT `FKpe2rbqisgm92mmclx5ddxr5te` FOREIGN KEY (`idsanpham`) REFERENCES `sanpham` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.thuoctinh: ~97 rows (approximately)
+-- Dumping data for table duantotnghiep.thuoctinh: ~107 rows (approximately)
 INSERT INTO `thuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `slug`, `ten`, `idsanpham`) VALUES
 	(1, NULL, '2023-11-22 16:26:02', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 1),
 	(2, NULL, '2023-11-22 16:26:03', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 1),
@@ -3915,7 +3973,13 @@ INSERT INTO `thuoctinh` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `tr
 	(117, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 64),
 	(118, NULL, '2024-01-09 07:53:40', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 64),
 	(119, NULL, '2024-01-09 08:13:33', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 65),
-	(124, NULL, '2023-11-27 16:40:54', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 40);
+	(124, NULL, '2023-11-27 16:40:54', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 40),
+	(125, NULL, '2024-01-09 15:20:04', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 68),
+	(126, NULL, '2024-01-09 15:20:05', NULL, 'admin9193', 'ACTIVE', 'size', 'Size', 68),
+	(127, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 69),
+	(128, NULL, '2024-01-10 09:28:04', NULL, 'admin9193', 'ACTIVE', 'kich-co', 'Kích cỡ', 69),
+	(129, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'mau-sac', 'Màu Sắc', 70),
+	(130, NULL, '2024-01-10 09:33:29', NULL, 'admin9193', 'ACTIVE', 'kich-co', 'Kích cỡ', 70);
 
 -- Dumping structure for table duantotnghiep.thuonghieu
 CREATE TABLE IF NOT EXISTS `thuonghieu` (
@@ -3957,14 +4021,11 @@ CREATE TABLE IF NOT EXISTS `tichdiem` (
   PRIMARY KEY (`id`),
   KEY `FK3cn0i0s6nyyqp3m7fb1uwyqv0` (`idkhachhang`),
   CONSTRAINT `FK3cn0i0s6nyyqp3m7fb1uwyqv0` FOREIGN KEY (`idkhachhang`) REFERENCES `khachhang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3;
 
--- Dumping data for table duantotnghiep.tichdiem: ~4 rows (approximately)
+-- Dumping data for table duantotnghiep.tichdiem: ~1 rows (approximately)
 INSERT INTO `tichdiem` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sodiem`, `idkhachhang`) VALUES
-	(43, '2024-01-08 06:00:17', '2024-01-08 05:49:48', 'admin9193', 'admin9193', 'ACTIVE', 10, 1),
-	(44, '2024-01-08 05:55:10', '2024-01-08 05:49:50', 'admin9193', 'admin9193', 'ACTIVE', 10, 3),
-	(45, '2024-01-09 11:08:18', '2024-01-08 05:49:52', 'dinhanhtuan0812', 'admin9193', 'ACTIVE', 0, 2),
-	(46, '2024-01-09 06:50:52', '2024-01-09 05:32:57', 'admin9193', 'admin9193', 'ACTIVE', 1, 36);
+	(47, '2024-01-10 15:17:23', '2024-01-10 09:08:23', 'dinhanhtuan0812', 'admin9193', 'ACTIVE', 10, 2);
 
 -- Dumping structure for table duantotnghiep.timkiemsanpham
 CREATE TABLE IF NOT EXISTS `timkiemsanpham` (
@@ -4005,28 +4066,9 @@ CREATE TABLE IF NOT EXISTS `trangthaigiaohang` (
   KEY `FKjjhu2d0nug7uqy9qqbaqjqf0a` (`magiaohang`),
   CONSTRAINT `FK5xq4329do0ec9v495gnmyv157` FOREIGN KEY (`idgiaohang`) REFERENCES `hoadon` (`id`),
   CONSTRAINT `FKjjhu2d0nug7uqy9qqbaqjqf0a` FOREIGN KEY (`magiaohang`) REFERENCES `hoadon` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table duantotnghiep.trangthaigiaohang: ~12 rows (approximately)
-INSERT INTO `trangthaigiaohang` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `tentrangthai`, `idgiaohang`, `magiaohang`, `trangthaihoadon`) VALUES
-	(125, NULL, '2024-01-08 05:39:16', NULL, 'dinhanhtuan0812', NULL, 'Đặt hàng', NULL, 368, NULL),
-	(126, NULL, '2024-01-08 05:47:20', NULL, 'dangngocthanh0133', NULL, 'Đặt hàng', NULL, 369, NULL),
-	(127, NULL, '2024-01-08 05:48:40', NULL, 'nguyenthikhanhlinh1711', NULL, 'Đặt hàng', NULL, 370, NULL),
-	(128, NULL, '2024-01-08 05:49:20', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 370, NULL),
-	(129, NULL, '2024-01-08 05:49:24', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 369, NULL),
-	(130, NULL, '2024-01-08 05:49:27', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 368, NULL),
-	(131, NULL, '2024-01-08 05:49:32', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 370, NULL),
-	(132, NULL, '2024-01-08 05:49:34', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 369, NULL),
-	(133, NULL, '2024-01-08 05:49:36', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 368, NULL),
-	(134, NULL, '2024-01-08 05:49:48', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 369, NULL),
-	(135, NULL, '2024-01-08 05:49:50', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 370, NULL),
-	(136, NULL, '2024-01-08 05:49:52', NULL, 'admin9193', NULL, 'Đã nhận hàng', NULL, 368, NULL),
-	(139, NULL, '2024-01-09 11:30:43', NULL, 'dangngocthanh0133', NULL, 'Đặt hàng', NULL, 384, NULL),
-	(140, NULL, '2024-01-09 11:42:27', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 384, NULL),
-	(141, NULL, '2024-01-09 13:53:07', NULL, 'dangngocthanh0133', NULL, 'Đặt hàng', NULL, 385, NULL),
-	(142, NULL, '2024-01-09 13:54:27', NULL, 'dangngocthanh0133', NULL, 'Đặt hàng', NULL, 386, NULL),
-	(143, NULL, '2024-01-09 13:54:54', NULL, 'admin9193', NULL, 'Đơn hàng đang được giao', NULL, 384, NULL),
-	(144, NULL, '2024-01-09 13:54:57', NULL, 'admin9193', NULL, 'Đang chuẩn bị hàng', NULL, 385, NULL);
+-- Dumping data for table duantotnghiep.trangthaigiaohang: ~0 rows (approximately)
 
 -- Dumping structure for table duantotnghiep.vidientu
 CREATE TABLE IF NOT EXISTS `vidientu` (
@@ -4046,8 +4088,8 @@ CREATE TABLE IF NOT EXISTS `vidientu` (
 -- Dumping data for table duantotnghiep.vidientu: ~15 rows (approximately)
 INSERT INTO `vidientu` (`id`, `ngaysua`, `ngaytao`, `nguoisua`, `nguoitao`, `trangthai`, `sotien`, `idkhachhang`) VALUES
 	(1, '2023-12-19 05:05:37', '2023-11-19 16:59:26', 'doquochuy8173', 'doquochuy8173', 'ACTIVE', 1776299, 4),
-	(2, '2024-01-09 13:53:07', '2023-11-19 16:59:26', 'dangngocthanh0133', 'doquochuy8173', 'ACTIVE', 2349398, 1),
-	(3, '2024-01-09 11:08:18', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'doquochuy8173', 'ACTIVE', 3179650, 2),
+	(2, '2024-01-09 14:01:03', '2023-11-19 16:59:26', 'dangngocthanh0133', 'doquochuy8173', 'ACTIVE', 2350398, 1),
+	(3, '2024-01-10 15:17:24', '2023-11-19 16:59:26', 'dinhanhtuan0812', 'doquochuy8173', 'ACTIVE', 3180650, 2),
 	(4, '2023-12-19 09:12:40', '2023-11-19 16:59:26', 'nguyenthikhanhlinh1711', 'doquochuy8173', 'ACTIVE', 4033349, 3),
 	(5, '2023-12-18 17:16:15', '2023-11-19 16:59:26', 'dinhtuananh0183', 'doquochuy8173', 'ACTIVE', 1735099, 5),
 	(6, NULL, '2023-12-09 09:25:51', NULL, 'huydq8493', 'ACTIVE', 0, 6),
