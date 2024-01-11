@@ -217,9 +217,10 @@ public class KhuyenMaiService implements IKhuyenMaiService {
 
     @Override
     public KhuyenMaiEntity updateStatus(KhuyenMaiEntity khuyenMaiEntity) {
+        System.out.println("Khuyen mai 01");
         if (!(khuyenMaiEntity.getTrangThai().equals("EXPIRED"))){
             Date currentDate = new Date();
-            if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && khuyenMaiEntity.getTrangThai().equals("EXPIRED") && khuyenMaiEntity.getTrangThai().equals("DELETE")){
+            if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && !(khuyenMaiEntity.getTrangThai().equals("DELETE"))){
                 khuyenMaiEntity.setTrangThai("ACTIVE");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {

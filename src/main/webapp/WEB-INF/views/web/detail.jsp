@@ -241,7 +241,8 @@
 <script>
     var x = setInterval(function () {
         var finish = parseInt($('#product-finish').val());
-        var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
+       // var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
+        var now = new Date();
         var distance = finish - now;
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -256,7 +257,7 @@
             clearInterval(x);
             $('.finish').text("EXPIRED");
             // call api update trạng thái của khuyến mại sản phẩm (expired nhé)
-        }
+       }
     }, 1000);
 
     $('#moTa').innerHTML  = `${product.moTa}`;
