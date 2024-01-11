@@ -28,4 +28,6 @@ public class HoaDonChiTietResponse {
     private Long idBienThe;
 
     private String tenThuongHieu;
+
+    private String tenBienThe;
 }
