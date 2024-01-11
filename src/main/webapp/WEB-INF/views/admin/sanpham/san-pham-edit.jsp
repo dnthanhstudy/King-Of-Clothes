@@ -247,9 +247,6 @@
                 $.each(req.bienThe, (index, item) => {
                     htmlBienThe += `
                         <tr>
-                             <td>
-                                <input type="text" value="\${item.id}" class="form-control id-variant">
-                              </td>
                               <td class="text-center name-variant">\${item.ten}</td>
                               <td>
                                 <input type="text" value="\${item.gia}" class="form-control price-variant">

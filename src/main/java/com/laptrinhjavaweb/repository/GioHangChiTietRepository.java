@@ -53,11 +53,11 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     @Query(value ="call sp_update_price_hdct (:idhd,:idkh)",nativeQuery = true)
     int configHoaDonChiTietKhiDatHang(@Param("idhd")Long idhd,@Param("idkh")Long idkh);
 
-    GioHangChiTietEntity findByGioHang_idAndBienThe_id(Long idGioHang, Long idBienThe);
+    GioHangChiTietEntity findByGioHang_idAndBienThe_idAndTrangThai(Long idGioHang, Long idBienThe, String trangThai);
 
     List<GioHangChiTietEntity> findAllByIdInAndGioHang_KhachHang_Ma(List<Long> ids, String maKhachHang);
 
-    List<GioHangChiTietEntity> findAllByBienThe_IdIn (List<Long> idsBienThe);
+    List<GioHangChiTietEntity> findAllByBienThe_IdInAndTrangThai (List<Long> idsBienThe, String trangThai);
 
     @Modifying
     @Query("delete from GioHangChiTietEntity g WHERE g.bienThe.id in ?1")

@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.service.impl;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.GioHangChiTietConveter;
 import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
@@ -31,7 +32,8 @@ public class GioHangChiTietService implements IGioHangChiTietService {
 
     @Override
     public void save(GioHangChiTietRequest gioHangChiTietRequest) {
-        GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findByGioHang_idAndBienThe_id(gioHangChiTietRequest.getIdGioHang(), gioHangChiTietRequest.getIdBienThe());
+        GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findByGioHang_idAndBienThe_idAndTrangThai(gioHangChiTietRequest.getIdGioHang(),
+                gioHangChiTietRequest.getIdBienThe(), SystemConstant.ACTICE);
         if (gioHangChiTietEntity != null) {
             Integer quantity = gioHangChiTietEntity.getSoLuong() + gioHangChiTietRequest.getSoLuong();
             if (quantity > gioHangChiTietEntity.getBienThe().getSoLuong()) {

@@ -244,9 +244,6 @@ public class SanPhamService implements ISanPhamService {
     @Override
     @Transactional
     public SanPhamResponse update(SanPhamRequest sanPhamRequest) {
-        if(sanPhamRequest.getIsNotUpdate()){
-            return updateVariant(sanPhamRequest);
-        }
         remove(sanPhamRequest.getId());
         SanPhamEntity sanPhamEntity = sanPhamConvert.convertToEntity(sanPhamRequest);
         sanPhamRepository.save(sanPhamEntity);
@@ -295,7 +292,7 @@ public class SanPhamService implements ISanPhamService {
 
     @Transactional
     public void updateGioHangChiTiet(List<Long> idsBienThe, String hinhAnh) {
-        List<GioHangChiTietEntity> results = gioHangChiTietRepository.findAllByBienThe_IdIn(idsBienThe);
+        List<GioHangChiTietEntity> results = gioHangChiTietRepository.findAllByBienThe_IdInAndTrangThai(idsBienThe, SystemConstant.ACTICE);
         for (GioHangChiTietEntity item : results) {
             BienTheEntity bienTheEntity = item.getBienThe();
             BienTheResponse bienTheResponse = bienTheConverter.convertToResponse(bienTheEntity);
@@ -329,27 +326,12 @@ public class SanPhamService implements ISanPhamService {
                     .giaGoc(bienTheResponse.getGia())
                     .giaMua(bienTheResponse.getGiaBan())
                     .maHoaDon(item.getHoaDon().getMa())
+                    .url(bienTheEntity.getSanPham().getSlug())
                     .build();
             xoaBienTheRepository.save(xoaBienTheEntity);
         }
-        hoaDonChiTietRepository.updateVariantInHoaDonTreo(idsBienThe);
-        hoaDonChiTietRepository.updateVariantInHoaDonThanhCong(idsBienThe);
-    }
-
-    @Transactional
-    public SanPhamResponse updateVariant (SanPhamRequest sanPhamRequest){
-        SanPhamEntity sanPhamEntity = sanPhamConvert.convertToEntity(sanPhamRequest);
-        sanPhamRepository.save(sanPhamEntity);
-        final Long idSanPham = sanPhamEntity.getId();
-        List<BienTheRequest> listBienThe = sanPhamRequest.getBienThe().stream().map(
-                item -> {
-                    item.setIdSanPham(idSanPham);
-                    bienTheService.save(item);
-                    return item;
-                }
-        ).collect(Collectors.toList());
-
-        SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
-        return result;
+        hoaDonChiTietRepository.deleteWhenUpdateProduct(idsBienThe);
+        hoaDonChiTietRepository.updateHoaDonChoWhenUpdateProduct(idsBienThe);
+        hoaDonChiTietRepository.updateWhenUpdateProduct(idsBienThe);
     }
 }
