@@ -389,7 +389,7 @@
 
     function loadKhuyenMai() {
         $.ajax({
-            url: '/api/san-pham',
+            url: '/api/san-pham/find-all',
             method: 'GET',
             success: function (response) {
                 let html = '';

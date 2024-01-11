@@ -74,7 +74,13 @@
 
                     </div>
                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"
-                         tabindex="0"></div>
+                         tabindex="0">
+                            <span class="product-description">
+                                <div id="moTa" class="m-4">
+
+                                </div>
+                            </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1063,6 +1069,8 @@
                                     $("#gia").text(formatNumber(response.gia));
                                     $("#soLuong").text(response.soLuong);
                                     $("#tenThuongHieu").text(response.tenThuongHieu);
+                                    var moTaElement = document.getElementById("moTa");
+                                    moTaElement.innerHTML = response.moTa;
                                     $("#image").attr('src', '/repository/' + response.image);
                                     const giaTriThuocTinhChecked = response.giaTriThuocTinhChecked;
                                     let htmlThuocTinh = '';

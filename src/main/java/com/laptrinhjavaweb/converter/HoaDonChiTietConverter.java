@@ -79,6 +79,7 @@ public class HoaDonChiTietConverter {
         response.setThuocTinh(thuocTinhResponse);
         response.setTenSanPham(sanPhamEntity.getTen());
         response.setTenThuongHieu(sanPhamEntity.getThuongHieu().getTen());
+        response.setMoTa(sanPhamEntity.getMoTa());
         return response;
     }
 }
