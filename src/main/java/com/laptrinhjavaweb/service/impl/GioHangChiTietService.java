@@ -32,8 +32,8 @@ public class GioHangChiTietService implements IGioHangChiTietService {
 
     @Override
     public void save(GioHangChiTietRequest gioHangChiTietRequest) {
-        GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findByGioHang_idAndBienThe_idAndTrangThai(gioHangChiTietRequest.getIdGioHang(), gioHangChiTietRequest.getIdBienThe(),
-                SystemConstant.ACTICE);
+        GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findByGioHang_idAndBienThe_idAndTrangThai(gioHangChiTietRequest.getIdGioHang(),
+                gioHangChiTietRequest.getIdBienThe(), SystemConstant.ACTICE);
         if (gioHangChiTietEntity != null) {
             Integer quantity = gioHangChiTietEntity.getSoLuong() + gioHangChiTietRequest.getSoLuong();
             if (quantity > gioHangChiTietEntity.getBienThe().getSoLuong()) {
@@ -83,10 +83,8 @@ public class GioHangChiTietService implements IGioHangChiTietService {
     @Override
     public GioHangChiTietResponse updated(GioHangChiTietRequest gioHangChiTietRequest) {
         GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findById(gioHangChiTietRequest.getId()).get();
-        if (gioHangChiTietEntity.getBienThe().getSoLuong()!=0){
-            if (gioHangChiTietEntity.getBienThe().getSoLuong() < gioHangChiTietRequest.getSoLuong()) {
-                throw new ClientError("Số lượng sản phẩm quá giới hạn cho phép. Xin kiểm tra lại");
-            }
+        if (gioHangChiTietEntity.getBienThe().getSoLuong() < gioHangChiTietRequest.getSoLuong()) {
+            throw new ClientError("Số lượng sản phẩm quá giới hạn cho phép. Xin kiểm tra lại");
         }
 
         Boolean isLoadCart = false;

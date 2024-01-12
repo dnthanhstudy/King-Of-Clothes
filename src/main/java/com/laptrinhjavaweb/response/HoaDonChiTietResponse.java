@@ -30,4 +30,6 @@ public class HoaDonChiTietResponse {
     private String tenThuongHieu;
 
     private String moTa;
+
+    private String tenBienThe;
 }

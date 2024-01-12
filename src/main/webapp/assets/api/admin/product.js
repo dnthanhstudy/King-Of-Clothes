@@ -43,13 +43,10 @@ $(".btn-add-product").on("click", function (event) {
             }
         });
         if (hasEmptyGiaTris) {
-            showError("Vui lòng nhập giá trị thuộc tính");
+            showError("Vui lòng nhập giá trị thuộc tính của sản phẩm");
             return false;
         }
         data["bienThe"] = getVariants();
-        if(data["bienThe"].length === 0){
-
-        }
         $.each(data["bienThe"], function (index, item) {
             if (isNumber(item.gia) === false || isNumber(item.soLuong) === false) {
                 hasEmptyGiaTris = true;

@@ -185,7 +185,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="card card-body" style="border-radius: 10px; height: 593px">
+                    <div class="card card-body" style="border-radius: 10px; height: 670px">
                         <div class="row">
                             <div class="col-lg-6">
                                 <h5><strong>Nhân viên: </strong> <%=SecurityUtils.getPrincipal().getTen()%>
@@ -373,6 +373,7 @@
     let isPayment = true;
     let param = '';
     let pageCurrent = 1;
+    let customers = [];
 
     setInterval(time, 1000);
 
@@ -394,6 +395,8 @@
     loadAllProduct();
 
     loadHoaDon();
+
+    loadHoaDonInActive();
 
     $('.btn-add-invoice').on('click', function (e) {
         e.preventDefault();
@@ -475,7 +478,6 @@
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: (response) => {
-                    console.log(response);
                     $('#exampleModal1').removeClass('show');
                     $('.modal-backdrop').addClass('d-none');
                     $('#search-customer').val(response.soDienThoai + " - " + response.ten);
@@ -823,7 +825,6 @@
                                 dataType: "json",
                                 data: JSON.stringify(attributeId),
                                 success: (response) => {
-                                    console.log(response);
                                     variantId = response.id;
                                     couponId = response.khuyenMaiHienThiResponse.id;
 
@@ -911,8 +912,6 @@
         });
     });
 
-    let customers = [];
-
     $.ajax({
         url: '/api/khach-hang/all',
         method: "GET",
@@ -960,7 +959,6 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
-                console.log(response)
                 let totalInvoice = 0;
                 let toatlQuantity = 0;
                 let html = ``;
@@ -1374,6 +1372,87 @@
             },
             error: (error) => {
                 errorCallback(error);
+            }
+        });
+    }
+
+    function loadHoaDonInActive() {
+        $.ajax({
+            url: "/api/xoa-bien-the/invoice/" + maHoaDon,
+            method: "GET",
+            dataType: "json",
+            success: (response) => {
+                let html = '';
+                $.each(response, (index, item) => {
+                    html += `<div class="special-card" style="border-bottom: 1px solid #dedede">
+                                <div class="card card-body mb-2 card-body-invoice-detail" style="border-radius: 10px;">
+                                    <div class="row">
+                                        <div class="col-xl-1 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>\${++index}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tên sản phẩm</span>
+                                                    <h5 class="mb-0 pt-1 font-w500 text-black" style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.ten}</h5>
+                                                    <div class="name-variant mb-0 pt-1 text-success">\${item.giaTriBienThe}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                            <div class="d-flex align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Số lượng</span>
+                                                    <div class="input-group w-100 action">
+                                                        <p>\${item.soLuong}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex  align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Đơn giá</span><br>
+                                                    <span class="mb-0 pt-1 fs-5 font-w500 text-black">\${formatNumber(item.giaGoc)}</span> đ
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                            <div class="d-flex project-status align-items-center">
+                                                <div class="ml-2">
+                                                    <span>Tổng tiền</span><br>
+                                                    <span class="mb-0 pt-1 font-w500 fs-5 text-black">\${formatNumber(item.thanhTien)}</span> đ
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 my-2 col-lg-6 col-sm-6">
+                                             <div class="dropdown">
+                                                <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </svg>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="">Xóa</a>
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="" class="invoice-detail" value="\${item.id}">
+                              </div>
+                        </div>`
+                })
+                $('#invoice-disable').html(html);
+            },
+            error: (error) => {
+                console.log(error);
             }
         });
     }

@@ -11,7 +11,6 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "hoadonchitiet")
@@ -48,6 +47,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
+
 	@Column(name = "tenbienthe")
 	private String tenBienThe;
 

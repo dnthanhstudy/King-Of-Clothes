@@ -24,4 +24,6 @@ public class HoaDonChiTietRequest{
     private Double soTienGiam;
 
     private String trangThai = "ACTIVE";
+
+    private String tenBienThe;
 }

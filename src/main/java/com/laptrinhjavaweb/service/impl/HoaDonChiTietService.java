@@ -26,6 +26,7 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         HoaDonChiTietEntity entity = hoaDonChiTietConverter.convertToEntity(hoaDonChiTietRequest);
         HoaDonChiTietEntity hoaDonChiTietEntity = hoaDonChiTietRepository.findByHoaDon_maAndSanPham_idAndBienThe_id(hoaDonChiTietRequest.getMaHoaDon(),
                 hoaDonChiTietRequest.getIdSanPham(), hoaDonChiTietRequest.getIdBienThe());
+
         if(hoaDonChiTietEntity != null){
             Integer quantity = entity.getSanPham().getSoLuong();
             if(entity.getBienThe() != null) {
@@ -40,9 +41,10 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
             }
             hoaDonChiTietEntity.setSoLuong(hoaDonChiTietEntity.getSoLuong() + 1);
             hoaDonChiTietEntity.setThanhTien(hoaDonChiTietEntity.getGia() * hoaDonChiTietEntity.getSoLuong());
-
+            hoaDonChiTietEntity.setTenBienThe(hoaDonChiTietEntity.getBienThe().getTen());
             hoaDonChiTietRepository.save(hoaDonChiTietEntity);
         }else{
+            entity.setTenBienThe(entity.getBienThe().getTen());
             hoaDonChiTietRepository.save(entity);
         }
     }
@@ -64,6 +66,7 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         if(entity.getSoLuong() > quantity){
             throw new ClientError("Vui lòng giảm số lượng sản phẩm mua hoặc kiểm tra lại số lượng sản phẩm có sẵn");
         }
+
         hoaDonChiTietRepository.save(entity);
     }
 
