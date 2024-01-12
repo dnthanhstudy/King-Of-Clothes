@@ -20,7 +20,8 @@ public interface HoaDonChiTietResponse {
     @Value("#{target.sanPham.slug}")
     String getSlugSP();
 
-    @Value("#{target.hinhAnh}")
+//    @Value("#{target.hinhAnh}")
+    @Value("#{target.anhbienthe}")
     String getImage();
 
 //    @Value("#{target.bienThe.id}")
@@ -76,5 +77,6 @@ public interface HoaDonChiTietResponse {
 
     @Value("#{target.hoaDon.moTa}")
     String getMoTa();
+
 
 }
