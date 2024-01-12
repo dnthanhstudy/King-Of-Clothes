@@ -48,6 +48,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name = "idhoadon")
 	private HoaDonEntity hoaDon;
+
 	@Column(name = "tenbienthe")
 	private String tenBienThe;
 
