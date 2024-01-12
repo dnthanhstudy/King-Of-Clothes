@@ -2,23 +2,23 @@
 loadProductInActive();
 checkChuanBiDat();
 
-async function huyDatHang(){
+async function huyDatHang() {
     await $.ajax({
-        url: 'http://localhost:8080/api/hoadon/huydathang/'+idkh,
+        url: 'http://localhost:8080/api/hoadon/huydathang/' + idkh,
         method: 'GET',
-        success: function(req) {
+        success: function (req) {
             loadProductActive()
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             showError('Có lỗi xảy ra, hãy liên hệ admin');
         }
     });
 }
 
-async function checkChuanBiDat(){
+async function checkChuanBiDat() {
     loadProductActive();
     await $.ajax({
-        url: '/api/hoadon/chuanbidat/'+customerIdWhenLogin,
+        url: '/api/hoadon/chuanbidat/' + customerIdWhenLogin,
         method: 'GET',
         success: async function (req) {
             var data = req.data;
@@ -26,13 +26,12 @@ async function checkChuanBiDat(){
             if (data.length != 0) {
                 if (await showConfirm("Bạn hiện có giỏ hàng đang chuẩn bị đặt hàng,bạn có muốn quay lại quá trình đặt hàng không ?")) {
                     window.location.href = "/checkout"
-                }
-                else {
+                } else {
                     await huyDatHang()
                 }
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.log("false")
             console.log('Có lỗi xảy ra: ' + error);
         }
@@ -67,7 +66,7 @@ $('#buy-product').on('click', function () {
     checkQuantity(checked,
         function () {
 
-          //  showSuccess("Bạn có thể mua được hàng nè");
+            //  showSuccess("Bạn có thể mua được hàng nè");
             muaHang();
         },
         function (error) {
@@ -96,7 +95,7 @@ $('#cart').on('click', function (e) {
         loadTotalCart(checked);
     } else if (eleClick.hasClass('btn-remove-cart-item')) {
         deleteCart(eleClick);
-    }else if (eleClick.hasClass('btn-not-change')) {
+    } else if (eleClick.hasClass('btn-not-change')) {
         const parent = eleClick.closest('.cart-item');
         parent.find('.list-attr-name').removeClass('show')
     }
@@ -107,7 +106,7 @@ $('#cart').on('click', function (e) {
     }
 })
 
-$('#cart-disable').on('click', function (e){
+$('#cart-disable').on('click', function (e) {
     const eleClick = $(e.target);
     if (eleClick.hasClass('deleteBienThe')) {
         deleteBienThe(eleClick);
@@ -167,7 +166,7 @@ function loadGia(donGia, giaMua) {
         return `
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
         `;
-    }else{
+    } else {
         return `
             <del class="price-origin product-price-custom-vnd">${donGia}</del>
             <b class="ms-2 price-discount product-price-custom-vnd">${giaMua}</b>
@@ -189,7 +188,7 @@ function loadGiaInActice(giaGoc, giaMua) {
 }
 
 function checkHetHangGioHang(item) {
-    let flag = item.trangThaiSanPham&&item.soLuongConLaiBienThe>0;
+    let flag = item.trangThaiSanPham && item.soLuongConLaiBienThe > 0;
     return flag;
 }
 
@@ -203,8 +202,12 @@ function loadProductActive() {
             let html = '';
             $.each(response.gioHang, (index, item) => {
                 let checkHetHang = checkHetHangGioHang(item);
-                let genderInput = checkHetHang ==true?`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />`:`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
-                let setClassCart = checkHetHang == true ?"cart-item":"special-card";
+                let genderInput = checkHetHang == true ? `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />` : `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
+                let setClassCart = checkHetHang == true ? "cart-item" : "special-card";
+
+                //chèn ảnh hết hàng
+                let soldOutImage = checkHetHang ? '' : '<img src="/repository/hethang.jpg" style="width: 100px;" class="out-of-stock-image" />';
+
                 console.log(checkHetHang)
                 html += `<div style="border-bottom: 1px solid #dedede" class="${setClassCart}">
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
@@ -215,13 +218,17 @@ function loadProductActive() {
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
                                           <div class="col-lg-3">
-                                            <a href="/san-pham/${item.slug}">
-                                              <img
-                                                src="/repository/${item.image}"
-                                                class="img-fluid rounded-start cart-item-image"
-                                                alt="..."
-                                              />
-                                            </a>
+                                            <div class="img-container"> 
+                                                <a href="/san-pham/${item.slug}">
+                                                  <img
+                                                    src="/repository/${item.image}"
+                                                    class="img-fluid rounded-start cart-item-image"
+                                                    alt="..."
+                                                  />
+                                                </a>
+                                                  <!-- Ảnh thông báo hết hàng -->
+                                                 ${soldOutImage}
+                                            </div>
                                           </div>
                                           <div class="col-lg-9">
                                             <div class="card-body">
@@ -332,11 +339,14 @@ function loadProductActive() {
             })
             $('#cart').html(html);
 
-            $('.product-price-custom-vnd').each(function(index, item) {
+            $('.product-price-custom-vnd').each(function (index, item) {
                 let res = $(item).html();
-                if(res.indexOf("đ") === -1){
+                if (res.indexOf("đ") === -1) {
                     let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                    let formattedValue = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(numericValue);
                     $(item).html(formattedValue);
                 }
             });
@@ -601,15 +611,12 @@ function loadProductInActive() {
                                             <div class="mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-lg-3">
-                                                        <a href="">
-                                                            <img src="/repository/${item.anh}"
-                                                                 class="img-fluid rounded-start" alt="...">
-                                                        </a>
+                                                        <img src="/repository/${item.anh}"
+                                                             class="img-fluid rounded-start" alt="...">
                                                     </div>
                                                     <div class="col-lg-9">
                                                         <div class="card-body">
-                                                            <a style="color: black; text-decoration: none;" href=""><h5
-                                                                    class="card-title line-clamp-2">${item.ten}</h5></a>
+                                                           <h5 class="card-title line-clamp-2">${item.ten}</h5>
                                                             <div class="btn-group">
                                                                 <span class="dropdown-toggle">
                                                                     Phân loại hàng
@@ -644,11 +651,14 @@ function loadProductInActive() {
             })
             $('#cart-disable').html(html);
 
-            $('.product-price-custom-vnd').each(function(index, item) {
+            $('.product-price-custom-vnd').each(function (index, item) {
                 let res = $(item).html();
-                if(res.indexOf("đ") === -1){
+                if (res.indexOf("đ") === -1) {
                     let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                    let formattedValue = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(numericValue);
+                    let formattedValue = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND'
+                    }).format(numericValue);
                     $(item).html(formattedValue);
                 }
             });

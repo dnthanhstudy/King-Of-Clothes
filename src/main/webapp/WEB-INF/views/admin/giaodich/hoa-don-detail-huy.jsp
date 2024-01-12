@@ -177,22 +177,11 @@
                                      <img src='/repository/\${item.image}' style="width: 120px;">
                                  </td>
                                  <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">\${item.tenSanPham}</td>
-                                 <td class="text-center">`;
-                    var nameVariant = [];
-                    item.thuocTinh.forEach(function (itemThuocTinh) {
-                        itemThuocTinh.giaTriThuocTinh.forEach(function (itemGiaTriThuocTinh) {
-                            item.giaTriThuocTinhChecked.forEach(function (itemGiaTriThuocTinhChecked){
-                                if (itemGiaTriThuocTinhChecked === itemGiaTriThuocTinh.id) {
-                                    nameVariant.push(itemGiaTriThuocTinh.giaTri);
-                                }
-                            })
-                        });
-                    });
-                    row += `\${nameVariant.join(", ")}</td>
-                             <td class="text-center">\${item.soLuong}</td>
-                             <td class="text-center">\${formatNumber(item.gia)} đ</td>
-                             <td class="text-center">\${formatNumber(item.thanhTien)} đ</td>
-                        </tr>`;
+                                 <td class="text-center">\${item.tenBienThe}</td>
+                                 <td class="text-center">\${item.soLuong}</td>
+                                 <td class="text-center">\${formatNumber(item.gia)} đ</td>
+                                 <td class="text-center">\${formatNumber(item.thanhTien)} đ</td>
+                            </tr>`;
                     tbody.append(row);
                     $('#invoice-quantity').text(toatlQuantity);
                     $('.invoice-total').text(formatNumber(totalInvoice));

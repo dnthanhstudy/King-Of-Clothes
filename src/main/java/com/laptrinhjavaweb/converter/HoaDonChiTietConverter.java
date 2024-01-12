@@ -64,18 +64,24 @@ public class HoaDonChiTietConverter {
         SanPhamResponse sanPhamResponse = sanPhamConverter.convertToResponse(sanPhamEntity);
         List<ThuocTinhResponse> thuocTinhResponse = sanPhamResponse.getThuocTinh();
 
-        BienTheEntity bienTheEntity = bienTheRepository.findById(entity.getBienThe().getId()).get();
-        if (bienTheEntity.getHinhAnh() != null) {
-            response.setImage(bienTheEntity.getHinhAnh());
-        } else {
+        BienTheEntity bt = entity.getBienThe();
+        if(bt != null){
+            BienTheEntity bienTheEntity = bienTheRepository.findById(bt.getId()).get();
+            if (bienTheEntity.getHinhAnh() != null) {
+                response.setImage(bienTheEntity.getHinhAnh());
+            } else {
+                response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+            }
+            List<Long> giaTriThuocTinhChecked = bienTheEntity.getGiaTriThuocTinhBienTheEntities().stream().map(
+                    item -> item.getGiaTriThuocTinh().getId()
+            ).collect(Collectors.toList());
+            response.setIdBienThe(bienTheEntity.getId());
+            response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
+            response.setThuocTinh(thuocTinhResponse);
+        }
+        else{
             response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
         }
-        List<Long> giaTriThuocTinhChecked = bienTheEntity.getGiaTriThuocTinhBienTheEntities().stream().map(
-                item -> item.getGiaTriThuocTinh().getId()
-        ).collect(Collectors.toList());
-
-        response.setIdBienThe(bienTheEntity.getId());
-        response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
         response.setThuocTinh(thuocTinhResponse);
         response.setTenSanPham(sanPhamEntity.getTen());
         response.setTenThuongHieu(sanPhamEntity.getThuongHieu().getTen());
