@@ -253,6 +253,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
 
+
     public void saveTichDiemOnline(HoaDonEntity hoaDonEntity){
             TichDiemEntity entity = tichDiemRepository.findByKhachHang_ma(hoaDonEntity.getKhachHang().getMa());
             Integer soDiemTichDuoc = quyDoiDiemService.TienQuyDiem(hoaDonEntity.getTongTienHang());

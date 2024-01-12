@@ -55,4 +55,5 @@ public interface HoaDonService {
     AllThongKeResponse allThongKe(Integer thoiGian);
 
     List<TopResponse> thongKeDsSanPham();
+
 }

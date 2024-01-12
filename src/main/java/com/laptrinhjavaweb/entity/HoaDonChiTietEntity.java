@@ -52,15 +52,21 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	@Column(name = "tenbienthe")
 	private String tenBienThe;
 
+	@Column(name = "anhbienthe")
+	private String anhbienthe;
+
 	public Double getGiaTien(){
+		if (bienThe==null){
+			return gia;
+		}
 		if (bienThe.getGia()==null){
-			return bienThe.getSanPham().getGia()*soLuong;
+			return sanPham.getGia();
 		}else return bienThe.getGia();
 	}
 
-	public KhuyenMaiEntity getKM(){
-		return this.khuyenMai;
-	}
+//	public KhuyenMaiEntity getKM(){
+//		return this.khuyenMai;
+//	}
 
 	private Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){
 		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
@@ -81,6 +87,9 @@ public class HoaDonChiTietEntity extends BaseEntity{
 				.findFirst();
 	}
 	public Double getGiaTienKm(){
+		if (bienThe==null){
+		return thanhTien;
+		}
 		Optional<KhuyenMaiSanPhamEntity> khuyenMaiHopLeOptional = getKhuyenMai();
 		if (khuyenMaiHopLeOptional.isPresent()) {
 			KhuyenMaiSanPhamEntity khuyenMaiHopLe = khuyenMaiHopLeOptional.get();
@@ -107,8 +116,8 @@ public class HoaDonChiTietEntity extends BaseEntity{
 		return giaTienKm*soLuong;
 	}
 	public String getHinhAnh() {
-		return bienThe.getHinhAnh()==null?
-				bienThe.getSanPham().getAnhSanPhamEntities().get(0).getHinhAnh(): bienThe.getHinhAnh();
+		return bienThe==null||bienThe.getHinhAnh()==null?
+				sanPham.getAnhSanPhamEntities().get(0).getHinhAnh(): bienThe.getHinhAnh();
 	}
 
 	public BienTheEntity getBienThe() {
