@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
@@ -18,8 +19,18 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     		ClientError ex) {
 		ErrorResponse error = new ErrorResponse();
         error.setError(ex.getMessage());
-		List<String> details = new ArrayList<>();
+		Map<String, Object> details = new HashMap<>();
 		error.setDetails(details);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+	@ExceptionHandler(MultipleMessageError.class)
+	public ResponseEntity<ErrorResponse> clientMultipleErrorException(
+			MultipleMessageError ex) {
+		ErrorResponse error = new ErrorResponse();
+		error.setError(ex.getMessage());
+		Map<String, Object> details = new HashMap<>();
+		error.setDetails(ex.getErrors());
+		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
 }

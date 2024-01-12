@@ -241,6 +241,7 @@ function loadProductActive() {
                             }
                         })
                         let iconCheck = '';
+                        let isDisable = false;
                         if (isFlag) {
                             iconCheck = `<i class="fas fa-check"></i>`;
                         }
@@ -386,6 +387,9 @@ function updateCart(ele) {
         },
         error: (error) => {
             showError(error.responseJSON.error)
+            if(Object.keys(error.responseJSON.details).length > 0){
+                eleCartItem.find('.product-quantity').val(error.responseJSON.details.quantity);
+            }
         }
     });
 }

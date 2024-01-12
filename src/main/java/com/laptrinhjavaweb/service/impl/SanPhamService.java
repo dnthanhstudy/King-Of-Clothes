@@ -12,6 +12,7 @@ import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
+import org.apache.xpath.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -241,38 +242,6 @@ public class SanPhamService implements ISanPhamService {
         return results;
     }
 
-    @Override
-    @Transactional
-    public SanPhamResponse update(SanPhamRequest sanPhamRequest) {
-        remove(sanPhamRequest.getId());
-        SanPhamEntity sanPhamEntity = sanPhamConvert.convertToEntity(sanPhamRequest);
-        sanPhamRepository.save(sanPhamEntity);
-        final Long idSanPham = sanPhamEntity.getId();
-        List<ThuocTinhRequest> listThuocTinh = sanPhamRequest.getThuocTinh().stream().map(
-                item -> {
-                    item.setIdSanPham(idSanPham);
-                    ThuocTinhResponse thuocTinhResponse = thuocTinhService.save(item);
-                    Long idThuocTinh = thuocTinhResponse.getId();
-                    for (String giaTri : item.getGiaTris()) {
-                        GiaTriThuocTinhRequest giaTriThuocTinhRequest = new GiaTriThuocTinhRequest(idThuocTinh, idSanPham, giaTri);
-                        giaTriThuocTinhService.save(giaTriThuocTinhRequest);
-                    }
-                    return item;
-                }
-        ).collect(Collectors.toList());
-
-        List<BienTheRequest> listBienThe = sanPhamRequest.getBienThe().stream().map(
-                item -> {
-                    item.setIdSanPham(idSanPham);
-                    bienTheService.save(item);
-                    return item;
-                }
-        ).collect(Collectors.toList());
-
-        SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
-        return result;
-    }
-
     @Transactional
     public void remove(Long id) {
         SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).orElse(null);
@@ -331,7 +300,151 @@ public class SanPhamService implements ISanPhamService {
             xoaBienTheRepository.save(xoaBienTheEntity);
         }
         hoaDonChiTietRepository.deleteWhenUpdateProduct(idsBienThe);
-        hoaDonChiTietRepository.updateHoaDonChoWhenUpdateProduct(idsBienThe);
         hoaDonChiTietRepository.updateWhenUpdateProduct(idsBienThe);
+    }
+
+    @Override
+    @Transactional
+    public SanPhamResponse update(SanPhamRequest sanPhamRequest) {
+        Long idSanPham = sanPhamRequest.getId();
+        SanPhamEntity sanPhamEntity = sanPhamRepository.findById(sanPhamRequest.getId()).get();
+        List<String> listThuocTinhCurrent = sanPhamRequest.getThuocTinh().stream().map(
+                item -> item.getGiaTris()
+        ).flatMap(item -> item.stream()).collect(Collectors.toList());
+
+        List<String> listThuocTinhOrigin = sanPhamEntity.getThuocTinhEntities().stream()
+                .flatMap(item -> item.getGiaTriThuocTinhEntities().stream())
+                .map(item -> item.getGiaTri())
+                .collect(Collectors.toList());
+
+        List<String> listThuocTinhThem = listThuocTinhCurrent.stream().filter(
+                item -> !listThuocTinhOrigin.contains(item)
+        ).collect(Collectors.toList());
+
+        List<String> listThuocTinhXoa = listThuocTinhOrigin.stream().filter(
+                item -> !listThuocTinhCurrent.contains(item)
+        ).collect(Collectors.toList());
+
+        List<String> listBienTheCurrent = sanPhamRequest.getBienThe().stream()
+                .map(item -> item.getTen()).collect(Collectors.toList());
+
+        List<String> listBienTheOrigin = sanPhamEntity.getBienTheEntities().stream().map(item -> item.getTen()).collect(Collectors.toList());
+
+        List<String> listBienTheThem = listBienTheCurrent.stream().filter(
+                item -> !listBienTheOrigin.contains(item)
+        ).collect(Collectors.toList());
+
+        List<String> listBienTheXoa = listBienTheOrigin.stream().filter(
+                item -> !listBienTheCurrent.contains(item)
+        ).collect(Collectors.toList());
+
+        List<ThuocTinhRequest> listThuocTinhRequestThem = sanPhamRequest.getThuocTinh().stream()
+                .peek(item -> item.getGiaTris().removeIf(giaTri -> listThuocTinhThem.stream().noneMatch(thuoctinh -> thuoctinh.equals(giaTri))))
+                .filter(item -> !item.getGiaTris().isEmpty())
+                .collect(Collectors.toList());
+
+        List<BienTheRequest> listBienTheRequestThem = sanPhamRequest.getBienThe().stream().
+                filter(
+                        item -> listBienTheThem.stream().anyMatch(bienThe -> bienThe.equals(item.getTen()))
+                ).collect(Collectors.toList());
+
+        List<BienTheEntity> listBienTheRequestBanDau = sanPhamEntity.getBienTheEntities();
+
+        List<BienTheRequest> listBienTheRequestHienTai = sanPhamRequest.getBienThe();
+
+        List<BienTheRequest> listBienTheRequestThayDoi = listBienTheRequestHienTai.stream()
+                .filter(
+                        item ->
+                                listBienTheRequestBanDau.stream().anyMatch(
+                                        bienTheEntity -> (bienTheEntity.getTen().equals(item.getTen()) &&
+                                                (!bienTheEntity.getSoLuong().equals(item.getSoLuong()) || !bienTheEntity.getGia().equals(item.getGia())))
+                                )
+                ).collect(Collectors.toList());
+        ;
+
+        List<Long> idsBienThe = listBienTheXoa.stream().map(
+                item -> bienTheRepository.findByTenAndSanPham_Id(item, idSanPham).getId()
+        ).collect(Collectors.toList());
+
+        List<Long> idsGiaTriThuocTinh = listThuocTinhXoa.stream().map(
+                item -> giaTriThuocTinhRepository.findByGiaTriAndSanPham_Id(item, idSanPham).getId()
+        ).collect(Collectors.toList());
+
+        if (idsBienThe.size() > 0) {
+            Integer row = hoaDonChiTietRepository.updateProduct(idsBienThe);
+            if (row > 0) {
+                if (sanPhamEntity.getThuocTinhEntities().size() != sanPhamRequest.getThuocTinh().size()) {
+                    throw new ClientError("Hiện tại do đang có sản phẩm nằm trong hóa đơn treo hoặc chờ xác nhận nên bạn không được thêm thuộc tính." +
+                            " Xin lỗi vì sự bất tiện này");
+                }
+                String nameProducts = listThuocTinhXoa.stream().map(
+                        item -> item
+                ).collect(Collectors.joining(","));
+                throw new ClientError("Do có các sản phẩm có thuộc tính bắt đầu bằng " + nameProducts + " nằm trong hóa đơn treo hoặc chờ xác nhận. Vui lòng không xóa các" +
+                        " thuộc tính kể trên. Xin lỗi vì sự bất tiện này");
+            }
+        }
+        if (sanPhamEntity.getThuocTinhEntities().size() == sanPhamRequest.getThuocTinh().size()) {
+            if (idsBienThe.size() > 0) {
+                updateGioHangChiTiet(idsBienThe, sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+                updateHoaDonChiTiet(idsBienThe, sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+                giaTriThuocTinhBienTheRepository.deleteByBienThe_IdIn(idsBienThe);
+                bienTheRepository.deleteByIdIn(idsBienThe);
+            }
+            if (idsGiaTriThuocTinh.size() > 0) {
+                giaTriThuocTinhRepository.deleteByIdIn(idsGiaTriThuocTinh);
+            }
+            listThuocTinhRequestThem.forEach(
+                    item -> {
+                        item.setIdSanPham(idSanPham);
+                        Long idThuocTinh = thuocTinhRepository.findByTenAndSanPham_Id(item.getTen(), idSanPham).getId();
+                        for (String giaTri : item.getGiaTris()) {
+                            GiaTriThuocTinhRequest giaTriThuocTinhRequest = new GiaTriThuocTinhRequest(idThuocTinh, idSanPham, giaTri);
+                            giaTriThuocTinhService.save(giaTriThuocTinhRequest);
+                        }
+                    }
+            );
+
+            listBienTheRequestThem.forEach(
+                    item -> {
+                        item.setIdSanPham(idSanPham);
+                        bienTheService.save(item);
+                    }
+            );
+
+            listBienTheRequestThayDoi.forEach(
+                    item -> {
+                        item.setId(bienTheRepository.findByTenAndSanPham_Id(item.getTen(), idSanPham).getId());
+                        item.setIdSanPham(idSanPham);
+                        bienTheService.save(item);
+                    }
+            );
+        } else {
+            remove(sanPhamRequest.getId());
+            sanPhamRepository.save(sanPhamEntity);
+            List<ThuocTinhRequest> listThuocTinh = sanPhamRequest.getThuocTinh().stream().map(
+                    item -> {
+                        item.setIdSanPham(idSanPham);
+                        ThuocTinhResponse thuocTinhResponse = thuocTinhService.save(item);
+                        Long idThuocTinh = thuocTinhResponse.getId();
+                        for (String giaTri : item.getGiaTris()) {
+                            GiaTriThuocTinhRequest giaTriThuocTinhRequest = new GiaTriThuocTinhRequest(idThuocTinh, idSanPham, giaTri);
+                            giaTriThuocTinhService.save(giaTriThuocTinhRequest);
+                        }
+                        return item;
+                    }
+            ).collect(Collectors.toList());
+
+            List<BienTheRequest> listBienThe = sanPhamRequest.getBienThe().stream().map(
+                    item -> {
+                        item.setIdSanPham(idSanPham);
+                        bienTheService.save(item);
+                        return item;
+                    }
+            ).collect(Collectors.toList());
+        }
+        sanPhamRepository.save(sanPhamConvert.convertToEntity(sanPhamRequest));
+        SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
+        return result;
     }
 }
