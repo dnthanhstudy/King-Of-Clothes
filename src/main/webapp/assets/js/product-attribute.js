@@ -4,28 +4,28 @@ $(".input-name-atrribute").on("keypress", function (e) {
         e.preventDefault();
         let nameAttribute = $(e.target).val();
         if (!nameAttribute) {
-            showError("Thuộc tính không được để trống");
+            showError("Thuộc tính này đã tòn tại");
         } else {
             $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
             if (findBySlug(slugAttribute) !== undefined) {
-                showError("Thuộc tính này đã tòn tại")
+                messageNotication(attributeExsits, "rgba(255, 99, 71, 1)");
             } else {
                 const eleDivProductsHasAtributes = $(
                     `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
                 );
                 const eleNameAttribute = `<div class="name-attribute">
-                                                  <button type="button" class="btn btn-success position-relative">
-                                                      ${nameAttribute}
-                                                    <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                         <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
-                                                    </span>
-                                                  </button>
-                                              </div>
-            
-                                              <div class="input-group mt-3">
-                                                  <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
-                                              </div>`;
+                                                <button type="button" class="btn btn-success position-relative">
+                                                    ${nameAttribute}
+                                                  <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                       <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
+                                                  </span>
+                                                </button>
+                                            </div>
+          
+                                            <div class="input-group mt-3">
+                                                <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
+                                            </div>`;
                 eleDivProductsHasAtributes.html(eleNameAttribute);
                 $("#card-attribute .card-body").append(eleDivProductsHasAtributes);
             }
@@ -53,19 +53,19 @@ $("#card-attribute .card-body").on("click", function (e) {
                 const slugCurrent = eleClick.parent().parent().data("slug");
                 if (valueAttr) {
                     if (checkValuExsits(slugCurrent, valueAttr) !== undefined) {
-                        showError("Gía trị thuộc tính này đã tồn tại")
+                        showError("Gía trị thuộc tính này đã tồn tại");
                     } else {
                         const eleValueAttr = `<button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
-                ${valueAttr}
-                <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                   <i class="fa fa-trash-o btn-remove-children-trash" aria-hidden="true"></i>
-                </span>
-          </button>`;
+              ${valueAttr}
+              <span class="btn-remove-children position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                 <i class="fa fa-trash-o btn-remove-children-trash" aria-hidden="true"></i>
+              </span>
+        </button>`;
                         eleClick.parent().prev().append(eleValueAttr);
                         generateVariant();
                     }
                 } else {
-                    showError("Không được để trống giá trị thuộc tính")
+                    messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
                 }
 
                 eleClick.val("");
@@ -76,9 +76,13 @@ $("#card-attribute .card-body").on("click", function (e) {
 
 // Delete attribute
 $("#card-attribute").on("click", (e) => {
-    if($(e.target).hasClass("input-name-atrribute") || $(e.target).hasClass("input-value-attribute")){
+    if (
+        $(e.target).hasClass("input-name-atrribute") ||
+        $(e.target).hasClass("input-value-attribute")
+    ) {
         return;
     }
+
     if ($(e.target).hasClass("btn-remove-children")) {
         $(e.target).parent().remove();
     } else if ($(e.target).hasClass("btn-remove-children-trash")) {
@@ -127,6 +131,15 @@ $("#ten").keyup(function () {
     $("#slug").val(slug);
 });
 
+$("#btn-set-price").on("click", function () {
+    let price = $("#price-all").val();
+    $(".table-variant-body .price-variant").each((index, item) => {
+        console.log($(item));
+        $(item).val(price);
+    });
+    $("#price-all").val('');
+});
+
 function generateVariant() {
     let arrayAttributes = getAttributeValues();
 
@@ -143,30 +156,45 @@ function generateVariant() {
         }
     }
 
-    attrs = attrs.reduce((a, b) =>
-        a.flatMap((d) => b.map((e) => ({...d, ...e})))
-    );
-
+    if (attrs.length > 0) {
+        attrs = attrs.reduce((a, b) =>
+            a.flatMap((d) => b.map((e) => ({...d, ...e})))
+        );
+    }
     displayVarinatsOnTable(attrs);
 }
 
 function displayVarinatsOnTable(attrs) {
+    let arrs = getValueInTable();
     $("#variants").html("");
     for (const attr of attrs) {
         let row = Object.values(attr).join(",");
-        const trcontent = `<tr>
-                                <input type="hidden" value="" class="form-control id-variant">
-                              <td class="text-center name-variant">${row}</td>
-                              <td>
-                                <input type="text" class="form-control price-variant" />
-                              </td>
-                              <td>
-                                <input type="text" class="form-control quantity-variant"/>
-                              </td>
-                              <td>                     
-                                <input class="form-control image-variant" type="file">
-                          </td>
-                      </tr> `;
+        let gia = "";
+        let soLuong = "";
+
+        arrs.forEach((element) => {
+            if (
+                element.ten === row ||
+                element.ten.split(",").slice(0, -1).join(",") === row ||
+                element.ten === row.split(",").slice(0, -1).join(",")
+            ) {
+                gia = element.gia;
+                soLuong = element.soLuong;
+                return false;
+            }
+        });
+        let trcontent = `<tr>
+                            <td class="text-center name-variant">${row}</td>
+                            <td>
+                              <input type="text" class="form-control price-variant" value="${gia}"/>
+                            </td>
+                            <td>
+                              <input type="text" class="form-control quantity-variant" value="${soLuong}"/>
+                            </td>
+                            <td>                     
+                              <input class="form-control image-variant" type="file">
+                            </td>
+                        </tr> `;
         $(".table-variant-body").append(trcontent);
     }
 }
@@ -249,10 +277,6 @@ function getAttributeValues() {
 function getVariants() {
     let variants = [];
     $(".table-variant-body tr").each((index, item) => {
-        let id = null;
-        if (item.querySelector(".id-variant").value !== "") {
-            id = item.querySelector(".id-variant").value;
-        }
         const ten = item.querySelector(".name-variant").textContent;
         let soLuong = null;
         if (item.querySelector(".quantity-variant").value !== null) {
@@ -267,7 +291,6 @@ function getVariants() {
             hinhanhbase64 = item.querySelector(".hinhanhbase64").src;
         }
         let variant = {};
-        variant["id"] = id;
         variant["ten"] = ten;
         variant["gia"] = gia;
         variant["soLuong"] = soLuong;
@@ -294,6 +317,23 @@ function getDataFromForm() {
         data[propertyName] = propertyValue;
     });
     return data;
+}
+
+function getValueInTable() {
+    let arrs = [];
+    $(".table-variant-body tr").each((index, item) => {
+        let ten = item.querySelector(".name-variant").textContent;
+        let soLuong = item.querySelector(".quantity-variant").value;
+        let gia = item.querySelector(".price-variant").value;
+
+        let data = {};
+        data["ten"] = ten;
+        data["soLuong"] = soLuong;
+        data["gia"] = gia;
+
+        arrs.push(data);
+    });
+    return arrs;
 }
 
 let attributes = [];
@@ -351,16 +391,3 @@ function loadSuggestions(options) {
         }
     });
 }
-
-$('#btn-set-price').on('click', function(){
-    let price = $("#price-all").val();
-    let res = isNumber(price);
-    if(res === false){
-        showError("Gía không hợp lệ. Xin kiểm tra lại");
-        return false;
-    }
-    $(".table-variant-body .price-variant").each((index, item) => {
-        $(item).val(price)
-    });
-    $("#price-all").val("");
-});

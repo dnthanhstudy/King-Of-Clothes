@@ -9,4 +9,6 @@ public interface IXoaBienTheService {
     List<XoaBienTheResponse> findAllByMaKhachHang (String maKhachHang);
 
     List<XoaBienTheResponse> findAllByMaHoaDon (String maHoaDon);
+
+    void deleteBienThe(Long id);
 }

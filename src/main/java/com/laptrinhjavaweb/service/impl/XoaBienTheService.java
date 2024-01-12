@@ -34,4 +34,9 @@ public class XoaBienTheService implements IXoaBienTheService {
         ).collect(Collectors.toList());
         return result;
     }
+
+    @Override
+    public void deleteBienThe(Long id) {
+        xoaBienTheRepository.deleteById(id);
+    }
 }

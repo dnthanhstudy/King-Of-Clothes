@@ -679,3 +679,9 @@ input:checked + .slider:before {
     transform: translateX(1.4em);
     background-color: #fff;
 }
+
+/*disable cart*/
+.special-card {
+    background-color: rgba(245, 245, 245, 1);
+    opacity: .4;
+}

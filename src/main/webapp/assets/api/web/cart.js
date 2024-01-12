@@ -96,7 +96,7 @@ $('#cart').on('click', function (e) {
         loadTotalCart(checked);
     } else if (eleClick.hasClass('btn-remove-cart-item')) {
         deleteCart(eleClick);
-    } else if (eleClick.hasClass('btn-not-change')) {
+    }else if (eleClick.hasClass('btn-not-change')) {
         const parent = eleClick.closest('.cart-item');
         parent.find('.list-attr-name').removeClass('show')
     }
@@ -104,6 +104,13 @@ $('#cart').on('click', function (e) {
     const eleNameAttr = eleClick.closest('.cart-item').find('.list-attr-name');
     if (!eleNameAttr.hasClass('show')) {
         removeIonChecked(eleClick);
+    }
+})
+
+$('#cart-disable').on('click', function (e){
+    const eleClick = $(e.target);
+    if (eleClick.hasClass('deleteBienThe')) {
+        deleteBienThe(eleClick);
     }
 })
 
@@ -180,6 +187,7 @@ function loadGiaInActice(giaGoc, giaMua) {
         `;
     }
 }
+
 function checkHetHangGioHang(item) {
     let flag = item.trangThaiSanPham&&item.soLuongConLaiBienThe>0;
     return flag;
@@ -552,7 +560,6 @@ function deleteCart(eleClick) {
 
                     }
                 });
-
             }
         });
 }
@@ -587,7 +594,8 @@ function loadProductInActive() {
             let html = '';
             $.each(response, (index, item) => {
                 html += `<div class="special-card" style="border-bottom: 1px solid #dedede">
-                            <div class="row mt-2 d-flex justify-content-center align-items-center">
+                            <div class="row mt-2 d-flex justify-content-center align-items-center cart-delete">
+                                <input type="hidden" class="cart-id" value="${item.id}">
                                 <div class="col-5">
                                     <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                             <div class="mb-3" style="max-width: 540px;">
@@ -629,7 +637,7 @@ function loadProductInActive() {
                                     <b class="product-price-custom-vnd">${item.thanhTien}</b>
                                 </div>
                                 <div class="col-1" style="background: #fff;height: 200px">
-                                    <a class=" fs-5 d-flex justify-content-center align-items-center" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
+                                    <p class="fs-5 d-flex justify-content-center align-items-center deleteBienThe" style="cursor: pointer; color: red; margin-top: 80px; opacity: 1 ">Xóa</p>
                                 </div>
                             </div>
                     </div>`;
@@ -649,4 +657,27 @@ function loadProductInActive() {
 
         }
     });
+}
+
+function deleteBienThe(eleClick) {
+    showConfirm("Bạn muốn xóa sản phẩm này phải không?")
+        .then((confirmed) => {
+            if (confirmed) {
+                const eleInputId = eleClick.closest('.cart-delete').find('.cart-id');
+                const id = parseInt(eleInputId.val());
+                $.ajax({
+                    url: "/api/xoa-bien-the/delete/" + id,
+                    method: "DELETE",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(id),
+                    success: (response) => {
+                        showSuccess("Xóa sản phẩm thành công");
+                        loadProductInActive();
+                    },
+                    error: (error) => {
+
+                    }
+                });
+            }
+        });
 }

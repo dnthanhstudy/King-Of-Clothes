@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class XoaBienTheResponse {
 
+    private Long id;
+
     private String ten;
 
     private String anh;
