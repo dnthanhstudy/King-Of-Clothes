@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service;
 
 import java.util.List;
 
+import com.laptrinhjavaweb.entity.BienTheEntity;
 import com.laptrinhjavaweb.response.BienTheResponse;
 import com.laptrinhjavaweb.resquest.BienTheRequest;
 

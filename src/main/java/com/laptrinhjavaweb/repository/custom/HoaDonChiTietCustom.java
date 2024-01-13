@@ -9,4 +9,6 @@ public interface HoaDonChiTietCustom {
     void deleteWhenUpdateProduct (List<Long> idsBienThe);
 
     void updateHoaDonChoWhenUpdateProduct (List<Long> idsBienThe);
+
+    Integer updateProduct (List<Long> idsBienThe);
 }

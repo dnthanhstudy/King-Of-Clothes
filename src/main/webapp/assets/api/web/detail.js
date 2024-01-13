@@ -128,6 +128,12 @@ function actionWhenClick(buttonClick){
                     }
                     ,
                     function (error) {
+                        if(Object.keys(error.responseJSON.details).length > 0){
+                            $('#quantity').val(error.responseJSON.details.quantity);
+                        }else{
+                            $('#quantity').val(1)
+                            $('#product').find('input[type=radio]').prop('checked', false);
+                        }
                         showError(error.responseJSON.error)
                     }
                 )
