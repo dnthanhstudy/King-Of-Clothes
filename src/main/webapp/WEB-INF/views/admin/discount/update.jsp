@@ -393,8 +393,8 @@
             method: 'GET',
             success: function (response) {
                 let html = '';
-                console.log(response.data);
-                $.each(response.data, (index, item) => {
+                console.log(response);
+                $.each(response, (index, item) => {
 
                     if(item.khuyenMaiHienThiResponse == null || (item.khuyenMaiHienThiResponse != null && item.khuyenMaiHienThiResponse.ma === maKM)) {
                         let isCheck = false;
@@ -498,7 +498,7 @@
         //     isValid = false;
         // }
         // }
-        if ($("#tenKM").val() === "") {
+        if ($("#tenKM").val().trim() === "") {
             showError("Tên khuyến mại trống. Vui lòng nhập tên khuyến mại!");
             isValid = false;
         }
@@ -519,7 +519,7 @@
             if (event.which === 13) {
                 value = searchButton.val();
                 getvaluew();
-                if (value.isBlank) {
+                if (value.trim()==="") {
                     loadKhuyenMai();
                 } else {
                     loadSearch(value);

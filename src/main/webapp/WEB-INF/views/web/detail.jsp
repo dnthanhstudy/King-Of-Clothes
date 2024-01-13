@@ -260,6 +260,6 @@
        }
     }, 1000);
 
-    // $('#moTa').innerHTML  = `${product.moTa}`;
+     $('#moTa').innerHTML  = `${product.moTa}`;
 
 </script>
