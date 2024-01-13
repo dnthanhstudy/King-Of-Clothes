@@ -30,4 +30,6 @@ public interface GioHangService {
     Long tongSoSanPhamTrongGioHang(Long idkh);
 
     Boolean checkSoLanMua(Long idkh);
+
+    void deleteHoaDonChuanBiDat(Long idsanpham);
 }
