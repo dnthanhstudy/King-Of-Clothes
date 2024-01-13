@@ -38,6 +38,14 @@ public class SanPhamAPI {
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
 
+	@GetMapping("/discount")
+	public ResponseEntity<?> discount(@RequestParam(name = "page", defaultValue = "1") Integer page,
+										@RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit
+	){
+		Map<String, Object> results = sanPhamService.discountProduct(page, limit);
+		return new ResponseEntity<>(results, HttpStatus.OK);
+	}
+
 	@GetMapping
 	public ResponseEntity<?> findAll(@RequestParam(name = "page", defaultValue = "1") Integer page,
 									 @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){

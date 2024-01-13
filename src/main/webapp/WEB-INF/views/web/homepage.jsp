@@ -221,6 +221,21 @@
     <!-- Products Start -->
     <div class="container-fluid pt-5">
         <div class="text-center mb-4">
+            <%--            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>--%>
+            <h2 class="section-title px-5"><span class="px-2">Sản phẩm khuyến mại</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3" id="product-home-page-discount">
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" id="load-more-product-discount"><s:message code="web.homepage.loadMore"/></button>
+        </div>
+    </div>
+    <!-- Products End -->
+
+    <!-- Products Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
 <%--            <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.bestSaler"/></span></h2>--%>
                 <h2 class="section-title px-5"><span class="px-2"><s:message code="web.homepage.SuggestionToday"/></span></h2>
         </div>
