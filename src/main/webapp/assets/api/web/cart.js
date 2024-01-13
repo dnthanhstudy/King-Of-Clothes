@@ -205,9 +205,6 @@ function loadProductActive() {
                 let genderInput = checkHetHang == true ? `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />` : `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
                 let setClassCart = checkHetHang == true ? "cart-item" : "special-card";
 
-                //chèn ảnh hết hàng
-                let soldOutImage = checkHetHang ? '' : '<img src="/repository/hethang.jpg" style="width: 100px;" class="out-of-stock-image" />';
-
                 console.log(checkHetHang)
                 html += `<div style="border-bottom: 1px solid #dedede" class="${setClassCart}">
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
@@ -218,7 +215,6 @@ function loadProductActive() {
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
                                           <div class="col-lg-3">
-                                            <div class="img-container"> 
                                                 <a href="/san-pham/${item.slug}">
                                                   <img
                                                     src="/repository/${item.image}"
@@ -226,10 +222,7 @@ function loadProductActive() {
                                                     alt="..."
                                                   />
                                                 </a>
-                                                  <!-- Ảnh thông báo hết hàng -->
-                                                 ${soldOutImage}
                                             </div>
-                                          </div>
                                           <div class="col-lg-9">
                                             <div class="card-body">
                                               <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
