@@ -21,9 +21,9 @@ public class GioHangAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @GetMapping("/{ma}")
-    public ResponseEntity<?> findAll(@PathVariable String ma) {
-        GioHangResponse result = gioHangService.findByMaKhachHang(ma);
+    @GetMapping("/{ma}/{trangThai}")
+    public ResponseEntity<?> findAll(@PathVariable String ma, @PathVariable String trangThai) {
+        GioHangResponse result = gioHangService.findByMaKhachHang(ma, trangThai);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

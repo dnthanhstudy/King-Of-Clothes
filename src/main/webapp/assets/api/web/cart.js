@@ -1,4 +1,4 @@
-// loadProductActive();
+loadProductActive();
 loadProductInActive();
 checkChuanBiDat();
 
@@ -194,11 +194,10 @@ function checkHetHangGioHang(item) {
 
 function loadProductActive() {
     $.ajax({
-        url: "/api/gio-hang/" + customerCodeWhenLogin,
+        url: "/api/gio-hang/" + customerCodeWhenLogin + "/ACTIVE",
         method: "GET",
         dataType: "json",
         success: (response) => {
-            console.log(response)
             let html = '';
             $.each(response.gioHang, (index, item) => {
                 let checkHetHang = checkHetHangGioHang(item);
@@ -375,6 +374,7 @@ function updateCart(ele) {
     data['id'] = eleCartItem.find('.cart-detail-id').val();
     data['soLuong'] = eleCartItem.find('.product-quantity').val();
     data['idBienThe'] = eleCartItem.find('.variant-id').val();
+
     $.ajax({
         url: "/api/gio-hang-chi-tiet",
         method: "PUT",
@@ -407,7 +407,7 @@ function updateCart(ele) {
         },
         error: (error) => {
             showError(error.responseJSON.error)
-            if(Object.keys(error.responseJSON.details).length > 0){
+            if (Object.keys(error.responseJSON.details).length > 0) {
                 eleCartItem.find('.product-quantity').val(error.responseJSON.details.quantity);
             }
         }
@@ -596,13 +596,9 @@ function loadProductInActive() {
         dataType: "json",
         success: (response) => {
             console.log(response)
-
-
-            let html = '';
             $.each(response, (index, item) => {
-                html += `<div class="special-card" style="border-bottom: 1px solid #dedede">
-                            <div class="row mt-2 d-flex justify-content-center align-items-center cart-delete">
-                                <input type="hidden" class="cart-id" value="${item.id}">
+                let html = `<div class="special-card" style="border-bottom: 1px solid #dedede">
+                            <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                     <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                             <div class="mb-3" style="max-width: 540px;">
@@ -641,13 +637,12 @@ function loadProductInActive() {
                                     <b class="product-price-custom-vnd">${item.thanhTien}</b>
                                 </div>
                                 <div class="col-1" style="background: #fff;height: 200px">
-                                    <p class="fs-5 d-flex justify-content-center align-items-center deleteBienThe" style="cursor: pointer; color: red; margin-top: 80px; opacity: 1 ">Xóa</p>
+                                    <a class=" fs-5 d-flex justify-content-center align-items-center" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
                                 </div>
                             </div>
                     </div>`;
+                $('#cart-disable').append(html);
             })
-            $('#cart-disable').html(html);
-
             $('.product-price-custom-vnd').each(function (index, item) {
                 let res = $(item).html();
                 if (res.indexOf("đ") === -1) {
@@ -659,6 +654,143 @@ function loadProductInActive() {
                     $(item).html(formattedValue);
                 }
             });
+        },
+        error: (error) => {
+
+        }
+    });
+
+    $.ajax({
+        url: "/api/gio-hang/" + customerCodeWhenLogin + "/INACTIVE",
+        method: "GET",
+        dataType: "json",
+        success: (response) => {
+            console.log(response)
+            $.each(response.gioHang, (index, item) => {
+                let html = `<div style="border-bottom: 1px solid #dedede" class="cart-item special-card">
+                              <div class="row mt-2 d-flex justify-content-center align-items-center">
+                                <div class="col-5">
+                                  <div class="form-check align-items-center justify-content-between mb-3">
+                                   
+                                      <div class="mb-3" style="max-width: 540px">
+                                        <div class="row g-0">
+                                          <div class="col-lg-3">
+                                            <a href="/san-pham/${item.slug}">
+                                              <img
+                                                src="/repository/${item.image}"
+                                                class="img-fluid rounded-start cart-item-image"
+                                                alt="..."
+                                              />
+                                            </a>
+                                          </div>
+                                          <div class="col-lg-9">
+                                            <div class="card-body">
+                                              <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
+                                                ><h5 class="card-title line-clamp-2">${item.tenSanPham}</h5></a
+                                              >
+                                              <div class="btn-group">
+                                                <span
+                                                  class="dropdown-toggle"
+                                                  data-bs-toggle="dropdown"
+                                                  data-bs-auto-close="false"
+                                                  aria-expanded="false"
+                                                >
+                                                  Phân loại hàng
+                                                </span> <ul style="width: 450px !important;" class="dropdown-menu p-3 list-attr-name">`;
+                let htmlThuocTinh = '';
+                let nameVariant = [];
+                $.each(item.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
+                    htmlThuocTinh += ` <li>
+                                            <div class="selector mt-2 btn-attr-name">
+                                              <label>${itemThuocTinh.ten}:</label>
+                                                <div class="d-flex">`;
+
+                    let htmlGiaTriThuocTinh = '';
+                    $.each(itemThuocTinh.giaTriThuocTinh, (indexGiaTriThuocTinh, itemGiaTriThuocTinh) => {
+                        let isFlag = false;
+                        $.each(item.giaTriThuocTinhChecked, (indexGiaTriThuocTinhChecked, itemGiaTriThuocTinhChecked) => {
+                            if (itemGiaTriThuocTinhChecked === itemGiaTriThuocTinh.id) {
+                                nameVariant.push(itemGiaTriThuocTinh.giaTri);
+                                isFlag = true;
+                                return false;
+                            }
+                        })
+                        let iconCheck = '';
+                        let isDisable = false;
+                        if (isFlag) {
+                            iconCheck = `<i class="fas fa-check"></i>`;
+                        }
+                        htmlGiaTriThuocTinh += `<div class="me-2">
+                                                    <button value="${itemGiaTriThuocTinh.id}" style="border: 2px solid #c3817b" class="btn btn-light btn-attr-value">
+                                                        ${iconCheck}
+                                                        ${itemGiaTriThuocTinh.giaTri}
+                                                    </button>
+                                                </div>`;
+
+
+                    })
+                    htmlThuocTinh += htmlGiaTriThuocTinh;
+                })
+                htmlThuocTinh += ` <li class="text-right mt-2">
+                                        <button type="button" class="btn btn-light btn-not-change">
+                                          Cancel
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn text-light btn-change-variant"
+                                          style="background-color: #c3817b"
+                                        >
+                                          Submit
+                                        </button>
+                                      </li></ul></div>
+                                        <div class="mt-2">
+                                            <p class="name-variant">${nameVariant.join(" , ")}</p>
+                                            <input class="variant-id" type="hidden" name="" value="${item.idBienThe}">
+                                        </div>`;
+
+                html += htmlThuocTinh;
+
+                html += `</div>
+                              </div>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-2 d-flex">
+                   ${loadGia(item.donGia, item.giaMua)}
+                    </div>
+                    <div class="col-2">
+                      <span>
+                        <div class="input-group change-quantity" style="width: 100px">
+                          <div class="input-group-btn">
+                            <button class="btn btn-sm btn-primary btn-minus btn-remove">
+                              <i class="fa fa-minus"></i>
+                            </button>
+                          </div>
+                          <input
+                            type="text"
+                            class="form-control form-control-sm bg-secondary text-center slthis product-quantity"
+                            value="${item.soLuong}"
+                          />
+                          <div class="input-group-btn">
+                            <button class="btn btn-sm btn-primary btn-plus btn-add">
+                              <i class="fa fa-plus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="col-2">
+                      <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
+                    </div>
+                    <div class="col-1">
+                      <a class="btn-remove-cart-item fs-5" style="cursor: pointer">Xóa</a>
+                    </div>
+                  </div>
+                </div>`;
+                $('#cart-disable').append(html);
+            })
         },
         error: (error) => {
 

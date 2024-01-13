@@ -99,7 +99,7 @@
     }
 
     $.ajax({
-        url: "/api/gio-hang/" + customerCodeWhenLogin,
+        url: "/api/gio-hang/" + customerCodeWhenLogin + "/ACTIVE",
         method: "GET",
         dataType: "json",
         success: (response) => {

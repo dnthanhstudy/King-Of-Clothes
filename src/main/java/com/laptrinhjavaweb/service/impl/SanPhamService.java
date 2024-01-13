@@ -214,6 +214,7 @@ public class SanPhamService implements ISanPhamService {
     public void updateTrangThai(String slug, String trangThai) {
         SanPhamEntity sanPhamEntity = sanPhamRepository.findBySlug(slug);
         sanPhamEntity.setTrangThai(trangThai);
+        gioHangChiTietRepository.updateInActive(trangThai, sanPhamEntity.getId());
         sanPhamRepository.save(sanPhamEntity);
     }
 

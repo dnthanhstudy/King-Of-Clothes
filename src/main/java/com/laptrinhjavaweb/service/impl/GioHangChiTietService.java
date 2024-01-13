@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.Optional;
 
 @Service
 public class GioHangChiTietService implements IGioHangChiTietService {
@@ -38,6 +37,9 @@ public class GioHangChiTietService implements IGioHangChiTietService {
         GioHangChiTietEntity gioHangChiTietEntity = gioHangChiTietRepository.findByGioHang_idAndBienThe_idAndTrangThai(gioHangChiTietRequest.getIdGioHang(),
                 gioHangChiTietRequest.getIdBienThe(), SystemConstant.ACTICE);
         if (gioHangChiTietEntity != null) {
+            if(gioHangChiTietEntity.getSanPham().getTrangThai().equals("INACTIVE")){
+                throw new ClientError("Sản phẩm này không hoạt động");
+            }
             if (gioHangChiTietEntity.getSoLuong().equals(gioHangChiTietEntity.getBienThe().getSoLuong())) {
                 throw new ClientError("Bạn đã thêm tối đa sản phẩm vào giỏ hàng nên không thêm được nữa");
             }
@@ -50,6 +52,9 @@ public class GioHangChiTietService implements IGioHangChiTietService {
             gioHangChiTietEntity.setSoLuong(quantity);
         } else {
             BienTheEntity bienTheEntity = bienTheRepository.findById(gioHangChiTietRequest.getIdBienThe()).get();
+            if(bienTheEntity.getSanPham().getTrangThai().equals("INACTIVE")){
+                throw new ClientError("Sản phẩm này không hoạt động");
+            }
             if (gioHangChiTietRequest.getSoLuong() > bienTheEntity.getSoLuong()) {
                 Map<String, Object> errors = new HashMap<>();
                 errors.put("quantity", bienTheEntity.getSoLuong());

@@ -6,6 +6,7 @@ import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
 import com.laptrinhjavaweb.entity.KhuyenMaiSanPhamEntity;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.repository.*;
+import com.laptrinhjavaweb.response.BienTheResponse;
 import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
@@ -31,13 +32,13 @@ public class HoaDonChiTietConverter {
     private BienTheRepository bienTheRepository;
 
     @Autowired
-    private KhuyenMaiRepository khuyenMaiRepository;
-
-    @Autowired
     private HoaDonRepository hoaDonRepository;
 
     @Autowired
     private SanPhamConverter sanPhamConverter;
+
+    @Autowired
+    private BienTheConverter bienTheConverter;
 
     @Autowired
     private KhuyenMaiSanPhamRepository khuyenMaiSanPhamRepository;
@@ -67,6 +68,7 @@ public class HoaDonChiTietConverter {
         BienTheEntity bt = entity.getBienThe();
         if(bt != null){
             BienTheEntity bienTheEntity = bienTheRepository.findById(bt.getId()).get();
+            BienTheResponse bienTheResponse = bienTheConverter.convertToResponse(bienTheEntity);
             if (bienTheEntity.getHinhAnh() != null) {
                 response.setImage(bienTheEntity.getHinhAnh());
             } else {
@@ -75,6 +77,12 @@ public class HoaDonChiTietConverter {
             List<Long> giaTriThuocTinhChecked = bienTheEntity.getGiaTriThuocTinhBienTheEntities().stream().map(
                     item -> item.getGiaTriThuocTinh().getId()
             ).collect(Collectors.toList());
+
+            if(!response.getGia().equals(bienTheResponse.getGiaBan())){
+                response.setGia(bienTheResponse.getGiaBan());
+                response.setThanhTien(response.getGia() * response.getSoLuong());
+            }
+
             response.setIdBienThe(bienTheEntity.getId());
             response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
             response.setThuocTinh(thuocTinhResponse);
