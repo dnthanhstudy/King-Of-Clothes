@@ -735,16 +735,31 @@
         }
         return html;
     }
-    function ghct(){
-        $.ajax({
+    async function getHoaDonChuanBiDat() {
+        let val ;
+       await $.ajax({
             url: '/api/hoadon/chuanbidat/'+idkh,
             method: 'GET',
             success: async function (req) {
-                var data = req.data;
-                console.log(data)
+                val = req.data;
+            },
+            error: function(xhr, status, error) {
+                console.log('Có lỗi xảy ra: ' + error);
+            }
+        });
+        return val;
+
+    }
+    async function showFalseCheckout(message){
+        await showModalError(message)
+        window.location.href = "/cart"
+    }
+    async function ghct(){
+
+                var data = await getHoaDonChuanBiDat();
                 if (data.length == 0) {
-                    await Swal.fire('Incorrect...', 'Bạn chưa thêm sản phẩm vào giỏ hàng !', 'error');
-                    window.location.href = "/cart"
+                    showFalseCheckout("Bạn chưa thêm sản phẩm vào giỏ hàng !")
+                    return;
                 }
                 var tbody = $("#hdct");
                 tbody.empty();
@@ -785,12 +800,6 @@
                     `;
                     tbody.append(html);
                 })
-
-            },
-            error: function(xhr, status, error) {
-                console.log('Có lỗi xảy ra: ' + error);
-            }
-        });
     }
 
     function tongTienTheoHoaDon(idhd){
@@ -873,12 +882,16 @@
 
 
     // tongThanhToan();
-    function datHang(){
+    async function datHang(){
+        var data = await getHoaDonChuanBiDat();
+        if (data.length == 0) {
+            showFalseCheckout("Sản phẩm trong cửa hàng đã bị sửa đổi,vui lòng mua lại sản phẩm!")
+            return;
+        }
         if ($(".sotiengiaohang").text().length === 0) {
             showError("Giao hàng nhanh không hỗ trợ địa chỉ của bạn,vui lòng đổi địa chỉ !");
             return;
         }
-
         if (loaiDatHang === 1){
             var payment = $('input[name="payment"]:checked').val();
             if (payment==="paypal"){
