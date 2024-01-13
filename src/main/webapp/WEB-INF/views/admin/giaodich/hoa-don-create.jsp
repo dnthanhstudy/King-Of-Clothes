@@ -1088,7 +1088,7 @@
                                         })
                                         htmlThuocTinh = htmlThuocTinh + htmlGiaTriThuocTinh + `</div></div>`;
                                     })
-                                    $(".thuoc-tinh").html(htmlThuocTinh)
+                                    $(".thuoc-tinh").html(htmlThuocTinh);
                                 },
                                 error: (error) => {
                                 }

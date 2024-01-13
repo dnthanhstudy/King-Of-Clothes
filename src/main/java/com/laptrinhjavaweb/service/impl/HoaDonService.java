@@ -167,8 +167,10 @@ public class HoaDonService implements IHoaDonService {
 
         hoaDonChiTietEntities.forEach(item -> {
             BienTheEntity bienTheEntity = item.getBienThe();
-            bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
-            bienTheRepository.save(bienTheEntity);
+            if(bienTheEntity != null){
+                bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
+                bienTheRepository.save(bienTheEntity);
+            }
         });
 
         LyDoHuyDonEntity lyDoHuyDonEntity = lyDoHuyDonRepository.findById(idHuyDon).get();

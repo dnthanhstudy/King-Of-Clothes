@@ -10,7 +10,6 @@ import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.HoaDonChiTietRequest;
-import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,6 +39,9 @@ public class HoaDonChiTietConverter {
     private SanPhamConverter sanPhamConverter;
 
     @Autowired
+    private XoaBienTheRepository xoaBienTheRepository;
+
+    @Autowired
     private KhuyenMaiSanPhamRepository khuyenMaiSanPhamRepository;
 
     public HoaDonChiTietEntity convertToEntity(HoaDonChiTietRequest request) {
@@ -64,18 +66,24 @@ public class HoaDonChiTietConverter {
         SanPhamResponse sanPhamResponse = sanPhamConverter.convertToResponse(sanPhamEntity);
         List<ThuocTinhResponse> thuocTinhResponse = sanPhamResponse.getThuocTinh();
 
-        BienTheEntity bienTheEntity = bienTheRepository.findById(entity.getBienThe().getId()).get();
-        if (bienTheEntity.getHinhAnh() != null) {
-            response.setImage(bienTheEntity.getHinhAnh());
-        } else {
+        BienTheEntity bt = entity.getBienThe();
+        if(bt != null){
+            BienTheEntity bienTheEntity = bienTheRepository.findById(bt.getId()).get();
+            if (bienTheEntity.getHinhAnh() != null) {
+                response.setImage(bienTheEntity.getHinhAnh());
+            } else {
+                response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+            }
+            List<Long> giaTriThuocTinhChecked = bienTheEntity.getGiaTriThuocTinhBienTheEntities().stream().map(
+                    item -> item.getGiaTriThuocTinh().getId()
+            ).collect(Collectors.toList());
+            response.setIdBienThe(bienTheEntity.getId());
+            response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
+            response.setThuocTinh(thuocTinhResponse);
+        }
+        else{
             response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
         }
-        List<Long> giaTriThuocTinhChecked = bienTheEntity.getGiaTriThuocTinhBienTheEntities().stream().map(
-                item -> item.getGiaTriThuocTinh().getId()
-        ).collect(Collectors.toList());
-
-        response.setIdBienThe(bienTheEntity.getId());
-        response.setGiaTriThuocTinhChecked(giaTriThuocTinhChecked);
         response.setThuocTinh(thuocTinhResponse);
         response.setTenSanPham(sanPhamEntity.getTen());
         response.setTenThuongHieu(sanPhamEntity.getThuongHieu().getTen());
