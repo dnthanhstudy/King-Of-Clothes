@@ -80,7 +80,7 @@ public class HoaDonChiTietConverter {
             response.setThuocTinh(thuocTinhResponse);
         }
         else{
-            response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+            response.setImage(entity.getAnhbienthe());
         }
         response.setThuocTinh(thuocTinhResponse);
         response.setTenSanPham(sanPhamEntity.getTen());

@@ -159,24 +159,28 @@
                     $('#pagination').removeClass('d-none');
                     let html = '';
                     $.each(response.data, (index, item) => {
+                        let isChecked = item.trangThai === "ACTIVE" ? "checked" : "";
                         html += `<tr>
-                                <td>\${index+1}</td>
-                                <td>
-                                    <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">
-                                        <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
-                                    </a>
-                                </td>
-                                <td>
-                                    <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a>
-                                </td>
-                                <td>\${item.gia}</td>
-                                <td>\${item.danhMuc.ten}</td>
-                                <td>\${item.thuongHieu.ten}</td>
-                                <td>
-                                    <a href="/admin/san-pham/edit/" class="btn btn-warning">Sửa</a>
-                                    <button class="btn btn-danger btn-delete-san-pham" value="\${item.slug}">Xóa</button>
-                                </td>
-                            </tr>`;
+                                    <td class="text-center">\${index+1}</td>
+                                    <td class="text-center">
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">
+                                            <img src='/repository/\${item.anh[0].hinhAnh}' style="width: 120px;">
+                                        </a>
+                                    </td>
+                                    <td style="max-width: 400px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                        <a style="text-decoration: none;color: black" href="/admin/san-pham/edit/\${item.slug}">\${item.ten}</a>
+                                    </td>
+                                    <td class="text-center">\${item.gia}</td>
+                                    <td class="text-center">\${item.danhMuc.ten}</td>
+                                    <td class="text-center">\${item.thuongHieu.ten}</td>
+                                    <td class="text-center">
+                                        <label class="switch">
+                                            <input class="checked-update-status" type="checkbox" \${isChecked}>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </td>
+                                    <input class="product-slug" type="hidden" value="\${item.slug}">
+                                </tr>`;
                     })
                     $('.tbody-product').html(html);
 
