@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -16,5 +18,5 @@ public class ErrorResponse {
 
     private String error;
 
-    private List<String> details = new ArrayList<>();
+    private Map<String, Object> details = new HashMap();
 }

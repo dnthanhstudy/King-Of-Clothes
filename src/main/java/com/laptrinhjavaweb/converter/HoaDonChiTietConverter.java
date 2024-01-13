@@ -10,6 +10,7 @@ import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.HoaDonChiTietRequest;
+import com.laptrinhjavaweb.resquest.SanPhamRequest;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -82,7 +83,7 @@ public class HoaDonChiTietConverter {
             response.setThuocTinh(thuocTinhResponse);
         }
         else{
-            response.setImage(sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
+            response.setImage(entity.getAnhbienthe());
         }
         response.setThuocTinh(thuocTinhResponse);
         response.setTenSanPham(sanPhamEntity.getTen());

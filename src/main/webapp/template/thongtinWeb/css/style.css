@@ -260,3 +260,17 @@ label {
     background-color: rgba(245, 245, 245, 1);
     opacity: .4;
 }
+
+/*css ảnh hết hàng*/
+.img-container {
+    position: relative;
+}
+
+.out-of-stock-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+

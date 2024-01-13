@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.repository;
 
 import java.util.List;
 
+import com.laptrinhjavaweb.converter.ThuocTinhConverter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.laptrinhjavaweb.entity.ThuocTinhEntity;
@@ -17,4 +18,6 @@ public interface ThuocTinhRepository extends JpaRepository<ThuocTinhEntity, Long
 	@Modifying
 	@Query("delete from ThuocTinhEntity t where t.sanPham.id=:idSanPham")
 	void deleteAllBySanPham_Id (@Param("idSanPham") Long idSanPham);
+
+	ThuocTinhEntity findByTenAndSanPham_Id (String name, Long idSanPham);
 }
