@@ -104,7 +104,7 @@ function actionWhenClick(buttonClick){
                 addProduct(data,
                     function () {
                         $.ajax({
-                            url: "/api/gio-hang/" + customerCodeWhenLogin,
+                            url: "/api/gio-hang/" + customerCodeWhenLogin + "/ACTIVE",
                             method: "GET",
                             dataType: "json",
                             success: (response) => {

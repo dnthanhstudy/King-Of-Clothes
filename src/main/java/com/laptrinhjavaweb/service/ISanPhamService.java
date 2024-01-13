@@ -33,6 +33,4 @@ public interface ISanPhamService {
 	List<SanPhamResponse> findAll();
 
 	SanPhamResponse update (SanPhamRequest sanPhamRequest);
-
-	//SanPhamResponse upgrade (SanPhamRequest sanPhamRequest);
 }

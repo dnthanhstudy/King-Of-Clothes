@@ -32,4 +32,6 @@ public class GioHangChiTietResponse {
     private Long idBienThe;
 
     private Boolean isLoadCart;
+
+    private String trangThai;
 }
