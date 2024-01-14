@@ -105,20 +105,27 @@ public class ApiHoaDonController {
     @GetMapping("/thaydoitrangthai")
     public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,
                                    @RequestParam("trangthai")String trangThai,
-                                   @RequestParam(value = "luuy",required = false,defaultValue = "")String luuy
+                                   @RequestParam(value = "luuy",required = false,defaultValue = "")String luuy,
+                                   @RequestParam(value = "thu3",required = false,defaultValue = "")Integer check
     ){
         HoaDonEntity hoaDon = hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
             PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
             hoaDon.setMaGiaoHang(previewGiaoHang.getMaHoaDon());
             hoaDonService.saveHoaDon(hoaDon);
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng",TrangThaiHoaDon.DANHANDON);
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ");
+            if (check==1){
+                thu3Service.themTrangThaiGiaoHang(idhd,"Khách không nhận",TrangThaiHoaDon.HUYDON);
+            }else if (check==2){
+                thu3Service.themTrangThaiGiaoHang(idhd,"Lỗi giao hàng nhanh",TrangThaiHoaDon.HUYDON);
+            }else{
+                thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ",TrangThaiHoaDon.HUYDON);
+            }
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng",TrangThaiHoaDon.DANHANHANG);
         } else if (trangThai.equals(TrangThaiHoaDon.DANGGIAOHANG)) {
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao");
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao",TrangThaiHoaDon.DANGGIAOHANG);
         }
         return  "Thay đổi trạng thái thành công";
     }

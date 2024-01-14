@@ -84,7 +84,7 @@ public class HoaDonChiTietConverter {
                     item -> item.getGiaTriThuocTinh().getId()
             ).collect(Collectors.toList());
 
-            if(!response.getGia().equals(bienTheResponse.getGiaBan())){
+            if(!response.getGia().equals(bienTheResponse.getGiaBan()) && entity.getHoaDon().getTrangThaiHoaDonOff().equals("TREO")){
                 response.setGia(bienTheResponse.getGiaBan());
                 response.setThanhTien(response.getGia() * response.getSoLuong());
             }

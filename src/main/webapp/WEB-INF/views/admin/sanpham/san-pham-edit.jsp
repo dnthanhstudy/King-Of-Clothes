@@ -48,8 +48,8 @@
                         <input name="gia" type="text" class="form-control" id="gia"/>
                     </div>
 
-                    <div class="col-6 mt-4" id="danh-muc">
-                        <select class="form-select" name="danhMucSlug">
+                    <div class="col-6 mt-4">
+                        <select class="form-select" name="danhMucSlug" id="danh-muc">
                             <option value="" selected>Vui lòng chọn danh mục</option>
                             <c:forEach var="item" items="${categoriesProduct}">
                                 <option value="${item.slug}">${item.ten}</option>
@@ -57,8 +57,8 @@
                         </select>
                     </div>
 
-                    <div class="col-6 mt-4" id="thuong-hieu">
-                        <select class="form-select" name="thuongHieuSlug">
+                    <div class="col-6 mt-4">
+                        <select class="form-select" name="thuongHieuSlug" id="thuong-hieu">
                             <option selected>Vui lòng chọn thương hiệu</option>
                             <c:forEach var="item" items="${brandsProduct}">
                                 <option value="${item.slug}">${item.ten}</option>
@@ -88,7 +88,6 @@
                                 <p class="card-text card-text-none-attribute">
                                     Chưa có thuộc tính
                                 </p>
-                                <p class="thuoc-tinh"></p>
                             </div>
                         </div>
                     </div>
@@ -175,10 +174,14 @@
                             Sản phẩm nổi bật
                         </label>
                     </div>
+                    <div class="khuyenmai-sanpham m-0 mt-2 mb-2" id="khuyenmai-sanpham"></div>
                 </div>
+
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
+
         </div>
+
 
     </div>
 </div>
@@ -203,8 +206,8 @@
                 $("#gia").val(req.gia);
                 $("#motasanpham").val(req.moTa);
                 $("#chitietsanpham").val(req.thongTinChiTiet);
-                $("#danh-muc select").val(req.danhMuc.slug)
-                $("#thuong-hieu select").val(req.thuongHieu.slug)
+                $("#danh-muc").val(req.danhMuc.slug)
+                $("#thuong-hieu").val(req.thuongHieu.slug)
                 let htmlImage = '';
                 $.each(req.anh, (index, item) => {
                     htmlImage += `<img src="/repository/\${item.hinhAnh}" class="view-image me-4" style="border: 1px solid #ddd;border-radius: 4px; padding: 5px;width: 150px;"/>`;
@@ -224,7 +227,8 @@
                                                     <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
                                                 </span>
                                               </button>
-                                            </div><div class="list-value-attribute mt-3">`;
+                                            </div>
+                                            <div class="list-value-attribute mt-3">`;
                     $.each(item.giaTriThuocTinh, (index, item1) => {
                         htmlThuocTinh += `
                                                 <button type="button" class="btn btn-secondary btn-sm position-relative me-3 btn-value-attr">
@@ -241,7 +245,7 @@
                                           </div>
                                             </div> `;
                 })
-                $(".thuoc-tinh").append(htmlThuocTinh)
+                $("#card-attribute .card-body").append(htmlThuocTinh)
 
                 let htmlBienThe = '';
                 $.each(req.bienThe, (index, item) => {
@@ -261,6 +265,26 @@
                             </tr>`;
                 })
                 $("#variants").append(htmlBienThe)
+                let khuyenMaiSanPham = req.khuyenMaiHienThiResponse;
+                if(khuyenMaiSanPham != null){
+                    let htmlKhuyenMai = '';
+                    if(khuyenMaiSanPham.trangThai === "ACTIVE"){
+                        htmlKhuyenMai += `
+                        <div class="col-10">
+                                    <a style="color: black; text-decoration: none;" href="/admin/khuyen-mai/detail/\${khuyenMaiSanPham.ma}" target="_blank"><p class=""> <span>Đang áp dụng Khuyến mãi: </span><strong>\${khuyenMaiSanPham.ten}</strong></p></a>
+                                </div>
+                    `
+                    }else
+                    if(khuyenMaiSanPham.trangThai === "UPCOMING"){
+                        htmlKhuyenMai += `
+                        <div class="col-10">
+                                    <a style="color: black; text-decoration: none;" href="/admin/khuyen-mai/detail/\${khuyenMaiSanPham.ma}" target="_blank"><p class=""> <span>Sắp hoạt động Khuyến mãi: </span><strong>\${khuyenMaiSanPham.ten}</strong></p></a>
+                                </div>
+                    `
+                    }
+
+                    $("#khuyenmai-sanpham").append(htmlKhuyenMai)
+                }
             },
             error: function (xhr, status, error) {
                 console.log(error);

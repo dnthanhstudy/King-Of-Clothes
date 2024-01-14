@@ -73,14 +73,6 @@
                     <span class="text-danger" id="giaGoc"></span><span class="text-danger">đ</span>
                 </div>
             </div>
-            <div class="row d-flex justify-content-between">
-                <div class="col">
-                    Phí vận chuyển:
-                </div>
-                <div class="col text-right">
-                    <span class="text-danger" id="tienShip"></span><span class="text-danger">đ</span>
-                </div>
-            </div>
             <div class="row d-flex justify-content-between ">
                 <div class="col">
                     Tổng tiền giảm giá:
@@ -88,6 +80,14 @@
                 <div class="col text-right">
                     <span class="text-danger">-</span>
                     <span class="text-danger" id="giaGiam"></span><span class="text-danger">đ</span>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-between">
+                <div class="col">
+                    Phí vận chuyển:
+                </div>
+                <div class="col text-right">
+                    <span class="text-danger" id="tienShip"></span><span class="text-danger">đ</span>
                 </div>
             </div>
             <div class="row d-flex justify-content-between mb-5">

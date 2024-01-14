@@ -15,6 +15,7 @@ $("#product").on("change", "input[type='radio']", function () {
             dataType: "json",
             data: JSON.stringify(attributeId),
             success: (response) => {
+                console.log(response)
                 variantId = response.id;
                 $('.product-origin').text(response.gia);
                 $('.product-buy').text(response.giaBan)

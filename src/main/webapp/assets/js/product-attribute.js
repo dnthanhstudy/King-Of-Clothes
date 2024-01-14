@@ -4,12 +4,12 @@ $(".input-name-atrribute").on("keypress", function (e) {
         e.preventDefault();
         let nameAttribute = $(e.target).val();
         if (!nameAttribute) {
-            showError("Thuộc tính này đã tòn tại");
+            showError("Thuộc tính không được để trống");
         } else {
             $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
             if (findBySlug(slugAttribute) !== undefined) {
-                messageNotication(attributeExsits, "rgba(255, 99, 71, 1)");
+                showError("Tên thuộc tính này đã tồn tại")
             } else {
                 const eleDivProductsHasAtributes = $(
                     `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
@@ -65,7 +65,7 @@ $("#card-attribute .card-body").on("click", function (e) {
                         generateVariant();
                     }
                 } else {
-                    messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
+                    showError("giá trị thuộc tính không được để trống");
                 }
 
                 eleClick.val("");
@@ -134,7 +134,6 @@ $("#ten").keyup(function () {
 $("#btn-set-price").on("click", function () {
     let price = $("#price-all").val();
     $(".table-variant-body .price-variant").each((index, item) => {
-        console.log($(item));
         $(item).val(price);
     });
     $("#price-all").val('');
@@ -391,3 +390,4 @@ function loadSuggestions(options) {
         }
     });
 }
+

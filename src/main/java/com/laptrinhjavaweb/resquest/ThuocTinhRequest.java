@@ -1,17 +1,18 @@
 package com.laptrinhjavaweb.resquest;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ThuocTinhRequest {
+@Builder
+public class ThuocTinhRequest implements Cloneable {
+
+    private Long id;
 
     private String slug;
 

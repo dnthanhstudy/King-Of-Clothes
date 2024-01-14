@@ -1,5 +1,6 @@
 package com.laptrinhjavaweb.api;
 
+import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.response.SendMailResponse;
 import com.laptrinhjavaweb.service.ISendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class SendEmailAPI {
             } else if (KHSendEmailService.existsByEmail(email)) {
                 KHSendEmailService.processPasswordReset(email);
             } else {
-                throw new NoSuchElementException("Người dùng không tồn tại");
+                throw new ClientError("Người dùng không tồn tại");
             }
             return ResponseEntity.ok(SendMailResponse.builder().status("Thành công").build());
         } catch (NoSuchElementException e) {
@@ -43,21 +44,16 @@ public class SendEmailAPI {
             @RequestParam String restToken,
             @RequestParam String matKhau) {
 
-        try {
-            if (NVSendEmailService.isValidResetToken(restToken)) {
-               NVSendEmailService.resetPasswordByToken(restToken, matKhau);
-                return  ResponseEntity.ok("Password reset successful.");
-            }
-            else if (KHSendEmailService.isValidResetToken(restToken)) {
-              KHSendEmailService.resetPasswordByToken(restToken, matKhau);
-              return  ResponseEntity.ok("Password reset successful.");
-            } else {
-                return ResponseEntity.badRequest().body("Token không hợp lệ");
-            }
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        if (NVSendEmailService.isValidResetToken(restToken)) {
+            NVSendEmailService.resetPasswordByToken(restToken, matKhau);
+            return ResponseEntity.ok("Đổi mật khẩu thành công.");
+        } else if (KHSendEmailService.isValidResetToken(restToken)) {
+            KHSendEmailService.resetPasswordByToken(restToken, matKhau);
+            return ResponseEntity.ok("Đổi mật khẩu thành công.");
+        } else {
+            throw new ClientError("Token không hợp lệ");
         }
     }
 
 }
+

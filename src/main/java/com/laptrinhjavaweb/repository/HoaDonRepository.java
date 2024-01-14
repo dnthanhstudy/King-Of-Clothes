@@ -163,7 +163,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     @Query(value = "select * from vw_doanhthunam", nativeQuery = true)
     DoanhThuBanHangResponse doanhThuNam();
 
-    List<HoaDonEntity> findAllByTrangThaiOrderByNgayTaoDesc(String trangThai);
+    List<HoaDonEntity> findAllByTrangThaiAndNhanVien_IdNotNullOrderByNgayTaoDesc(String trangThai);
 
     @Modifying
     @Query("DELETE FROM HoaDonEntity hd WHERE hd.id = :id")

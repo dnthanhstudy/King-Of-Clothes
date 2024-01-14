@@ -172,9 +172,10 @@
             let html = '';
             var i = 0
             dsSanPhamKhuyenMai.forEach(function (item){
-                let isChecked = item.trangThai === "ACTIVE" ? "checked" : "";
                 i++;
-                html +=  `<tr>
+                if(item.trangThai === "ACTIVE" || item.trangThai === "INACTIVE"){
+                    let isChecked = item.trangThai === "ACTIVE" ? "checked" : "";
+                    html +=  `<tr>
                                 <td>\${i}</td>
                                 <td>
                                     <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
@@ -188,6 +189,16 @@
                                 </td>
                             <input class="product-discount-id" type="hidden" value="\${item.id}">
                             </tr>`
+                }else{
+                    html +=  `<tr>
+                                <td>\${i}</td>
+                                <td>
+                                    <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                </td>
+                                <td>\${item.sanPhamResponse.ten}</td>
+                            </tr>`
+                }
+
 
             })
             $('.tbody-product-select').html(html);

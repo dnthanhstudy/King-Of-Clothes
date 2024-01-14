@@ -95,7 +95,7 @@ public class GioHangChiTietEntity extends BaseEntity{
 		if (giaTienKm==null){
 			return null;
 		}else{
-			return getGiaTien()/giaTienKm;
+			return getGiaTien()-giaTienKm;
 		}
 	}
 

@@ -42,7 +42,6 @@ public class ThuocTinhService implements IThuocTinhService{
 		ThuocTinhEntity entity = thuocTinhConvert.convertToEntity(request);
 		thuocTinhRepository.save(entity);
 		ThuocTinhResponse result = thuocTinhConvert.convertToResponse(entity);
-		result.setId(entity.getId());
 		return result;
 	}
 

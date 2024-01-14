@@ -2,6 +2,7 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.entity.KhachHangEntity;
 import com.laptrinhjavaweb.entity.NhanVienEntity;
+import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.exception.EntityNotFoundException;
 import com.laptrinhjavaweb.repository.KhachHangRepository;
 import com.laptrinhjavaweb.response.SendMailResponse;
@@ -76,7 +77,7 @@ public class KHSendEmailService implements ISendEmailService {
         if (khachHangEntity != null) {
             LocalDateTime now = LocalDateTime.now();
             if (khachHangEntity.getExpireTime() != null && khachHangEntity.getExpireTime().isBefore(now)) {
-                throw new RuntimeException("Mã code không hợp lệ hoặc đã hết hạn. Vui lòng kiểm tra lại..!");
+                throw new ClientError("Mã code không hợp lệ hoặc đã hết hạn. Vui lòng kiểm tra lại..!");
             }
             String newPassword = passwordEncoder.encode(matKhau);
             khachHangEntity.setMatKhau(newPassword);
@@ -86,7 +87,7 @@ public class KHSendEmailService implements ISendEmailService {
 
             return "Đổi mật khẩu thành công.";
         } else {
-            throw new EntityNotFoundException("Không tìm thấy thông tin khôi phục mật khẩu.");
+            throw new ClientError("Không tìm thấy thông tin khôi phục mật khẩu.");
         }
     }
 

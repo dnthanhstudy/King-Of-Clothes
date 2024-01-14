@@ -30,6 +30,10 @@ public class HoaDonResponse {
 
     private Date ngayTao;
 
+    private Date ngaySua;
+
+    private Date ngayThanhToan;
+
     private String tenNhanVien;
 
     private String trangThai;

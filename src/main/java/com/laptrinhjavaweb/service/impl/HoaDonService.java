@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.converter.HoaDonConverter;
 import com.laptrinhjavaweb.entity.*;
+import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.HoaDonResponse;
@@ -70,7 +71,7 @@ public class HoaDonService implements IHoaDonService {
 
     @Override
     public List<HoaDonResponse> findByMaStatus(String trangThai) {
-        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThaiOrderByNgayTaoDesc(trangThai);
+        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThaiAndNhanVien_IdNotNullOrderByNgayTaoDesc(trangThai);
         List<HoaDonResponse> result = list.stream().map(
                 item -> hoaDonConverter.convertToResponse(item)
         ).collect(Collectors.toList());
@@ -142,7 +143,7 @@ public class HoaDonService implements IHoaDonService {
 
         LocalDateTime now = LocalDateTime.now();
         if (now.isAfter(ngayThanhToan.plusDays(3))) {
-            throw new RuntimeException("Không được hủy đơn sau 3 ngày thanh toán !");
+            throw new ClientError("Không được hủy đơn sau 3 ngày thanh toán !");
         }
 
         if (hoaDonEntity.getKhachHang() != null) {
@@ -152,22 +153,26 @@ public class HoaDonService implements IHoaDonService {
 
             TichDiemEntity tichDiemEntity = tichDiemRepository.findByKhachHang_ma(khachHangEntity.getMa());
 
-            tichDiemEntity.setSoDiem(tichDiemEntity.getSoDiem() - lichSuTichDiemEntity.getSoDiemTichDuoc());
-            tichDiemRepository.save(tichDiemEntity);
+            if (tichDiemEntity.getSoDiem() >= lichSuTichDiemEntity.getSoDiemTichDuoc()) {
+                tichDiemEntity.setSoDiem(tichDiemEntity.getSoDiem() - lichSuTichDiemEntity.getSoDiemTichDuoc());
+                tichDiemRepository.save(tichDiemEntity);
 
-            LichSuTichDiemEntity newLichSu = new LichSuTichDiemEntity();
-            newLichSu.setSoDiemHoan(lichSuTichDiemEntity.getSoDiemTichDuoc());
-            newLichSu.setTrangThai("HOANDIEM");
-            newLichSu.setKhachHang(khachHangEntity);
-            newLichSu.setHoaDon(hoaDonEntity);
-            lichSuTichDiemRepository.save(newLichSu);
+                LichSuTichDiemEntity newLichSu = new LichSuTichDiemEntity();
+                newLichSu.setSoDiemHoan(lichSuTichDiemEntity.getSoDiemTichDuoc());
+                newLichSu.setTrangThai("HOANDIEM");
+                newLichSu.setKhachHang(khachHangEntity);
+                newLichSu.setHoaDon(hoaDonEntity);
+                lichSuTichDiemRepository.save(newLichSu);
+            } else {
+                throw new ClientError("Không thể hủy đơn vì khách hàng đã sử dụng hết số điểm tích.");
+            }
         }
 
         List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(ma);
 
         hoaDonChiTietEntities.forEach(item -> {
             BienTheEntity bienTheEntity = item.getBienThe();
-            if(bienTheEntity != null){
+            if (bienTheEntity != null) {
                 bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() + item.getSoLuong());
                 bienTheRepository.save(bienTheEntity);
             }
@@ -178,6 +183,5 @@ public class HoaDonService implements IHoaDonService {
         hoaDonEntity.setLyDoHuyDon(lyDoHuyDonEntity);
         hoaDonEntity.setTrangThai("HUYDON");
         hoaDonRepository.save(hoaDonEntity);
-
     }
 }

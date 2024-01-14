@@ -176,12 +176,13 @@
                 <hr>
                 <div class="row">
                     <div class="col-lg-6">
-                        <h6>Bảng size bên shop :</h6>
-                        <p>Size S: Dành cho người nặng từ 35kg - 41kg < 1m50</p>
-                        <p>Size M: Dành cho người nặng từ 42kg - 53kg < 1m63</p>
-                        <p>Size L: Dành cho người nặng từ 54kg - 60kg < 1m70</p>
-                        <p>Size XL: Dành cho người nặng từ 61kg - 69kg < 1m75</p>
-                        <p>Size XXL: Dành cho người nặng từ 70kg - 76kg < 1m80</p>
+                        <h6>Thông tin chi tiết :</h6>
+                        ${product.thongTinChiTiet}
+<%--                        <p>Size S: Dành cho người nặng từ 35kg - 41kg < 1m50</p>--%>
+<%--                        <p>Size M: Dành cho người nặng từ 42kg - 53kg < 1m63</p>--%>
+<%--                        <p>Size L: Dành cho người nặng từ 54kg - 60kg < 1m70</p>--%>
+<%--                        <p>Size XL: Dành cho người nặng từ 61kg - 69kg < 1m75</p>--%>
+<%--                        <p>Size XXL: Dành cho người nặng từ 70kg - 76kg < 1m80</p>--%>
                     </div>
                     <div class="col-lg-6">
                         <h6>CAM KẾT - ĐẢM BẢO:</h6>
@@ -234,6 +235,7 @@
     </div>
 </div>
 <input type="hidden" name="" id="product-id" value="${product.id}">
+<input type="hidden" name="" id="product-discount-code" value="${product.khuyenMaiHienThiResponse.ma}">
 </div>
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
@@ -255,8 +257,20 @@
 
         if (distance < 0) {
             clearInterval(x);
-            $('.finish').text("EXPIRED");
+
             // call api update trạng thái của khuyến mại sản phẩm (expired nhé)
+             var code = parseInt($('#product-discount-code').val());
+            $.ajax({
+                        url: "/api/khuyen-mai/update-expired/" + code,
+                        method: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: trangThai,
+                        success: (response) => {
+                        },
+                        error: (error) => {
+                        }
+                    })
+            $('.finish').text("EXPIRED");
        }
     }, 1000);
 
