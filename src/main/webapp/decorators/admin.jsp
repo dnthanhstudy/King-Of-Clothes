@@ -89,16 +89,12 @@
             });
         }
         function showSuccess(message){
-            const Toast = Swal.mixin({
+            const Toast = Swal.fire({
                 title: "Thông báo!",
                 text: message,
-                icon: "success"
+                icon: "success",
             })
 
-            Toast.fire({
-                icon: 'succes',
-                title: message
-            })
         }
         function showError(message){
             const Toast = Swal.mixin({

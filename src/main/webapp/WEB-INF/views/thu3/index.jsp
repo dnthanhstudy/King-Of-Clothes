@@ -98,8 +98,9 @@
                 })
                 if (trangThai=='Đang giao hàng'){
                         dstrangthai.append(`
-                                        <button type="button" class="btn btn-primary ghtc" data-bs-dismiss="modal" onclick="thayDoiTrangThai('HUYDON')">Huỷ đơn</button>
-                                        <button type="button" class="btn btn-primary ghtc" data-bs-dismiss="modal" onclick="thayDoiTrangThai('DANHANHANG')">Giao hàng thành công</button>
+                                        <button type="button" class="btn btn-primary ghtc" data-bs-dismiss="modal" onclick="thayDoiTrangThai('HUYDON',2)">Lỗi giao hàng nhanh</button>
+                                        <button type="button" class="btn btn-primary ghtc" data-bs-dismiss="modal" onclick="thayDoiTrangThai('HUYDON',1)">Khách không nhận</button>
+                                        <button type="button" class="btn btn-primary ghtc" data-bs-dismiss="modal" onclick="thayDoiTrangThai('DANHANHANG','')">Giao hàng thành công</button>
                         `)
                 }
             },
@@ -126,10 +127,10 @@
         $(".ghtc").val(idhd)
 
     });
-    function thayDoiTrangThai(trangthai) {
+    function thayDoiTrangThai(trangthai,check) {
         let idhd = $(".ghtc:first").val()
         $.ajax({
-            url: `/api/hoadon/thaydoitrangthai?idhd=\${idhd}&trangthai=\${trangthai}`,
+            url: `/api/hoadon/thaydoitrangthai?idhd=\${idhd}&trangthai=\${trangthai}&thu3=\${check}`,
             method: 'GET',
             success: function (req) {
                 showSuccess("Thành công")

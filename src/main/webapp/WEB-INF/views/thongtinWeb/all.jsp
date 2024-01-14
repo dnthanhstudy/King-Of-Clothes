@@ -125,19 +125,21 @@
         });
     }
     loadTable()
-    function thayDoiTrangThaiHoaDon(idhd,trangThai){
-        let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
-        $.ajax({
-            url: `/api/hoadon/thaydoitrangthai`+parameter,
-            method: 'GET',
-            success: function (req) {
-                showSuccess("Huỷ đơn thành công");
-                loadTable();
-            },
-            error: function(xhr, status, error) {
-                console.log("Có lỗi xảy ra")
-            }
-        });
+    async function thayDoiTrangThaiHoaDon(idhd, trangThai) {
+        if (await showConfirm("Bạn có muốn huỷ đơn không ?")) {
+            let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+            $.ajax({
+                url: `/api/hoadon/thaydoitrangthai` + parameter,
+                method: 'GET',
+                success: function (req) {
+                    showSuccess("Huỷ đơn thành công");
+                    loadTable();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Có lỗi xảy ra")
+                }
+            });
+        }
     }
 </script>
 
