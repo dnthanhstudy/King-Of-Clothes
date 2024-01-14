@@ -101,8 +101,8 @@
                             <span style="color: #EB8153" class="fs-5" id="ma"></span>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
-                            <span class="fs-5">Thời gian:</span>
-                            <span class="fs-5" id="ngayTao"></span>
+                            <span class="fs-5">Thời gian thanh toán:</span>
+                            <span class="fs-5" id="ngayThanhToan"></span>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <span class="fs-5">Người bán:</span>
@@ -115,6 +115,10 @@
                         <div class="d-flex justify-content-between mt-3">
                             <span class="fs-5">Người hủy:</span>
                             <span class="fs-5" id="nguoiSua"></span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <span class="fs-5">Thời gian hủy:</span>
+                            <span class="fs-5" id="ngaySua"></span>
                         </div>
                         <div class="row mt-3">
                             <span class="fs-5">Lý do hủy đơn:</span>
@@ -160,7 +164,8 @@
                 $("#tenKhachHang").text(req.tenKhachHang);
                 $("#soDienThoaiKhachHang").text(req.soDienThoaiKhachHang);
                 $("#tenNhanVien").text(req.tenNhanVien);
-                $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
+                $('#ngayThanhToan').text(getDateTimeFromTimestamp(req.ngayThanhToan));
+                $('#ngaySua').text(getDateTimeFromTimestamp(req.ngaySua));
                 $("#trangThai").text(req.trangThai);
                 $("#nguoiSua").text(req.nguoiSua);
                 $("#lyDo").val(req.lyDoHuyDon.lyDo);

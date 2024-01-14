@@ -205,8 +205,8 @@ function loadProductActive() {
             console.log(response)
             $.each(response.gioHang, (index, item) => {
                 let checkHetHang = checkHetHangGioHang(item);
-                let genderInput = checkHetHang?`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />`:`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
-                 let setClassCart = checkHetHang?'cart-item':'special-card';
+                let genderInput = checkHetHang ? `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />` : `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
+                let setClassCart = checkHetHang ? 'cart-item' : 'special-card';
 
                 html += `<div style="border-bottom: 1px solid #dedede" class=${setClassCart}>
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
@@ -233,7 +233,7 @@ function loadProductActive() {
                                               <div class="btn-group">
                                                 <span
                                                   class="dropdown-toggle"
-                                                  ${checkHetHang?'data-bs-toggle="dropdown"':''}
+                                                  ${checkHetHang ? 'data-bs-toggle="dropdown"' : ''}
                                                   data-bs-auto-close="false"
                                                   aria-expanded="false"
                                                 >
@@ -353,9 +353,11 @@ function loadProductActive() {
         }
     });
 }
+
 function soLuongConLaiBienThe(soLuong) {
-    return soLuong>0?`<span>${soLuong} sản phẩm</span>`:"<b style='color: red;'>Hết hàng</b>";
+    return soLuong > 0 ? `<span>${soLuong} sản phẩm</span>` : "<b style='color: red;'>Hết hàng</b>";
 }
+
 function checkQuantity(data, successCallback, errorCallback) {
     $.ajax({
         url: "/api/gio-hang-chi-tiet/checked-quantity/" + customerCodeWhenLogin,
@@ -578,7 +580,7 @@ function deleteCart(eleClick) {
                 let eleInputId = eleClick.closest('.cart-item').find('.cart-detail-id');
                 if (!eleInputId.length) {
                     eleInputId = eleClick.closest('.special-card').find('.cart-detail-id');
-                        // ele.closest('.special-card');
+                    // ele.closest('.special-card');
                 }
                 const id = parseInt(eleInputId.val());
                 $.ajax({
@@ -624,12 +626,13 @@ function loadProductInActive() {
         success: (response) => {
             console.log(response)
             $.each(response, (index, item) => {
-                let html = `<div class="special-card" style="border-bottom: 1px solid #dedede">
+                let html = `<div class="special-card cart-delete" style="border-bottom: 1px solid #dedede">
                             <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                     <div class="form-check align-items-center justify-content-between mb-3 datacart">
                                             <div class="mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
+                                                    <input type="hidden" class="cart-id" value="${item.id}">
                                                     <div class="col-lg-3">
                                                         <img src="/repository/${item.anh}"
                                                              class="img-fluid rounded-start" alt="...">
@@ -664,7 +667,7 @@ function loadProductInActive() {
                                     <b class="product-price-custom-vnd">${item.thanhTien}</b>
                                 </div>
                                 <div class="col-1" style="background: #fff;height: 200px">
-                                    <a class=" fs-5 d-flex justify-content-center align-items-center" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
+                                    <a class=" fs-5 d-flex justify-content-center align-items-center deleteBienThe" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
                                 </div>
                             </div>
                     </div>`;
@@ -830,8 +833,8 @@ function deleteBienThe(eleClick) {
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(id),
                     success: (response) => {
-                        showSuccess("Xóa sản phẩm thành công");
                         loadProductInActive();
+                        showSuccess("Xóa sản phẩm thành công");
                     },
                     error: (error) => {
 

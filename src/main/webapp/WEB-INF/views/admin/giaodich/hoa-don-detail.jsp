@@ -127,7 +127,7 @@
                          </div>
                          <div class="d-flex justify-content-between mt-3">
                                 <span class="fs-5">Thời gian:</span>
-                                 <span class="fs-5" id="ngayTao"></span>
+                                 <span class="fs-5" id="ngayThanhToan"></span>
                          </div>
                          <div class="d-flex justify-content-between mt-3">
                                   <span class="fs-5">Người bán:</span>
@@ -177,7 +177,7 @@
                  $("#tenKhachHang").text(req.tenKhachHang);
                  $("#soDienThoaiKhachHang").text(req.soDienThoaiKhachHang);
                  $("#tenNhanVien").text(req.tenNhanVien);
-                 $('#ngayTao').text(getDateTimeFromTimestamp(req.ngayTao));
+                 $('#ngayThanhToan').text(getDateTimeFromTimestamp(req.ngayThanhToan));
                  $("#trangThai").text(req.trangThai);
                  var tbody = $('#tblSanPham tbody');
                  tbody.empty();
