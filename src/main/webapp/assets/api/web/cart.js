@@ -1,4 +1,4 @@
-loadProductActive();
+// loadProductActive();
 loadProductInActive();
 checkChuanBiDat();
 
@@ -45,8 +45,11 @@ function formatNumber(number) {
 $('.checked-all').on('click', function () {
     if ($(this).is(":checked")) {
         $('.checked-one').each((index, item) => {
-            $(item).prop('checked', true);
-        })
+            if ($(item).closest(".cart-item").length > 0) {
+                $(item).prop('checked', true);
+            }
+        });
+
     } else {
         $('.checked-one').each((index, item) => {
             $(item).prop('checked', false);
@@ -199,13 +202,13 @@ function loadProductActive() {
         dataType: "json",
         success: (response) => {
             let html = '';
+            console.log(response)
             $.each(response.gioHang, (index, item) => {
                 let checkHetHang = checkHetHangGioHang(item);
-                let genderInput = checkHetHang == true ? `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />` : `<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
-                let setClassCart = checkHetHang == true ? "cart-item" : "special-card";
+                let genderInput = checkHetHang?`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" />`:`<input value="${item.id}" name="idghct" class="form-check-input checked-one cart-detail-id" type="checkbox" disabled />`;
+                 let setClassCart = checkHetHang?'cart-item':'special-card';
 
-                console.log(checkHetHang)
-                html += `<div style="border-bottom: 1px solid #dedede" class="${setClassCart}">
+                html += `<div style="border-bottom: 1px solid #dedede" class=${setClassCart}>
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
@@ -230,7 +233,7 @@ function loadProductActive() {
                                               <div class="btn-group">
                                                 <span
                                                   class="dropdown-toggle"
-                                                  data-bs-toggle="dropdown"
+                                                  ${checkHetHang?'data-bs-toggle="dropdown"':''}
                                                   data-bs-auto-close="false"
                                                   aria-expanded="false"
                                                 >
@@ -289,7 +292,7 @@ function loadProductActive() {
                                         </div>`;
 
                 html += htmlThuocTinh;
-
+                let htmlSoLuongConLai = soLuongConLaiBienThe(item.soLuongConLaiBienThe);
                 html += `</div>
                               </div>
                             </div>
@@ -301,6 +304,7 @@ function loadProductActive() {
                    ${loadGia(item.donGia, item.giaMua)}
                     </div>
                     <div class="col-2">
+                    ${htmlSoLuongConLai}
                       <span>
                         <div class="input-group change-quantity" style="width: 100px">
                           <div class="input-group-btn">
@@ -349,7 +353,9 @@ function loadProductActive() {
         }
     });
 }
-
+function soLuongConLaiBienThe(soLuong) {
+    return soLuong>0?`<span>${soLuong} sản phẩm</span>`:"<b style='color: red;'>Hết hàng</b>";
+}
 function checkQuantity(data, successCallback, errorCallback) {
     $.ajax({
         url: "/api/gio-hang-chi-tiet/checked-quantity/" + customerCodeWhenLogin,
@@ -491,6 +497,23 @@ function loadOneCartItem(data, eleCartItem) {
 
     const listAttrName = eleCartItem.find('.list-attr-name');
 
+    // //Nếu biến thể còn số lượng thì có thể bán
+    // let checkHetHang = checkHetHangGioHang(data);
+    // console.log(checkHetHang)
+    // try{
+    //     if (!checkHetHang) {
+    //         eleCartItem.removeClass('cart-item');
+    //         eleCartItem.addClass('special-card');
+    //         // eleCartItem.className = eleCartItem.className.replace('special-card', 'cart-item');
+    //     }else{
+    //         eleCartItem.removeClass('special-card');
+    //         eleCartItem.addClass('cart-item');
+    //         // eleCartItem.className = eleCartItem.className.replace('cart-item', 'special-card');
+    //     }
+    // }catch (e) {
+    //     console.log(e);
+    // }
+    // console.log("Đã xuống đây")
     let nameVariant = [];
     let htmlThuocTinh = '';
     $.each(data.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
@@ -552,7 +575,11 @@ function deleteCart(eleClick) {
     showConfirm("Bạn muốn xóa sản phẩm này phải không?")
         .then((confirmed) => {
             if (confirmed) {
-                const eleInputId = eleClick.closest('.cart-item').find('.cart-detail-id');
+                let eleInputId = eleClick.closest('.cart-item').find('.cart-detail-id');
+                if (!eleInputId.length) {
+                    eleInputId = eleClick.closest('.special-card').find('.cart-detail-id');
+                        // ele.closest('.special-card');
+                }
                 const id = parseInt(eleInputId.val());
                 $.ajax({
                     url: "/api/gio-hang-chi-tiet",
