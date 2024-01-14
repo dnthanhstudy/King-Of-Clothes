@@ -229,13 +229,12 @@
                                      contentType: "application/json; charset=utf-8",
                                      data: JSON.stringify(response.id),
                                      success: function (response) {
+                                         console.log(response)
                                          showSuccess("Hủy đơn thành công!");
                                          window.location.href = "/admin/giao-dich/hoa-don-off";
                                      },
                                      error: function (xhr, status, error) {
-                                         var errorMessage = xhr.responseText;
-                                         showError(errorMessage);
-
+                                         showError(xhr.responseJSON.error);
                                      }
                                  });
                              },

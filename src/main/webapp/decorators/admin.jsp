@@ -94,6 +94,11 @@
                 text: message,
                 icon: "success"
             })
+
+            Toast.fire({
+                icon: 'succes',
+                title: message
+            })
         }
         function showError(message){
             const Toast = Swal.mixin({

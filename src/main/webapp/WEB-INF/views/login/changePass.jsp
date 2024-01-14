@@ -88,18 +88,16 @@
         $.ajax({
             url: "/api/resetPasswordByToken",
             type: "POST",
-            contentType: "application/json; charset=utf-8",
             data: {
                 restToken: restToken,
                 matKhau: matKhau
             },
             success: function(response) {
-                window.location.href = '/login';
                 showSuccess("Đổi mật khẩu thành công!");
+                window.location.href = '/login';
             },
             error: function(xhr, textStatus, error) {
-                var errorMessage = xhr.responseText;
-                showError(errorMessage);
+                showError(xhr.responseJSON.error);
             }
         });
     }

@@ -478,6 +478,7 @@
                 dataType: "json",
                 data: JSON.stringify(data),
                 success: (response) => {
+                    showSuccess("Thêm khách hàng thành công!")
                     $('#exampleModal1').removeClass('show');
                     $('.modal-backdrop').addClass('d-none');
                     $('#search-customer').val(response.soDienThoai + " - " + response.ten);
@@ -621,10 +622,6 @@
                 $("#list-products").on("change", "input[type='radio']", function () {
                     let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
                     const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
-
-                    console.log("Len of attribute: " + lenOfAttribute)
-                    console.log("lEN CHECKED: " + lenChecked)
-
                     if (lenChecked === lenOfAttribute) {
                         let attributeId = [];
                         $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
@@ -641,13 +638,16 @@
                                 if (response.khuyenMaiHienThiResponse !== null) {
                                     couponId = response.khuyenMaiHienThiResponse.id;
                                 }
-                                $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
-                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
-                                $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
 
+                                $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+
+                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong);
 
                                 if (response.hinhAnh !== null) {
                                     $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
+                                }
+                                if (response.khuyenMaiHienThiResponse !== null) {
+                                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
                                 }
 
                                 $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
@@ -826,7 +826,9 @@
                                 data: JSON.stringify(attributeId),
                                 success: (response) => {
                                     variantId = response.id;
-                                    couponId = response.khuyenMaiHienThiResponse.id;
+                                    if (response.khuyenMaiHienThiResponse !== null) {
+                                        couponId = response.khuyenMaiHienThiResponse.id;
+                                    }
 
                                     $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
 
@@ -1124,20 +1126,24 @@
 
                         $('.invoice-detail-delete').on('click', function (e) {
                             e.preventDefault()
-                            let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
-                            $.ajax({
-                                url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
-                                method: "DELETE",
-                                contentType: "application/json; charset=utf-8",
-                                data: JSON.stringify(invoiceDetailId),
-                                success: (response) => {
-                                    showSuccess("Xóa sản phẩm thành công");
-                                    loadHoaDon()
-                                },
-                                error: (error) => {
-                                }
-                            })
-
+                            showConfirm("Bạn có muốn xóa sản phẩm này không?")
+                                .then((confirmed) => {
+                                    if(confirmed){
+                                        let invoiceDetailId = parseInt($(this).closest('.card-body-invoice-detail').find('.invoice-detail').val());
+                                        $.ajax({
+                                            url: "/api/hoa-don-chi-tiet/" + invoiceDetailId,
+                                            method: "DELETE",
+                                            contentType: "application/json; charset=utf-8",
+                                            data: JSON.stringify(invoiceDetailId),
+                                            success: (response) => {
+                                                showSuccess("Xóa sản phẩm thành công");
+                                                loadHoaDon()
+                                            },
+                                            error: (error) => {
+                                            }
+                                        })
+                                    }
+                                })
                         })
                     })
 
