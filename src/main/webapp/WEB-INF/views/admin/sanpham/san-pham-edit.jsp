@@ -174,10 +174,14 @@
                             Sản phẩm nổi bật
                         </label>
                     </div>
+                    <div class="khuyenmai-sanpham m-0 mt-2 mb-2" id="khuyenmai-sanpham"></div>
                 </div>
+
                 <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
             </form>
+
         </div>
+
 
     </div>
 </div>
@@ -261,6 +265,26 @@
                             </tr>`;
                 })
                 $("#variants").append(htmlBienThe)
+                let khuyenMaiSanPham = req.khuyenMaiHienThiResponse;
+                if(khuyenMaiSanPham != null){
+                    let htmlKhuyenMai = '';
+                    if(khuyenMaiSanPham.trangThai === "ACTIVE"){
+                        htmlKhuyenMai += `
+                        <div class="col-10">
+                                    <a style="color: black; text-decoration: none;" href="/admin/khuyen-mai/detail/\${khuyenMaiSanPham.ma}" target="_blank"><p class=""> <span>Đang áp dụng Khuyến mãi: </span><strong>\${khuyenMaiSanPham.ten}</strong></p></a>
+                                </div>
+                    `
+                    }else
+                    if(khuyenMaiSanPham.trangThai === "UPCOMING"){
+                        htmlKhuyenMai += `
+                        <div class="col-10">
+                                    <a style="color: black; text-decoration: none;" href="/admin/khuyen-mai/detail/\${khuyenMaiSanPham.ma}" target="_blank"><p class=""> <span>Sắp hoạt động Khuyến mãi: </span><strong>\${khuyenMaiSanPham.ten}</strong></p></a>
+                                </div>
+                    `
+                    }
+
+                    $("#khuyenmai-sanpham").append(htmlKhuyenMai)
+                }
             },
             error: function (xhr, status, error) {
                 console.log(error);

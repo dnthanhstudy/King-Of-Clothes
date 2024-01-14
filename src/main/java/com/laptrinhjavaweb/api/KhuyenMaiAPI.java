@@ -63,4 +63,14 @@ public class KhuyenMaiAPI {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
+    @PostMapping("/update-status/{id}")
+    public void updatedTrangThai(@PathVariable("id") Long id, @RequestBody String trangThai){
+        khuyenMaiService.updateTrangThai(id, trangThai);
+    }
+
+    @PostMapping("/update-expired/{ma}")
+    public void updatedEXPIRED(@PathVariable("ma") String ma){
+        khuyenMaiService.updateEXPIRED(ma);
+    }
+
 }

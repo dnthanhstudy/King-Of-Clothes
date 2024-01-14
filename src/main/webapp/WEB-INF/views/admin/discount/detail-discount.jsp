@@ -173,14 +173,32 @@
             var i = 0
             dsSanPhamKhuyenMai.forEach(function (item){
                 i++;
-                html +=  `<tr>
+                if(item.trangThai === "ACTIVE" || item.trangThai === "INACTIVE"){
+                    let isChecked = item.trangThai === "ACTIVE" ? "checked" : "";
+                    html +=  `<tr>
                                 <td>\${i}</td>
                                 <td>
                                     <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
                                 </td>
                                 <td>\${item.sanPhamResponse.ten}</td>
-
+                                <td class="text-center">
+                                    <label class="switch">
+                                        <input class="checked-update-status" type="checkbox" \${isChecked}>
+                                        <span class="slider"></span>
+                                    </label>
+                                </td>
+                            <input class="product-discount-id" type="hidden" value="\${item.id}">
                             </tr>`
+                }else{
+                    html +=  `<tr>
+                                <td>\${i}</td>
+                                <td>
+                                    <img src='/repository/\${item.sanPhamResponse.anh[0].hinhAnh}' style="width: 80px;">
+                                </td>
+                                <td>\${item.sanPhamResponse.ten}</td>
+                            </tr>`
+                }
+
 
             })
             $('.tbody-product-select').html(html);
@@ -228,6 +246,16 @@
                 <span class="badge \${badgeColor} d-sm-inline-block d-none">\${trangThaiStr}</span>
                 `
             cardTrangThai.append(trangThai);
+
+            $('.checked-update-status').on('change', function () {
+                const id = $(this).closest("tr").find('.product-discount-id').val();
+                if ($(this).is(":checked")) {
+                    updateTrangThai(id, "ACTIVE");
+                } else {
+                    updateTrangThai(id, "INACTIVE");
+                }
+            })
+
         },
         error: function(xhr, status, error) {
             alert('Có lỗi xảy ra: ' + error);
@@ -292,6 +320,21 @@
     });
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    function updateTrangThai(id, trangThai) {
+        console.log(id);
+        console.log(trangThai);
+        $.ajax({
+            url: "/api/khuyen-mai/update-status/" + id,
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: trangThai,
+            success: (response) => {
+                showSuccess("Cập nhật sản phẩm khuyến mãi thành công!");
+            },
+            error: (error) => {
+            }
+        })
     }
 
 </script>

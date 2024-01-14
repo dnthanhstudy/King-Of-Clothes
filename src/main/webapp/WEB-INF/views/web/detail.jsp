@@ -231,6 +231,7 @@
 </div>
 <input type="hidden" name="" id="product-id" value="${product.id}">
 <input type="hidden" name="" id="product-ngayTao" value="${product.ngayTao}">
+<input type="hidden" name="" id="product-discount-code" value="${product.khuyenMaiHienThiResponse.ma}">
 </div>
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
@@ -238,8 +239,8 @@
 <script>
     var x = setInterval(function () {
         var finish = parseInt($('#product-finish').val());
-       // var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
-        var now = new Date();
+       var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
+        // var now = new Date();
         var distance = finish - now;
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -252,8 +253,20 @@
 
         if (distance < 0) {
             clearInterval(x);
-            $('.finish').text("EXPIRED");
+
             // call api update trạng thái của khuyến mại sản phẩm (expired nhé)
+             var code = parseInt($('#product-discount-code').val());
+            $.ajax({
+                        url: "/api/khuyen-mai/update-expired/" + code,
+                        method: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: trangThai,
+                        success: (response) => {
+                        },
+                        error: (error) => {
+                        }
+                    })
+            $('.finish').text("EXPIRED");
        }
     }, 1000);
 

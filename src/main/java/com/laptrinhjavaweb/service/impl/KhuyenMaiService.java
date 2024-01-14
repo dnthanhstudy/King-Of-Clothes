@@ -126,6 +126,9 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         if (km != null) {
             KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
             khuyenMaiEntity.setId(km.getId());
+            if(khuyenMaiEntity.getNgayKetThuc().compareTo(request.getNgayKetThuc()) <= 0){
+                khuyenMaiEntity.setTrangThai("ACTIVE");
+            }
             KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
             List<KhuyenMaiSanPhamEntity> list = khuyenMaiSanPhamRepository.findAllByKhuyenMai_id(result.getId());
             for (KhuyenMaiSanPhamEntity kmsp:list
@@ -135,9 +138,17 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             List<String> listSlug = request.getListSanPham();
             for (String x : listSlug ){
                 SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
+                KhuyenMaiSanPhamEntity kmsp = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(spEntity.getId(), "ACTIVE", spEntity.getId(),"UPCOMING");
+                if(kmsp != null){
+                    throw new ClientError("Sản phẩm: "+spEntity.getTen()+" đang chạy khuyến mại. Vui lòng tạo khuyến mại!");
+                }
+            }
+            for (String x : listSlug ){
+                SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
                 KhuyenMaiSanPhamEntity entity = new KhuyenMaiSanPhamEntity();
                 entity.setKhuyenMai(result);
                 entity.setSanPham(spEntity);
+                entity.setTrangThai("ACTIVE");
                 khuyenMaiSanPhamRepository.save(entity);
                 entity.setTrangThai(result.getTrangThai());
                 khuyenMaiSanPhamRepository.save(entity);
@@ -232,6 +243,28 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     }
 
     @Override
+    public void updateTrangThai(Long id, String trangThai) {
+        KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findById(id).orElse(null);
+        System.out.println("Cap nhat "+khuyenMaiSanPhamEntity.getSanPham().getTen());
+            khuyenMaiSanPhamEntity.setTrangThai(trangThai);
+            khuyenMaiSanPhamRepository.save(khuyenMaiSanPhamEntity);
+    }
+
+    @Override
+    public void updateEXPIRED(String ma) {
+        KhuyenMaiEntity khuyenMaiEntity = khuyenMaiRepository.findByMa(ma);
+        if(khuyenMaiEntity != null){
+            khuyenMaiEntity.setTrangThai("EXPIRED");
+            khuyenMaiRepository.save(khuyenMaiEntity);
+            List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
+            for (KhuyenMaiSanPhamEntity kmsp: list ) {
+                kmsp.setTrangThai("EXPIRED");
+                khuyenMaiSanPhamRepository.save(kmsp);
+            }
+        }
+    }
+
+    @Override
     public KhuyenMaiEntity updateStatus(KhuyenMaiEntity khuyenMaiEntity) {
 //        System.out.println("Khuyen mai 01");
         if (!(khuyenMaiEntity.getTrangThai().equals("EXPIRED"))){
@@ -239,9 +272,13 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             if(khuyenMaiEntity.getNgayBatDau().compareTo(currentDate) <= 0 && !(khuyenMaiEntity.getTrangThai().equals("DELETE"))){
                 khuyenMaiEntity.setTrangThai("ACTIVE");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
+
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {
-                    kmsp.setTrangThai("ACTIVE");
-                    khuyenMaiSanPhamRepository.save(kmsp);
+                    if(!(kmsp.getTrangThai().equals("INACTIVE"))){
+                        kmsp.setTrangThai("ACTIVE");
+                        khuyenMaiSanPhamRepository.save(kmsp);
+                    }
+
                 }
             }
             if (currentDate.after(khuyenMaiEntity.getNgayKetThuc())) {
