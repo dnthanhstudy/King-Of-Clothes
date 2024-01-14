@@ -1,20 +1,20 @@
-var getDatePart = function (date) {
-    var datestr = date + '';
-    return datestr.split('T')[0];
-}
-function convertMillisecondsToFormattedDate(milliseconds) {
-    return Highcharts.dateFormat('%d/%m/%Y', milliseconds);
-}
-$.ajax({
-    url: '/api/hoadon/thongkedssp',
-    method: 'GET',
-    success: function (data) {
-
-
-    }
-
-        })
-
+// var getDatePart = function (date) {
+//     var datestr = date + '';
+//     return datestr.split('T')[0];
+// }
+// function convertMillisecondsToFormattedDate(milliseconds) {
+//     return Highcharts.dateFormat('%d/%m/%Y', milliseconds);
+// }
+// $.ajax({
+//     url: '/api/hoadon/thongkedssp',
+//     method: 'GET',
+//     success: function (data) {
+//
+//
+//     }
+//
+//         })
+//
 
 
 // let ArmsIndex = new Highcharts.Chart("ArmsIndex", {
