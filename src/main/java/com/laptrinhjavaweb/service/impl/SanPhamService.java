@@ -12,7 +12,7 @@ import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.response.ThuocTinhResponse;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
-import org.apache.xpath.operations.Bool;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -304,6 +304,7 @@ public class SanPhamService implements ISanPhamService {
         hoaDonChiTietRepository.updateWhenUpdateProduct(idsBienThe);
     }
 
+    @SneakyThrows
     @Override
     @Transactional
     public SanPhamResponse update(SanPhamRequest sanPhamRequest) {
@@ -340,9 +341,14 @@ public class SanPhamService implements ISanPhamService {
         ).collect(Collectors.toList());
 
         List<ThuocTinhRequest> listThuocTinhRequestThem = sanPhamRequest.getThuocTinh().stream()
-                .peek(item -> item.getGiaTris().removeIf(giaTri -> listThuocTinhThem.stream().noneMatch(thuoctinh -> thuoctinh.equals(giaTri))))
-                .filter(item -> !item.getGiaTris().isEmpty())
-                .collect(Collectors.toList());
+                .map(item -> {
+                    List<String> updatedGiaTris = item.getGiaTris().stream()
+                            .filter(giaTri -> listThuocTinhThem.contains(giaTri))
+                            .collect(Collectors.toList());
+                            return new ThuocTinhRequest(null, item.getSlug(),
+                                    item.getTen(), updatedGiaTris, null, "ACTIVE");
+                        }
+                ).collect(Collectors.toList());
 
         List<BienTheRequest> listBienTheRequestThem = sanPhamRequest.getBienThe().stream().
                 filter(
@@ -361,7 +367,6 @@ public class SanPhamService implements ISanPhamService {
                                                 (!bienTheEntity.getSoLuong().equals(item.getSoLuong()) || !bienTheEntity.getGia().equals(item.getGia())))
                                 )
                 ).collect(Collectors.toList());
-        ;
 
         List<Long> idsBienThe = listBienTheXoa.stream().map(
                 item -> bienTheRepository.findByTenAndSanPham_Id(item, idSanPham).getId()

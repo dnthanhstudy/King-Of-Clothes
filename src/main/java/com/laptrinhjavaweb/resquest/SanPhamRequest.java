@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanPhamRequest {
+public class SanPhamRequest{
 
     private Long id;
 
@@ -37,7 +37,7 @@ public class SanPhamRequest {
 
     private List<BienTheRequest> bienThe;
 
-    private Integer sanPhamMoi;
+    private Integer sanPhamMoi = 1;
 
     private Integer sanPhamNhieuLuotXem;
 
@@ -46,4 +46,5 @@ public class SanPhamRequest {
     private Integer sanPhamPhoBien;
 
     private String trangThai = "ACTIVE";
+
 }

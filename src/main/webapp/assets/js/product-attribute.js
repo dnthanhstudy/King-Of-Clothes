@@ -4,12 +4,12 @@ $(".input-name-atrribute").on("keypress", function (e) {
         e.preventDefault();
         let nameAttribute = $(e.target).val();
         if (!nameAttribute) {
-            showError("Thuộc tính này đã tòn tại");
+            showError("Thuộc tính không được để trống");
         } else {
             $(".card-text-none-attribute").hide();
             const slugAttribute = customNameToSlug(nameAttribute);
             if (findBySlug(slugAttribute) !== undefined) {
-                messageNotication(attributeExsits, "rgba(255, 99, 71, 1)");
+                showError("Tên thuộc tính này đã tồn tại")
             } else {
                 const eleDivProductsHasAtributes = $(
                     `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
@@ -65,7 +65,7 @@ $("#card-attribute .card-body").on("click", function (e) {
                         generateVariant();
                     }
                 } else {
-                    messageNotication(isEmpty, "rgba(255, 99, 71, 1)");
+                    showError("giá trị thuộc tính không được để trống");
                 }
 
                 eleClick.val("");
@@ -134,7 +134,6 @@ $("#ten").keyup(function () {
 $("#btn-set-price").on("click", function () {
     let price = $("#price-all").val();
     $(".table-variant-body .price-variant").each((index, item) => {
-        console.log($(item));
         $(item).val(price);
     });
     $("#price-all").val('');
@@ -335,3 +334,60 @@ function getValueInTable() {
     });
     return arrs;
 }
+
+let attributes = [];
+$.ajax({
+    url: '/api/filter',
+    dataType: "json",
+    success: function (response) {
+        $.each(response, function (index, item) {
+            let attribute = {
+                "value": item.ten,
+                "slug": item.ma
+            }
+            attributes.push(attribute);
+        })
+        loadSuggestions(attributes);
+    },
+    error: function (error) {
+        console.log(error);
+    }
+});
+
+function loadSuggestions(options) {
+    $('.input-name-atrribute').autocomplete({
+        lookup: options,
+        onSelect: function (suggestion) {
+            let nameAttribute = suggestion.value;
+            if (!nameAttribute) {
+                showError("Không được để trống")
+            } else {
+                $(".card-text-none-attribute").hide();
+                const slugAttribute = suggestion.slug;
+                if (findBySlug(slugAttribute) !== undefined) {
+                    showError("Thuộc tính này đã tòn tại")
+                } else {
+                    const eleDivProductsHasAtributes = $(
+                        `<div class="product-has-attribute mb-3" data-slug="${slugAttribute}"></div>`
+                    );
+                    const eleNameAttribute = `<div class="name-attribute">
+                                                  <button type="button" class="btn btn-success position-relative">
+                                                      ${nameAttribute}
+                                                    <span class="btn-remove-parent position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                                        <i class="fa fa-trash-o btn-remove-parent-trash" aria-hidden="true"></i>
+                                                    </span>
+                                                  </button>
+                                              </div>
+            
+                                              <div class="input-group mt-3">
+                                                  <input type="text" class="form-control input-value-attribute" placeholder="Nhập giá trị"/>
+                                              </div>`;
+                    eleDivProductsHasAtributes.html(eleNameAttribute);
+                    $("#card-attribute .card-body").append(eleDivProductsHasAtributes);
+                }
+                $('.input-name-atrribute').val('');
+            }
+        }
+    });
+}
+
