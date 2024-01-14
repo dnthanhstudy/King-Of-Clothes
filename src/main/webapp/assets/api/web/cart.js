@@ -702,25 +702,18 @@ function loadProductInActive() {
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
                                           <div class="col-lg-3">
-                                            <a href="/san-pham/${item.slug}">
                                               <img
                                                 src="/repository/${item.image}"
                                                 class="img-fluid rounded-start cart-item-image"
                                                 alt="..."
                                               />
-                                            </a>
                                           </div>
                                           <div class="col-lg-9">
                                             <div class="card-body">
-                                              <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
-                                                ><h5 class="card-title line-clamp-2">${item.tenSanPham}</h5></a
-                                              >
+                                            <h5 class="card-title line-clamp-2">${item.tenSanPham}</h5> 
                                               <div class="btn-group">
                                                 <span
-                                                  class="dropdown-toggle"
-                                                  data-bs-toggle="dropdown"
-                                                  data-bs-auto-close="false"
-                                                  aria-expanded="false"
+                                                 
                                                 >
                                                   Phân loại hàng
                                                 </span> <ul style="width: 450px !important;" class="dropdown-menu p-3 list-attr-name">`;
