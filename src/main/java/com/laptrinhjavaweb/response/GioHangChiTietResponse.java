@@ -36,4 +36,6 @@ public class GioHangChiTietResponse {
     private Boolean trangThaiSanPham;
 
     private Integer soLuongConLaiBienThe;
+
+    private String trangThai;
 }

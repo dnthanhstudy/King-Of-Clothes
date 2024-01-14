@@ -90,6 +90,15 @@ public class GioHangChiTietEntity extends BaseEntity{
 
 	}
 
+	public Double soTienDuocGiam(){
+		Double giaTienKm  = getGiaTienKm();
+		if (giaTienKm==null){
+			return null;
+		}else{
+			return getGiaTien()/giaTienKm;
+		}
+	}
+
 	public Double getTongTien(){
 		Double giaTienKm = getGiaTienKm();
 		if (giaTienKm==null){

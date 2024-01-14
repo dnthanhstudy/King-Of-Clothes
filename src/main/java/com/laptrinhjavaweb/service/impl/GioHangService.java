@@ -3,11 +3,9 @@ package com.laptrinhjavaweb.service.impl;
 import com.laptrinhjavaweb.converter.GioHangConverter;
 import com.laptrinhjavaweb.entity.GioHangChiTietEntity;
 import com.laptrinhjavaweb.entity.GioHangEntity;
-import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.repository.GioHangChiTietRepository;
 import com.laptrinhjavaweb.repository.GioHangRepository;
 import com.laptrinhjavaweb.response.GioHangResponse;
-import com.laptrinhjavaweb.response.TotalCartResponse;
 import com.laptrinhjavaweb.resquest.GioHangRequest;
 import com.laptrinhjavaweb.service.IGioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,12 @@ public class GioHangService implements IGioHangService {
     }
 
     @Override
-    public GioHangResponse findByMaKhachHang(String maKhachHang) {
+    public GioHangResponse findByMaKhachHang(String maKhachHang, String trangThai) {
         GioHangEntity gioHangEntity = gioHangRepository.findByKhachHang_ma(maKhachHang);
         if(gioHangEntity == null){
             return null;
         }
-        List<GioHangChiTietEntity> list = gioHangChiTietRepository.findAllByGioHang_IdAndTrangThai(gioHangEntity.getId(),"ACTIVE");
+        List<GioHangChiTietEntity> list = gioHangChiTietRepository.findAllByGioHang_Id(gioHangEntity.getId(), trangThai);
         gioHangEntity.setGioHangChiTietEntities(list);
         return gioHangConverter.convertToResponse(gioHangEntity);
     }

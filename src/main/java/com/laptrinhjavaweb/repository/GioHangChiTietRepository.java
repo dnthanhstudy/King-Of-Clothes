@@ -19,7 +19,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
             "ghct.trangThai not in ('DELETE','PENDING','DAHETHANG')")
     List<Long> dsspCuaGioHang(@Param("idkh")Long idkh);
 
-    List<GioHangChiTietEntity> findAllByGioHang_IdAndTrangThai(Long idGioHang,String trangThai);
+    @Query("SELECT g FROM GioHangChiTietEntity g WHERE g.gioHang.id = :idGioHang AND g.trangThai = :trangThai")
+    List<GioHangChiTietEntity> findAllByGioHang_Id(@Param("idGioHang") Long idGioHang, @Param("trangThai") String trangThai);
 
     @Query("select ghct from GioHangChiTietEntity ghct" +
             " where ghct.gioHang.khachHang.id=:idkh and ghct.bienThe.sanPham.id=:idsp and ghct.trangThai " +
@@ -66,4 +67,8 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTietEn
     @Modifying
     @Query("delete from GioHangChiTietEntity g WHERE g.bienThe.id in ?1")
     void updateVariant (List<Long> idsBienThe);
+
+    @Modifying
+    @Query("update GioHangChiTietEntity g set g.trangThai = :trangThai WHERE g.sanPham.id = :idSanPham")
+    void updateInActive (@Param("trangThai") String trangThai, @Param("idSanPham") Long idSanPham);
 }

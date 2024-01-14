@@ -180,7 +180,8 @@
                                         </label>
                                     </td>
                                     <input class="product-slug" type="hidden" value="\${item.slug}">
-                                </tr>`;
+                                </tr>
+                            `;
                     })
                     $('.tbody-product').html(html);
 
@@ -205,6 +206,15 @@
                             }
                         },
                     });
+
+                    $('.checked-update-status').on('change', function () {
+                        const slug = $(this).closest("tr").find('.product-slug').val();
+                        if ($(this).is(":checked")) {
+                            updateTrangThai(slug, "ACTIVE");
+                        } else {
+                            updateTrangThai(slug, "INACTIVE");
+                        }
+                    })
                 }
             },
             error: (error) => {

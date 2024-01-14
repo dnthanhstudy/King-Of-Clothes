@@ -7,5 +7,5 @@ public interface IGioHangService {
 
     Long save(GioHangRequest gioHangRequest);
 
-    GioHangResponse findByMaKhachHang(String maKhachHang);
+    GioHangResponse findByMaKhachHang (String maKhachHang, String trangThai);
 }

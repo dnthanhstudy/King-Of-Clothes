@@ -681,7 +681,9 @@ input:checked + .slider:before {
 }
 
 /*disable cart*/
-.special-card {
+.special-card:not(.list-attr-name) {
     background-color: rgba(245, 245, 245, 1);
     opacity: .4;
 }
+
+

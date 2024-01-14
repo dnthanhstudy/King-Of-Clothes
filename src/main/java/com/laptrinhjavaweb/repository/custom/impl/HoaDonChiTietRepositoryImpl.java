@@ -57,7 +57,7 @@ public class HoaDonChiTietRepositoryImpl implements HoaDonChiTietCustom {
         ).collect(Collectors.joining(",", "(", ")"));
 
         String sql = "SELECT hoadonchitiet.* FROM hoadonchitiet JOIN hoadon ON hoadon.id = hoadonchitiet.idhoadon " +
-                "WHERE (hoadon.trangthai = 'CHOXACNHAN' OR hoadon.trangthai = 'TREO') AND hoadonchitiet.idbienthe IN " + idsIn;
+                "WHERE (hoadon.trangthai = 'CHONHANDON' OR hoadon.trangthai = 'TREO') AND hoadonchitiet.idbienthe IN " + idsIn;
         Query query = entityManager.createNativeQuery(sql, HoaDonChiTietEntity.class);
         return query.getResultList().size();
     }
