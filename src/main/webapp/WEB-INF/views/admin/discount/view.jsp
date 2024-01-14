@@ -146,6 +146,7 @@
 <script>
     let pageCurrent = 1;
     var value="";
+
     function loadKhuyenMai() {
         $.ajax({
             url: "/api/khuyen-mai/pagination?page="+pageCurrent,
@@ -459,6 +460,7 @@
                 })
         }
     });
+
     $('#cardKhuyenMai').on('click', (e) => {
         if ($(e.target).hasClass('btn-undelete-khuyen-mai')) {
             let ma = $(e.target).data('ma');
@@ -485,6 +487,7 @@
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
+
     $(document).ready(function() {
         var searchButton = $('#searchButton');
         pageCurrent = 1;
@@ -498,7 +501,295 @@
             }
         });
     });
+
+    $(document).ready(function() {
+        var searchSanPhamButton = $('#searchSanPhamButton');
+        pageCurrent = 1;
+        searchSanPhamButton.on('keydown', function(event) {
+            if (event.which === 13) {
+                value = searchSanPhamButton.val();
+                if(pageCurrent > 1){
+                    pageCurrent = 1;
+                }
+                if (value.trim()==="") {
+                    loadKhuyenMai();
+                } else {
+                    loadSearchSanPham(value);
+                }
+            }
+        });
+    });
+
     function loadSearchKM(value) {
+        $.ajax({
+            url: "/api/khuyen-mai/search?page="+pageCurrent+"&q="+value,
+            method: 'GET',
+            success: function (response) {
+                if(response.data.length === 0){
+                    $('#iemty').removeClass('d-none')
+                    $('#iemty').text("Không tìm thấy khuyến mại nào như thế !")
+                    $('#cardKhuyenMai').addClass('d-none');
+                    $('#pagination').addClass('d-none');
+                }else {
+                    $('#iemty').addClass('d-none')
+                    $('#cardKhuyenMai').removeClass('d-none');
+                    $('#pagination').removeClass('d-none');
+                    var khuyenMai = $('#cardKhuyenMai');
+                    khuyenMai.empty();
+                    var count = response.data.length;
+                    $("#tongKM").text(count);
+                    response.data.forEach(function (item) {
+                        var ngayBatDauFMT = formatMicrosoftJSONDate(item.ngayBatDau);
+                        var ngayKetThucFMT = formatMicrosoftJSONDate(item.ngayKetThuc);
+                        var ngayTaoFMT = formatMicrosoftJSONDate(item.ngayTao);
+                        var giaTriFMT = formatNumber(item.giaTri);
+                        var soLuongFMT = formatNumber(item.soLuong);
+                        var trangThaiStr = "";
+                        var textColor = "";
+                        var textFront = "text-info";
+                        if (item.trangThai == "DELETE") {
+                            trangThaiStr = "Đã dừng";
+                            textColor = "bgl-danger";
+                            textFront = "text-danger";
+                        } else if (item.trangThai == "UPCOMING") {
+                            trangThaiStr = "Sắp diễn ra";
+                            textColor = "bgl-warning";
+                            textFront = "text-warning";
+                        } else {
+                            trangThaiStr = "Hoạt động";
+                            textColor = "bgl-info";
+                        }
+                        if (item.trangThai == "DELETE"){
+                            var card = `
+                       <div class="card"  style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+             background-color: #fff" >
+                        <div class="project-info">
+                            <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                <p class="text-primary mb-1">#\${item.ma}</p>
+                                <h5 class="title font-w600 mb-2"><a href="/admin/khuyen-mai/detail/\${item.ma}" class="text-black nav-link active">\${item.ten}</a></h5>
+                                <div class="text-dark"><i class="fa fa-calendar-o mr-3" aria-hidden="true"></i>Ngày tạo: \${ngayTaoFMT}</div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Giá trị</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">Giảm: \${giaTriFMT} \${item.loai == 1 ? "%": "đ"} </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày bắt đầu</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayBatDauFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày kết thúc</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayKetThucFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Số lượng</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${soLuongFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex project-status align-items-center">
+                                    <span class="btn \${textColor} \${textFront} status-btn mr-3">\${trangThaiStr}</span>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                           <a class="dropdown-item btn-undelete-khuyen-mai" data-ma="\${item.ma}">Tiếp tục khuyến mãi</a>
+                                            <a class="dropdown-item" href="/admin/khuyen-mai/edit/\${item.ma}" style="color: inherit;">Chỉnh sửa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `;
+                        }else if(item.trangThai == "EXPIRED"){
+                            var card = `
+                       <div class="card"  style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+             background-color: #fff" >
+                        <div class="project-info">
+                            <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                <p class="text-primary mb-1">#\${item.ma}</p>
+                                <h5 class="title font-w600 mb-2"><a href="/admin/khuyen-mai/detail/\${item.ma}" class="text-black nav-link active">\${item.ten}</a></h5>
+                                <div class="text-dark"><i class="fa fa-calendar-o mr-3" aria-hidden="true"></i>Ngày tạo: \${ngayTaoFMT}</div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Giá trị</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">Giảm: \${giaTriFMT} \${item.loai == 1 ? "%": "đ"} </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày bắt đầu</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayBatDauFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày kết thúc</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayKetThucFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Số lượng</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${soLuongFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex project-status align-items-center">
+                                    <span class="btn \${textColor} \${textFront} status-btn mr-3">\${trangThaiStr}</span>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                           <a class="dropdown-item btn-undelete-khuyen-mai" data-ma="\${item.ma}">Tiếp tục khuyến mãi</a>
+                                            <a class="dropdown-item" href="/admin/khuyen-mai/edit/\${item.ma}" style="color: inherit;">Chỉnh sửa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `;
+                        } else{
+                            var card = `
+                       <div class="card"  style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+             background-color: #fff" >
+                        <div class="project-info">
+                            <div class="col-xl-3 my-2 col-lg-4 col-sm-6">
+                                <p class="text-primary mb-1">#\${item.ma}</p>
+                                <h5 class="title font-w600 mb-2"><a href="/admin/khuyen-mai/detail/\${item.ma}" class="text-black nav-link active">\${item.ten}</a></h5>
+                                <div class="text-dark"><i class="fa fa-calendar-o mr-3" aria-hidden="true"></i>Ngày tạo: \${ngayTaoFMT}</div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-4 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Giá trị</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">Giảm: \${giaTriFMT} \${item.loai == 1 ? "%": "đ"} </h5>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày bắt đầu</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayBatDauFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="ml-1">
+                                        <span>Ngày kết thúc</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${ngayKetThucFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex align-items-center">
+
+                                    <div class="ml-2">
+                                        <span>Số lượng</span>
+                                        <h5 class="mb-0 pt-1 font-w500 text-black">\${soLuongFMT}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 my-2 col-lg-6 col-sm-6">
+                                <div class="d-flex project-status align-items-center">
+                                    <span class="btn \${textColor} \${textFront} status-btn mr-3">\${trangThaiStr}</span>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="false">
+                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            </svg>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="/admin/khuyen-mai/edit/\${item.ma}" style="color: inherit;">Chỉnh sửa</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        `;
+                        }
+                        khuyenMai.append(card);
+                    });
+                    console.log(response);
+                    $('#pagination').twbsPagination('destroy');
+                    $('#pagination').twbsPagination({
+                        first: "First",
+                        prev: "Previous",
+                        next: "Next",
+                        last: "Last",
+                        visiblePages: 5,
+                        totalPages: response.meta.totalPage,
+                        startPage: response.meta.pageCurrent,
+                        onPageClick: function (event, page) {
+                            if (page !== pageCurrent) {
+                                event.preventDefault();
+                                pageCurrent = page;
+                                if(value != ''){
+                                    loadSearchKM(value)
+                                }else{
+                                    loadKhuyenMai();
+                                }
+                            }
+                        },
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
+
+    function loadSearchSanPham(value) {
         $.ajax({
             url: "/api/khuyen-mai/search?page="+pageCurrent+"&q="+value,
             method: 'GET',

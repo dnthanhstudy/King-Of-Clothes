@@ -284,7 +284,8 @@
             // $('.tbody-product-select').html(html);
         },
         error: function(xhr, status, error) {
-            console.log(error);
+            console.log(xhr);
+            showError(xhr.responseJSON.error)
         }
     });
 
@@ -376,7 +377,8 @@
                     showSuccess("Cập nhật thành công!");
                 },
                 error: function(xhr, status, error) {
-                    console.log(error);
+                    console.log(xhr);
+                    showError(xhr.responseJSON.error)
                 }
             });
         }
@@ -423,7 +425,8 @@
                 $('.tbody-product').html(html);
             },
             error: function (xhr, status, error) {
-                console.log(error);
+                console.log(xhr);
+                showError(xhr.responseJSON.error)
             }
         });
     }
@@ -483,6 +486,12 @@
         } else {
             if (ngayBatDau > ngayKetThuc) {
                 showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày kết thúc > ngày bắt đầu");
+                isValid = false;
+            }
+            let currentDate = new Date();
+            let ngayKT = new Date(ngayKetThuc);
+            if(ngayKT < currentDate){
+                showError("Ngày kết thúc không hợp lệ. Vui lòng chọn ngày >= ngày hiện tại");
                 isValid = false;
             }
         }
@@ -599,7 +608,8 @@
                 // });
             },
             error: function (xhr, status, error) {
-                console.log(error);
+                console.log(xhr);
+                showError(xhr.responseJSON.error)
             }
         });
     }

@@ -20,4 +20,8 @@ public interface IKhuyenMaiService {
     Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug);
 
     String undelete(String ma);
+
+    void updateTrangThai(Long id, String trangThai);
+
+    void updateEXPIRED(String ma);
 }
