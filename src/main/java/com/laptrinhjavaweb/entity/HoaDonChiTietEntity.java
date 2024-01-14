@@ -55,6 +55,9 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	private String anhbienthe;
 
 	public Double getGiaTien(){
+		if (gia!=null){
+			return gia;
+		}
 		if (bienThe==null){
 			return gia;
 		}
