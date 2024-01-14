@@ -64,7 +64,6 @@ $(".btn-add-product").on("click", function (event) {
             method = "PUT";
             message = "Cập nhật sản phẩm thành công";
         }
-        console.log(data);
 
         $.ajax({
             url: "/api/san-pham",

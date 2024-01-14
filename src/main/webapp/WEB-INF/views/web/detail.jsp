@@ -259,6 +259,23 @@
         }
     }, 1000);
 
+    var y = setInterval(function () {
+        // finish: ngaytao + 7 ngày
+        var finish = parseInt($('#product-finish').val());
+        var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
+        var distance = finish - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (distance < 0) {
+            clearInterval(x);
+            // call api update sản phẩm k còn là sản phẩm mới ở đây
+        }
+    }, 1000);
+
     $('#moTa').innerHTML  = `${product.moTa}`;
 
 </script>

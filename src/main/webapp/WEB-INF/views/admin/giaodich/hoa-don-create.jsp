@@ -539,6 +539,7 @@
 
                     html += htmlThuocTinh;
                 })
+
                 $('#list-products').html(html);
 
                 $('.product-price').each(function (index, item) {
@@ -552,6 +553,7 @@
                         $(item).html(formattedValue);
                     }
                 });
+
                 $('#pagination').twbsPagination('destroy');
                 $('#pagination').twbsPagination({
                     visiblePages: 5,
@@ -569,99 +571,106 @@
                         }
                     },
                 });
-
-                let variantId = null;
-                let couponId = null;
-
-                $("#list-products").on("change", "input[type='radio']", function () {
-                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                    const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
-
-                    console.log("Len of attribute: " + lenOfAttribute)
-                    console.log("lEN CHECKED: " + lenChecked)
-
-                    if (lenChecked === lenOfAttribute) {
-                        let attributeId = [];
-                        $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
-                            attributeId.push(parseInt($(this).val()));
-                        })
-                        $.ajax({
-                            url: "/api/bien-the",
-                            method: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            data: JSON.stringify(attributeId),
-                            success: (response) => {
-                                variantId = response.id;
-                                if (response.khuyenMaiHienThiResponse !== null) {
-                                    couponId = response.khuyenMaiHienThiResponse.id;
-                                }
-                                $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
-                                $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
-                                $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
-
-
-                                if (response.hinhAnh !== null) {
-                                    $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
-                                }
-
-                                $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
-                                    let res = $(item).html();
-                                    if (res.indexOf("đ") === -1) {
-                                        let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                                        let formattedValue = new Intl.NumberFormat('vi-VN', {
-                                            style: 'currency',
-                                            currency: 'VND'
-                                        }).format(numericValue);
-                                        $(item).html(formattedValue);
-                                    }
-                                });
-                            },
-                            error: (error) => {
-                                console.log(error);
-                            }
-                        });
-                    }
-                });
-
-                $('.btn-buy-product').on('click', function () {
-                    let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                    if (variantId !== null || lenOfAttribute === 0) {
-                        let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
-                        let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
-                        let productId = parseInt($(this).closest('.card-item-product').find('#product-id').val());
-
-                        let data = {};
-                        data['maHoaDon'] = maHoaDon;
-                        data['soLuong'] = 1;
-                        data['idSanPham'] = productId;
-                        data['idBienThe'] = variantId;
-                        data['idKhuyenMai'] = couponId;
-                        data['gia'] = productBuy;
-                        data['thanhTien'] = productBuy;
-
-                        addProductInvoice(data,
-                            function (response) {
-                                variantId = null;
-                                couponId = null;
-                                $('#list-products').find('input[type=radio]').prop('checked', false);
-                                showSuccess("Thêm sản phẩm vào hóa đơn thành công");
-                                loadHoaDon()
-                            },
-                            function (error) {
-                                console.log(error)
-                            }
-                        );
-                    } else {
-                        showError("Vui lòng chọn sản phẩm");
-                    }
-                })
             },
             error: (error) => {
                 console.log(error);
             }
         });
     }
+
+    let variantId = null;
+    let couponId = null;
+
+    $("#list-products").on("change", "input[type='radio']", function () {
+        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
+        const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
+
+        if (lenChecked === lenOfAttribute) {
+            let attributeId = [];
+            $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
+                attributeId.push(parseInt($(this).val()));
+            })
+            $.ajax({
+                url: "/api/bien-the",
+                method: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(attributeId),
+                success: (response) => {
+                    variantId = response.id;
+                    if (response.khuyenMaiHienThiResponse !== null) {
+                        couponId = response.khuyenMaiHienThiResponse.id;
+                    }
+                    $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
+                    $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong)
+                    $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
+
+
+                    if (response.hinhAnh !== null) {
+                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
+                    }
+
+                    $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
+                        let res = $(item).html();
+                        if (res.indexOf("đ") === -1) {
+                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
+                            let formattedValue = new Intl.NumberFormat('vi-VN', {
+                                style: 'currency',
+                                currency: 'VND'
+                            }).format(numericValue);
+                            $(item).html(formattedValue);
+                        }
+                    });
+                },
+                error: (error) => {
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+    $('#list-products').on('click', function (e) {
+        const eleClick = $(e.target);
+        if(eleClick.hasClass('btn-buy-product')){
+            const eleParent = eleClick.closest('.card-item-product');
+            const lenChecked = eleParent.find('input[type="radio"]:checked').length;
+            const lenOfAttribute = eleParent.find('.len-attribute').val();
+
+            if(parseInt(lenChecked) !== parseInt(lenOfAttribute)){
+                showError("Vui lòng chọn sản phẩm");
+            }else{
+                    let productBuyVND = eleParent.find('.product-buy').text();
+                    let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
+                    let productId = eleParent.find('#product-id').val();
+
+                    let data = {};
+                    data['maHoaDon'] = maHoaDon;
+                    data['soLuong'] = 1;
+                    data['idSanPham'] = parseInt(productId);
+                    data['idBienThe'] = variantId;
+                    data['idKhuyenMai'] = couponId;
+                    data['gia'] = productBuy;
+                    data['thanhTien'] = productBuy;
+
+                    console.log(data);
+
+                    addProductInvoice(data,
+                        function (response) {
+                            variantId = null;
+                            couponId = null;
+                            $('#list-products').find('input[type=radio]').prop('checked', false);
+                            showSuccess("Thêm sản phẩm vào hóa đơn thành công");
+                            loadHoaDon()
+                        },
+
+                        function (error) {
+                            console.log(error)
+                        }
+                    );
+            }
+
+        }
+    })
 
     function searchSanPham(param) {
         $.ajax({
@@ -731,6 +740,7 @@
 
                         html += htmlThuocTinh;
                     })
+
                     $('#list-products').html(html);
 
                     $('.product-price').each(function (index, item) {
@@ -761,91 +771,6 @@
                             }
                         },
                     });
-
-                    let variantId = null;
-                    let couponId = null;
-
-                    $("#list-products").on("change", "input[type='radio']", function () {
-                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                        const lenChecked = $(this).closest('.card-item-product').find('input[type="radio"]:checked').length;
-                        if (lenChecked === lenOfAttribute) {
-                            let attributeId = [];
-                            $(this).closest('.card-item-product').find('input[type="radio"]:checked').each(function () {
-                                attributeId.push(parseInt($(this).val()));
-                            })
-                            $.ajax({
-                                url: "/api/bien-the",
-                                method: "POST",
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                data: JSON.stringify(attributeId),
-                                success: (response) => {
-                                    console.log(response);
-                                    variantId = response.id;
-                                    couponId = response.khuyenMaiHienThiResponse.id;
-
-                                    $(this).closest('.card-item-product').find('.product-origin').text(response.gia);
-
-                                    $(this).closest('.card-item-product').find('.product-quantity').text(response.soLuong);
-
-                                    if (response.hinhAnh !== null) {
-                                        $(this).closest('.card-item-product').find('.product-image-primary').attr('src', '/repository/' + response.hinhAnh);
-                                    }
-                                    if (response.khuyenMaiHienThiResponse !== null) {
-                                        $(this).closest('.card-item-product').find('.product-buy').text(response.giaBan)
-                                    }
-
-                                    $(this).closest('.card-item-product').find('.product-price').each(function (index, item) {
-                                        let res = $(item).html();
-                                        if (res.indexOf("đ") === -1) {
-                                            let numericValue = parseInt(res.replace(/[^\d]/g, ''));
-                                            let formattedValue = new Intl.NumberFormat('vi-VN', {
-                                                style: 'currency',
-                                                currency: 'VND'
-                                            }).format(numericValue);
-                                            $(item).html(formattedValue);
-                                        }
-                                    });
-                                },
-                                error: (error) => {
-                                    console.log(error);
-                                }
-                            });
-                        }
-                    });
-
-                    $('.btn-buy-product').on('click', function () {
-                        let lenOfAttribute = parseInt($(this).closest('.card-item-product').find('.len-attribute').val());
-                        if (variantId !== null || lenOfAttribute === 0) {
-                            let productBuyVND = $(this).closest('.card-item-product').find('.product-buy').text();
-                            let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
-                            let productId = parseInt($(this).closest('.card-item-product').find('#product-id').val());
-
-                            let data = {};
-                            data['maHoaDon'] = maHoaDon;
-                            data['soLuong'] = 1;
-                            data['idSanPham'] = productId;
-                            data['idBienThe'] = variantId;
-                            data['idKhuyenMai'] = couponId;
-                            data['gia'] = productBuy;
-                            data['thanhTien'] = productBuy;
-
-                            addProductInvoice(data,
-                                function (response) {
-                                    variantId = null;
-                                    couponId = null;
-                                    $('#list-products').find('input[type=radio]').prop('checked', false);
-                                    showSuccess("Thêm sản phẩm vào hóa đơn thành công");
-                                    loadHoaDon()
-                                },
-                                function (error) {
-                                    console.log(error)
-                                }
-                            );
-                        } else {
-                            showError("Vui lòng chọn sản phẩm");
-                        }
-                    })
                 }
             },
             error: (error) => {
@@ -917,16 +842,20 @@
             method: "GET",
             dataType: "json",
             success: (response) => {
-                console.log(response)
-                let totalInvoice = 0;
-                let toatlQuantity = 0;
-                let html = ``;
-                if (response.tienThua === null) {
-                    $('#money-change').text(0);
-                } else {
-                    $('#money-change').text(response.tienThua);
-                }
-                if (response.hoaDonChiTiet.length > 0) {
+                if(response.hoaDonChiTiet.length === 0){
+                    $('#invoice').html('');
+                    $('.invoice-total').text(0);
+                    $('#invoice-quantity').text(0);
+                    $('#invoice-non').show();
+                }else{
+                    let totalInvoice = 0;
+                    let toatlQuantity = 0;
+                    let html = ``;
+                    if (response.tienThua === null) {
+                        $('#money-change').text(0);
+                    } else {
+                        $('#money-change').text(response.tienThua);
+                    }
                     $.each(response.hoaDonChiTiet, (index, item) => {
                         totalInvoice += item.thanhTien;
                         toatlQuantity += item.soLuong;
@@ -1007,6 +936,9 @@
                                 </div>
                                 `;
                         $('#invoice').html(html);
+
+                        $('#invoice').append(`<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
+
                         $('#invoice-non').hide();
 
                         $('#invoice-money-quantity').show();
@@ -1107,12 +1039,8 @@
 
                         })
                     })
-
-                } else {
-                    $('#invoice-money-quantity').hide();
-                    $('.invoice-total').text(0);
                 }
-                $('#invoice').append(`<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
+
             },
             error: (error) => {
                 console.log(error);
