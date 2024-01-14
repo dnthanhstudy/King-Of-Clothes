@@ -70,7 +70,7 @@ public class HoaDonService implements IHoaDonService {
 
     @Override
     public List<HoaDonResponse> findByMaStatus(String trangThai) {
-        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThaiOrderByNgayTaoDesc(trangThai);
+        List<HoaDonEntity> list = hoaDonRepository.findAllByTrangThaiAndNhanVien_IdNotNullOrderByNgayTaoDesc(trangThai);
         List<HoaDonResponse> result = list.stream().map(
                 item -> hoaDonConverter.convertToResponse(item)
         ).collect(Collectors.toList());
