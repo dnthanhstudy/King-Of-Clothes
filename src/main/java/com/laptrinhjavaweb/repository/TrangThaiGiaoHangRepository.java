@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface TrangThaiGiaoHangRepository extends JpaRepository<TrangThaiGiaoHangEntity,Long> {
 
-    @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.id=:magiaohang order by ttgh.ngayTao desc ")
+    @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.id=:magiaohang and ttgh.hoaDon.trangThai='DANGGIAOHANG' order by ttgh.ngayTao desc ")
     List<TrangThaiGiaoHangResponse> getTrangThaiDonHangByMaGiaoHang(@Param("magiaohang") Long maGiaoHang);
     @Query("select ttgh from TrangThaiGiaoHangEntity ttgh where ttgh.hoaDon.ma=:mahd order by ttgh.ngayTao desc,ttgh.ngaySua desc ")
     List<TrangThaiGiaoHangResponse> getTrangThaiDonHangByMaHD(@Param("mahd") String maGiaoHang);

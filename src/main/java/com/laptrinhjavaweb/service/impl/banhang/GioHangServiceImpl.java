@@ -132,7 +132,7 @@ public class GioHangServiceImpl implements GioHangService {
             hoaDonChiTiet.setBienThe(bienThe);
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
-            hoaDonChiTiet.setGia(gioHangChiTiet.getGiaTienKm());
+            hoaDonChiTiet.setGia(gioHangChiTiet.getGia());
             hoaDonChiTiet.setSoTienGiam(gioHangChiTiet.soTienDuocGiam());
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTiet.setTenBienThe(bienThe.getTen());
