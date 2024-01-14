@@ -481,4 +481,12 @@ public class SanPhamService implements ISanPhamService {
         SanPhamResponse result = sanPhamConvert.convertToResponse(sanPhamEntity);
         return result;
     }
+
+    public void updateProductStatus(Long id) {
+        SanPhamEntity sanPhamEntity = sanPhamRepository.findById(id).orElse(null);
+        if(sanPhamEntity != null){
+            sanPhamEntity.setSanPhamMoi(0);
+            sanPhamRepository.save(sanPhamEntity);
+        }
+    }
 }

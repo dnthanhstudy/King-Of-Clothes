@@ -34,4 +34,6 @@ public interface ISanPhamService {
 	List<SanPhamResponse> findAll();
 
 	SanPhamResponse update (SanPhamRequest sanPhamRequest);
+
+	void updateProductStatus(Long id);
 }

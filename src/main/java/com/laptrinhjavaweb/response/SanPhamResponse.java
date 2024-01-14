@@ -45,4 +45,6 @@ public class SanPhamResponse {
 
 	private String trangThai;
 
+	private String ngayTao;
+
 }

@@ -178,11 +178,6 @@
                     <div class="col-lg-6">
                         <h6>Thông tin chi tiết :</h6>
                         ${product.thongTinChiTiet}
-<%--                        <p>Size S: Dành cho người nặng từ 35kg - 41kg < 1m50</p>--%>
-<%--                        <p>Size M: Dành cho người nặng từ 42kg - 53kg < 1m63</p>--%>
-<%--                        <p>Size L: Dành cho người nặng từ 54kg - 60kg < 1m70</p>--%>
-<%--                        <p>Size XL: Dành cho người nặng từ 61kg - 69kg < 1m75</p>--%>
-<%--                        <p>Size XXL: Dành cho người nặng từ 70kg - 76kg < 1m80</p>--%>
                     </div>
                     <div class="col-lg-6">
                         <h6>CAM KẾT - ĐẢM BẢO:</h6>
@@ -235,6 +230,7 @@
     </div>
 </div>
 <input type="hidden" name="" id="product-id" value="${product.id}">
+<input type="hidden" name="" id="product-ngayTao" value="${product.ngayTao}">
 </div>
 <script src="<c:url value='/template/admin/ckeditor/ckeditor.js'/>"></script>
 <script src="<c:url value='/assets/js/price-product-custom.js'/>"></script>
@@ -261,6 +257,37 @@
        }
     }, 1000);
 
-     $('#moTa').innerHTML  = `${product.moTa}`;
+    var y = setInterval(function () {
+        var ngayTao = new Date($('#product-ngayTao').val());
+
+        var finish = new Date(ngayTao);
+        finish.setDate(ngayTao.getDate() + 7);
+
+        var now = new Date(new Date().toLocaleString('vn', { timeZone: 'Asia/Ho_Chi_Minh' })).getTime();
+        var distance = finish.getTime() - now;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        var idSP = parseInt($('#product-id').val());
+
+        if (distance < 0) {
+            clearInterval(y);
+            $.ajax({
+                type: "PUT",
+                url: "/api/san-pham/updateStatus/" + idSP,
+                success: function (data) {
+                    console.log("Thành công");
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+    }, 1000);
+
+    $('#moTa').innerHTML  = `${product.moTa}`;
 
 </script>

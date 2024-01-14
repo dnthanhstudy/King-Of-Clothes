@@ -123,4 +123,9 @@ public class SanPhamAPI {
 		List<SanPhamResponse> results = sanPhamService.findAll();
 		return new ResponseEntity<>(results, HttpStatus.OK);
 	}
+
+	@PutMapping("/updateStatus/{id}")
+	public void updateProductStatus(@PathVariable Long id) {
+		sanPhamService.updateProductStatus(id);
+	}
 }
