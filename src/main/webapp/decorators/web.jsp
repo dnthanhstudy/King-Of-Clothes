@@ -132,9 +132,13 @@
             await Swal.fire({
                 title: "Thông báo",
                 text: message,
-                icon: "error"
+                icon: "error",
+                customClass: {
+                    icon: 'swal2-icon-error'  // Class để hiển thị icon lỗi
+                }
             });
         }
+
     </script>
 
 </head>
