@@ -26,7 +26,7 @@ public class BienTheRequest{
     private Long idSanPham;
 
     public String getBase64() {
-        if( base64 == null || base64.contains("http://localhost:8080/repository/")){
+        if(base64 == null || base64.contains("http://localhost:8080/repository/")){
             return null;
         }
         if(base64 != null){

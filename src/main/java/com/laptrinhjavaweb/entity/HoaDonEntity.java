@@ -119,7 +119,6 @@ public class HoaDonEntity extends BaseEntity{
 		return super.getTrangThai();
 	}
 
-
 	@Override
 	public String getTrangThai() {
 		String tt = super.getTrangThai();

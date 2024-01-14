@@ -701,19 +701,22 @@ function loadProductInActive() {
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
-                                   
                                       <div class="mb-3" style="max-width: 540px">
                                         <div class="row g-0">
                                           <div class="col-lg-3">
+                                            <a href="/san-pham/${item.slug}">
                                               <img
                                                 src="/repository/${item.image}"
                                                 class="img-fluid rounded-start cart-item-image"
                                                 alt="..."
                                               />
+                                            </a>
                                           </div>
                                           <div class="col-lg-9">
                                             <div class="card-body">
-                                            <h5 class="card-title line-clamp-2">${item.tenSanPham}</h5> 
+                                            <a style="color: black; text-decoration: none" href="/san-pham/${item.slug}"
+                                                ><h5 class="card-title line-clamp-2">${item.tenSanPham}</h5></a
+                                              >
                                               <div class="btn-group">
                                                 <span
                                                  
@@ -833,8 +836,8 @@ function deleteBienThe(eleClick) {
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(id),
                     success: (response) => {
-                        loadProductInActive();
                         showSuccess("Xóa sản phẩm thành công");
+                        loadProductInActive();
                     },
                     error: (error) => {
 

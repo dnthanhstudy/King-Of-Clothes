@@ -63,8 +63,6 @@ $(".btn-add-product").on("click", function (event) {
             data["id"] = parseInt(data["id"]);
             method = "PUT";
             message = "Cập nhật sản phẩm thành công";
-        }else{
-            data["id"] = null;
         }
         console.log(data);
 
