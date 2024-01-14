@@ -26,7 +26,7 @@ public class SanPhamResponse {
 	private Integer soLuong;
 	
 	private String moTa;
-	
+
 	private String thongTinChiTiet;
 	
 	private DanhMucResponse danhMuc;
@@ -44,4 +44,5 @@ public class SanPhamResponse {
 	private KhuyenMaiHienThiResponse khuyenMaiHienThiResponse;
 
 	private String trangThai;
+
 }
