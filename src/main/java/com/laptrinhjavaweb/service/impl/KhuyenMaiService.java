@@ -4,6 +4,7 @@ import com.laptrinhjavaweb.converter.KhuyenMaiConvert;
 import com.laptrinhjavaweb.entity.KhuyenMaiEntity;
 import com.laptrinhjavaweb.entity.KhuyenMaiSanPhamEntity;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
+import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.repository.KhuyenMaiRepository;
 import com.laptrinhjavaweb.repository.KhuyenMaiSanPhamRepository;
 import com.laptrinhjavaweb.response.KhuyenMaiResponse;
@@ -61,7 +62,22 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     @Override
     public KhuyenMaiResponse save(KhuyenMaiRequest request) {
        KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
+       if(request.getLoai().equals("0")){
+           List<String> list = request.getListSanPham();
+           List<Double> listGia = new ArrayList<>();
+           for (String x : list ){
+               SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
+                listGia.add(spEntity.getGia());
+           }
+           Double minGia = listGia.stream()
+                   .min(Double::compare)
+                   .orElse(Double.NaN);
+           if(request.getGiaTri() > minGia){
+               throw new ClientError("Giá trị giảm phải nhỏ hơn giá sản phẩm khuyến mại. Vui lòng chỉnh lại khuyến mại!");
+           }
+       }
         KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
+
 
         Date timeNow = new Date();
         if (khuyenMaiEntity.getNgayBatDau().compareTo(timeNow) > 0) {

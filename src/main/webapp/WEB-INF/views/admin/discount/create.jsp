@@ -346,7 +346,8 @@
                     // console.log(response)
                 },
                 error: function (xhr, status, error) {
-                    console.log(error);
+                    console.log(xhr);
+                    showError(xhr.responseJSON.error)
                 }
             });
         }
@@ -377,7 +378,7 @@
             if (event.which === 13) {
                 getvaluew();
                 value = searchButton.val();
-                if (value.isBlank) {
+                if (value.trim()==="") {
                     loadKhuyenMai();
                 } else {
                     loadSearch(value);

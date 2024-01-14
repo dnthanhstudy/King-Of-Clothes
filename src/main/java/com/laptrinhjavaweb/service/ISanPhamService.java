@@ -3,7 +3,6 @@ package com.laptrinhjavaweb.service;
 import com.laptrinhjavaweb.entity.SanPhamEntity;
 import com.laptrinhjavaweb.response.SanPhamResponse;
 import com.laptrinhjavaweb.resquest.SanPhamRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,8 @@ import java.util.Map;
 public interface ISanPhamService {
 
 	Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> fliters, String slug);
+
+	Map<String, Object> discountProduct(Integer pageCurrent, Integer limit);
 
 	SanPhamResponse findBySlug(String slug);
 

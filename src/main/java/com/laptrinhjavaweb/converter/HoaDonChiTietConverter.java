@@ -32,10 +32,16 @@ public class HoaDonChiTietConverter {
     private BienTheRepository bienTheRepository;
 
     @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
+
+    @Autowired
     private HoaDonRepository hoaDonRepository;
 
     @Autowired
     private SanPhamConverter sanPhamConverter;
+
+    @Autowired
+    private XoaBienTheRepository xoaBienTheRepository;
 
     @Autowired
     private BienTheConverter bienTheConverter;

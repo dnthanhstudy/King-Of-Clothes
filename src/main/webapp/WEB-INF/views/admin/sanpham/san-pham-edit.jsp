@@ -201,8 +201,8 @@
                 $("#slug").val(req.slug);
                 $("#ten").val(req.ten);
                 $("#gia").val(req.gia);
-                $("#motasanpham").innerHTML = req.moTa;
-                $("#chitietsanpham").innerHTML = req.thongTinChiTiet;
+                $("#motasanpham").val(req.moTa);
+                $("#chitietsanpham").val(req.thongTinChiTiet);
                 $("#danh-muc select").val(req.danhMuc.slug)
                 $("#thuong-hieu select").val(req.thuongHieu.slug)
                 let htmlImage = '';
