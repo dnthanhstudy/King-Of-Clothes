@@ -61,21 +61,21 @@ public class KhuyenMaiService implements IKhuyenMaiService {
 
     @Override
     public KhuyenMaiResponse save(KhuyenMaiRequest request) {
-       KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
-       if(request.getLoai().equals("0")){
-           List<String> list = request.getListSanPham();
-           List<Double> listGia = new ArrayList<>();
-           for (String x : list ){
-               SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
+        KhuyenMaiEntity khuyenMaiEntity = khuyenMaiConvert.convertToEntity(request);
+        if(request.getLoai().equals("0")){
+            List<String> list = request.getListSanPham();
+            List<Double> listGia = new ArrayList<>();
+            for (String x : list ){
+                SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
                 listGia.add(spEntity.getGia());
-           }
-           Double minGia = listGia.stream()
-                   .min(Double::compare)
-                   .orElse(Double.NaN);
-           if(request.getGiaTri() > minGia){
-               throw new ClientError("Giá trị giảm phải nhỏ hơn giá sản phẩm khuyến mại. Vui lòng chỉnh lại khuyến mại!");
-           }
-       }
+            }
+            Double minGia = listGia.stream()
+                    .min(Double::compare)
+                    .orElse(Double.NaN);
+            if(request.getGiaTri() > minGia){
+                throw new ClientError("Giá trị giảm phải nhỏ hơn giá sản phẩm khuyến mại. Vui lòng chỉnh lại khuyến mại!");
+            }
+        }
         KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
 
 
@@ -86,7 +86,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             result.setTrangThai("UPCOMING");
         }
 
-       List<String> list = request.getListSanPham();
+        List<String> list = request.getListSanPham();
         for (String x : list ){
             SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
             KhuyenMaiSanPhamEntity entity = new KhuyenMaiSanPhamEntity();
@@ -295,8 +295,8 @@ public class KhuyenMaiService implements IKhuyenMaiService {
     public void updateTrangThai(Long id, String trangThai) {
         KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findById(id).orElse(null);
         System.out.println("Cap nhat "+khuyenMaiSanPhamEntity.getSanPham().getTen());
-            khuyenMaiSanPhamEntity.setTrangThai(trangThai);
-            khuyenMaiSanPhamRepository.save(khuyenMaiSanPhamEntity);
+        khuyenMaiSanPhamEntity.setTrangThai(trangThai);
+        khuyenMaiSanPhamRepository.save(khuyenMaiSanPhamEntity);
     }
 
     @Override
@@ -338,8 +338,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     khuyenMaiSanPhamRepository.save(kmsp);
                 }
             }
-            ThongKeKhuyenMaiResponse tk = getThongKe(khuyenMaiEntity.getId());
-            if(khuyenMaiEntity.getTong() <= tk.getSoLuongSuDung()){
+            if(khuyenMaiEntity.getSoLuong() == 0){
                 khuyenMaiEntity.setTrangThai("EXPIRED");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {
