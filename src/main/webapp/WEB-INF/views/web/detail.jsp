@@ -230,6 +230,7 @@
     </div>
 </div>
 <input type="hidden" name="" id="product-id" value="${product.id}">
+<input type="hidden" name="" id="product-slug" value="${product.slug}">
 <input type="hidden" name="" id="product-ngayTao" value="${product.ngayTao}">
 <input type="hidden" name="" id="product-discount-code" value="${product.khuyenMaiHienThiResponse.ma}">
 </div>
@@ -239,8 +240,8 @@
 <script>
     var x = setInterval(function () {
         var finish = parseInt($('#product-finish').val());
-       var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
-        // var now = new Date();
+        //var now = new Date(new Date().toLocaleString('vn', {timeZone: 'Asia/Ho_Chi_Minh'})).getTime();
+        var now = new Date();
         var distance = finish - now;
 
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -255,18 +256,23 @@
             clearInterval(x);
 
             // call api update trạng thái của khuyến mại sản phẩm (expired nhé)
-             var code = parseInt($('#product-discount-code').val());
+             var code = $('#product-discount-code').val();
+             var slug = $('#product-slug').val();
+              $('.finish').text("");
+              window.location.href = "/san-pham/"+slug;
             $.ajax({
                         url: "/api/khuyen-mai/update-expired/" + code,
                         method: "POST",
                         contentType: "application/json; charset=utf-8",
                         data: trangThai,
                         success: (response) => {
-                        },
+
+                                 },
                         error: (error) => {
                         }
                     })
-            $('.finish').text("EXPIRED");
+
+
        }
     }, 1000);
 

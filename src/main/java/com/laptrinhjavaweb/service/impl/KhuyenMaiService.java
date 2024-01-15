@@ -216,7 +216,41 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                 item -> khuyenMaiConvert.convertToResponse(item)
         ).collect(Collectors.toList());
         results.put("data", listKhuyenMaiResponses);
-        if(!isAll) {
+        if (!isAll) {
+            PageableResponse pageableResponse = new PageableResponse();
+            pageableResponse.setPageCurrent(pageCurrent);
+            pageableResponse.setTotalPage(page.getTotalPages());
+            results.put("meta", pageableResponse);
+        }
+        return results;
+    }
+
+    @Override
+    public Map<String, Object> searchByProduct(Integer pageCurrent, Integer limit, String param) {
+        Map<String, Object> results = new HashMap<>();
+        Boolean isAll = false;
+        Page<KhuyenMaiEntity> page = null;
+        List<KhuyenMaiResponse> listKhuyenMaiResponses = new ArrayList<>();
+        Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
+        if (param != null) {
+            List<KhuyenMaiEntity> listKhuyenMaiEntity = new ArrayList<>();
+            if (param != null) {
+                List<KhuyenMaiSanPhamEntity> listKMSP = khuyenMaiSanPhamRepository.seachs(param);
+                for (KhuyenMaiSanPhamEntity kmsp : listKMSP){
+                    listKhuyenMaiEntity.add(kmsp.getKhuyenMai());
+                }
+            }
+            int sizeOfListSanPhamEntity = listKhuyenMaiEntity.size();
+            int start = (int) pageable.getOffset();
+            int end = Math.min((start + pageable.getPageSize()), sizeOfListSanPhamEntity);
+            List<KhuyenMaiEntity> pageContent = listKhuyenMaiEntity.subList(start, end);
+            page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntity);
+        }
+        listKhuyenMaiResponses = page.getContent().stream().map(
+                item -> khuyenMaiConvert.convertToResponse(item)
+        ).collect(Collectors.toList());
+        results.put("data", listKhuyenMaiResponses);
+        if (!isAll) {
             PageableResponse pageableResponse = new PageableResponse();
             pageableResponse.setPageCurrent(pageCurrent);
             pageableResponse.setTotalPage(page.getTotalPages());
@@ -230,7 +264,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         KhuyenMaiEntity km = khuyenMaiRepository.findByMa(ma);
         if (km != null) {
             List<KhuyenMaiSanPhamEntity> list = km.getKhuyenMaiSanPhamEntities();
-            for (KhuyenMaiSanPhamEntity kmsp:list ) {
+            for (KhuyenMaiSanPhamEntity kmsp : list) {
                 kmsp.setTrangThai("ACTIVE");
                 khuyenMaiSanPhamRepository.save(kmsp);
             }

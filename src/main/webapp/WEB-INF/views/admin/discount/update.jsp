@@ -182,24 +182,24 @@
                                                     <span >sản phẩm</span>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-lg-2 col-form-label" for="trangThai">Trạng thái
-                                                </label>
-                                                <div class="col-lg-3">
-                                                    <form action="#">
-                                                        <div class="input-group mb-3">
-                                                            <div class="input-group-prepend">
-                                                                <select  class="form-control default-select" id="trangThai" name="trangThai">
-                                                                    <option value="ACTIVE">Đang diễn ra</option>
-                                                                    <option value="DELETE">Dừng khuyến mãi</option>
-                                                                    <option value="EXPIRED">Đã kết thúc</option>
-                                                                    <option value="UPCOMING">Sắp diễn ra</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
+<%--                                            <div class="form-group row">--%>
+<%--                                                <label class="col-lg-2 col-form-label" for="trangThai">Trạng thái--%>
+<%--                                                </label>--%>
+<%--                                                <div class="col-lg-3">--%>
+<%--                                                    <form action="#">--%>
+<%--                                                        <div class="input-group mb-3">--%>
+<%--                                                            <div class="input-group-prepend">--%>
+<%--                                                                <select  class="form-control default-select" id="trangThai" name="trangThai">--%>
+<%--                                                                    <option value="ACTIVE">Đang diễn ra</option>--%>
+<%--                                                                    <option value="DELETE">Dừng khuyến mãi</option>--%>
+<%--                                                                    <option value="EXPIRED">Đã kết thúc</option>--%>
+<%--                                                                    <option value="UPCOMING">Sắp diễn ra</option>--%>
+<%--                                                                </select>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                    </form>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
 
                                             <%--                                            <div class="mb-3">--%>
                                             <%--                                                <div class="mb-3">Sản phẩm khuyến mại:</div>--%>
@@ -240,6 +240,7 @@
     var listSlugSanPham = [];
     var size = 0;
     var idKM;
+    var trangThai = '';
     $.ajax({
         url: '/api/khuyen-mai/detail/'+maKM,
         method: 'GET',
@@ -258,6 +259,7 @@
             var ngayKetThucStr = displayDateFormat(data.ngayKetThuc);
             $("#ngayKetThuc").val(ngayKetThucStr);
             $("#trangThai").val(data.trangThai).change();
+            trangThai = data.trangThai;
             data.listSanPham.forEach(function (item) {
                 listSlugSanPham.push(item.sanPhamResponse.slug);
             });
@@ -350,7 +352,7 @@
         var ngayKetThuc = $("#ngayKetThuc").val();
         var ngayBatDauFMT = convertDateFormat(ngayBatDau);
         var ngayKetThucFMT = convertDateFormat(ngayKetThuc);
-        var trangThai = $('#trangThai option:selected').val();
+        var trangThai = trangThai;
         var km = {
             id:idKM,
             ma: maKM,
