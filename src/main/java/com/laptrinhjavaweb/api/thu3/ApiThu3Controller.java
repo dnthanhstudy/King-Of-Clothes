@@ -33,7 +33,8 @@ public class ApiThu3Controller {
         return new ResponseObject(thu3Service.themTrangThaiGiaoHang(idhd,tenTrangThai));
     }
 
-//    public ResponseObject thayDoiTrangThaiDangGiao(String maGiaoHang,String tenTrangThaiGiao){
-//
-//    }
+    @GetMapping("/checkhuydon/{idkh}")
+    public Boolean checkHuyDonTrongNgay(@PathVariable("idkh")Long idkh){
+        return thu3Service.checkHuyDonTrongNgay(idkh);
+    }
 }

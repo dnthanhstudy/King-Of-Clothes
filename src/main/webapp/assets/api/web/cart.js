@@ -357,7 +357,7 @@ function loadProductActive() {
 }
 
 function soLuongConLaiBienThe(soLuong) {
-    return soLuong > 0 ? `<span>${soLuong} sản phẩm</span>` : "<b style='color: red;'>Hết hàng</b>";
+    return soLuong > 0 ? `<div><span class="slConLaiSP">${soLuong}</span> sản phẩm</div>` : "<b style='color: red;'>Hết hàng</b>";
 }
 
 function checkQuantity(data, successCallback, errorCallback) {
@@ -498,7 +498,7 @@ function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.price-origin').text(formatNumber(data.donGia) + " đ");
     eleCartItem.find('.price-discount').text(formatNumber(data.giaMua) + " đ");
     eleCartItem.find('.price-buy').text(formatNumber(data.soTien) + " đ");
-
+    eleCartItem.find(".slConLaiSP").text(data.soLuongConLaiBienThe);
     const listAttrName = eleCartItem.find('.list-attr-name');
 
     let nameVariant = [];

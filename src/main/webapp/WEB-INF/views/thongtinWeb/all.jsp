@@ -126,6 +126,9 @@
     }
     loadTable()
     async function thayDoiTrangThaiHoaDon(idhd, trangThai) {
+        if (!(await checkSoLanHuyTrongNgay())){
+            return;
+        }
         if (await showConfirm("Bạn có muốn huỷ đơn không ?")) {
             let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
             $.ajax({
@@ -140,6 +143,26 @@
                 }
             });
         }
+    }
+   async function checkSoLanHuyTrongNgay() {
+        let flag ;
+       await $.ajax({
+            url: '/api/thu3/checkhuydon/'+idkh,
+            method: 'GET',
+            success: function (req) {
+                if (req){
+                    showError("Mỗi ngày bạn chỉ có thể hủy tối đa 3 đơn");
+                    flag= false;
+                }else{
+                    flag= true;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+                flag = true;
+            }
+        });
+       return flag;
     }
 </script>
 
