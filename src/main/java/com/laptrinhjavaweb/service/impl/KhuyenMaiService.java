@@ -338,8 +338,8 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     khuyenMaiSanPhamRepository.save(kmsp);
                 }
             }
-            ThongKeKhuyenMaiResponse tk = getThongKe(khuyenMaiEntity.getId());
-            if(khuyenMaiEntity.getTong() <= tk.getSoLuongSuDung()){
+
+            if(khuyenMaiEntity.getSoLuong() <=0){
                 khuyenMaiEntity.setTrangThai("EXPIRED");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {

@@ -50,6 +50,8 @@ public class HoaDonService implements IHoaDonService {
     @Autowired
     private LyDoHuyDonRepository lyDoHuyDonRepository;
 
+    @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
 
     @Override
     @Transactional
@@ -96,8 +98,16 @@ public class HoaDonService implements IHoaDonService {
                             sanPhamEntity.setSoLuong(sanPhamEntity.getSoLuong() - item.getSoLuong());
                             sanPhamRepository.save(sanPhamEntity);
                         }
+                        KhuyenMaiSanPhamEntity kmsp = item.getKhuyenMai().orElse(null);
+                        if(kmsp != null){
+                            KhuyenMaiEntity km = kmsp.getKhuyenMai();
+                            int soMoi = km.getSoLuong()-item.getSoLuong();
+                            km.setSoLuong(soMoi);
+                            khuyenMaiRepository.save(km);
+                        }
                     }
             );
+
         }
         if (hoaDonResquest.getTrangThai().equals("THANHCONG")) {
             entity.setNgayThanhToan(new Date());
