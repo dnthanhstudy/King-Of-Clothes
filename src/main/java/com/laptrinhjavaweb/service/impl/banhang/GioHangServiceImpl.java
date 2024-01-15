@@ -218,7 +218,7 @@ public class GioHangServiceImpl implements GioHangService {
 
     @Override
     public Boolean checkSoLanMua(Long idkh) {
-        return hoaDonRepository.soLanMua(idkh)>=4;
+        return hoaDonRepository.soLanMua(idkh)>3;
     }
 
     @Override
