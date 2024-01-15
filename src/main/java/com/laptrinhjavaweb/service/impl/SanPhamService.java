@@ -9,6 +9,7 @@ import com.laptrinhjavaweb.repository.*;
 import com.laptrinhjavaweb.response.*;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
+import com.laptrinhjavaweb.service.GioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -70,6 +71,9 @@ public class SanPhamService implements ISanPhamService {
 
     @Autowired
     private KhuyenMaiSanPhamRepository khuyenMaiSanPhamRepository;
+
+    @Autowired
+    private GioHangService configCheckout;
 
     @Override
     public Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> fliters, String slug) {
@@ -423,6 +427,9 @@ public class SanPhamService implements ISanPhamService {
             }
         }
         if (sanPhamEntity.getThuocTinhEntities().size() == sanPhamRequest.getThuocTinh().size()) {
+            //Update lại checkout cho khách mua lại sản phẩm
+            configCheckout.deleteHoaDonChuanBiDat(sanPhamEntity.getId());
+            //End
             if (idsBienThe.size() > 0) {
                 updateGioHangChiTiet(idsBienThe, sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
                 updateHoaDonChiTiet(idsBienThe, sanPhamEntity.getAnhSanPhamEntities().get(0).getHinhAnh());
