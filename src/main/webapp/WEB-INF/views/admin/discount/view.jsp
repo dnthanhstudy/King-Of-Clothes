@@ -65,7 +65,8 @@
                                 }</style>
                                 <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
                             </svg>
-                            <input placeholder="Tìm sản phẩm" type="search" class="inputghichu w-100" id="">
+                            <input placeholder="Tìm sản phẩm" type="search" class="inputghichu w-100"
+                                   id="searchButtonProduct">
                         </div>
                     </div>
                 </div>
@@ -103,6 +104,8 @@
 <script>
     let pageCurrent = 1;
     var value = "";
+    let pageCurrentProduct = 1;
+    var valueProduct = "";
 
     function loadKhuyenMai() {
         $.ajax({
@@ -449,11 +452,25 @@
         pageCurrent = 1;
         searchButton.on('keydown', function (event) {
             if (event.which === 13) {
+                $('#searchButtonProduct').val("")
                 value = searchButton.val();
                 if (pageCurrent > 1) {
                     pageCurrent = 1;
                 }
                 loadSearchKM(value);
+            }
+        });
+
+        var searchButtonProduct = $('#searchButtonProduct');
+        pageCurrentProduct = 1;
+        searchButtonProduct.on('keydown', function (event) {
+            if (event.which === 13) {
+                $('#searchButton').val("")
+                valueProduct = searchButtonProduct.val();
+                if (pageCurrentProduct > 1) {
+                    pageCurrentProduct = 1;
+                }
+                loadSearchSanPham(valueProduct);
             }
         });
     });
@@ -465,7 +482,7 @@
             success: function (response) {
                 if (response.data.length === 0) {
                     $('#iemty').removeClass('d-none')
-                    $('#iemty').text("Không tìm thấy khuyến mại nào như thế !")
+                    $('#iemty').text("Không tìm thấy khuyến mại!")
                     $('#cardKhuyenMai').addClass('d-none');
                     $('#pagination').addClass('d-none');
                 } else {
@@ -729,15 +746,15 @@
 
     function loadSearchSanPham(value) {
         $.ajax({
-            url: "/api/khuyen-mai/search?page="+pageCurrent+"&q="+value,
+            url: "/api/khuyen-mai/search-product?page=" + pageCurrentProduct + "&q=" + value,
             method: 'GET',
             success: function (response) {
-                if(response.data.length === 0){
+                if (response.data.length === 0) {
                     $('#iemty').removeClass('d-none')
-                    $('#iemty').text("Không tìm thấy khuyến mại nào như thế !")
+                    $('#iemty').text("Không tìm thấy khuyến mại có sản phẩm: " + value)
                     $('#cardKhuyenMai').addClass('d-none');
                     $('#pagination').addClass('d-none');
-                }else {
+                } else {
                     $('#iemty').addClass('d-none')
                     $('#cardKhuyenMai').removeClass('d-none');
                     $('#pagination').removeClass('d-none');
@@ -981,7 +998,7 @@
                                 event.preventDefault();
                                 pageCurrent = page;
                                 if (value != '') {
-                                    loadSearchKM(value)
+                                    loadSearchSanPham(valueProduct)
                                 } else {
                                     loadKhuyenMai();
                                 }

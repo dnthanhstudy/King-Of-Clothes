@@ -19,6 +19,8 @@ public interface IKhuyenMaiService {
     void updateStatusByMa(String ma);
     Map<String, Object> pagingOrSearchOrFindAllOrFilterOrCategories(Integer pageCurrent, Integer limit, String param, Map<String, Object> params, String slug);
 
+    Map<String, Object> searchByProduct(Integer pageCurrent, Integer limit, String param);
+
     String undelete(String ma);
 
     void updateTrangThai(Long id, String trangThai);

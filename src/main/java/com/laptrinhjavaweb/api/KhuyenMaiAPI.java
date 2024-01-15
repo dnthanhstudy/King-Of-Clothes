@@ -73,4 +73,13 @@ public class KhuyenMaiAPI {
         khuyenMaiService.updateEXPIRED(ma);
     }
 
+
+    @GetMapping("/search-product")
+    public ResponseEntity<?> searchByProduct(
+            @RequestParam(name = "q") String param,
+            @RequestParam(name = "page", defaultValue = "1") Integer page,
+            @RequestParam(name = "limit", required = false, defaultValue = "5") Integer limit){
+        Map<String, Object> results = khuyenMaiService.searchByProduct(page, limit, param);
+        return new ResponseEntity<>(results, HttpStatus.OK);
+    }
 }
