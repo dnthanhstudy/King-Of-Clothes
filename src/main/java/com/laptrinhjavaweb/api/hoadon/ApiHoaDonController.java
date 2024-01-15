@@ -154,4 +154,8 @@ public class ApiHoaDonController {
         return hoaDonService.huyDatHang(idkh);
     }
 
+    @GetMapping("/checkhuydon/{idkh")
+    public Boolean checkHuyDonTrongNgay(@PathVariable("idkh")Long idkh){
+        return null;
+    }
 }

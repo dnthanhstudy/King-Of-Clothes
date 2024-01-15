@@ -22,4 +22,11 @@ public interface TrangThaiGiaoHangRepository extends JpaRepository<TrangThaiGiao
     @Modifying
     @Query("DELETE FROM TrangThaiGiaoHangEntity tt WHERE tt.hoaDon = :hoadon ")
     void deleteByHoaDonId(@Param("hoadon") HoaDonEntity hoaDonEntity);
+
+    @Query(value = "select count(1) from trangthaigiaohang ttgh join hoadon hd\n" +
+            "on hd.id = ttgh.magiaohang\n" +
+            "join khachhang kh on kh.id = hd.idkhachhang\n" +
+            " where trangthaihoadon = 'Huỷ đơn' and\n" +
+            " date(ttgh.ngaytao) =  CURDATE() and hd.idkhachhang = :idkh and kh.ma = ttgh.nguoitao",nativeQuery = true)
+    Long checkSoLanHuyDonTrongNgay(@Param("idkh") Long idkh);
 }
