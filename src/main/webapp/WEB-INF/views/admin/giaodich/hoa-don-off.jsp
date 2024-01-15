@@ -145,6 +145,9 @@
                 } else {
                     var index = 0;
                     response.forEach(function (item) {
+                        if(item.tienKhachTra === null){
+                            item.tienKhachTra = 0;
+                        }
                         var row = `
                         <tr class="text-center">
                             <td>\${++index}</td>
@@ -152,9 +155,9 @@
                             <td>\${item.tenKhachHang}</td>
                             <td>\${item.tenNhanVien}</td>
                             <td>\${getFormattedDate(item.ngayTao)}</td>
-                            <td>\${formatNumber(item.tongTienHang != null ? item.tongTienHang : 0)} đ</td>
-                            <td>\${formatNumber(item.tienKhachTra != null ? item.tienKhachTra : 0)} đ</td>
-                            <td>\${formatNumber(item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
+                            <td>\${formatNumber(item.tongTienHang)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra)} đ</td>
+                            <td>\${formatNumber(item.tienKhachTra === 0 ? 0 : item.tienKhachTra - (item.tongTienHang - item.tienGiamGia))} đ</td>
                             <td>
                                 <a href="/admin/giao-dich/hoa-don-off/create/\${item.ma}" class="btn btn-info create">Chi tiết</a>
                                 <button class="btn btn-danger btn-delete" value="\${item.ma}">Xóa</button>

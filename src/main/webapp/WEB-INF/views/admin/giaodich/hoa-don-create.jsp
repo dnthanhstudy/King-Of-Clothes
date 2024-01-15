@@ -405,6 +405,8 @@
                 data['trangThai'] = "TREO";
                 data['loai'] = "OFFLINE";
 
+                console.log(data);
+
                 $.ajax({
                     url: "/api/hoa-don-off",
                     method: "POST",
@@ -977,8 +979,6 @@
                                 `;
                         $('#invoice').html(html);
 
-                        $('#invoice').append(`<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
-
                         $('#invoice-non').hide();
 
                         $('#invoice-money-quantity').show();
@@ -1086,6 +1086,7 @@
                         })
                     })
                 }
+                $('#invoice').append(`<input type="hidden" name="" class="invoice-id" value="\${response.id}">`);
             },
             error: (error) => {
                 console.log(error);
@@ -1276,6 +1277,10 @@
     }
 
     function updateInvoiceTreo(successCallback, errorCallback) {
+        if($('#invoice').find('.card-body-invoice-detail').length === 0){
+            showError("Chưa có sản phẩm nào nên bạn không được tạo hóa đơn mới. Xin lỗi vì sự bất tiện này");
+            return false;
+        }
         let tienKhachTra = parseFloat($("#invoice-customer-payment").val());
         let tongTienHang = parseFloat($('.invoice-total:first').text());
 
@@ -1290,6 +1295,8 @@
         data['maKhachHang'] = $('#code-customer').val() === "" ? null : $('#code-customer').val();
         data['maNhanVien'] = ma;
         data['tienGiamGia'] = parseFloat($('#discount').text());
+
+        console.log(data);
 
         $.ajax({
             url: "/api/hoa-don-off",

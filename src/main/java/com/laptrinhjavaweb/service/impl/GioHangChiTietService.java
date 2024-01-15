@@ -110,7 +110,8 @@ public class GioHangChiTietService implements IGioHangChiTietService {
         } else {
             GioHangChiTietEntity gioHangChiTietEntityExsits = gioHangChiTietEntity.getGioHang().getGioHangChiTietEntities()
                     .stream()
-                    .filter(item -> item.getBienThe().getId().equals(gioHangChiTietRequest.getIdBienThe()))
+                    .filter(item -> item.getBienThe().getId().equals(gioHangChiTietRequest.getIdBienThe())
+                            && item.getTrangThai().equals(SystemConstant.ACTICE))
                     .findFirst()
                     .orElse(null);
 
@@ -118,10 +119,10 @@ public class GioHangChiTietService implements IGioHangChiTietService {
                 if(gioHangChiTietEntityExsits.getBienThe().getSoLuong().equals(gioHangChiTietEntityExsits.getSoLuong())){
                     throw new ClientError("Bạn đã thêm tối đa sản phẩm vào giỏ hàng nên không cập nhật được nữa");
                 }
-                if (gioHangChiTietEntityExsits.getBienThe().getSoLuong() + gioHangChiTietRequest.getSoLuong() >
-                        gioHangChiTietEntityExsits.getBienThe().getSoLuong()) {
+                if (gioHangChiTietEntityExsits.getSoLuong() + gioHangChiTietRequest.getSoLuong() >
+                        gioHangChiTietEntity.getBienThe().getSoLuong()) {
                     Map<String, Object> errors = new HashMap<>();
-                    errors.put("quantity", gioHangChiTietEntityExsits.getBienThe().getSoLuong() - gioHangChiTietEntityExsits.getSoLuong());
+                    errors.put("quantity", gioHangChiTietEntity.getBienThe().getSoLuong() - gioHangChiTietEntityExsits.getSoLuong());
                     throw new MultipleMessageError("Số lượng sản phẩm quá giới hạn cho phép. Xin kiểm tra lại", errors);
                 }
                 isLoadCart = true;
