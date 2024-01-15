@@ -152,7 +152,7 @@ public class KhachHangService implements IKhachHangService {
         khachHangEntity = khachHangConverter.convertToEntity(khachHangRequest);
         khachHangEntity.setMa(GenerateStringUtils.generateMa(khachHangRequest.getTen()));
         khachHangEntity.setTrangThai("ACTIVE");
-        String randomMatKhau = GenerateRandomCode.generateRandomCode(6);
+        String randomMatKhau = GenerateRandomCode.generateRandomPassword();
         sendPassRandom(khachHangEntity.getEmail(), randomMatKhau);
         khachHangEntity.setMatKhau(passwordEncoder.encode(randomMatKhau));
 
