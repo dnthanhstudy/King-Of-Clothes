@@ -1,11 +1,13 @@
 package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.converter.BienTheConverter;
 import com.laptrinhjavaweb.converter.HoaDonConverter;
 import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.model.enumentity.TrangThaiHoaDonEnum;
 import com.laptrinhjavaweb.repository.*;
+import com.laptrinhjavaweb.response.BienTheResponse;
 import com.laptrinhjavaweb.response.HoaDonResponse;
 import com.laptrinhjavaweb.resquest.HoaDonResquest;
 import com.laptrinhjavaweb.service.IHoaDonService;
@@ -50,6 +52,9 @@ public class HoaDonService implements IHoaDonService {
     @Autowired
     private LyDoHuyDonRepository lyDoHuyDonRepository;
 
+    @Autowired
+    private BienTheConverter bienTheConverter;
+
 
     @Override
     @Transactional
@@ -87,15 +92,14 @@ public class HoaDonService implements IHoaDonService {
             List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(hoaDonResquest.getMa());
             hoaDonChiTietEntities.forEach(
                     item -> {
-                        if (item.getBienThe() != null) {
                             BienTheEntity bienTheEntity = item.getBienThe();
+                            if(!item.getGia().equals(bienTheEntity.getGia())){
+                                BienTheResponse bienTheResponse = bienTheConverter.convertToResponse(bienTheEntity);
+                                item.setGia(bienTheResponse.getGiaBan());
+                                item.setThanhTien(bienTheResponse.getGiaBan() * item.getSoLuong());
+                            }
                             bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
                             bienTheRepository.save(bienTheEntity);
-                        } else {
-                            SanPhamEntity sanPhamEntity = item.getSanPham();
-                            sanPhamEntity.setSoLuong(sanPhamEntity.getSoLuong() - item.getSoLuong());
-                            sanPhamRepository.save(sanPhamEntity);
-                        }
                     }
             );
         }
