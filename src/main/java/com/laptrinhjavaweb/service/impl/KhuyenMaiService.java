@@ -143,6 +143,15 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     throw new ClientError("Giá trị giảm phải nhỏ hơn giá sản phẩm khuyến mại. Vui lòng chỉnh lại khuyến mại!");
                 }
             }
+            khuyenMaiEntity.setTong(request.getSoLuong());
+            ThongKeKhuyenMaiResponse thongKe = getThongKe(khuyenMaiEntity.getId());
+            int soMoi=0;
+            if(thongKe.getSoLuongSuDung()==null){
+                soMoi = request.getSoLuong();
+            }else{
+                soMoi = request.getSoLuong() - thongKe.getSoLuongSuDung();
+            }
+            khuyenMaiEntity.setSoLuong(soMoi);
             KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
             List<KhuyenMaiSanPhamEntity> list = khuyenMaiSanPhamRepository.findAllByKhuyenMai_id(result.getId());
             for (KhuyenMaiSanPhamEntity kmsp:list

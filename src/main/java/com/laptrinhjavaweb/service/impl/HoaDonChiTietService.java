@@ -49,13 +49,6 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
             hoaDonChiTietEntity.setThanhTien(hoaDonChiTietEntity.getGia() * hoaDonChiTietEntity.getSoLuong());
             hoaDonChiTietEntity.setTenBienThe(hoaDonChiTietEntity.getBienThe().getTen());
             hoaDonChiTietRepository.save(hoaDonChiTietEntity);
-            KhuyenMaiSanPhamEntity kmsp = hoaDonChiTietEntity.getKhuyenMai().orElse(null);
-            if(kmsp != null){
-                KhuyenMaiEntity km = kmsp.getKhuyenMai();
-                int soMoi = km.getSoLuong()-hoaDonChiTietEntity.getSoLuong();
-                km.setSoLuong(soMoi);
-                khuyenMaiRepository.save(km);
-            }
         }else{
             entity.setTenBienThe(entity.getBienThe().getTen());
             hoaDonChiTietRepository.save(entity);
@@ -81,13 +74,6 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         }
 
         hoaDonChiTietRepository.save(entity);
-        KhuyenMaiSanPhamEntity kmsp = entity.getKhuyenMai().orElse(null);
-        if(kmsp != null){
-            KhuyenMaiEntity km = kmsp.getKhuyenMai();
-            int soMoi = km.getSoLuong()-entity.getSoLuong();
-            km.setSoLuong(soMoi);
-            khuyenMaiRepository.save(km);
-        }
     }
 
     @Override

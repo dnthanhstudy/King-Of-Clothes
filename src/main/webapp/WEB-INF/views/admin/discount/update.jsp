@@ -251,7 +251,7 @@
             $("#ngayBatDauFMT").val(data.ngayBatDau);
             $("#ngayketThucFMT").val(data.ngayKetThuc);
             $("#giaTriGiam").val(data.giaTri);
-            $("#soLuong").val(data.soLuong);
+            $("#soLuong").val(data.tong);
             $("#moTa").text(data.moTa);
             $("#loaiGiamGia").val(data.loai).change();
             var ngayBatDauStr = displayDateFormat(data.ngayBatDau);
