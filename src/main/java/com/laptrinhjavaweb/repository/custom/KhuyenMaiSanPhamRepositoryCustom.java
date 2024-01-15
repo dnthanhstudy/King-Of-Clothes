@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface KhuyenMaiSanPhamRepositoryCustom {
     List<KhuyenMaiSanPhamEntity> seachs(String param);
+
+    List<KhuyenMaiSanPhamEntity> allActivate();
 }

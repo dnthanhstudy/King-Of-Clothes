@@ -6,10 +6,7 @@ import com.laptrinhjavaweb.converter.SanPhamConverter;
 import com.laptrinhjavaweb.entity.*;
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.repository.*;
-import com.laptrinhjavaweb.response.BienTheResponse;
-import com.laptrinhjavaweb.response.PageableResponse;
-import com.laptrinhjavaweb.response.SanPhamResponse;
-import com.laptrinhjavaweb.response.ThuocTinhResponse;
+import com.laptrinhjavaweb.response.*;
 import com.laptrinhjavaweb.resquest.*;
 import com.laptrinhjavaweb.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,23 +119,30 @@ public class SanPhamService implements ISanPhamService {
     public Map<String, Object> discountProduct(Integer pageCurrent, Integer limit) {
         Map<String, Object> results = new HashMap<>();
         Boolean isAll = false;
+        Page<SanPhamEntity> page = null;
         List<SanPhamResponse> listSanPhamResponse = new ArrayList<>();
         Pageable pageable = PageRequest.of(pageCurrent - 1, limit);
-        List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
+            List<SanPhamEntity> listSanPhamEntity = new ArrayList<>();
+                List<KhuyenMaiSanPhamEntity> listKMSP = khuyenMaiSanPhamRepository.allActivate();
+                for (KhuyenMaiSanPhamEntity kmsp : listKMSP){
+                    listSanPhamEntity.add(kmsp.getSanPham());
+                }
+            int sizeOfListSanPhamEntity = listSanPhamEntity.size();
+            int start = (int) pageable.getOffset();
+            int end = Math.min((start + pageable.getPageSize()), sizeOfListSanPhamEntity);
+            List<SanPhamEntity> pageContent = listSanPhamEntity.subList(start, end);
+            page = new PageImpl<>(pageContent, pageable, sizeOfListSanPhamEntity);
 
-        Page<KhuyenMaiSanPhamEntity> pageAB = khuyenMaiSanPhamRepository.findAllByTrangThaiOrderByNgayTaoDesc("ACTIVE",pageable);
-        List<KhuyenMaiSanPhamEntity> list = pageAB.getContent();
-        for (KhuyenMaiSanPhamEntity kmsp : list) {
-            listSanPhamEntity.add(kmsp.getSanPham());
-        }
-        listSanPhamResponse = listSanPhamEntity.stream().map(
+        listSanPhamResponse = page.getContent().stream().map(
                 item -> sanPhamConvert.convertToResponse(item)
         ).collect(Collectors.toList());
+
+
         results.put("data", listSanPhamResponse);
         if (!isAll) {
             PageableResponse pageableResponse = new PageableResponse();
             pageableResponse.setPageCurrent(pageCurrent);
-            pageableResponse.setTotalPage(pageAB.getTotalPages());
+            pageableResponse.setTotalPage(page.getTotalPages());
             results.put("meta", pageableResponse);
         }
         return results;
