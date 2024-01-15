@@ -6,7 +6,6 @@ import com.laptrinhjavaweb.model.response.TrangThaiGiaoHangResponse;
 import com.laptrinhjavaweb.repository.HoaDonRepository;
 import com.laptrinhjavaweb.repository.TrangThaiGiaoHangRepository;
 import com.laptrinhjavaweb.service.Thu3Service;
-import com.laptrinhjavaweb.support.supportgiaohang.TrangThaiHoaDon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,13 +38,19 @@ public class Thu3ServiceImpl implements Thu3Service {
     }
 
     @Override
-    public String themTrangThaiGiaoHang(Long idhd, String tenTrangThai, String trangThaiHoaDon) {
+    public void themTrangThaiGiaoHang(Long idhd, String tenTrangThai, String trangThaiHoaDon) {
         TrangThaiGiaoHangEntity trangThaiGiaoHangEntity = new TrangThaiGiaoHangEntity();
         trangThaiGiaoHangEntity.setTenTrangThai(tenTrangThai);
         trangThaiGiaoHangEntity.setTrangThaiHoaDon(trangThaiHoaDon);
         trangThaiGiaoHangEntity.setHoaDon(hoaDonRepository.findById(idhd).orElse(null));
         trangThaiGiaoHangRepository.save(trangThaiGiaoHangEntity);
-        return "Thành công";
+    }
+
+    @Override
+    public Boolean checkHuyDonTrongNgay(Long idkh) {
+        Long check = trangThaiGiaoHangRepository.checkSoLanHuyDonTrongNgay(idkh);
+        System.out.println("check:"+check);
+        return check>3;
     }
 
 }

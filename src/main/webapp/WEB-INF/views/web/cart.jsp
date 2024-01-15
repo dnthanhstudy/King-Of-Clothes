@@ -54,9 +54,12 @@
             </div>
         </div>
 
-        <div class="khung mb-5">
+        <div class="khung mb-5 " id="cart-disable">
             <span class="fs-4">Danh Sách Sản Phẩm Không Hoạt Động</span>
-            <div id="cart-disable">
+            <div id="cart-not-working">
+
+            </div>
+            <div id="cart-inactive">
 
             </div>
         </div>

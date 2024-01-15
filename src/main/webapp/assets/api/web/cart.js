@@ -113,6 +113,8 @@ $('#cart-disable').on('click', function (e) {
     const eleClick = $(e.target);
     if (eleClick.hasClass('deleteBienThe')) {
         deleteBienThe(eleClick);
+    } else if(eleClick.hasClass('btn-remove-cart-item')){
+        deletCartInactive(eleClick);
     }
 })
 
@@ -355,7 +357,7 @@ function loadProductActive() {
 }
 
 function soLuongConLaiBienThe(soLuong) {
-    return soLuong > 0 ? `<span>${soLuong} sản phẩm</span>` : "<b style='color: red;'>Hết hàng</b>";
+    return soLuong > 0 ? `<div><span class="slConLaiSP">${soLuong}</span> sản phẩm</div>` : "<b style='color: red;'>Hết hàng</b>";
 }
 
 function checkQuantity(data, successCallback, errorCallback) {
@@ -496,26 +498,9 @@ function loadOneCartItem(data, eleCartItem) {
     eleCartItem.find('.price-origin').text(formatNumber(data.donGia) + " đ");
     eleCartItem.find('.price-discount').text(formatNumber(data.giaMua) + " đ");
     eleCartItem.find('.price-buy').text(formatNumber(data.soTien) + " đ");
-
+    eleCartItem.find(".slConLaiSP").text(data.soLuongConLaiBienThe);
     const listAttrName = eleCartItem.find('.list-attr-name');
 
-    // //Nếu biến thể còn số lượng thì có thể bán
-    // let checkHetHang = checkHetHangGioHang(data);
-    // console.log(checkHetHang)
-    // try{
-    //     if (!checkHetHang) {
-    //         eleCartItem.removeClass('cart-item');
-    //         eleCartItem.addClass('special-card');
-    //         // eleCartItem.className = eleCartItem.className.replace('special-card', 'cart-item');
-    //     }else{
-    //         eleCartItem.removeClass('special-card');
-    //         eleCartItem.addClass('cart-item');
-    //         // eleCartItem.className = eleCartItem.className.replace('cart-item', 'special-card');
-    //     }
-    // }catch (e) {
-    //     console.log(e);
-    // }
-    // console.log("Đã xuống đây")
     let nameVariant = [];
     let htmlThuocTinh = '';
     $.each(data.thuocTinh, (indexThuocTinh, itemThuocTinh) => {
@@ -566,7 +551,7 @@ function loadOneCartItem(data, eleCartItem) {
     listAttrName.removeClass('show')
 
     eleCartItem.find('.name-variant').text(nameVariant.join(" , "));
-    $('.variant-id').val(data.idBienThe)
+    eleCartItem.find('.variant-id').val(data.idBienThe);
 
     const checked = findAllChecked();
     $('.total-checked').text(checked.length)
@@ -618,15 +603,15 @@ function removeIonChecked(eleClick) {
     });
 }
 
-function loadProductInActive() {
+function loadProductInActive(){
     $.ajax({
         url: "/api/xoa-bien-the/cart/" + customerCodeWhenLogin,
         method: "GET",
         dataType: "json",
         success: (response) => {
-            console.log(response)
+            let html = '';
             $.each(response, (index, item) => {
-                let html = `<div class="special-card cart-delete" style="border-bottom: 1px solid #dedede">
+                html += `<div class="special-card cart-delete" style="border-bottom: 1px solid #dedede">
                             <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                     <div class="form-check align-items-center justify-content-between mb-3 datacart">
@@ -671,8 +656,8 @@ function loadProductInActive() {
                                 </div>
                             </div>
                     </div>`;
-                $('#cart-disable').append(html);
             })
+            $('#cart-not-working').html(html);
             $('.product-price-custom-vnd').each(function (index, item) {
                 let res = $(item).html();
                 if (res.indexOf("đ") === -1) {
@@ -695,9 +680,9 @@ function loadProductInActive() {
         method: "GET",
         dataType: "json",
         success: (response) => {
-            console.log(response)
+            let html = '';
             $.each(response.gioHang, (index, item) => {
-                let html = `<div style="border-bottom: 1px solid #dedede" class="cart-item special-card">
+                html += `<div style="border-bottom: 1px solid #dedede" class="cart-item special-card">
                               <div class="row mt-2 d-flex justify-content-center align-items-center">
                                 <div class="col-5">
                                   <div class="form-check align-items-center justify-content-between mb-3">
@@ -810,13 +795,14 @@ function loadProductInActive() {
                     <div class="col-2">
                       <b class="price-buy product-price-custom-vnd">${item.soTien}</b>
                     </div>
-                    <div class="col-1">
-                      <a class="btn-remove-cart-item fs-5" style="cursor: pointer">Xóa</a>
+                    <div class="col-1" style="background: #fff;height: 200px">
+                      <a class="btn-remove-cart-item fs-5 d-flex justify-content-center align-items-center" style="cursor: pointer; color: red; margin-top: 80px ">Xóa</a>
                     </div>
                   </div>
+                  <input value="${item.id}" class="delete-cart-item-inactive" type="hidden" />
                 </div>`;
-                $('#cart-disable').append(html);
             })
+            $('#cart-inactive').html(html);
         },
         error: (error) => {
 
@@ -837,6 +823,28 @@ function deleteBienThe(eleClick) {
                     data: JSON.stringify(id),
                     success: (response) => {
                         showSuccess("Xóa sản phẩm thành công");
+                        loadProductInActive();
+                    },
+                    error: (error) => {
+
+                    }
+                });
+            }
+        });
+}
+
+function deletCartInactive(eleClick){
+    showConfirm("Bạn muốn xóa sản phẩm này phải không?")
+        .then((confirmed) => {
+            if (confirmed) {
+                const id = parseInt(eleClick.closest('.cart-item').find('.delete-cart-item-inactive').val());
+                $.ajax({
+                    url: "/api/gio-hang-chi-tiet",
+                    method: "DELETE",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(id),
+                    success: (response) => {
+                        showSuccess("Xóa sản phẩm trong giỏ hàng thành công");
                         loadProductInActive();
                     },
                     error: (error) => {

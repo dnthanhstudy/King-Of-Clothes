@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.laptrinhjavaweb.security.utils.SecurityUtils" %><%--
   Created by IntelliJ IDEA.
   User: asus
   Date: 12/4/2023
@@ -105,6 +105,8 @@
     </div>
 </div>
 <script>
+    var idkh = <%=SecurityUtils.getPrincipal().getId()%>;
+
     // // Lấy đối tượng URLSearchParams từ URL hiện tại
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -168,6 +170,7 @@
                         <span>\${ngayTaoFMT}</span>
                     </div>
                     <div class="col-9">
+                        <b>\${item.maVanHang}</b> <br>
                         <span>\${item.tenTrangThai}</span><br>
                     </div>
                 </div>
@@ -221,6 +224,45 @@
     }
     function formatNumber(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    async function thayDoiTrangThaiHoaDon(idhd, trangThai) {
+        if (!(await checkSoLanHuyTrongNgay())){
+            return;
+        }
+        if (await showConfirm("Bạn có muốn huỷ đơn không ?")) {
+            let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
+            $.ajax({
+                url: `/api/hoadon/thaydoitrangthai` + parameter,
+                method: 'GET',
+                success: function (req) {
+                    showSuccess("Huỷ đơn thành công");
+                    loadTable();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Có lỗi xảy ra")
+                }
+            });
+        }
+    }
+    async function checkSoLanHuyTrongNgay() {
+        let flag ;
+        await $.ajax({
+            url: '/api/thu3/checkhuydon/'+idkh,
+            method: 'GET',
+            success: function (req) {
+                if (req){
+                    showError("Mỗi ngày bạn chỉ có thể hủy tối đa 3 đơn");
+                    flag= false;
+                }else{
+                    flag= true;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+                flag = true;
+            }
+        });
+        return flag;
     }
 </script>
 

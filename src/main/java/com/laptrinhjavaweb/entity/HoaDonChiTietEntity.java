@@ -25,7 +25,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 	
 	@Column(name = "gia")
 	private Double gia;
-	
+
 	@Column(name = "thanhtien")
 	private Double thanhTien;
 

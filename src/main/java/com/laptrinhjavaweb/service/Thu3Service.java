@@ -12,5 +12,7 @@ public interface Thu3Service {
     List<HoaDonResponse> dsHoaDonDangGiao();
 
     String themTrangThaiGiaoHang(Long idhd,String tenTrangThai);
-    String themTrangThaiGiaoHang(Long idhd,String tenTrangThai,String trangThaiHoaDon);
+    void themTrangThaiGiaoHang(Long idhd, String tenTrangThai, String trangThaiHoaDon);
+
+    Boolean checkHuyDonTrongNgay(Long idkh);
 }

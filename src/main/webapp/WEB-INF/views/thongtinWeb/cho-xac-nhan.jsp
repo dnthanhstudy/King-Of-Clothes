@@ -119,7 +119,10 @@
     });
     }
     loadTable()
-    function thayDoiTrangThaiHoaDon(idhd,trangThai){
+    async function thayDoiTrangThaiHoaDon(idhd,trangThai){
+        if (!(await checkSoLanHuyTrongNgay())){
+            return;
+        }
         let parameter = `?idhd=\${idhd}&trangthai=\${trangThai}`;
         var luuy = $("#luuy").val();
         parameter += `&luuy=\${encodeURIComponent(luuy)}`;
@@ -134,6 +137,26 @@
                 console.log("Có lỗi xảy ra")
             }
         });
+    }
+    async function checkSoLanHuyTrongNgay() {
+        let flag ;
+        await $.ajax({
+            url: '/api/thu3/checkhuydon/'+idkh,
+            method: 'GET',
+            success: function (req) {
+                if (req){
+                    showError("Mỗi ngày bạn chỉ có thể hủy tối đa 3 đơn");
+                    flag= false;
+                }else{
+                    flag= true;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Có lỗi xảy ra")
+                flag = true;
+            }
+        });
+        return flag;
     }
 </script>
 

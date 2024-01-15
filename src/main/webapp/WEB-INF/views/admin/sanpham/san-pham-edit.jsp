@@ -159,25 +159,9 @@
                     </div>
                 </div>
 
-                <div class="row d-flex">
-                    <div class="form-check">
-                        <input name="sanPhamMoi" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-moi">
-                        <label class="form-check-label" for="san-pham-moi">
-                            Sản phẩm mới
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input name="sanPhamNoiBat" class="form-check-input" type="checkbox" value="1"
-                               id="san-pham-noi-bat">
-                        <label class="form-check-label" for="san-pham-noi-bat">
-                            Sản phẩm nổi bật
-                        </label>
-                    </div>
-                    <div class="khuyenmai-sanpham m-0 mt-2 mb-2" id="khuyenmai-sanpham"></div>
-                </div>
+                <div class="khuyenmai-sanpham m-0 mt-2 mb-2" id="khuyenmai-sanpham"></div>
 
-                <button type="button" class="btn btn-success mb-4 btn-add-product">Submit</button>
+                <button type="button" class="btn btn-success mb-4 btn-add-product">Update</button>
             </form>
 
         </div>

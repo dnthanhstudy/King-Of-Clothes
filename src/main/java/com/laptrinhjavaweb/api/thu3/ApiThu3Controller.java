@@ -25,15 +25,17 @@ public class ApiThu3Controller {
     }
     @GetMapping("/dstrangthai/{magiaohang}")
     public List<TrangThaiGiaoHangResponse> dsTrangThaiGiaoHang(@PathVariable(name = "magiaohang") Long idhd){
+
         return thu3Service.dsTrangThaiDangGiao(idhd);
     }
     @GetMapping("/themtrangthai/{magiaohang}")
-    public ResponseObject themTrangThaiGiaoHang(@PathVariable(name = "magiaohang")Long idhd,
+    public void themTrangThaiGiaoHang(@PathVariable(name = "magiaohang")Long idhd,
                                                 @RequestParam("tentrangthai") String tenTrangThai){
-        return new ResponseObject(thu3Service.themTrangThaiGiaoHang(idhd,tenTrangThai));
+        thu3Service.themTrangThaiGiaoHang(idhd,tenTrangThai,"Đang giao hàng");
     }
 
-//    public ResponseObject thayDoiTrangThaiDangGiao(String maGiaoHang,String tenTrangThaiGiao){
-//
-//    }
+    @GetMapping("/checkhuydon/{idkh}")
+    public Boolean checkHuyDonTrongNgay(@PathVariable("idkh")Long idkh){
+        return thu3Service.checkHuyDonTrongNgay(idkh);
+    }
 }

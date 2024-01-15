@@ -113,19 +113,19 @@ public class ApiHoaDonController {
             PreviewGiaoHang previewGiaoHang = giaoHangController.datHang(idhd);
             hoaDon.setMaGiaoHang(previewGiaoHang.getMaHoaDon());
             hoaDonService.saveHoaDon(hoaDon);
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng",TrangThaiHoaDon.DANHANDON);
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đang chuẩn bị hàng","Đã nhận đơn");
         }else if (trangThai.equals(TrangThaiHoaDon.HUYDON)){
             if (check==1){
-                thu3Service.themTrangThaiGiaoHang(idhd,"Khách không nhận",TrangThaiHoaDon.HUYDON);
+                thu3Service.themTrangThaiGiaoHang(idhd,"Khách không nhận","Huỷ đơn");
             }else if (check==2){
-                thu3Service.themTrangThaiGiaoHang(idhd,"Lỗi giao hàng nhanh",TrangThaiHoaDon.HUYDON);
+                thu3Service.themTrangThaiGiaoHang(idhd,"Lỗi giao hàng nhanh","Huỷ đơn");
             }else{
-                thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ",TrangThaiHoaDon.HUYDON);
+                thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đã huỷ","Huỷ đơn");
             }
         }else if(trangThai.equals(TrangThaiHoaDon.DANHANHANG)){
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng",TrangThaiHoaDon.DANHANHANG);
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đã nhận hàng","Nhận Hàng");
         } else if (trangThai.equals(TrangThaiHoaDon.DANGGIAOHANG)) {
-            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao",TrangThaiHoaDon.DANGGIAOHANG);
+            thu3Service.themTrangThaiGiaoHang(idhd,"Đơn hàng đang được giao","Đang giao hàng");
         }
         return  "Thay đổi trạng thái thành công";
     }
@@ -154,4 +154,8 @@ public class ApiHoaDonController {
         return hoaDonService.huyDatHang(idkh);
     }
 
+    @GetMapping("/checkhuydon/{idkh")
+    public Boolean checkHuyDonTrongNgay(@PathVariable("idkh")Long idkh){
+        return null;
+    }
 }
