@@ -22,7 +22,17 @@ public class KhuyenMaiSanPhamRepositoryImpl implements KhuyenMaiSanPhamRepositor
 
         Query query = entityManager.createNativeQuery(sql, KhuyenMaiSanPhamEntity.class);
         query.setParameter("param", "%" + param + "%");
-        List<KhuyenMaiSanPhamEntity> kmsp = query.getResultList();
+        return query.getResultList();
+    }
+
+    @Override
+    public List<KhuyenMaiSanPhamEntity> allActivate() {
+        String sql = "SELECT kmsp.* FROM khuyenmaisanpham kmsp " +
+                "JOIN sanpham sp ON kmsp.idsanpham = sp.id " +
+                "WHERE kmsp.trangthai = 'ACTIVE' AND sp.trangthai = 'ACTIVE' " +
+                "ORDER BY kmsp.ngaytao DESC";
+
+        Query query = entityManager.createNativeQuery(sql, KhuyenMaiSanPhamEntity.class);
         return query.getResultList();
     }
 }
