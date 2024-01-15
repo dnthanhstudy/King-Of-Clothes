@@ -129,6 +129,20 @@ public class KhuyenMaiService implements IKhuyenMaiService {
             if(khuyenMaiEntity.getNgayKetThuc().compareTo(request.getNgayKetThuc()) <= 0){
                 khuyenMaiEntity.setTrangThai("ACTIVE");
             }
+            if(request.getLoai().equals("0")){
+                List<String> list = request.getListSanPham();
+                List<Double> listGia = new ArrayList<>();
+                for (String x : list ){
+                    SanPhamEntity spEntity = sanPhamService.findEntityBySlug(x);
+                    listGia.add(spEntity.getGia());
+                }
+                Double minGia = listGia.stream()
+                        .min(Double::compare)
+                        .orElse(Double.NaN);
+                if(request.getGiaTri() > minGia){
+                    throw new ClientError("Giá trị giảm phải nhỏ hơn giá sản phẩm khuyến mại. Vui lòng chỉnh lại khuyến mại!");
+                }
+            }
             KhuyenMaiEntity result = khuyenMaiRepository.save(khuyenMaiEntity);
             List<KhuyenMaiSanPhamEntity> list = khuyenMaiSanPhamRepository.findAllByKhuyenMai_id(result.getId());
             for (KhuyenMaiSanPhamEntity kmsp:list
@@ -172,6 +186,7 @@ public class KhuyenMaiService implements IKhuyenMaiService {
         KhuyenMaiResponse response = khuyenMaiConvert.convertToResponse(entity);
 //        ThongKeKhuyenMaiResponse thongKe = khuyenMaiRepository.thongKeKM(entity.getId());
         ThongKeKhuyenMaiResponse thongKe = getThongKe(entity.getId());
+
         response.setThongKe(thongKe);
         return response;
     }
@@ -323,7 +338,8 @@ public class KhuyenMaiService implements IKhuyenMaiService {
                     khuyenMaiSanPhamRepository.save(kmsp);
                 }
             }
-            if(khuyenMaiEntity.getSoLuong() == 0){
+            ThongKeKhuyenMaiResponse tk = getThongKe(khuyenMaiEntity.getId());
+            if(khuyenMaiEntity.getTong() <= tk.getSoLuongSuDung()){
                 khuyenMaiEntity.setTrangThai("EXPIRED");
                 List<KhuyenMaiSanPhamEntity> list = khuyenMaiEntity.getKhuyenMaiSanPhamEntities();
                 for (KhuyenMaiSanPhamEntity kmsp:list ) {

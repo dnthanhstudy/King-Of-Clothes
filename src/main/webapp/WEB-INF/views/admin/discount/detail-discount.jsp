@@ -56,17 +56,15 @@
 
                                 <div class="d-flex align-items-center mb-4">
                                     <div class="text-center border-bx mr-3">
-                                        <span>Tổng tiền thu được</span>
+                                        <span>Tổng số lượng</span>
                                         <p class="mb-0 pt-1 font-w600 text-black">
-                                            <span id="soTienThuDuoc"></span>
-                                            <span>đ</span>
+                                            <span id="tong"></span>
                                         </p>
                                     </div>
                                     <div class="text-center border-bx">
-                                        <span>Tổng tiền đã giảm giá:</span>
+                                        <span>Đã dùng</span>
                                         <p class="mb-0 pt-1 font-w600 text-black">
-                                            <span id="soTienGiam"></span>
-                                            <span>đ</span>
+                                            <span id="soLuongSuDung"></span>
                                         </p>
                                     </div>
                                 </div>
@@ -74,9 +72,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-3">Giá trị:<span class="text-black ml-1 font-w550" id="giaTriGiam"></span><span class="text-black ml-1 font-w550" id="loai"></span></div>
-                                    <div class="mb-3">Tổng số lượng:<span class="text-black ml-1 font-w550" id="tong"></span></div>
                                     <div class="mb-3">Số lượng còn lại:<span class="text-black ml-1 font-w550" id="soLuong"></span></div>
-                                    <div class="mb-3">Đã dùng:<span class="text-black ml-1 font-w550" id="soLuongSuDung">00</span></div>
                                     <div class="mb-3">
                                         <div class="mb-3">Sản phẩm khuyến mại:</div>
 
@@ -166,7 +162,8 @@
             }else{
                 $("#loai").text("đ");
             }
-            $("#soLuong").text(data.soLuong);
+            let conlai = data.tong - thongKe.soLuongSuDung;
+            $("#soLuong").text(conlai);
             var dsSanPhamKhuyenMai = data.listSanPham;
             console.log(dsSanPhamKhuyenMai)
             let html = '';
