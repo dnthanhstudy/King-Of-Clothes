@@ -56,6 +56,9 @@ public class HoaDonService implements IHoaDonService {
     @Autowired
     private BienTheConverter bienTheConverter;
 
+    @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
+
 
     @Override
     @Transactional
@@ -101,6 +104,13 @@ public class HoaDonService implements IHoaDonService {
                         }
                         bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
                         bienTheRepository.save(bienTheEntity);
+                        KhuyenMaiSanPhamEntity kmsp = item.getKhuyenMai().orElse(null);
+                        if(kmsp != null){
+                            KhuyenMaiEntity km = kmsp.getKhuyenMai();
+                            int soMoi = km.getSoLuong()-item.getSoLuong();
+                            km.setSoLuong(soMoi);
+                            khuyenMaiRepository.save(km);
+                        }
                     }
             );
         }
