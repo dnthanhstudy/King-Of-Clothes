@@ -165,7 +165,7 @@
             contentType: 'application/json',
             success: async function (req) {
                 if (req==true){
-                    showModalError("Bạn chỉ có thể đặt hàng 4 lần trong 1 ngày")
+                    showModalError("Bạn chỉ có thể đặt hàng 5 lần trong 1 ngày")
                     flag = false;
                 }
             },

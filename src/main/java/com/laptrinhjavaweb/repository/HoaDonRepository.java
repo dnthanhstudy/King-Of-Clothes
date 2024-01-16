@@ -35,7 +35,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDonEntity,Long>, HoaD
     void updateLaiSoLuongKhiHuyDon(@Param("idhd")Long idhd);
 
     @Query(value = "select count(hd) from HoaDonEntity hd where hd.khachHang.id=:idkh" +
-            " and Date(hd.ngayDat)=Date(CURRENT_DATE)")
+            " and Date(hd.ngayDat)=Date(CURRENT_DATE) and hd.trangThai<>'CHUANBIDATHANG'")
     Integer soLanMua(@Param("idkh")Long idkh);
     @Query("select hd from HoaDonEntity hd where hd.ma=:mahd")
     ThongTinHoaDonResponse getHoaDonResponse(@Param("mahd")String idhd);

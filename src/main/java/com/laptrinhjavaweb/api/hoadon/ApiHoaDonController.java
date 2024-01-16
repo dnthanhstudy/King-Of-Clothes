@@ -106,7 +106,7 @@ public class ApiHoaDonController {
     public String thayDoiTrangThai(@RequestParam("idhd")Long idhd,
                                    @RequestParam("trangthai")String trangThai,
                                    @RequestParam(value = "luuy",required = false,defaultValue = "")String luuy,
-                                   @RequestParam(value = "thu3",required = false,defaultValue = "")Integer check
+                                   @RequestParam(value = "thu3",required = false,defaultValue = "0")Integer check
     ){
         HoaDonEntity hoaDon = hoaDonService.thayDoiTrangThaiHoaDon(idhd,trangThai,luuy);
         if (trangThai.equals(TrangThaiHoaDon.DANHANDON)){
@@ -154,8 +154,5 @@ public class ApiHoaDonController {
         return hoaDonService.huyDatHang(idkh);
     }
 
-    @GetMapping("/checkhuydon/{idkh")
-    public Boolean checkHuyDonTrongNgay(@PathVariable("idkh")Long idkh){
-        return null;
-    }
+
 }

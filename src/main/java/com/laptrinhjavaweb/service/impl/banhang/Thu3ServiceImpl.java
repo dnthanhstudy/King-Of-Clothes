@@ -50,7 +50,7 @@ public class Thu3ServiceImpl implements Thu3Service {
     public Boolean checkHuyDonTrongNgay(Long idkh) {
         Long check = trangThaiGiaoHangRepository.checkSoLanHuyDonTrongNgay(idkh);
         System.out.println("check:"+check);
-        return check>3;
+        return check>=3;
     }
 
 }

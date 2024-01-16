@@ -48,6 +48,7 @@ public class ThongTinMuaHangServiceImpl implements ThongTinMuaHangService {
                 .diaChi(request.getDiaChi())
                 .soNha(request.getSoNha())
                 .build();
+        thongTinMuaHang.setTrangThai("ACTIVE");
         thongTinMuaHang = thongTinMuaHangRepository.save(thongTinMuaHang);
         if (request.getMacDinh()){
             thongTinMuaHangRepository.updateTrangThaiThongTinMuaHang(idkh);

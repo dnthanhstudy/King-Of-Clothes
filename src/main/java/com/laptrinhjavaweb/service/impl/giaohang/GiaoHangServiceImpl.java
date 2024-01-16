@@ -171,6 +171,7 @@ public class GiaoHangServiceImpl implements GiaoHangService {
         TrangThaiGiaoHangEntity trangThaiGiaoHang = new TrangThaiGiaoHangEntity();
         trangThaiGiaoHang.setHoaDon(hoaDon);
         trangThaiGiaoHang.setTenTrangThai("Đặt hàng");
+        trangThaiGiaoHang.setTrangThaiHoaDon(" ");
         trangThaiGiaoHangRepository.save(trangThaiGiaoHang);
         int parameter = gioHangChiTietRepository.configHoaDonChiTietKhiDatHang(hoaDon.getId(),khachHang.getId());
         hoaDon.setLoai("Online");

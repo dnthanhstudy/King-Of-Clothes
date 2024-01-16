@@ -64,6 +64,7 @@
                             method: "GET",
                             dataType: "json",
                         });
+
                         let html = `<div class="col-12 mt-3">
                                 <div class="khung">
                                     <div class="d-flex justify-content-between" style="border-bottom: 1px solid #D19C97; padding-bottom: 10px">

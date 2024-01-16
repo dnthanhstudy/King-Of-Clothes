@@ -66,7 +66,7 @@ public class GioHangChiTietConveter {
                 khuyenMaiSanPhamRepository.
                         findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai
                                 (gioHangChiTietEntity.getSanPham().getId(), SystemConstant.ACTICE, gioHangChiTietEntity.getSanPham().getId(), SystemConstant.UPCOMING);
-        if (khuyenMaiSanPhamEntity != null) {
+        if (khuyenMaiSanPhamEntity != null && khuyenMaiSanPhamEntity.getTrangThai().equals(SystemConstant.ACTICE)) {
             Double giaTri = khuyenMaiSanPhamEntity.getKhuyenMai().getGiaTri();
             if(khuyenMaiSanPhamEntity.getKhuyenMai().getLoai().equals("1")){
                 giaMua = bienTheEntity.getGia() * ((100 - giaTri) / 100);

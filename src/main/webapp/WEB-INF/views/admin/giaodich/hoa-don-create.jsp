@@ -537,8 +537,13 @@
                     const lenAttrbute = item.thuocTinh.length;
                     let htmlcoupon = '';
                     if (item.khuyenMaiHienThiResponse !== null) {
-                        htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+
+                        if(item.khuyenMaiHienThiResponse.trangThai=="ACTIVE"){
+                            htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
                                         <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                        }else {
+                            htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.gia}</h4>`;
+                        }
                     } else {
                         htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                     }
@@ -740,8 +745,13 @@
                         const lenAttrbute = item.thuocTinh.length;
                         let htmlcoupon = '';
                         if (item.khuyenMaiHienThiResponse !== null) {
-                            htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
+
+                            if(item.khuyenMaiHienThiResponse.trangThai=="ACTIVE"){
+                                htmlcoupon = ` <h6><del class="card-text product-price product-origin" style="color: #000">\${item.gia}</del></h6>
                                         <h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
+                            }else {
+                                htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.gia}</h4>`;
+                            }
                         } else {
                             htmlcoupon = `<h4 class="card-text product-price product-buy" style="color: #EB8153">\${item.giaBan}</h4>`;
                         }

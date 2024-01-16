@@ -63,7 +63,7 @@ public class SanPhamConverter {
 				item -> bienTheConverter.convertToResponse(item)).collect(Collectors.toList());
 		Integer quantity = bienTheResponses.stream().mapToInt(i -> i.getSoLuong()).sum();
 		KhuyenMaiSanPhamEntity khuyenMaiSanPhamEntity = khuyenMaiSanPhamRepository.findBySanPham_idAndTrangThaiOrSanPham_idAndTrangThai(entity.getId(), SystemConstant.ACTICE, entity.getId(), SystemConstant.UPCOMING);
-		if(khuyenMaiSanPhamEntity != null){
+		if(khuyenMaiSanPhamEntity != null && khuyenMaiSanPhamEntity.getTrangThai().equals(SystemConstant.ACTICE)){
 			KhuyenMaiHienThiResponse khuyenMaiHienThiResponse = khuyenMaiConvert.convertToHienThiResponse(khuyenMaiSanPhamEntity.getKhuyenMai());
 			Double giaBan = null;
 			Double giaTri = Double.parseDouble(khuyenMaiHienThiResponse.getGiaTri());
