@@ -2,8 +2,11 @@ package com.laptrinhjavaweb.service.impl;
 
 import com.laptrinhjavaweb.converter.HoaDonChiTietConverter;
 import com.laptrinhjavaweb.entity.HoaDonChiTietEntity;
+import com.laptrinhjavaweb.entity.KhuyenMaiEntity;
+import com.laptrinhjavaweb.entity.KhuyenMaiSanPhamEntity;
 import com.laptrinhjavaweb.exception.ClientError;
 import com.laptrinhjavaweb.repository.HoaDonChiTietRepository;
+import com.laptrinhjavaweb.repository.KhuyenMaiRepository;
 import com.laptrinhjavaweb.response.HoaDonChiTietResponse;
 import com.laptrinhjavaweb.resquest.HoaDonChiTietRequest;
 import com.laptrinhjavaweb.service.IHoaDonChiTietService;
@@ -19,6 +22,9 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
 
     @Autowired
     private HoaDonChiTietConverter hoaDonChiTietConverter;
+
+    @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
 
     @Transactional
     @Override
@@ -43,6 +49,13 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
             hoaDonChiTietEntity.setThanhTien(hoaDonChiTietEntity.getGia() * hoaDonChiTietEntity.getSoLuong());
             hoaDonChiTietEntity.setTenBienThe(hoaDonChiTietEntity.getBienThe().getTen());
             hoaDonChiTietRepository.save(hoaDonChiTietEntity);
+            KhuyenMaiSanPhamEntity kmsp = hoaDonChiTietEntity.getKhuyenMai().orElse(null);
+            if(kmsp != null){
+                KhuyenMaiEntity km = kmsp.getKhuyenMai();
+                int soMoi = km.getSoLuong()-hoaDonChiTietEntity.getSoLuong();
+                km.setSoLuong(soMoi);
+                khuyenMaiRepository.save(km);
+            }
         }else{
             entity.setTenBienThe(entity.getBienThe().getTen());
             hoaDonChiTietRepository.save(entity);
@@ -68,6 +81,13 @@ public class HoaDonChiTietService implements IHoaDonChiTietService {
         }
 
         hoaDonChiTietRepository.save(entity);
+        KhuyenMaiSanPhamEntity kmsp = entity.getKhuyenMai().orElse(null);
+        if(kmsp != null){
+            KhuyenMaiEntity km = kmsp.getKhuyenMai();
+            int soMoi = km.getSoLuong()-entity.getSoLuong();
+            km.setSoLuong(soMoi);
+            khuyenMaiRepository.save(km);
+        }
     }
 
     @Override

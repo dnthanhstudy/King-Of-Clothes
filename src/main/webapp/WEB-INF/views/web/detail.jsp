@@ -280,7 +280,7 @@
         var ngayTao = new Date($('#product-ngayTao').val());
 
         var finish = new Date(ngayTao);
-        finish.setDate(ngayTao.getDate() + 0.9);
+        finish.setDate(ngayTao.getDate() + 7);
 
         var now = new Date(new Date().toLocaleString('vn', { timeZone: 'Asia/Ho_Chi_Minh' })).getTime();
         var distance = finish.getTime() - now;

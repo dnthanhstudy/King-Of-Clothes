@@ -70,7 +70,7 @@ public class HoaDonChiTietEntity extends BaseEntity{
 //		return this.khuyenMai;
 //	}
 
-	private Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){
+	public Optional<KhuyenMaiSanPhamEntity> getKhuyenMai(){
 		List<KhuyenMaiSanPhamEntity> dsKhuyenMai = bienThe.getSanPham().getKhuyenMaiSanPhamEntities();
 		LocalDate ngayHienTai = LocalDate.now();
 

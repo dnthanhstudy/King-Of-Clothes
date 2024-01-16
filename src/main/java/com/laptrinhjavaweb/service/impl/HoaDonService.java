@@ -93,14 +93,14 @@ public class HoaDonService implements IHoaDonService {
             List<HoaDonChiTietEntity> hoaDonChiTietEntities = hoaDonChiTietRepository.findAllByHoaDon_ma(hoaDonResquest.getMa());
             hoaDonChiTietEntities.forEach(
                     item -> {
-                            BienTheEntity bienTheEntity = item.getBienThe();
-                            if(!item.getGia().equals(bienTheEntity.getGia())){
-                                BienTheResponse bienTheResponse = bienTheConverter.convertToResponse(bienTheEntity);
-                                item.setGia(bienTheResponse.getGiaBan());
-                                item.setThanhTien(bienTheResponse.getGiaBan() * item.getSoLuong());
-                            }
-                            bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
-                            bienTheRepository.save(bienTheEntity);
+                        BienTheEntity bienTheEntity = item.getBienThe();
+                        if(!item.getGia().equals(bienTheEntity.getGia())){
+                            BienTheResponse bienTheResponse = bienTheConverter.convertToResponse(bienTheEntity);
+                            item.setGia(bienTheResponse.getGiaBan());
+                            item.setThanhTien(bienTheResponse.getGiaBan() * item.getSoLuong());
+                        }
+                        bienTheEntity.setSoLuong(bienTheEntity.getSoLuong() - item.getSoLuong());
+                        bienTheRepository.save(bienTheEntity);
                     }
             );
         }

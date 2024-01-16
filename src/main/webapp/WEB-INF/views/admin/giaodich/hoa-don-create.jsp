@@ -675,18 +675,22 @@
 
     $('#list-products').on('click', function (e) {
         const eleClick = $(e.target);
-        if(eleClick.hasClass('btn-buy-product')){
+        if (eleClick.hasClass('btn-buy-product')) {
             const eleParent = eleClick.closest('.card-item-product');
             const lenChecked = eleParent.find('input[type="radio"]:checked').length;
             const lenOfAttribute = eleParent.find('.len-attribute').val();
 
-            if(parseInt(lenChecked) !== parseInt(lenOfAttribute)){
+            if (parseInt(lenChecked) !== parseInt(lenOfAttribute)) {
                 showError("Vui lòng chọn sản phẩm");
-            }else{
-                    let productBuyVND = eleParent.find('.product-buy').text();
-                    let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
-                    let productId = eleParent.find('#product-id').val();
+            } else {
+                let productBuyVND = eleParent.find('.product-buy').text();
+                let productBuy = parseInt(productBuyVND.replace(/[^\d.]/g, '').replace('.', ''));
+                let productId = eleParent.find('#product-id').val();
+                let productQuantity = parseInt(eleParent.find('.product-quantity').text());
 
+                if (productQuantity === 0) {
+                    showError("Sản phẩm đã hết hàng");
+                } else {
                     let data = {};
                     data['maHoaDon'] = maHoaDon;
                     data['soLuong'] = 1;
@@ -704,17 +708,16 @@
                             couponId = null;
                             $('#list-products').find('input[type=radio]').prop('checked', false);
                             showSuccess("Thêm sản phẩm vào hóa đơn thành công");
-                            loadHoaDon()
+                            loadHoaDon();
                         },
-
                         function (error) {
-                            console.log(error)
+                            console.log(error);
                         }
                     );
+                }
             }
-
         }
-    })
+    });
 
     function searchSanPham(param) {
         $.ajax({
